@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/LL_tailor_product_from_cart">
+        <TextView
+            android:id="@+id/textheader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_mid"
+            android:textColor="@color/colorGray"
+            android:padding="10dp"
+            android:text="Please select the service required"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/dishInfoText"
+            android:textColor="@color/colorNavy"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:text="Dishdasha"
+            />
+
+
+        <!--<android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/recycler_view">
+
+        </android.support.v7.widget.RecyclerView>-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:id="@+id/list">
+
+        </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ownTextileText"
+            android:gravity="center"
+            android:textSize="@dimen/text_mid"
+
+            android:textColor="@color/colorAccent"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/seperator_view"
+        android:layout_below="@+id/LL_tailor_product_from_cart"
+        android:background="@color/colorDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LL_dishdasha_tailor_product"
+        android:layout_below="@+id/seperator_view">
+
+
+   <!-- <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>-->
+      <!--  <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:id="@+id/list2">
+
+
+        </ListView>-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:dividerHeight="0dp"
+            android:divider="@android:color/transparent"
+            android:id="@+id/list2">
+
+
+        </ListView>
+
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/tailor_add"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="add to cart"
+        android:layout_margin="20dp"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorAccent"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

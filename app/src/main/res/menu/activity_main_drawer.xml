@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorTheme">
+
+    <group
+        android:id="@+id/group_home"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_home" />
+
+    </group>
+
+
+    <group
+        android:id="@+id/group_styles"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_styles"
+            android:icon="@drawable/ic_style"
+            android:title="@string/nav_mystyle" />
+
+    </group>
+    <group
+        android:id="@+id/group_textiles"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_textiles"
+            android:icon="@drawable/ic_textiles"
+            android:title="@string/nav_mytextiles" />
+
+    </group>
+    <group
+        android:id="@+id/group_mail"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_mail"
+            android:icon="@drawable/ic_mail"
+            android:title="@string/nav_mail"
+            app:actionLayout="@layout/menu_counter"/>
+
+    </group>
+    <group
+        android:id="@+id/group_address"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_my_address"
+            android:icon="@drawable/ic_addresses"
+            android:title="@string/nav_myaddresses" />
+
+    </group>
+    <group
+        android:id="@+id/group_orders"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_my_orders"
+            android:icon="@drawable/ic_orders"
+            android:title="@string/nav_myorders"
+            app:actionLayout="@layout/menu_counter"/>
+
+    </group>
+
+
+    <group
+        android:id="@+id/group_sign_up"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sign_up"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/nav_signup" />
+    </group>
+
+    <group
+        android:id="@+id/group_sign_in"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_sign_in"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/nav_signin" />
+
+    </group>
+
+    <group
+        android:id="@+id/group_settings"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/nav_settings" />
+
+    </group>
+
+    <item
+        android:title="" />
+    <item
+        android:title="" />
+</menu>

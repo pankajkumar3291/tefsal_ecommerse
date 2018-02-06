@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#212121">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Country"
+        android:textColor="@color/colorBWhite"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_beige_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_beige_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ic_beige_color_picker"
+                android:gravity="center"
+                android:text="CHINA"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_navy_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_navy_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="SPAIN"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_brown_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_brown_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="JAPAN"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+    </LinearLayout>
+   <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="@color/colorBlack">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEE ALL"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_normal"
+        android:padding="20dp"
+        android:textColor="@color/colorBWhite"/>
+  </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Brand"
+        android:textColor="@color/colorBWhite"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large"
+        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_mid"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_white_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_white_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="GUCCI"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_olive_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_olive_color" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DUNHILL"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_gray_color_picker"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_gray_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/ic_gray_color_picker"
+                android:gravity="center"
+                android:text="VERSA"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorBlack">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEE ALL"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
+            android:padding="20dp"
+            android:textColor="@color/colorBWhite"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Pattern"
+        android:textColor="@color/colorBWhite"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/pattern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_white"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_beige_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ic_beige_color_picker"
+                android:gravity="center"
+                android:text="WHITE"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/diamond"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_navy_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DIAMOND"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/bWhite"
+                android:layout_width="@dimen/width_btn_small"
+                android:layout_height="@dimen/width_btn_small"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/shape_choose_brown_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="B WHITE"
+                android:textStyle="bold"
+                android:textColor="@color/colorBWhite"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorBlack">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEE ALL"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
+            android:padding="20dp"
+            android:textColor="@color/colorBWhite"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:theme="@style/TransparentToolbar"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="10dp"
+    android:layout_height="?attr/actionBarSize">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/LL_back_btn">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_left_arrow"/>
+        </LinearLayout>
+
+        <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:id="@+id/RR_title_container"
+             android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/LL_cart_qr"
+            android:layout_toRightOf="@+id/LL_back_btn"
+             android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_mid"
+            android:gravity="center"
+            android:text="HELLO efegf fwef efef "
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/toolbar_title"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Lato-Bold.ttf"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/subText"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar_title"
+            android:textColor="@color/colorAccent"
+            android:gravity="center"
+            android:text="Tailor"/>
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/LL_cart_qr"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/qr_code_btn"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="right"
+                android:visibility="gone"
+                android:background="@drawable/qr_code_image" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/view_cart_btn"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="right"
+
+                android:onClick="gotoCart"
+                android:background="@drawable/ic_shopping_cart_black_24dp" />
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>
+

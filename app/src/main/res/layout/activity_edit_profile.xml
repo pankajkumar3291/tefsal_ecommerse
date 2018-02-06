@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    tools:context="com.tefal.activity.EditProfileActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_editprofile" />
+
+    <LinearLayout
+        android:id="@+id/LL_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="40dp">
+
+                    <EditText
+                        android:id="@+id/input_first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="FIRST NAME"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp">
+                    <EditText
+                        android:id="@+id/input_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="LAST NAME"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/input_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="LAST NAME"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+                <!--<View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />-->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/input_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="LAST NAME"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/input_mobile_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="MOBLE NO"
+                        android:inputType="number"
+                        android:background="@android:color/transparent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_home_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/input_home_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="HOME NO"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp" />
+                <LinearLayout
+                    android:id="@+id/LL_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/countryTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_xsmall"
+                        android:drawablePadding="@dimen/margin_xxsmall"
+                        android:text="Nationality"
+                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
+                        android:textColor="@color/colorDGray"
+                        android:textSize="@dimen/text_small" />
+
+                    <Spinner
+                        android:id="@+id/spin_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingBottom="@dimen/margin_mid"
+                        android:paddingRight="@dimen/margin_mid"
+                        android:paddingTop="@dimen/margin_small" />
+                   <!-- <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"/>-->
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/input_nationality"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="NATIONALITY"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_normal" />
+
+                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp">
+                    <EditText
+                        android:id="@+id/input_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:hint="DATE OF BIRTH"
+                        android:background="@android:color/transparent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorDivider"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/input_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:focusableInTouchMode="false"
+                        android:hint="GENDER"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+                </android.support.design.widget.TextInputLayout>
+               <!-- <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>-->
+
+                <LinearLayout
+                    android:id="@+id/LL_radio_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginRight="90dp"
+                        android:textSize="@dimen/text_xsmall"
+                        android:text="GENDER" />
+
+                    <RadioGroup
+                        android:id="@+id/radio_btn_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
+                        android:orientation='horizontal'>
+
+                        <RadioButton
+                            android:id="@+id/radio_male_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:text="MALE" />
+
+                        <RadioButton
+                            android:id="@+id/radio_femmale_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FEMALE" />
+
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorTheme"
+        android:enabled="false"
+        android:text="@string/btn_txt_chnge_pwd"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_normal" />
+</RelativeLayout>

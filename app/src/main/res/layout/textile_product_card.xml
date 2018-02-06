@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:autofit="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <ImageView
+                android:id="@+id/iv_pattern"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/colorAccent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#90000000"/>
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:textAllCaps="true"
+                android:text="xyzxyx"
+                android:maxLines="3"
+                android:textSize="@dimen/text_normal"
+                autofit:minTextSize="10sp"
+                android:textStyle="bold" />
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:id="@+id/LL_price_container"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/txt_discount_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:textColor="#fff"
+        android:textAllCaps="true"
+        android:text="50%"
+        android:maxLines="3"
+        android:textSize="@dimen/margin_small"
+        autofit:minTextSize="10sp"
+        android:textStyle="bold" />
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/txt_discount_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_discount_amount"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
+        android:textColor="#fff"
+        android:textAllCaps="true"
+        android:text="OFF"
+        android:maxLines="3"
+        android:textSize="@dimen/margin_small"
+        autofit:minTextSize="10sp"
+        android:textStyle="bold" />
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/prize_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+
+        android:textColor="#fff"
+        android:maxLines="2"
+        android:text="ABC"
+        android:textSize="@dimen/text_normal"
+        autofit:minTextSize="10sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amount_text"
+        android:textColor="#fff"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:textSize="@dimen/text_normal"
+        android:text="100.00 KWD" />
+</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_max_delivery_days"
+                        android:text="1"
+                        android:textSize="@dimen/text_mid"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_max_delivery_days"
+                        android:textColor="@color/colorWhite"
+                        android:text="Days"/>
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/icon_delivery"
+                        android:src="@drawable/icon_delivery"
+                        android:layout_toRightOf="@+id/text_max_delivery_days"
+                        />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

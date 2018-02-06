@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.tefal.activity.MailDetailActivity">
+
+    <include layout="@layout/toolbar_about"
+        android:id="@+id/toolbar"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_below="@+id/toolbar">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_mail_heading"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textColor="@color/colorNavy"
+        android:textSize="@dimen/text_mid"
+        android:text="Mail Header"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_mail_details"
+        android:background="@drawable/message_round_corner"
+        android:text="Mail Details vee efefef egfegeg egfeg egfegeg egegeg egegeg egeg egeg ege gfeg egioeg eg egeg eg eg  eg egegfeg egf egeg egf eg eg eg"/>
+
+
+</LinearLayout>
+
+
+
+
+
+</RelativeLayout>

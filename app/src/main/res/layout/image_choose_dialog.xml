@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/round_blue_shape_cd">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/activity_vertical_margin">
+        <!--android:background="@drawable/round_blue_shape_cd"-->
+
+        <RelativeLayout
+            android:id="@+id/headerbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+            <!-- android:background="@drawable/two_point_top_shape"   -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/image_choose_dialog_header"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/header_seperator"
+            android:layout_below="@+id/headerbar"
+            android:background="#ccc"
+            />
+       <!-- <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/header_seperator"
+            android:layout_below="@+id/headerbar"
+            android:background="#ccc"
+            />-->
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_below="@+id/headerbar"
+            android:weightSum="100">
+            <!-- android:background="@drawable/two_point_bottom_shape"-->
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:id="@+id/dialog_camera_btn"
+                android:background="@android:color/transparent"
+                android:text="@string/image_choose_dialog_camera_btn_txt"
+                android:textSize="@dimen/text_normal" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#ccc" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/dialog_gallery_btn"
+                android:layout_weight="50"
+                android:background="@android:color/transparent"
+                android:text="@string/image_choose_dialog_gallery_btn_txt"
+                android:textSize="@dimen/text_normal" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

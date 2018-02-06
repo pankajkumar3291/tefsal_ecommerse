@@ -1,0 +1,11 @@
+<resources>
+    <integer-array name="menuIconArray">
+        <item >@drawable/ic_home</item>
+        <item >@drawable/ic_style</item>
+        <item >@drawable/ic_textiles</item>
+        <item >@drawable/ic_mail</item>
+        <item >@drawable/ic_addresses</item>
+        <item >@drawable/ic_orders</item>
+        <item >@drawable/ic_settings</item>
+    </integer-array>
+</resources>

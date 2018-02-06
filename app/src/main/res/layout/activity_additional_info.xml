@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/additional_info_bg"
+    android:fitsSystemWindows="true"
+    tools:context="com.tefal.activity.AdditionalInfoActivity">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        app:theme="@style/TransparentToolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_left_arrow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:textSize="@dimen/text_mid"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/toolbar_title"
+            tools:ignore="MissingPrefix"
+            fontPath="fonts/Lato-Bold.ttf" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="skip"
+            android:textSize="@dimen/text_mid"
+            android:id="@+id/skipTxt"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:layout_marginRight="10dp"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LL_content"
+        android:layout_marginTop="120dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar"
+
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/headingTxt"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="@color/colorTheme"
+            android:text="Additional Information"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/descTxt"
+            android:textColor="@color/colorTheme"
+            android:text="Please help us to get to know you more by entering additional information that can help us serve you better"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/text_xsmall"
+            android:text="GENDER"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:id="@+id/genderSpinner"
+            android:textSize="@dimen/text_xsmall"
+            android:entries="@array/gender">
+        </Spinner>
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="DATE OF BIRTH"/>-->
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dobInputLayout"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:editable="false"
+                android:inputType="none"
+                android:background="@android:color/transparent"
+                android:textSize="@dimen/text_xsmall"
+                android:hint="DATE OF BIRTH"
+                android:id="@+id/input_dob"/>
+        </android.support.design.widget.TextInputLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/text_xsmall"
+            android:text="NATIOANALITY"/>
+        <Spinner
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:id="@+id/nationalitySpinner">
+        </Spinner>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_submit"
+            android:layout_marginTop="20dp"
+            android:id="@+id/submintBtn"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/colorNavy"/>
+
+    </LinearLayout>
+</RelativeLayout>

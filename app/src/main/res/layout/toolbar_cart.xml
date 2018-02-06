@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:background="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+
+
+    <TextView
+        android:id="@+id/edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="EDIT"
+        android:textSize="@dimen/text_normal"
+        android:textColor="@color/colorWhite"
+        android:background="@android:color/transparent"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MY CART"
+        android:layout_gravity="center"
+        android:textSize="@dimen/text_mid"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/toolbar_title"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/Lato-Bold.ttf"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="10dp"
+        android:id="@+id/cancel_btn"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_close_black_24dp"/>
+
+</android.support.v7.widget.Toolbar>
+

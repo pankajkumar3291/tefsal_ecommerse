@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/round_blue_shape_cd">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="448dp"
+        android:layout_margin="@dimen/activity_vertical_margin">
+<!--android:background="@drawable/round_blue_shape_cd"-->
+
+        <RelativeLayout
+            android:id="@+id/headerbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+<!-- android:background="@drawable/two_point_top_shape"   -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="2 Button Style"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_mid" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/headerbar"
+            android:layout_alignParentStart="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_right_custom_dialog"
+                android:layout_marginLeft="@dimen/margin_left_custom_dialog">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ll_image_container"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/image_view"/>
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:id="@+id/check_me1"
+                    android:button="@drawable/check_box_selector"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_me2"
+                    android:checked="false"
+                    android:layout_alignParentRight="true"
+                    android:button="@drawable/check_box_selector"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_me3"
+                    android:checked="false"
+                    android:button="@drawable/check_box_selector"
+                    android:layout_below="@+id/check_me1"
+                    android:layout_alignParentStart="true" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_me4"
+                    android:checked="false"
+                    android:layout_below="@+id/check_me2"
+                    android:layout_alignParentRight="true"
+                    android:button="@drawable/check_box_selector"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/check_me5"
+                    android:checked="false"
+                    android:button="@drawable/check_box_selector"
+                    android:layout_below="@+id/check_me3"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+
+            android:orientation="horizontal"
+            android:weightSum="100">
+<!-- android:background="@drawable/two_point_bottom_shape"-->
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:id="@+id/dialog_cancel_btn"
+                android:background="@android:color/transparent"
+                android:text="CANCEL"
+                android:textSize="@dimen/text_mid" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#ccc" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/dialog_save_btn"
+                android:layout_weight="50"
+                android:background="@android:color/transparent"
+
+
+                android:text="SAVE"
+                android:textSize="@dimen/text_mid" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

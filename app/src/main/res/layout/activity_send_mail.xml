@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/app_bg"
+    tools:context="com.tefal.activity.SendMailActivity"
+    android:orientation="vertical">
+    <include layout="@layout/toolbar_sendmail"
+        android:id="@+id/toolbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email_title"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/txt_email_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_email_title"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColorHint="@color/colorTheme"
+            android:textSize="@dimen/text_normal" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <!--<android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email_message"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/input_layout_email_title"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <EditText
+            android:id="@+id/txt_email_message"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="top"
+            android:background="@drawable/message_round_corner"
+            android:textSize="@dimen/text_normal"
+            android:inputType="textMultiLine"
+            android:textColorHint="@color/colorTheme"
+            android:hint="@string/hint_email_message" />
+
+
+
+    </android.support.design.widget.TextInputLayout>-->
+
+    <EditText
+        android:id="@+id/txt_email_message"
+        android:layout_below="@+id/input_layout_email_title"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/message_round_corner"
+        android:textSize="@dimen/text_normal"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/colorTheme"
+        android:hint="@string/hint_email_message" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:background="@drawable/two_point_top_spape_btn"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/btn_snd"
+            android:text="@string/btn_txt_email_send"/>
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

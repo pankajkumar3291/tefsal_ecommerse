@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RR_toolbar"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_left_arrow" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/back_btn"
+            android:layout_marginLeft="15dp"
+            android:gravity="center">
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/txt_title"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/subtxt_title"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Zara Daraa"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold"
+                autofit:minTextSize="10sp" />
+            <me.grantland.widget.AutofitTextView
+                android:id="@+id/subtxt_title"
+                android:layout_width="230dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_below="@+id/txt_title"
+                android:layout_centerHorizontal="true"
+                android:text="Casual daraa for dinner"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"
+                autofit:minTextSize="8sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/qr_code_btn"
+            android:layout_toLeftOf="@+id/view_cart_btn"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:background="@drawable/qr_code_image" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/view_cart_btn"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:onClick="gotoCart"
+            android:background="@drawable/ic_shopping_cart_black_24dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/RR_toolbar"
+        android:id="@+id/RR__viewpagerHolder">
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/product_image_viewPager">
+        </android.support.v4.view.ViewPager>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/no_image_holder"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#90000000"/>
+        <RelativeLayout
+            android:id="@+id/viewPagerIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="-20dp"
+            android:gravity="center"
+            android:padding="4dp">
+            <LinearLayout
+                android:id="@+id/viewPagerCountDots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LL_continer"
+        android:visibility="gone"
+        android:layout_marginTop="70dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/text_large"
+            android:id="@+id/noDataText"
+            android:text="No data found!"/>
+    </LinearLayout>-->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RR__viewpagerHolder"
+        android:layout_above="@+id/LL_add_cart_region">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical">
+
+
+                <!--<android.support.v4.view.ViewPager
+                    android:id="@+id/mainViewPager"
+                    android:layout_width="match_parent"
+                    android:background="@color/colorDivider"
+                    android:layout_height="400dp">
+                </android.support.v4.view.ViewPager>-->
+                <!--<ImageView
+                    android:id="@+id/productImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/colorDivider" />-->
+
+                <!--<android.support.v4.view.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/product_image_viewPager">
+
+                </android.support.v4.view.ViewPager>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:id="@+id/no_image_holder"/>-->
+                <!--<RelativeLayout
+                    android:id="@+id/viewPagerIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mainViewPager"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="-20dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:id="@+id/viewPagerCountDots"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+
+                </RelativeLayout>-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+
+
+                <!--<LinearLayout
+                    android:id="@+id/size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/viewPagerIndicator"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/txt_size_s"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="S"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/text_mid" />
+
+                    <TextView
+                        android:id="@+id/txt_size_m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="M"
+                        android:textColor="@color/colorGray"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_mid" />
+
+                    <TextView
+                        android:id="@+id/txt_size_l"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="L"
+                        android:textColor="@color/colorGray"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_mid" />
+
+                    <TextView
+                        android:id="@+id/txt_size_xl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="XL"
+                        android:textColor="@color/colorGray"
+                        android:gravity="center"
+                        android:textSize="@dimen/text_mid" />
+
+                </LinearLayout>-->
+
+               <!-- <TextView
+                    android:id="@+id/sizeGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/size"
+                    android:layout_marginTop="20dp"
+                    android:text="View Size Guide"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal" />-->
+
+
+                <RelativeLayout
+                    android:id="@+id/sizeAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sizeGuide"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Size"
+                        android:textColor="@color/colorDGray"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <!--<Spinner-->
+                    <!--android:id="@+id/spinner"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true" />-->
+
+                    <TextView
+                        android:id="@+id/size_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/colorDGray"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/colorAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sizeAvailable"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color Available"
+                        android:textColor="@color/colorDGray"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <!--<Spinner-->
+                    <!--android:id="@+id/spinner"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true" />-->
+
+                    <TextView
+                        android:id="@+id/color_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PINK  BAIGE"
+                        android:layout_marginRight="20dp"
+                        android:textColor="@color/colorDGray"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/colorAvailable"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Description"
+                        android:textSize="@dimen/text_mid"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/text_descp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="descp"
+                        android:textSize="@dimen/text_normal" />
+                </LinearLayout>
+                </LinearLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:id="@+id/LL_add_cart_region"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRICE:40.000 KWD"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/margin_mid" />
+
+        <Button
+            android:id="@+id/add_cart_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="ADD TO CART"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_large" />
+
+    </LinearLayout>
+
+</RelativeLayout>

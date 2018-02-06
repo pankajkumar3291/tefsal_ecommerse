@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/round_blue_shape_cd">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/activity_vertical_margin">
+        <!--android:background="@drawable/round_blue_shape_cd"-->
+
+        <RelativeLayout
+            android:id="@+id/headerbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            >
+            <!-- android:background="@drawable/two_point_top_shape"   -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="STYLE"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/header_seperator"
+            android:layout_below="@+id/headerbar"
+            android:background="#ccc"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/headerbar"
+            android:layout_alignParentStart="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_right_custom_dialog"
+                android:layout_marginLeft="@dimen/margin_left_custom_dialog">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/input_layout_style_name">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/input_style_name"
+                        android:singleLine="true"
+                        android:hint="STYLE NAME"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:weightSum="100">
+            <!-- android:background="@drawable/two_point_bottom_shape"-->
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:id="@+id/dialog_cancel_btn"
+                android:background="@android:color/transparent"
+                android:text="CANCEL"
+                android:textSize="@dimen/text_mid" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#ccc" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/dialog_ok_btn"
+                android:layout_weight="50"
+                android:background="@android:color/transparent"
+                android:text="OK"
+                android:textSize="@dimen/text_mid" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

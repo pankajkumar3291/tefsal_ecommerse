@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ececdd</color>
+    <!--<color name="colorPrimaryDark">#ececdd</color>-->
+    <color name="colorPrimaryDark">#bfbfbd</color>
+    <color name="colorAccent">#2e3241</color>
+    <color name="colorMenu">#efefe4</color>
+    <color name="colorDivider">#d9d9d9</color>
+    <color name="colorGray">#a1a0a0</color>
+    <color name="colorDGray">#868585</color>
+    <color name="colorStyle_bg">#e7e6e6</color>
+    <color name="colorTheme">#1e1f25</color>
+    <color name="colorHeader">#90000000</color>
+    <color name="colorBGfilterLL">#000009</color>
+    <color name="colorFooter">#282F3F</color>
+
+<color name="colorTransparentBlack">#90000000</color>
+    <color name="colorYellow">#FFBA00</color>
+    <color name="colorYellowTransperent">#90FFBA00</color>
+    <color name="colorBeige">#e1e3bb</color>
+    <color name="colorNavy">#171d3b</color>
+    <color name="colorBrown">#392f15</color>
+    <color name="colorOlive">#383f27</color>
+    <color name="colorGreyDark">#514d4a</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorDiamond">#d8d8d8</color>
+    <color name="colorBWhite">#f6eace</color>
+    <color name="colorClueWhite">#fffed8</color>
+    <color name="colorSWhite">#ffffff</color>
+    <color name="colorMWhite">#FEFCFF</color>
+
+    <color name="colorTranspernt">#00FFFFFF</color>
+    <color name="colorPickerBg">#ececdd</color>
+    <color name="colorNavyBlue">#091823</color>
+
+    <color name="colorRed">#FFF90404</color>
+
+</resources>

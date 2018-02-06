@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_marginTop="20dp"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+    <ImageButton
+        android:id="@+id/btn_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_menu_white_24dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        android:textSize="@dimen/text_mid"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/toolbar_title" />
+    <ImageButton
+        android:id="@+id/btn_ADD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_add_black_24dp"/>
+    <ImageButton
+        android:id="@+id/btn_write_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_mail_write"/>
+</android.support.v7.widget.Toolbar>
+
