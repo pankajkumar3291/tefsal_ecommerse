@@ -33,10 +33,10 @@
             tools:ignore="MissingPrefix"
             fontPath="fonts/Lato-Bold.ttf" />
         <Button
-            android:id="@+id/btn_Save"
+            android:clickable="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="save"
+            android:text="Step 2"
             android:textColor="@color/colorAccent"
             android:layout_gravity="right"
             tools:ignore="MissingPrefix"
@@ -664,6 +664,16 @@
                     android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
                     />
+
+                <Button
+                    android:id="@+id/btn_Save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_xlarge"
+                    android:background="@color/colorTheme"
+                    android:text="@string/continue_"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_normal" />
 
             </LinearLayout>
         </LinearLayout>

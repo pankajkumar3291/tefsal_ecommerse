@@ -209,4 +209,5 @@
 
     <!--zaara_daraa.xml-->
     <string name="text_sizeGuide_zaara_daraa"><u>View Size Guide</u></string>
+    <string name="continue_">Continue</string>
 </resources>
