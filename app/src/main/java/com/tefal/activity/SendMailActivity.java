@@ -35,7 +35,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -45,29 +45,29 @@ import static com.tefal.activity.MainActivity.total_badge_txt;
 
 public class SendMailActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
 
-    @Bind(R.id.btn_snd)
+    @BindView(R.id.btn_snd)
     Button btn_snd;
 
-    /*@Bind(R.id.input_layout_email_message)
+    /*@BindView(R.id.input_layout_email_message)
     TextInputLayout input_layout_email__message;*/
 
-    @Bind(R.id.input_layout_email_title)
+    @BindView(R.id.input_layout_email_title)
     TextInputLayout input_layout_email_title;
 
-    @Bind(R.id.txt_email_message)
+    @BindView(R.id.txt_email_message)
     EditText txt_email_message;
 
-    @Bind(R.id.txt_email_title)
+    @BindView(R.id.txt_email_title)
             EditText txt_email_title;
     private SessionManager session;
 

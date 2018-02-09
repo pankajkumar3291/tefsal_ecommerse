@@ -15,7 +15,7 @@ import com.tefal.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -56,13 +56,13 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        @Bind(R.id.order_status_txt)
+        @BindView(R.id.order_status_txt)
         TextView order_status_txt;
 
-        @Bind(R.id.order_date_txt)
+        @BindView(R.id.order_date_txt)
         TextView order_date_txt;
 
-        @Bind(R.id.order_image)
+        @BindView(R.id.order_image)
         ImageView order_image;
 
         public ViewHolder(View itemView) {

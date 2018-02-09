@@ -50,7 +50,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AccessoryProductDetailsActivity extends BaseActivity {
@@ -58,31 +58,31 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
 
     private AccessoriesRecord accessoriesRecord;
-   /* @Bind(R.id.productImage)
+   /* @BindView(R.id.productImage)
     ImageView imageView;*/
 
-    @Bind(R.id.size_text)
+    @BindView(R.id.size_text)
     TextView size_text;
 
-    @Bind(R.id.color_text)
+    @BindView(R.id.color_text)
     TextView color_text;
 
-    @Bind(R.id.text_descp)
+    @BindView(R.id.text_descp)
     TextView text_desc;
 
-    @Bind(R.id.text_price)
+    @BindView(R.id.text_price)
     TextView text_price;
 
-    @Bind(R.id.add_cart_btn)
+    @BindView(R.id.add_cart_btn)
     Button add_cart_btn;
 
-    @Bind(R.id.txt_title)
+    @BindView(R.id.txt_title)
     TextView txt_title;
 
-    @Bind(R.id.subtxt_title)
+    @BindView(R.id.subtxt_title)
     TextView subtxt_title;
 
-    @Bind(R.id.back_btn)
+    @BindView(R.id.back_btn)
     ImageView back_btn;
 
     private SessionManager session;
@@ -90,16 +90,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
     private static final String TAG = "AccesPrdctDtlsActivity";
 
 
-    @Bind(R.id.product_image_viewPager)
+    @BindView(R.id.product_image_viewPager)
     ViewPager product_image_viewPager;
 
-    @Bind(R.id.no_image_holder)
+    @BindView(R.id.no_image_holder)
     ImageView no_image_holder;
 
-    @Bind(R.id.viewPagerIndicator)
+    @BindView(R.id.viewPagerIndicator)
     RelativeLayout viewPagerIndicator;
 
-    @Bind(R.id.viewPagerCountDots)
+    @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
     private String[] Accessory_product_image;

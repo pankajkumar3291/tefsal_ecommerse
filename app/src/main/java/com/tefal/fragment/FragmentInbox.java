@@ -34,7 +34,7 @@ import com.tefal.utils.SimpleProgressBar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -43,13 +43,13 @@ import butterknife.ButterKnife;
 
 public class FragmentInbox extends Fragment {
 
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
-    @Bind(R.id.no_mail_text)
+    @BindView(R.id.no_mail_text)
     TextView no_mail_text;
 
     InboxAdapter adapter;

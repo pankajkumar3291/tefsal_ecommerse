@@ -1,6 +1,9 @@
 package com.tefal.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -41,69 +44,69 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AddAddresssAfterSignUp extends BaseActivity {
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.btn_Save)
+    @BindView(R.id.btn_Save)
     Button btn_Save;
 
-    @Bind(R.id.spin_country)
+    @BindView(R.id.spin_country)
     Spinner spin_country;
 
-    @Bind(R.id.spin_city)
+    @BindView(R.id.spin_city)
     Spinner spin_city;
 
-    @Bind(R.id.spin_area)
+    @BindView(R.id.spin_area)
     Spinner spin_area;
 
-    @Bind(R.id.input_address_name)
+    @BindView(R.id.input_address_name)
     EditText input_address_name;
 
-    @Bind(R.id.input_block)
+    @BindView(R.id.input_block)
     EditText input_block;
 
-    @Bind(R.id.input_avenue)
+    @BindView(R.id.input_avenue)
     EditText input_avenue;
 
-    @Bind(R.id.input_floor)
+    @BindView(R.id.input_floor)
     EditText input_floor;
 
-    @Bind(R.id.input_house)
+    @BindView(R.id.input_house)
     EditText input_house;
 
-    @Bind(R.id.input_paci_num)
+    @BindView(R.id.input_paci_num)
     EditText input_paci_num;
 
-    @Bind(R.id.input_add_desp)
+    @BindView(R.id.input_add_desp)
     EditText input_add_desp;
 
-    @Bind(R.id.areaTxt)
+    @BindView(R.id.areaTxt)
     TextView areaTxt;
 
-    @Bind(R.id.cityTxt)
+    @BindView(R.id.cityTxt)
     TextView cityTxt;
 
-    @Bind(R.id.countryTxt)
+    @BindView(R.id.countryTxt)
     TextView countryTxt;
 
-    @Bind(R.id.input_street)
+    @BindView(R.id.input_street)
     EditText input_street;
 
 
-    @Bind(R.id.input_phone)
+    @BindView(R.id.input_phone)
     EditText input_phone;
 
-    @Bind(R.id.input_flate)
+    @BindView(R.id.input_flate)
     EditText input_flate;
 
 
@@ -211,6 +214,34 @@ public class AddAddresssAfterSignUp extends BaseActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Cancel Signup")
+                .setMessage("Are you sure you want to cancel sign-up?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .show();
+
+    }
 
 
 

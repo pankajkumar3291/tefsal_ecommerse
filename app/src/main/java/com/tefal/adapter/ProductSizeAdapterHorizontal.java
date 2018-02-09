@@ -16,7 +16,7 @@ import com.tefal.app.TefalApp;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -110,7 +110,7 @@ public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSi
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        @Bind(R.id.sizeText)
+        @BindView(R.id.sizeText)
         TextView sizeText;
 
         public ViewHolder(View itemView) {

@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -51,29 +51,29 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_pattern)
+        @BindView(R.id.iv_pattern)
         ImageView iv_pattern;
 
-        @Bind(R.id.name_text)
+        @BindView(R.id.name_text)
         TextView name_text;
 
-        @Bind(R.id.prize_text)
+        @BindView(R.id.prize_text)
         TextView prize_text;
 
-        @Bind(R.id.amount_text)
+        @BindView(R.id.amount_text)
         TextView amount_text;
 
 
-        @Bind(R.id.text_max_delivery_days)
+        @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
-        @Bind(R.id.txt_discount_amount)
+        @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         LinearLayout main_layout;
 
-        @Bind(R.id.txt_discount_off)
+        @BindView(R.id.txt_discount_off)
         TextView txt_discount_off;
 
 

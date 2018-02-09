@@ -87,97 +87,97 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class EditProfileActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.editBtn)
+    @BindView(R.id.editBtn)
     ImageView editBtn;
 
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
     SessionManager session;
 
 
-    @Bind(R.id.input_layout_first_name)
+    @BindView(R.id.input_layout_first_name)
     TextInputLayout input_layout_first_name;
 
 
-    @Bind(R.id.input_layout_last_name)
+    @BindView(R.id.input_layout_last_name)
     TextInputLayout input_layout_last_name;
 
-    @Bind(R.id.input_layout_mobile_no)
+    @BindView(R.id.input_layout_mobile_no)
     TextInputLayout input_layout_mobile_no;
 
-    @Bind(R.id.input_layout_home_no)
+    @BindView(R.id.input_layout_home_no)
     TextInputLayout input_layout_home_no;
 
-    @Bind(R.id.input_layout_nationality)
+    @BindView(R.id.input_layout_nationality)
     TextInputLayout input_layout_nationality;
 
-    @Bind(R.id.input_layout_dob)
+    @BindView(R.id.input_layout_dob)
     TextInputLayout input_layout_dob;
 
-    @Bind(R.id.input_layout_gender)
+    @BindView(R.id.input_layout_gender)
     TextInputLayout input_layout_gender;
 
-    @Bind(R.id.input_first_name)
+    @BindView(R.id.input_first_name)
     EditText input_first_name;
 
-    @Bind(R.id.input_last_name)
+    @BindView(R.id.input_last_name)
     EditText input_last_name;
 
-    @Bind(R.id.input_mobile_no)
+    @BindView(R.id.input_mobile_no)
     EditText input_mobile_no;
 
-    @Bind(R.id.input_home_no)
+    @BindView(R.id.input_home_no)
     EditText input_home_no;
 
-    @Bind(R.id.input_nationality)
+    @BindView(R.id.input_nationality)
     EditText input_nationality;
 
-    @Bind(R.id.input_dob)
+    @BindView(R.id.input_dob)
     EditText input_dob;
 
-    @Bind(R.id.input_gender)
+    @BindView(R.id.input_gender)
     EditText input_gender;
 
-    @Bind(R.id.profile_image)
+    @BindView(R.id.profile_image)
     ImageView profile_image;
 
-    @Bind(R.id.save_btn)
+    @BindView(R.id.save_btn)
     Button save_btn;
 
-    @Bind(R.id.LL_radio_container)
+    @BindView(R.id.LL_radio_container)
     LinearLayout LL_radio_container;
 
 
-    @Bind(R.id.radio_femmale_btn)
+    @BindView(R.id.radio_femmale_btn)
     RadioButton radio_femmale_btn;
 
-    @Bind(R.id.radio_male_btn)
+    @BindView(R.id.radio_male_btn)
     RadioButton radio_male_btn;
 
-    @Bind(R.id.radio_btn_group)
+    @BindView(R.id.radio_btn_group)
     RadioGroup radio_btn_group;
 
-    @Bind(R.id.LL_nationality)
+    @BindView(R.id.LL_nationality)
     LinearLayout LL_nationality;
 
     private String mGender;
 
-    @Bind(R.id.spin_country)
+    @BindView(R.id.spin_country)
     Spinner spin_country;
 
     List<String> country_name;

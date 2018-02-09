@@ -12,7 +12,7 @@ import com.tefal.R;
 import com.tefal.activity.TextileDetailActivity;
 import com.tefal.adapter.DishdashaTextileProductAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  */
 public class MaterialFragment extends Fragment {
 
-@Bind(R.id.tv_material)
+@BindView(R.id.tv_material)
     TextView tv_material;
 
 

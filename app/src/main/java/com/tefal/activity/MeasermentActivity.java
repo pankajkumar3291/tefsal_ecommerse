@@ -67,7 +67,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -77,151 +77,151 @@ import static android.view.View.resolveSize;
 public class MeasermentActivity extends BaseActivity
 {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
-    @Bind(R.id.next_txt)
+    @BindView(R.id.next_txt)
     TextView next_txt;
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
-    @Bind(R.id.seekBar)
+    @BindView(R.id.seekBar)
     SeekBar seekBar;
-    @Bind(R.id.Video_Btn)
+    @BindView(R.id.Video_Btn)
     Button Video_Btn;
-    @Bind(R.id.textValue)
+    @BindView(R.id.textValue)
     EditText textValue;
-    @Bind(R.id.textSubValue)
+    @BindView(R.id.textSubValue)
     TextView textSubValue;
 
 
-    @Bind(R.id.ll_neck)
+    @BindView(R.id.ll_neck)
     RelativeLayout ll_neck;
-    @Bind(R.id.ll_chest)
+    @BindView(R.id.ll_chest)
     RelativeLayout ll_chest;
-    @Bind(R.id.ll_sldr)
+    @BindView(R.id.ll_sldr)
     RelativeLayout ll_sldr;
-    @Bind(R.id.ll_waist)
+    @BindView(R.id.ll_waist)
     RelativeLayout ll_waist;
-    @Bind(R.id.ll_arm)
+    @BindView(R.id.ll_arm)
     RelativeLayout ll_arm;
-    @Bind(R.id.ll_wrist)
+    @BindView(R.id.ll_wrist)
     RelativeLayout ll_wrist;
-    @Bind(R.id.ll_frnt_height)
+    @BindView(R.id.ll_frnt_height)
     RelativeLayout ll_frnt_height;
-    @Bind(R.id.ll_back_height)
+    @BindView(R.id.ll_back_height)
     RelativeLayout ll_back_height;
-    @Bind(R.id.ll_custom)
+    @BindView(R.id.ll_custom)
     RelativeLayout ll_custom;
-    @Bind(R.id.ll_sectionOne)
+    @BindView(R.id.ll_sectionOne)
     LinearLayout ll_sectionOne;
-    @Bind(R.id.ll_sectionTwo)
+    @BindView(R.id.ll_sectionTwo)
     LinearLayout ll_sectionTwo;
 
 
-    @Bind(R.id.ic_custom)
+    @BindView(R.id.ic_custom)
     ImageView ic_custom;
 
-    @Bind(R.id.ic_b_height)
+    @BindView(R.id.ic_b_height)
     ImageView ic_b_height;
 
-    @Bind(R.id.ic_f_height)
+    @BindView(R.id.ic_f_height)
     ImageView ic_f_height;
 
-    @Bind(R.id.ic_wrist)
+    @BindView(R.id.ic_wrist)
     ImageView ic_wrist;
 
-    @Bind(R.id.ic_arm)
+    @BindView(R.id.ic_arm)
     ImageView ic_arm;
 
-    @Bind(R.id.ic_waist)
+    @BindView(R.id.ic_waist)
     ImageView ic_waist;
 
-    @Bind(R.id.ic_chest)
+    @BindView(R.id.ic_chest)
     ImageView ic_chest;
 
-    @Bind(R.id.ic_shoulder)
+    @BindView(R.id.ic_shoulder)
     ImageView ic_shoulder;
 
-    @Bind(R.id.ic_neck)
+    @BindView(R.id.ic_neck)
     ImageView ic_neck;
 
     //-------------------------------------------------------------------------------
 
-    @Bind(R.id.tv_custom)
+    @BindView(R.id.tv_custom)
     TextView tv_custom;
 
-    @Bind(R.id.tv_b_height)
+    @BindView(R.id.tv_b_height)
     TextView tv_b_height;
 
-    @Bind(R.id.tv_f_height)
+    @BindView(R.id.tv_f_height)
     TextView tv_f_height;
 
-    @Bind(R.id.tv_wrist)
+    @BindView(R.id.tv_wrist)
     TextView tv_wrist;
 
-    @Bind(R.id.tv_arm)
+    @BindView(R.id.tv_arm)
     TextView tv_arm;
 
-    @Bind(R.id.tv_waist)
+    @BindView(R.id.tv_waist)
     TextView tv_waist;
 
-    @Bind(R.id.tv_chest)
+    @BindView(R.id.tv_chest)
     TextView tv_chest;
 
-    @Bind(R.id.tv_shoulder)
+    @BindView(R.id.tv_shoulder)
     TextView tv_shoulder;
 
-    @Bind(R.id.tv_neck)
+    @BindView(R.id.tv_neck)
     TextView tv_neck;
 
-    @Bind(R.id.btn_finish)
+    @BindView(R.id.btn_finish)
     Button btn_finish;
 
 
     //Custom design components====================
 
-    @Bind(R.id. buttonsImage)
+    @BindView(R.id. buttonsImage)
     ImageView buttonsImage;
 
-    @Bind(R.id.buttonHiddenText)
+    @BindView(R.id.buttonHiddenText)
     TextView buttonHiddenText;
 
-    @Bind(R.id.noOfButtonText)
+    @BindView(R.id.noOfButtonText)
     TextView noOfButtonText;
 
-    @Bind(R.id.button_hidden_switch)
+    @BindView(R.id.button_hidden_switch)
     Switch button_hidden_switch;
 
-    @Bind(R.id.noOfButtonSpinner)
+    @BindView(R.id.noOfButtonSpinner)
     Spinner noOfButtonSpinner;
 
-    @Bind(R.id.collor_button_hidden_text)
+    @BindView(R.id.collor_button_hidden_text)
     TextView collor_button_hidden_text;
 
-    @Bind(R.id.no_of_collor_btn_text)
+    @BindView(R.id.no_of_collor_btn_text)
     TextView no_of_collor_btn_text;
 
-    @Bind(R.id.collar_btn_spinner)
+    @BindView(R.id.collar_btn_spinner)
     Spinner collar_btn_spinner;
 
-    @Bind(R.id.collar_btn_switch)
+    @BindView(R.id.collar_btn_switch)
     Switch collar_btn_switch;
 
-    @Bind(R.id.collor_button_image)
+    @BindView(R.id.collor_button_image)
     ImageView collor_button_image;
 
-    @Bind(R.id.collor_push_visibilty_switch)
+    @BindView(R.id.collor_push_visibilty_switch)
     Switch collor_push_visibilty_switch;
 
     //=======================================
-    @Bind(R.id.pen_pocket_image)
+    @BindView(R.id.pen_pocket_image)
     ImageView pen_pocket_image;
 
-    @Bind(R.id.mobile_pocket_image)
+    @BindView(R.id.mobile_pocket_image)
     ImageView mobile_pocket_image;
 
-    @Bind(R.id.key_pocket_image)
+    @BindView(R.id.key_pocket_image)
     ImageView key_pocket_image;
 
 
@@ -231,21 +231,21 @@ public class MeasermentActivity extends BaseActivity
     boolean key_pocket_image_flage=false;
 
     //============================================
-    @Bind(R.id.culffSwitch_switch)
+    @BindView(R.id.culffSwitch_switch)
     Switch culffSwitch_switch;
 
-    @Bind(R.id.cufLinkText)
+    @BindView(R.id.cufLinkText)
     TextView   cufLinkText;
 
-    @Bind(R.id.cufflink_image)
+    @BindView(R.id.cufflink_image)
     ImageView cufflink_image;
 
     //========View tip screen control
 
-    @Bind(R.id.viewtip_btn)
+    @BindView(R.id.viewtip_btn)
     Button viewtip_btn;
 
-    @Bind(R.id.tip_image)
+    @BindView(R.id.tip_image)
     ImageView tip_image;
 
 
@@ -283,25 +283,25 @@ public class MeasermentActivity extends BaseActivity
 
 
     //=====Tips view screen controller--------------------------------
-    @Bind(R.id.tipsLayout)
+    @BindView(R.id.tipsLayout)
     RelativeLayout tipsLayout;
 
-    @Bind(R.id.btn_back_tips)
+    @BindView(R.id.btn_back_tips)
     ImageButton btn_back_tips;
 
-   /* @Bind(R.id.viewPagerIndicator)
+   /* @BindView(R.id.viewPagerIndicator)
     RelativeLayout viewPagerIndicator;
 
-    @Bind(R.id.viewPagerCountDots)
+    @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;*/
 
-  /*  @Bind(R.id.mainViewPager)
+  /*  @BindView(R.id.mainViewPager)
     ViewPager mainViewPager;*/
 
-    /*@Bind(R.id.leftArrow)
+    /*@BindView(R.id.leftArrow)
     ImageView leftArrow;
 
-    @Bind(R.id.rightArrow)
+    @BindView(R.id.rightArrow)
     ImageView rightArrow;
 */
 

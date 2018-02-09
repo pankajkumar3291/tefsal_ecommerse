@@ -1,11 +1,12 @@
 package com.tefal.activity;
 
-import android.graphics.Color;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,10 +15,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -44,72 +41,71 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AddressesActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.btn_Save)
+    @BindView(R.id.btn_Save)
     Button btn_Save;
 
-    @Bind(R.id.spin_country)
+    @BindView(R.id.spin_country)
     Spinner spin_country;
 
-    @Bind(R.id.spin_city)
+    @BindView(R.id.spin_city)
     Spinner spin_city;
 
-    @Bind(R.id.spin_area)
+    @BindView(R.id.spin_area)
     Spinner spin_area;
 
-    @Bind(R.id.input_address_name)
+    @BindView(R.id.input_address_name)
     EditText input_address_name;
 
-    @Bind(R.id.input_block)
+    @BindView(R.id.input_block)
     EditText input_block;
 
-    @Bind(R.id.input_avenue)
+    @BindView(R.id.input_avenue)
     EditText input_avenue;
 
-    @Bind(R.id.input_floor)
+    @BindView(R.id.input_floor)
     EditText input_floor;
 
-    @Bind(R.id.input_house)
+    @BindView(R.id.input_house)
     EditText input_house;
 
-    @Bind(R.id.input_paci_num)
+    @BindView(R.id.input_paci_num)
     EditText input_paci_num;
 
-    @Bind(R.id.input_add_desp)
+    @BindView(R.id.input_add_desp)
     EditText input_add_desp;
 
-    @Bind(R.id.areaTxt)
+    @BindView(R.id.areaTxt)
     TextView areaTxt;
 
-    @Bind(R.id.cityTxt)
+    @BindView(R.id.cityTxt)
     TextView cityTxt;
 
-    @Bind(R.id.countryTxt)
+    @BindView(R.id.countryTxt)
     TextView countryTxt;
 
-    @Bind(R.id.input_street)
+    @BindView(R.id.input_street)
     EditText input_street;
 
 
-    @Bind(R.id.input_phone)
+    @BindView(R.id.input_phone)
     EditText input_phone;
 
-    @Bind(R.id.input_flate)
+    @BindView(R.id.input_flate)
     EditText input_flate;
-
-
-
-
 
 
     List<String> country_name;
@@ -144,7 +140,7 @@ public class AddressesActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         toolbar_title.setText("ADD ADDRESS");
-       // toolbar_title.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        // toolbar_title.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
@@ -157,24 +153,20 @@ public class AddressesActivity extends BaseActivity {
         });
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //System.out.println("SPINNER DATA===="+spin_area.getSelectedItem()+"==="+spin_area.getSelectedItemPosition());
 
-               if (Contents.isBlank(input_address_name.getText().toString().trim())) {
+                if (Contents.isBlank(input_address_name.getText().toString().trim())) {
                     input_address_name.setError(getString(R.string.invalidAddress_name));
                     return;
-                }
-                else if (Contents.isBlank(input_block.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_block.getText().toString().trim())) {
                     input_block.setError(getString(R.string.invalidBlock));
                     return;
-                }
-                else if (Contents.isBlank(input_house.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_house.getText().toString().trim())) {
                     input_house.setError(getString(R.string.invalidHouse));
                     return;
-                }
-                else if (spin_country.getSelectedItemPosition() ==0) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidCountry),Toast.LENGTH_LONG).show();
+                } else if (spin_country.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
                 }
                 /*else if (spin_area.getSelectedItemPosition()==-1 ) {
@@ -185,10 +177,10 @@ public class AddressesActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(),getString(R.string.invalidCity),Toast.LENGTH_LONG).show();
                     return;
                 }*/
-                else if(Contents.isBlank(input_street.getText().toString().trim())) {
-                   input_street.setError(getString(R.string.invalidStreet));
-                   return;
-               }
+                else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                    input_street.setError(getString(R.string.invalidStreet));
+                    return;
+                }
 
               /* else if(Contents.isBlank(input_flate.getText().toString().trim())) {
                    input_flate.setError(getString(R.string.invalidFlate));
@@ -200,7 +192,7 @@ public class AddressesActivity extends BaseActivity {
                }*/
                 saveAddress();
 
-               // System.out.println("SAVE");
+                // System.out.println("SAVE");
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -211,7 +203,6 @@ public class AddressesActivity extends BaseActivity {
         getCountries();
 
     }
-
 
 
 
@@ -240,24 +231,22 @@ public class AddressesActivity extends BaseActivity {
                                     country_name = new ArrayList<String>();
                                     iso_name = new ArrayList<String>();
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         country_name.add(c.getString("name"));
                                         iso_name.add(c.getString("iso"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this,android.R.layout.simple_spinner_item,country_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, country_name);
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     spin_country.setAdapter(aa);
 
                                     spin_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
-                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                        {
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                                            System.out.println("OSO NAME==="+iso_name.get(position));
+                                            System.out.println("OSO NAME===" + iso_name.get(position));
                                             getProvinces(iso_name.get(position));
                                         }
 
@@ -267,11 +256,9 @@ public class AddressesActivity extends BaseActivity {
                                         }
                                     });
 
-                                    for(int i=0;i<iso_name.size();i++)
-                                    {
-                                        if(iso_name.get(i).contains("KW"))
-                                        {
-                                            position=i;
+                                    for (int i = 0; i < iso_name.size(); i++) {
+                                        if (iso_name.get(i).contains("KW")) {
+                                            position = i;
                                             //mDob=iso_name.get(position);
                                             break;
                                         }
@@ -329,7 +316,7 @@ public class AddressesActivity extends BaseActivity {
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         SimpleProgressBar.showProgress(AddressesActivity.this);
-        final ArrayAdapter aa=null;
+        final ArrayAdapter aa = null;
         try {
             final String url = Contents.baseURL + "getProvinces";
 
@@ -348,18 +335,17 @@ public class AddressesActivity extends BaseActivity {
 
                                     province_id = new ArrayList<String>();
                                     province_name = new ArrayList<String>();
-                                    area_name=new ArrayList<String>();
+                                    area_name = new ArrayList<String>();
                                     //area_name.add("Select Province");
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         province_id.add(c.getString("province_id"));
                                         province_name.add(c.getString("province_name"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this,android.R.layout.simple_spinner_item,province_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, province_name);
 
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     spin_city.setAdapter(aa);
@@ -420,6 +406,7 @@ public class AddressesActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
+
     public void getAreas(final String province_id) {
 
         Log.i(TAG, "Setting screen name: " + "AddressesActivity");
@@ -448,23 +435,21 @@ public class AddressesActivity extends BaseActivity {
                                     area_name = new ArrayList<String>();
                                     //area_name.add("Select Area");
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         area_id.add(c.getString("area_id"));
                                         area_name.add(c.getString("area_name"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this,android.R.layout.simple_spinner_item,area_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, area_name);
 
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     spin_area.setAdapter(aa);
 
                                     spin_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
-                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                        {
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                                         }
 
@@ -516,15 +501,16 @@ public class AddressesActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
+
     public void saveAddress() {
         SimpleProgressBar.showProgress(AddressesActivity.this);
-        province_code=province_id.get(spin_city.getSelectedItemPosition());
+        province_code = province_id.get(spin_city.getSelectedItemPosition());
 
-        country_iso_code=iso_name.get(spin_country.getSelectedItemPosition());
-        area_code=area_id.get(spin_area.getSelectedItemPosition());
+        country_iso_code = iso_name.get(spin_country.getSelectedItemPosition());
+        area_code = area_id.get(spin_area.getSelectedItemPosition());
 
-        System.out.println("CODE ISO CODE="+country_iso_code);
-        System.out.println("CODE PROVINCE CODE="+province_code);
+        System.out.println("CODE ISO CODE=" + country_iso_code);
+        System.out.println("CODE PROVINCE CODE=" + province_code);
 
 
         Log.i(TAG, "Setting screen name: " + "AddressesActivity");
@@ -542,24 +528,21 @@ public class AddressesActivity extends BaseActivity {
                         public void onResponse(String response) {
 
                             SimpleProgressBar.closeProgress();
-                            System.out.println("Response==="+response);
+                            System.out.println("Response===" + response);
                             Log.e("device response", response);
                             try {
                                 JSONObject object = new JSONObject(response);
                                 String status = object.getString("status");
                                 String message = object.getString("message");
-                                if (status.equals("1"))
-                                {
+                                if (status.equals("1")) {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     new FragmentMyAddress();
                                     finish();
-                                }
-                                else
-                                {
+                                } else {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                System.out.println("Error==="+e);
+                                System.out.println("Error===" + e);
                                 SimpleProgressBar.closeProgress();
                             }
 
@@ -568,7 +551,7 @@ public class AddressesActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error==="+error);
+                            System.out.println("Error===" + error);
 
                             SimpleProgressBar.closeProgress();
                         }
@@ -579,38 +562,35 @@ public class AddressesActivity extends BaseActivity {
                     try {
 
                         params.put("customer_id", session.getCustomerId());
-                        params.put("address_name",input_address_name.getText()+"");
+                        params.put("address_name", input_address_name.getText() + "");
 
-                        System.out.println("CODE COUNTRY==="+country_iso_code);
-                        System.out.println("CODE CITY==="+province_code);
+                        System.out.println("CODE COUNTRY===" + country_iso_code);
+                        System.out.println("CODE CITY===" + province_code);
                         params.put("country", country_iso_code);
                         params.put("city", province_code);
                         params.put("area", area_code);
-                        params.put("block", input_block.getText()+"");
+                        params.put("block", input_block.getText() + "");
 
-                        params.put("street", input_street.getText()+"");
-                        params.put("avenue", input_avenue.getText()+"");
-                        params.put("floor", input_floor.getText()+"");
-                        params.put("house", input_house.getText()+"");
-                        params.put("flat_number", input_flate.getText()+"");
-                        params.put("phone_number", input_phone.getText()+"");
+                        params.put("street", input_street.getText() + "");
+                        params.put("avenue", input_avenue.getText() + "");
+                        params.put("floor", input_floor.getText() + "");
+                        params.put("house", input_house.getText() + "");
+                        params.put("flat_number", input_flate.getText() + "");
+                        params.put("phone_number", input_phone.getText() + "");
 
-                        params.put("paci_number", input_paci_num.getText()+"");
-                        params.put("addt_info", input_add_desp.getText()+"");
+                        params.put("paci_number", input_paci_num.getText() + "");
+                        params.put("addt_info", input_add_desp.getText() + "");
 
                         params.put("access_token", session.getToken());
                         params.put("appUser", "tefsal");
                         params.put("appSecret", "tefsal@123");
                         params.put("appVersion", "1.1");
-                    }
-                    catch(Exception ex)
-                    {
+                    } catch (Exception ex) {
 
                     }
 
 
                     Log.e("Refsal req == ", url + params);
-
 
 
                     return params;
@@ -627,13 +607,12 @@ public class AddressesActivity extends BaseActivity {
 
         } catch (Exception surError) {
 
-            System.out.println("Error==="+surError);
+            System.out.println("Error===" + surError);
             surError.printStackTrace();
         }
     }
 
-    public void clearSpinnerData(ArrayAdapter aa)
-    {
+    public void clearSpinnerData(ArrayAdapter aa) {
         province_id.clear();
         province_name.clear();
         aa.notifyDataSetChanged();

@@ -22,7 +22,7 @@ import com.tefal.activity.ProductListOtherActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -51,26 +51,26 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.img)
+        @BindView(R.id.img)
         ImageView img;
 
-        @Bind(R.id.ratingbar)
+        @BindView(R.id.ratingbar)
         RatingBar ratingbar;
 
-        @Bind(R.id.title)
+        @BindView(R.id.title)
         TextView title;
 
-        @Bind(R.id.text_max_delivery_days)
+        @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         RelativeLayout main_layout;
 
-        @Bind(R.id.txt_discount_amount)
+        @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
-        @Bind(R.id.txt_discount_off)
+        @BindView(R.id.txt_discount_off)
         TextView txt_discount_off;
 
 

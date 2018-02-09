@@ -91,4 +91,13 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_normal"
         android:textStyle="bold" />
+
+    <View
+        android:id="@+id/seperator_view"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/guestUserText"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGray" />
+
 </LinearLayout>

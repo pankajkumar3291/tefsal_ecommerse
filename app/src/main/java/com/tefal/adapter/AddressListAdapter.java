@@ -18,7 +18,7 @@ import com.tefal.activity.MyAddressActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -72,9 +72,9 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder
     {
-        @Bind(R.id.address_name_txt)
+        @BindView(R.id.address_name_txt)
         TextView address_name_txt;
-        @Bind(R.id.LL_main_layout)
+        @BindView(R.id.LL_main_layout)
         LinearLayout LL_main_layout;
 
         public ViewHolder(View itemView) {

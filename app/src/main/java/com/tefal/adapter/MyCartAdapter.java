@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.view.View.GONE;
@@ -69,34 +69,34 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_Tailor_name)
+        @BindView(R.id.text_Tailor_name)
         TextView text_Tailor_name;
 
-        @Bind(R.id.text_textile)
+        @BindView(R.id.text_textile)
         TextView text_textile;
 
-        @Bind(R.id.sub_text_textile)
+        @BindView(R.id.sub_text_textile)
         TextView sub_text_textile;
 
-        @Bind(R.id.text_size)
+        @BindView(R.id.text_size)
         TextView text_size;
 
-        @Bind(R.id.text_price)
+        @BindView(R.id.text_price)
         TextView text_price;
 
-        @Bind(R.id.product_img)
+        @BindView(R.id.product_img)
         ImageView product_img;
 
-        @Bind(R.id.ll_header)
+        @BindView(R.id.ll_header)
         LinearLayout ll_header;
 
-        @Bind(R.id.cart_item_delete)
+        @BindView(R.id.cart_item_delete)
         ImageView cart_item_delete;
 
 
 //
 //
-//        @Bind(R.id.main_layout)
+//        @BindView(R.id.main_layout)
 //        RelativeLayout main_layout;
 
 

@@ -33,7 +33,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -43,35 +43,35 @@ public class ChangePasswordActivity extends BaseActivity
 
 
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.btn_chng_pwd)
+    @BindView(R.id.btn_chng_pwd)
     Button btn_chng_pwd;
 
-    @Bind(R.id.input_layout_current_pwd)
+    @BindView(R.id.input_layout_current_pwd)
     TextInputLayout input_layout_current_pwd;
 
-    @Bind(R.id.input_layout_new_pwd)
+    @BindView(R.id.input_layout_new_pwd)
     TextInputLayout input_layout_new_pwd;
 
-    @Bind(R.id.input_layout_confirm_pwd)
+    @BindView(R.id.input_layout_confirm_pwd)
     TextInputLayout input_layout_confirm_pwd;
 
 
-    @Bind(R.id.current_pwd)
+    @BindView(R.id.current_pwd)
     EditText current_pwd;
 
-    @Bind(R.id.input_new_pwd)
+    @BindView(R.id.input_new_pwd)
     EditText input_new_pwd;
 
-    @Bind(R.id.input_confirm_pwd)
+    @BindView(R.id.input_confirm_pwd)
     EditText input_confirm_pwd;
 
 

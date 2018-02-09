@@ -25,23 +25,23 @@ import com.tefal.adapter.PagerTabAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.utils.SessionManager;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TabbarActivity extends BaseActivity {
 
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.newStyleBtn)
+    @BindView(R.id.newStyleBtn)
     ImageView newStyleBtn;
 
     private DishdashaStylesRecord mDishdashaStylesRecord;

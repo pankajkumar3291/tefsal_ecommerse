@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -133,12 +133,12 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
     public class ViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.color)
+        @BindView(R.id.color)
         ImageView color;
-        @Bind(R.id.colorText)
+        @BindView(R.id.colorText)
         TextView colorText;
 
-        @Bind(R.id.color_item)
+        @BindView(R.id.color_item)
         LinearLayout color_item;
 
         public ViewHolder(View itemView) {

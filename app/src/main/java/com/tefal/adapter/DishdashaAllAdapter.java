@@ -24,7 +24,7 @@ import com.tefal.app.TefalApp;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -54,19 +54,19 @@ public class DishdashaAllAdapter extends RecyclerView.Adapter<DishdashaAllAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.img)
+        @BindView(R.id.img)
         ImageView img;
 
-        @Bind(R.id.ratingbar)
+        @BindView(R.id.ratingbar)
         RatingBar ratingbar;
 
-        @Bind(R.id.title)
+        @BindView(R.id.title)
         TextView title;
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         RelativeLayout main_layout;
 
-        @Bind(R.id.text_max_delivery_days)
+        @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
 

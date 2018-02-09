@@ -75,7 +75,7 @@ import java.util.Map;
 //import android.widget.RelativeLayout.LayoutParams;
 
 import android.widget.LinearLayout.LayoutParams;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -87,61 +87,61 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
     MainPagerAdapter adapter;
 
-    @Bind(R.id.scrollView)
+    @BindView(R.id.scrollView)
     ScrollView scrollView;
 
-    @Bind(R.id.LL_continer)
+    @BindView(R.id.LL_continer)
     LinearLayout LL_continer;
-    @Bind(R.id.back_btn)
+    @BindView(R.id.back_btn)
     ImageView back_btn;
 
-    @Bind(R.id.mainViewPager)
+    @BindView(R.id.mainViewPager)
     ViewPager mainViewPager;
 
-    @Bind(R.id.viewPagerCountDots)
+    @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
-    @Bind(R.id.add_cart_btn)
+    @BindView(R.id.add_cart_btn)
     Button add_cart_btn;
 
-    @Bind(R.id.txt_title)
+    @BindView(R.id.txt_title)
     TextView txt_title;
 
-    @Bind(R.id.subtxt_title)
+    @BindView(R.id.subtxt_title)
     TextView subtxt_title;
 
-    @Bind(R.id.text_descp)
+    @BindView(R.id.text_descp)
     TextView text_descp;
 
-    @Bind(R.id.color_text)
+    @BindView(R.id.color_text)
     TextView color_text;
 
-    @Bind(R.id.sizeGuide)
+    @BindView(R.id.sizeGuide)
     TextView sizeGuide;
 
-    /*@Bind(R.id.txt_size_s)
+    /*@BindView(R.id.txt_size_s)
     TextView txt_size_s;
 
-    @Bind(R.id.txt_size_m)
+    @BindView(R.id.txt_size_m)
     TextView txt_size_m;
 
-    @Bind(R.id.txt_size_l)
+    @BindView(R.id.txt_size_l)
     TextView txt_size_l;
 
-    @Bind(R.id.txt_size_xl)
+    @BindView(R.id.txt_size_xl)
     TextView txt_size_xl;*/
 
-    //@Bind(R.id.text_price)
+    //@BindView(R.id.text_price)
 
-    @Bind(R.id.add_btn)
+    @BindView(R.id.add_btn)
     ImageView add_btn;
 
-    @Bind(R.id.less_btn)
+    @BindView(R.id.less_btn)
     ImageView less_btn;
 
 
 
-    @Bind(R.id.sizeRecyclerView)
+    @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
 
 

@@ -26,7 +26,7 @@ import com.tefal.adapter.MailTabAdapter;
 import com.tefal.adapter.PagerTabAdapter;
 import com.tefal.utils.SessionManager;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -35,10 +35,10 @@ import butterknife.ButterKnife;
 
 public class MailFragment extends Fragment {
 
-    @Bind(R.id.tab_layout)
+    @BindView(R.id.tab_layout)
     TabLayout tab_layout;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager pager;
 
     MailTabAdapter adapter;

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -23,38 +23,38 @@ import butterknife.ButterKnife;
 
 public class PaymentSelectActivity extends BaseActivity {
 
-    @Bind(R.id.header_txt)
+    @BindView(R.id.header_txt)
     TextView header_txt;
 
-    @Bind(R.id.amount)
+    @BindView(R.id.amount)
     TextView amount;
 
-    @Bind(R.id.cancel_btn)
+    @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
 
-    @Bind(R.id.proceed_payment_method)
+    @BindView(R.id.proceed_payment_method)
     Button proceed_payment_method;
 
 
-    @Bind(R.id.LL_visa_masterPaymentTCContainer)
+    @BindView(R.id.LL_visa_masterPaymentTCContainer)
     LinearLayout LL_visa_masterPaymentTCContainer;
 
-    @Bind( R.id.LL_knetPaymentTCContainer)
+    @BindView( R.id.LL_knetPaymentTCContainer)
     LinearLayout LL_knetPaymentTCContainer;
 
-    @Bind(R.id.knetPaymentCheck)
+    @BindView(R.id.knetPaymentCheck)
     CheckBox knetPaymentCheck;
 
-    @Bind( R.id.visa_masterPaymentCheck)
+    @BindView( R.id.visa_masterPaymentCheck)
     CheckBox visa_masterPaymentCheck;
 
-    @Bind(R.id.visa_masterPaymentTCCheck)
+    @BindView(R.id.visa_masterPaymentTCCheck)
     CheckBox visa_masterPaymentTCCheck;
 
-    @Bind(R.id.knetPaymentTCCheck)
+    @BindView(R.id.knetPaymentTCCheck)
     CheckBox knetPaymentTCCheck;
 
-    @Bind(R.id.codPaymentCheck)
+    @BindView(R.id.codPaymentCheck)
     CheckBox codPaymentCheck;
 
 

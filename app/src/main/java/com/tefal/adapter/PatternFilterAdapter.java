@@ -19,7 +19,7 @@ import com.tefal.utils.CircleTransform;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -91,13 +91,13 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
 
     public class ViewHolder extends  RecyclerView.ViewHolder
     {
-        @Bind(R.id.country_flag_image)
+        @BindView(R.id.country_flag_image)
         ImageView country_flag_imgage;
 
-        @Bind(R.id.txt_country_name)
+        @BindView(R.id.txt_country_name)
         TextView txt_country_name;
 
-        @Bind(R.id.filter_item_panel_LL)
+        @BindView(R.id.filter_item_panel_LL)
         LinearLayout filter_item_panel_LL;
 
 

@@ -44,7 +44,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -52,36 +52,36 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView nav_view;
 
     Fragment fragment;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_menu)
+    @BindView(R.id.btn_menu)
     ImageButton btn_menu;
 
-    @Bind(R.id.btn_write_mail)
+    @BindView(R.id.btn_write_mail)
     ImageButton btn_write_mail;
 
-    @Bind(R.id.btn_ADD)
+    @BindView(R.id.btn_ADD)
     ImageButton btn_ADD;
 
-    @Bind(R.id.footer_facebook)
+    @BindView(R.id.footer_facebook)
     ImageView footer_facebook;
 
-    @Bind(R.id.footer_instagram)
+    @BindView(R.id.footer_instagram)
     ImageView footer_instagram;
 
-    @Bind(R.id.footer_twitter)
+    @BindView(R.id.footer_twitter)
     ImageView footer_twitter;
 
     TextView user_name;

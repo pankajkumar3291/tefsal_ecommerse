@@ -19,25 +19,25 @@ import com.tefal.adapter.PagerTabAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.fragment.FragmentAllStores;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DaraAbayaActivity extends BaseActivity {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.qr_code_btn)
+    @BindView(R.id.qr_code_btn)
     ImageView qr_code_btn;
 
-    @Bind(R.id.view_cart_btn)
+    @BindView(R.id.view_cart_btn)
     ImageView view_cart_btn;
     public static String flag="";
 

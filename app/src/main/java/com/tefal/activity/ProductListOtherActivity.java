@@ -46,38 +46,38 @@ import com.tefal.utils.SimpleProgressBar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProductListOtherActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
-    /*@Bind(R.id.text_season)
+    /*@BindView(R.id.text_season)
     TextView text_season;
 
-    @Bind(R.id.text_color)
+    @BindView(R.id.text_color)
     TextView text_color;
 
-    @Bind(R.id.text_country)
+    @BindView(R.id.text_country)
     TextView text_country;*/
 
     PopupWindow colorWindow;
     String store_id,flag;
-    @Bind(R.id.view_cart_btn)
+    @BindView(R.id.view_cart_btn)
     ImageView view_cart_btn;
 
     DishdashaTextileOtherProductAdapter dishdashaAdapter;

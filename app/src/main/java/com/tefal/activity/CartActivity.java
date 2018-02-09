@@ -40,7 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -49,22 +49,22 @@ import butterknife.ButterKnife;
 
 public class CartActivity extends BaseActivity {
 
-    @Bind(R.id.header_txt)
+    @BindView(R.id.header_txt)
     TextView header_txt;
 
-    @Bind(R.id.amount)
+    @BindView(R.id.amount)
     TextView amount;
 
-    @Bind(R.id.edit_btn)
+    @BindView(R.id.edit_btn)
     TextView edit_btn;
 
-    @Bind(R.id.btn_purchase)
+    @BindView(R.id.btn_purchase)
     Button btn_purchase;
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
 
-    @Bind(R.id.cancel_btn)
+    @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
 
 

@@ -75,7 +75,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -84,25 +84,25 @@ import butterknife.ButterKnife;
 
 public class FragmentTextileProducts extends Fragment {
 
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
     DishdashaTextileProductAdapter dishdashaAdapter;
     SessionManager session;
 
-    @Bind(R.id.text_season)
+    @BindView(R.id.text_season)
     TextView text_season;
 
-    @Bind(R.id.text_color)
+    @BindView(R.id.text_color)
     TextView text_color;
 
-    @Bind(R.id.text_country)
+    @BindView(R.id.text_country)
     TextView text_country;
 
-    @Bind(R.id.textNoProduct)
+    @BindView(R.id.textNoProduct)
     TextView textNoProduct;
 
     public static PopupWindow colorWindow;

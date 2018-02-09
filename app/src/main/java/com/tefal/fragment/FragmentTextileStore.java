@@ -34,7 +34,7 @@ import com.tefal.utils.SimpleProgressBar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -44,10 +44,10 @@ import butterknife.ButterKnife;
 public class FragmentTextileStore extends Fragment {
 
 
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
     DishdashaTextileAdapter dishdashaAdapter;

@@ -17,11 +17,11 @@ import com.tefal.adapter.SizeGuideAdapter;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SizeGuideActivirty extends BaseActivity {
-   //@Bind(R.id.back_btn)
+   //@BindView(R.id.back_btn)
     ImageButton back_btn;
     RelativeLayout toolBar;
 

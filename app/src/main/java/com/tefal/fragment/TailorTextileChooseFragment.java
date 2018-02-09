@@ -47,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -55,27 +55,27 @@ import butterknife.ButterKnife;
  */
 public class TailorTextileChooseFragment extends Fragment {
     private String  store_id, flag;
-    @Bind(R.id.RL_container)
+    @BindView(R.id.RL_container)
     RelativeLayout RL_container;
 
-    @Bind(R.id.tailor_add_btn)
+    @BindView(R.id.tailor_add_btn)
     Button tailor_add_btn;
 
-    @Bind(R.id.RR_newTextile)
+    @BindView(R.id.RR_newTextile)
     LinearLayout RR_newTextile;
 
-    @Bind(R.id.view)
+    @BindView(R.id.view)
     View view;
 
-    @Bind(R.id.orText)
+    @BindView(R.id.orText)
     TextView orText;
 
-   // @Bind(R.id.ownTextileCheckBox)
+   // @BindView(R.id.ownTextileCheckBox)
    public static CheckBox ownTextileCheckBox;
 
 
 
-    @Bind(R.id.list)
+    @BindView(R.id.list)
     ListView list;
 
 

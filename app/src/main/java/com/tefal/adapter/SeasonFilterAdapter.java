@@ -13,7 +13,7 @@ import com.tefal.activity.DishDashaProductActivity;
 import com.tefal.app.TefalApp;
 import com.tefal.fragment.FragmentTextileProducts;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -72,7 +72,7 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
     {
 
 
-        @Bind(R.id.txt_season_name)
+        @BindView(R.id.txt_season_name)
         TextView txt_season_name;
 
         public ViewHolder(View itemView) {

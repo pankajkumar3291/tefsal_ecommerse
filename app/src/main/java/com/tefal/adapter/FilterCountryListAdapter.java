@@ -21,7 +21,7 @@ import com.tefal.utils.CircleTransform;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -98,13 +98,13 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        @Bind(R.id.country_image)
+        @BindView(R.id.country_image)
         ImageView country_image;
 
-        @Bind(R.id.countryName)
+        @BindView(R.id.countryName)
         TextView countryName;
 
-       /* @Bind(R.id.country_name_txt)
+       /* @BindView(R.id.country_name_txt)
         TextView country_name_txt;*/
 
         public ViewHolder(View itemView) {

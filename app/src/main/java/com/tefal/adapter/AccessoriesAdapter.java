@@ -21,7 +21,7 @@ import com.tefal.app.TefalApp;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -47,13 +47,13 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.iv_accessories)
+        @BindView(R.id.iv_accessories)
         ImageView iv_accessories;
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         LinearLayout main_layout;
 
-        @Bind(R.id.acc_sub_cat_name)
+        @BindView(R.id.acc_sub_cat_name)
         TextView acc_sub_cat_name;
 
 

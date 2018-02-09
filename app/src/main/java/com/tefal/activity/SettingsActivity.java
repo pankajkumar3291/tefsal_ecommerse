@@ -15,52 +15,52 @@ import com.tefal.R;
 import com.tefal.utils.FontChangeCrawler;
 import com.tefal.utils.SessionManager;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.view.View.GONE;
 
 public class SettingsActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.text_edit_profile)
+    @BindView(R.id.text_edit_profile)
     TextView text_edit_profile;
 
 
 
-    @Bind(R.id.text_language_spinner)
+    @BindView(R.id.text_language_spinner)
     Spinner text_language_spinner;
 
-    @Bind(R.id.text_send_feedback)
+    @BindView(R.id.text_send_feedback)
     TextView text_send_feedback;
 
-    @Bind(R.id.text_terms)
+    @BindView(R.id.text_terms)
     TextView text_terms;
 
-    @Bind(R.id.text_about)
+    @BindView(R.id.text_about)
     TextView text_about;
 
-    @Bind(R.id.text_logout)
+    @BindView(R.id.text_logout)
     TextView text_logout;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.text_change_password)
+    @BindView(R.id.text_change_password)
     TextView text_change_password;
 
 
 
-    @Bind(R.id.view1)
+    @BindView(R.id.view1)
             View view1;
-    @Bind(R.id.view2)
+    @BindView(R.id.view2)
             View view2;
-    @Bind(R.id.view7)
+    @BindView(R.id.view7)
             View view7;
 
     SessionManager session;

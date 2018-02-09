@@ -52,7 +52,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -75,29 +75,29 @@ public class FragmentTailorProducts extends Fragment {
 
 
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
-    @Bind(R.id.tailor_add)
+    @BindView(R.id.tailor_add)
     Button add;
 
-    @Bind(R.id.dishInfoText)
+    @BindView(R.id.dishInfoText)
     TextView dishInfoText;
 
 
-   /* @Bind(R.id.recycler)
+   /* @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recycler_view;*/
 
-   @Bind(R.id.list)
+   @BindView(R.id.list)
    ListView list;
 
-    @Bind(R.id.list2)
+    @BindView(R.id.list2)
     ListView list2;
 
-    @Bind(R.id.ownTextileText)
+    @BindView(R.id.ownTextileText)
     TextView ownTextileText;
 
     TailorProductAdapter productAdapter;

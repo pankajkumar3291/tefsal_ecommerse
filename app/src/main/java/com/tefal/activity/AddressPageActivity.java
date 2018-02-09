@@ -29,7 +29,7 @@ import com.tefal.utils.SessionManager;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -38,10 +38,10 @@ import butterknife.ButterKnife;
 
 public class AddressPageActivity extends BaseActivity {
 
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @Bind(R.id.loading)
+    @BindView(R.id.loading)
     ProgressBar loading;
 
     MyAddressAdapter adapter;

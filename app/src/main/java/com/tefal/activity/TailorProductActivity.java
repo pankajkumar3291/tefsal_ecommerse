@@ -23,32 +23,32 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class TailorProductActivity extends BaseActivity{
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.qr_code_btn)
+    @BindView(R.id.qr_code_btn)
     ImageView qr_code_btn;
 
-    @Bind(R.id.view_cart_btn)
+    @BindView(R.id.view_cart_btn)
     ImageView view_cart_btn;
 
-    @Bind(R.id.subText)
+    @BindView(R.id.subText)
     TextView subText;
 
 
-    @Bind(R.id.fragmentContainer)
+    @BindView(R.id.fragmentContainer)
     LinearLayout fragmentContainer;
     ArrayList<TailoringRecord> tailoringRecordArrayListOfChecked=new ArrayList<TailoringRecord>();
 

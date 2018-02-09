@@ -84,7 +84,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -95,71 +95,71 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class TextileDetailActivity extends BaseActivity implements TabLayout.OnTabSelectedListener
 {
 
-    @Bind(R.id.tabLayout)
+    @BindView(R.id.tabLayout)
     TabLayout tabLayout;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager viewPager;
 
-    @Bind(R.id.product_image_viewPager)
+    @BindView(R.id.product_image_viewPager)
     ViewPager product_image_viewPager;
 
-    @Bind(R.id.no_image_holder)
+    @BindView(R.id.no_image_holder)
     ImageView no_image_holder;
 
-    @Bind(R.id.viewPagerIndicator)
+    @BindView(R.id.viewPagerIndicator)
     RelativeLayout viewPagerIndicator;
 
-    @Bind(R.id.viewPagerCountDots)
+    @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
-   /* @Bind(R.id.product_img)
+   /* @BindView(R.id.product_img)
     ImageView product_img;*/
 
-    @Bind(R.id.ic_filter)
+    @BindView(R.id.ic_filter)
     ImageView ic_filter;
 
-    @Bind(R.id.txt_price)
+    @BindView(R.id.txt_price)
     TextView txt_price;
 
-    @Bind(R.id.txt_min_meter)
+    @BindView(R.id.txt_min_meter)
     TextView txt_min_meter;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.done_txt)
+    @BindView(R.id.done_txt)
     TextView done_txt;
 
-    @Bind(R.id.add_to_cart_btn)
+    @BindView(R.id.add_to_cart_btn)
     Button add_to_cart_btn;
 
 
 
-    @Bind(R.id.add_btn)
+    @BindView(R.id.add_btn)
     ImageView add_btn;
 
-    @Bind(R.id.less_btn)
+    @BindView(R.id.less_btn)
     ImageView less_btn;
 
-    @Bind(R.id.meter_value)
+    @BindView(R.id.meter_value)
     TextView meter_value;
 
 
-    @Bind(R.id.RL_no_product_found_container)
+    @BindView(R.id.RL_no_product_found_container)
     RelativeLayout RL_no_product_found_container;
 
-    @Bind(R.id.RL_product_exist_container)
+    @BindView(R.id.RL_product_exist_container)
     RelativeLayout RL_product_exist_container;
 
 
-    @Bind(R.id.LL_min_max_controller)
+    @BindView(R.id.LL_min_max_controller)
     LinearLayout LL_min_max_controller;
 
 

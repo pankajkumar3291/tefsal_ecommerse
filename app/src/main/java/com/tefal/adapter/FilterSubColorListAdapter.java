@@ -22,7 +22,7 @@ import com.tefal.app.TefalApp;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -99,9 +99,9 @@ public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubCol
     public class ViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.color)
+        @BindView(R.id.color)
         ImageView color;
-        @Bind(R.id.colorText)
+        @BindView(R.id.colorText)
         TextView colorText;
 
 

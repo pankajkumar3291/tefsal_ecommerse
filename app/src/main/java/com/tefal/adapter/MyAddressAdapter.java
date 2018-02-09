@@ -46,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -73,22 +73,22 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.address_text)
+        @BindView(R.id.address_text)
         TextView address_text;
 
-        @Bind(R.id.address_name)
+        @BindView(R.id.address_name)
         TextView address_name;
 
-        @Bind(R.id.address_layout)
+        @BindView(R.id.address_layout)
         LinearLayout address_layout;
 
 
 
 
-        @Bind(R.id.address_edit_btn)
+        @BindView(R.id.address_edit_btn)
         Button address_edit_btn;
 
-        @Bind(R.id.address_delete_btn)
+        @BindView(R.id.address_delete_btn)
         Button  address_delete_btn;
 
         public ViewHolder(View itemView) {

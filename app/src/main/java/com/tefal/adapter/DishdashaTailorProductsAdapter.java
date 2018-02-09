@@ -13,7 +13,7 @@ import com.tefal.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -60,12 +60,12 @@ public class DishdashaTailorProductsAdapter extends RecyclerView.Adapter<Dishdas
 
     class MyViewHolder extends RecyclerView.ViewHolder
     {
-       @Bind(R.id.product_name)
+       @BindView(R.id.product_name)
        TextView product_name;
-        @Bind(R.id.product_price)
+        @BindView(R.id.product_price)
         TextView product_price;
 
-        @Bind(R.id.add_btn)
+        @BindView(R.id.add_btn)
         Button add_btn;
 
         public MyViewHolder(View itemView) {

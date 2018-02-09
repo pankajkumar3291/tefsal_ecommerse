@@ -12,7 +12,7 @@ import com.tefal.R;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -57,7 +57,7 @@ public class TailorProductFromCartAdapter  extends RecyclerView.Adapter<TailorPr
     public class MyViewHolder extends RecyclerView.ViewHolder
     {
 
-        @Bind(R.id.tv)
+        @BindView(R.id.tv)
         TextView tv;
 
 

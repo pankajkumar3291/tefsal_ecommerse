@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,23 +56,23 @@ public class SigninActivity extends BaseActivity {
     SessionManagerToken session2;
 
 
-    @Bind(R.id.forgot_password_text)
+    @BindView(R.id.forgot_password_text)
     TextView forgot_password_text;
 
 
-    @Bind(R.id.signup_text)
+    @BindView(R.id.signup_text)
     TextView signup_text;
 
 
-    @Bind(R.id.input_email)
+    @BindView(R.id.input_email)
     EditText input_email;
 
 
-    @Bind(R.id.input_password)
+    @BindView(R.id.input_password)
     EditText input_password;
 
 
-    @Bind(R.id.buttonLogin)
+    @BindView(R.id.buttonLogin)
     Button buttonLogin;
 
     @Override

@@ -52,7 +52,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -62,24 +62,24 @@ import butterknife.ButterKnife;
 public class FeelFragment extends Fragment {
 
 
-    /*@Bind(R.id.add_to_cart_btn)
+    /*@BindView(R.id.add_to_cart_btn)
     Button add_to_cart_btn;*/
 
 
 
-    @Bind(R.id.header_txt)
+    @BindView(R.id.header_txt)
     TextView header_txt;
 
-    //@Bind(R.id.meter_value)
+    //@BindView(R.id.meter_value)
     public static TextView meter_value;
 
-    @Bind(R.id.add_btn)
+    @BindView(R.id.add_btn)
     ImageView add_btn;
 
-    @Bind(R.id.less_btn)
+    @BindView(R.id.less_btn)
     ImageView less_btn;
 
-    @Bind(R.id.spin)
+    @BindView(R.id.spin)
     Spinner spin;
 
     int meter = 2;

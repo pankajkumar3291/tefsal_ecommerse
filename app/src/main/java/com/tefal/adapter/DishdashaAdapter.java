@@ -48,7 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -78,67 +78,67 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        @Bind(R.id.text_style_name)
+        @BindView(R.id.text_style_name)
         TextView text_style_name;
 
-        @Bind(R.id.txt_neck_value)
+        @BindView(R.id.txt_neck_value)
         TextView txt_neck_value;
 
-        @Bind(R.id.txt_chest_value)
+        @BindView(R.id.txt_chest_value)
         TextView txt_chest_value;
 
-        @Bind(R.id.txt_shoulder_value)
+        @BindView(R.id.txt_shoulder_value)
         TextView txt_shoulder_value;
 
-        @Bind(R.id.txt_waist_value)
+        @BindView(R.id.txt_waist_value)
         TextView txt_waist_value;
 
-        @Bind(R.id.txt_arm_value)
+        @BindView(R.id.txt_arm_value)
         TextView txt_arm_value;
 
-        @Bind(R.id.txt_wrist_value)
+        @BindView(R.id.txt_wrist_value)
         TextView txt_wrist_value;
 
-        @Bind(R.id.txt_front_height_value)
+        @BindView(R.id.txt_front_height_value)
         TextView txt_front_height_value;
 
-        @Bind(R.id.txt_back_height_value)
+        @BindView(R.id.txt_back_height_value)
         TextView txt_back_height_value;
 
-        @Bind(R.id.btn_delete)
+        @BindView(R.id.btn_delete)
         Button btn_delete;
 
-        @Bind(R.id.btn_edit)
+        @BindView(R.id.btn_edit)
         Button btn_edit;
 
-        @Bind(R.id.txtBadge_collar_btn)
+        @BindView(R.id.txtBadge_collar_btn)
         TextView txtBadge_collar_btn;
 
-        @Bind(R.id.txt_badge_coat)
+        @BindView(R.id.txt_badge_coat)
         TextView txt_badge_coat;
 
-        @Bind(R.id.ic_coatCollar)
+        @BindView(R.id.ic_coatCollar)
         ImageView ic_coatCollar;
 
-        @Bind(R.id.ic_coat_button)
+        @BindView(R.id.ic_coat_button)
         ImageView ic_coat_button;
 
-        @Bind(R.id.ic_cuflink)
+        @BindView(R.id.ic_cuflink)
         ImageView ic_cuflink;
 
-        @Bind(R.id.txt_wide_value)
+        @BindView(R.id.txt_wide_value)
         TextView txt_wide_value;
 
-        @Bind(R.id.txt_narrow_value)
+        @BindView(R.id.txt_narrow_value)
         TextView txt_narrow_value;
 
-        @Bind(R.id.pen_pocket)
+        @BindView(R.id.pen_pocket)
         ImageView pen_pocket;
 
-        @Bind(R.id.mobile_pocket)
+        @BindView(R.id.mobile_pocket)
         ImageView mobile_pocket;
 
-        @Bind(R.id.key_pocket)
+        @BindView(R.id.key_pocket)
         ImageView key_pocket;
 
 

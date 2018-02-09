@@ -17,7 +17,7 @@ import com.tefal.app.TefalApp;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -42,19 +42,19 @@ public class SentMailAdapter extends RecyclerView.Adapter<SentMailAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.name)
+        @BindView(R.id.name)
         TextView name;
 
-        @Bind(R.id.subject_text)
+        @BindView(R.id.subject_text)
         TextView subject_text;
 
-        @Bind(R.id.mail_text)
+        @BindView(R.id.mail_text)
         TextView mail_text;
 
-        @Bind(R.id.date_text)
+        @BindView(R.id.date_text)
         TextView date_text;
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         LinearLayout main_layout;
 
         public ViewHolder(View itemView) {

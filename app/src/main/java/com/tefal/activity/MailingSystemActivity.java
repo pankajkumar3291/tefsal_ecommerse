@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.tefal.R;
 import com.tefal.adapter.MailTabAdapter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -20,16 +20,16 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 public class MailingSystemActivity extends BaseActivity
 {
 
-    @Bind(R.id.tab_layout)
+    @BindView(R.id.tab_layout)
     TabLayout tab_layout;
 
-    @Bind(R.id.pager)
+    @BindView(R.id.pager)
     ViewPager pager;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageView btn_back;
 
-    @Bind(R.id.btn_write_mail)
+    @BindView(R.id.btn_write_mail)
     ImageButton btn_write_mail;
 
 

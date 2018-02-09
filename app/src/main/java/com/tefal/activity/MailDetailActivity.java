@@ -12,24 +12,24 @@ import com.tefal.Models.SentMailModel;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MailDetailActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.txt_mail_heading)
+    @BindView(R.id.txt_mail_heading)
     TextView txt_mail_heading;
 
-    @Bind(R.id.txt_mail_details)
+    @BindView(R.id.txt_mail_details)
     TextView txt_mail_details;
 
 

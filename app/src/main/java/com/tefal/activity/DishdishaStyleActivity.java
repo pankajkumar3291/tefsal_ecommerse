@@ -46,21 +46,21 @@ import com.tefal.utils.SimpleProgressBar;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DishdishaStyleActivity extends BaseActivity {
 
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
-    @Bind(R.id.add_new_style)
+    @BindView(R.id.add_new_style)
     Button add_new_style;
-    @Bind(R.id.recycler)
+    @BindView(R.id.recycler)
     RecyclerView recycler;
     private DishdashaStylesRecord mDishdashaStylesRecord;
     EditText input_style_name;

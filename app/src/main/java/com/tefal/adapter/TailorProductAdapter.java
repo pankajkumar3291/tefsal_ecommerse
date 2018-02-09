@@ -22,7 +22,7 @@ import com.tefal.activity.DishDashaProductActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -48,14 +48,14 @@ public class TailorProductAdapter extends RecyclerView.Adapter<TailorProductAdap
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_product_name)
+        @BindView(R.id.text_product_name)
         TextView text_product_name;
 
-        @Bind(R.id.text_price)
+        @BindView(R.id.text_price)
         TextView text_price;
 
 
-        @Bind(R.id.main_layout)
+        @BindView(R.id.main_layout)
         LinearLayout main_layout;
 
 

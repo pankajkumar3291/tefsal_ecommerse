@@ -46,33 +46,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdditionalInfoActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.skipTxt)
+    @BindView(R.id.skipTxt)
     TextView skipTxt;
 
-    @Bind(R.id.input_dob)
+    @BindView(R.id.input_dob)
     EditText input_dob;
 
-    @Bind(R.id.nationalitySpinner)
+    @BindView(R.id.nationalitySpinner)
     Spinner nationalitySpinner;
 
-    @Bind(R.id.genderSpinner)
+    @BindView(R.id.genderSpinner)
     Spinner genderSpinner;
 
-    @Bind(R.id.submintBtn)
+    @BindView(R.id.submintBtn)
     Button submintBtn;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.dobInputLayout)
+    @BindView(R.id.dobInputLayout)
     TextInputLayout dobInputLayout;
 
 

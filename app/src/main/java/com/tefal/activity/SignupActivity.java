@@ -56,77 +56,77 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SignupActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     SessionManager session;
     SessionManagerToken session2;
 
-    @Bind(R.id.input_layout_fname)
+    @BindView(R.id.input_layout_fname)
     TextInputLayout input_layout_fname;
 
-    @Bind(R.id.input_layout_lname)
+    @BindView(R.id.input_layout_lname)
     TextInputLayout input_layout_lname;
 
-    @Bind(R.id.input_layout_email)
+    @BindView(R.id.input_layout_email)
     TextInputLayout input_layout_email;
 
-    @Bind(R.id.input_layout_password)
+    @BindView(R.id.input_layout_password)
     TextInputLayout input_layout_password;
 
-    @Bind(R.id.input_layout_c_password)
+    @BindView(R.id.input_layout_c_password)
     TextInputLayout input_layout_c_password;
 
 
-    @Bind(R.id.input_layout_mob)
+    @BindView(R.id.input_layout_mob)
     TextInputLayout input_layout_mob;
 
-    @Bind(R.id.input_layout_home_num)
+    @BindView(R.id.input_layout_home_num)
     TextInputLayout input_layout_home_num;
 
 
-    @Bind(R.id.buttonSignUp)
+    @BindView(R.id.buttonSignUp)
     Button buttonSignUp;
 
-    @Bind(R.id.input_fname)
+    @BindView(R.id.input_fname)
     EditText input_fname;
 
-    @Bind(R.id.input_lname)
+    @BindView(R.id.input_lname)
     EditText input_lname;
 
-    @Bind(R.id.input_mob)
+    @BindView(R.id.input_mob)
     EditText input_mob;
 
-    @Bind(R.id.input_home_num)
+    @BindView(R.id.input_home_num)
     EditText input_home_num;
 
-    @Bind(R.id.input_email)
+    @BindView(R.id.input_email)
     EditText input_email;
 
-    @Bind(R.id.input_password)
+    @BindView(R.id.input_password)
     EditText input_password;
 
-    @Bind(R.id.input_c_password)
+    @BindView(R.id.input_c_password)
     EditText input_c_password;
 
-    @Bind(R.id.toolbar_title)
+    @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
-    @Bind(R.id.signInTxt)
+    @BindView(R.id.signInTxt)
     TextView signInTxt;
 
-    @Bind(R.id.btn_back)
+    @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @Bind(R.id.mobile_country_code_sp)
+    @BindView(R.id.mobile_country_code_sp)
     Spinner mobile_country_code_sp;
 
-    @Bind(R.id.home_country_code_sp)
+    @BindView(R.id.home_country_code_sp)
     Spinner home_country_code_sp;
 
     private String accessToken;
