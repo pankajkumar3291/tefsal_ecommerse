@@ -133,6 +133,8 @@ public class SigninActivity extends BaseActivity {
             }
         });
     }
+
+
     @Override
     protected void onResume() {
         super.onResume();

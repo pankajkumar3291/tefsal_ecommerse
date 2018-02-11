@@ -21,6 +21,16 @@ public class SimpleProgressBar {
         pDialog.setCancelable(false);
         pDialog.show();
     }
+
+
+    public static void showProgress(Context context,String message)
+    {
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage(message);
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
     public static void closeProgress()
     {
         pDialog.dismiss();

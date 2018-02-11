@@ -225,10 +225,10 @@
         <activity
             android:name=".activity.MailDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MailingSystemActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".activity.MailingSystemActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.CountryPopUpActivity"  android:theme="@style/TransparentTheme"></activity>
     </application>
 
 </manifest>

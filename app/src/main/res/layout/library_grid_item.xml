@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tefal.utils.SquareRelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:gravity="center"
+    android:background="@color/l_gray"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:text="India  "/>
+
+        <ImageView
+            android:id="@+id/imgv_image"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:src="@drawable/india"
+            android:layout_margin="3dp"
+            />
+    </LinearLayout>
+
+</com.tefal.utils.SquareRelativeLayout>

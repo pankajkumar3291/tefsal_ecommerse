@@ -3,45 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_up_bg_blur"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.tefal.activity.AddAddresssAfterSignUp">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        app:theme="@style/TransparentToolbar"
-
         android:id="@+id/toolbar"
+
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        app:theme="@style/TransparentToolbar">
+
         <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_left_arrow"/>
+            android:padding="5dp"
+            android:src="@drawable/ic_left_arrow" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toolbar Title"
-            android:layout_gravity="center"
-            android:textSize="@dimen/text_mid"
-            android:textColor="@color/colorAccent"
             android:id="@+id/toolbar_title"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/Lato-Bold.ttf" />
-        <Button
-            android:clickable="false"
+            fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Toolbar Title"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid"
+            tools:ignore="MissingPrefix" />
+
+        <Button
+            fontPath="fonts/Lato-Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:color/transparent"
+            android:clickable="false"
             android:text="Step 2"
             android:textColor="@color/colorAccent"
-            android:layout_gravity="right"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/Lato-Bold.ttf"
-            android:background="@android:color/transparent"/>
+            tools:ignore="MissingPrefix" />
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
@@ -61,29 +63,28 @@
                 android:orientation="vertical">
 
 
-
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_address_nameLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_address_nameLayout"
                     android:layout_marginTop="10dp">
+
                     <EditText
+                        android:id="@+id/input_address_name"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_address_name"
-                        android:id="@+id/input_address_name"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -107,10 +108,13 @@
 
             </LinearLayout>
 
+
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MyAddress_LL_height2"
                 android:layout_marginTop="@dimen/margin_small"
+
                 android:orientation="vertical">
 
                 <TextView
@@ -119,25 +123,60 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_xsmall"
                     android:drawableLeft="@drawable/ic_star2"
-
                     android:drawablePadding="@dimen/margin_xxsmall"
                     android:text="@string/hint_country"
                     android:textColor="@color/colorDGray"
                     android:textSize="@dimen/text_xsmall" />
 
+                <RelativeLayout
+                    android:focusable="true"
+                    android:id="@+id/llCountry"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/input_mob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="@color/colorTheme"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
+
+
+                    <ImageView
+                        android:id="@+id/imgv_contry_flag1"
+                        android:layout_width="40dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:padding="5dp"
+                        android:src="@drawable/india" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingRight="@dimen/margin_mid" />
                 <Spinner
                     android:id="@+id/spin_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/margin_xxsmall"
                     android:paddingRight="@dimen/margin_mid"
-                    android:paddingTop="@dimen/margin_small" />
+                    android:paddingTop="@dimen/margin_small"
+                    android:visibility="gone" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:background="@color/colorPrimaryDark"/>
+
 
             </LinearLayout>
 
@@ -165,13 +204,15 @@
                     android:paddingBottom="@dimen/margin_xxsmall"
                     android:paddingRight="@dimen/margin_mid"
                     android:paddingTop="@dimen/margin_small" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:background="@color/colorPrimaryDark"/>
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingRight="@dimen/margin_mid" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MyAddress_LL_height2"
@@ -196,11 +237,12 @@
                     android:paddingBottom="@dimen/margin_xxsmall"
                     android:paddingRight="@dimen/margin_mid"
                     android:paddingTop="@dimen/margin_small" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:background="@color/colorPrimaryDark"/>
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingRight="@dimen/margin_mid" />
             </LinearLayout>
 
 
@@ -230,27 +272,28 @@
                      android:textColor="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_blockLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_blockLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_block"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_block"
-                        android:id="@+id/input_block"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
+                    android:background="@color/colorPrimaryDark"
 
                     />
             </LinearLayout>
@@ -284,30 +327,31 @@
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_streetLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_streetLayout"
                     android:layout_marginTop="10dp">
+
                     <EditText
+                        android:id="@+id/input_street"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
-
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
+
                         android:hint="@string/hint_street"
-                        android:id="@+id/input_street"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,27 +377,28 @@
                      android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_avenueLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_avenueLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_avenue"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_avenue"
-                        android:id="@+id/input_avenue"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -383,28 +428,28 @@
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_floorLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_floorLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_floor"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_floor"
-                        android:id="@+id/input_floor"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -436,28 +481,28 @@
                     android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_houseLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_houseLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_house"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_house"
-                        android:id="@+id/input_house"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -488,28 +533,28 @@
                      android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_flateLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_flateLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_flate"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_flate"
-                        android:id="@+id/input_flate"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -541,28 +586,28 @@
                     android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_phoneLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_phoneLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_phone"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_phone"
-                        android:id="@+id/input_phone"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -591,35 +636,34 @@
                      android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_paci_numLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_paci_numLayout"
                     android:layout_marginTop="10dp">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
 
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
+                    <EditText
+                        android:id="@+id/input_paci_num"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
                         android:hint="@string/hint_paci_number"
-                        android:id="@+id/input_paci_num"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
                     android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginBottom="@dimen/margin_xlarge"
                 android:layout_marginTop="@dimen/margin_small"
                 android:orientation="vertical">
 
@@ -642,39 +686,47 @@
                      android:textSize="@dimen/text_normal" />-->
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_add_despLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/input_add_despLayout"
                     android:layout_marginTop="10dp">
+
                     <EditText
+                        android:id="@+id/input_add_desp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:singleLine="true"
-                        android:imeOptions="actionNext"
-
                         android:background="@android:color/transparent"
-                        android:textSize="@dimen/text_xsmall"
+
                         android:hint="@string/hint_add_desp"
-                        android:id="@+id/input_add_desp"/>
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginBottom="12dp"
-                    />
+                    android:background="@color/colorPrimaryDark" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="@dimen/margin_xlarge"
+                android:orientation="vertical">
 
                 <Button
+
                     android:id="@+id/btn_Save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_xlarge"
                     android:background="@color/colorTheme"
                     android:text="@string/continue_"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_normal" />
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

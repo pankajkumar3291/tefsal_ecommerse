@@ -8,6 +8,7 @@
     <color name="colorDivider">#d9d9d9</color>
     <color name="colorGray">#a1a0a0</color>
     <color name="colorDGray">#868585</color>
+    <color name="l_gray">#f5f3f4</color>
     <color name="colorStyle_bg">#e7e6e6</color>
     <color name="colorTheme">#1e1f25</color>
     <color name="colorHeader">#90000000</color>
