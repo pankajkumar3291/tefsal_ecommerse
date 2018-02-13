@@ -51,7 +51,6 @@ import butterknife.ButterKnife;
 
 public class AccessoriesActivity extends BaseActivity {
 
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -69,8 +68,6 @@ public class AccessoriesActivity extends BaseActivity {
 
     @BindView(R.id.view_cart_btn)
     ImageView view_cart_btn;
-
-
 
     AccessoriesAdapter accessoriesAdapter;
     SessionManager session;

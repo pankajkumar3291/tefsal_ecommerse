@@ -188,7 +188,7 @@ public class SigninActivity extends BaseActivity {
                                     System.out.println("AFTER DAMP ======== TOKEN==="+session.getToken());
                                     System.out.println("AFTER DAMP ======== CUSTOMER NAME==="+session.getKeyUserName());
 
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                  //  Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
                                     WebCallServiceSetToken();
 
@@ -298,7 +298,7 @@ public class SigninActivity extends BaseActivity {
                                 String status = object.getString("status");
                                 String message = object.getString("message");
                                 if (status.equals("1")) {
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
                                     startActivity(new Intent(SigninActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                                     finish();

@@ -7,19 +7,20 @@
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -36,29 +37,32 @@
                         android:layout_width="90dp"
                         android:layout_height="140dp"
                         android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/ic_neck"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_neck_blur" />
+
                         <View
+                            android:id="@+id/neck_view"
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:id="@+id/neck_view"
                             android:layout_above="@+id/tv_neck"
                             android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_neck"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:gravity="center"
                             android:text="NECK"
-                            android:visibility="invisible"
-                            android:layout_centerHorizontal="true"
                             android:textColor="@color/colorNavyBlue"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_alignParentBottom="true" />
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -74,23 +78,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_sldr_blur" />
+
                         <View
+                            android:id="@+id/sldr_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/sldr_view"
                             android:layout_above="@+id/tv_shoulder"
                             android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_shoulder"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SHOULDER"
-                            android:gravity="center"
-                            android:visibility="invisible"
+                            android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:text="SHOULDER"
                             android:textColor="@color/colorNavyBlue"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_alignParentBottom="true"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -106,23 +112,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_chest_blur" />
+
                         <View
+                            android:id="@+id/chest_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/chest_view"
                             android:layout_above="@+id/tv_chest"
                             android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_chest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CHEST"
-                            android:gravity="center"
-                            android:visibility="invisible"
+                            android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:text="CHEST"
                             android:textColor="@color/colorNavyBlue"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_alignParentBottom="true"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -137,23 +145,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_waist_blur" />
+
                         <View
+                            android:id="@+id/waist_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/waist_view"
                             android:layout_above="@+id/tv_waist"
                             android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_waist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="WAIST"
-                            android:gravity="center"
-                            android:visibility="invisible"
-                            android:textColor="@color/colorNavyBlue"
-                            android:layout_centerHorizontal="true"
                             android:layout_alignParentBottom="true"
-                            android:textSize="@dimen/text_xsmall" />
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:text="WAIST"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -168,23 +178,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_arm_blur" />
+
                         <View
+                            android:id="@+id/arm_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/arm_view"
-                            android:background="@color/colorDivider"
-                            android:layout_above="@+id/tv_arm"/>
+                            android:layout_above="@+id/tv_arm"
+                            android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_arm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ARM"
-                            android:gravity="center"
-                            android:visibility="invisible"
-                            android:textColor="@color/colorNavyBlue"
-                            android:layout_centerHorizontal="true"
                             android:layout_alignParentBottom="true"
-                            android:textSize="@dimen/text_xsmall" />
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:text="ARM"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -192,29 +204,32 @@
                         android:layout_width="90dp"
                         android:layout_height="140dp"
                         android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/ic_wrist"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:src="@drawable/icon_wrist_blur"
-                            android:layout_centerInParent="true"/>
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/icon_wrist_blur" />
+
                         <View
+                            android:id="@+id/wrist_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/wrist_view"
                             android:layout_above="@+id/tv_wrist"
                             android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_wrist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="WRIST"
-                            android:gravity="center"
-                            android:visibility="invisible"
-                            android:textColor="@color/colorNavyBlue"
-                            android:layout_centerHorizontal="true"
                             android:layout_alignParentBottom="true"
-                            android:textSize="@dimen/text_xsmall" />
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
+                            android:text="WRIST"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -229,23 +244,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_height_front_blur" />
+
                         <View
+                            android:id="@+id/f_height_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/f_height_view"
-                            android:background="@color/colorDivider"
-                            android:layout_above="@+id/tv_f_height"/>
+                            android:layout_above="@+id/tv_f_height"
+                            android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_f_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="FRONT HEIGHT"
-                            android:visibility="invisible"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:gravity="center"
+                            android:text="FRONT HEIGHT"
                             android:textColor="@color/colorNavyBlue"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -260,23 +277,25 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_height_back_blur" />
+
                         <View
+                            android:id="@+id/b_height_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:id="@+id/b_height_view"
-                            android:background="@color/colorDivider"
-                            android:layout_above="@+id/tv_b_height"/>
+                            android:layout_above="@+id/tv_b_height"
+                            android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_b_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="BACK HEIGHT"
-                            android:visibility="invisible"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:gravity="center"
+                            android:text="BACK HEIGHT"
                             android:textColor="@color/colorNavyBlue"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
 
@@ -292,22 +311,24 @@
                             android:layout_height="60dp"
                             android:layout_centerInParent="true"
                             android:src="@drawable/icon_custom_blur" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorDivider"
-                            android:layout_above="@+id/tv_custom"/>
+                            android:layout_above="@+id/tv_custom"
+                            android:background="@color/colorDivider" />
+
                         <TextView
                             android:id="@+id/tv_custom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:visibility="invisible"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center"
                             android:text="CUSTOMIZED"
                             android:textColor="@color/colorNavyBlue"
-                            android:gravity="center"
                             android:textSize="@dimen/text_xsmall"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"/>
+                            android:visibility="invisible" />
                     </RelativeLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -317,9 +338,9 @@
                 android:layout_height="1dp"
                 android:background="@color/colorDivider" />-->
             <LinearLayout
+                android:id="@+id/ll_sectionOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ll_sectionOne"
                 android:orientation="vertical">
 
 
@@ -342,16 +363,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="0"
-                            android:textColorHint="@color/colorNavy"
-                            android:maxLength="3"
                             android:inputType="number"
+                            android:maxLength="3"
+                            android:textColorHint="@color/colorNavy"
                             android:textSize="80sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="bottom"
                             android:text="."
-                            android:textSize="30dp"
-                            android:gravity="bottom"/>
+                            android:textSize="30dp" />
+
                         <TextView
                             android:id="@+id/textSubValue"
                             android:layout_width="wrap_content"
@@ -378,15 +401,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/l1"
+                    android:layout_marginBottom="50dp"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical"
-                    android:layout_marginBottom="50dp"
                     android:padding="10dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:layout_height="40dp">
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp">
 
                         <View
                             android:layout_width="match_parent"
@@ -419,10 +442,10 @@
                         android:textSize="@dimen/text_normal" />
 
                     <Button
+                        android:id="@+id/viewtip_btn"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:id="@+id/viewtip_btn"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/outline_button"
                         android:text="VIEW TIP"
@@ -431,9 +454,11 @@
 
 
             </LinearLayout>
-            <include layout="@layout/customized_section"
+
+            <include
                 android:id="@+id/ll_sectionTwo"
-                android:visibility="gone"/>
+                layout="@layout/customized_section"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
@@ -443,56 +468,54 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <android.support.v7.widget.Toolbar
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:autofit="http://schemas.android.com/tools"
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            app:theme="@style/TransparentToolbar"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/TransparentToolbar">
 
-        <ImageButton
-            android:id="@+id/btn_back_tips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_left_arrow"/>
+            <ImageButton
+                android:id="@+id/btn_back_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:src="@drawable/ic_left_arrow" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="@dimen/text_mid"
-            android:text="TIPS"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/toolbar_title"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/Lato-Bold.ttf"/>
+            <TextView
+                android:id="@+id/toolbar_title"
+                fontPath="fonts/Lato-Bold.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TIPS"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
         </android.support.v7.widget.Toolbar>
 
-       <!-- <android.support.v4.view.ViewPager
-            android:id="@+id/mainViewPager"
-            android:layout_below="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:padding="20dp"
-            android:layout_height="match_parent">
+        <!-- <android.support.v4.view.ViewPager
+             android:id="@+id/mainViewPager"
+             android:layout_below="@+id/toolbar"
+             android:layout_width="match_parent"
+             android:padding="20dp"
+             android:layout_height="match_parent">
 
-        </android.support.v4.view.ViewPager>-->
+         </android.support.v4.view.ViewPager>-->
 
         <ImageView
+            android:id="@+id/tip_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
-            android:id="@+id/tip_image"
-            android:padding="20dp"/>
+            android:padding="20dp" />
 
         <!--<ImageView
             android:id="@+id/leftArrow"

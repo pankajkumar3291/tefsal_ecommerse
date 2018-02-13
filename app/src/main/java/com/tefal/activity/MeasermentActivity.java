@@ -1,30 +1,18 @@
 package com.tefal.activity;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.media.MediaPlayer;
-import android.widget.MediaController;
 import android.net.Uri;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -49,18 +38,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.tefal.Models.DishdashaStylesRecord;
-import com.tefal.Models.TailorProductResponse;
 import com.tefal.R;
-import com.tefal.adapter.TailorProductAdapter;
 import com.tefal.app.TefalApp;
-import com.tefal.fragment.HomeFragment;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,10 +56,8 @@ import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.view.View.VISIBLE;
-import static android.view.View.resolveSize;
 
-public class MeasermentActivity extends BaseActivity
-{
+public class MeasermentActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -181,7 +163,7 @@ public class MeasermentActivity extends BaseActivity
 
     //Custom design components====================
 
-    @BindView(R.id. buttonsImage)
+    @BindView(R.id.buttonsImage)
     ImageView buttonsImage;
 
     @BindView(R.id.buttonHiddenText)
@@ -225,17 +207,16 @@ public class MeasermentActivity extends BaseActivity
     ImageView key_pocket_image;
 
 
-
-    boolean pen_pocket_image_flag=false;
-    boolean mobile_pocket_image_flage=false;
-    boolean key_pocket_image_flage=false;
+    boolean pen_pocket_image_flag = false;
+    boolean mobile_pocket_image_flage = false;
+    boolean key_pocket_image_flage = false;
 
     //============================================
     @BindView(R.id.culffSwitch_switch)
     Switch culffSwitch_switch;
 
     @BindView(R.id.cufLinkText)
-    TextView   cufLinkText;
+    TextView cufLinkText;
 
     @BindView(R.id.cufflink_image)
     ImageView cufflink_image;
@@ -249,8 +230,7 @@ public class MeasermentActivity extends BaseActivity
     ImageView tip_image;
 
 
-
-    private int min = 1, max = 99, current = 0;
+    private int min = 1, max = 100, current = 0;
     private SessionManager mSessionManager;
     private int flag_chest = 0;
     private int flag_waist = 0;
@@ -264,22 +244,20 @@ public class MeasermentActivity extends BaseActivity
 
 
     private String flow;
-    private int count=1;
-    private int back_count=0;
+    private int count = 1;
+    private int back_count = 0;
 
     //This member variable is used to track the user current measurment on which it ids going on
-    private int viewTipTrackCount=1;
+    private int viewTipTrackCount = 1;
 
     private DishdashaStylesRecord mDishdashaStylesRecord;
     private String mAction;
     private String mCategory;
 
-    private String decimalString="00";
+    private String decimalString = "00";
 
 
-    private String min_meters="";
-
-
+    private String min_meters = "";
 
 
     //=====Tips view screen controller--------------------------------
@@ -315,9 +293,9 @@ public class MeasermentActivity extends BaseActivity
 //--------------------------------------------*/
 
 
-  //Those member variable are used to in video play
+    //Those member variable are used to in video play
 
-    private MediaController  mediaController;
+    private MediaController mediaController;
     private Uri videoUri;
     private String videoLink;
 
@@ -330,18 +308,17 @@ public class MeasermentActivity extends BaseActivity
 
         ButterKnife.bind(this);
 
-        mDishdashaStylesRecord= (DishdashaStylesRecord) getIntent().getExtras().getSerializable("STYLE_DATA");
-        flow=getIntent().getExtras().getString("flow");
+        mDishdashaStylesRecord = (DishdashaStylesRecord) getIntent().getExtras().getSerializable("STYLE_DATA");
+        flow = getIntent().getExtras().getString("flow");
 
 
         //App Video playing block======================================
 //        mediaController=new MediaController(this,null);
-        videoLink="http://tefsalkw.com/public/videos/app.3gp";
-        videoUri=Uri.parse(videoLink);
+        videoLink = "http://tefsalkw.com/public/videos/app.3gp";
+        videoUri = Uri.parse(videoLink);
 
-       // This function call is for showing video of APP
-         showAppVideoDialog();
-
+        // This function call is for showing video of APP
+        showAppVideoDialog();
 
 
         //showIndividualVideoDialog(1);
@@ -352,23 +329,18 @@ public class MeasermentActivity extends BaseActivity
         // mCategory=getIntent().getExtras().getString("CATEGORY");
 
 
-
-
         //System.out.println("USER ID=="+mDishdashaStylesRecord.getUser_id());
-
 
 
         // This block of code is used to show next text when Activity is launched from edit section
 
-        if(TefalApp.getInstance().getmAction().equals("edit"))
-        {
+        if (TefalApp.getInstance().getmAction().equals("edit")) {
             next_txt.setVisibility(VISIBLE);
         }
         //=========================================================================
 
 
-        ll_sectionOne=(LinearLayout)findViewById(R.id.ll_sectionOne);
-
+        ll_sectionOne = (LinearLayout) findViewById(R.id.ll_sectionOne);
 
 
         // init();
@@ -433,14 +405,12 @@ public class MeasermentActivity extends BaseActivity
         textValue.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 System.out.println("XXXX");
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 System.out.println("XXXX");
             }
 
@@ -449,68 +419,62 @@ public class MeasermentActivity extends BaseActivity
 
 
                 int initValue;
-                try
-                {
-                    initValue=Integer.parseInt(s.toString());
-                    if(initValue==0)
-                    {
+                try {
+                    initValue = Integer.parseInt(s.toString());
+                    if (initValue == 0) {
                         next_txt.setVisibility(View.INVISIBLE);
-                    }
-                    else
-                    {
+                    } else {
                         next_txt.setVisibility(View.VISIBLE);
 
 
                         if (flag_chest == 1) {
-                            mSessionManager.setKeyChestSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyChestSize("" + initValue + "." + textSubValue.getText());
                             flag_waist = flag_neck = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                             System.out.println("CHEST DATA=====" + mSessionManager.getKeyChestSize());
                         }
                         if (flag_neck == 1) {
-                            mSessionManager.setKeyNeckSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyNeckSize("" + initValue + "." + textSubValue.getText());
 
                             // Log.d("SIZE", ""+mSessionManager.getKeyNeckSize().toString());
                             // Toast.makeText(MeasermentActivity.this,textValue.getText(),Toast.LENGTH_SHORT).show();
                             flag_waist = flag_chest = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                         }
                         if (flag_sldr == 1) {
-                            mSessionManager.setKeySldrSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeySldrSize("" + initValue + "." + textSubValue.getText());
                             flag_waist = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                         }
                         if (flag_waist == 1) {
-                            mSessionManager.setKeyWaistSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyWaistSize("" + initValue + "." + textSubValue.getText());
                             flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                         }
 
                         if (flag_arm == 1) {
-                            mSessionManager.setKeyArmSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyArmSize("" + initValue + "." + textSubValue.getText());
                             flag_sldr = flag_chest = flag_neck = flag_waist = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
                         }
 
                         if (flag_wrist == 1) {
 
-                            mSessionManager.setKeyWristSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyWristSize("" + initValue + "." + textSubValue.getText());
 
                             flag_sldr = flag_chest = flag_neck = flag_arm = flag_waist = flag_front_height = flag_back_height = flag_customized = 0;
 
                         }
                         if (flag_front_height == 1) {
 
-                            mSessionManager.setKeyFrontHeightSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyFrontHeightSize("" + initValue + "." + textSubValue.getText());
                             flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_waist = flag_back_height = flag_customized = 0;
 
                         }
                         if (flag_back_height == 1) {
 
-                            mSessionManager.setKeyBackHeightSize(""+initValue + "." + textSubValue.getText());
+                            mSessionManager.setKeyBackHeightSize("" + initValue + "." + textSubValue.getText());
                             flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_waist = flag_customized = 0;
                         }
                     }
-                }
-                catch(Exception ex)
-                {
-                    System.out.println("EXCEPTION ===="+ex);
+                } catch (Exception ex) {
+                    System.out.println("EXCEPTION ====" + ex);
                     next_txt.setVisibility(View.INVISIBLE);
 
                 }
@@ -527,52 +491,49 @@ public class MeasermentActivity extends BaseActivity
                 //  textSubValue.setText("00");
 
                 if (flag_chest == 1) {
-                    mSessionManager.setKeyChestSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyChestSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_waist = flag_neck = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                 }
                 if (flag_neck == 1) {
-                    mSessionManager.setKeyNeckSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyNeckSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
 
                     // Log.d("SIZE", ""+mSessionManager.getKeyNeckSize().toString());
                     // Toast.makeText(MeasermentActivity.this,textValue.getText(),Toast.LENGTH_SHORT).show();
                     flag_waist = flag_chest = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                 }
                 if (flag_sldr == 1) {
-                    mSessionManager.setKeySldrSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeySldrSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_waist = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                 }
                 if (flag_waist == 1) {
-                    mSessionManager.setKeyWaistSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyWaistSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
                 }
 
                 if (flag_arm == 1) {
-                    mSessionManager.setKeyArmSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyArmSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_sldr = flag_chest = flag_neck = flag_waist = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
                 }
 
-                if (flag_wrist == 1)
-                {
+                if (flag_wrist == 1) {
 
-                    mSessionManager.setKeyWristSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyWristSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
 
                     flag_sldr = flag_chest = flag_neck = flag_arm = flag_waist = flag_front_height = flag_back_height = flag_customized = 0;
 
                 }
                 if (flag_front_height == 1) {
 
-                    mSessionManager.setKeyFrontHeightSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyFrontHeightSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_waist = flag_back_height = flag_customized = 0;
 
                 }
                 if (flag_back_height == 1) {
 
-                    mSessionManager.setKeyBackHeightSize(textValue.getText().toString()+"."+textSubValue.getText().toString());
+                    mSessionManager.setKeyBackHeightSize(textValue.getText().toString() + "." + textSubValue.getText().toString());
                     flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_waist = flag_customized = 0;
                 }
-
-
 
 
             }
@@ -590,19 +551,20 @@ public class MeasermentActivity extends BaseActivity
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
 
                 // count=count+1;
 
-                switch(back_count) {
+                switch (back_count) {
                     case 0:
                         ll_neckDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 1:
                         ll_sldrDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 2:
@@ -610,14 +572,17 @@ public class MeasermentActivity extends BaseActivity
                         // ll_waistDesign();
                         View targetView = findViewById(R.id.ll_neck);
                         targetView.getParent().requestChildFocus(targetView, targetView);
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 3:
                         ll_waistDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 4:
                         ll_armDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 5:
@@ -625,18 +590,22 @@ public class MeasermentActivity extends BaseActivity
 
                         View targetView2 = findViewById(R.id.ll_waist);
                         targetView2.getParent().requestChildFocus(targetView2, targetView2);
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 6:
                         ll_frnt_heightDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 7:
                         ll_back_heightDesign();
+                        textValue.requestFocus();
                         back_count--;
                         break;
                     case 8:
                         ll_customDesign();
+                       // textValue.requestFocus();
                         next_txt.setText("FINISH");
                         back_count--;
                         break;
@@ -654,40 +623,40 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onClick(View v) {
 
-                String s="";
+                String s = "";
 
-                s=textValue.getText().toString();
-                switch(count)
-                {
+
+                s = textValue.getText().toString();
+                switch (count) {
 
                     case 0:
-                        System.out.println("OUT PUT===="+textValue.getText());
+                        System.out.println("OUT PUT====" + textValue.getText());
 
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_neckDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                         }
 
                         break;
                     case 1:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_sldrDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                         }
                         break;
                     case 2:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_chestDesign();
                             View targetView = findViewById(R.id.ll_wrist);
                             targetView.getParent().requestChildFocus(targetView, targetView);
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
 
                         }
@@ -697,55 +666,55 @@ public class MeasermentActivity extends BaseActivity
 
                         break;
                     case 3:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_waistDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                         }
 
                         break;
                     case 4:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_armDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
 
                         }
                         break;
                     case 5:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
 
                             ll_wristDesign();
                             View targetView2 = findViewById(R.id.ll_custom);
                             targetView2.getParent().requestChildFocus(targetView2, targetView2);
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                         }
 
                         break;
                     case 6:
-                        System.out.println("OUT PUT===="+textValue.getText());
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        System.out.println("OUT PUT====" + textValue.getText());
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_frnt_heightDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                         }
 
                         break;
                     case 7:
-                        System.out.println("OUT PUT===="+textValue.getText());
+                        System.out.println("OUT PUT====" + textValue.getText());
 
-                        if(!s.equals("0") && !s.equals(""))
-                        {
+                        if (!s.equals("0") && !s.equals("")) {
                             ll_back_heightDesign();
-                            count=count+1;
+                            textValue.requestFocus();
+                            count = count + 1;
                             break;
                             //
                         }
@@ -754,8 +723,9 @@ public class MeasermentActivity extends BaseActivity
                         break;
                     case 8:
                         ll_customDesign();
+                      //  textValue.requestFocus();
                         next_txt.setText("FINISH");
-                        count=count+1;
+                        count = count + 1;
                         break;
                     default:
                         if (validateNecksize() && validateShoulderSize() &&
@@ -763,8 +733,7 @@ public class MeasermentActivity extends BaseActivity
                                 && validateArmSize() && validateWristSize()
                                 && validateFrontLenght() && validateBackHeightLenght()
                                 /*&& validateCollorNoButton()
-                                && validateNoButtons()*/)
-                        {
+                                && validateNoButtons()*/) {
 
                             if (TefalApp.getInstance().getmAction().equals("edit")) {
                                 WebCallServiceUpdateStyle();
@@ -774,9 +743,8 @@ public class MeasermentActivity extends BaseActivity
                                 System.out.println("Category== " + TefalApp.getInstance().getmCategory());
                             }
 
-                            if (TefalApp.getInstance().getmAction().equals("create"))
-                            {
-                               // WebCallServiceCreateStyle();
+                            if (TefalApp.getInstance().getmAction().equals("create")) {
+                                // WebCallServiceCreateStyle();
 
                                 getmeasureMinMetersHttpCall();
                                 System.out.println("===============================");
@@ -820,11 +788,9 @@ public class MeasermentActivity extends BaseActivity
                         && validateArmSize() && validateWristSize()
                         && validateFrontLenght() && validateBackHeightLenght()
                        /* && validateCollorNoButton()
-                        && validateNoButtons()*/)
-                {
+                        && validateNoButtons()*/) {
 
-                    if (TefalApp.getInstance().getmAction().equals("edit"))
-                    {
+                    if (TefalApp.getInstance().getmAction().equals("edit")) {
                         WebCallServiceUpdateStyle();
                         //setPrefData(mDishdashaStylesRecord);
                         System.out.println("===============================");
@@ -832,8 +798,7 @@ public class MeasermentActivity extends BaseActivity
                         System.out.println("Category== " + TefalApp.getInstance().getmCategory());
                     }
 
-                    if (TefalApp.getInstance().getmAction().equals("create"))
-                    {
+                    if (TefalApp.getInstance().getmAction().equals("create")) {
                         //WebCallServiceCreateStyle();
 
                         getmeasureMinMetersHttpCall();
@@ -846,7 +811,6 @@ public class MeasermentActivity extends BaseActivity
                 // WebCallServiceCreateStyle();
             }
         });
-
 
 
         Video_Btn.setOnClickListener(new View.OnClickListener() {
@@ -878,8 +842,8 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onClick(View v) {
 
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
 
                     ll_neckDesign();
                 // mSessionManager.getKeyChestSize();
@@ -890,8 +854,8 @@ public class MeasermentActivity extends BaseActivity
         ll_chest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
 
                     ll_chestDesign();
                 // Toast.makeText(MeasermentActivity.this,"H",Toast.LENGTH_SHORT).show();
@@ -902,8 +866,8 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onClick(View v) {
 
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
 
                     ll_sldrDesign();
 
@@ -913,8 +877,8 @@ public class MeasermentActivity extends BaseActivity
         ll_waist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_waistDesign();
 
                 // Toast.makeText(MeasermentActivity.this,"H",Toast.LENGTH_SHORT).show();
@@ -926,8 +890,8 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onClick(View v) {
 
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_armDesign();
 
 
@@ -936,10 +900,9 @@ public class MeasermentActivity extends BaseActivity
 
         ll_wrist.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+            public void onClick(View v) {
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_wristDesign();
             }
         });
@@ -947,8 +910,8 @@ public class MeasermentActivity extends BaseActivity
         ll_frnt_height.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_frnt_heightDesign();
             }
         });
@@ -956,22 +919,20 @@ public class MeasermentActivity extends BaseActivity
         ll_back_height.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_back_heightDesign();
             }
         });
-
 
 
         ll_custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String s=textValue.getText().toString();
-                if(!s.equals("0") && !s.equals(""))
+                String s = textValue.getText().toString();
+                if (!s.equals("0") && !s.equals(""))
                     ll_customDesign();
-
 
 
                 // showDialog();
@@ -985,17 +946,14 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(isChecked)
-                {
+                if (isChecked) {
                     mSessionManager.setKeyCufflink("yes");
-                    cufLinkText.setText("CUFFLINK");
+                    //cufLinkText.setText("CUFFLINK");
                     cufflink_image.setImageResource(R.drawable.icon_cuff_link_yes);
 
-                }
-                else
-                {
+                } else {
                     mSessionManager.setKeyCufflink("no");
-                    cufLinkText.setText("NO CUFFLINK");
+                   // cufLinkText.setText("NO CUFFLINK");
                     cufflink_image.setImageResource(R.drawable.icon_cuff_link_no);
 
                 }
@@ -1007,16 +965,14 @@ public class MeasermentActivity extends BaseActivity
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(isChecked)
-                {
+                if (isChecked) {
                     //button_hidden_switch.setChecked(true);
 
 
-                    buttonHiddenText.setText("VISIBLE");
+                    //buttonHiddenText.setText("VISIBLE");
                     mSessionManager.setKeyButtonsVisibility("yes");
 
-                    switch (mSessionManager.getKeyButtons())
-                    {
+                    switch (mSessionManager.getKeyButtons()) {
                         case "0":
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
                             button_hidden_switch.setChecked(false);
@@ -1033,17 +989,14 @@ public class MeasermentActivity extends BaseActivity
 
                     /*noOfButtonSpinner.setEnabled(true);
                     mSessionManager.setKeyButtons("0");*/
-                }
-                else
-                {
-                    buttonHiddenText.setText("HIDDEN");
+                } else {
+                   // buttonHiddenText.setText("HIDDEN");
                     mSessionManager.setKeyButtonsVisibility("no");
 
-                    switch (mSessionManager.getKeyButtons())
-                    {
+                    switch (mSessionManager.getKeyButtons()) {
                         case "0":
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
-                           // button_hidden_switch.setChecked(false);
+                            // button_hidden_switch.setChecked(false);
                             break;
 
                         case "1":
@@ -1068,17 +1021,14 @@ public class MeasermentActivity extends BaseActivity
 
         collar_btn_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if(isChecked)
-                {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
 
                     //c dfb
-                    collor_button_hidden_text.setText("VISIBLE");
+                   // collor_button_hidden_text.setText("VISIBLE");
                     mSessionManager.setKeyCollarButtonVisibility("yes");
 
-                    switch(mSessionManager.getKeyCollarButton())
-                    {
+                    switch (mSessionManager.getKeyCollarButton()) {
                         case "3":
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show3);
                             break;
@@ -1095,14 +1045,11 @@ public class MeasermentActivity extends BaseActivity
                     // collar_btn_spinner.setEnabled(true);
                     // mSessionManager.setKeyCollarButton("3");
                     //collar_btn_switch.setChecked(false);
-                }
-                else
-                {
-                    collor_button_hidden_text.setText("HIDDEN"); // Chest button
+                } else {
+                   // collor_button_hidden_text.setText("HIDDEN"); // Chest button
                     mSessionManager.setKeyCollarButtonVisibility("no"); // chest button
 
-                    switch(mSessionManager.getKeyCollarButton())
-                    {
+                    switch (mSessionManager.getKeyCollarButton()) {
                         case "3":
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden3);
                             break;
@@ -1120,43 +1067,30 @@ public class MeasermentActivity extends BaseActivity
         });
 
 
-
-
-        collor_push_visibilty_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
+        collor_push_visibilty_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-              if(isChecked)
-              {
-                  mSessionManager.setKeyButtonsPushVisibilty("yes");
-              }
-              else
-              {
-                  mSessionManager.setKeyButtonsPushVisibilty("no");
-              }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mSessionManager.setKeyButtonsPushVisibilty("yes");
+                } else {
+                    mSessionManager.setKeyButtonsPushVisibilty("no");
+                }
             }
         });
 
 
-
-
         pen_pocket_image.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(pen_pocket_image_flag)
-                {
+            public void onClick(View v) {
+                if (pen_pocket_image_flag) {
                     pen_pocket_image.setImageResource(R.drawable.pocket_icon_pen);
-                    pen_pocket_image_flag=false;
+                    pen_pocket_image_flag = false;
                     mSessionManager.setKeyPenPocket("yes");
                     System.out.println("IMAGE PUT ON");
-                }
-                else
-                {
+                } else {
                     //pen_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorNavy));
                     pen_pocket_image.setImageResource(R.drawable.pocket_icon_pen_blur);
-                    pen_pocket_image_flag=true;
+                    pen_pocket_image_flag = true;
                     mSessionManager.setKeyPenPocket("no");
                     // System.out.println("IMAGE PUT OFF");
 
@@ -1166,19 +1100,15 @@ public class MeasermentActivity extends BaseActivity
 
         mobile_pocket_image.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(mobile_pocket_image_flage)
-                {
+            public void onClick(View v) {
+                if (mobile_pocket_image_flage) {
                     mobile_pocket_image.setImageResource(R.drawable.pocket_icon_mobile);
-                    mobile_pocket_image_flage=false;
+                    mobile_pocket_image_flage = false;
                     mSessionManager.setKeyMobilePocket("yes");
-                }
-                else
-                {
+                } else {
                     //mobile_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorNavy));
                     mobile_pocket_image.setImageResource(R.drawable.pocket_icon_mobile_blur);
-                    mobile_pocket_image_flage=true;
+                    mobile_pocket_image_flage = true;
                     mSessionManager.setKeyMobilePocket("no");
                 }
             }
@@ -1186,19 +1116,15 @@ public class MeasermentActivity extends BaseActivity
 
         key_pocket_image.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(key_pocket_image_flage)
-                {
+            public void onClick(View v) {
+                if (key_pocket_image_flage) {
                     key_pocket_image.setImageResource(R.drawable.pocket_icon_key);
-                    key_pocket_image_flage=false;
+                    key_pocket_image_flage = false;
                     mSessionManager.setKeyPocket("yes");
-                }
-                else
-                {
+                } else {
                     //mobile_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorNavy));
                     key_pocket_image.setImageResource(R.drawable.pocket_icon_key_blur);
-                    key_pocket_image_flage=true;
+                    key_pocket_image_flage = true;
                     mSessionManager.setKeyPocket("no");
                 }
             }
@@ -1206,32 +1132,24 @@ public class MeasermentActivity extends BaseActivity
 
         noOfButtonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //  Toast.makeText(getApplicationContext(),"Hii from buttons",Toast.LENGTH_SHORT).show();
-                System.out.println("HII BUTTON=="+noOfButtonSpinner.getItemAtPosition(position).toString());
+                System.out.println("HII BUTTON==" + noOfButtonSpinner.getItemAtPosition(position).toString());
                 mSessionManager.setKeyButtons(noOfButtonSpinner.getItemAtPosition(position).toString());
 
-                switch (noOfButtonSpinner.getItemAtPosition(position).toString())
-                {
+                switch (noOfButtonSpinner.getItemAtPosition(position).toString()) {
                     case "1":
-                        if(button_hidden_switch.isChecked())
-                        {
+                        if (button_hidden_switch.isChecked()) {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
-                        }
-                        else
-                        {
+                        } else {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
                         }
                         break;
 
                     case "2":
-                        if(button_hidden_switch.isChecked())
-                        {
+                        if (button_hidden_switch.isChecked()) {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
-                        }
-                        else
-                        {
+                        } else {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
                         }
                         break;
@@ -1240,49 +1158,37 @@ public class MeasermentActivity extends BaseActivity
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
         collar_btn_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
-                System.out.println("HII BUTTON COLLAR=="+collar_btn_spinner.getItemAtPosition(position).toString());
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("HII BUTTON COLLAR==" + collar_btn_spinner.getItemAtPosition(position).toString());
 
-                switch (collar_btn_spinner.getItemAtPosition(position).toString())
-                {
+                switch (collar_btn_spinner.getItemAtPosition(position).toString()) {
                     case "3":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
-                        if(collar_btn_switch.isChecked())
-                        {
+                        if (collar_btn_switch.isChecked()) {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show3);
-                        }
-                        else
-                        {
+                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden3);
                         }
                         break;
                     case "4":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
-                        if(collar_btn_switch.isChecked())
-                        {
+                        if (collar_btn_switch.isChecked()) {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show4);
-                        }
-                        else
-                        {
+                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden4);
                         }
                         break;
                     case "5":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
-                        if(collar_btn_switch.isChecked())
-                        {
+                        if (collar_btn_switch.isChecked()) {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show5);
-                        }
-                        else
-                        {
+                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden5);
                         }
                         break;
@@ -1300,13 +1206,10 @@ public class MeasermentActivity extends BaseActivity
         });
 
 
-
     }
 
 
-
-    public void setCustomDesignData()
-    {
+    public void setCustomDesignData() {
            /* System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());
             System.out.println("OUTPUT  CUFFLINK=="+mSessionManager.getKeyCufflink());
             System.out.println("OUTPUT COLLOR BUTTON=="+mSessionManager.getKeyCollarButton());
@@ -1314,62 +1217,49 @@ public class MeasermentActivity extends BaseActivity
             System.out.println("OUTPUT  MOBILE POCKET=="+mSessionManager.getKeyMobilePocket());*/
         //System.out.println("OUTPUT");
 
-        decimalString="00";
-        int pos=0;
+        decimalString = "00";
+        int pos = 0;
 
-        if(mSessionManager.getKeyCufflink().equals("no"))
-        {
+        if (mSessionManager.getKeyCufflink().equals("no")) {
             culffSwitch_switch.setChecked(false);
-            cufLinkText.setText("NO CUFFLINK");
+           // cufLinkText.setText("NO CUFFLINK");
             cufflink_image.setImageResource(R.drawable.icon_cuff_link_no);
             // cufflink_image.setVisibility(View.GONE);
 
-        }
-        else
-        {
+        } else {
             culffSwitch_switch.setChecked(true);
-            cufLinkText.setText("CUFFLINK");
+           // cufLinkText.setText("CUFFLINK");
             cufflink_image.setImageResource(R.drawable.icon_cuff_link_yes);
 
             // cufflink_image.setVisibility(View.VISIBLE);
         }
 
 
-
-
         //This block of code used to handle collor button -----
 
-        if(mSessionManager.getKeyButtons().equals("0"))
-        {
+        if (mSessionManager.getKeyButtons().equals("0")) {
             noOfButtonSpinner.setSelection(0);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
 
             // buttonHiddenText.setText("VISIBILTY");
 
-        }
-        else if(mSessionManager.getKeyButtons().equals("1"))
-        {
+        } else if (mSessionManager.getKeyButtons().equals("1")) {
             noOfButtonSpinner.setSelection(1);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
 
-        }
-        else if(mSessionManager.getKeyButtons().equals("2"))
-        {
+        } else if (mSessionManager.getKeyButtons().equals("2")) {
             noOfButtonSpinner.setSelection(2);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
         }
 
         // This block of code is used handle the visibilty of Collar button
 
-        if(mSessionManager.getKeyButtonsVisibility().equals("yes"))
-        {
+        if (mSessionManager.getKeyButtonsVisibility().equals("yes")) {
             button_hidden_switch.setChecked(true);
-            buttonHiddenText.setText("VISIBILE");
-        }
-        else
-        {
+            //.setText("VISIBILE");
+        } else {
             button_hidden_switch.setChecked(false);
-            buttonHiddenText.setText("HIDDEN");
+           // buttonHiddenText.setText("HIDDEN");
         }
 
 
@@ -1381,32 +1271,25 @@ public class MeasermentActivity extends BaseActivity
         button_hidden_switch.setChecked(true);*/
 
 
-
-
-
-
 //======================================================================
 
         // This block of code used to handle chest button===============================
 
-        if(mSessionManager.getKeyCollarButton().equals("3"))
-        {
-            pos=0;
+        if (mSessionManager.getKeyCollarButton().equals("3")) {
+            pos = 0;
             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show3);
             collar_btn_spinner.setSelection(pos);
-            System.out.println("POSITION==="+pos);
+            System.out.println("POSITION===" + pos);
         }
-        if(mSessionManager.getKeyCollarButton().equals("4"))
-        {
-            pos=1;
+        if (mSessionManager.getKeyCollarButton().equals("4")) {
+            pos = 1;
             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show4);
             collar_btn_spinner.setSelection(pos);
-            System.out.println("POSITION==="+pos);
+            System.out.println("POSITION===" + pos);
         }
-        if(mSessionManager.getKeyCollarButton().equals("5"))
-        {
-            pos=2;
-            System.out.println("POSITION==="+pos);
+        if (mSessionManager.getKeyCollarButton().equals("5")) {
+            pos = 2;
+            System.out.println("POSITION===" + pos);
             collor_button_image.setImageResource(R.drawable.icon_chest_btn_show5);
             collar_btn_spinner.setSelection(pos);
         }
@@ -1414,92 +1297,70 @@ public class MeasermentActivity extends BaseActivity
 
         // This block of code is used to handle the visibility of shirtButton/Chest Button
 
-        if(mSessionManager.getKeyCollarButtonVisibility().equals("yes"))
-        {
+        if (mSessionManager.getKeyCollarButtonVisibility().equals("yes")) {
             collar_btn_switch.setChecked(true);
-        }
-        else
-        {
+        } else {
             collar_btn_switch.setChecked(false);
         }
 
 
         // This bock of code used to handle tthe collor button push visibilty
 
-        if(mSessionManager.getKeyButtonsPushVisibility().equals("yes"))
-        {
+        if (mSessionManager.getKeyButtonsPushVisibility().equals("yes")) {
             collor_push_visibilty_switch.setChecked(true);
 
             /*collar_btn_spinner.setSelection(pos);
             collar_btn_switch.setChecked(true);
-            collor_button_hidden_text.setText("VISIBLE");*/
-        }
-        else
-        {
+           // collor_button_hidden_text.setText("VISIBLE");*/
+        } else {
             collor_push_visibilty_switch.setChecked(false);
             /*collar_btn_spinner.setSelection(pos);
             collar_btn_switch.setChecked(false);
-            collor_button_hidden_text.setText("HIDDEN");*/
+            //collor_button_hidden_text.setText("HIDDEN");*/
         }
-
-
-
-
-
-
 
 
         //============================================================================
 
-        if(mSessionManager.getKeyMobilePocket().equals("no"))
-        {
-            mobile_pocket_image_flage=true;
+        if (mSessionManager.getKeyMobilePocket().equals("no")) {
+            mobile_pocket_image_flage = true;
             mobile_pocket_image.setImageResource(R.drawable.pocket_icon_mobile_blur);
             // mobile_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorDivider));
             // setColorFilter(ContextCompat.getColor(getContext(), R.color.green_500))
-        }
-        else
-        {
-            mobile_pocket_image_flage=false;
+        } else {
+            mobile_pocket_image_flage = false;
             mobile_pocket_image.setImageResource(R.drawable.pocket_icon_mobile);
 
             // mobile_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorNavy));
         }
 
 
-        if(mSessionManager.getKeyPenPocket().equals("no"))
-        {
+        if (mSessionManager.getKeyPenPocket().equals("no")) {
             // pen_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorDivider));
             pen_pocket_image.setImageResource(R.drawable.pocket_icon_pen_blur);
-            pen_pocket_image_flag=true;
-        }
-        else
-        {
+            pen_pocket_image_flag = true;
+        } else {
 
             // pen_pocket_image_flag=true;
             pen_pocket_image.setImageResource(R.drawable.pocket_icon_pen);
-            pen_pocket_image_flag=false;
+            pen_pocket_image_flag = false;
 
 
             //pen_pocket_image.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorNavy));
 
         }
 
-        if(mSessionManager.getKeyPocket().equals("no"))
-        {
+        if (mSessionManager.getKeyPocket().equals("no")) {
             key_pocket_image.setImageResource(R.drawable.pocket_icon_key_blur);
-            key_pocket_image_flage=true;
-        }
-        else
-        {
+            key_pocket_image_flage = true;
+        } else {
             key_pocket_image.setImageResource(R.drawable.pocket_icon_key);
-            key_pocket_image_flage=false;
+            key_pocket_image_flage = false;
         }
 
     }
 
-    private void ll_neckDesign()
-    {
+    private void ll_neckDesign() {
 
 
         toolbar_title.setText("1/9");
@@ -1518,8 +1379,6 @@ public class MeasermentActivity extends BaseActivity
         tv_custom.setVisibility(View.INVISIBLE);
 
 
-
-
         ic_neck.setImageResource(R.drawable.a);
         ic_custom.setImageResource(R.drawable.icon_custom_blur);
         ic_b_height.setImageResource(R.drawable.icon_height_back_blur);
@@ -1533,39 +1392,33 @@ public class MeasermentActivity extends BaseActivity
         viewToogle();
         flag_waist = flag_chest = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
-        String size=(mSessionManager.getKeyNeckSize());
+        String size = (mSessionManager.getKeyNeckSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
 
-        count=0;
-        back_count=0;
-        viewTipTrackCount=1;
+        count = 0;
+        back_count = 0;
+        viewTipTrackCount = 1;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -1602,14 +1455,15 @@ public class MeasermentActivity extends BaseActivity
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
         ic_custom.getLayoutParams().height = 190;
+
+
     }
-    private void ll_chestDesign()
-    {
-        decimalString="00";
+
+    private void ll_chestDesign() {
+        decimalString = "00";
         toolbar_title.setText("3/9");
         next_txt.setText("NEXT");
         flag_chest = 1;
-
 
 
         tv_neck.setVisibility(View.INVISIBLE);
@@ -1623,7 +1477,6 @@ public class MeasermentActivity extends BaseActivity
         tv_f_height.setVisibility(View.INVISIBLE);
         tv_b_height.setVisibility(View.INVISIBLE);
         tv_custom.setVisibility(View.INVISIBLE);
-
 
 
         ic_neck.setImageResource(R.drawable.icon_neck_blur);
@@ -1640,42 +1493,34 @@ public class MeasermentActivity extends BaseActivity
         viewToogle();
 
 
-
         flag_waist = flag_neck = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
         //String[] parts={};
 
 
+        String size = (mSessionManager.getKeyChestSize());
+        String[] parts = size.split("\\.");
+        String intValue = "" + parts[0];
+        String decimalValue = "" + parts[1];
 
-        String size=(mSessionManager.getKeyChestSize());
-        String[]   parts = size.split("\\.");
-        String intValue=""+parts[0];
-        String decimalValue=""+parts[1];
-
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
         //textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        textSubValue.setText("" + lenghtMM);
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
-        count=2;
-        back_count=2;
-        viewTipTrackCount=3;
+        count = 2;
+        back_count = 2;
+        viewTipTrackCount = 3;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -1715,8 +1560,7 @@ public class MeasermentActivity extends BaseActivity
 
     }
 
-    private void ll_sldrDesign()
-    {
+    private void ll_sldrDesign() {
 
 
         next_txt.setText("NEXT");
@@ -1748,43 +1592,35 @@ public class MeasermentActivity extends BaseActivity
         ic_shoulder.setImageResource(R.drawable.b);
 
 
-
-
         flag_waist = flag_neck = flag_chest = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
         viewToogle();
 
-        String size=(mSessionManager.getKeySldrSize());
+        String size = (mSessionManager.getKeySldrSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
 
-        System.out.println("lenght======    CM==="+lenghtCM);
-        System.out.println("lenght======    CM==="+lenghtMM);
+        System.out.println("lenght======    CM===" + lenghtCM);
+        System.out.println("lenght======    CM===" + lenghtMM);
         seekBar.setProgress(lenghtMM);
-        textSubValue.setText(""+lenghtMM);
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        textSubValue.setText("" + lenghtMM);
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
+        } else {
+            textValue.setText("" + lenghtCM);
         }
-        else
-        {
-            textValue.setText(""+lenghtCM);
-        }
-        count=1;
-        back_count=1;
-        viewTipTrackCount=2;
+        count = 1;
+        back_count = 1;
+        viewTipTrackCount = 2;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -1823,8 +1659,7 @@ public class MeasermentActivity extends BaseActivity
         ic_custom.getLayoutParams().height = 190;
     }
 
-    private void ll_waistDesign()
-    {
+    private void ll_waistDesign() {
         // decimalString="00";
         next_txt.setText("NEXT");
         toolbar_title.setText("4/9");
@@ -1858,37 +1693,31 @@ public class MeasermentActivity extends BaseActivity
         viewToogle();
         flag_chest = flag_neck = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
-        String size=(mSessionManager.getKeyWaistSize());
+        String size = (mSessionManager.getKeyWaistSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
-        count=3;
-        back_count=3;
-        viewTipTrackCount=4;
+        count = 3;
+        back_count = 3;
+        viewTipTrackCount = 4;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -1927,8 +1756,7 @@ public class MeasermentActivity extends BaseActivity
         ic_custom.getLayoutParams().height = 190;
     }
 
-    private void ll_armDesign()
-    {
+    private void ll_armDesign() {
         // decimalString="00";
         next_txt.setText("NEXT");
         flag_sldr = flag_chest = flag_neck = flag_waist = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
@@ -1961,39 +1789,32 @@ public class MeasermentActivity extends BaseActivity
         ic_shoulder.setImageResource(R.drawable.icon_sldr_blur);
 
 
-
         viewToogle();
 
-        String size=(mSessionManager.getKeyArmSize());
+        String size = (mSessionManager.getKeyArmSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
-        count=4;
-        back_count=4;
-        viewTipTrackCount=5;
+        count = 4;
+        back_count = 4;
+        viewTipTrackCount = 5;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -2033,9 +1854,8 @@ public class MeasermentActivity extends BaseActivity
 
     }
 
-    private void ll_wristDesign()
-    {
-        decimalString="00";
+    private void ll_wristDesign() {
+        decimalString = "00";
         next_txt.setText("NEXT");
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_waist = flag_front_height = flag_back_height = flag_customized = 0;
         toolbar_title.setText("6/9");
@@ -2068,37 +1888,31 @@ public class MeasermentActivity extends BaseActivity
 
         viewToogle();
 
-        String size=(mSessionManager.getKeyWristSize());
+        String size = (mSessionManager.getKeyWristSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
-        count=5;
-        back_count=5;
-        viewTipTrackCount=6;
+        count = 5;
+        back_count = 5;
+        viewTipTrackCount = 6;
 
         //flag_chest=flag_neck=flag_sldr=flag_arm=flag_wrist=flag_front_height=flag_back_height=flag_customized=0;
         tv_neck.setTextSize(12);
@@ -2138,8 +1952,7 @@ public class MeasermentActivity extends BaseActivity
         ic_custom.getLayoutParams().height = 190;
     }
 
-    private void ll_frnt_heightDesign()
-    {
+    private void ll_frnt_heightDesign() {
         //decimalString="00";
         next_txt.setText("NEXT");
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_waist = flag_back_height = flag_customized = 0;
@@ -2160,7 +1973,6 @@ public class MeasermentActivity extends BaseActivity
         tv_custom.setVisibility(View.INVISIBLE);
 
 
-
         ic_neck.setImageResource(R.drawable.icon_neck_blur);
 
         ic_custom.setImageResource(R.drawable.icon_custom_blur);
@@ -2175,39 +1987,32 @@ public class MeasermentActivity extends BaseActivity
 
         viewToogle();
 
-        String size=(mSessionManager.getKeyFrontHeightSize());
+        String size = (mSessionManager.getKeyFrontHeightSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
 
-
-        count=6;
-        back_count=6;
-        viewTipTrackCount=7;
+        count = 6;
+        back_count = 6;
+        viewTipTrackCount = 7;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -2245,8 +2050,8 @@ public class MeasermentActivity extends BaseActivity
         ic_custom.requestLayout();
         ic_custom.getLayoutParams().height = 190;
     }
-    private void ll_back_heightDesign()
-    {
+
+    private void ll_back_heightDesign() {
         // decimalString="00";
         next_txt.setText("NEXT");
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_waist = flag_customized = 0;
@@ -2266,7 +2071,6 @@ public class MeasermentActivity extends BaseActivity
         tv_custom.setVisibility(View.INVISIBLE);
 
 
-
         ic_neck.setImageResource(R.drawable.icon_neck_blur);
 
         ic_custom.setImageResource(R.drawable.icon_custom_blur);
@@ -2282,40 +2086,33 @@ public class MeasermentActivity extends BaseActivity
         viewToogle();
         //flag_chest=flag_neck=flag_sldr=flag_arm=flag_wrist=flag_front_height=flag_back_height=flag_customized=0;
 
-        String size=(mSessionManager.getKeyBackHeightSize());
+        String size = (mSessionManager.getKeyBackHeightSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
         seekBar.setProgress(lenghtMM);
-       // textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        // textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
 
 
-
-        count=7;
-        back_count=7;
-        viewTipTrackCount=8;
+        count = 7;
+        back_count = 7;
+        viewTipTrackCount = 8;
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
@@ -2353,11 +2150,10 @@ public class MeasermentActivity extends BaseActivity
         ic_custom.requestLayout();
         ic_custom.getLayoutParams().height = 190;
     }
-    private void ll_customDesign()
-    {
+
+    private void ll_customDesign() {
         // This line of code is used to hide the soft key while entering the custom screen
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
 
 
         tv_neck.setVisibility(View.INVISIBLE);
@@ -2382,10 +2178,10 @@ public class MeasermentActivity extends BaseActivity
         ic_shoulder.setImageResource(R.drawable.icon_sldr_blur);
 
 
-        decimalString="00";
+        decimalString = "00";
         next_txt.setText("FINISH");
-        count=8;
-        viewTipTrackCount=9;
+        count = 8;
+        viewTipTrackCount = 9;
 
 
         tv_neck.setTextSize(12);
@@ -2430,8 +2226,7 @@ public class MeasermentActivity extends BaseActivity
     }
 
 
-    public void viewToogle()
-    {
+    public void viewToogle() {
         ll_sectionTwo.setVisibility(View.GONE);
         ll_sectionOne.setVisibility(View.VISIBLE);
     }
@@ -2459,16 +2254,15 @@ public class MeasermentActivity extends BaseActivity
         dialog.show();
     }*/
 
-    public void setPrefData(DishdashaStylesRecord stylesRecord)
-    {
-        System.out.println("=====  stylesRecord.getNeck()"+stylesRecord.getNeck());
-        System.out.println("=====  stylesRecord.getShoulder()"+stylesRecord.getShoulder());
-        System.out.println("=====  stylesRecord.getChest()"+stylesRecord.getChest());
-        System.out.println("=====  stylesRecord.getWaist()"+stylesRecord.getWaist());
-        System.out.println("=====  stylesRecord.getNeck()"+stylesRecord.getNeck());
-        System.out.println("=====  stylesRecord.getNeck()"+stylesRecord.getNeck());
-        System.out.println("=====  stylesRecord.getNeck()"+stylesRecord.getNeck());
-        System.out.println("=====  stylesRecord.getNeck()"+stylesRecord.getNeck());
+    public void setPrefData(DishdashaStylesRecord stylesRecord) {
+        System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
+        System.out.println("=====  stylesRecord.getShoulder()" + stylesRecord.getShoulder());
+        System.out.println("=====  stylesRecord.getChest()" + stylesRecord.getChest());
+        System.out.println("=====  stylesRecord.getWaist()" + stylesRecord.getWaist());
+        System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
+        System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
+        System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
+        System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
 
         mSessionManager.setKeyNeckSize(stylesRecord.getNeck());
         mSessionManager.setKeySldrSize(stylesRecord.getShoulder());
@@ -2491,64 +2285,55 @@ public class MeasermentActivity extends BaseActivity
         mSessionManager.setKeyCollarButtonVisibility(stylesRecord.getShirt_button_visibility());
 
 
-
     }
+
     public void init() {
 
-        String size=(mSessionManager.getKeyNeckSize());
+        String size = (mSessionManager.getKeyNeckSize());
         String[] parts = size.split("\\.");
-        String intValue=parts[0];
-        String decimalValue=parts[1];
+        String intValue = parts[0];
+        String decimalValue = parts[1];
 
-        int lenghtCM=Integer.parseInt(intValue);
-        int lenghtMM=Integer.parseInt(decimalValue);
-
-
+        int lenghtCM = Integer.parseInt(intValue);
+        int lenghtMM = Integer.parseInt(decimalValue);
 
 
-        System.out.println("lenght======    CM==="+lenghtCM);
-        System.out.println("lenght======    CM==="+lenghtMM);
+        System.out.println("lenght======    CM===" + lenghtCM);
+        System.out.println("lenght======    CM===" + lenghtMM);
 
         seekBar.setProgress(lenghtMM);
-      //  textValue.setText(""+lenghtCM);
-        textSubValue.setText(""+lenghtMM);
+        //  textValue.setText(""+lenghtCM);
+        textSubValue.setText("" + lenghtMM);
 
-        if(lenghtCM==0)
-        {
-            if(TefalApp.getInstance().getmAction().equals("create"))
-            {
+        if (lenghtCM == 0) {
+            if (TefalApp.getInstance().getmAction().equals("create")) {
                 textValue.setText("");
+            } else {
+                textValue.setText("" + lenghtCM);
             }
-            else
-            {
-                textValue.setText(""+lenghtCM);
-            }
-        }
-        else
-        {
-            textValue.setText(""+lenghtCM);
+        } else {
+            textValue.setText("" + lenghtCM);
         }
     }
 
     public void WebCallServiceCreateStyle() {
 
 
-
-        System.out.println("======waist" +mSessionManager.getKeyWaistSize());
-        System.out.println("======wrist" +mSessionManager.getKeyWristSize());
-        System.out.println("======arm" +mSessionManager.getKeyArmSize());
-        System.out.println("======shoulder" +mSessionManager.getKeySldrSize());
-        System.out.println("======front_height"+ mSessionManager.getKeyFrontHeightSize());
-        System.out.println("======back_height"+ mSessionManager.getKeyBackHeightSize());
-        System.out.println("======chest"+ mSessionManager.getKeyChestSize());
-        System.out.println("======cufflink"+mSessionManager.getKeyCufflink());
-        System.out.println("======collar_buttons"+mSessionManager.getKeyCollarButton());
-        System.out.println("======neck" +mSessionManager.getKeyNeckSize());
-        System.out.println("======mobile_pocket"+ mSessionManager.getKeyMobilePocket());
-        System.out.println("======pen_pocket"+ mSessionManager.getKeyPenPocket());
-        System.out.println("======key_pocket"+ mSessionManager.getKeyPocket());
-        System.out.println("======buttons"+ mSessionManager.getKeyButtons());
-        System.out.println("======name"+ mDishdashaStylesRecord.getName());
+        System.out.println("======waist" + mSessionManager.getKeyWaistSize());
+        System.out.println("======wrist" + mSessionManager.getKeyWristSize());
+        System.out.println("======arm" + mSessionManager.getKeyArmSize());
+        System.out.println("======shoulder" + mSessionManager.getKeySldrSize());
+        System.out.println("======front_height" + mSessionManager.getKeyFrontHeightSize());
+        System.out.println("======back_height" + mSessionManager.getKeyBackHeightSize());
+        System.out.println("======chest" + mSessionManager.getKeyChestSize());
+        System.out.println("======cufflink" + mSessionManager.getKeyCufflink());
+        System.out.println("======collar_buttons" + mSessionManager.getKeyCollarButton());
+        System.out.println("======neck" + mSessionManager.getKeyNeckSize());
+        System.out.println("======mobile_pocket" + mSessionManager.getKeyMobilePocket());
+        System.out.println("======pen_pocket" + mSessionManager.getKeyPenPocket());
+        System.out.println("======key_pocket" + mSessionManager.getKeyPocket());
+        System.out.println("======buttons" + mSessionManager.getKeyButtons());
+        System.out.println("======name" + mDishdashaStylesRecord.getName());
         SimpleProgressBar.showProgress(MeasermentActivity.this);
         try {
             final String url = Contents.baseURL + "createMyStyle";
@@ -2559,7 +2344,7 @@ public class MeasermentActivity extends BaseActivity
                         public void onResponse(String response) {
 
 
-                            System.out.println("response=="+response.toString());
+                            System.out.println("response==" + response.toString());
 
                             mSessionManager.setStyleStatus("true");
                             SimpleProgressBar.closeProgress();
@@ -2574,13 +2359,11 @@ public class MeasermentActivity extends BaseActivity
                                     JSONObject object = new JSONObject(response);
                                     Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_LONG).show();
 
-                                    if(flow.equals("TabbarActivity"))
-                                    {
+                                    if (flow.equals("TabbarActivity")) {
                                         startActivity(new Intent(getApplicationContext(), TabbarActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                                         finish();
                                     }
-                                    if(flow.equals("DishdishaStyleActivity"))
-                                    {
+                                    if (flow.equals("DishdishaStyleActivity")) {
                                         startActivity(new Intent(getApplicationContext(), DishdishaStyleActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                                         finish();
                                     }
@@ -2594,7 +2377,7 @@ public class MeasermentActivity extends BaseActivity
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -2616,27 +2399,26 @@ public class MeasermentActivity extends BaseActivity
                     params.put("front_height", mSessionManager.getKeyFrontHeightSize());
                     params.put("back_height", mSessionManager.getKeyBackHeightSize());
                     params.put("chest", mSessionManager.getKeyChestSize());
-                    params.put("cufflink",mSessionManager.getKeyCufflink());
-                    params.put("collar_buttons",mSessionManager.getKeyCollarButton());
+                    params.put("cufflink", mSessionManager.getKeyCufflink());
+                    params.put("collar_buttons", mSessionManager.getKeyCollarButton());
                     params.put("neck", mSessionManager.getKeyNeckSize());
                     params.put("mobile_pocket", mSessionManager.getKeyMobilePocket());
                     params.put("pen_pocket", mSessionManager.getKeyPenPocket());
                     params.put("key_pocket", mSessionManager.getKeyPocket());
                     params.put("buttons", mSessionManager.getKeyButtons());
                     params.put("name", mDishdashaStylesRecord.getName());
-                    params.put("min_meters",min_meters);
+                    params.put("min_meters", min_meters);
 
-                    params.put("collar_button_visibility",mSessionManager.getKeyButtonsVisibility());
-                    params.put("shirt_button_visibility",mSessionManager.getKeyButtonsVisibility());
-                    params.put("collar_buttons_push",mSessionManager.getKeyButtonsPushVisibility());
+                    params.put("collar_button_visibility", mSessionManager.getKeyButtonsVisibility());
+                    params.put("shirt_button_visibility", mSessionManager.getKeyButtonsVisibility());
+                    params.put("collar_buttons_push", mSessionManager.getKeyButtonsPushVisibility());
 
 
-
-                    System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());
-                    System.out.println("OUTPUT  CUFFLINK=="+mSessionManager.getKeyCufflink());
-                    System.out.println("OUTPUT COLLOR BUTTON=="+mSessionManager.getKeyCollarButton());
-                    System.out.println("OUTPUT  PEN POCKET==="+mSessionManager.getKeyPenPocket());
-                    System.out.println("OUTPUT  MOBILE POCKET=="+mSessionManager.getKeyMobilePocket());
+                    System.out.println("OUTPUT  BUTTONS==" + mSessionManager.getKeyButtons());
+                    System.out.println("OUTPUT  CUFFLINK==" + mSessionManager.getKeyCufflink());
+                    System.out.println("OUTPUT COLLOR BUTTON==" + mSessionManager.getKeyCollarButton());
+                    System.out.println("OUTPUT  PEN POCKET===" + mSessionManager.getKeyPenPocket());
+                    System.out.println("OUTPUT  MOBILE POCKET==" + mSessionManager.getKeyMobilePocket());
 
                     Log.d("Tefsal", url + params);
 
@@ -2653,29 +2435,28 @@ public class MeasermentActivity extends BaseActivity
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
-            System.out.println("Error======"+surError);
+            System.out.println("Error======" + surError);
             surError.printStackTrace();
         }
     }
 
 
-    private void getmeasureMinMetersHttpCall()
-    {
-        System.out.println("======waist" +mSessionManager.getKeyWaistSize());
-        System.out.println("======wrist" +mSessionManager.getKeyWristSize());
-        System.out.println("======arm" +mSessionManager.getKeyArmSize());
-        System.out.println("======shoulder" +mSessionManager.getKeySldrSize());
-        System.out.println("======front_height"+ mSessionManager.getKeyFrontHeightSize());
-        System.out.println("======back_height"+ mSessionManager.getKeyBackHeightSize());
-        System.out.println("======chest"+ mSessionManager.getKeyChestSize());
-        System.out.println("======cufflink"+mSessionManager.getKeyCufflink());
-        System.out.println("======collar_buttons"+mSessionManager.getKeyCollarButton());
-        System.out.println("======neck" +mSessionManager.getKeyNeckSize());
-        System.out.println("======mobile_pocket"+ mSessionManager.getKeyMobilePocket());
-        System.out.println("======pen_pocket"+ mSessionManager.getKeyPenPocket());
-        System.out.println("======key_pocket"+ mSessionManager.getKeyPocket());
-        System.out.println("======buttons"+ mSessionManager.getKeyButtons());
-        System.out.println("======name"+ mDishdashaStylesRecord.getName());
+    private void getmeasureMinMetersHttpCall() {
+        System.out.println("======waist" + mSessionManager.getKeyWaistSize());
+        System.out.println("======wrist" + mSessionManager.getKeyWristSize());
+        System.out.println("======arm" + mSessionManager.getKeyArmSize());
+        System.out.println("======shoulder" + mSessionManager.getKeySldrSize());
+        System.out.println("======front_height" + mSessionManager.getKeyFrontHeightSize());
+        System.out.println("======back_height" + mSessionManager.getKeyBackHeightSize());
+        System.out.println("======chest" + mSessionManager.getKeyChestSize());
+        System.out.println("======cufflink" + mSessionManager.getKeyCufflink());
+        System.out.println("======collar_buttons" + mSessionManager.getKeyCollarButton());
+        System.out.println("======neck" + mSessionManager.getKeyNeckSize());
+        System.out.println("======mobile_pocket" + mSessionManager.getKeyMobilePocket());
+        System.out.println("======pen_pocket" + mSessionManager.getKeyPenPocket());
+        System.out.println("======key_pocket" + mSessionManager.getKeyPocket());
+        System.out.println("======buttons" + mSessionManager.getKeyButtons());
+        System.out.println("======name" + mDishdashaStylesRecord.getName());
         SimpleProgressBar.showProgress(MeasermentActivity.this);
         try {
             final String url = Contents.baseURL + "measureMinMeters";
@@ -2686,48 +2467,36 @@ public class MeasermentActivity extends BaseActivity
                         public void onResponse(String response) {
 
 
-                            System.out.println("response=="+response.toString());
+                            System.out.println("response==" + response.toString());
 
                             mSessionManager.setStyleStatus("true");
                             SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
-                                try
-                                {
-                                    JSONObject jsonObject=new JSONObject(response);
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
                                     //System.out.println("OUT PUT====OBJECT"+jsonObject.toString());
 
 
+                                    String status = jsonObject.getString("status");
 
 
+                                    System.out.println("MIN MITER STATUS===" + status);
+                                    if (status.equals("1")) {
+                                        min_meters = jsonObject.getString("min_meters");
+                                        showNamePrompt(min_meters);
 
 
-                                    String status=jsonObject.getString("status");
-
-
-                                    System.out.println("MIN MITER STATUS==="+status);
-                                    if(status.equals("1"))
-                                    {
-                                            min_meters=jsonObject.getString("min_meters");
-                                            showNamePrompt(min_meters);
-
-
-                                            System.out.println("MINIMUM METER OF DISHDAHSA===="+min_meters);
-                                    }
-                                    else
-                                    {
+                                        System.out.println("MINIMUM METER OF DISHDAHSA====" + min_meters);
+                                    } else {
                                         Toast.makeText(MeasermentActivity.this, "Unable to fetch minimum metter for dishdasha", Toast.LENGTH_SHORT).show();
                                     }
 
-                                }
-                                catch(Exception ex)
-                                {
-                                    System.out.println("Error=="+ex);
+                                } catch (Exception ex) {
+                                    System.out.println("Error==" + ex);
                                     SimpleProgressBar.closeProgress();
                                 }
-
-
 
 
                             }
@@ -2736,7 +2505,7 @@ public class MeasermentActivity extends BaseActivity
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -2748,21 +2517,20 @@ public class MeasermentActivity extends BaseActivity
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("front_height",mSessionManager.getKeyFrontHeightSize());
+                    params.put("front_height", mSessionManager.getKeyFrontHeightSize());
 
-                    System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());
-                    System.out.println("OUTPUT  CUFFLINK=="+mSessionManager.getKeyCufflink());
-                    System.out.println("OUTPUT COLLOR BUTTON=="+mSessionManager.getKeyCollarButton());
-                    System.out.println("OUTPUT  PEN POCKET==="+mSessionManager.getKeyPenPocket());
-                    System.out.println("OUTPUT  MOBILE POCKET=="+mSessionManager.getKeyMobilePocket());
+                    System.out.println("OUTPUT  BUTTONS==" + mSessionManager.getKeyButtons());
+                    System.out.println("OUTPUT  CUFFLINK==" + mSessionManager.getKeyCufflink());
+                    System.out.println("OUTPUT COLLOR BUTTON==" + mSessionManager.getKeyCollarButton());
+                    System.out.println("OUTPUT  PEN POCKET===" + mSessionManager.getKeyPenPocket());
+                    System.out.println("OUTPUT  MOBILE POCKET==" + mSessionManager.getKeyMobilePocket());
 
 
-
-                    System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());
-                    System.out.println("OUTPUT  CUFFLINK=="+mSessionManager.getKeyCufflink());
-                    System.out.println("OUTPUT COLLOR BUTTON=="+mSessionManager.getKeyCollarButton());
-                    System.out.println("OUTPUT  PEN POCKET==="+mSessionManager.getKeyPenPocket());
-                    System.out.println("OUTPUT  MOBILE POCKET=="+mSessionManager.getKeyMobilePocket());
+                    System.out.println("OUTPUT  BUTTONS==" + mSessionManager.getKeyButtons());
+                    System.out.println("OUTPUT  CUFFLINK==" + mSessionManager.getKeyCufflink());
+                    System.out.println("OUTPUT COLLOR BUTTON==" + mSessionManager.getKeyCollarButton());
+                    System.out.println("OUTPUT  PEN POCKET===" + mSessionManager.getKeyPenPocket());
+                    System.out.println("OUTPUT  MOBILE POCKET==" + mSessionManager.getKeyMobilePocket());
 
                     Log.d("Tefsal", url + params);
 
@@ -2779,34 +2547,31 @@ public class MeasermentActivity extends BaseActivity
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
-            System.out.println("Error======"+surError);
+            System.out.println("Error======" + surError);
             surError.printStackTrace();
         }
     }
 
-    public void WebCallServiceUpdateStyle()
-    {
+    public void WebCallServiceUpdateStyle() {
         SimpleProgressBar.showProgress(MeasermentActivity.this);
         try {
             final String url = Contents.baseURL + "updateMyStyle";
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
 
-                            System.out.println("response=="+response.toString());
+                            System.out.println("response==" + response.toString());
 
                             mSessionManager.setStyleStatus("true");
                             SimpleProgressBar.closeProgress();
 
-                            if (response != null)
-                            {
+                            if (response != null) {
                                 mSessionManager.clearSizes();
                                 Log.e("stores response", response);
-                                try
-                                {
+                                try {
                                     JSONObject object = new JSONObject(response);
                                     Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(getApplicationContext(), TabbarActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
@@ -2820,7 +2585,7 @@ public class MeasermentActivity extends BaseActivity
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -2828,21 +2593,21 @@ public class MeasermentActivity extends BaseActivity
                 protected Map<String, String> getParams() {
 
 
-                    System.out.println("======waist" +mSessionManager.getKeyWaistSize());
-                    System.out.println("======wrist" +mSessionManager.getKeyWristSize());
-                    System.out.println("======arm" +mSessionManager.getKeyArmSize());
-                    System.out.println("======shoulder" +mSessionManager.getKeySldrSize());
-                    System.out.println("======front_height"+ mSessionManager.getKeyFrontHeightSize());
-                    System.out.println("======back_height"+ mSessionManager.getKeyBackHeightSize());
-                    System.out.println("======chest"+ mSessionManager.getKeyChestSize());
-                    System.out.println("======cufflink"+mSessionManager.getKeyCufflink());
-                    System.out.println("======collar_buttons"+mSessionManager.getKeyCollarButton());
-                    System.out.println("======neck" +mSessionManager.getKeyNeckSize());
-                    System.out.println("======mobile_pocket"+ mSessionManager.getKeyMobilePocket());
-                    System.out.println("======pen_pocket"+ mSessionManager.getKeyPenPocket());
-                    System.out.println("======key_pocket"+ mSessionManager.getKeyPocket());
-                    System.out.println("======buttons"+ mSessionManager.getKeyButtons());
-                    System.out.println("======name"+ mDishdashaStylesRecord.getName());
+                    System.out.println("======waist" + mSessionManager.getKeyWaistSize());
+                    System.out.println("======wrist" + mSessionManager.getKeyWristSize());
+                    System.out.println("======arm" + mSessionManager.getKeyArmSize());
+                    System.out.println("======shoulder" + mSessionManager.getKeySldrSize());
+                    System.out.println("======front_height" + mSessionManager.getKeyFrontHeightSize());
+                    System.out.println("======back_height" + mSessionManager.getKeyBackHeightSize());
+                    System.out.println("======chest" + mSessionManager.getKeyChestSize());
+                    System.out.println("======cufflink" + mSessionManager.getKeyCufflink());
+                    System.out.println("======collar_buttons" + mSessionManager.getKeyCollarButton());
+                    System.out.println("======neck" + mSessionManager.getKeyNeckSize());
+                    System.out.println("======mobile_pocket" + mSessionManager.getKeyMobilePocket());
+                    System.out.println("======pen_pocket" + mSessionManager.getKeyPenPocket());
+                    System.out.println("======key_pocket" + mSessionManager.getKeyPocket());
+                    System.out.println("======buttons" + mSessionManager.getKeyButtons());
+                    System.out.println("======name" + mDishdashaStylesRecord.getName());
                     Map<String, String> params = new HashMap<String, String>();
                     //params.put("access_token", mSessionManager.getToken());
                     params.put("user_id", mSessionManager.getCustomerId());
@@ -2859,8 +2624,8 @@ public class MeasermentActivity extends BaseActivity
                     params.put("front_height", mSessionManager.getKeyFrontHeightSize());
                     params.put("back_height", mSessionManager.getKeyBackHeightSize());
                     params.put("chest", mSessionManager.getKeyChestSize());
-                    params.put("cufflink",mSessionManager.getKeyCufflink());
-                    params.put("collar_buttons",mSessionManager.getKeyCollarButton());
+                    params.put("cufflink", mSessionManager.getKeyCufflink());
+                    params.put("collar_buttons", mSessionManager.getKeyCollarButton());
                     params.put("neck", mSessionManager.getKeyNeckSize());
                     params.put("mobile_pocket", mSessionManager.getKeyMobilePocket());
                     params.put("pen_pocket", mSessionManager.getKeyPenPocket());
@@ -2868,18 +2633,17 @@ public class MeasermentActivity extends BaseActivity
                     params.put("buttons", mSessionManager.getKeyButtons());
                     params.put("name", mDishdashaStylesRecord.getName());
 
-                    params.put("id",mDishdashaStylesRecord.getId());
+                    params.put("id", mDishdashaStylesRecord.getId());
 
-                    params.put("collar_button_visibility",mSessionManager.getKeyButtonsVisibility());
-                    params.put("shirt_button_visibility",mSessionManager.getKeyCollarButtonVisibility());
-                    params.put("collar_buttons_push",mSessionManager.getKeyButtonsPushVisibility());
+                    params.put("collar_button_visibility", mSessionManager.getKeyButtonsVisibility());
+                    params.put("shirt_button_visibility", mSessionManager.getKeyCollarButtonVisibility());
+                    params.put("collar_buttons_push", mSessionManager.getKeyButtonsPushVisibility());
 
                     //System.out.println("Button====="+)
                     Log.e("Tefsal tailor == ", url + params);
 
                     return params;
                 }
-
             };
 
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
@@ -2897,97 +2661,79 @@ public class MeasermentActivity extends BaseActivity
     //====================================  validation portion=================================================
 
 
-
-
-    private boolean validateNecksize()
-    {
-        if(mSessionManager.getKeyNeckSize().equals("0.00") || mSessionManager.getKeyNeckSize().equals("0.0") || mSessionManager.getKeyNeckSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Neck size is Empty", Toast.LENGTH_SHORT).show();
+    private boolean validateNecksize() {
+        if (mSessionManager.getKeyNeckSize().equals("0.00") || mSessionManager.getKeyNeckSize().equals("0.0") || mSessionManager.getKeyNeckSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Neck size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
     }
 
-    private boolean validateShoulderSize()
-    {
-        if(mSessionManager.getKeySldrSize().equals("0.00") || mSessionManager.getKeySldrSize().equals("0.0") || mSessionManager.getKeySldrSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Shoulder Size is Empty", Toast.LENGTH_SHORT).show();
+    private boolean validateShoulderSize() {
+        if (mSessionManager.getKeySldrSize().equals("0.00") || mSessionManager.getKeySldrSize().equals("0.0") || mSessionManager.getKeySldrSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Shoulder Size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private boolean validateChestSize()
-    {
-        if(mSessionManager.getKeyChestSize().equals("0.00") || mSessionManager.getKeyChestSize().equals("0.0") ||  mSessionManager.getKeyChestSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Chest Size is Empty", Toast.LENGTH_SHORT).show();
+    private boolean validateChestSize() {
+        if (mSessionManager.getKeyChestSize().equals("0.00") || mSessionManager.getKeyChestSize().equals("0.0") || mSessionManager.getKeyChestSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Chest Size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
-    private boolean validateWaistSize()
-    {
-        if(mSessionManager.getKeyWaistSize().equals("0.00") || mSessionManager.getKeyWaistSize().equals("0.0") ||  mSessionManager.getKeyWaistSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Waist Size is Empty", Toast.LENGTH_SHORT).show();
+
+    private boolean validateWaistSize() {
+        if (mSessionManager.getKeyWaistSize().equals("0.00") || mSessionManager.getKeyWaistSize().equals("0.0") || mSessionManager.getKeyWaistSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Waist Size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
     }
-    private boolean validateArmSize()
-    {
-        if(mSessionManager.getKeyArmSize().equals("0.00") || mSessionManager.getKeyArmSize().equals("0.0") || mSessionManager.getKeyArmSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Arm Size is Empty", Toast.LENGTH_SHORT).show();
+
+    private boolean validateArmSize() {
+        if (mSessionManager.getKeyArmSize().equals("0.00") || mSessionManager.getKeyArmSize().equals("0.0") || mSessionManager.getKeyArmSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Arm Size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
-
 
 
         return true;
 
     }
 
-    private boolean validateWristSize()
-    {
-        if(mSessionManager.getKeyWristSize().equals("0.00") || mSessionManager.getKeyWristSize().equals("0.0") || mSessionManager.getKeyWristSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Wrist Size is Empty", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
-    private boolean validateFrontLenght()
-    {
-        if(mSessionManager.getKeyFrontHeightSize().equals("0.00") || mSessionManager.getKeyFrontHeightSize().equals("0.0") || mSessionManager.getKeyFrontHeightSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Front height Lenght is Empty", Toast.LENGTH_SHORT).show();
+    private boolean validateWristSize() {
+        if (mSessionManager.getKeyWristSize().equals("0.00") || mSessionManager.getKeyWristSize().equals("0.0") || mSessionManager.getKeyWristSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Wrist Size is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private boolean validateBackHeightLenght()
-    {
-        if(mSessionManager.getKeyBackHeightSize().equals("0.00") || mSessionManager.getKeyBackHeightSize().equals("0.0") || mSessionManager.getKeyBackHeightSize().equals("0"))
-        {
-            Toast.makeText(getApplicationContext(),"Back Height Lenght is Empty", Toast.LENGTH_SHORT).show();
+    private boolean validateFrontLenght() {
+        if (mSessionManager.getKeyFrontHeightSize().equals("0.00") || mSessionManager.getKeyFrontHeightSize().equals("0.0") || mSessionManager.getKeyFrontHeightSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Front height Lenght is Empty", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private boolean validateCollorNoButton()
-    {
-        if(collar_btn_switch.isChecked() && mSessionManager.getKeyCollarButton().equals("0"))
-        {
+    private boolean validateBackHeightLenght() {
+        if (mSessionManager.getKeyBackHeightSize().equals("0.00") || mSessionManager.getKeyBackHeightSize().equals("0.0") || mSessionManager.getKeyBackHeightSize().equals("0")) {
+            Toast.makeText(getApplicationContext(), "Back Height Lenght is Empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateCollorNoButton() {
+        if (collar_btn_switch.isChecked() && mSessionManager.getKeyCollarButton().equals("0")) {
             //System.out.println("CHECKED STATUS=="+collar_btn_switch.isChecked()+"==BUTTONSC"+mSessionManager.getKeyCollarButton());
-            Toast.makeText(getApplicationContext(),"You must select the collor button number more than 0",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You must select the collor button number more than 0", Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -2996,13 +2742,11 @@ public class MeasermentActivity extends BaseActivity
         return true;
     }
 
-    private boolean validateNoButtons()
-    {
-        if(button_hidden_switch.isChecked() && mSessionManager.getKeyButtons().equals("0"))
-        {
-            System.out.println("CHECKED STATUS=="+button_hidden_switch.isChecked()+"==BUTTONSC"+ mSessionManager.getKeyButtons());
+    private boolean validateNoButtons() {
+        if (button_hidden_switch.isChecked() && mSessionManager.getKeyButtons().equals("0")) {
+            System.out.println("CHECKED STATUS==" + button_hidden_switch.isChecked() + "==BUTTONSC" + mSessionManager.getKeyButtons());
 
-            Toast.makeText(getApplicationContext(),"You must select the button number more than 0",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You must select the button number more than 0", Toast.LENGTH_SHORT).show();
             return false;
         }
         // System.out.println("CHECKED STATUS=="+button_hidden_switch.isChecked()+"==BUTTONSC"+ mSessionManager.getKeyButtons());
@@ -3011,15 +2755,11 @@ public class MeasermentActivity extends BaseActivity
     }
 
 
-
-
-    private void showTipDialog()
-    {
-       // System.out.println("POSITION======"+viewTipTrackCount);
+    private void showTipDialog() {
+        // System.out.println("POSITION======"+viewTipTrackCount);
         tipsLayout.setVisibility(View.VISIBLE);
 
-        switch (viewTipTrackCount)
-        {
+        switch (viewTipTrackCount) {
             case 1:
                 tip_image.setImageResource(R.drawable.memo1);
                 break;
@@ -3044,7 +2784,7 @@ public class MeasermentActivity extends BaseActivity
             case 8:
                 tip_image.setImageResource(R.drawable.memo8);
                 break;
-                default:
+            default:
 
         }
         btn_back_tips.setOnClickListener(new View.OnClickListener() {
@@ -3055,21 +2795,18 @@ public class MeasermentActivity extends BaseActivity
         });
 
 
-
-
-
     }
 
     public void showNamePrompt(String min_dishdasha) {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_dialog, null);
-        TextView txt_min_meter=(TextView) dialogView.findViewById(R.id.txt_min_meter);
+        TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
 
-        txt_min_meter.setText("You are "+min_dishdasha+"meter as per our \n is that Correct?");
+        txt_min_meter.setText("You are " + min_dishdasha + " meter(s) as per our \n is that Correct?");
 
-        Button dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_yes_btn);
-        Button dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_no_btn);
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);
         // ButterKnife.bind(this, dialogView);
 
         dialogBuilder.setView(dialogView);
@@ -3084,7 +2821,7 @@ public class MeasermentActivity extends BaseActivity
                 alertDialog.dismiss();
                 WebCallServiceCreateStyle();
 
-               // Toast.makeText(MeasermentActivity.this, "You clicked OK", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MeasermentActivity.this, "You clicked OK", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -3100,19 +2837,18 @@ public class MeasermentActivity extends BaseActivity
     }
 
 
-    public void showInputPrompt()
-    {
+    public void showInputPrompt() {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_prompt_dialog, null);
-        TextView txt_min_meter=(TextView) dialogView.findViewById(R.id.txt_min_meter);
-        final EditText inputmeter=(EditText) dialogView.findViewById(R.id.inputmeter);
+        TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
+        final EditText inputmeter = (EditText) dialogView.findViewById(R.id.inputmeter);
 
 
         //txt_min_meter.setText("You are "+min_dishdasha+"meter as per our \n is that Correct?");
 
-        Button dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_yes_btn);
-        Button dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_no_btn);
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);
         // ButterKnife.bind(this, dialogView);
 
         dialogBuilder.setView(dialogView);
@@ -3125,14 +2861,11 @@ public class MeasermentActivity extends BaseActivity
             public void onClick(View v) {
 
 
-                if(android.text.TextUtils.isDigitsOnly(inputmeter.getText().toString()))
-                {
+                if (android.text.TextUtils.isDigitsOnly(inputmeter.getText().toString())) {
                     alertDialog.dismiss();
-                    min_meters=inputmeter.getText().toString();
+                    min_meters = inputmeter.getText().toString();
                     WebCallServiceCreateStyle();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(MeasermentActivity.this, "Input must be digit", Toast.LENGTH_SHORT).show();
                 }
                 //min_meters=inputmeter.getText().toString();
@@ -3151,17 +2884,16 @@ public class MeasermentActivity extends BaseActivity
     }
 
 
-   //This block of code is responsible for showing video for For entire App.
+    //This block of code is responsible for showing video for For entire App.
 
-    private void showAppVideoDialog()
-    {
+    private void showAppVideoDialog() {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.video_view_dialog, null);
-        final ProgressBar video_loading_progress=(ProgressBar)dialogView.findViewById(R.id.video_loading_progress);
-        final  VideoView videoView=(VideoView)dialogView.findViewById(R.id.app_video_view) ;
-        TextView skipTxt=(TextView)dialogView.findViewById(R.id.skipTxt);
-        final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
+        final ProgressBar video_loading_progress = (ProgressBar) dialogView.findViewById(R.id.video_loading_progress);
+        final VideoView videoView = (VideoView) dialogView.findViewById(R.id.app_video_view);
+        TextView skipTxt = (TextView) dialogView.findViewById(R.id.skipTxt);
+        // final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
         dialogBuilder.setView(dialogView);
         final AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
@@ -3169,28 +2901,25 @@ public class MeasermentActivity extends BaseActivity
 
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         try {
-            MediaController mediaController=new MediaController(this);
+            MediaController mediaController = new MediaController(this);
             mediaController.setAnchorView(videoView);
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(videoUri);
 
 
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Video play Exception ex==="+ex);
+        } catch (Exception ex) {
+            System.out.println("Video play Exception ex===" + ex);
             Toast.makeText(this, "Unable to play video", Toast.LENGTH_SHORT).show();
         }
-
 
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
             public void onPrepared(MediaPlayer mp) {
 
-               // alertDialog.show();
+                // alertDialog.show();
                 video_loading_progress.setVisibility(View.GONE);
-                view_video_container.setVisibility(View.GONE);
+                // view_video_container.setVisibility(View.GONE);
                 videoView.start();
 
             }
@@ -3210,54 +2939,51 @@ public class MeasermentActivity extends BaseActivity
 
     // This block is responsible for showing video for individual Item like neck, shoulder etc.....
 
-    private void showIndividualVideoDialog(int position)
-    {
+    private void showIndividualVideoDialog(int position) {
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.video_view_dialog, null);
-        final  VideoView videoView=(VideoView)dialogView.findViewById(R.id.app_video_view) ;
-        final ProgressBar video_loading_progress=(ProgressBar)dialogView.findViewById(R.id.video_loading_progress);
-        TextView skipTxt=(TextView)dialogView.findViewById(R.id.skipTxt);
+        final VideoView videoView = (VideoView) dialogView.findViewById(R.id.app_video_view);
+        final ProgressBar video_loading_progress = (ProgressBar) dialogView.findViewById(R.id.video_loading_progress);
+        TextView skipTxt = (TextView) dialogView.findViewById(R.id.skipTxt);
 
-        final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
+        // final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
 
 
-
-        switch(position)
-        {
+        switch (position) {
 
             case 1:
-                videoLink="http://tefsalkw.com/public/videos/app_video_neck.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_neck.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 2:
-                videoLink="http://tefsalkw.com/public/videos/app_video_custom.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_custom.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 3:
-                videoLink="http://tefsalkw.com/public/videos/app_video_chest.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_chest.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 4:
-                videoLink="http://tefsalkw.com/public/videos/app_video_waist.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_waist.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 5:
-                videoLink="http://tefsalkw.com/public/videos/app_video_arm.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_arm.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 6:
-                videoLink="http://tefsalkw.com/public/videos/app_video_wrist.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_wrist.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 7:
-                videoLink="http://tefsalkw.com/public/videos/app_video_f_height.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_f_height.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
             case 8:
-                videoLink="http://tefsalkw.com/public/videos/app_video_b_height.3gp";
-                videoUri=Uri.parse(videoLink);
+                videoLink = "http://tefsalkw.com/public/videos/app_video_b_height.3gp";
+                videoUri = Uri.parse(videoLink);
                 break;
 
         }
@@ -3267,22 +2993,24 @@ public class MeasermentActivity extends BaseActivity
         alertDialog.show();
         videoView.requestFocus();
 
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+
+        WindowManager.LayoutParams params = this.getWindow().getAttributes();
+        params.height = WindowManager.LayoutParams.MATCH_PARENT;
+        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        getWindow().setAttributes(params);
 
         try {
-            MediaController mediaController=new MediaController(this);
+            MediaController mediaController = new MediaController(this);
             mediaController.setAnchorView(videoView);
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(videoUri);
 
 
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Video play Exception ex==="+ex);
+        } catch (Exception ex) {
+            System.out.println("Video play Exception ex===" + ex);
             Toast.makeText(this, "Unable to play video", Toast.LENGTH_SHORT).show();
         }
-
 
 
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -3290,7 +3018,7 @@ public class MeasermentActivity extends BaseActivity
             public void onPrepared(MediaPlayer mp) {
 
                 video_loading_progress.setVisibility(View.GONE);
-                view_video_container.setVisibility(View.GONE);
+                //view_video_container.setVisibility(View.GONE);
                 videoView.start();
             }
         });
@@ -3304,11 +3032,10 @@ public class MeasermentActivity extends BaseActivity
     }
 
 
-    private void testCase()
-    {
-        System.out.println("VISIBILIY=========collar_button_visibility======="+mSessionManager.getKeyButtonsVisibility());
-        System.out.println("VISIBILIY=========shirt_button_visibility======"+mSessionManager.getKeyCollarButtonVisibility());
-        System.out.println("VISIBILIY=========collar_buttons_push======"+mSessionManager.getKeyButtonsPushVisibility());
+    private void testCase() {
+        System.out.println("VISIBILIY=========collar_button_visibility=======" + mSessionManager.getKeyButtonsVisibility());
+        System.out.println("VISIBILIY=========shirt_button_visibility======" + mSessionManager.getKeyCollarButtonVisibility());
+        System.out.println("VISIBILIY=========collar_buttons_push======" + mSessionManager.getKeyButtonsPushVisibility());
 
     }
 

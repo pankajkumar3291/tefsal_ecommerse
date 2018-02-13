@@ -26,8 +26,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="2 Button Style"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="2 Button Style"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_mid" />
 
@@ -35,22 +35,22 @@
                 android:id="@+id/text_viewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="VIEW"
-                android:background="@android:color/transparent"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:text="VIEW"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_mid" />
 
         </RelativeLayout>
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:visibility="gone"
             android:layout_below="@+id/Rl_headerbar"
-            android:background="@color/colorDivider"/>
-
+            android:background="@color/colorDivider"
+            android:visibility="gone" />
 
 
         <LinearLayout
@@ -59,11 +59,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Rl_headerbar"
             android:orientation="vertical"
-            android:visibility="gone"
             android:paddingBottom="@dimen/activity_small_horizontal_margin"
             android:paddingLeft="8dp"
             android:paddingRight="@dimen/activity_small_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin">
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:visibility="gone">
 
 
             <LinearLayout
@@ -77,15 +77,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/neck" />
+                        android:src="@drawable/neck"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -120,15 +120,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/arm" />
+                        android:src="@drawable/arm"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -151,6 +151,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_xlarge"
@@ -162,15 +163,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/sholder" />
+                        android:src="@drawable/sholder"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -205,15 +206,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/wrist" />
+                        android:src="@drawable/wrist"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -236,6 +237,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_xlarge"
@@ -247,15 +249,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/chest" />
+                        android:src="@drawable/chest"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -290,17 +292,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
+                    android:orientation="horizontal"
                     android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
 
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/front_height" />
+                        android:src="@drawable/front_height"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -325,6 +327,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_xlarge"
@@ -336,15 +339,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/waist" />
+                        android:src="@drawable/waist"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -379,17 +382,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
+                    android:orientation="horizontal"
                     android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
-                    android:weightSum="100"
-                    android:orientation="horizontal">
+                    android:weightSum="100">
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:layout_weight="20"
 
-                        android:tint="@color/colorAccent"
-                        android:src="@drawable/back_height" />
+                        android:src="@drawable/back_height"
+                        android:tint="@color/colorAccent" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -439,9 +442,9 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="@dimen/margin_mid"
-                    android:tint="@color/colorAccent"
                     android:layout_toLeftOf="@+id/ic_coat_button"
-                    android:src="@mipmap/icon_collar_buttons_white" />
+                    android:src="@mipmap/icon_collar_buttons_white"
+                    android:tint="@color/colorAccent" />
 
                 <TextView
                     android:id="@+id/txtBadge_collar_btn"
@@ -461,8 +464,8 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:tint="@color/colorAccent"
-                    android:src="@mipmap/icon_chest_buttons_white" />
+                    android:src="@mipmap/icon_chest_buttons_white"
+                    android:tint="@color/colorAccent" />
 
 
                 <TextView
@@ -484,8 +487,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/margin_mid"
                     android:layout_toRightOf="@+id/ic_coat_button"
-                    android:tint="@color/colorAccent"
-                    android:src="@mipmap/icon_cufflink_buttons_white" />
+                    android:src="@mipmap/icon_cufflink_buttons_white"
+                    android:tint="@color/colorAccent" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -511,8 +514,8 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:tint="@color/colorAccent"
-                    android:src="@mipmap/icon_pen_white" />
+                    android:src="@mipmap/icon_pen_white"
+                    android:tint="@color/colorAccent" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
@@ -520,15 +523,17 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/margin_mid"
-                    android:tint="@color/colorAccent"
-                    android:src="@mipmap/icon_mobile_white" />
+                    android:src="@mipmap/icon_mobile_white"
+                    android:tint="@color/colorAccent" />
+
                 <ImageView
+
                     android:id="@+id/key_pocket"
                     android:layout_width="@dimen/margin_large"
                     android:layout_height="@dimen/margin_large"
-                    android:layout_toRightOf="@+id/mobile_pocket"
                     android:layout_centerHorizontal="true"
-                    android:src="@mipmap/icon_key_pocket2" />
+                    android:layout_toRightOf="@+id/mobile_pocket"
+                    android:src="@drawable/pocket_icon_mobile_blur" />
 
             </RelativeLayout>
 
