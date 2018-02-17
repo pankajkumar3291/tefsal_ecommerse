@@ -91,18 +91,10 @@ public class TailorTextileChooseFragment extends Fragment {
     List<GetCartRecord> getCartRecordList3=new ArrayList<GetCartRecord>();
     List<GetCartRecord> getCartRecordListOfChecked=new ArrayList<GetCartRecord>();*/
 
-
-
-
-
     TailorProductFromCartAdapterListView tailorProductFromCartAdapter;
 
     //This list is used to stored the filter data of Tailor product having itemtype DTA from GetCart Response
     List<GetCartRecord> getCartRecordList2;
-
-
-
-
 
 
     public TailorTextileChooseFragment() {
@@ -116,9 +108,6 @@ public class TailorTextileChooseFragment extends Fragment {
 
         //store_id = getArguments().getString("store_id");
        /* store_id = getArguments().getString("store_id");*/
-
-
-
 
 
         // Inflate the layout for this fragment

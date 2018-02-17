@@ -203,14 +203,14 @@
                         android:layout_width="40dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:src="@drawable/india" />
+                        android:src="@drawable/kuwait" />
 
                     <TextView
                         android:id="@+id/txtCountryCode1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="+91"
+                        android:text="+965"
                         android:textColor="@color/colorBGfilterLL"
                         android:textSize="@dimen/text_small" />
                 </LinearLayout>
@@ -270,13 +270,13 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:background="@color/colorPrimaryDark" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_weight="4"
+                    android:layout_weight="3.5"
                     android:background="@color/colorPrimaryDark" />
 
             </LinearLayout>
@@ -326,14 +326,14 @@
                         android:layout_width="40dp"
                         android:layout_height="30dp"
                         android:padding="5dp"
-                        android:src="@drawable/india" />
+                        android:src="@drawable/kuwait" />
 
                     <TextView
                         android:id="@+id/txtCountryCode2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="+91"
+                        android:text="+965"
                         android:textColor="@color/colorBGfilterLL"
                         android:textSize="@dimen/text_small" />
 
@@ -382,13 +382,13 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:background="@color/colorPrimaryDark" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_weight="4"
+                    android:layout_weight="3.5"
 
                     android:background="@color/colorPrimaryDark" />
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,8 @@
             android:id="@+id/profile_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,8 +44,7 @@
                     android:layout_marginEnd="1dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="40dp">
+                    android:layout_marginStart="8dp">
 
                     <EditText
                         android:id="@+id/input_first_name"
@@ -64,10 +63,11 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorDivider" />
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_last_name"
                     android:layout_width="match_parent"
@@ -77,13 +77,14 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp">
+
                     <EditText
                         android:id="@+id/input_last_name"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="LAST NAME"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
@@ -112,9 +113,9 @@
                         android:id="@+id/input_user_name"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="LAST NAME"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
@@ -143,22 +144,24 @@
                         android:id="@+id/input_email"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="LAST NAME"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorDivider" />
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_mobile_no"
                     android:layout_width="match_parent"
@@ -173,22 +176,23 @@
                         android:id="@+id/input_mobile_no"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="MOBLE NO"
                         android:inputType="number"
-                        android:background="@android:color/transparent"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorDivider" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_home_no"
@@ -204,19 +208,25 @@
                         android:id="@+id/input_home_no"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="HOME NO"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/colorDivider" />
+
                 <LinearLayout
                     android:id="@+id/LL_nationality"
                     android:layout_width="match_parent"
@@ -226,17 +236,17 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:visibility="visible"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/countryTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_xsmall"
+                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
                         android:drawablePadding="@dimen/margin_xxsmall"
                         android:text="Nationality"
-                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
                         android:textColor="@color/colorDGray"
                         android:textSize="@dimen/text_small" />
 
@@ -248,13 +258,13 @@
                         android:paddingBottom="@dimen/margin_mid"
                         android:paddingRight="@dimen/margin_mid"
                         android:paddingTop="@dimen/margin_small" />
-                   <!-- <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"/>-->
+                    <!-- <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="@color/colorPrimaryDark"
+                         android:layout_marginBottom="12dp"
+                         android:layout_marginLeft="8dp"
+                         android:layout_marginRight="8dp"/>-->
 
                 </LinearLayout>
 
@@ -272,22 +282,23 @@
                         android:id="@+id/input_nationality"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="NATIONALITY"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
-                        android:textSize="@dimen/text_normal" />
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorDivider" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_dob"
@@ -298,24 +309,26 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp">
+
                     <EditText
                         android:id="@+id/input_dob"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:hint="DATE OF BIRTH"
                         android:background="@android:color/transparent"
+                        android:hint="DATE OF BIRTH"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorDivider"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp"
+                    android:background="@color/colorDivider" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_gender"
@@ -331,22 +344,22 @@
                         android:id="@+id/input_gender"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:background="@android:color/transparent"
                         android:focusableInTouchMode="false"
                         android:hint="GENDER"
-                        android:background="@android:color/transparent"
                         android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
-               <!-- <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginBottom="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"/>-->
+                <!-- <View
+                     android:layout_width="match_parent"
+                     android:layout_height="1dp"
+                     android:background="@color/colorPrimaryDark"
+                     android:layout_marginBottom="12dp"
+                     android:layout_marginLeft="8dp"
+                     android:layout_marginRight="8dp"/>-->
 
                 <LinearLayout
                     android:id="@+id/LL_radio_container"
@@ -364,10 +377,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
                         android:layout_marginRight="90dp"
-                        android:textSize="@dimen/text_xsmall"
-                        android:text="GENDER" />
+                        android:layout_marginStart="8dp"
+                        android:text="GENDER"
+                        android:textSize="@dimen/text_xsmall" />
 
                     <RadioGroup
                         android:id="@+id/radio_btn_group"

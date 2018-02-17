@@ -59,6 +59,8 @@ public class MyAddressListActivity extends BaseActivity {
 
     private SessionManager mSessionManger;
 
+    @BindView(R.id.empty_view)
+    TextView empty_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,11 +126,25 @@ public class MyAddressListActivity extends BaseActivity {
                                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                     recyclerView.setLayoutManager(mLayoutManager);
                                     recyclerView.setAdapter(addressListAdapter);
+
+                                    if(addressResponseModel.getRecord().size() == 0)
+                                    {
+                                        empty_view.setVisibility(View.VISIBLE);
+                                        recyclerView.setVisibility(View.GONE);
+                                        empty_view.setText(addressResponseModel.getMessage());
+
+                                    }
                                 }
                                 else
                                 {
-                                     Toast.makeText(getApplicationContext(),addressResponseModel.getMessage(),Toast.LENGTH_SHORT).show();
+                                    recyclerView.setVisibility(View.GONE);
+                                    empty_view.setVisibility(View.VISIBLE);
+                                    empty_view.setText(addressResponseModel.getMessage());
+                                    // Toast.makeText(getApplicationContext(),addressResponseModel.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
+
+
+
 
                             }
                         }

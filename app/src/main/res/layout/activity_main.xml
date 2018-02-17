@@ -76,16 +76,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/LL_copyright_textContainer"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
                     android:padding="16dp">
 
+                    <ImageView
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
                     <TextView
+                        android:layout_gravity="center_vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textColor="@color/colorWhite"
-                        android:text="Copyrights @ Tefsal"/>
+                        android:text="Tefsal Copyright Protected 2018"/>
 
                 </LinearLayout>
 

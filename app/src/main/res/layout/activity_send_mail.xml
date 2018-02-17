@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/app_bg"
+    android:background="@drawable/sign_up_bg_blur"
     tools:context="com.tefal.activity.SendMailActivity"
     android:orientation="vertical">
     <include layout="@layout/toolbar_sendmail"
@@ -73,8 +73,10 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/message_round_corner"
         android:textSize="@dimen/text_normal"
+        android:textColor="@color/colorWhite"
+        android:padding="10dp"
         android:inputType="textMultiLine"
-        android:textColorHint="@color/colorTheme"
+        android:textColorHint="@color/colorWhite"
         android:hint="@string/hint_email_message" />
 
     <LinearLayout

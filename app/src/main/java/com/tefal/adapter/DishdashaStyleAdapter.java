@@ -107,8 +107,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         @BindView(R.id.ic_cuflink)
         ImageView ic_cuflink;*/
 
-        @BindView(R.id.txt_wide_value)
-        TextView txt_wide_value;
+
 
         @BindView(R.id.txt_narrow_value)
         TextView txt_narrow_value;
@@ -159,7 +158,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         holder.txt_back_height_value.setText(record.get(position).getBack_height()+"cm");
         holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
         holder.txt_badge_coat.setText(record.get(position).getButtons());
-        holder.txt_wide_value.setText(record.get(position).getWide()+"m");
+       // holder.txt_wide_value.setText(record.get(position).getWide()+"m");
         holder.txt_narrow_value.setText(record.get(position).getNarrow()+"m");
 
         holder.text_viewStyle.setOnClickListener(new View.OnClickListener() {
@@ -277,7 +276,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         mDishdashaStylesRecord.setButtons(record.get(position).getButtons());
         mDishdashaStylesRecord.setPen_pocket(record.get(position).getPen_pocket());
         mDishdashaStylesRecord.setMobile_pocket(record.get(position).getMobile_pocket());
-        mDishdashaStylesRecord.setWide(record.get(position).getWide());
+      //  mDishdashaStylesRecord.setWide(record.get(position).getWide());
         mDishdashaStylesRecord.setCollar_buttons(record.get(position).getCollar_buttons());
         mDishdashaStylesRecord.setCufflink(record.get(position).getCufflink());
         mDishdashaStylesRecord.setId(record.get(position).getId());

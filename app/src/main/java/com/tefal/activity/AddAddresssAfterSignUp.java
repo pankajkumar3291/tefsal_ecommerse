@@ -32,6 +32,7 @@ import com.tefal.Models.CountryModel;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
+import com.tefal.dialogs.CountryDialog;
 import com.tefal.utils.Contents;
 import com.tefal.utils.PreferencesUtil;
 import com.tefal.utils.SessionManager;
@@ -222,11 +223,9 @@ public class AddAddresssAfterSignUp extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(AddAddresssAfterSignUp.this, CountryPopUpActivity.class).putExtra("PhoneType", "3");
 
-                startActivityForResult(intent, 1);
-
-                //startActivity(new Intent(AddAddresssAfterSignUp.this, CountryPopUpActivity.class).putExtra("PhoneType", "3"));
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,AddAddresssAfterSignUp.this,"3");
+                countryDialog.show();
 
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -338,6 +337,12 @@ public class AddAddresssAfterSignUp extends BaseActivity {
         super.onSaveInstanceState(outState);
     }
 
+
+    public  void setCountryFlag()
+    {
+        input_mob.setText(selectedMobileCountry.getNicename());
+        imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
+    }
 
     public void setData()
 

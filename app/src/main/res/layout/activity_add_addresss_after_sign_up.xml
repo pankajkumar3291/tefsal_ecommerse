@@ -157,7 +157,7 @@
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
                         android:padding="5dp"
-                        android:src="@drawable/india" />
+                        android:src="@drawable/kuwait" />
 
 
                 </RelativeLayout>

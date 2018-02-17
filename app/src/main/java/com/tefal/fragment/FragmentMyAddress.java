@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -23,11 +24,13 @@ import com.google.gson.Gson;
 import com.tefal.Models.MyAddressesModel;
 import com.tefal.Models.TailorStoresResponseModel;
 import com.tefal.R;
+import com.tefal.activity.MyAddressListActivity;
 import com.tefal.adapter.DishdashaAdapter;
 import com.tefal.adapter.DishdashaTailorAdapter;
 import com.tefal.adapter.MyAddressAdapter;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
+import com.tefal.utils.SimpleProgressBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,11 +48,12 @@ public class FragmentMyAddress extends Fragment {
     @BindView(R.id.recycler)
     RecyclerView recycler;
 
-    @BindView(R.id.loading)
-    ProgressBar loading;
 
     MyAddressAdapter adapter;
     SessionManager session;
+
+    @BindView(R.id.empty_view)
+    TextView empty_view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +64,7 @@ public class FragmentMyAddress extends Fragment {
 
         session = new SessionManager(getActivity());
 
-
+        WebCallServiceAddresses();
 
 
         return v;
@@ -68,12 +72,12 @@ public class FragmentMyAddress extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        WebCallServiceAddresses();
+
 // add your code here which executes when the Fragment is visible and intractable.
     }
 
     public void WebCallServiceAddresses() {
-        loading.setVisibility(View.VISIBLE);
+        SimpleProgressBar.showProgress(getContext());
         try {
             final String url = Contents.baseURL + "getCustomerSavedAddresses";
 
@@ -82,7 +86,7 @@ public class FragmentMyAddress extends Fragment {
                         @Override
                         public void onResponse(String response) {
 
-                            loading.setVisibility(View.GONE);
+                            SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
@@ -98,9 +102,22 @@ public class FragmentMyAddress extends Fragment {
                                     recycler.setItemAnimator(new DefaultItemAnimator());
                                     adapter = new MyAddressAdapter(getActivity(), mResponse.getRecord());
                                     recycler.setAdapter(adapter);
+
+                                    if(mResponse.getRecord().size() == 0)
+                                    {
+                                        empty_view.setVisibility(View.VISIBLE);
+                                        recycler.setVisibility(View.GONE);
+                                        empty_view.setText(mResponse.getMessage());
+
+                                    }
+
                                 }
                                 else {
-                                    Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+
+                                    recycler.setVisibility(View.GONE);
+                                    empty_view.setVisibility(View.VISIBLE);
+                                    empty_view.setText(mResponse.getMessage());
+                                   // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -109,7 +126,7 @@ public class FragmentMyAddress extends Fragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            loading.setVisibility(View.GONE);
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -140,6 +157,7 @@ public class FragmentMyAddress extends Fragment {
         } catch (NullPointerException surError) {
             surError.printStackTrace();
             //SimpleProgressBar.closeProgress();
+            SimpleProgressBar.closeProgress();
         }
     }
 }

@@ -33,6 +33,7 @@ public class SimpleProgressBar {
     }
     public static void closeProgress()
     {
+        if(pDialog !=null)
         pDialog.dismiss();
     }
 }

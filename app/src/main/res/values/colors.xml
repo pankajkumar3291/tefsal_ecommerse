@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#bfbfbd</color>
     <color name="colorAccent">#2e3241</color>
     <color name="colorMenu">#efefe4</color>
-    <color name="colorDivider">#d9d9d9</color>
+    <color name="colorDivider">@color/colorHeader</color>
     <color name="colorGray">#a1a0a0</color>
     <color name="colorDGray">#868585</color>
     <color name="l_gray">#f5f3f4</color>

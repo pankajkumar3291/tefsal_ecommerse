@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity
         order_menu = (TextView) view.findViewById(R.id.card_badge);
 
 
-           fragment = new HomeFragment();
+         fragment = new HomeFragment();
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -377,7 +377,26 @@ public class MainActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+
+            fragment = new HomeFragment();
+
+            if (fragment != null) {
+
+                toolbar_title.setText("");
+
+                btn_menu.setImageResource(R.drawable.ic_menu_white_24dp);
+                btn_ADD.setVisibility(View.GONE);
+                btn_write_mail.setVisibility(View.GONE);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragmentContainer, fragment);
+                ft.commit();
+            }
+            else
+            {
+                super.onBackPressed();
+            }
         }
     }
 

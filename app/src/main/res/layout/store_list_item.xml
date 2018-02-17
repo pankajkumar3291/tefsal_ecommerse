@@ -19,42 +19,44 @@
         android:background="#60000000" />
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-        <!--android:gravity="center"-->
-        <!--android:text="50%\nOFF"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="@dimen/text_normal" />-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+    <!--android:gravity="center"-->
+    <!--android:text="50%\nOFF"-->
+    <!--android:textColor="@color/colorWhite"-->
+    <!--android:textSize="@dimen/text_normal" />-->
 
     <LinearLayout
+        android:id="@+id/LL_di"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/LL_di"
-        android:gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="25dp"
-
         android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+
+        android:gravity="right"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/txt_discount_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="50%"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
-            android:id="@+id/txt_discount_amount"
-            android:textStyle="bold"
-            android:text="50%"/>
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/txt_discount_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"
+            android:text="OFF"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
-            android:id="@+id/txt_discount_off"
-            android:textStyle="bold"
-            android:text="OFF"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -71,33 +73,33 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:text="KAKOOLI TAILOR"
             android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="KAKOOLI TAILOR"
+            android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
-            android:maxLines="1"
-            autofit:minTextSize="@dimen/text_normal"
-            android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            autofit:minTextSize="@dimen/text_normal" />
 
         <RatingBar
             android:id="@+id/ratingbar"
+            style="?attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:numStars="5"
             android:rating="3"
             android:stepSize="1"
-            style="?attr/ratingBarStyleSmall"
-            android:theme="@style/RatingBar"/>
+            android:theme="@style/RatingBar" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="@dimen/activity_horizontal_margin">
 
@@ -106,35 +108,37 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/text_max_delivery_days"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_max_delivery_days"
                 android:text="1"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_mid"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text_max_delivery_days"
-                android:textColor="@color/colorWhite"
-                android:text="Days"/>
+                android:text="Days"
+                android:textColor="@color/colorWhite" />
+
             <ImageView
+                android:id="@+id/icon_delivery"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/icon_delivery"
-                android:src="@drawable/icon_delivery"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/text_max_delivery_days"
-                />
+                android:src="@drawable/icon_delivery" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:background="#fff" />
+        android:background="@color/colorTranspernt" />
 </RelativeLayout>

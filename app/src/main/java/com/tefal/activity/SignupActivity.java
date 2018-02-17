@@ -32,6 +32,7 @@ import com.tefal.Models.CountryModel;
 import com.tefal.Models.SignUpErrorMessageRecordModel;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
+import com.tefal.dialogs.CountryDialog;
 import com.tefal.utils.Contents;
 import com.tefal.utils.FontChangeCrawler;
 import com.tefal.utils.PreferencesUtil;
@@ -289,8 +290,9 @@ public class SignupActivity extends BaseActivity {
         llMobile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignupActivity.this, CountryPopUpActivity.class).putExtra("PhoneType", "1"));
 
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,SignupActivity.this,"1");
+                countryDialog.show();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -298,8 +300,8 @@ public class SignupActivity extends BaseActivity {
         llHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignupActivity.this, CountryPopUpActivity.class).putExtra("PhoneType", "2"));
-
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,SignupActivity.this,"2");
+                countryDialog.show();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -379,6 +381,21 @@ public class SignupActivity extends BaseActivity {
 
     }
 
+
+    public  void setCountryFlag1()
+    {
+        txtCountryCode1.setText(selectedMobileCountry.getPhonecode());
+
+        imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
+    }
+
+    public  void setCountryFlag2()
+    {
+
+        txtCountryCode2.setText(selectedHomeCountry.getPhonecode());
+
+        imgv_contry_flag2.setImageResource(selectedHomeCountry.getFlag());
+    }
 
     public void setData()
 
