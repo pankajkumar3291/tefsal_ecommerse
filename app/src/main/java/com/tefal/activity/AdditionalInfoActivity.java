@@ -31,6 +31,7 @@ import com.tefal.Models.CountryModel;
 import com.tefal.Models.SignUpErrorMessageRecordModel;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
+import com.tefal.kotlin.SignupThankYouActivity;
 import com.tefal.utils.Contents;
 import com.tefal.utils.PreferencesUtil;
 import com.tefal.utils.SessionManager;
@@ -88,7 +89,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     private String accessToken;
     private String customer_id;
     private String customer_name;
-
+    String input_email = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,8 +180,10 @@ public class AdditionalInfoActivity extends BaseActivity {
         skipTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdditionalInfoActivity.this, SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                finish();
+                //startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                //finish();
+
+                doFullSignUp();
             }
         });
 
@@ -317,7 +320,7 @@ public class AdditionalInfoActivity extends BaseActivity {
         String input_fname = "";
         String input_lname = "";
         String input_mob = "";
-        String input_email = "";
+
 
         String input_home_num = "";
         String input_password = "";
@@ -541,8 +544,8 @@ public class AdditionalInfoActivity extends BaseActivity {
 
 
 
-                        params.put("city", jsonObject.getString("spin_city")+ "");
-                        params.put("area", jsonObject.getString("spin_area")+ "");
+                        params.put("city", jsonObject.getString("spin_city_txt")+ "");
+                        params.put("area", jsonObject.getString("spin_area_txt")+ "");
                         params.put("block", jsonObject.getString("input_block")+ "");
                         params.put("street", jsonObject.getString("input_street")+ "");
                         params.put("avenue", jsonObject.getString("input_avenue")+ "");
@@ -565,6 +568,8 @@ public class AdditionalInfoActivity extends BaseActivity {
                        ex.printStackTrace();
                     }
 
+
+                    Log.e(AdditionalInfoActivity.class.getSimpleName(), String.valueOf(new JSONObject(params)));
 
                     Log.e("Refsal req == ", url + params);
 
@@ -616,13 +621,13 @@ public class AdditionalInfoActivity extends BaseActivity {
                                     PreferencesUtil.putString(AdditionalInfoActivity.this, "SignupBundle", "");
                                     PreferencesUtil.putString(AdditionalInfoActivity.this, "SignupBundle2", "");
 
-                                    Toast.makeText(getApplicationContext(), "Registration successful...Sign in to continue", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), "Registration successful...Sign in to continue", Toast.LENGTH_LONG).show();
 
                                    /* session.setCustomerId(jsonObject.getString("customer_id"));
                                     session.setToken(jsonObject.getString("access_token"));
                                     session.setKeyUserName(str_fname+" "+str_lname);*/
 
-                                    startActivity(new Intent(AdditionalInfoActivity.this, SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                    startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).putExtra("email",input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                     // startActivity(new Intent(AdditionalInfoActivity.this, AdditionalInfoActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                                     finish();
 

@@ -47,9 +47,13 @@ dependencies {
     compile 'com.commit451:PhotoView:1.2.4'
     compile 'com.asksira.android:cameraviewplus:0.7.0'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-
+    compile 'com.afollestad:easyvideoplayer:0.3.0'
 
     testCompile 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 apply plugin: 'com.google.gms.google-services'
 
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'

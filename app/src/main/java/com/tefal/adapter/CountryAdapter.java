@@ -111,6 +111,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
                     AddAddresssAfterSignUp signupActivity = (AddAddresssAfterSignUp) activity;
 
                     signupActivity.setCountryFlag();
+                    signupActivity.loadAreas();
 
 
                 }

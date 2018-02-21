@@ -227,8 +227,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.MailingSystemActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.CountryPopUpActivity"  android:theme="@style/TransparentTheme"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CountryPopUpActivity"
+            android:theme="@style/TransparentTheme" />
+        <activity android:name=".kotlin.SignupThankYouActivity"></activity>
     </application>
 
 </manifest>

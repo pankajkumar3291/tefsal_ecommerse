@@ -156,7 +156,7 @@ public class AddAddresssAfterSignUp extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        toolbar_title.setText("ADD ADDRESS");
+        toolbar_title.setText("STEP 2");
         // toolbar_title.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         TefsalApplication application = (TefsalApplication) getApplication();
@@ -250,8 +250,8 @@ public class AddAddresssAfterSignUp extends BaseActivity {
             outState.put("spin_city", spin_city.getSelectedItemPosition());
             outState.put("spin_area", spin_area.getSelectedItemPosition());
 
-           // outState.put("spin_city_txt", spin_city.getSelectedItem().toString());
-           // outState.put("spin_area_txt", spin_area.getSelectedItem().toString());
+            outState.put("spin_city_txt", ""+spin_city.getSelectedItem().toString());
+            outState.put("spin_area_txt", ""+spin_area.getSelectedItem().toString());
 
 
             outState.put("input_block", input_block.getText().toString().trim());
@@ -1690,9 +1690,18 @@ public class AddAddresssAfterSignUp extends BaseActivity {
 
                 imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
 
-                getProvinces("KW");
+               // getProvinces("KW");
             }
         }
 
+    }
+
+    public  void loadAreas()
+    {
+        input_mob.setText(selectedMobileCountry.getNicename());
+
+        imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
+
+        getProvinces("KW");
     }
 }

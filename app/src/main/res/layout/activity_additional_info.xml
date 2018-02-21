@@ -27,8 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textSize="@dimen/text_mid"
+            android:text="Step 3"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
             android:id="@+id/toolbar_title"
@@ -36,11 +37,12 @@
             fontPath="fonts/Lato-Bold.ttf" />
 
         <TextView
-            android:clickable="false"
+            android:visibility="visible"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Step 3"
+            android:text="Skip"
             android:textSize="@dimen/text_mid"
             android:id="@+id/skipTxt"
             android:textAllCaps="true"
