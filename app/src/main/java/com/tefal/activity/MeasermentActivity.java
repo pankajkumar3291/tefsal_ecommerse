@@ -1,10 +1,12 @@
 package com.tefal.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -759,6 +761,11 @@ public class MeasermentActivity extends BaseActivity {
 
                 }
 
+                if(count < 9)
+                {
+                    showIndividualVideo(count);
+                }
+
                 /*if(TefalApp.getInstance().getmAction().equals("edit"))
                 {
                     WebCallServiceUpdateStyle();
@@ -1208,6 +1215,37 @@ public class MeasermentActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Cancel Measurement")
+                .setMessage("Are you sure you want to cancel?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+
+
+                      finish();
+
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                        dialog.cancel();
+                    }
+                })
+                .show();
+
+    }
 
     public void setCustomDesignData() {
            /* System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());

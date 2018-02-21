@@ -41,13 +41,18 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
         Intent intent = getIntent();
         Integer positionIs = intent.getIntExtra("position",0);
 
-        String playerUrl = literals[positionIs];
 
-        Log.d("playerUrl",playerUrl);
+        if(positionIs < 9)
+        {
+            String playerUrl = literals[positionIs];
 
-        // Sets the source to the HTTP URL held in the TEST_URL variable.
-        // To play files, you can use Uri.fromFile(new File("..."))
-        player.setSource(Uri.parse(playerUrl));
+            Log.d("playerUrl",playerUrl);
+
+            // Sets the source to the HTTP URL held in the TEST_URL variable.
+            // To play files, you can use Uri.fromFile(new File("..."))
+            player.setSource(Uri.parse(playerUrl));
+        }
+
 
     }
 
@@ -112,6 +117,18 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
 
     @Override
     public void onSubmit(EasyVideoPlayer easyVideoPlayer, Uri uri) {
+
+        player.reset();
+
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(player != null)
+        player.reset();
 
     }
 }

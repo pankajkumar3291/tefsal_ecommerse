@@ -34,7 +34,7 @@ import butterknife.ButterKnife;
 public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAdapter.ViewHolder> {
 
     private Activity activity;
-    boolean isExtended = false;
+    boolean isExtended = true;
     private List<DishdashaStylesRecord> record = new ArrayList<>();
     private TefalApp mTefalApp;
     private SessionManager session;
@@ -164,7 +164,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         holder.text_viewStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isExtended)
+                if (holder.innerView.getVisibility() == View.VISIBLE)
                 {
                     holder.Rl_headerbar.setBackgroundResource(R.drawable.four_points_top_shape_cd);
                     Config.collapse(holder.innerView);
@@ -189,7 +189,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
                  TefalApp.getInstance().setToolbar_title("DISHDISHA STORES");
                  TefalApp.getInstance().setMin_meters(record.get(position).getMin_meters());
                  TefalApp.getInstance().setStyleName(record.get(position).getName());
-               activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag","dish"));
+                 activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag","dish"));
             }
         });
 
@@ -201,41 +201,44 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         if(record.get(position).getCufflink().equals("no"))
         {
             //holder.ic_cuflink.setVisibility(View.VISIBLE);
-            holder.pen_pocket.setColorFilter(R.color.colorDGray);
+          //  holder.pen_pocket.setImageResource(R.drawable.pen_small);
 
         }
         else
         {
-            holder.pen_pocket.setColorFilter(R.color.colorAccent);
+           // holder.pen_pocket.setColorFilter(R.color.colorAccent);
+             holder.pen_pocket.setImageResource(R.drawable.pen_small);
         }
 
 
         if(record.get(position).getPen_pocket().equals("no"))
         {
             // holder.pen_pocket.setVisibility(View.INVISIBLE);
-            holder.pen_pocket.setColorFilter(R.color.colorDGray);
+           // holder.pen_pocket.setColorFilter(R.color.colorDGray);
         }
         else
         {
+            holder.pen_pocket.setImageResource(R.drawable.pen_small);
         }
 
         if(record.get(position).getMobile_pocket().equals("no"))
         {
-            holder.mobile_pocket.setColorFilter(R.color.colorDGray);
+            //holder.mobile_pocket.setColorFilter(R.color.colorDGray);
             //holder.mobile_pocket.setVisibility(View.INVISIBLE);
         }
         else
         {
-
+            holder.mobile_pocket.setImageResource(R.drawable.phone_small);
         }
         if(record.get(position).getKey_pocket().equals("no"))
         {
             System.out.println("KEY POCKET STATUS=="+record.get(position).getKey_pocket());
-            holder.mobile_pocket.setColorFilter(R.color.colorDGray);
+           // holder.mobile_pocket.setColorFilter(R.color.colorDGray);
 
         }
         else
         {
+            holder.key_pocket.setImageResource(R.drawable.key_small);
         }
 
 

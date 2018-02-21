@@ -233,7 +233,10 @@
             android:theme="@style/TransparentTheme" />
         <activity android:name=".kotlin.SignupThankYouActivity" />
 
-        <activity android:name=".activity.CustomVideoPlayerActivity"   android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CustomVideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
