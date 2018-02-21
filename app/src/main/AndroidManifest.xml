@@ -231,7 +231,9 @@
         <activity
             android:name=".activity.CountryPopUpActivity"
             android:theme="@style/TransparentTheme" />
-        <activity android:name=".kotlin.SignupThankYouActivity"></activity>
+        <activity android:name=".kotlin.SignupThankYouActivity" />
+
+        <activity android:name=".activity.CustomVideoPlayerActivity"   android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

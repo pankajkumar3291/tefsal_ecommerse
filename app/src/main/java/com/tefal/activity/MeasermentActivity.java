@@ -318,9 +318,9 @@ public class MeasermentActivity extends BaseActivity {
         videoUri = Uri.parse(videoLink);
 
         // This function call is for showing video of APP
-        showAppVideoDialog();
+        //showAppVideoDialog();
 
-
+        showIndividualVideo(0);
         //showIndividualVideoDialog(1);
         //================================================================
 
@@ -816,7 +816,7 @@ public class MeasermentActivity extends BaseActivity {
         Video_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showIndividualVideoDialog(viewTipTrackCount);
+                showIndividualVideo(viewTipTrackCount);
 
                 //Toast.makeText(MeasermentActivity.this,"POSITION==="+viewTipTrackCount, Toast.LENGTH_SHORT).show();
                 // playVideo();
@@ -2937,9 +2937,17 @@ public class MeasermentActivity extends BaseActivity {
     }
 
 
+
+
     // This block is responsible for showing video for individual Item like neck, shoulder etc.....
 
-    private void showIndividualVideoDialog(int position) {
+    private void showIndividualVideo(int position) {
+
+        startActivity(new Intent(MeasermentActivity.this,CustomVideoPlayerActivity.class).putExtra("position",position));
+
+
+    }
+    private void showIndividualVideoDialog1(int position) {
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
