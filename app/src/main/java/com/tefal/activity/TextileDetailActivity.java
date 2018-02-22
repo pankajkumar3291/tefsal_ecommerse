@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -134,11 +135,16 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @BindView(R.id.btn_back)
     ImageButton btn_back;
 
+    @BindView(R.id.add_to_cart_lbl)
+    TextView add_to_cart_lbl;
+
+
+
     @BindView(R.id.done_txt)
     TextView done_txt;
 
     @BindView(R.id.add_to_cart_btn)
-    Button add_to_cart_btn;
+    RelativeLayout add_to_cart_btn;
 
 
 
@@ -280,7 +286,15 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
 
-
+        View root = tabLayout.getChildAt(0);
+        if (root instanceof LinearLayout) {
+            ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            drawable.setSize(2, 1);
+            ((LinearLayout) root).setDividerPadding(10);
+            ((LinearLayout) root).setDividerDrawable(drawable);
+        }
 
 
         System.out.println("OUTPUT OF PRODUCT========"+textileProductModel.getBrand_image());
@@ -342,7 +356,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         if(min_meter>stock_meter)
         {
             LL_min_max_controller.setVisibility(View.GONE);
-            add_to_cart_btn.setText("SOLD OUT");
+            add_to_cart_lbl.setText("SOLD OUT");
             text_price.setVisibility(View.GONE);
             add_to_cart_btn.setEnabled(false);
         }

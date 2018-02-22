@@ -3,52 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
-    <include layout="@layout/toolbar_textile_detail"/>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/RL_product_exist_container"
-    >
+
+    <include layout="@layout/toolbar_textile_detail" />
+
     <RelativeLayout
-        android:id="@+id/linear1"
+        android:id="@+id/RL_product_exist_container"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <!--<ImageView
-            android:id="@+id/product_img"
+        <RelativeLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@color/colorGray" />-->
-<!--        <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/product_image_viewPager">
+            android:layout_height="230dp"
+            android:orientation="vertical">
 
-        </android.support.v4.view.ViewPager>-->
-        <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/product_image_viewPager">
+            <!--<ImageView
+                android:id="@+id/product_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/colorGray" />-->
+            <!--        <android.support.v4.view.ViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/product_image_viewPager">
 
-        </android.support.v4.view.ViewPager>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:id="@+id/no_image_holder"/>
-        <!--<RelativeLayout
+                    </android.support.v4.view.ViewPager>-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/product_image_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+            <ImageView
+                android:id="@+id/no_image_holder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+            <!--<RelativeLayout
+                android:id="@+id/viewPagerIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainViewPager"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="-20dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+            </RelativeLayout>-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/gradient_transparent" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 KWD / METER"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_min_meter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MIN METERS REQUIRED"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_mid" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/viewPagerIndicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/mainViewPager"
-            android:layout_marginBottom="10dp"
+
+            android:layout_below="@+id/linear1"
             android:layout_marginTop="-20dp"
-            android:layout_alignParentBottom="true"
+
             android:gravity="center"
             android:padding="4dp">
 
@@ -60,104 +118,47 @@
                 android:gravity="center"
                 android:orientation="horizontal" />
 
-        </RelativeLayout>-->
+        </RelativeLayout>
 
         <View
+            android:layout_below="@+id/viewPagerIndicator"
+            android:id="@+id/sep"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#90000000"/>
+            android:layout_height="2dp"/>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txt_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10 KWD / METER"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txt_min_meter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MIN METERS REQUIRED"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_mid" />
-        </LinearLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/viewPagerIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_below="@+id/linear1"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="-20dp"
-
-        android:gravity="center"
-        android:padding="4dp">
-
-        <LinearLayout
-            android:id="@+id/viewPagerCountDots"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:orientation="horizontal" />
+            android:layout_below="@+id/sep"
+            android:background="#DADACF"
+            android:minHeight="?attr/actionBarSize"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextColor="#616161" />
 
-    </RelativeLayout>
+        <!-- View pager to swipe views -->
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_below="@+id/viewPagerIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorDivider"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/colorGray" />
-
-    <!-- View pager to swipe views -->
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_below="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"/>
-
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorDivider"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tabLayout"
+            android:layout_marginBottom="120dp" />
+
+        <LinearLayout
             android:id="@+id/LL_min_max_controller"
-            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_above="@+id/llCartButton"
             android:background="@color/colorPrimary"
-            android:layout_below="@+id/pager"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="100">
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/meter_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -167,6 +168,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -198,7 +200,7 @@
                 <ImageView
                     android:id="@+id/add_btn"
                     android:layout_width="40dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_add_black" />
 
             </LinearLayout>
@@ -206,43 +208,77 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/text_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="PRICE:"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_normal" />
-
-        <Button
-            android:id="@+id/add_to_cart_btn"
+        <LinearLayout
+            android:id="@+id/llCartButton"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/colorAccent"
-            android:text="ADD TO CART"
-            android:textColor="@color/colorWhite" />
-    </LinearLayout>
-</RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#DADACF"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="PRICE:"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:focusable="true"
+                android:clickable="true"
+                android:id="@+id/add_to_cart_btn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:tint="@color/colorWhite"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/imgCart"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_shopping_cart_black_24dp" />
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_toRightOf="@+id/imgCart"
+                    android:id="@+id/add_to_cart_lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:text="ADD TO CART"
+                    android:textColor="@color/colorWhite" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/RL_no_product_found_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/RL_no_product_found_container">
+        android:visibility="gone">
 
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_centerInParent="true"
-           android:gravity="center"
-           android:layout_centerHorizontal="true"
-           android:text="No product found"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="No product found" />
     </RelativeLayout>
 
 </LinearLayout>

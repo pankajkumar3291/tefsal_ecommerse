@@ -498,38 +498,7 @@
                     android:src="@mipmap/icon_cufflink_buttons_white"
                     android:tint="@color/colorAccent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="49dp"
-                    android:gravity="start|center_vertical"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:gravity="start"
-                        android:text="No of Meters Per Dishdasha"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_small" />
-
-                    <TextView
-                        android:id="@+id/txt_narrow_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="25"
-                        android:gravity="center"
-                        android:text="22cm"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_small" />
-
-
-                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -576,6 +545,39 @@
                     android:src="@drawable/key_small_selected" />
 
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:gravity="start"
+                    android:paddingLeft="@dimen/activity_small_horizontal_margin"
+                    android:text="3 Meter / Dishdasha"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:id="@+id/txt_narrow_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:text="22cm"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_small" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>
