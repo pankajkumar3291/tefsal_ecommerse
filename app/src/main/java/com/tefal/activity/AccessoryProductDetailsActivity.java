@@ -39,6 +39,7 @@ import com.tefal.Models.AccessoriesRecord;
 import com.tefal.Models.ProductRecord;
 import com.tefal.R;
 import com.tefal.app.TefsalApplication;
+import com.tefal.dialogs.DialogKart;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -232,27 +233,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
                                 SimpleProgressBar.closeProgress();
                                 Log.e("stores response", response);
 
-                                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(AccessoryProductDetailsActivity.this);
-                                builder.setMessage("Your product is successfully added to your cart")
-                                        .setCancelable(false)
-                                        .setPositiveButton("Go to Cart", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-//                                                startActivity(new Intent(getActivity(), DishDashaProductActivity.class).putExtra("Flag", "2").putExtra("store_id", TextileDetailActivity.StoreID));
-                                                startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class));
-                                            }
-                                        })
-                                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //  Action for 'NO' Button
-                                                dialog.cancel();
-                                            }
-                                        });
 
-                                //Creating dialog box
-                                android.support.v7.app.AlertDialog alert = builder.create();
-                                //Setting the title manually
-                                alert.setTitle("Item added successfully");
-                                alert.show();
+                                DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this,false);
+                                dg.show();
+
 
                             }
                         }

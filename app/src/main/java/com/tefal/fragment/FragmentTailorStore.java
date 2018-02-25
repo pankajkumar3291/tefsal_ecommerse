@@ -75,7 +75,7 @@ public class FragmentTailorStore extends Fragment {
     public void WebCallServiceStores() {
         //SimpleProgressBar.showProgress(getActivity());
         try {
-            final String url = Contents.baseURL + "getStores";
+            final String url = Contents.baseURL + "getDishdashaTailorProducts";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -86,7 +86,7 @@ public class FragmentTailorStore extends Fragment {
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
+                                Log.e("getDishdashaTailorProducts response", response);
                                 Gson g = new Gson();
                                 TailorStoresResponseModel mResponse = g.fromJson(response, TailorStoresResponseModel.class);
 
@@ -94,10 +94,10 @@ public class FragmentTailorStore extends Fragment {
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-                                    recycler.setLayoutManager(layoutManager);
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
-                                    dishdashaAdapter = new DishdashaTailorAdapter(getActivity(), mResponse.getRecord(),flag);
-                                    recycler.setAdapter(dishdashaAdapter);
+                                  //  recycler.setLayoutManager(layoutManager);
+                                  //  recycler.setItemAnimator(new DefaultItemAnimator());
+                                  //  dishdashaAdapter = new DishdashaTailorAdapter(getActivity(), mResponse.getRecord(),flag);
+                                  //  recycler.setAdapter(dishdashaAdapter);
                                 }
                                 else {
                                     Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();

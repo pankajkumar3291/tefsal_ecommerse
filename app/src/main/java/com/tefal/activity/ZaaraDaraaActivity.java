@@ -57,6 +57,7 @@ import com.tefal.adapter.DishdashaTextileProductAdapter;
 import com.tefal.adapter.ProductSizeAdapterHorizontal;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
+import com.tefal.dialogs.DialogKart;
 import com.tefal.fragment.HomeFragment;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
@@ -351,27 +352,9 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
                                 System.out.println("ADD CART RESPONSE===="+response);
 
-                                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(ZaaraDaraaActivity.this);
-                                builder.setMessage("Your product is successfully added to your cart")
-                                        .setCancelable(false)
-                                        .setPositiveButton("Go to Cart", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-//                                                startActivity(new Intent(getActivity(), DishDashaProductActivity.class).putExtra("Flag", "2").putExtra("store_id", TextileDetailActivity.StoreID));
-                                                startActivity(new Intent(ZaaraDaraaActivity.this, CartActivity.class));
-                                            }
-                                        })
-                                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                //  Action for 'NO' Button
-                                                dialog.cancel();
-                                            }
-                                        });
+                                DialogKart dg = new DialogKart(ZaaraDaraaActivity.this,false);
+                                dg.show();
 
-                                //Creating dialog box
-                                android.support.v7.app.AlertDialog alert = builder.create();
-                                //Setting the title manually
-                                alert.setTitle("Item added successfully");
-                                alert.show();
 
                             }
                         }
