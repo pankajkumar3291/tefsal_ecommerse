@@ -13,6 +13,17 @@ public class TailorProductModal {
 
     private String store_id;
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    private int position;
+
+
     public String getDishdasha_tailor_product_name ()
     {
         return dishdasha_tailor_product_name;

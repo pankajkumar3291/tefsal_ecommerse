@@ -51,6 +51,17 @@ public class GetCartRecord implements Serializable {
     private boolean isChecked;
 
 
+    public int getDishDashaRemaining() {
+        return dishDashaRemaining;
+    }
+
+    public void setDishDashaRemaining(int dishDashaRemaining) {
+        this.dishDashaRemaining = dishDashaRemaining;
+    }
+
+    private int dishDashaRemaining = 2;
+
+
 
     public String getImage() {
         return image;

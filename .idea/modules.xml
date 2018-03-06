@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:\2018\MFaris\tefsal_android\Tefal.iml" filepath="E:\2018\MFaris\tefsal_android\Tefal.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/tefsal_android.iml" filepath="$PROJECT_DIR$/tefsal_android.iml" />
     </modules>

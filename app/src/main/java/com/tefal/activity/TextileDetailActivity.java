@@ -569,7 +569,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         try {
             obj.put("product_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getTefsal_product_id());
             obj.put("item_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getDishdasha_attribute_id());
-            obj.put("item_quantity", meter_value);
+            obj.put("item_quantity", meter_value.getText().toString());
+
 
             arry.put(obj);
         } catch (JSONException e) {
