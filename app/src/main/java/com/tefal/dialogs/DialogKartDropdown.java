@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.tefal.Models.GetCartRecord;
+import com.tefal.Models.TailoringRecord;
 import com.tefal.R;
 import com.tefal.adapter.StringAdapter;
+import com.tefal.fragment.FragmentTailorProducts;
 import com.tefal.fragment.FragmentTailorStore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +26,7 @@ import java.util.List;
 public class DialogKartDropdown extends Dialog {
 
 
-    public DialogKartDropdown(final List<GetCartRecord> data, final FragmentTailorStore context,final int position) {
+    public DialogKartDropdown(final ArrayList<TailoringRecord> data, final FragmentTailorProducts context, final int position) {
         super(context.getContext());
         this.requestWindowFeature(1);
         this.setContentView(R.layout.dialog_kart_dropdown);
@@ -48,11 +51,11 @@ public class DialogKartDropdown extends Dialog {
             public void onClick(View view) {
 
 
-                GetCartRecord getCartRecord = data.get(cartitems.getSelectedItemPosition());
+                TailoringRecord tailoringRecord = data.get(cartitems.getSelectedItemPosition());
                // Log.e("getItem_id1",getCartRecord.getItem_id());
                // Log.e("getSelectedItemPosition",cartitems.getSelectedItemPosition()+"");
 
-                context.addItemToTailorItem(getCartRecord,position,getCartRecord.getItem_id() );
+                context.addItemToTailorItem(tailoringRecord,position );
                 cancel();
 
             }

@@ -232,10 +232,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
                             if (response != null) {
                                 SimpleProgressBar.closeProgress();
                                 Log.e("stores response", response);
+                                JSONObject jsonObject = null;
+                                try {
+                                    jsonObject = new JSONObject(response);
+                                    String  itemType = jsonObject.getString("item_type");
+                                    DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this,false,itemType,"");
+                                    dg.show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-
-                                DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this,false);
-                                dg.show();
 
 
                             }

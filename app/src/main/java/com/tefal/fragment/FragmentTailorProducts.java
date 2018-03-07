@@ -32,6 +32,7 @@ import com.tefal.Models.DishdashaTailorProductResponse;
 import com.tefal.Models.GetAssignedItemsRecord;
 import com.tefal.Models.GetAssignedItemsResponse;
 import com.tefal.Models.GetCartRecord;
+import com.tefal.Models.SublistCartItems;
 import com.tefal.Models.TailorProductResponse;
 import com.tefal.Models.TailoringRecord;
 import com.tefal.R;
@@ -43,6 +44,7 @@ import com.tefal.adapter.DishdashaTailorProductAdapterForListView;
 import com.tefal.adapter.DishdashaTailorProductsAdapter;
 import com.tefal.adapter.TailorProductAdapter;
 import com.tefal.app.TefalApp;
+import com.tefal.dialogs.DialogKartDropdown;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -108,6 +110,8 @@ public class FragmentTailorProducts extends Fragment {
     SessionManager sessionManager;
 
     DishdashaTailorProductsAdapter dishdashaTailorProductsAdapter;
+
+    DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -197,7 +201,7 @@ public class FragmentTailorProducts extends Fragment {
                                         System.out.println("DISHDASHA TAILOR SIZE===="+getAssignedItemsResponse.getRecord().size());
 
                                        // dishdashaTailorProductsAdapter=new DishdashaTailorProductsAdapter(getActivity(),mResponse.getRecord());
-                                        DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView=new DishdashaTailorProductAdapterForListView(getActivity(),getAssignedItemsResponse.getRecord());
+                                         dishdashaTailorProductAdapterForListView=new DishdashaTailorProductAdapterForListView(FragmentTailorProducts.this,getAssignedItemsResponse.getRecord());
 
                                         list2.setAdapter(dishdashaTailorProductAdapterForListView);
 
@@ -251,4 +255,28 @@ public class FragmentTailorProducts extends Fragment {
             surError.printStackTrace();
         }
     }
+
+    public void showDialog(int position)
+    {
+        DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue,FragmentTailorProducts.this,position);
+        dg.show();
+
+    }
+
+    public void addItemToTailorItem(TailoringRecord cartRecord,int position) {
+
+        // Log.e("dropdownId1",dropdownId);
+        SublistCartItems sublistCartItems = new SublistCartItems();
+        sublistCartItems.setItemName(cartRecord.getDishdasha_product_name());
+        sublistCartItems.setProductId(cartRecord.getProduct_id());
+
+        dishdashaTailorProductAdapterForListView.addSublistCartItem(position,sublistCartItems);
+
+        dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
+
+        //dishdashaAdapter.updateDishDashacount(dropdownId);
+
+
+    }
+
 }

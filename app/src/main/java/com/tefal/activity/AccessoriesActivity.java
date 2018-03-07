@@ -2,6 +2,7 @@ package com.tefal.activity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -107,7 +108,12 @@ public class AccessoriesActivity extends BaseActivity {
         });
 
         WebCallServiceStores();
+
+
     }
+
+
+
     public void WebCallServiceStores() {
         try {
             final String url = Contents.baseURL + "getAccessoriesSubCats";

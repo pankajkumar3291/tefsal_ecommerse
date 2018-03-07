@@ -30,13 +30,13 @@ public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHold
     private List<SublistCartItems> storeModels = new ArrayList<>();
     private SessionManager session;
 
-    DishdashaTailorItemsAdapter dishdashaTailorItemsAdapter;
+    DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
-    public SublistAdapter(Context activity, List<SublistCartItems> storeModels,DishdashaTailorItemsAdapter dishdashaTailorItemsAdapter) {
+    public SublistAdapter(Context activity, List<SublistCartItems> storeModels,DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView) {
         this.activity = activity;
         this.storeModels = storeModels;
         session = new SessionManager(activity);
-        this.dishdashaTailorItemsAdapter = dishdashaTailorItemsAdapter;
+        this.dishdashaTailorProductAdapterForListView = dishdashaTailorProductAdapterForListView;
     }
 
 
@@ -80,7 +80,7 @@ public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHold
                 public void onClick(View view) {
 
                     int position = (Integer) view.getTag();
-                    dishdashaTailorItemsAdapter.onRemove(storeModels.get(position));
+                  //  dishdashaTailorProductAdapterForListView.onRemove(storeModels.get(position));
                     storeModels.remove(position);
 
 

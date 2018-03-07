@@ -1,6 +1,9 @@
 package com.tefal.adapter;
 
 import android.app.Activity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +24,21 @@ import com.google.gson.Gson;
 import com.tefal.Models.DishdashaTailorProductRecord;
 import com.tefal.Models.GetAssignedItemsRecord;
 import com.tefal.Models.GetAssignedItemsResponse;
+import com.tefal.Models.GetCartRecord;
+import com.tefal.Models.SublistCartItems;
 import com.tefal.R;
+import com.tefal.dialogs.DialogKartDropdown;
+import com.tefal.fragment.FragmentTailorProducts;
+import com.tefal.fragment.FragmentTailorStore;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SimpleProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
 
 /**
  * Created by Rituparna Khadka on 1/12/2018.
@@ -36,13 +47,22 @@ import java.util.Map;
 public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
 
     private ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList;
-    private Activity activity;
+    private FragmentTailorProducts activity;
     LayoutInflater inflater;
-    public DishdashaTailorProductAdapterForListView(Activity activity,ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList)
+
+    RecyclerView recyclerSubList;
+    SublistAdapter sublistAdapter;
+    private HashMap<Integer, List<SublistCartItems>> sublistCartItemsHashMap = new HashMap<Integer, List<SublistCartItems>>();
+
+    DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
+
+
+    public DishdashaTailorProductAdapterForListView(FragmentTailorProducts activity, ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList)
     {
        this.activity=activity;
        this.assignedItemsRecordArrayList=assignedItemsRecordArrayList;
-        inflater = LayoutInflater.from(this.activity);
+        inflater = LayoutInflater.from(this.activity.getActivity());
+        dishdashaTailorProductAdapterForListView = this;
     }
     @Override
     public int getCount() {
@@ -70,6 +90,18 @@ public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
        TextView product_name=(TextView)convertView.findViewById(R.id.product_name);
        View view=(View)convertView.findViewById(R.id.view);
 
+        RecyclerView recyclerSubList= (RecyclerView)convertView.findViewById(R.id.recyclerSubList);
+        //Recycler
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity.getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+         recyclerSubList.setLayoutManager(layoutManager);
+        recyclerSubList.setItemAnimator(new DefaultItemAnimator());
+
+        sublistAdapter = new SublistAdapter(activity.getContext(), sublistCartItemsHashMap.get(position),dishdashaTailorProductAdapterForListView);
+
+        recyclerSubList.setAdapter(sublistAdapter);
 
 
         product_price.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_price()+" KWD");
@@ -80,6 +112,10 @@ public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
             public void onClick(View v)
             {
                 assignTailorHttpCall(assignedItemsRecordArrayList.get(position));
+
+                activity.showDialog(position);
+
+
             }
         });
 
@@ -92,7 +128,7 @@ public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
     private void assignTailorHttpCall(final GetAssignedItemsRecord getAssignedItemsRecord)
     {
 
-            SimpleProgressBar.showProgress(activity);
+            SimpleProgressBar.showProgress(activity.getActivity());
             try {
                 final String url = Contents.baseURL + "assignTailor";
 
@@ -133,7 +169,7 @@ public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
                 stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                         DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                RequestQueue requestQueue = Volley.newRequestQueue(activity);
+                RequestQueue requestQueue = Volley.newRequestQueue(activity.getActivity());
                 stringRequest.setShouldCache(false);
                 requestQueue.add(stringRequest);
 
@@ -142,4 +178,31 @@ public class DishdashaTailorProductAdapterForListView  extends BaseAdapter{
             }
 
     }
+
+    public void addSublistCartItem(int position, SublistCartItems sublistCartItems) {
+
+
+        if (sublistCartItemsHashMap.containsKey(position)) {
+
+            List<SublistCartItems> sublistitems = sublistCartItemsHashMap.get(position);
+            sublistitems.add(sublistCartItems);
+            sublistCartItemsHashMap.put(position, sublistitems);
+            sublistAdapter.notifyDataSetChanged();
+
+        } else {
+
+            List<SublistCartItems> sublistitems = new ArrayList<>();
+            sublistitems.add(sublistCartItems);
+
+            sublistCartItemsHashMap.put(position, sublistitems);
+            sublistAdapter.notifyDataSetChanged();
+
+        }
+
+    }
+
+
+
+
+
 }

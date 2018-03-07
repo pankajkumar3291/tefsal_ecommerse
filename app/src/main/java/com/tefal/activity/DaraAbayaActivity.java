@@ -64,6 +64,12 @@ public class DaraAbayaActivity extends BaseActivity {
 
         flag = getIntent().getStringExtra("flag");
 
+        boolean fromDialogKart = getIntent().getBooleanExtra("fromDialogKart",false);
+
+        if(fromDialogKart)
+        {
+
+        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         /*tabLayout.addTab(tabLayout.newTab().setText(R.string.btn_view_all));*/
@@ -95,6 +101,11 @@ public class DaraAbayaActivity extends BaseActivity {
 
             }
         });
+
+        if(fromDialogKart)
+        {
+            viewPager.setCurrentItem(1);
+        }
 //        setUpFragment();
     }
 

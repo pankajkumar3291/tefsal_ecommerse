@@ -45,7 +45,7 @@ public class DishdashaTailorItemsAdapter extends RecyclerView.Adapter<DishdashaT
 
         FragmentTailorStore fragmentTailorStore = (FragmentTailorStore)activity;
 
-        fragmentTailorStore.removeDishDashaCount(sublistCartItems.getProductId());
+       // fragmentTailorStore.removeDishDashaCount(sublistCartItems.getProductId());
 
 
     }
@@ -95,7 +95,7 @@ public class DishdashaTailorItemsAdapter extends RecyclerView.Adapter<DishdashaT
             holder.recyclerSubList.setLayoutManager(layoutManager);
             holder.recyclerSubList.setItemAnimator(new DefaultItemAnimator());
 
-            sublistAdapter = new SublistAdapter(activity.getContext(), sublistCartItemsHashMap.get(position),dishdashaTailorItemsAdapter);
+            //sublistAdapter = new SublistAdapter(activity.getContext(), sublistCartItemsHashMap.get(position),dishdashaTailorItemsAdapter);
 
             holder.recyclerSubList.setAdapter(sublistAdapter);
 

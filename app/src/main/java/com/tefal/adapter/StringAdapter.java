@@ -11,24 +11,26 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.tefal.Models.GetCartRecord;
+import com.tefal.Models.TailoringRecord;
 import com.tefal.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Dell on 04-03-2018.
  */
 
-public class StringAdapter extends ArrayAdapter<GetCartRecord> {
+public class StringAdapter extends ArrayAdapter<TailoringRecord> {
 
 
-    private List<GetCartRecord> list = null;
+    private ArrayList<TailoringRecord> list = null;
 
 
     private LayoutInflater inflater = null;
 
 
-    public StringAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<GetCartRecord> objects) {
+    public StringAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull ArrayList<TailoringRecord> objects) {
         super(context, R.layout.string_item, R.id.item, objects);
 
         this.list = objects;
@@ -65,7 +67,7 @@ public class StringAdapter extends ArrayAdapter<GetCartRecord> {
         convertView = this.inflater.inflate(R.layout.string_item, null);
 
 
-        String itemName = this.getItem(position).getDishdasha_material();
+        String itemName = this.getItem(position).getDishdasha_product_name();
 
         TextView item = (TextView) convertView.findViewById(R.id.item);
 

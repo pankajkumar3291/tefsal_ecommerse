@@ -1,164 +1,158 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RL_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:layout_margin="@dimen/activity_horizontal_margin"
-    android:orientation="vertical">
-    <RelativeLayout
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textheader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/RL_container">
-        <TextView
-            android:id="@+id/textheader"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="Please choose Textile"
+        android:textColor="@color/colorGray"
+        android:textSize="@dimen/text_mid" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/textheader"
+        android:background="@color/colorDiamond" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:divider="@null"
+        android:dividerHeight="0dp"></ListView>
+
+    <TextView
+        android:id="@+id/orText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="OR"
+        android:textSize="@dimen/text_large" />
+
+
+    <!-- </LinearLayout>-->
+    <LinearLayout
+        android:id="@+id/LL_ownTextile_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orText"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/text_mid"
-            android:textColor="@color/colorGray"
-            android:padding="10dp"
-            android:text="Please choose Textile"
-            android:layout_marginBottom="10dp"/>
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/LL_imageContainer"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_home_black_fill_24dp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/LL_imageContainer"
+                android:drawableRight="@drawable/info"
+                android:text="I have my own textile "
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_mid" />
+
+            <CheckBox
+                android:id="@+id/ownTextileCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
-            android:layout_below="@+id/textheader"
-            android:id="@+id/view"
             android:layout_height="2dp"
             android:background="@color/colorDiamond" />
-            <ListView
-                android:layout_width="match_parent"
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/RR_newTextile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LL_ownTextile_container"
+        android:layout_marginTop="40dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/LL_imageContainer2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_add_black_24dp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/view"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                android:id="@+id/list">
-            </ListView>
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/LL_imageContainer2"
+                android:text="Select new textile"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_mid" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_below="@+id/list"
-            android:layout_marginTop="15dp"
-            android:id="@+id/orText"
-            android:text="OR"
-            android:textSize="@dimen/text_large"
-            android:gravity="center"
-            android:layout_height="wrap_content" />
-
-
-
-   <!-- </LinearLayout>-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/LL_ownTextile_container"
-            android:layout_below="@+id/orText"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:gravity="center"
-                    android:id="@+id/LL_imageContainer">
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_home_black_fill_24dp"
-                        android:layout_alignParentLeft="true" />
-                </LinearLayout>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/text_mid"
-                    android:id="@+id/textView2"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/LL_imageContainer"
-                    android:text="I have my own textile "
-                    android:drawableRight="@drawable/info"/>
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ownTextileCheckBox"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight   ="true"/>
-            </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_below="@+id/LL_imageContainer2"
                 android:background="@color/colorDiamond" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_below="@+id/LL_ownTextile_container"
-            android:id="@+id/RR_newTextile">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:gravity="center"
-                    android:id="@+id/LL_imageContainer2">
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_add_black_24dp"
-                        android:layout_alignParentLeft="true" />
-                </LinearLayout>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorBlack"
-                    android:layout_centerVertical="true"
-                    android:textSize="@dimen/text_mid"
-                    android:id="@+id/textView3"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/LL_imageContainer2"
-                    android:text="Select new textile" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/colorDiamond"
-                    android:layout_below="@+id/LL_imageContainer2"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
-
-
+        </RelativeLayout>
+    </LinearLayout>
 
 
     <Button
         android:id="@+id/tailor_add_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Continue"
-        android:layout_margin="20dp"
-        android:textSize="@dimen/text_normal"
-        android:textColor="@color/colorWhite"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:background="@color/colorAccent"
-        android:layout_marginBottom="30dp"/>
-    </RelativeLayout>
-
+        android:text="Continue"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_normal" />
 
 </RelativeLayout>

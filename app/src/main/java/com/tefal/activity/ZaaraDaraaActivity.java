@@ -352,8 +352,15 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
                                 System.out.println("ADD CART RESPONSE===="+response);
 
-                                DialogKart dg = new DialogKart(ZaaraDaraaActivity.this,false);
-                                dg.show();
+                                JSONObject jsonObject = null;
+                                try {
+                                    jsonObject = new JSONObject(response);
+                                    String  itemType = jsonObject.getString("item_type");
+                                    DialogKart dg = new DialogKart(ZaaraDaraaActivity.this,false,itemType,"");
+                                    dg.show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
 
                             }

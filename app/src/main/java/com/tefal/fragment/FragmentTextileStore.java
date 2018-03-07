@@ -90,7 +90,7 @@ public class FragmentTextileStore extends Fragment {
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
+                                Log.e(FragmentTextileStore.class.getSimpleName(), response);
                                 Gson g = new Gson();
                                 TextileStoresResponseModel mResponse = g.fromJson(response, TextileStoresResponseModel.class);
 

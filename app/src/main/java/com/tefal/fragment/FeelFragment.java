@@ -33,6 +33,7 @@ import com.google.gson.Gson;
 import com.tefal.Models.TailorProductResponse;
 import com.tefal.R;
 import com.tefal.activity.AccessoriesActivity;
+import com.tefal.activity.AccessoryProductDetailsActivity;
 import com.tefal.activity.CartActivity;
 import com.tefal.activity.DaraAbayaActivity;
 import com.tefal.activity.DishDashaProductActivity;
@@ -219,8 +220,15 @@ public class FeelFragment extends Fragment {
                                 Log.e("stores response", response);
 
 
-                                DialogKart dg = new DialogKart(getActivity(),false);
-                                dg.show();
+                                JSONObject jsonObject = null;
+                                try {
+                                    jsonObject = new JSONObject(response);
+                                    String  itemType = jsonObject.getString("item_type");
+                                    DialogKart dg = new DialogKart(FeelFragment.this.getContext(),false,itemType,"");
+                                    dg.show();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
 
                             }

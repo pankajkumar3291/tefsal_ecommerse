@@ -2,11 +2,17 @@ package com.tefal.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,8 +21,13 @@ import android.widget.LinearLayout;
 import com.tefal.Models.CountryModel;
 import com.tefal.R;
 import com.tefal.activity.CartActivity;
+import com.tefal.activity.DaraAbayaActivity;
+import com.tefal.activity.DishDashaProductActivity;
 import com.tefal.activity.TextileDetailActivity;
 import com.tefal.adapter.CountryAdapter;
+import com.tefal.app.TefalApp;
+import com.tefal.fragment.FragmentTextileStore;
+import com.tefal.fragment.TailorTextileChooseFragment;
 
 import java.util.ArrayList;
 
@@ -27,7 +38,7 @@ import java.util.ArrayList;
 public class DialogKart extends Dialog {
 
 
-    public DialogKart(final Context context,boolean isStore) {
+    public DialogKart(final Context context,boolean isStore,String itemType,final String categoryId) {
         super(context);
         this.requestWindowFeature(1);
         this.setContentView(R.layout.dialog_cart_view);
@@ -69,6 +80,16 @@ public class DialogKart extends Dialog {
         btnllChooseStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                if(categoryId.equalsIgnoreCase("1"))
+                {
+
+                    context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+
+                }
+
+
                 dismiss();
             }
         });
@@ -76,6 +97,35 @@ public class DialogKart extends Dialog {
         btnllChooseTailor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(categoryId.equalsIgnoreCase("1"))
+                {
+
+                    TefalApp.getInstance().setWhereFrom("tailor");
+                    context.startActivity(new Intent(context, DishDashaProductActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+
+
+//                    String store_id = TefalApp.getInstance().getStoreId();
+//                    Bundle bundle=new Bundle();
+//                    bundle.putString("store_id", store_id);
+//                    bundle.putString("flag", "dish");
+//                    bundle.putString("fromWhere", "tailor");
+//
+//                    FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+//
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    TailorTextileChooseFragment tailorTextileChooseFragment = new TailorTextileChooseFragment();
+//                    tailorTextileChooseFragment.setArguments(bundle);
+//                    //fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.replace(R.id.fragmentContainer, tailorTextileChooseFragment);
+//                    //
+//                    fragmentTransaction.commit();
+
+                  //  context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+
+                }
+
+
                 dismiss();
             }
         });
@@ -87,6 +137,20 @@ public class DialogKart extends Dialog {
                dismiss();
             }
         });
+
+
+        Log.e("itemType",itemType);
+        if(!itemType.equalsIgnoreCase("DTE"))
+        {
+            llChooseStore.setVisibility(View.GONE);
+            llChooseTailor.setVisibility(View.VISIBLE);
+
+        }
+        else
+        {
+            llChooseStore.setVisibility(View.VISIBLE);
+            llChooseTailor.setVisibility(View.GONE);
+        }
 
     }
 
