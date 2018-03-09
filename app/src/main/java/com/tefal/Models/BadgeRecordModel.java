@@ -10,6 +10,17 @@ public class BadgeRecordModel
     private String total_badge;
     private String mails_badge;
     private String orders_badge;
+
+    public String getCart_badge() {
+        return cart_badge;
+    }
+
+    public void setCart_badge(String cart_badge) {
+        this.cart_badge = cart_badge;
+    }
+
+    private String cart_badge;
+
     public String getTotal_badge ()
     {
         return total_badge;

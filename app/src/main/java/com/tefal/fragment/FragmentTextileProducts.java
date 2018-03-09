@@ -3,14 +3,10 @@ package com.tefal.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,18 +14,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -39,26 +29,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefal.Models.AccessoriesResponse;
 import com.tefal.Models.ColorRecordFromDishdashaFilteration;
-import com.tefal.Models.ColorResponseModel;
-import com.tefal.Models.ColorsRecordModel;
 import com.tefal.Models.CountryRecordModel;
-import com.tefal.Models.CountryResponseModel;
-import com.tefal.Models.DishdashaStoreModel;
 import com.tefal.Models.ProductCountryRecordModel;
 import com.tefal.Models.ProductCountryResponseModel;
-import com.tefal.Models.ProductsResponse;
 import com.tefal.Models.SeasonResponseModel;
 import com.tefal.Models.TextileProductModel;
 import com.tefal.Models.TextileProductResponse;
 import com.tefal.Models.dishdashaFiletrationResponse;
 import com.tefal.R;
-import com.tefal.activity.AccessoriesActivity;
 import com.tefal.activity.DishDashaProductActivity;
-import com.tefal.activity.TextileDetailActivity;
-import com.tefal.adapter.AccessoriesAdapter;
-import com.tefal.adapter.DishdashaAllAdapter;
 import com.tefal.adapter.DishdashaTextileProductAdapter;
 import com.tefal.adapter.FilterColorListAdapter;
 import com.tefal.adapter.FilterCountryListAdapter;
@@ -109,37 +89,34 @@ public class FragmentTextileProducts extends Fragment {
     public static PopupWindow seasonWindow;
     public static PopupWindow countryWindow;
 
-    String store_id,flag;
+    String store_id, flag;
 
-    ArrayList<CountryRecordModel> countryRecordModelArrayList=new ArrayList<CountryRecordModel>();
-    private ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList=new ArrayList<ColorRecordFromDishdashaFilteration>();
-    private List<TextileProductModel> textileProductModelList=new ArrayList<TextileProductModel>();
-    private ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList=new ArrayList<ProductCountryRecordModel>();
+    ArrayList<CountryRecordModel> countryRecordModelArrayList = new ArrayList<CountryRecordModel>();
+    private ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList = new ArrayList<ColorRecordFromDishdashaFilteration>();
+    private List<TextileProductModel> textileProductModelList = new ArrayList<TextileProductModel>();
+    private ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList = new ArrayList<ProductCountryRecordModel>();
     SeasonResponseModel seasonResponseModel;
     String[] record;
 
 
-    String color="";
-    String season="";
-    String country="";
-    String sub_color="";
+    String color = "";
+    String season = "";
+    String country = "";
+    String sub_color = "";
 
 
-   public static AlertDialog alertDialog;
-   public static View popupSeasonView;
+    public static AlertDialog alertDialog;
+    public static View popupSeasonView;
 
-   public static View popupCountryView;
+    public static View popupCountryView;
 
-   public static View getPopupColorView;
+    public static View getPopupColorView;
 
-   public static  RecyclerView filterColorRecyclerView;
-
-
+    public static RecyclerView filterColorRecyclerView;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_textile, container, false);
         ButterKnife.bind(this, v);
@@ -151,15 +128,13 @@ public class FragmentTextileProducts extends Fragment {
                 getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
 
 
-                FilterColorListAdapter filterColorListAdapter=new FilterColorListAdapter(colorsRecordModelArrayList,getActivity());
+                FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, getActivity());
 
-                filterColorRecyclerView =(RecyclerView)getPopupColorView.findViewById(R.id.recycler_view);
+                filterColorRecyclerView = (RecyclerView) getPopupColorView.findViewById(R.id.recycler_view);
 
                 RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
                 filterColorRecyclerView.setLayoutManager(mLayoutManager2);
                 filterColorRecyclerView.setAdapter(filterColorListAdapter);
-
-
 
 
                 colorWindow = new PopupWindow(
@@ -182,14 +157,13 @@ public class FragmentTextileProducts extends Fragment {
 
         text_country.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 LayoutInflater LayoutInflater = getActivity().getLayoutInflater();
                 popupCountryView = LayoutInflater.inflate(R.layout.choose_country_panel, null);
-                RecyclerView recyclerViewCountry=(RecyclerView)popupCountryView.findViewById(R.id.recyclerViewCountry);
+                RecyclerView recyclerViewCountry = (RecyclerView) popupCountryView.findViewById(R.id.recyclerViewCountry);
 
-                FilterCountryListAdapter filterCountryListAdapter=new FilterCountryListAdapter(productCountryRecordModelArrayList,getActivity());
+                FilterCountryListAdapter filterCountryListAdapter = new FilterCountryListAdapter(productCountryRecordModelArrayList, getActivity());
                 RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
                 recyclerViewCountry.setLayoutManager(mLayoutManager2);
                 recyclerViewCountry.setAdapter(filterCountryListAdapter);
@@ -217,13 +191,12 @@ public class FragmentTextileProducts extends Fragment {
 
         text_season.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 popupSeasonView = layoutInflater.inflate(R.layout.choose_season_panel, null);
-                SeasonFilterAdapter seasonFilterAdapter=new SeasonFilterAdapter(record,getActivity(),record.length);
+                SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(record, getActivity(), record.length);
 
-                RecyclerView recyclerViewSeason=(RecyclerView)popupSeasonView.findViewById(R.id.recyclerViewSeason);
+                RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
 
                 //LayoutManager(getActivity(), 3);
@@ -256,21 +229,21 @@ public class FragmentTextileProducts extends Fragment {
         flag = getArguments().getString("flag");
 
 
-        System.out.println("TEST  STORE ID FROM ARG==="+store_id);
-        System.out.println("TEST  STORE ID FROM SINGLETON==="+TefalApp.getInstance().getStoreId());
+        System.out.println("TEST  STORE ID FROM ARG===" + store_id);
+        System.out.println("TEST  STORE ID FROM SINGLETON===" + TefalApp.getInstance().getStoreId());
 
-        color=TefalApp.getInstance().getColor();
-        season=TefalApp.getInstance().getSeason();
-        country=TefalApp.getInstance().getCountry();
-        sub_color=TefalApp.getInstance().getSubColor();
+        color = TefalApp.getInstance().getColor();
+        season = TefalApp.getInstance().getSeason();
+        country = TefalApp.getInstance().getCountry();
+        sub_color = TefalApp.getInstance().getSubColor();
 
         System.out.println("HELLO FROM START");
-        System.out.println("HELLO COLOR=="+color);
-        System.out.println("HELLO SUB COLOR=="+sub_color);
-        System.out.println("HELLO SEAON=="+season);
-        System.out.println("HELLO COUNTRY=="+country);
-        System.out.println("HELLO FLAG=="+TefalApp.getInstance().getFlage());
-        System.out.println("HELLO STORE ID=="+TefalApp.getInstance().getStoreId());
+        System.out.println("HELLO COLOR==" + color);
+        System.out.println("HELLO SUB COLOR==" + sub_color);
+        System.out.println("HELLO SEAON==" + season);
+        System.out.println("HELLO COUNTRY==" + country);
+        System.out.println("HELLO FLAG==" + TefalApp.getInstance().getFlage());
+        System.out.println("HELLO STORE ID==" + TefalApp.getInstance().getStoreId());
 
         WebCallServiceStores();
 
@@ -281,14 +254,11 @@ public class FragmentTextileProducts extends Fragment {
         TefalApp.getInstance().setCountry("");*/
 
 
-
-
         return v;
     }
 
-    public void restartActivity()
-    {
-        Intent intent=new Intent(getActivity(),DishDashaProductActivity.class);
+    public void restartActivity() {
+        Intent intent = new Intent(getActivity(), DishDashaProductActivity.class);
         /*intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
         intent.putExtra("flag",TefalApp.getInstance().getFlage());
         intent.putExtra("store_name",TefalApp.getInstance().getStoreName());*/
@@ -296,14 +266,11 @@ public class FragmentTextileProducts extends Fragment {
         getActivity().finish();
     }
 
-public void showCountryList(View v)
-{
+    public void showCountryList(View v) {
 
 
+    }
 
-
-
-}
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -320,7 +287,7 @@ public void showCountryList(View v)
                         @Override
                         public void onResponse(String response) {
 
-                          // SimpleProgressBar.closeProgress();
+                            // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
@@ -330,8 +297,8 @@ public void showCountryList(View v)
 
                                 if (!mResponse.getStatus().equals("0")) {
 
-                                    textileProductModelList=mResponse.getRecord();
-                                    dishdashaAdapter = new DishdashaTextileProductAdapter(getActivity(), textileProductModelList,store_id,flag);
+                                    textileProductModelList = mResponse.getRecord();
+                                    dishdashaAdapter = new DishdashaTextileProductAdapter(getActivity(), textileProductModelList, store_id, flag);
                                     recycler.setAdapter(dishdashaAdapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -341,18 +308,15 @@ public void showCountryList(View v)
 
                                     // This is for new search request
                                     textNoProduct.setVisibility(View.GONE);
-                                    if(recycler.getVisibility()==View.GONE)
-                                    {
+                                    if (recycler.getVisibility() == View.GONE) {
                                         recycler.setVisibility(View.VISIBLE);
                                     }
 
-                                   // if(textileProductModelList.size()==0)
+                                    // if(textileProductModelList.size()==0)
 
 
-                                }
-                                else
-                                {
-                                   // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                } else {
+                                    // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }
                             httpGetCountryCall();
@@ -370,17 +334,17 @@ public void showCountryList(View v)
 //                    params.put("access_token", session.getToken());
                     params.put("store_id", store_id);
 
-                    System.out.println("STORE ID==="+store_id);
+                    System.out.println("STORE ID===" + store_id);
 
 
-                    System.out.println("Fragment Textile parameter HELLO COLOR=="+color);
-                    System.out.println("Fragment Textile parameter HELLO SUB COLOR=="+sub_color);
-                    System.out.println("Fragment Textile parameter HELLO SEAON=="+season);
-                    System.out.println("Fragment Textile parameter HELLO COUNTRY=="+country);
+                    System.out.println("Fragment Textile parameter HELLO COLOR==" + color);
+                    System.out.println("Fragment Textile parameter HELLO SUB COLOR==" + sub_color);
+                    System.out.println("Fragment Textile parameter HELLO SEAON==" + season);
+                    System.out.println("Fragment Textile parameter HELLO COUNTRY==" + country);
 
 
                     params.put("color", color);
-                    params.put("sub_color",sub_color);
+                    params.put("sub_color", sub_color);
                     params.put("country", country);
                     params.put("season", season);
                     params.put("appUser", "tefsal");
@@ -405,8 +369,8 @@ public void showCountryList(View v)
             surError.printStackTrace();
         }
     }
-    private void httpGetFilterSeasonData()
-    {
+
+    private void httpGetFilterSeasonData() {
         // SimpleProgressBar.showProgress(TextileDetailActivity.this);
         try {
             final String url = Contents.baseURL + "getSeasons";
@@ -417,25 +381,23 @@ public void showCountryList(View v)
                         public void onResponse(String response) {
 
 
-
                             //SimpleProgressBar.closeProgress();
 
                             //System.out.println("SEASONS RESPONSE==="+response);
 
 
-                            if (response != null)
-                            {
-                                try
-                                {
-                                    JSONObject object=new JSONObject(response);
-                                    String status=object.getString("status");
+                            if (response != null) {
+                                try {
+                                    JSONObject object = new JSONObject(response);
 
-                                    if(status.equals("1"))
-                                    {
-                                       // SimpleProgressBar.closeProgress();
-                                        Gson g=new Gson();
-                                        seasonResponseModel=g.fromJson(response,SeasonResponseModel.class);
-                                        record=seasonResponseModel.getRecord();
+                                    Log.e(FragmentTextileProducts.class.getSimpleName(), String.valueOf(object));
+                                    String status = object.getString("status");
+
+                                    if (status.equals("1")) {
+                                        // SimpleProgressBar.closeProgress();
+                                        Gson g = new Gson();
+                                        seasonResponseModel = g.fromJson(response, SeasonResponseModel.class);
+                                        record = seasonResponseModel.getRecord();
 
                                         // This is for new search request
                                         textNoProduct.setVisibility(View.GONE);
@@ -446,22 +408,13 @@ public void showCountryList(View v)
 
 
                                         //filterPatternModelArrayList=dishdishaFilterResponseModel.getPatterns();
-                                    }
-                                    else
-                                    {
+                                    } else {
                                        /* String errors=object.getString("errors");
                                         Toast.makeText(getApplicationContext(),errors,Toast.LENGTH_SHORT).show();*/
                                     }
-                                }
-                                catch (Exception ex)
-                                {
+                                } catch (Exception ex) {
 
                                 }
-
-
-
-
-
 
 
                             }
@@ -473,12 +426,11 @@ public void showCountryList(View v)
                         public void onErrorResponse(VolleyError error) {
 
                             //System.out.println("ERROR==="+error);
-                           // SimpleProgressBar.closeProgress();
+                            // SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
-                protected Map<String, String> getParams()
-                {
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     // params.put("user_id", session.getCustomerId());
                     //params.put("access_token", session.getToken());
@@ -501,13 +453,13 @@ public void showCountryList(View v)
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
-            System.out.println("ERROR==="+ surError);
+            System.out.println("ERROR===" + surError);
 
             surError.printStackTrace();
         }
     }
-    public void httpGetCountryCall()
-    {
+
+    public void httpGetCountryCall() {
         //SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getProductCountries";
@@ -517,31 +469,27 @@ public void showCountryList(View v)
                         @Override
                         public void onResponse(String response) {
 
-                           // SimpleProgressBar.closeProgress();
+                            // SimpleProgressBar.closeProgress();
 
-                            System.out.println("RESPONSE OF COUNTRY==="+response);
+                            System.out.println("RESPONSE OF COUNTRY===" + response);
 
                             if (response != null) {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 ProductCountryResponseModel mResponse = g.fromJson(response, ProductCountryResponseModel.class);
-                                if(mResponse.getStatus().equals("1"))
-                                {
-                                    productCountryRecordModelArrayList=mResponse.getRecord();
+                                if (mResponse.getStatus().equals("1")) {
+                                    productCountryRecordModelArrayList = mResponse.getRecord();
 
-                                    System.out.println("SIZE=============="+productCountryRecordModelArrayList.size());
+                                    System.out.println("SIZE==============" + productCountryRecordModelArrayList.size());
                                     // This is for new search request
                                     textNoProduct.setVisibility(View.GONE);
 
                                     httpGetFilterSeasonData();
 
-                                }
-                                else
-                                {
+                                } else {
 
                                 }
-
 
 
                             }
@@ -559,7 +507,7 @@ public void showCountryList(View v)
 //                    params.put("access_token", session.getToken());
                     params.put("store_id", store_id);
 
-                    System.out.println("STORE ID==="+store_id);
+                    System.out.println("STORE ID===" + store_id);
 
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
@@ -584,8 +532,7 @@ public void showCountryList(View v)
         }
     }
 
-    public void httpGetColorCall()
-    {
+    public void httpGetColorCall() {
         try {
             final String url = Contents.baseURL + "dishdashaFiletration";
 
@@ -594,37 +541,31 @@ public void showCountryList(View v)
                         @Override
                         public void onResponse(String response) {
 
-                             SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
 
-                            System.out.println("RESPONSE OF COUNTRY==="+response);
+                            System.out.println("RESPONSE OF COUNTRY===" + response);
 
                             if (response != null) {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 dishdashaFiletrationResponse mResponse = g.fromJson(response, dishdashaFiletrationResponse.class);
-                                if(mResponse.getStatus().equals("1"))
-                                {
-                                    colorsRecordModelArrayList=mResponse.getColors();
+                                if (mResponse.getStatus().equals("1")) {
+                                    colorsRecordModelArrayList = mResponse.getColors();
 
-                                    if(textileProductModelList.size()==0)
-                                    {
+                                    if (textileProductModelList.size() == 0) {
                                         textNoProduct.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
                                     }
 
 
+                                    System.out.println("RESPONSE SIZE==" + colorsRecordModelArrayList.size());
 
-                                    System.out.println("RESPONSE SIZE=="+colorsRecordModelArrayList.size());
+                                    // httpGetFilterSeasonData();
 
-                                   // httpGetFilterSeasonData();
-
-                                }
-                                else
-                                {
+                                } else {
 
                                 }
-
 
 
                             }
@@ -642,14 +583,12 @@ public void showCountryList(View v)
 //                    params.put("access_token", session.getToken());
 
 
-
-
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("store_id",TefalApp.getInstance().getStoreId());
+                    params.put("store_id", TefalApp.getInstance().getStoreId());
 
-                    System.out.println("STORE ID FOR DIAHSADSHA FITERATION===="+TefalApp.getInstance().getStoreId());
+                    System.out.println("STORE ID FOR DIAHSADSHA FITERATION====" + TefalApp.getInstance().getStoreId());
 
                     Log.e("Tefsal store == ", url + params);
 
@@ -669,6 +608,7 @@ public void showCountryList(View v)
             surError.printStackTrace();
         }
     }
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

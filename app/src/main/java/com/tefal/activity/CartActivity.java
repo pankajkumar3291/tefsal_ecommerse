@@ -1,13 +1,11 @@
 package com.tefal.activity;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,7 +25,6 @@ import com.google.gson.Gson;
 import com.tefal.Models.GetCartRecord;
 import com.tefal.Models.GetCartResponse;
 import com.tefal.R;
-import com.tefal.adapter.DishdashaAllAdapter;
 import com.tefal.adapter.MyCartAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
@@ -35,7 +32,6 @@ import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +43,7 @@ import butterknife.ButterKnife;
  * Created by AC 101 on 11-10-2017.
  */
 
-public class CartActivity extends BaseActivity {
+public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartItemDeletedListener {
 
     @BindView(R.id.header_txt)
     TextView header_txt;
@@ -73,13 +69,17 @@ public class CartActivity extends BaseActivity {
 
     private ImageView cart_item_delete;
 
-   int totalPrice =0;
+    int totalPrice = 0;
 
     GetCartResponse mResponse;
-    boolean isDelete=true;
+    boolean isDelete = true;
 
     private static Tracker mTracker;
     private static final String TAG = "CartActivity";
+
+    public int currentItemsCount = 0;
+
+    MyCartAdapter.OnCartItemDeletedListener onCartItemDeletedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +94,7 @@ public class CartActivity extends BaseActivity {
 
         init();
 
+        onCartItemDeletedListener = this;
 
 
     }
@@ -104,6 +105,11 @@ public class CartActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                if (currentItemsCount == 0) {
+
+                    Toast.makeText(CartActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 // Here you need to flush payment method info....
                 TefalApp.getInstance().setPayment_method_tc("");
                 TefalApp.getInstance().setPayment_method("");
@@ -121,13 +127,10 @@ public class CartActivity extends BaseActivity {
             }
         });
 
-        edit_btn.setOnClickListener(new View.OnClickListener()
-        {
+        edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(isDelete)
-                {
+            public void onClick(View v) {
+                if (isDelete) {
                     /*recycler_view=null;
                     upadteGetRecord2();
 
@@ -137,16 +140,14 @@ public class CartActivity extends BaseActivity {
                     adapter.activateDeleteOption(true);
                     edit_btn.setText("DONE");
                     adapter.notifyDataSetChanged();
-                    isDelete=false;
+                    isDelete = false;
 
 
-                }
-                else
-                {
+                } else {
                     adapter.activateDeleteOption(false);
                     edit_btn.setText("EDIT");
                     adapter.notifyDataSetChanged();
-                    isDelete=true;
+                    isDelete = true;
 
                 }
 
@@ -163,9 +164,8 @@ public class CartActivity extends BaseActivity {
             //=====For getting crash Analytics==================================
 
 
-        }catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
 
@@ -191,7 +191,7 @@ public class CartActivity extends BaseActivity {
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
+                                Log.e(CartActivity.class.getSimpleName(), response);
                                 Gson g = new Gson();
                                 mResponse = g.fromJson(response, GetCartResponse.class);
                                 if (!mResponse.getStatus().equals("0")) {
@@ -201,7 +201,7 @@ public class CartActivity extends BaseActivity {
                                         header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
                                     for (int i = 0; i < mResponse.getRecord().size(); i++) {
-                                        totalPrice+=Integer.parseInt(mResponse.getRecord().get(i).getPrice());
+                                        totalPrice += Integer.parseInt(mResponse.getRecord().get(i).getPrice());
                                         //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
                                     }
                                     amount.setText("TOTAL : " + totalPrice + " KWD");
@@ -210,16 +210,14 @@ public class CartActivity extends BaseActivity {
 
                                     recycler_view.setLayoutManager(layoutManager);
                                     recycler_view.setItemAnimator(new DefaultItemAnimator());
-                                   // upadteGetRecord();
+                                    // upadteGetRecord();
                                     adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
+                                    adapter.setOnCartItemDeletedListener(onCartItemDeletedListener);
                                     recycler_view.setAdapter(adapter);
 
 
-
-                                }
-                                else
-                                {
-                                    Toast.makeText(getApplicationContext(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -232,8 +230,7 @@ public class CartActivity extends BaseActivity {
                         }
                     }) {
                 @Override
-                protected Map<String, String> getParams()
-                {
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("user_id", session.getCustomerId());
                     params.put("access_token", session.getToken());
@@ -260,52 +257,45 @@ public class CartActivity extends BaseActivity {
         }
     }
 
-    public void upadteGetRecord()
-    {
-        for(int i=0; i<mResponse.getRecord().size();i++)
-        {
+    public void upadteGetRecord() {
+        for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
             mResponse.getRecord().get(i).setDelete(false);
             //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT==="+ mResponse.getRecord().get(i).isDelete());
+            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
         }
-       // adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
+        // adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
       /*  adapter=null;
         adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
         recycler_view.setAdapter(adapter);*/
 
     }
 
-    public void upadteGetRecord3()
-    {
-        for(int i=0; i<mResponse.getRecord().size();i++)
-        {
+    public void upadteGetRecord3() {
+        for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
             mResponse.getRecord().get(i).setDelete(false);
             //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT==="+ mResponse.getRecord().get(i).isDelete());
+            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
         }
-         //adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
+        //adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
       /*  adapter=null;
         adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
         recycler_view.setAdapter(adapter);*/
         //adapter.notifyDataSetChanged();
     }
 
-    public void upadteGetRecord2()
-    {
-        for(int i=0; i<mResponse.getRecord().size();i++)
-        {
+    public void upadteGetRecord2() {
+        for (int i = 0; i < mResponse.getRecord().size(); i++) {
             mResponse.getRecord().get(i).setDelete(true);
-            System.out.println("AT SET DELETE VALUE DELETE==="+ mResponse.getRecord().get(i).isDelete());
+            System.out.println("AT SET DELETE VALUE DELETE===" + mResponse.getRecord().get(i).isDelete());
 
         }
         adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
     }
 
-    public void updateUifromAdapter(List<GetCartRecord> storeModels)
-    {
-        Double totalPrice=0.0;
+    public void updateUifromAdapter(List<GetCartRecord> storeModels) {
+        Double totalPrice = 0.0;
         if (mResponse.getRecord().size() <= 1)
             header_txt.setText(mResponse.getRecord().size() + " item in your cart");
         else
@@ -313,17 +303,14 @@ public class CartActivity extends BaseActivity {
 
         for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
-          try
-          {
-              totalPrice=totalPrice+Double.parseDouble(mResponse.getRecord().get(i).getPrice());
-          }
-          catch(Exception ex)
-          {
-                System.out.println("Exception====="+ex);
-          }
+            try {
+                totalPrice = totalPrice + Double.parseDouble(mResponse.getRecord().get(i).getPrice());
+            } catch (Exception ex) {
+                System.out.println("Exception=====" + ex);
+            }
 
 
-           // totalPrice -= Double.valueOf(mResponse.getRecord().get(i).getPrice());
+            // totalPrice -= Double.valueOf(mResponse.getRecord().get(i).getPrice());
         }
         amount.setText("TOTAL : " + totalPrice + "00 KWD");
 
@@ -332,4 +319,15 @@ public class CartActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onCartItemDeleted(int currentCount) {
+
+        currentItemsCount = currentCount;
+
+        if (currentItemsCount == 0) {
+            edit_btn.setVisibility(View.GONE);
+        } else {
+            edit_btn.setVisibility(View.VISIBLE);
+        }
+    }
 }

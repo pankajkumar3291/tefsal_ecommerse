@@ -55,10 +55,22 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     private boolean activate;
 
 
+    public interface OnCartItemDeletedListener {
+        void onCartItemDeleted(int currentCount);
+    }
+
+
+    OnCartItemDeletedListener onCartItemDeletedListener;
+
+    public void setOnCartItemDeletedListener(OnCartItemDeletedListener onCartItemDeletedListener) {
+        this.onCartItemDeletedListener = onCartItemDeletedListener;
+    }
+
+
     public MyCartAdapter(Activity activity, List<GetCartRecord> storeModels) {
         this.activity = activity;
         this.storeModels = storeModels;
-        session=new SessionManager(activity);
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -110,57 +122,53 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        System.out.println("ITEM TYPE=="+storeModels.get(position2).getItem_type());
+        System.out.println("ITEM TYPE==" + storeModels.get(position2).getItem_type());
 
-        if(storeModels.get(position2).getItem_type().equals("DTE"))
-        {
+        if (storeModels.get(position2).getItem_type().equals("DTE")) {
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
-            System.out.println("Image ==="+storeModels.get(position2).getPattern_image());
+            System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
-            holder.text_textile.setText(storeModels.get(position2).getDishdasha_pattern()+" "+storeModels.get(position2).getDishdasha_material());
+            holder.text_textile.setText(storeModels.get(position2).getDishdasha_pattern() + " " + storeModels.get(position2).getDishdasha_material());
             holder.sub_text_textile.setVisibility(GONE);
-           // holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
-            holder.text_size.setText("QTY: "+storeModels.get(position2).getItem_quantity()+" Dishdasha");
-            holder.text_price.setText(storeModels.get(position2).getPrice()+" KWD");
+            // holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
+            holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity() + " Dishdasha");
+            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
         }
-        if(storeModels.get(position2).getItem_type().equals("DB"))
-        {
+        if (storeModels.get(position2).getItem_type().equals("DB")) {
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
-            System.out.println("Image ==="+storeModels.get(position2).getImage());
+            System.out.println("Image ===" + storeModels.get(position2).getImage());
 
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
             holder.sub_text_textile.setVisibility(GONE);
             // holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
-            holder.text_size.setText("SIZE: "+storeModels.get(position2).getItem_quantity());
-            holder.text_price.setText(storeModels.get(position2).getPrice()+" KWD");
+            holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity());
+            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
 
         }
-        if(storeModels.get(position2).getItem_type().equals("A"))
-        {
+        if (storeModels.get(position2).getItem_type().equals("A")) {
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
-            System.out.println("Image ==="+storeModels.get(position2).getStore_image());
+            System.out.println("Image ===" + storeModels.get(position2).getStore_image());
 
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-             holder.sub_text_textile.setVisibility(GONE);
-            holder.text_size.setText("SIZE: "+storeModels.get(position2).getItem_quantity()+" METERS");
-            holder.text_price.setText(storeModels.get(position2).getPrice()+" KWD");
+            holder.sub_text_textile.setVisibility(GONE);
+            holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
         }
-        if(storeModels.get(position2).getItem_type().equals("DTA"))
-        {
+        if (storeModels.get(position2).getItem_type().equals("DTA")) {
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.placeholder_no_image)
@@ -170,10 +178,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
             holder.sub_text_textile.setVisibility(GONE);
-            holder.text_size.setText("QTY: "+storeModels.get(position2).getItem_quantity()+" METERS");
-            holder.text_price.setText(storeModels.get(position2).getTotal_amount()+" KWD");
+            holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity() + " METERS");
+            holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
 
-            System.out.println("Image ==="+storeModels.get(position2).getStore_image());
+            System.out.println("Image ===" + storeModels.get(position2).getStore_image());
         }
 
 
@@ -182,15 +190,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         {
             holder.cart_item_delete.setVisibility(View.VISIBLE);
         }*/
-       if(this.activate)
-       {
-           holder.cart_item_delete.setVisibility(View.VISIBLE);
-       }
-       else
-       {
-           holder.cart_item_delete.setVisibility(GONE);
+        if (this.activate) {
+            holder.cart_item_delete.setVisibility(View.VISIBLE);
+        } else {
+            holder.cart_item_delete.setVisibility(GONE);
 
-       }
+        }
 
         holder.cart_item_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +203,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 System.out.println("CLICKK==");
                 showNamePrompt(position2);
-               // notifyDataSetChanged();
+                // notifyDataSetChanged();
             }
         });
 //        holder.main_layout.setOnClickListener(new View.OnClickListener() {
@@ -221,8 +226,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         LayoutInflater LayoutInflater = activity.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.style_prompt_delete_dailog, null);
 
-        Button dialog_ok_btn=(Button)dialogView .findViewById(R.id.dialog_ok_btn);
-        Button dialog_cancel_btn=(Button)dialogView .findViewById(R.id.dialog_cancel_btn);
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_ok_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_cancel_btn);
 
         /*input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
         input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
@@ -237,13 +242,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 //System.out.println("OK");
                 alertDialog.dismiss();
                 httpDeleteCartItemCall(pos);
-               // WebCallServiceDeletStyle(pos);
+                // WebCallServiceDeletStyle(pos);
 
             }
         });
@@ -256,8 +260,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     }
 
-    public void httpDeleteCartItemCall(final int pos)
-    {
+    public void httpDeleteCartItemCall(final int pos) {
 
         SimpleProgressBar.showProgress(activity);
         try {
@@ -269,31 +272,29 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                         public void onResponse(String response) {
 
 
-                            System.out.println("RESPONSE CART DELETE===="+response.toString());
+                            System.out.println("RESPONSE CART DELETE====" + response.toString());
 
                             // mSessionManager.setStyleStatus("true");
                             SimpleProgressBar.closeProgress();
 
-                            if (response != null)
-                            {
+                            if (response != null) {
                                 // mSessionManager.clearSizes();
                                 Log.e("stores response", response);
-                                try
-                                {
+                                try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    String status=jsonObject.getString("status");
-                                    String message=jsonObject.getString("message");
-                                    if(status.equals("1"))
-                                    {
+                                    String status = jsonObject.getString("status");
+                                    String message = jsonObject.getString("message");
+                                    if (status.equals("1")) {
                                         storeModels.remove(pos);
-                                        notifyDataSetChanged();
-                                        Toast.makeText(activity,message,Toast.LENGTH_SHORT).show();
-                                        ((CartActivity)activity).updateUifromAdapter(storeModels);
+                                        if (onCartItemDeletedListener != null)
+                                            onCartItemDeletedListener.onCartItemDeleted(storeModels.size());
 
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(activity,"Something gone wrong",Toast.LENGTH_SHORT).show();
+                                        notifyDataSetChanged();
+                                        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+                                        ((CartActivity) activity).updateUifromAdapter(storeModels);
+
+                                    } else {
+                                        Toast.makeText(activity, "Something gone wrong", Toast.LENGTH_SHORT).show();
 
                                     }
 
@@ -302,7 +303,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                                     //startActivity(new Intent(getApplicationContext(), MailFragment.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
                                     //finish();
                                 } catch (JSONException e) {
-                                    System.out.println("EX=="+e);
+                                    System.out.println("EX==" + e);
                                     e.printStackTrace();
                                 }
                             }
@@ -311,17 +312,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("cart_item_id",storeModels.get(pos).getCart_item_id());
-                    System.out.println("CART ID=="+storeModels.get(pos).getCart_item_id());
+                    params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
+                    System.out.println("CART ID==" + storeModels.get(pos).getCart_item_id());
                     System.out.println("");
                     params.put("access_token", session.getToken());
+                    params.put("user_id", session.getCustomerId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -348,8 +350,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     public void activateDeleteOption(boolean activate) {
         //this.activate = activate;
-        this.activate=activate;
+        this.activate = activate;
         notifyDataSetChanged(); //need to call it for the child views to be re-created with buttons.
+    }
+
+    public int getCartItemsCount() {
+        return storeModels != null ? storeModels.size() : 0;
     }
 
 }

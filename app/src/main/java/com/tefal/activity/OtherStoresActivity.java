@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
@@ -59,7 +60,7 @@ public class OtherStoresActivity extends BaseActivity {
     ImageButton btn_back;
 
     @BindView(R.id.view_cart_btn)
-    ImageView view_cart_btn;
+    RelativeLayout view_cart_btn;
 
 
     String flag;

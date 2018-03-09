@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +69,7 @@ public class AccessoriesActivity extends BaseActivity {
     ImageButton btn_back;
 
     @BindView(R.id.view_cart_btn)
-    ImageView view_cart_btn;
+    RelativeLayout view_cart_btn;
 
     AccessoriesAdapter accessoriesAdapter;
     SessionManager session;

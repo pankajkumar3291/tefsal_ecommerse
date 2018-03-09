@@ -7,17 +7,36 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.tefal.Models.BadgeRecordModel;
 import com.tefal.R;
 import com.tefal.adapter.PagerStoresAdapter;
 import com.tefal.adapter.PagerTabAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.fragment.FragmentAllStores;
+import com.tefal.utils.Contents;
+import com.tefal.utils.SessionManager;
+import com.tefal.utils.SimpleProgressBar;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,8 +57,14 @@ public class DaraAbayaActivity extends BaseActivity {
     ImageView qr_code_btn;
 
     @BindView(R.id.view_cart_btn)
-    ImageView view_cart_btn;
+    RelativeLayout view_cart_btn;
+
+    @BindView(R.id.total_badge_txt)
+    TextView total_badge_txt;
+
     public static String flag="";
+
+    SessionManager session;
 
 
     @Override
@@ -48,6 +73,8 @@ public class DaraAbayaActivity extends BaseActivity {
         setContentView(R.layout.activity_dara_abaya);
 
         ButterKnife.bind(this);
+
+        session = new SessionManager(this);
 
         setSupportActionBar(toolbar);
        // qr_code_btn.setVisibility(View.VISIBLE);
@@ -108,6 +135,89 @@ public class DaraAbayaActivity extends BaseActivity {
         }
 //        setUpFragment();
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+
+        httpGetBadgesCall();
+
+    }
+
+
+    private void httpGetBadgesCall() {
+        // SimpleProgressBar.showProgress(SendMailActivity.this);
+        try {
+            final String url = Contents.baseURL + "getBadges";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            System.out.println("response==" + response.toString());
+
+
+                           // SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("status");
+                                    if (status.equals("1")) {
+
+                                        String record = jsonObject.getString("record");
+                                        Gson g = new Gson();
+                                        BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
+                                        total_badge_txt.setText(badgeRecordModel.getCart_badge());
+
+
+                                    }
+                                } catch (Exception ex) {
+
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appVersion", "1.1");
+                    params.put("appSecret", "tefsal@123");
+
+                    Log.e("Tefsal tailor == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
 
 
     public  void gotoCart(View v)

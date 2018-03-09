@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,7 +79,7 @@ public class ProductListOtherActivity extends BaseActivity {
     PopupWindow colorWindow;
     String store_id,flag;
     @BindView(R.id.view_cart_btn)
-    ImageView view_cart_btn;
+    RelativeLayout view_cart_btn;
 
     DishdashaTextileOtherProductAdapter dishdashaAdapter;
 
