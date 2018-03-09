@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefal.Models.AccessoriesProductsResponse;
+import com.tefal.Models.BadgeRecordModel;
 import com.tefal.Models.ProductsResponse;
 import com.tefal.Models.TextileProductResponse;
 import com.tefal.R;
@@ -43,6 +44,8 @@ import com.tefal.fragment.FragmentTextileProducts;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,6 +84,10 @@ public class ProductListOtherActivity extends BaseActivity {
     @BindView(R.id.view_cart_btn)
     RelativeLayout view_cart_btn;
 
+    @BindView(R.id.total_badge_txt)
+    TextView total_badge_txt;
+
+
     DishdashaTextileOtherProductAdapter dishdashaAdapter;
 
     SessionManager session;
@@ -91,6 +98,9 @@ public class ProductListOtherActivity extends BaseActivity {
         setContentView(R.layout.activity_product_list_other);
 
         ButterKnife.bind(this);
+
+
+
         view_cart_btn.setVisibility(View.VISIBLE);
         store_id =  getIntent().getStringExtra("store_id");
         flag =  getIntent().getStringExtra("flag");
@@ -105,6 +115,7 @@ public class ProductListOtherActivity extends BaseActivity {
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
 
 
@@ -140,6 +151,90 @@ public class ProductListOtherActivity extends BaseActivity {
             WebCallAccessoriesProducts();
 
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+
+        httpGetBadgesCall();
+
+    }
+
+
+    private void httpGetBadgesCall() {
+        // SimpleProgressBar.showProgress(SendMailActivity.this);
+        try {
+            final String url = Contents.baseURL + "getBadges";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            System.out.println("response==" + response.toString());
+
+
+                            // SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("status");
+                                    if (status.equals("1")) {
+
+                                        String record = jsonObject.getString("record");
+                                        Gson g = new Gson();
+                                        BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
+                                        total_badge_txt.setText(badgeRecordModel.getCart_badge());
+
+
+                                    }
+                                } catch (Exception ex) {
+
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appVersion", "1.1");
+                    params.put("appSecret", "tefsal@123");
+
+                    Log.e("Tefsal tailor == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
+
 
 
 
