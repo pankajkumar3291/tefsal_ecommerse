@@ -97,7 +97,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         {
             holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
         }
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getBio());
         holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
         holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
 

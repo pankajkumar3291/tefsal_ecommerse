@@ -1,5 +1,6 @@
 package com.tefal.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -607,7 +609,7 @@ public class MeasermentActivity extends BaseActivity {
                         break;
                     case 8:
                         ll_customDesign();
-                       // textValue.requestFocus();
+                        // textValue.requestFocus();
                         next_txt.setText("FINISH");
                         back_count--;
                         break;
@@ -725,7 +727,7 @@ public class MeasermentActivity extends BaseActivity {
                         break;
                     case 8:
                         ll_customDesign();
-                      //  textValue.requestFocus();
+                        //  textValue.requestFocus();
                         next_txt.setText("FINISH");
                         count = count + 1;
                         break;
@@ -761,8 +763,7 @@ public class MeasermentActivity extends BaseActivity {
 
                 }
 
-                if(count < 9)
-                {
+                if (count < 9) {
                     showIndividualVideo(count);
                 }
 
@@ -960,7 +961,7 @@ public class MeasermentActivity extends BaseActivity {
 
                 } else {
                     mSessionManager.setKeyCufflink("no");
-                   // cufLinkText.setText("NO CUFFLINK");
+                    // cufLinkText.setText("NO CUFFLINK");
                     cufflink_image.setImageResource(R.drawable.icon_cuff_link_no);
 
                 }
@@ -997,7 +998,7 @@ public class MeasermentActivity extends BaseActivity {
                     /*noOfButtonSpinner.setEnabled(true);
                     mSessionManager.setKeyButtons("0");*/
                 } else {
-                   // buttonHiddenText.setText("HIDDEN");
+                    // buttonHiddenText.setText("HIDDEN");
                     mSessionManager.setKeyButtonsVisibility("no");
 
                     switch (mSessionManager.getKeyButtons()) {
@@ -1032,7 +1033,7 @@ public class MeasermentActivity extends BaseActivity {
                 if (isChecked) {
 
                     //c dfb
-                   // collor_button_hidden_text.setText("VISIBLE");
+                    // collor_button_hidden_text.setText("VISIBLE");
                     mSessionManager.setKeyCollarButtonVisibility("yes");
 
                     switch (mSessionManager.getKeyCollarButton()) {
@@ -1053,7 +1054,7 @@ public class MeasermentActivity extends BaseActivity {
                     // mSessionManager.setKeyCollarButton("3");
                     //collar_btn_switch.setChecked(false);
                 } else {
-                   // collor_button_hidden_text.setText("HIDDEN"); // Chest button
+                    // collor_button_hidden_text.setText("HIDDEN"); // Chest button
                     mSessionManager.setKeyCollarButtonVisibility("no"); // chest button
 
                     switch (mSessionManager.getKeyCollarButton()) {
@@ -1233,7 +1234,7 @@ public class MeasermentActivity extends BaseActivity {
                         // continue with delete
 
 
-                      finish();
+                        finish();
 
                     }
                 })
@@ -1260,13 +1261,13 @@ public class MeasermentActivity extends BaseActivity {
 
         if (mSessionManager.getKeyCufflink().equals("no")) {
             culffSwitch_switch.setChecked(false);
-           // cufLinkText.setText("NO CUFFLINK");
+            // cufLinkText.setText("NO CUFFLINK");
             cufflink_image.setImageResource(R.drawable.icon_cuff_link_no);
             // cufflink_image.setVisibility(View.GONE);
 
         } else {
             culffSwitch_switch.setChecked(true);
-           // cufLinkText.setText("CUFFLINK");
+            // cufLinkText.setText("CUFFLINK");
             cufflink_image.setImageResource(R.drawable.icon_cuff_link_yes);
 
             // cufflink_image.setVisibility(View.VISIBLE);
@@ -1297,7 +1298,7 @@ public class MeasermentActivity extends BaseActivity {
             //.setText("VISIBILE");
         } else {
             button_hidden_switch.setChecked(false);
-           // buttonHiddenText.setText("HIDDEN");
+            // buttonHiddenText.setText("HIDDEN");
         }
 
 
@@ -2191,8 +2192,8 @@ public class MeasermentActivity extends BaseActivity {
 
     private void ll_customDesign() {
         // This line of code is used to hide the soft key while entering the custom screen
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(tv_custom.getWindowToken(), 0);
 
         tv_neck.setVisibility(View.INVISIBLE);
         tv_shoulder.setVisibility(View.INVISIBLE);
@@ -2261,6 +2262,9 @@ public class MeasermentActivity extends BaseActivity {
         ll_sectionOne.setVisibility(View.GONE);
         ll_sectionTwo.setVisibility(View.VISIBLE);
         toolbar_title.setText("9/9");
+
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
 
 
@@ -2975,16 +2979,15 @@ public class MeasermentActivity extends BaseActivity {
     }
 
 
-
-
     // This block is responsible for showing video for individual Item like neck, shoulder etc.....
 
     private void showIndividualVideo(int position) {
 
-        startActivity(new Intent(MeasermentActivity.this,CustomVideoPlayerActivity.class).putExtra("position",position));
+        startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerActivity.class).putExtra("position", position));
 
 
     }
+
     private void showIndividualVideoDialog1(int position) {
 
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);

@@ -2,8 +2,8 @@ package com.tefal.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.afollestad.easyvideoplayer.EasyVideoCallback;
@@ -23,9 +23,12 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
     private String videoLink7 = "http://tefsalkw.com/public/videos/app_video_f_height.3gp";
     private String videoLink8 = "http://tefsalkw.com/public/videos/app_video_b_height.3gp";
 
-    String[] literals = {videoLink, videoLink1,videoLink2, videoLink3,  videoLink4, videoLink5, videoLink6, videoLink7, videoLink8};
+    String[] literals = {videoLink, videoLink1, videoLink2, videoLink3, videoLink4, videoLink5, videoLink6, videoLink7, videoLink8};
 
     int currentVideoIs = 0;
+
+    boolean isFirstTime = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +42,17 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
         player.setCallback(this);
 
         Intent intent = getIntent();
-        Integer positionIs = intent.getIntExtra("position",0);
+        Integer positionIs = intent.getIntExtra("position", 0);
 
+        if (positionIs == 0) {
+            isFirstTime = true;
 
-        if(positionIs < 9)
-        {
+        }
+
+        if (positionIs < 9) {
             String playerUrl = literals[positionIs];
 
-            Log.d("playerUrl",playerUrl);
+            Log.d("playerUrl", playerUrl);
 
             // Sets the source to the HTTP URL held in the TEST_URL variable.
             // To play files, you can use Uri.fromFile(new File("..."))
@@ -92,18 +98,16 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
         currentVideoIs++;
 
 
-
-        Log.d("onCompletion", ""+currentVideoIs);
-
+        Log.d("onCompletion", "" + currentVideoIs);
 
 
-        if (currentVideoIs <= 8) {
-
+       int  maxVideosToPlay = isFirstTime ? 1 : 8;
+        if (currentVideoIs <= maxVideosToPlay) {
 
 
             player.setSource(Uri.parse(literals[currentVideoIs]));
             // Starts or resumes playback.
-          //  player.start();
+            //  player.start();
 
 
         }
@@ -127,8 +131,8 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
     protected void onDestroy() {
         super.onDestroy();
 
-        if(player != null)
-        player.reset();
+        if (player != null)
+            player.reset();
 
     }
 }

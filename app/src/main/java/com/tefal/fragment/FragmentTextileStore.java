@@ -31,6 +31,8 @@ import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -131,7 +133,7 @@ public class FragmentTextileStore extends Fragment {
                     else if (flag.equals("Accessories"))
                         params.put("category", "4");
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e(FragmentTextileProducts.class.getSimpleName(), url + new JSONObject(params));
 
                     return params;
                 }

@@ -100,7 +100,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
                     .error(R.drawable.no_image_placeholder_non_grid)
                     .into(holder.img);
 
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getBio());
         holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
         holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
 
