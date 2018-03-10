@@ -1,6 +1,5 @@
 package com.tefal.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -34,10 +33,10 @@ public class MailDetailActivity extends BaseActivity {
 
 
     //Hold the data of sent mail;
-     SentMailModel sentMailModel=new SentMailModel();
+    SentMailModel sentMailModel = new SentMailModel();
 
     // Hold the data of inbox mail;
-     MailModel mailModel=new MailModel();
+    MailModel mailModel = new MailModel();
 
 
     @Override
@@ -57,21 +56,19 @@ public class MailDetailActivity extends BaseActivity {
         });
 
 
-        if(TefalApp.getInstance().getWhereFromInMail().equals("from sent"))
-        {
-            sentMailModel=(SentMailModel)getIntent().getSerializableExtra("sentMailModel");
+        if (TefalApp.getInstance().getWhereFromInMail().equals("from sent")) {
+            sentMailModel = (SentMailModel) getIntent().getSerializableExtra("sentMailModel");
 
-            txt_mail_heading.setText(sentMailModel.getSubject());
+            txt_mail_heading.setText("Subject: " + sentMailModel.getSubject());
             txt_mail_details.setText(sentMailModel.getMessage());
-            System.out.println("I AM FROM SENT===="+sentMailModel.toString());
+            System.out.println("I AM FROM SENT====" + sentMailModel.toString());
         }
-        if(TefalApp.getInstance().getWhereFromInMail().equals("from inbox"))
-        {
-            mailModel=(MailModel)getIntent().getSerializableExtra("mailModel");
+        if (TefalApp.getInstance().getWhereFromInMail().equals("from inbox")) {
+            mailModel = (MailModel) getIntent().getSerializableExtra("mailModel");
 
-            txt_mail_heading.setText(mailModel.getSubject());
+            txt_mail_heading.setText("Subject: " + mailModel.getSubject());
             txt_mail_details.setText(mailModel.getMessage());
-            System.out.println("I AM FROM INBOX===="+mailModel.toString());
+            System.out.println("I AM FROM INBOX====" + mailModel.toString());
         }
 
     }

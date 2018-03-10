@@ -131,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/sep"
-            android:background="#DADACF"
+            android:background="@color/tabColorBg"
             android:minHeight="?attr/actionBarSize"
             app:tabSelectedTextColor="@color/colorAccent"
             app:tabTextColor="#616161" />

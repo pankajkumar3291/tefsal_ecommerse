@@ -107,8 +107,7 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:padding="10dp"
-                    android:src="@drawable/ic_shopping_cart_black_24dp"
-                    android:translationZ="999dp" />
+                    android:src="@drawable/ic_shopping_cart_black_24dp" />
 
                 <TextView
                     android:id="@+id/total_badge_txt"

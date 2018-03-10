@@ -126,8 +126,8 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         @BindView(R.id.ic_cuflink)
         ImageView ic_cuflink;
 
-        @BindView(R.id.txt_wide_value)
-        TextView txt_wide_value;
+//        @BindView(R.id.txt_wide_value)
+//        TextView txt_wide_value;
 
         @BindView(R.id.txt_narrow_value)
         TextView txt_narrow_value;
@@ -170,8 +170,8 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
             holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
             holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
             holder.txt_badge_coat.setText(record.get(position).getButtons());
-            holder.txt_wide_value.setText(record.get(position).getWide() + "m");
-            holder.txt_narrow_value.setText(record.get(position).getNarrow() + "m");
+           // holder.txt_wide_value.setText(record.get(position).getWide() + "m");
+            holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
 
             //if(record.get(position).getCollar_buttons().equals("0"))
            // {
@@ -206,34 +206,25 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
             }
 
 
-            if(record.get(position).getPen_pocket().equals("no"))
+            if(record.get(position).getPen_pocket().equals("yes"))
             {
-               // holder.pen_pocket.setVisibility(View.INVISIBLE);
-                holder.pen_pocket.setColorFilter(R.color.colorDGray);
-            }
-            else
-            {
-            }
+                holder.pen_pocket.setImageResource(R.drawable.pen_small_selected);
 
-            if(record.get(position).getMobile_pocket().equals("no"))
-            {
-                holder.mobile_pocket.setColorFilter(R.color.colorDGray);
-                //holder.mobile_pocket.setVisibility(View.INVISIBLE);
-            }
-            else
-            {
 
             }
 
-            /*if(record.get(position).getKey_pocket().equals("no"))
+            if(record.get(position).getMobile_pocket().equals("yes"))
             {
-                holder.key_pocket.setColorFilter(R.color.colorDGray);
-            }
-            else
-            {
-                //
-            }*/
 
+                holder.mobile_pocket.setImageResource(R.drawable.phone_small_selected);
+            }
+
+
+            if(record.get(position).getKey_pocket().equals("yes"))
+            {
+
+                holder.key_pocket.setImageResource(R.drawable.key_small_selected);
+            }
 
 
             holder.btn_edit.setOnClickListener(new View.OnClickListener() {

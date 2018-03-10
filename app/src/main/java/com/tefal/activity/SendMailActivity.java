@@ -55,14 +55,12 @@ public class SendMailActivity extends BaseActivity {
     ImageButton btn_back;
 
 
-    @BindView(R.id.btn_snd)
-    Button btn_snd;
+    @BindView(R.id.btn_sndmail)
+    TextView btn_snd;
 
     /*@BindView(R.id.input_layout_email_message)
     TextInputLayout input_layout_email__message;*/
 
-    @BindView(R.id.input_layout_email_title)
-    TextInputLayout input_layout_email_title;
 
     @BindView(R.id.txt_email_message)
     EditText txt_email_message;
@@ -101,7 +99,7 @@ public class SendMailActivity extends BaseActivity {
 
                 emailTitle=txt_email_title.getText().toString().trim();
                 emailMessage=txt_email_message.getText().toString().trim();
-                input_layout_email_title.setError("");
+              //  txt_email_title.setError("");
                 //input_layout_email__message.setError("");
 
                 if( validateMailTitle(emailTitle) && validateMailMessage(emailMessage))
@@ -122,7 +120,7 @@ public class SendMailActivity extends BaseActivity {
     {
         if(emailTitle.equals(""))
         {
-            input_layout_email_title.setError(getString(R.string.invalidEmailTitle));
+            txt_email_title.setError(getString(R.string.invalidEmailTitle));
             requestFocus(txt_email_title);
             return false;
 

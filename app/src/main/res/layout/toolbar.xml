@@ -145,7 +145,7 @@
             android:layout_height="48dp"
             android:padding="10dp"
             android:src="@drawable/ic_shopping_cart_black_24dp"
-            android:translationZ="999dp" />
+            />
 
         <TextView
             android:textSize="@dimen/text_xsmall"

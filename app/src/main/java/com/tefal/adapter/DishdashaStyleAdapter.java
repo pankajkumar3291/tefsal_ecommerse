@@ -159,7 +159,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
         holder.txt_badge_coat.setText(record.get(position).getButtons());
        // holder.txt_wide_value.setText(record.get(position).getWide()+"m");
-        holder.txt_narrow_value.setText(record.get(position).getNarrow()+"m");
+        holder.txt_narrow_value.setText(record.get(position).getMin_meters()+"m");
 
         holder.text_viewStyle.setOnClickListener(new View.OnClickListener() {
             @Override

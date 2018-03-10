@@ -36,5 +36,6 @@
     <color name="colorNavyBlue">#091823</color>
 
     <color name="colorRed">#FFF90404</color>
+    <color name="tabColorBg">#DADACF</color>
 
 </resources>

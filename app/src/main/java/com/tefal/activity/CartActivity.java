@@ -214,7 +214,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                     adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
                                     adapter.setOnCartItemDeletedListener(onCartItemDeletedListener);
                                     recycler_view.setAdapter(adapter);
-
+                                    currentItemsCount = mResponse.getRecord().size();
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();

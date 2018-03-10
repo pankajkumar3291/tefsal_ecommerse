@@ -1,6 +1,7 @@
 package com.tefal.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -154,7 +155,16 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent(SettingsActivity.this, FeedBackActivity.class));
+               // startActivity(new Intent(SettingsActivity.this, FeedBackActivity.class));
+
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:"));
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"info@tefsalkw.com"});
+                // intent.putExtra(Intent.EXTRA_CC, new String[] {"andy@whatever.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Tefsal app feedback");
+                intent.putExtra(Intent.EXTRA_TEXT, "Tell us your positive or negative experience:\n");
+                startActivity(Intent.createChooser(intent, "Tefsal app feedback"));
+
             }
         });
         text_edit_profile.setOnClickListener(new View.OnClickListener() {

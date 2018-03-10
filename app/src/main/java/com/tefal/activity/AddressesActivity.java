@@ -213,7 +213,7 @@ public class AddressesActivity extends BaseActivity {
 
         SimpleProgressBar.showProgress(AddressesActivity.this);
         try {
-            final String url = Contents.baseURL + "getCountries";
+            final String url = Contents.baseURL + "getAllCountries";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {

@@ -75,7 +75,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -117,7 +117,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="222cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -159,7 +159,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="40"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -201,7 +201,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -243,7 +243,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -286,7 +286,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -328,7 +328,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -371,7 +371,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
-                        android:gravity="center"
+                        android:gravity="end"
                         android:text="22cm"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
@@ -471,40 +471,45 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:src="@mipmap/icon_pen_white" />
+                    android:src="@drawable/pen_small" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
                     android:layout_width="@dimen/margin_large"
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
-                    android:src="@mipmap/icon_mobile_white"
+                    android:src="@drawable/phone_small"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true" />
                 <ImageView
                     android:id="@+id/key_pocket"
                     android:layout_width="@dimen/margin_large"
                     android:layout_height="@dimen/margin_large"
-                    android:src="@mipmap/icon_key_pocket"
+                    android:src="@drawable/key_small"
                     android:layout_toRightOf="@+id/mobile_pocket"
                     android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="@dimen/margin_small"
-                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
+                android:gravity="start|center_vertical"
                 android:orientation="horizontal"
                 android:weightSum="100">
 
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="Narrow"
+                    android:gravity="start"
+                    android:paddingLeft="@dimen/activity_small_horizontal_margin"
+                    android:text="3 Meter / Dishdasha"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_small" />
 
@@ -518,34 +523,6 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_small" />
 
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDivider" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="Wide"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_small" />
-
-                <TextView
-                    android:id="@+id/txt_wide_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="22cm"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_small" />
 
             </LinearLayout>
         </LinearLayout>

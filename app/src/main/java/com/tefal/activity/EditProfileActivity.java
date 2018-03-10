@@ -351,9 +351,11 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
         });
 
         initView();
-
+        getCountries();
 
         httpGetCustomerProfileCall();
+
+        inputFocus();
 
     }
 
@@ -660,33 +662,22 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
 
 
     private void initView() {
-        input_first_name.setFocusableInTouchMode(false);
-        input_last_name.setFocusableInTouchMode(false);
-        input_mobile_no.setFocusableInTouchMode(false);
-        input_home_no.setFocusableInTouchMode(false);
-        input_nationality.setFocusableInTouchMode(false);
-        input_dob.setFocusableInTouchMode(false);
-        input_dob.setFocusable(false);
-        input_gender.setFocusableInTouchMode(false);
-        profile_image.setEnabled(false);
-        save_btn.setEnabled(false);
-        LL_nationality.setVisibility(View.GONE);
-        LL_radio_container.setVisibility(View.GONE);
-        input_layout_gender.setVisibility(View.VISIBLE);
+
+
         toolbar_title.setText("PROFILE");
     }
 
     public void getCountries() {
-        SimpleProgressBar.showProgress(EditProfileActivity.this);
+        //SimpleProgressBar.showProgress(EditProfileActivity.this);
         try {
-            final String url = Contents.baseURL + "getCountries";
+            final String url = Contents.baseURL + "getAllCountries";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
 
-                            SimpleProgressBar.closeProgress();
+                          //  SimpleProgressBar.closeProgress();
 
                             System.out.println("RESPONSE==" + response);
                             Log.e("device response", response);
@@ -768,7 +759,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                                 }
                             } catch (JSONException e) {
                                 System.out.println("EX==" + e);
-                                SimpleProgressBar.closeProgress();
+                               // SimpleProgressBar.closeProgress();
                             }
 
                         }
@@ -777,7 +768,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             System.out.println("EX==" + error);
-                            SimpleProgressBar.closeProgress();
+                            //SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -1056,10 +1047,10 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
         input_gender.setFocusableInTouchMode(true);
         save_btn.setEnabled(true);
         profile_image.setEnabled(true);
-        LL_radio_container.setVisibility(View.VISIBLE);
+        //LL_radio_container.setVisibility(View.VISIBLE);
         input_layout_gender.setVisibility(View.GONE);
-        LL_nationality.setVisibility(View.VISIBLE);
-        input_layout_nationality.setVisibility(View.GONE);
+       // LL_nationality.setVisibility(View.VISIBLE);
+        //input_layout_nationality.setVisibility(View.GONE);
 
     }
 

@@ -233,6 +233,8 @@ public class MeasermentActivity extends BaseActivity {
     @BindView(R.id.tip_image)
     ImageView tip_image;
 
+    @BindView(R.id.llFinish)
+    LinearLayout llFinish;
 
     private int min = 1, max = 100, current = 0;
     private SessionManager mSessionManager;
@@ -560,6 +562,15 @@ public class MeasermentActivity extends BaseActivity {
 
                 // count=count+1;
 
+                if(back_count == 8)
+                {
+                    llFinish.setVisibility(VISIBLE);
+                }
+                else
+                {
+                    llFinish.setVisibility(View.GONE);
+                }
+
                 switch (back_count) {
                     case 0:
                         ll_neckDesign();
@@ -629,6 +640,14 @@ public class MeasermentActivity extends BaseActivity {
 
                 String s = "";
 
+                if(count == 8)
+                {
+                    llFinish.setVisibility(VISIBLE);
+                }
+                else
+                {
+                    llFinish.setVisibility(View.GONE);
+                }
 
                 s = textValue.getText().toString();
                 switch (count) {

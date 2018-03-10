@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -211,5 +212,20 @@ public class NotificationUtils {
             e.printStackTrace();
         }
         return 0;
+    }
+
+
+    public  static String getFormattedDate(String inputDateStr)
+    {
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat outputFormat = new SimpleDateFormat("dd/MMM/yyyy");
+
+        Date date = null;
+        try {
+            date = inputFormat.parse(inputDateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return outputFormat.format(date);
     }
 }

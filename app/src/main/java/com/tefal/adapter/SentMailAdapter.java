@@ -14,6 +14,7 @@ import com.tefal.Models.SentMailModel;
 import com.tefal.R;
 import com.tefal.activity.MailDetailActivity;
 import com.tefal.app.TefalApp;
+import com.tefal.utils.NotificationUtils;
 
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class SentMailAdapter extends RecyclerView.Adapter<SentMailAdapter.ViewHo
 
         holder.subject_text.setText(data.get(position2).getSubject());
         holder.mail_text.setText(data.get(position2).getMessage());
-        holder.date_text.setText(data.get(position2).getCreated_at());
+        holder.date_text.setText(NotificationUtils.getFormattedDate(data.get(position2).getCreated_at()));
 
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
