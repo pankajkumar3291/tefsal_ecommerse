@@ -2,17 +2,14 @@ package com.tefal.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,9 +31,10 @@ import com.android.volley.toolbox.Volley;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.AccessoriesRecord;
-import com.tefal.Models.ProductRecord;
+import com.tefal.Models.BadgeRecordModel;
 import com.tefal.R;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
@@ -55,7 +53,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AccessoryProductDetailsActivity extends BaseActivity {
-
 
 
     private AccessoriesRecord accessoriesRecord;
@@ -109,10 +106,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
     private AccessoryProductPagerAdapter accessoryProductPagerAdapter;
 
 
+    @BindView(R.id.view_cart_btn)
+    RelativeLayout view_cart_btn;
+
+    @BindView(R.id.total_badge_txt)
+    TextView total_badge_txt;
+
     /*
     * This dialog is used to show the image which can zoom in zoom out from view pager
     * */
-   Dialog dialog;
+    Dialog dialog;
 
 
     @Override
@@ -126,11 +129,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         mTracker = application.getDefaultTracker();
 
         accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
-        Accessory_product_image =accessoriesRecord.getAccessory_product_image();
+        Accessory_product_image = accessoriesRecord.getAccessory_product_image();
 
 
         setData();
-
 
 
         add_cart_btn.setOnClickListener(new View.OnClickListener() {
@@ -150,20 +152,18 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         });
 
 
-
-        if(Accessory_product_image.length!=0)
-        {
-                accessoryProductPagerAdapter = new AccessoryProductPagerAdapter(AccessoryProductDetailsActivity.this, Accessory_product_image);
-                product_image_viewPager.setAdapter(accessoryProductPagerAdapter);
+        if (Accessory_product_image.length != 0) {
+            accessoryProductPagerAdapter = new AccessoryProductPagerAdapter(AccessoryProductDetailsActivity.this, Accessory_product_image);
+            product_image_viewPager.setAdapter(accessoryProductPagerAdapter);
             //  product_image_viewPager.setOffscreenPageLimit(dishDashaProductPagerAdapter.getCount());
-                product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-                {
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                     // if()
                     //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
 
                 }
+
                 @Override
                 public void onPageSelected(int position) {
                     for (int i = 0; i < dotsCount; i++) {
@@ -180,15 +180,107 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
 
             setUiPageViewController();
-        }
-        else
-        {
+        } else {
             no_image_holder.setVisibility(View.VISIBLE);
             no_image_holder.setImageResource(R.drawable.placeholder_no_image);
         }
 
+        view_cart_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                try {
+                    startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         //System.out.println("SSS=="+accessoriesRecord.getBrandImage());
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.e(DishDashaProductActivity.class.getSimpleName(), "onResume");
+
+        httpGetBadgesCall();
+
+    }
+
+
+    private void httpGetBadgesCall() {
+        // SimpleProgressBar.showProgress(SendMailActivity.this);
+        try {
+            final String url = Contents.baseURL + "getBadges";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            System.out.println("response==" + response.toString());
+
+
+                            SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("status");
+                                    if (status.equals("1")) {
+
+                                        String record = jsonObject.getString("record");
+                                        Gson g = new Gson();
+                                        BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
+                                        total_badge_txt.setText(badgeRecordModel.getCart_badge());
+
+
+                                    }
+                                } catch (Exception ex) {
+
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appVersion", "1.1");
+                    params.put("appSecret", "tefsal@123");
+
+                    Log.e("Tefsal tailor == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
 
     public void gotoCart(View view) {
         try {
@@ -199,8 +291,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
     }
 
-    private void setData()
-    {
+    private void setData() {
 
         txt_title.setText(accessoriesRecord.getProductName());
         subtxt_title.setText(accessoriesRecord.getBrandName());
@@ -208,7 +299,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         color_text.setText(accessoriesRecord.getColor());
         text_desc.setText(accessoriesRecord.getProductDesc());
         text_price.setText("PRICE: " + accessoriesRecord.getPrice() + " KWD");
-     //   Picasso.with(getApplicationContext()).load(accessoriesRecord.getAccessory_product_image()).into(imageView);
+        //   Picasso.with(getApplicationContext()).load(accessoriesRecord.getAccessory_product_image()).into(imageView);
     }
 
     public void httpAddCartCall() {
@@ -231,17 +322,18 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
                             if (response != null) {
                                 SimpleProgressBar.closeProgress();
-                                Log.e("stores response", response);
+                                Log.e("addCart response", response);
                                 JSONObject jsonObject = null;
                                 try {
                                     jsonObject = new JSONObject(response);
-                                    String  itemType = jsonObject.getString("item_type");
-                                    DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this,false,itemType,"");
+                                    String itemType = jsonObject.getString("item_type");
+                                    DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this, false, itemType, "");
                                     dg.show();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
+                                httpGetBadgesCall();
 
 
                             }
@@ -298,24 +390,20 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
     }
 
 
-    public void showImageSingleDialog(String image_url)
-    {
+    public void showImageSingleDialog(String image_url) {
         dialog = new Dialog(AccessoryProductDetailsActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
 
-        ViewPager dialog_viewPager=(ViewPager)dialog.findViewById(R.id.dialog_viewPager);
+        ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
 
-
-
-        AccessoryProductPagerAdapterForDialog accessoryProductPagerAdapterForDialog=new AccessoryProductPagerAdapterForDialog(AccessoryProductDetailsActivity.this,Accessory_product_image);
+        AccessoryProductPagerAdapterForDialog accessoryProductPagerAdapterForDialog = new AccessoryProductPagerAdapterForDialog(AccessoryProductDetailsActivity.this, Accessory_product_image);
 
         dialog_viewPager.setAdapter(accessoryProductPagerAdapterForDialog);
         dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 
             }
@@ -343,15 +431,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         dialog.show();
 
 
-
-
-
     }
 
 
-
-    public class AccessoryProductPagerAdapter extends PagerAdapter
-    {
+    public class AccessoryProductPagerAdapter extends PagerAdapter {
         Context context;
         String[] img;
         LayoutInflater layoutInflater;
@@ -360,7 +443,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         public AccessoryProductPagerAdapter(Context context, String[] img) {
             this.context = context;
             this.img = img;
-            System.out.println("IMAGE COUNT======"+img.length);
+            System.out.println("IMAGE COUNT======" + img.length);
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -371,28 +454,25 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout)object;
+            return view == (LinearLayout) object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
 
-            final ImageView imageView = (ImageView) itemView.findViewById(R.id.zaara);
+            final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
 
-            System.out.println("IMAGE   OF PRODUCT ===="+img[position]);
+            System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
             Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    try
-                    {
+                    try {
                         showImageSingleDialog(img[position]);
-                    }
-                    catch(Exception ex)
-                    {
-                        Log.d("Error=",ex.fillInStackTrace().toString()) ;
+                    } catch (Exception ex) {
+                        Log.d("Error=", ex.fillInStackTrace().toString());
 
                     }
 
@@ -414,8 +494,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
     private void setUiPageViewController() {
 
         dotsCount = accessoryProductPagerAdapter.getCount();
-        if(dotsCount!=0)
-        {
+        if (dotsCount != 0) {
             dots = new ImageView[dotsCount];
 
             for (int i = 0; i < dotsCount; i++) {
@@ -431,18 +510,15 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
                 viewPagerCountDots.addView(dots[i], params);
             }
             dots[0].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-        }
-        else
-        {
+        } else {
             //do nothing
         }
 
-        System.out.println("COUNT======"+dotsCount);
+        System.out.println("COUNT======" + dotsCount);
 
     }
 
-    public class AccessoryProductPagerAdapterForDialog extends PagerAdapter
-    {
+    public class AccessoryProductPagerAdapterForDialog extends PagerAdapter {
         Context context;
         String[] img;
         LayoutInflater layoutInflater;
@@ -451,7 +527,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         public AccessoryProductPagerAdapterForDialog(Context context, String[] img) {
             this.context = context;
             this.img = img;
-            System.out.println("IMAGE COUNT======"+img.length);
+            System.out.println("IMAGE COUNT======" + img.length);
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -462,14 +538,14 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout)object;
+            return view == (LinearLayout) object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
-           final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
-           // final ImageView imageView = (ImageView) itemView.findViewById(R.id.zaara);
+            final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
+            // final ImageView imageView = (ImageView) itemView.findViewById(R.id.zaara);
 
 
            /* PhotoViewAttacher photoAttacher;
@@ -477,14 +553,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
             photoAttacher.update();*/
 
 
-            System.out.println("IMAGE   OF PRODUCT ===="+img[position]);
+            System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
             Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
 
-                     dialog.dismiss();
+                    dialog.dismiss();
                     System.out.println("ON CLICK ====");
                 }
             });

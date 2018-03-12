@@ -20,9 +20,6 @@ class SignupThankYouActivity : AppCompatActivity() {
 
         txtStatus.text = "We have sent an activation link to your email address "+email+ ". Please activate your account to login."
 
-
-
-
         buttonLogin.setOnClickListener {
 
 

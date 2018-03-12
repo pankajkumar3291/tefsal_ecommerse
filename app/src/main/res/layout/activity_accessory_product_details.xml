@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/RR_toolbar"
-        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:padding="10dp">
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@color/colorPrimary">
+
         <ImageView
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/ic_left_arrow" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/back_btn"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:gravity="center">
+            android:layout_toRightOf="@+id/back_btn"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/txt_title"
                 android:layout_width="210dp"
@@ -43,60 +49,102 @@
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold"
                 autofit:minTextSize="10sp" />
+
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/subtxt_title"
                 android:layout_width="230dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
                 android:layout_below="@+id/txt_title"
                 android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
                 android:text="Casual daraa for dinner"
                 android:textColor="@color/colorBlack"
                 android:textSize="12sp"
-                autofit:minTextSize="8sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                autofit:minTextSize="8sp" />
         </LinearLayout>
+
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:id="@+id/qr_code_btn"
-            android:layout_toLeftOf="@+id/view_cart_btn"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:visibility="gone"
-            android:background="@drawable/qr_code_image" />
-        <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/view_cart_btn"
-            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/view_cart_btn"
+            android:background="@drawable/qr_code_image"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/view_cart_btn1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_shopping_cart_black_24dp"
             android:onClick="gotoCart"
-            android:background="@drawable/ic_shopping_cart_black_24dp" />
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/view_cart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
+            android:onClick="gotoCart"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/header_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_shopping_cart_black_24dp" />
+
+            <TextView
+                android:id="@+id/total_badge_txt"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/header_logo"
+                android:background="@drawable/badge_yellow"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_xsmall" />
+
+
+        </RelativeLayout>
+
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/RR__viewpagerHolder"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_below="@+id/RR_toolbar"
-        android:id="@+id/RR__viewpagerHolder">
+        android:background="@color/tabColorBg">
+
         <android.support.v4.view.ViewPager
+            android:id="@+id/product_image_viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/product_image_viewPager">
-        </android.support.v4.view.ViewPager>
+            android:layout_height="match_parent" />
+
         <ImageView
+            android:id="@+id/no_image_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:id="@+id/no_image_holder"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#90000000"/>
+            android:visibility="gone" />
+
+
         <RelativeLayout
             android:id="@+id/viewPagerIndicator"
             android:layout_width="match_parent"
@@ -106,6 +154,7 @@
             android:layout_marginTop="-20dp"
             android:gravity="center"
             android:padding="4dp">
+
             <LinearLayout
                 android:id="@+id/viewPagerCountDots"
                 android:layout_width="match_parent"
@@ -135,8 +184,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/RR__viewpagerHolder"
-        android:layout_above="@+id/LL_add_cart_region">
+        android:layout_above="@+id/LL_add_cart_region"
+        android:layout_below="@+id/RR__viewpagerHolder">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -200,8 +249,6 @@
                     android:layout_height="match_parent" />
 
 
-
-
                 <!--<LinearLayout
                     android:id="@+id/size"
                     android:layout_width="match_parent"
@@ -254,16 +301,16 @@
 
                 </LinearLayout>-->
 
-               <!-- <TextView
-                    android:id="@+id/sizeGuide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/size"
-                    android:layout_marginTop="20dp"
-                    android:text="View Size Guide"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_normal" />-->
+                <!-- <TextView
+                     android:id="@+id/sizeGuide"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/size"
+                     android:layout_marginTop="20dp"
+                     android:text="View Size Guide"
+                     android:layout_centerHorizontal="true"
+                     android:textColor="@color/colorBlack"
+                     android:textSize="@dimen/text_normal" />-->
 
 
                 <RelativeLayout
@@ -274,6 +321,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -292,14 +340,15 @@
                         android:id="@+id/size_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="32"
-                        android:layout_marginRight="20dp"
-                        android:textColor="@color/colorDGray"
                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:text="32"
+                        android:textColor="@color/colorDGray"
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/colorAvailable"
                     android:layout_width="match_parent"
@@ -327,14 +376,15 @@
                         android:id="@+id/color_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PINK  BAIGE"
-                        android:layout_marginRight="20dp"
-                        android:textColor="@color/colorDGray"
                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:text="PINK  BAIGE"
+                        android:textColor="@color/colorDGray"
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
 
                 </RelativeLayout>
+
                 <LinearLayout
                     android:id="@+id/product"
                     android:layout_width="wrap_content"
@@ -342,12 +392,14 @@
                     android:layout_below="@+id/colorAvailable"
                     android:orientation="vertical"
                     android:padding="20dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Product Description"
                         android:textSize="@dimen/text_mid"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/text_descp"
                         android:layout_width="wrap_content"
@@ -355,16 +407,18 @@
                         android:text="descp"
                         android:textSize="@dimen/text_normal" />
                 </LinearLayout>
-                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
 
     </ScrollView>
+
     <LinearLayout
+        android:id="@+id/LL_add_cart_region"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/tabColorBg"
         android:gravity="center"
-        android:id="@+id/LL_add_cart_region"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -379,7 +433,10 @@
         <Button
             android:id="@+id/add_cart_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:text="ADD TO CART"

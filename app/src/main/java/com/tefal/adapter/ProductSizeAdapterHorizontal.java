@@ -1,7 +1,9 @@
 package com.tefal.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import com.tefal.R;
 import com.tefal.activity.ZaaraDaraaActivity;
 import com.tefal.app.TefalApp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,31 +26,28 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 12/28/2017.
  */
 
-public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSizeAdapterHorizontal.ViewHolder>
-{
+public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSizeAdapterHorizontal.ViewHolder> {
 
     private List<ProductSizes> productSizesList;
     private Activity activity;
 
+    ArrayList<String> colorPickerArray = new ArrayList<>();
 
 
+    public ProductSizeAdapterHorizontal(List<ProductSizes> productSizesList, Activity activity) {
+        this.activity = activity;
+        this.productSizesList = productSizesList;
+        TefalApp.getInstance().setPaintOverSizeText("paint");
 
+        System.out.println("SIZE=======" + productSizesList.size());
 
+        fillColorPickerList();
 
-   public ProductSizeAdapterHorizontal(List<ProductSizes> productSizesList,Activity activity)
-   {
-       this.activity= activity;
-       this.productSizesList=productSizesList;
-       TefalApp.getInstance().setPaintOverSizeText("paint");
-
-       System.out.println("SIZE======="+productSizesList.size());
-
-   }
+    }
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.size_item, parent, false);
         return new ProductSizeAdapterHorizontal.ViewHolder(v);
@@ -55,41 +55,41 @@ public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSi
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position)
-    {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        System.out.println("NISSAN==="+TefalApp.getInstance().getPaintOverSizeText());
+        System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
         holder.sizeText.setText(productSizesList.get(position).getSize());
-        if(position==TefalApp.getInstance().getPosition())
-        {
+        GradientDrawable bgDrawable = (GradientDrawable) holder.sizeText.getBackground();
+        bgDrawable.setColor(Color.parseColor((colorPickerArray.get(position))));
 
-                holder.sizeText.setPaintFlags( holder.sizeText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorBlack));
+        if (position == TefalApp.getInstance().getPosition()) {
 
-                //Communaction channel with ZaraaDaraaActivity================================
-
-                ZaaraDaraaActivity.text_price.setText("PRICE : "+productSizesList.get(position).getPrice()+" KWD");
-                ZaaraDaraaActivity.stockQuantity.setText(productSizesList.get(position).getQuantity());
-                ZaaraDaraaActivity.meter_value.setText("1");
-                ZaaraDaraaActivity.price= Integer.parseInt(productSizesList.get(position).getPrice());
-                ZaaraDaraaActivity.meter=1;
+           // holder.sizeText.setPaintFlags(holder.sizeText.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
 
 
-                //TefalApp.getInstance().setPaintOverSizeText("");
 
-        }
-        else
-        {
+            //Communaction channel with ZaraaDaraaActivity================================
 
-                holder.sizeText.setPaintFlags( holder.sizeText.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
+            ZaaraDaraaActivity.text_price.setText("PRICE : " + productSizesList.get(position).getPrice() + " KWD");
+            ZaaraDaraaActivity.stockQuantity.setText(productSizesList.get(position).getQuantity());
+            ZaaraDaraaActivity.meter_value.setText("1");
+            ZaaraDaraaActivity.price = Integer.parseInt(productSizesList.get(position).getPrice());
+            ZaaraDaraaActivity.meter = 1;
+
+
+            //TefalApp.getInstance().setPaintOverSizeText("");
+
+        } else {
+
+           // holder.sizeText.setPaintFlags(holder.sizeText.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorBlack));
 
         }
 
         holder.sizeText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 TefalApp.getInstance().setPosition(position);
                 notifyDataSetChanged();
@@ -108,8 +108,7 @@ public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSi
         return productSizesList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder
-    {
+    class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.sizeText)
         TextView sizeText;
 
@@ -118,4 +117,16 @@ public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSi
             ButterKnife.bind(this, itemView);
         }
     }
+
+    private void fillColorPickerList() {
+
+        colorPickerArray.add("#FF4081");
+        colorPickerArray.add("#303F9F");
+        colorPickerArray.add("#3F51B5");
+        colorPickerArray.add("#303F9F");
+        colorPickerArray.add("#FF4081");
+
+
+    }
+
 }

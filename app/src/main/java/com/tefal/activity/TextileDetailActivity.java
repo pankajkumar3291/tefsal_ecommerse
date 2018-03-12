@@ -1163,6 +1163,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
 
+
                             }
                         }
                     },

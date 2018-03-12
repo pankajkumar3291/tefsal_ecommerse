@@ -2,37 +2,26 @@ package com.tefal.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,19 +36,14 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.BadgeRecordModel;
-import com.tefal.Models.ProductDaraAbayaResponse;
 import com.tefal.Models.ProductMeasurement;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
-import com.tefal.Models.TailorStoresResponseModel;
 import com.tefal.R;
-import com.tefal.adapter.DishdashaTailorAdapter;
-import com.tefal.adapter.DishdashaTextileProductAdapter;
 import com.tefal.adapter.ProductSizeAdapterHorizontal;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
-import com.tefal.fragment.HomeFragment;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -67,19 +51,16 @@ import com.tefal.utils.SimpleProgressBar;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-//import android.widget.RelativeLayout.LayoutParams;
 
-import android.widget.LinearLayout.LayoutParams;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import uk.co.senab.photoview.PhotoViewAttacher;
+
+//import android.widget.RelativeLayout.LayoutParams;
 
 public class ZaaraDaraaActivity extends BaseActivity {
 
@@ -142,7 +123,6 @@ public class ZaaraDaraaActivity extends BaseActivity {
     ImageView less_btn;
 
 
-
     @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
 
@@ -154,9 +134,8 @@ public class ZaaraDaraaActivity extends BaseActivity {
     TextView total_badge_txt;
 
 
-
     int amount;
-    String sizeFlage="";
+    String sizeFlage = "";
     String sizeGuideResponseHtml;
 
     //This member variable used in ProductSizeAdapterHorizontal adapter
@@ -167,15 +146,14 @@ public class ZaaraDaraaActivity extends BaseActivity {
     public static TextView meter_value;
 
 
-
     SessionManager session;
     public ProductRecord productRecord;
     public static List<ProductMeasurement> productMeasurementList;
-    private List<ProductSizes> productSizesList=new ArrayList<ProductSizes>();
+    private List<ProductSizes> productSizesList = new ArrayList<ProductSizes>();
     private static Tracker mTracker;
     private static final String TAG = "ZaaraDaraaActivity";
     ProductSizeAdapterHorizontal productSizeAdapterHorizontal;
-    private HashMap<String,String> sizePriceMap;
+    private HashMap<String, String> sizePriceMap;
 
 
     /*
@@ -192,23 +170,22 @@ public class ZaaraDaraaActivity extends BaseActivity {
         ButterKnife.bind(this);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        sizePriceMap=new HashMap<String, String>();
+        sizePriceMap = new HashMap<String, String>();
         productRecord = (ProductRecord) bundle.getSerializable("productRecords");
-        sizeGuideResponseHtml=productRecord.getMeasurements();
-        productSizesList=productRecord.getSizes();
+        sizeGuideResponseHtml = productRecord.getMeasurements();
+        productSizesList = productRecord.getSizes();
 
-        text_price=(TextView)findViewById(R.id.text_price);
-        stockQuantity=(TextView)findViewById(R.id.stockQuantity);
-        meter_value=(TextView)findViewById(R.id.meter_value);
+        text_price = (TextView) findViewById(R.id.text_price);
+        stockQuantity = (TextView) findViewById(R.id.stockQuantity);
+        meter_value = (TextView) findViewById(R.id.meter_value);
 
 
-
-        System.out.println("sizeGuideResponseHtml==="+sizeGuideResponseHtml);
-      //  amount=meter * Double.parseDouble(productRecord.get)
+        System.out.println("sizeGuideResponseHtml===" + sizeGuideResponseHtml);
+        //  amount=meter * Double.parseDouble(productRecord.get)
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
-       // productMeasurementList=productRecord.getMeasurements();
+        // productMeasurementList=productRecord.getMeasurements();
 
         text_descp.setText(productRecord.getProduct_desc());
         txt_title.setText(productRecord.getProduct_name());
@@ -220,23 +197,21 @@ public class ZaaraDaraaActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-               // Toast.makeText(getApplicationContext(),"Hi",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(),"Hi",Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(ZaaraDaraaActivity.this,SizeGuideActivirty.class));
-               try {
-                   Intent intent = new Intent(ZaaraDaraaActivity.this, SizeGuideActivirty.class);
-                   Bundle bundle=new Bundle();
-                   bundle.putString("sizeGuideResponseHtml",sizeGuideResponseHtml);
+                try {
+                    Intent intent = new Intent(ZaaraDaraaActivity.this, SizeGuideActivirty.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
 
-                   intent.putExtras(bundle);
+                    intent.putExtras(bundle);
 
-                   //intent.putExtra("sizeGuideResponseHtml",sizeGuideResponseHtml);
+                    //intent.putExtra("sizeGuideResponseHtml",sizeGuideResponseHtml);
 
-                   startActivity(intent);
-               }
-               catch (Exception ex)
-               {
-                   System.out.println("Error=="+ex);
-               }
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    System.out.println("Error==" + ex);
+                }
 
             }
         });
@@ -246,12 +221,12 @@ public class ZaaraDaraaActivity extends BaseActivity {
                 WebCallServiceAddCart();
 
 
+
             }
         });
 
         LL_continer.setVisibility(View.GONE);
         scrollView.setVisibility(View.GONE);
-
 
 
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -264,28 +239,27 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                    meter++;
-                    if(meter>=0 && meter<=10)
-                    {
-                        amount=meter* price;
-                        text_price.setText("PRICE : "+amount+" KWD");
-                        meter_value.setText(""+meter);
+            public void onClick(View v) {
+                meter++;
+                if (meter >= 0 && meter <= 10) {
+                    amount = meter * price;
+                    text_price.setText("PRICE : " + amount + " KWD");
+                    meter_value.setText("" + meter);
 
-                    }
+                }
 
             }
 
         });
         less_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                    if(meter>1)
-                    {
-                        meter--;amount=meter*price;text_price.setText("PRICE : "+amount+" KWD");meter_value.setText(""+meter);
-                    }
+            public void onClick(View v) {
+                if (meter > 1) {
+                    meter--;
+                    amount = meter * price;
+                    text_price.setText("PRICE : " + amount + " KWD");
+                    meter_value.setText("" + meter);
+                }
             }
         });
 
@@ -299,7 +273,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -376,12 +350,11 @@ public class ZaaraDaraaActivity extends BaseActivity {
     }
 
 
-    private void initView()
-    {
+    private void initView() {
         LL_continer.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
 
-        productSizeAdapterHorizontal=new ProductSizeAdapterHorizontal(productSizesList,ZaaraDaraaActivity.this);
+        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontal(productSizesList, ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
 
@@ -393,8 +366,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
         // mainViewPager.setOffscreenPageLimit(adapter.getCount());
         mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-            {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 // if()
                 //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
 
@@ -423,7 +395,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
         Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
         mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-         SimpleProgressBar.showProgress(this);
+        SimpleProgressBar.showProgress(this);
         try {
             final String url = Contents.baseURL + "addCart";
 
@@ -432,25 +404,26 @@ public class ZaaraDaraaActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) {
 
-                              SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
                                 Log.e("stores response", response);
 
 
-                                System.out.println("ADD CART RESPONSE===="+response);
+                                System.out.println("ADD CART RESPONSE====" + response);
 
                                 JSONObject jsonObject = null;
                                 try {
                                     jsonObject = new JSONObject(response);
-                                    String  itemType = jsonObject.getString("item_type");
-                                    DialogKart dg = new DialogKart(ZaaraDaraaActivity.this,false,itemType,"");
+                                    String itemType = jsonObject.getString("item_type");
+                                    DialogKart dg = new DialogKart(ZaaraDaraaActivity.this, false, itemType, "");
                                     dg.show();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
+                                httpGetBadgesCall();
 
                             }
                         }
@@ -466,7 +439,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
                     Map<String, String> params = new HashMap<String, String>();
 
 
-                    System.out.println("QUANTITY===="+meter_value.getText());
+                    System.out.println("QUANTITY====" + meter_value.getText());
                     params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
                     try {
@@ -496,21 +469,21 @@ public class ZaaraDaraaActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
+
     public JSONArray getItems(ProductRecord productRecord) throws JSONException {
 
         JSONArray arry = new JSONArray();
-        JSONObject obj  = new JSONObject();
-        obj.put("product_id",productRecord.getTefsal_product_id());
-        obj.put("item_id",productRecord.getAttribute_id());
-        obj.put("item_quantity",meter_value.getText());
+        JSONObject obj = new JSONObject();
+        obj.put("product_id", productRecord.getTefsal_product_id());
+        obj.put("item_id", productRecord.getAttribute_id());
+        obj.put("item_quantity", meter_value.getText());
 
         arry.put(obj);
         return arry;
     }
 
 
-
-    private void    setUiPageViewController() {
+    private void setUiPageViewController() {
 
         dotsCount = adapter.getCount();
         dots = new ImageView[dotsCount];
@@ -531,8 +504,6 @@ public class ZaaraDaraaActivity extends BaseActivity {
     }
 
 
-
-
     public class MainPagerAdapter extends PagerAdapter {
         Context context;
         List<String> img;
@@ -542,7 +513,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
         public MainPagerAdapter(Context context, List<String> img) {
             this.context = context;
             this.img = img;
-          //  System.out.println("Image=="+img.size());
+            //  System.out.println("Image=="+img.size());
             layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -553,14 +524,14 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout)object;
+            return view == (LinearLayout) object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
 
-            ImageView imageView = (ImageView) itemView.findViewById(R.id.zaara);
+            PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
 
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -571,15 +542,12 @@ public class ZaaraDaraaActivity extends BaseActivity {
                     System.out.println("POSITION==="+position);
                     System.out.println();
 */
-                            try
-                            {
-                                showImageSingleDialog(img.get(position));
-                            }
-                            catch(Exception ex)
-                            {
-                              Log.d("Error=",ex.fillInStackTrace().toString()) ;
+                    try {
+                        showImageSingleDialog(img.get(position));
+                    } catch (Exception ex) {
+                        Log.d("Error=", ex.fillInStackTrace().toString());
 
-                            }
+                    }
 
                    /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
 
@@ -597,52 +565,51 @@ public class ZaaraDaraaActivity extends BaseActivity {
             container.removeView((LinearLayout) object);
         }
     }
-    public void gotoCart(View v)
-    {
-            Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-            mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
-            mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        startActivity(new Intent(ZaaraDaraaActivity.this,CartActivity.class));
+    public void gotoCart(View v) {
+        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
+        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        startActivity(new Intent(ZaaraDaraaActivity.this, CartActivity.class));
 
     }
 
     public void showImageSingleDialog(String image_url) {
-         dialog = new Dialog(ZaaraDaraaActivity.this);
+        dialog = new Dialog(ZaaraDaraaActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
 
 
-        ViewPager dialog_viewPager=(ViewPager)dialog.findViewById(R.id.dialog_viewPager);
+        ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
 
-            MainPagerAdapterForDialog mainPagerAdapterForDialog=new MainPagerAdapterForDialog(ZaaraDaraaActivity.this,productRecord.getProduct_images());
-            dialog_viewPager.setAdapter(mainPagerAdapterForDialog);
-            dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-                {
+        MainPagerAdapterForDialog mainPagerAdapterForDialog = new MainPagerAdapterForDialog(ZaaraDaraaActivity.this, productRecord.getProduct_images());
+        dialog_viewPager.setAdapter(mainPagerAdapterForDialog);
+        dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
 
-                }
+            }
 
-                @Override
-                public void onPageSelected(int position) {
+            @Override
+            public void onPageSelected(int position) {
                   /*  for (int i = 0; i < dotsCount; i++) {
                         dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
                     }
                     dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));*/
-                }
+            }
 
-                @Override
-                public void onPageScrollStateChanged(int state) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
-                }
-            });
+            }
+        });
 
 
-            // setUiPageViewController();
-      //  }
+        // setUiPageViewController();
+        //  }
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -656,8 +623,6 @@ public class ZaaraDaraaActivity extends BaseActivity {
         });
 
     }
-
-
 
 
     public class MainPagerAdapterForDialog extends PagerAdapter {
@@ -680,30 +645,27 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout)object;
+            return view == (LinearLayout) object;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
-          // LinearLayout LL_pager_holder=(LinearLayout) itemView.findViewById(R.id.LL_pager_holder);
+            // LinearLayout LL_pager_holder=(LinearLayout) itemView.findViewById(R.id.LL_pager_holder);
             final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
 
-            try
-            {
+            try {
                /* PhotoViewAttacher photoAttacher;
                 photoAttacher= new PhotoViewAttacher(imageView);
                 photoAttacher.update();*/
-            }catch(Exception ex)
-            {
+            } catch (Exception ex) {
 
             }
 
 
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     dialog.dismiss();
 
                    /* Toast.makeText(context, "HI", Toast.LENGTH_SHORT).show();

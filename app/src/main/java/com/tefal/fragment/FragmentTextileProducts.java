@@ -513,7 +513,7 @@ public class FragmentTextileProducts extends Fragment {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e(FragmentTextileProducts.class.getSimpleName(), url + new JSONObject(params) );
 
                     return params;
                 }
