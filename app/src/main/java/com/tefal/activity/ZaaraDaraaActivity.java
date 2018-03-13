@@ -30,6 +30,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -62,24 +68,22 @@ import butterknife.ButterKnife;
 
 //import android.widget.RelativeLayout.LayoutParams;
 
-public class ZaaraDaraaActivity extends BaseActivity {
+public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     private int dotsCount;
 
     private ImageView[] dots;
 
-    MainPagerAdapter adapter;
 
     @BindView(R.id.scrollView)
     ScrollView scrollView;
 
-    @BindView(R.id.LL_continer)
-    LinearLayout LL_continer;
+
     @BindView(R.id.back_btn)
     ImageView back_btn;
 
     @BindView(R.id.mainViewPager)
-    ViewPager mainViewPager;
+    SliderLayout mainViewPager;
 
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
@@ -221,11 +225,10 @@ public class ZaaraDaraaActivity extends BaseActivity {
                 WebCallServiceAddCart();
 
 
-
             }
         });
 
-        LL_continer.setVisibility(View.GONE);
+      //  LL_continer.setVisibility(View.GONE);
         scrollView.setVisibility(View.GONE);
 
 
@@ -351,7 +354,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
 
     private void initView() {
-        LL_continer.setVisibility(View.GONE);
+       // LL_continer.setVisibility(View.GONE);
         scrollView.setVisibility(View.VISIBLE);
 
         productSizeAdapterHorizontal = new ProductSizeAdapterHorizontal(productSizesList, ZaaraDaraaActivity.this);
@@ -361,32 +364,36 @@ public class ZaaraDaraaActivity extends BaseActivity {
         TefalApp.getInstance().setPosition(0);
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
 
-        adapter = new MainPagerAdapter(ZaaraDaraaActivity.this, productRecord.getProduct_images());
-        mainViewPager.setAdapter(adapter);
-        // mainViewPager.setOffscreenPageLimit(adapter.getCount());
-        mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // if()
-                //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
 
-            }
+        mainViewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+        mainViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        mainViewPager.setCustomAnimation(new DescriptionAnimation());
+        mainViewPager.setDuration(5000);
+        mainViewPager.addOnPageChangeListener(this);
 
-            @Override
-            public void onPageSelected(int position) {
-                for (int i = 0; i < dotsCount; i++) {
-                    dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-                }
-                dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-            }
+        List<String> stringList = productRecord.getProduct_images();
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
+        for (String imgUrl : stringList) {
 
-            }
-        });
-        setUiPageViewController();
+            DefaultSliderView textSliderView = new DefaultSliderView(this);
+            // initialize a SliderLayout
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
 
+
+            mainViewPager.addSlider(textSliderView);
+
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        mainViewPager.stopAutoCycle();
+        super.onStop();
     }
 
 
@@ -485,7 +492,7 @@ public class ZaaraDaraaActivity extends BaseActivity {
 
     private void setUiPageViewController() {
 
-        dotsCount = adapter.getCount();
+        //dotsCount = adapter.getCount();
         dots = new ImageView[dotsCount];
 
         for (int i = 0; i < dotsCount; i++) {
@@ -501,6 +508,26 @@ public class ZaaraDaraaActivity extends BaseActivity {
             viewPagerCountDots.addView(dots[i], params);
         }
         dots[0].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
 

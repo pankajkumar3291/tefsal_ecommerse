@@ -6,12 +6,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tefal.Models.SeasonsList;
 import com.tefal.R;
 import com.tefal.activity.DishDashaProductActivity;
 import com.tefal.app.TefalApp;
 import com.tefal.fragment.FragmentTextileProducts;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,13 +29,16 @@ import butterknife.ButterKnife;
 
 public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapter.ViewHolder>
 {
-    private String record[];
+   // private String record[];
     private Activity activity;
     private int limit;
 
-    public SeasonFilterAdapter(String record[],Activity activity, int limit)
+    List<SeasonsList> seasonList = new ArrayList<>();
+
+
+    public SeasonFilterAdapter(List<SeasonsList> seasonList,Activity activity, int limit)
     {
-        this.record=record;
+        this.seasonList=seasonList;
         this.activity=activity;
         this.limit=limit;
 
@@ -44,14 +54,18 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position)
     {
-        holder.txt_season_name.setText(record[position]);
 
-        holder.txt_season_name.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.txt_season_name.setText(seasonList.get(position).getName());
+
+        holder.imgSeason.setImageResource(seasonList.get(position).getImage());
+        holder.seasonItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 FragmentTextileProducts.seasonWindow.dismiss();
-                TefalApp.getInstance().setSeason(record[position].toLowerCase());
+                TefalApp.getInstance().setSeason(seasonList.get(position).getName().toLowerCase());
                 Intent intent=new Intent(activity,DishDashaProductActivity.class);
                /* intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
                 intent.putExtra("flag",TefalApp.getInstance().getFlage());
@@ -65,7 +79,7 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
 
     @Override
     public int getItemCount() {
-        return limit;
+        return seasonList != null ?  seasonList.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
@@ -74,6 +88,14 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
 
         @BindView(R.id.txt_season_name)
         TextView txt_season_name;
+
+
+        @BindView(R.id.imgSeason)
+        ImageView imgSeason;
+
+        @BindView(R.id.seasonItem)
+        LinearLayout seasonItem;
+
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -89,11 +89,11 @@
             android:visibility="gone" />
 
         <RelativeLayout
-            android:layout_centerVertical="true"
             android:id="@+id/view_cart_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="end"
             android:layout_marginEnd="5dp"
             android:gravity="center_vertical"
@@ -126,45 +126,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/RR__viewpagerHolder"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/RR_toolbar"
-        android:background="@color/tabColorBg">
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/product_image_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/no_image_holder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
-
-
-        <RelativeLayout
-            android:id="@+id/viewPagerIndicator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="-20dp"
-            android:gravity="center"
-            android:padding="4dp">
-
-            <LinearLayout
-                android:id="@+id/viewPagerCountDots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal" />
-        </RelativeLayout>
-
-    </RelativeLayout>
 
     <!--<LinearLayout
         android:layout_width="match_parent"
@@ -185,135 +146,81 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/LL_add_cart_region"
-        android:layout_below="@+id/RR__viewpagerHolder">
+        android:layout_below="@+id/RR_toolbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="100dp">
+
+            <RelativeLayout
+                android:id="@+id/RR__viewpagerHolder"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+
+
+                android:gravity="center">
+
+                <com.daimajia.slider.library.SliderLayout
+                    android:id="@+id/product_image_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDivider" />
+
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+
+            </RelativeLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/RR__viewpagerHolder"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
-
-                <!--<android.support.v4.view.ViewPager
-                    android:id="@+id/mainViewPager"
-                    android:layout_width="match_parent"
-                    android:background="@color/colorDivider"
-                    android:layout_height="400dp">
-                </android.support.v4.view.ViewPager>-->
-                <!--<ImageView
-                    android:id="@+id/productImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="350dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/colorDivider" />-->
-
-                <!--<android.support.v4.view.ViewPager
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/product_image_viewPager">
-
-                </android.support.v4.view.ViewPager>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                <LinearLayout
                     android:visibility="gone"
-                    android:id="@+id/no_image_holder"/>-->
-                <!--<RelativeLayout
-                    android:id="@+id/viewPagerIndicator"
+                    android:id="@+id/size2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/mainViewPager"
+
+                    android:gravity="center">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/sizeRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/sizeGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="-20dp"
-                    android:layout_alignParentBottom="true"
+
                     android:gravity="center"
-                    android:padding="4dp">
-
-                    <LinearLayout
-                        android:id="@+id/viewPagerCountDots"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:orientation="horizontal" />
-
-                </RelativeLayout>-->
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-
-                <!--<LinearLayout
-                    android:id="@+id/size"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/viewPagerIndicator"
-                    android:background="@color/colorPrimary"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="30dp"
-                    android:weightSum="4">
-
-                    <TextView
-                        android:id="@+id/txt_size_s"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="S"
-                        android:textColor="@color/colorGray"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_m"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="M"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_l"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="L"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_xl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="XL"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />
-
-                </LinearLayout>-->
-
-                <!-- <TextView
-                     android:id="@+id/sizeGuide"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_below="@+id/size"
-                     android:layout_marginTop="20dp"
-                     android:text="View Size Guide"
-                     android:layout_centerHorizontal="true"
-                     android:textColor="@color/colorBlack"
-                     android:textSize="@dimen/text_normal" />-->
+                    android:text="@string/text_sizeGuide_zaara_daraa"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal" />
 
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/sizeAvailable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -330,11 +237,6 @@
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
 
-                    <!--<Spinner-->
-                    <!--android:id="@+id/spinner"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentRight="true" />-->
 
                     <TextView
                         android:id="@+id/size_text"

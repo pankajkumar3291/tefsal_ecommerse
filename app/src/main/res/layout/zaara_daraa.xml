@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
 
     <RelativeLayout
 
+        android:id="@+id/relTootlbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary">
@@ -129,30 +130,17 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/LL_continer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/noDataText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="No data found!"
-            android:textSize="@dimen/text_large" />
-    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relTootlbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
@@ -164,21 +152,19 @@
 
                 android:gravity="center">
 
-                <android.support.v4.view.ViewPager
+                <com.daimajia.slider.library.SliderLayout
                     android:id="@+id/mainViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorDivider">
-
-                </android.support.v4.view.ViewPager>
+                    android:background="@color/colorDivider" />
 
                 <LinearLayout
                     android:id="@+id/viewPagerCountDots"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:layout_marginBottom="20dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:orientation="horizontal" />
 
@@ -196,53 +182,7 @@
                 android:orientation="vertical">
 
 
-                <LinearLayout
-                    android:id="@+id/size"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <!--<TextView
-                        android:id="@+id/txt_size_s"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="S"
-                        android:textColor="@color/colorGray"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_m"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="M"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_l"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="L"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />
-
-                    <TextView
-                        android:id="@+id/txt_size_xl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="XL"
-                        android:textColor="@color/colorGray"
-                        android:gravity="center"
-                        android:textSize="@dimen/text_mid" />-->
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/size2"
@@ -418,40 +358,41 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/quntity_LL"
-                android:background="@color/tabColorBg"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/text_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/button"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="PRICE:"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_normal"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/add_cart_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorAccent"
-                    android:text="ADD TO CART"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/tabColorBg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="PRICE:"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/add_cart_btn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:text="ADD TO CART"
+            android:textColor="@color/colorWhite" />
+
+    </LinearLayout>
+</RelativeLayout>

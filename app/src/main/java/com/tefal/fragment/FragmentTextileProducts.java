@@ -34,6 +34,7 @@ import com.tefal.Models.CountryRecordModel;
 import com.tefal.Models.ProductCountryRecordModel;
 import com.tefal.Models.ProductCountryResponseModel;
 import com.tefal.Models.SeasonResponseModel;
+import com.tefal.Models.SeasonsList;
 import com.tefal.Models.TextileProductModel;
 import com.tefal.Models.TextileProductResponse;
 import com.tefal.Models.dishdashaFiletrationResponse;
@@ -124,8 +125,17 @@ public class FragmentTextileProducts extends Fragment {
         text_color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(colorsRecordModelArrayList == null)
+                {
+                    return;
+                }
+
                 LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
+
+
+
 
 
                 FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, getActivity());
@@ -158,6 +168,12 @@ public class FragmentTextileProducts extends Fragment {
         text_country.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(productCountryRecordModelArrayList == null)
+                {
+                    return;
+                }
+
 
                 LayoutInflater LayoutInflater = getActivity().getLayoutInflater();
                 popupCountryView = LayoutInflater.inflate(R.layout.choose_country_panel, null);
@@ -192,12 +208,56 @@ public class FragmentTextileProducts extends Fragment {
         text_season.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(record == null)
+                {
+                    return;
+                }
+
+
                 LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 popupSeasonView = layoutInflater.inflate(R.layout.choose_season_panel, null);
-                SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(record, getActivity(), record.length);
+
+                List<SeasonsList> seasonList = new ArrayList<>();
+
+
+
+                for(String season : record)
+                {
+
+                    SeasonsList seasonModel = new SeasonsList();
+                    seasonModel.setName(season);
+
+                    if(season.toLowerCase().contains("winter"))
+                    {
+                        seasonModel.setImage(R.drawable.winter);
+                    }
+
+                    if(season.toLowerCase().contains("summer"))
+                    {
+                        seasonModel.setImage(R.drawable.summer);
+                    }
+
+                    if(season.toLowerCase().contains("autumn"))
+                    {
+                        seasonModel.setImage(R.drawable.autumn);
+                    }
+
+                    if(season.toLowerCase().contains("spring"))
+                    {
+                        seasonModel.setImage(R.drawable.spring);
+                    }
+
+                    seasonList.add(seasonModel);
+
+
+
+                }
+
+                SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(seasonList, getActivity(), seasonList.size());
 
                 RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
 
                 //LayoutManager(getActivity(), 3);
                 recyclerViewSeason.setLayoutManager(mLayoutManager);
@@ -205,7 +265,7 @@ public class FragmentTextileProducts extends Fragment {
 
                 seasonWindow = new PopupWindow(
                         popupSeasonView,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
 
                 seasonWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -246,6 +306,8 @@ public class FragmentTextileProducts extends Fragment {
         System.out.println("HELLO STORE ID==" + TefalApp.getInstance().getStoreId());
 
         WebCallServiceStores();
+
+
 
         // ------If you dont want to select multiple filter selection option remove the code------
 
@@ -320,6 +382,8 @@ public class FragmentTextileProducts extends Fragment {
                                 }
                             }
                             httpGetCountryCall();
+                            httpGetColorCall();
+                            httpGetFilterSeasonData();
                         }
                     },
                     new Response.ErrorListener() {
@@ -402,7 +466,7 @@ public class FragmentTextileProducts extends Fragment {
                                         // This is for new search request
                                         textNoProduct.setVisibility(View.GONE);
 
-                                        httpGetColorCall();
+
 
                                         /// System.out.println("RECORDS==="+records.length);
 
@@ -485,7 +549,7 @@ public class FragmentTextileProducts extends Fragment {
                                     // This is for new search request
                                     textNoProduct.setVisibility(View.GONE);
 
-                                    httpGetFilterSeasonData();
+
 
                                 } else {
 

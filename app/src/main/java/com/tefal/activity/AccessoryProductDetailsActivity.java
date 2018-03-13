@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -47,12 +54,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AccessoryProductDetailsActivity extends BaseActivity {
+public class AccessoryProductDetailsActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
 
     private AccessoriesRecord accessoriesRecord;
@@ -89,13 +97,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
 
     @BindView(R.id.product_image_viewPager)
-    ViewPager product_image_viewPager;
+    SliderLayout product_image_viewPager;
 
-    @BindView(R.id.no_image_holder)
-    ImageView no_image_holder;
 
-    @BindView(R.id.viewPagerIndicator)
-    RelativeLayout viewPagerIndicator;
+
 
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
@@ -116,6 +121,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
     * This dialog is used to show the image which can zoom in zoom out from view pager
     * */
     Dialog dialog;
+
+
+    @BindView(R.id.sizeRecyclerView)
+    RecyclerView sizeRecyclerView;
 
 
     @Override
@@ -152,38 +161,31 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
         });
 
 
-        if (Accessory_product_image.length != 0) {
-            accessoryProductPagerAdapter = new AccessoryProductPagerAdapter(AccessoryProductDetailsActivity.this, Accessory_product_image);
-            product_image_viewPager.setAdapter(accessoryProductPagerAdapter);
-            //  product_image_viewPager.setOffscreenPageLimit(dishDashaProductPagerAdapter.getCount());
-            product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                    // if()
-                    //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
-
-                }
-
-                @Override
-                public void onPageSelected(int position) {
-                    for (int i = 0; i < dotsCount; i++) {
-                        dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-                    }
-                    dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
-                }
-            });
 
 
-            setUiPageViewController();
-        } else {
-            no_image_holder.setVisibility(View.VISIBLE);
-            no_image_holder.setImageResource(R.drawable.placeholder_no_image);
+        product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+        product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
+        product_image_viewPager.setDuration(5000);
+        product_image_viewPager.addOnPageChangeListener(this);
+
+
+
+
+        for (String imgUrl : Accessory_product_image) {
+
+            DefaultSliderView textSliderView = new DefaultSliderView(this);
+            // initialize a SliderLayout
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+
+
+            product_image_viewPager.addSlider(textSliderView);
+
         }
+
 
         view_cart_btn.setOnClickListener(new View.OnClickListener()
         {
@@ -430,6 +432,26 @@ public class AccessoryProductDetailsActivity extends BaseActivity {
 
         dialog.show();
 
+
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 

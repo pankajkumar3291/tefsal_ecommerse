@@ -49,6 +49,8 @@ dependencies {
     compile 'com.asksira.android:cameraviewplus:0.7.0'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile 'com.afollestad:easyvideoplayer:0.3.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
 
     testCompile 'junit:junit:4.12'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

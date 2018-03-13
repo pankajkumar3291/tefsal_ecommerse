@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:id="@+id/seasonItem"
+    android:clickable="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/roun_image_background_ll"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/imgSeason"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_image_background_for_color" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txt_season_name"
-        android:textColor="@color/colorWhite"
-        android:layout_margin="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/marging_bottom_text"
+        android:gravity="center"
+        android:text="@string/cp_title_beige"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_small" />
 </LinearLayout>
+

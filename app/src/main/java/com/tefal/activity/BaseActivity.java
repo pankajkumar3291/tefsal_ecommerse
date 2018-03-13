@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,6 +26,8 @@ public class BaseActivity extends AppCompatActivity {
        /* FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Bold.ttf");
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
    */
+
+        Log.e("Activity",this.getClass().getSimpleName());
 
 
     }

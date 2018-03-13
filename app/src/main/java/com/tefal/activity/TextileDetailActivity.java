@@ -1151,17 +1151,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                                     }
 
                                     String categoryId = "1";
-                                    DialogKart dg = new DialogKart(TextileDetailActivity.this, false,itemType,categoryId);
+                                    DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
                                     dg.show();
-
 
 
                                 } catch (Exception ex) {
 
                                 }
-
-
-
 
 
                             }
