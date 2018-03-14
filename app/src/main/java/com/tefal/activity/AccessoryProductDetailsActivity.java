@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +37,6 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
@@ -41,8 +44,12 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.AccessoriesRecord;
+import com.tefal.Models.AccessoryDetailRecord;
 import com.tefal.Models.BadgeRecordModel;
+import com.tefal.Models.Colors;
 import com.tefal.R;
+import com.tefal.adapter.ProductSizeAdapterHorizontalAccessories;
+import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
 import com.tefal.utils.Contents;
@@ -53,6 +60,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,11 +75,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
    /* @BindView(R.id.productImage)
     ImageView imageView;*/
 
-    @BindView(R.id.size_text)
-    TextView size_text;
-
-    @BindView(R.id.color_text)
-    TextView color_text;
 
     @BindView(R.id.text_descp)
     TextView text_desc;
@@ -100,8 +103,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     SliderLayout product_image_viewPager;
 
 
-
-
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
@@ -126,6 +127,22 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
 
+    @BindView(R.id.spinnerColor)
+    Spinner spinnerColor;
+
+    ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontal;
+
+    AccessoryDetailRecord accessoryDetailRecord;
+
+    int currentPosition = 0;
+
+    DefaultSliderView.OnSliderClickListener onSliderClickListener;
+    DefaultSliderView textSliderView = null;
+
+    List<String> spinnerArray = new ArrayList<String>();
+
+    ArrayAdapter<String> stringArrayAdapter = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,14 +150,22 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         setContentView(R.layout.activity_accessory_product_details);
         ButterKnife.bind(this);
         session = new SessionManager(this);
-
+        onSliderClickListener = this;
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
         accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
         Accessory_product_image = accessoriesRecord.getAccessory_product_image();
 
+        if (accessoriesRecord != null) {
 
+            String storeId = getIntent().getStringExtra("storeId");
+            getAccessoriesProductDetails(storeId);
+
+        }
+
+
+        initSlider();
         setData();
 
 
@@ -160,8 +185,62 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             }
         });
 
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        spinnerColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+
+                Colors colors = accessoryDetailRecord.getSizes().get(currentPosition).getColors().get(position);
+
+                if (accessoryDetailRecord != null) {
+
+                    product_image_viewPager.removeAllSliders();
+                    text_price.setText("PRICE: " + colors.getPrice() + " KWD");
+
+                    for (String imgUrl : colors.getImages()) {
 
 
+                        textSliderView
+                                .image(imgUrl)
+                                .setScaleType(BaseSliderView.ScaleType.Fit)
+                                .setOnSliderClickListener(onSliderClickListener);
+
+
+                        product_image_viewPager.addSlider(textSliderView);
+
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+
+
+            }
+
+        });
+
+
+    }
+
+
+    private void initSlider() {
+
+        textSliderView = new DefaultSliderView(this);
 
         product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
         product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
@@ -170,12 +249,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         product_image_viewPager.addOnPageChangeListener(this);
 
 
-
-
         for (String imgUrl : Accessory_product_image) {
 
-            DefaultSliderView textSliderView = new DefaultSliderView(this);
-            // initialize a SliderLayout
+
             textSliderView
                     .image(imgUrl)
                     .setScaleType(BaseSliderView.ScaleType.Fit)
@@ -186,21 +262,12 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         }
 
+        stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
 
-        view_cart_btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                try {
-                    startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
-        //System.out.println("SSS=="+accessoriesRecord.getBrandImage());
+        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
     }
 
     @Override
@@ -210,6 +277,105 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         Log.e(DishDashaProductActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
+
+    }
+
+
+    private void getAccessoriesProductDetails(final String storeId) {
+        SimpleProgressBar.showProgress(AccessoryProductDetailsActivity.this);
+        try {
+            final String url = Contents.baseURL + "getAccessoriesProductDetails";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            //    System.out.println("response==" + response.toString());
+
+
+                            SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("success");
+                                    if (status.equals("1")) {
+
+                                        String record = jsonObject.getString("record");
+                                        Gson g = new Gson();
+                                        accessoryDetailRecord = g.fromJson(record, AccessoryDetailRecord.class);
+
+                                        initViewsPostCall(accessoryDetailRecord);
+                                    }
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appVersion", "1.1");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("product_id", accessoriesRecord.getTefsal_product_id());
+                    params.put("store_id", storeId);
+
+                    Log.e("Tefsal tailor == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
+
+    private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
+
+
+        //Fill Sizes
+
+        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
+
+        TefalApp.getInstance().setPosition(0);
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
+
+        //Fill Color circle
+
+        // you need to have a list of data that you want the spinner to display
+
+        spinnerArray.clear();
+
+        for (Colors color : accessoryDetailRecord.getSizes().get(0).getColors()) {
+            spinnerArray.add(color.getColor());
+        }
+
+        spinnerColor.setAdapter(stringArrayAdapter);
+
 
     }
 
@@ -293,16 +459,50 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     }
 
+
     private void setData() {
 
         txt_title.setText(accessoriesRecord.getProductName());
         subtxt_title.setText(accessoriesRecord.getBrandName());
-        size_text.setText(accessoriesRecord.getSize());
-        color_text.setText(accessoriesRecord.getColor());
+
         text_desc.setText(accessoriesRecord.getProductDesc());
         text_price.setText("PRICE: " + accessoriesRecord.getPrice() + " KWD");
-        //   Picasso.with(getApplicationContext()).load(accessoriesRecord.getAccessory_product_image()).into(imageView);
+
     }
+
+
+    public void showSelectedSizeData(int position) {
+
+        this.currentPosition = position;
+
+        if (accessoryDetailRecord != null) {
+            List<Colors> colors = accessoryDetailRecord.getSizes().get(position).getColors();
+
+
+            if (colors != null) {
+
+
+                spinnerArray.clear();
+
+                for (Colors color : colors) {
+
+
+                    if (color != null && color.getColor() != null)
+                    {
+                        spinnerArray.add(color.getColor());
+                    }
+
+                }
+
+                stringArrayAdapter.notifyDataSetChanged();
+
+            }
+
+        }
+
+
+    }
+
 
     public void httpAddCartCall() {
 

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,12 +42,15 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.tefal.Models.AccessoryDetailRecord;
 import com.tefal.Models.BadgeRecordModel;
+import com.tefal.Models.Colors;
 import com.tefal.Models.ProductMeasurement;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
 import com.tefal.R;
 import com.tefal.adapter.ProductSizeAdapterHorizontal;
+import com.tefal.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
@@ -75,8 +79,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     private ImageView[] dots;
 
 
-    @BindView(R.id.scrollView)
-    ScrollView scrollView;
+
 
 
     @BindView(R.id.back_btn)
@@ -106,19 +109,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     @BindView(R.id.sizeGuide)
     TextView sizeGuide;
 
-    /*@BindView(R.id.txt_size_s)
-    TextView txt_size_s;
 
-    @BindView(R.id.txt_size_m)
-    TextView txt_size_m;
-
-    @BindView(R.id.txt_size_l)
-    TextView txt_size_l;
-
-    @BindView(R.id.txt_size_xl)
-    TextView txt_size_xl;*/
-
-    //@BindView(R.id.text_price)
 
     @BindView(R.id.add_btn)
     ImageView add_btn;
@@ -166,6 +157,17 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     Dialog dialog;
 
 
+
+    int currentPosition = 0;
+
+    DefaultSliderView.OnSliderClickListener onSliderClickListener;
+    DefaultSliderView textSliderView = null;
+
+    List<String> spinnerArray = new ArrayList<String>();
+
+    ArrayAdapter<String> stringArrayAdapter = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,7 +182,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         productSizesList = productRecord.getSizes();
 
         text_price = (TextView) findViewById(R.id.text_price);
-        stockQuantity = (TextView) findViewById(R.id.stockQuantity);
+        //stockQuantity = (TextView) findViewById(R.id.stockQuantity);
         meter_value = (TextView) findViewById(R.id.meter_value);
 
 
@@ -228,9 +230,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             }
         });
 
-      //  LL_continer.setVisibility(View.GONE);
-        scrollView.setVisibility(View.GONE);
-
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +265,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             }
         });
 
-        initView();
+
 
     }
 
@@ -353,16 +352,9 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-    private void initView() {
-       // LL_continer.setVisibility(View.GONE);
-        scrollView.setVisibility(View.VISIBLE);
 
-        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontal(productSizesList, ZaaraDaraaActivity.this);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
 
-        TefalApp.getInstance().setPosition(0);
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
+    private void initSlider() {
 
 
         mainViewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
@@ -387,7 +379,25 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         }
 
+
     }
+
+    private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
+
+
+        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontal(productSizesList, ZaaraDaraaActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
+
+        TefalApp.getInstance().setPosition(0);
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
+
+
+
+
+    }
+
+
 
     @Override
     protected void onStop() {

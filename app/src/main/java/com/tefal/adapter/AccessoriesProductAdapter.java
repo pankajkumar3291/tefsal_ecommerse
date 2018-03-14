@@ -142,6 +142,7 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
                 Bundle bundle=new Bundle();
                 AccessoriesRecord accessoriesRecord=productRecords.get(position);
                 bundle.putSerializable("accessoriesRecord",(Serializable)accessoriesRecord);
+                bundle.putString("storeId",storeId);
                 intent.putExtras(bundle);
                 activity.startActivity(intent);
 

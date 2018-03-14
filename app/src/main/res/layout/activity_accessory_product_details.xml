@@ -189,12 +189,12 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/size2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
 
-                    android:gravity="center">
+                    android:visibility="visible">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/sizeRecyclerView"
@@ -206,56 +206,23 @@
 
 
                 <TextView
-                    android:visibility="gone"
                     android:id="@+id/sizeGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-
                     android:gravity="center"
+
                     android:text="@string/text_sizeGuide_zaara_daraa"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    android:visibility="visible" />
 
-
-                <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/sizeAvailable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/sizeGuide"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Size"
-                        android:textColor="@color/colorDGray"
-                        android:textSize="@dimen/text_normal"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/size_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:text="32"
-                        android:textColor="@color/colorDGray"
-                        android:textSize="@dimen/text_normal"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/colorAvailable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/sizeAvailable"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="20dp">
@@ -268,22 +235,12 @@
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
 
-                    <!--<Spinner-->
-                    <!--android:id="@+id/spinner"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentRight="true" />-->
-
-                    <TextView
-                        android:id="@+id/color_text"
+                    <Spinner
+                        android:id="@+id/spinnerColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        android:text="PINK  BAIGE"
-                        android:textColor="@color/colorDGray"
-                        android:textSize="@dimen/text_normal"
-                        android:textStyle="bold" />
+                        android:layout_alignParentRight="true" />
+
 
                 </RelativeLayout>
 
