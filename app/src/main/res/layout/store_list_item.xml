@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
-    android:layout_marginBottom="5dp"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height2"
+    android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
     <ImageView
@@ -14,9 +14,9 @@
         android:scaleType="centerCrop" />
 
     <View
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_transparent" />
 
     <!--<TextView-->
@@ -47,7 +47,8 @@
             android:text="50%"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:translationZ="99dp" />
 
         <TextView
             android:id="@+id/txt_discount_off"
@@ -57,7 +58,8 @@
             android:text="OFF"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:translationZ="99dp" />
 
     </LinearLayout>
 
@@ -75,13 +77,14 @@
             android:layout_height="30dp"
             android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
-            android:gravity="center"
+            android:gravity="start|center_vertical"
             android:maxLines="1"
             android:text="KAKOOLI TAILOR"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
             android:textStyle="bold"
+            android:translationZ="99dp"
             autofit:minTextSize="@dimen/text_normal" />
 
         <RatingBar
@@ -93,7 +96,8 @@
             android:numStars="5"
             android:rating="3"
             android:stepSize="1"
-            android:theme="@style/RatingBar" />
+            android:theme="@style/RatingBar"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text_max_delivery_days"
                 android:text="Days"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:translationZ="99dp" />
 
             <ImageView
                 android:id="@+id/icon_delivery"
