@@ -15,9 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
-import com.tefal.Models.TextileProductModel;
 import com.tefal.R;
-import com.tefal.activity.TextileDetailActivity;
 import com.tefal.activity.ZaaraDaraaActivity;
 
 import java.io.Serializable;
@@ -44,7 +42,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.textile_product_card, viewGroup, false);
-        TextView amount_text=(TextView) v.findViewById(R.id.amount_text);
+        TextView amount_text = (TextView) v.findViewById(R.id.amount_text);
         amount_text.setVisibility(View.VISIBLE);
         return new ViewHolder(v);
     }
@@ -77,8 +75,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
         TextView txt_discount_off;
 
 
-        public ViewHolder(View itemView)
-        {
+        public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -90,35 +87,30 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
         String discaunt_amount;
 
-        String product_image=productRecords.get(position).getProduct_images().get(0);
-        String brand_name=productRecords.get(position).getBrand_name();
+        String product_image = productRecords.get(position).getProduct_images().get(0);
+        String brand_name = productRecords.get(position).getBrand_name();
         //String product_price=productRecords.get(position).getP
-        String product_name=productRecords.get(position).getProduct_name();
-        String max_delivery_days=productRecords.get(position).getMax_delivery_days();
+        String product_name = productRecords.get(position).getProduct_name();
+        String max_delivery_days = productRecords.get(position).getMax_delivery_days();
 
-        System.out.println("max_delivery_days==="+max_delivery_days);
-        if(productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals(""))
-        {
-            discaunt_amount="0%";
+        System.out.println("max_delivery_days===" + max_delivery_days);
+        if (productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals("")) {
+            discaunt_amount = "0%";
             holder.txt_discount_amount.setVisibility(View.GONE);
             holder.txt_discount_off.setVisibility(View.GONE);
-        }
-        else
-        {
-            discaunt_amount= productRecords.get(position).getProduct_discount();
+        } else {
+            discaunt_amount = productRecords.get(position).getProduct_discount();
             holder.txt_discount_amount.setText(discaunt_amount);
         }
-      //  holder.txt_discount_amount.setText(discaunt_amount);
+        //  holder.txt_discount_amount.setText(discaunt_amount);
 
         //This block of code responsible for getting the price of DARRA ABAYA Product price......
-        List<ProductSizes> sizes=productRecords.get(position).getSizes();
-        if(sizes!=null)
-        {
-            holder.amount_text.setText(sizes.get(0).getPrice()+" KWD");
+        List<ProductSizes> sizes = productRecords.get(position).getSizes();
+        if (sizes != null) {
+            holder.amount_text.setText(sizes.get(0).getPrice() + " KWD");
         }
         holder.prize_text.setText(product_name);
         holder.name_text.setText(brand_name);
-
 
 
         holder.text_max_delivery_days.setText(max_delivery_days);
@@ -131,14 +123,15 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
             @Override
             public void onClick(View view) {
 
-                    Intent intent =new Intent(activity, ZaaraDaraaActivity.class);
-                    Bundle bundle = new Bundle();
-                    ProductRecord productRecord= productRecords.get(position);
-                    bundle.putSerializable("productRecords", (Serializable)productRecord);
-                    intent.putExtras(bundle);
-                    activity.startActivity(intent);
+                Intent intent = new Intent(activity, ZaaraDaraaActivity.class);
+                Bundle bundle = new Bundle();
+                ProductRecord productRecord = productRecords.get(position);
+                productRecord.setStore_id(storeId);
+                bundle.putSerializable("productRecords", (Serializable) productRecord);
+                intent.putExtras(bundle);
+                activity.startActivity(intent);
 
-                   //System.out.println("Hello");
+               //System.out.println("Hello");
 
             }
         });

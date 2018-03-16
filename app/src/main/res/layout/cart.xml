@@ -65,6 +65,7 @@
             android:textSize="@dimen/text_small" />
 
         <Button
+            android:layout_marginBottom="10dp"
             android:id="@+id/btn_purchase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

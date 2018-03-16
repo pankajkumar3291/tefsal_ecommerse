@@ -28,6 +28,16 @@ public class ProductRecord implements Serializable
 
     private String tefsal_product_id;
 
+    public String getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(String store_id) {
+        this.store_id = store_id;
+    }
+
+    private String store_id;
+
     private String attribute_id;
 
     private String store_name;

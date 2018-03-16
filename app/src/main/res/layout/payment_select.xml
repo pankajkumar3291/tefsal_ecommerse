@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/toolbar"
+                android:background="@color/tabColorBg"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="3 items in your cart"
@@ -262,6 +263,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/tabColorBg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp">

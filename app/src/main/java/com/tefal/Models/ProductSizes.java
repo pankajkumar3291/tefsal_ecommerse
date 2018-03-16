@@ -1,6 +1,7 @@
 package com.tefal.Models;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Rituparna Khadka on 11/14/2017.
@@ -13,6 +14,8 @@ public class ProductSizes implements Serializable
     private String quantity;
 
     private String size;
+
+    private List<Colors> colors;
 
     public String getPrice ()
     {

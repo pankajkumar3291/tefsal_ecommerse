@@ -232,10 +232,13 @@
             android:name=".activity.CountryPopUpActivity"
             android:theme="@style/TransparentTheme" />
         <activity android:name=".kotlin.SignupThankYouActivity" />
-
         <activity
             android:name=".activity.CustomVideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CartAddressSelectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

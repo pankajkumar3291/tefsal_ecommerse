@@ -143,6 +143,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     ArrayAdapter<String> stringArrayAdapter = null;
 
+    @BindView(R.id.sizeGuide)
+    TextView sizeGuide;
+
+    String sizeGuideResponseHtml;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +159,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         mTracker = application.getDefaultTracker();
 
         accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
-        Accessory_product_image = accessoriesRecord.getAccessory_product_image();
+
 
         if (accessoriesRecord != null) {
 
@@ -163,7 +167,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             getAccessoriesProductDetails(storeId);
 
         }
-
 
         initSlider();
         setData();
@@ -234,9 +237,27 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         });
 
+        sizeGuide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    Intent intent = new Intent(AccessoryProductDetailsActivity.this, SizeGuideActivirty.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
+
+                    intent.putExtras(bundle);
+
+                    //intent.putExtra("sizeGuideResponseHtml",sizeGuideResponseHtml);
+
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    System.out.println("Error==" + ex);
+                }
+            }
+        });
 
     }
-
 
     private void initSlider() {
 
@@ -248,22 +269,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
 
-
-        for (String imgUrl : Accessory_product_image) {
-
-
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
-
-
-            product_image_viewPager.addSlider(textSliderView);
-
-        }
-
         stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
-
 
         stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -292,7 +298,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         public void onResponse(String response) {
 
 
-                            //    System.out.println("response==" + response.toString());
+                             System.out.println("response==" + response.toString());
 
 
                             SimpleProgressBar.closeProgress();
@@ -355,18 +361,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
 
 
-        //Fill Sizes
+        // Bind Size Circle
 
         productSizeAdapterHorizontal = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-
         TefalApp.getInstance().setPosition(0);
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
 
-        //Fill Color circle
 
-        // you need to have a list of data that you want the spinner to display
+        // Bind Color DropDown
 
         spinnerArray.clear();
 
@@ -375,6 +379,25 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         }
 
         spinnerColor.setAdapter(stringArrayAdapter);
+
+
+        // Bind Slider
+
+        //show images based on selection
+        Accessory_product_image = accessoriesRecord.getAccessory_product_image();
+        for (String imgUrl : Accessory_product_image) {
+
+
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+
+
+            product_image_viewPager.addSlider(textSliderView);
+
+        }
+
 
 
     }

@@ -16,12 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -35,16 +36,15 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefal.Models.AccessoryDetailRecord;
 import com.tefal.Models.BadgeRecordModel;
 import com.tefal.Models.Colors;
+import com.tefal.Models.DaraAbayaDetailRecord;
 import com.tefal.Models.ProductMeasurement;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
@@ -79,9 +79,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     private ImageView[] dots;
 
 
-
-
-
     @BindView(R.id.back_btn)
     ImageView back_btn;
 
@@ -103,12 +100,9 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     @BindView(R.id.text_descp)
     TextView text_descp;
 
-    @BindView(R.id.color_text)
-    TextView color_text;
 
     @BindView(R.id.sizeGuide)
     TextView sizeGuide;
-
 
 
     @BindView(R.id.add_btn)
@@ -118,15 +112,17 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     ImageView less_btn;
 
 
-    @BindView(R.id.sizeRecyclerView)
-    RecyclerView sizeRecyclerView;
-
-
     @BindView(R.id.view_cart_btn)
     RelativeLayout view_cart_btn;
 
     @BindView(R.id.total_badge_txt)
     TextView total_badge_txt;
+
+    @BindView(R.id.text_price)
+    TextView text_price;
+
+    @BindView(R.id.meter_value)
+    TextView meter_value;
 
 
     int amount;
@@ -136,18 +132,17 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     //This member variable used in ProductSizeAdapterHorizontal adapter
     public static int price;
     public static int meter = 1;
-    public static TextView text_price;
-    public static TextView stockQuantity;
-    public static TextView meter_value;
 
 
     SessionManager session;
     public ProductRecord productRecord;
+    public DaraAbayaDetailRecord daraAbayaDetailRecord;
     public static List<ProductMeasurement> productMeasurementList;
     private List<ProductSizes> productSizesList = new ArrayList<ProductSizes>();
     private static Tracker mTracker;
     private static final String TAG = "ZaaraDaraaActivity";
     ProductSizeAdapterHorizontal productSizeAdapterHorizontal;
+    ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
     private HashMap<String, String> sizePriceMap;
 
 
@@ -156,6 +151,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
    * */
     Dialog dialog;
 
+
+    @BindView(R.id.sizeRecyclerView)
+    RecyclerView sizeRecyclerView;
+
+    @BindView(R.id.spinnerColor)
+    Spinner spinnerColor;
 
 
     int currentPosition = 0;
@@ -173,32 +174,66 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zaara_daraa);
 
+
+        //********************  Init Session  ********************/
+
+        initSession();
+
+
+        //********************  Init Intent  ********************/
+
+        initIntent();
+
+        //********************  Init Bind Views  ********************/
+
+        initBindViews();
+
+        //********************  Init Views Events  ********************/
+        initEvents();
+
+        //********************  Init Slider  ********************/
+        initSlider();
+
+
+        //********************  Call Web API  ********************/
+
+        if (productRecord != null) {
+
+
+            getProductDetails();
+
+        }
+
+
+    }
+
+    private void initSession() {
+        session = new SessionManager(getApplicationContext());
+
+        //Init Additional
+        TefsalApplication application = (TefsalApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+    }
+
+    private void initIntent() {
         ButterKnife.bind(this);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        sizePriceMap = new HashMap<String, String>();
         productRecord = (ProductRecord) bundle.getSerializable("productRecords");
-        sizeGuideResponseHtml = productRecord.getMeasurements();
-        productSizesList = productRecord.getSizes();
 
-        text_price = (TextView) findViewById(R.id.text_price);
-        //stockQuantity = (TextView) findViewById(R.id.stockQuantity);
-        meter_value = (TextView) findViewById(R.id.meter_value);
+    }
 
 
-        System.out.println("sizeGuideResponseHtml===" + sizeGuideResponseHtml);
-        //  amount=meter * Double.parseDouble(productRecord.get)
-        TefsalApplication application = (TefsalApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-
-        // productMeasurementList=productRecord.getMeasurements();
+    private void initBindViews() {
+        //Bind Text Views
 
         text_descp.setText(productRecord.getProduct_desc());
         txt_title.setText(productRecord.getProduct_name());
         subtxt_title.setText(productRecord.getBrand_name());
-        color_text.setText(productRecord.getColor());
 
-        session = new SessionManager(getApplicationContext());
+    }
+
+    private void initEvents() {
         sizeGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,6 +300,214 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             }
         });
 
+
+        spinnerColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+
+                Colors colors = daraAbayaDetailRecord.getSizes().get(currentPosition).getColors().get(position);
+
+                if (daraAbayaDetailRecord != null) {
+
+                    mainViewPager.removeAllSliders();
+                    text_price.setText("PRICE: " + colors.getPrice() + " KWD");
+
+                    for (String imgUrl : colors.getImages()) {
+
+
+                        textSliderView
+                                .image(imgUrl)
+                                .setScaleType(BaseSliderView.ScaleType.Fit)
+                                .setOnSliderClickListener(onSliderClickListener);
+
+
+                        mainViewPager.addSlider(textSliderView);
+
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+
+
+            }
+
+        });
+
+    }
+
+
+    private void initSlider() {
+
+        textSliderView = new DefaultSliderView(this);
+
+        mainViewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+        mainViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        mainViewPager.setCustomAnimation(new DescriptionAnimation());
+        mainViewPager.setDuration(5000);
+        mainViewPager.addOnPageChangeListener(this);
+
+        stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+    }
+
+    private void initViewsPostCall() {
+
+
+
+
+        // Bind Size Circle
+        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(daraAbayaDetailRecord.getSizes(), ZaaraDaraaActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
+        TefalApp.getInstance().setPosition(0);
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
+
+
+        // Bind Color DropDown
+
+        spinnerArray.clear();
+
+        for (Colors color : daraAbayaDetailRecord.getSizes().get(0).getColors()) {
+            spinnerArray.add(color.getColor());
+        }
+
+        spinnerColor.setAdapter(stringArrayAdapter);
+
+
+        //Bind Slider View
+
+//        List<String> stringList = productRecord.getProduct_images();
+//
+//        for (String imgUrl : stringList) {
+//
+//            textSliderView
+//                    .image(imgUrl)
+//                    .setScaleType(BaseSliderView.ScaleType.Fit)
+//                    .setOnSliderClickListener(this);
+//
+//
+//            mainViewPager.addSlider(textSliderView);
+//
+//        }
+
+
+    }
+
+
+    private void getProductDetails() {
+
+        SimpleProgressBar.showProgress(this);
+        try {
+            final String url = Contents.baseURL + "getProductDetails";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+
+
+
+                            SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("success");
+                                    if (status.equals("1")) {
+
+                                        String record = jsonObject.getString("record");
+                                        System.out.println("record==" + record);
+
+                                        Gson g = new Gson();
+                                        daraAbayaDetailRecord = g.fromJson(record, DaraAbayaDetailRecord.class);
+
+                                        if(daraAbayaDetailRecord != null)
+                                        {
+                                            initViewsPostCall();
+                                        }
+
+                                    }
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appVersion", "1.1");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("product_id", productRecord.getTefsal_product_id());
+                    params.put("store_id", productRecord.getStore_id());
+
+                    Log.e("Tefsal tailor == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
+
+    public void showSelectedSizeData(int position) {
+
+        this.currentPosition = position;
+
+        if (productRecord != null) {
+            List<Colors> colors = daraAbayaDetailRecord.getSizes().get(position).getColors();
+
+
+            if (colors != null) {
+
+
+                spinnerArray.clear();
+
+                for (Colors color : colors) {
+
+
+                    if (color != null && color.getColor() != null) {
+                        spinnerArray.add(color.getColor());
+                    }
+
+                }
+
+                stringArrayAdapter.notifyDataSetChanged();
+
+            }
+
+        }
 
 
     }
@@ -350,54 +593,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             surError.printStackTrace();
         }
     }
-
-
-
-
-    private void initSlider() {
-
-
-        mainViewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
-        mainViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
-        mainViewPager.setCustomAnimation(new DescriptionAnimation());
-        mainViewPager.setDuration(5000);
-        mainViewPager.addOnPageChangeListener(this);
-
-        List<String> stringList = productRecord.getProduct_images();
-
-        for (String imgUrl : stringList) {
-
-            DefaultSliderView textSliderView = new DefaultSliderView(this);
-            // initialize a SliderLayout
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
-
-
-            mainViewPager.addSlider(textSliderView);
-
-        }
-
-
-    }
-
-    private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
-
-
-        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontal(productSizesList, ZaaraDaraaActivity.this);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-
-        TefalApp.getInstance().setPosition(0);
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
-
-
-
-
-    }
-
-
 
     @Override
     protected void onStop() {

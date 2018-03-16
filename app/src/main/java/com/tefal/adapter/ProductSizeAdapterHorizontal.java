@@ -71,11 +71,6 @@ public class ProductSizeAdapterHorizontal extends RecyclerView.Adapter<ProductSi
 
             //Communaction channel with ZaraaDaraaActivity================================
 
-            ZaaraDaraaActivity.text_price.setText("PRICE : " + productSizesList.get(position).getPrice() + " KWD");
-            ZaaraDaraaActivity.stockQuantity.setText(productSizesList.get(position).getQuantity());
-            ZaaraDaraaActivity.meter_value.setText("1");
-            ZaaraDaraaActivity.price = Integer.parseInt(productSizesList.get(position).getPrice());
-            ZaaraDaraaActivity.meter = 1;
 
 
             //TefalApp.getInstance().setPaintOverSizeText("");

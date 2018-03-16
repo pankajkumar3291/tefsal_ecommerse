@@ -2,12 +2,15 @@ package com.tefal.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +25,14 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
+import com.tefal.Models.AddressResponseModel;
 import com.tefal.Models.GetCartRecord;
 import com.tefal.Models.GetCartResponse;
+import com.tefal.Models.MyAddressesModel;
 import com.tefal.R;
+import com.tefal.adapter.AddressListAdapter;
+import com.tefal.adapter.CartAddressListAdapter;
+import com.tefal.adapter.MyAddressAdapter;
 import com.tefal.adapter.MyCartAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
@@ -39,11 +47,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by AC 101 on 11-10-2017.
- */
-
-public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartItemDeletedListener {
+public class CartAddressSelectionActivity extends BaseActivity implements MyCartAdapter.OnCartItemDeletedListener {
 
     @BindView(R.id.header_txt)
     TextView header_txt;
@@ -57,8 +61,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     @BindView(R.id.btn_purchase)
     Button btn_purchase;
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recycler_view;
+
 
     @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
@@ -81,10 +84,24 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
     MyCartAdapter.OnCartItemDeletedListener onCartItemDeletedListener;
 
+
+
+    @BindView(R.id.recycler)
+    RecyclerView recycler;
+
+
+    CartAddressListAdapter myAddressAdapter;
+
+    @BindView(R.id.empty_view)
+    TextView empty_view;
+
+
+    public String defaultAddressId = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cart);
+        setContentView(R.layout.activity_cart_address_selection);
 
         ButterKnife.bind(this);
 
@@ -99,6 +116,99 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
     }
 
+
+    public void WebCallServiceAddresses() {
+        SimpleProgressBar.showProgress(this);
+        try {
+            final String url = Contents.baseURL + "getCustomerSavedAddresses";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            SimpleProgressBar.closeProgress();
+
+                            if (response != null) {
+
+                                Log.e("stores response", response);
+                                Gson g = new Gson();
+                                MyAddressesModel mResponse = g.fromJson(response, MyAddressesModel.class);
+
+                                if (mResponse.getStatus().equals("1")) {
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(CartAddressSelectionActivity.this);
+                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+                                    recycler.setLayoutManager(layoutManager);
+                                    recycler.setItemAnimator(new DefaultItemAnimator());
+                                    myAddressAdapter = new CartAddressListAdapter(CartAddressSelectionActivity.this, mResponse.getRecord());
+                                    recycler.setAdapter(myAddressAdapter);
+
+                                    if(mResponse.getRecord().size() == 0)
+                                    {
+                                        empty_view.setVisibility(View.VISIBLE);
+                                        recycler.setVisibility(View.GONE);
+                                        empty_view.setText(mResponse.getMessage());
+
+                                    }
+
+                                }
+                                else {
+
+                                    recycler.setVisibility(View.GONE);
+                                    empty_view.setVisibility(View.VISIBLE);
+                                    empty_view.setText(mResponse.getMessage());
+                                    // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("access_token", session.getToken());
+
+                    // System.out.println("ACCESS TOCKEN=="+session.getToken());
+                    params.put("customer_id", session.getCustomerId());
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    Log.e("Tefsal store == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(CartAddressSelectionActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (NullPointerException surError) {
+            surError.printStackTrace();
+            //SimpleProgressBar.closeProgress();
+            SimpleProgressBar.closeProgress();
+        }
+    }
+
+
+
+
+    //************************** CART FUNCTIONALITY **********************************//
+
+
+
     private void init() {
 
         btn_purchase.setOnClickListener(new View.OnClickListener() {
@@ -107,15 +217,17 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
                 if (currentItemsCount == 0) {
 
-                    Toast.makeText(CartActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartAddressSelectionActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Here you need to flush payment method info....
                 TefalApp.getInstance().setPayment_method_tc("");
                 TefalApp.getInstance().setPayment_method("");
 
-                startActivity(new Intent(CartActivity.this, CartAddressSelectionActivity.class)
+                Log.e("defaultAddressId",defaultAddressId);
+                startActivity(new Intent(CartAddressSelectionActivity.this, PaymentSelectActivity.class)
                         .putExtra("price", amount.getText().toString())
+                        .putExtra("defaultAddressId", defaultAddressId)
                         .putExtra("header", header_txt.getText().toString()));
 
             }
@@ -158,9 +270,9 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
         try {
 
-            WebCallServiceCart();
+           WebCallServiceCart();
 
-
+            WebCallServiceAddresses();
             //=====For getting crash Analytics==================================
 
 
@@ -178,7 +290,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         //================================================================================
 
-        SimpleProgressBar.showProgress(CartActivity.this);
+       // SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
         try {
             final String url = Contents.baseURL + "getCart";
 
@@ -187,7 +299,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                         @Override
                         public void onResponse(String response) {
 
-                            SimpleProgressBar.closeProgress();
+                            //SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
@@ -204,17 +316,8 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                         totalPrice += Integer.parseInt(mResponse.getRecord().get(i).getPrice());
                                         //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
                                     }
-                                    amount.setText("TOTAL : " + totalPrice + " KWD");
-                                    LinearLayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
-                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-                                    recycler_view.setLayoutManager(layoutManager);
-                                    recycler_view.setItemAnimator(new DefaultItemAnimator());
-                                    // upadteGetRecord();
-                                    adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
-                                    adapter.setOnCartItemDeletedListener(onCartItemDeletedListener);
-                                    recycler_view.setAdapter(adapter);
-                                    currentItemsCount = mResponse.getRecord().size();
+                                      amount.setText("TOTAL : " + totalPrice + " KWD");
+                                     currentItemsCount = mResponse.getRecord().size();
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
@@ -226,7 +329,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
+                            //SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -248,7 +351,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(CartActivity.this);
+            RequestQueue requestQueue = Volley.newRequestQueue(CartAddressSelectionActivity.this);
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
 
@@ -256,44 +359,6 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
             surError.printStackTrace();
         }
     }
-
-    public void upadteGetRecord() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-
-            mResponse.getRecord().get(i).setDelete(false);
-            //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
-        }
-        // adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-      /*  adapter=null;
-        adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
-        recycler_view.setAdapter(adapter);*/
-
-    }
-
-    public void upadteGetRecord3() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-
-            mResponse.getRecord().get(i).setDelete(false);
-            //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
-        }
-        //adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-      /*  adapter=null;
-        adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
-        recycler_view.setAdapter(adapter);*/
-        //adapter.notifyDataSetChanged();
-    }
-
-    public void upadteGetRecord2() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-            mResponse.getRecord().get(i).setDelete(true);
-            System.out.println("AT SET DELETE VALUE DELETE===" + mResponse.getRecord().get(i).isDelete());
-
-        }
-        adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-    }
-
     public void updateUifromAdapter(List<GetCartRecord> storeModels) {
         Double totalPrice = 0.0;
         if (mResponse.getRecord().size() <= 1)
@@ -319,6 +384,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     }
 
 
+
     @Override
     public void onCartItemDeleted(int currentCount) {
 
@@ -330,4 +396,5 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
             edit_btn.setVisibility(View.VISIBLE);
         }
     }
+
 }
