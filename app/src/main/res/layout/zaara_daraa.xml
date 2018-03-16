@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -134,7 +135,8 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/LL_add_cart_region"
         android:layout_below="@+id/relTootlbar">
 
         <RelativeLayout
@@ -142,8 +144,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical">
+            android:fitsSystemWindows="true">
 
 
             <RelativeLayout
@@ -205,8 +206,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/size2"
-
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/text_sizeGuide_zaara_daraa"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_normal" />
@@ -247,10 +248,10 @@
                 android:padding="20dp">
 
                 <TextView
-                    android:textColor="@color/colorAccent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Product Description"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_mid"
                     android:textStyle="bold" />
 
@@ -321,12 +322,11 @@
             </LinearLayout>
 
 
-
-
         </RelativeLayout>
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/LL_add_cart_region"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -349,10 +349,10 @@
         <Button
             android:id="@+id/add_cart_btn"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:text="ADD TO CART"
