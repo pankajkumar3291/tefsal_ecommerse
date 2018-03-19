@@ -44,6 +44,16 @@ public class AddressRecord implements Serializable{
 
     private String phone_number;
 
+    public boolean isDefaultAddress() {
+        return isDefaultAddress;
+    }
+
+    public void setDefaultAddress(boolean defaultAddress) {
+        isDefaultAddress = defaultAddress;
+    }
+
+    private boolean isDefaultAddress = false;
+
     public String getFlat_number() {
         return flat_number;
     }

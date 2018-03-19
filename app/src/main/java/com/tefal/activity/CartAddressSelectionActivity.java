@@ -220,6 +220,15 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                     Toast.makeText(CartAddressSelectionActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+
+                if(defaultAddressId == null || defaultAddressId.equalsIgnoreCase(""))
+                {
+                    Toast.makeText(CartAddressSelectionActivity.this, "Please select delivery address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 // Here you need to flush payment method info....
                 TefalApp.getInstance().setPayment_method_tc("");
                 TefalApp.getInstance().setPayment_method("");

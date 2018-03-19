@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
 import com.tefal.R;
@@ -29,7 +28,7 @@ import butterknife.ButterKnife;
 public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<DishdashaTextileOtherProductAdapter.ViewHolder> {
 
     private Activity activity;
-    public static List<ProductRecord> productRecords = new ArrayList<>();
+    List<ProductRecord> productRecords = new ArrayList<>();
     private Context context;
     String storeId;
 
@@ -87,21 +86,21 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
         String discaunt_amount;
 
-        String product_image = productRecords.get(position).getProduct_images().get(0);
+        // String product_image = productRecords.get(position).getProduct_images().get(0);
         String brand_name = productRecords.get(position).getBrand_name();
         //String product_price=productRecords.get(position).getP
         String product_name = productRecords.get(position).getProduct_name();
         String max_delivery_days = productRecords.get(position).getMax_delivery_days();
 
-        System.out.println("max_delivery_days===" + max_delivery_days);
-        if (productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals("")) {
-            discaunt_amount = "0%";
-            holder.txt_discount_amount.setVisibility(View.GONE);
-            holder.txt_discount_off.setVisibility(View.GONE);
-        } else {
-            discaunt_amount = productRecords.get(position).getProduct_discount();
-            holder.txt_discount_amount.setText(discaunt_amount);
-        }
+        System.out.println("product_name===" + product_name);
+//        if (productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals("")) {
+//            discaunt_amount = "0%";
+//            holder.txt_discount_amount.setVisibility(View.GONE);
+//            holder.txt_discount_off.setVisibility(View.GONE);
+//        } else {
+//            discaunt_amount = productRecords.get(position).getProduct_discount();
+//            holder.txt_discount_amount.setText(discaunt_amount);
+//        }
         //  holder.txt_discount_amount.setText(discaunt_amount);
 
         //This block of code responsible for getting the price of DARRA ABAYA Product price......
@@ -114,10 +113,10 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
 
         holder.text_max_delivery_days.setText(max_delivery_days);
-        Picasso.with(activity).load(product_image)
-                .placeholder(R.drawable.no_image_placeholder_grid)
-                .error(R.drawable.no_image_placeholder_grid)
-                .into(holder.iv_pattern);
+//        Picasso.with(activity).load("")
+//                .placeholder(R.drawable.no_image_placeholder_grid)
+//                .error(R.drawable.no_image_placeholder_grid)
+//                .into(holder.iv_pattern);
 
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +130,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
                 intent.putExtras(bundle);
                 activity.startActivity(intent);
 
-               //System.out.println("Hello");
+                //System.out.println("Hello");
 
             }
         });

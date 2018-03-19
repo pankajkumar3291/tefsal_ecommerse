@@ -1,25 +1,17 @@
 package com.tefal.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,22 +24,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tefal.Models.AccessoriesProductsResponse;
 import com.tefal.Models.BadgeRecordModel;
+import com.tefal.Models.DaraAbayaCategoriesModel;
+import com.tefal.Models.DaraAbayaProductListResponse;
+import com.tefal.Models.DaraaAbayaRecordsResponse;
 import com.tefal.Models.ProductsResponse;
-import com.tefal.Models.TextileProductResponse;
 import com.tefal.R;
-import com.tefal.adapter.AccessoriesProductAdapter;
-import com.tefal.adapter.DishdashaTextileOtherProductAdapter;
-import com.tefal.adapter.DishdashaTextileProductAdapter;
-import com.tefal.fragment.FragmentTextileProducts;
+import com.tefal.fragment.SubCategoryFragment;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -64,23 +59,8 @@ public class ProductListOtherActivity extends BaseActivity {
     @BindView(R.id.btn_back)
     ImageButton btn_back;
 
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
 
-    @BindView(R.id.loading)
-    ProgressBar loading;
-
-    /*@BindView(R.id.text_season)
-    TextView text_season;
-
-    @BindView(R.id.text_color)
-    TextView text_color;
-
-    @BindView(R.id.text_country)
-    TextView text_country;*/
-
-    PopupWindow colorWindow;
-    String store_id,flag;
+    String store_id, flag;
     @BindView(R.id.view_cart_btn)
     RelativeLayout view_cart_btn;
 
@@ -88,9 +68,22 @@ public class ProductListOtherActivity extends BaseActivity {
     TextView total_badge_txt;
 
 
-    DishdashaTextileOtherProductAdapter dishdashaAdapter;
-
     SessionManager session;
+
+
+    //*************************** New Layout Components *******************************
+
+    @BindView(R.id.tabSubCategory)
+    TabLayout tabLayout;
+
+    @BindView(R.id.viewPageSubCat)
+    ViewPager viewPager;
+
+
+    ViewPagerAdapter viewPagerAdapter;
+
+
+    //*********************************************************************************
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +91,11 @@ public class ProductListOtherActivity extends BaseActivity {
         setContentView(R.layout.activity_product_list_other);
 
         ButterKnife.bind(this);
-
-
+        session = new SessionManager(ProductListOtherActivity.this);
 
         view_cart_btn.setVisibility(View.VISIBLE);
-        store_id =  getIntent().getStringExtra("store_id");
-        flag =  getIntent().getStringExtra("flag");
+        store_id = getIntent().getStringExtra("store_id");
+        flag = getIntent().getStringExtra("flag");
 
         setSupportActionBar(toolbar);
         //toolbar_title.setText(getIntent().getStringExtra("title"));
@@ -117,40 +109,77 @@ public class ProductListOtherActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        initViews();
 
-
-       /* text_color.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View popupView = layoutInflater.inflate(R.layout.choose_color_panel, null);
-
-                colorWindow = new PopupWindow(
-                        popupView,
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                colorWindow.setBackgroundDrawable(new BitmapDrawable());
-                colorWindow.setOutsideTouchable(true);
-                colorWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        //TODO do sth here on dismiss
-                    }
-                });
-
-                colorWindow.showAsDropDown(v);
-            }
-        });*/
-
-        session = new SessionManager(ProductListOtherActivity.this);
 
         if (!flag.equals("Accessories"))
-        WebCallServiceStores();
-        else
+            WebCallServiceStores();
+        else {
             WebCallAccessoriesProducts();
+        }
+
 
     }
+
+
+    //*********************************** New Methods *********************************
+
+
+    //region New Methods
+    private void initViews() {
+
+       // setupViewPager(viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setCurrentItem(0);
+        tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        for (int i = 0; i < 3; i++) {
+            viewPagerAdapter.addFragment(new SubCategoryFragment(), "ONE");
+//            adapter.addFragment(new TwoFragment(), "TWO");
+            viewPager.setAdapter(viewPagerAdapter);
+        }
+    }
+
+
+    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+    //endregion
+
+
+    //*********************************** End Methods *********************************
 
 
     @Override
@@ -158,7 +187,7 @@ public class ProductListOtherActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -235,11 +264,7 @@ public class ProductListOtherActivity extends BaseActivity {
     }
 
 
-
-
-
-    public  void gotoCart(View v)
-    {
+    public void gotoCart(View v) {
         try {
             startActivity(new Intent(ProductListOtherActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         } catch (Exception e) {
@@ -247,8 +272,9 @@ public class ProductListOtherActivity extends BaseActivity {
         }
     }
 
+
     public void WebCallServiceStores() {
-        SimpleProgressBar.showProgress(ProductListOtherActivity.this);
+        SimpleProgressBar.showProgress(this);
         try {
 
             final String url = Contents.baseURL + "getDaraaAbayaProducts";
@@ -264,20 +290,44 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                ProductsResponse mResponse = g.fromJson(response, ProductsResponse.class);
 
-                                if (!mResponse.getStatus().equals("0")) {
-                                    dishdashaAdapter = new DishdashaTextileOtherProductAdapter(ProductListOtherActivity.this, mResponse.getRecord(),store_id);
-                                    recycler.setAdapter(dishdashaAdapter);
+                                DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
 
-                                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-                                    recycler.setLayoutManager(mLayoutManager);
-                                    recycler.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
-                                }
-                                else
+                                if(mResponse.getStatus().equalsIgnoreCase("1"))
                                 {
-                                    Toast.makeText(getApplicationContext(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+
+                                    for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
+
+                                        DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
+
+
+
+                                      //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
+                                        //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
+                                       // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
+
+
+                                        if(daraAbayaCategoriesModel.getSub_category() != null)
+                                        {
+
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts()), daraAbayaCategoriesModel.getSub_category());
+                                        }
+                                        else
+                                        {
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts()), "Sub Category");;
+                                        }
+
+
+
+                                    }
+
+
+                                    viewPager.setAdapter(viewPagerAdapter);
+
+                                    if(mResponse.getRecord().getCategories().size() == 1 )
+                                    {
+                                        tabLayout.setVisibility(View.GONE);
+                                    }
                                 }
 
                             }
@@ -293,7 +343,7 @@ public class ProductListOtherActivity extends BaseActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    System.out.println("STORE ID=="+store_id);
+                    System.out.println("STORE ID==" + store_id);
 //                    params.put("access_token", session.getToken());
                     params.put("store_id", store_id);
                     params.put("color", "");
@@ -304,7 +354,7 @@ public class ProductListOtherActivity extends BaseActivity {
                     params.put("appVersion", "1.1");
                     params.put("category", flag);
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e("Tefsal store == ", url + new JSONObject(params));
 
                     return params;
                 }
@@ -322,6 +372,7 @@ public class ProductListOtherActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
+
     public void WebCallAccessoriesProducts() {
         SimpleProgressBar.showProgress(ProductListOtherActivity.this);
         try {
@@ -339,21 +390,7 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
-
-                                if (!mResponse.getStatus().equals("0")) {
-                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(ProductListOtherActivity.this, mResponse.getRecord(),store_id);
-                                    recycler.setAdapter(adapter);
-
-                                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-                                    recycler.setLayoutManager(mLayoutManager);
-                                    recycler.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
-                                }
-                                else
-                                {
-                                    Toast.makeText(getApplicationContext(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
-                                }
+                               // AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
 
                             }
 
@@ -370,19 +407,18 @@ public class ProductListOtherActivity extends BaseActivity {
                     Map<String, String> params = new HashMap<String, String>();
 //                    params.put("access_token", session.getToken());
 
-                    System.out.println("ACCESSORY======= STORE=="+store_id);
+                    System.out.println("ACCESSORY======= STORE==" + store_id);
                     //System.out.println("ACCESSORY======= STORE=="+store_id);
-                    System.out.println("ACCESSORY======= SUBCAT=="+getIntent().getStringExtra("sub_cat"));
+                    System.out.println("ACCESSORY======= SUBCAT==" + getIntent().getStringExtra("sub_cat"));
 
 
                     params.put("store_id", store_id);
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    if (flag.equals("Accessories"))
-                    {
-                    params.put("sub_cat_id", getIntent().getStringExtra("sub_cat"));
-                        System.out.println("ACCESSORY SUBCAT=="+getIntent().getStringExtra("sub_cat"));
+                    if (flag.equals("Accessories")) {
+                        params.put("sub_cat_id", getIntent().getStringExtra("sub_cat"));
+                        System.out.println("ACCESSORY SUBCAT==" + getIntent().getStringExtra("sub_cat"));
                     }
                     //System.out.println("Store ID=="+store_id+ "SubCategory ID=="+getIntent().getStringExtra("sub_cat"));
 
@@ -396,7 +432,7 @@ public class ProductListOtherActivity extends BaseActivity {
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(ProductListOtherActivity.this);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
 
@@ -404,46 +440,6 @@ public class ProductListOtherActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
 
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
-            }
-        }
-    }
-
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
 }
