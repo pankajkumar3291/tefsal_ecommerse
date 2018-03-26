@@ -461,7 +461,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     public void showSizeOnColorSelection(ZaraDaraSizeModel position) {
 
         TefalApp.getInstance().setCurrentColorText(position.getColor());
-
+        productSizeAdapterHorizontalAccessories.isSet = false;
         productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
 
     }

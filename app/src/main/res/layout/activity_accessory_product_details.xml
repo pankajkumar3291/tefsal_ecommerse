@@ -199,7 +199,13 @@
                         android:layout_below="@+id/txtColorLabele">
 
                     </android.support.v7.widget.RecyclerView>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/colorRecyclerView"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/colorGray" />
 
                 </RelativeLayout>
 
@@ -229,11 +235,8 @@
                     android:id="@+id/sizeGuideLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lblSizeHeader"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
                     android:gravity="start"
                     android:orientation="vertical">
 
@@ -244,7 +247,13 @@
                         android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/colorRecyclerView"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/colorGray" />
                 </LinearLayout>
 
                 <LinearLayout

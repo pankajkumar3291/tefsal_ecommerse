@@ -29,7 +29,7 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
     private List<Colors> productSizesList;
     private Activity activity;
 
-    private boolean isSet = false;
+    public boolean isSet = false;
 
 
     public ProductSizeAdapterHorizontalZaraDara(List<Colors> productSizesList, Activity activity) {

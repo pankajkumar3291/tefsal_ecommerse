@@ -74,12 +74,10 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
                 TefalApp.getInstance().setColorPosition(position);
                 notifyDataSetChanged();
 
+                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
+                zaaraDaraaActivity.showSizeOnColorSelection(productSizesList.get(position));
 
 
-                if (activity.getClass().getSimpleName().equalsIgnoreCase("ZaaraDaraaActivity")) {
-                    ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
-                    zaaraDaraaActivity.showSizeOnColorSelection(productSizesList.get(position));
-                }
 
 
             }
