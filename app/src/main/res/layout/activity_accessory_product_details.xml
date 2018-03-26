@@ -174,13 +174,69 @@
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/size2"
+                <RelativeLayout
+                    android:id="@+id/colorAvailable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp">
 
-                    android:visibility="visible">
+                    <TextView
+                        android:id="@+id/txtColorLabele"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color Available"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/colorRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtColorLabele">
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/lblSizeHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtSizeLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Size Available"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sizeGuideLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/lblSizeHeader"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/sizeRecyclerView"
@@ -188,54 +244,13 @@
                         android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
+
                 </LinearLayout>
-
-
-                <TextView
-
-                    android:id="@+id/sizeGuide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-
-                    android:text="@string/text_sizeGuide_zaara_daraa"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_normal"
-                    android:visibility="gone" />
-
-
-                <RelativeLayout
-                    android:id="@+id/colorAvailable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Color Available"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="@dimen/text_normal"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/spinnerColor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true" />
-
-
-                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/colorAvailable"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -243,8 +258,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Product Description"
-                        android:textSize="@dimen/text_mid"
                         android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_mid"
                         android:textStyle="bold" />
 
                     <TextView
@@ -254,6 +269,7 @@
                         android:text="descp"
                         android:textSize="@dimen/text_normal" />
                 </LinearLayout>
+
             </LinearLayout>
         </RelativeLayout>
 

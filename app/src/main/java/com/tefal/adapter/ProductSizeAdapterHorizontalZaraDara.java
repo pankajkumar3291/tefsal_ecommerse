@@ -95,17 +95,9 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
                 TefalApp.getInstance().setPosition(position);
                 notifyDataSetChanged();
 
-                if(activity.getClass().getSimpleName().equalsIgnoreCase("AccessoryProductDetailsActivity"))
-                {
-                    AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity)activity;
-                    accessoryProductDetailsActivity.showSelectedSizeData(position);
-                }
 
-                if(activity.getClass().getSimpleName().equalsIgnoreCase("ZaaraDaraaActivity"))
-                {
-                    ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity)activity;
-                    zaaraDaraaActivity.showSelectedSizeData(position);
-                }
+                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity)activity;
+                zaaraDaraaActivity.showSelectedSizeData(position);
 
 
 

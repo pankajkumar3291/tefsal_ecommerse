@@ -16,13 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +45,7 @@ import com.tefal.Models.AccessoryDetailRecord;
 import com.tefal.Models.BadgeRecordModel;
 import com.tefal.Models.Colors;
 import com.tefal.R;
+import com.tefal.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefal.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
@@ -60,9 +58,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -127,26 +123,20 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
 
-    @BindView(R.id.spinnerColor)
-    Spinner spinnerColor;
 
-    ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontal;
+    @BindView(R.id.colorRecyclerView)
+    RecyclerView colorRecyclerView;
+
 
     AccessoryDetailRecord accessoryDetailRecord;
 
-    int currentPosition = 0;
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
     DefaultSliderView textSliderView = null;
 
-    List<String> spinnerArray = new ArrayList<String>();
 
-    ArrayAdapter<String> stringArrayAdapter = null;
-
-    @BindView(R.id.sizeGuide)
-    TextView sizeGuide;
-
-    String sizeGuideResponseHtml;
+    ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
+    ProductColorAdapterHorizontalAccesories productColorAdapterHorizontalAccesories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,63 +189,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             }
         });
 
-        spinnerColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
-
-                Colors colors = accessoryDetailRecord.getSizes().get(currentPosition).getColors().get(position);
-
-                if (accessoryDetailRecord != null) {
-
-                    product_image_viewPager.removeAllSliders();
-                    text_price.setText("PRICE: " + colors.getPrice() + " KWD");
-
-                    for (String imgUrl : colors.getImages()) {
-
-
-                        textSliderView
-                                .image(imgUrl)
-                                .setScaleType(BaseSliderView.ScaleType.Fit)
-                                .setOnSliderClickListener(onSliderClickListener);
-
-
-                        product_image_viewPager.addSlider(textSliderView);
-
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-
-
-            }
-
-        });
-
-        sizeGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                try {
-                    Intent intent = new Intent(AccessoryProductDetailsActivity.this, SizeGuideActivirty.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
-
-                    intent.putExtras(bundle);
-
-                    //intent.putExtra("sizeGuideResponseHtml",sizeGuideResponseHtml);
-
-                    startActivity(intent);
-                } catch (Exception ex) {
-                    System.out.println("Error==" + ex);
-                }
-            }
-        });
 
     }
 
@@ -268,10 +201,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
-
-        stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
     }
@@ -298,7 +227,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         public void onResponse(String response) {
 
 
-                             System.out.println("response==" + response.toString());
+                            System.out.println("response==" + response.toString());
 
 
                             SimpleProgressBar.closeProgress();
@@ -361,24 +290,23 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
 
 
+        //Color Array Fill
+
+
+        productColorAdapterHorizontalAccesories = new ProductColorAdapterHorizontalAccesories(accessoryDetailRecord.getSizes(), this);
+        LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
+        TefalApp.getInstance().setSetAccColorPosition(0);
+        colorRecyclerView.setAdapter(productColorAdapterHorizontalAccesories);
+
+
         // Bind Size Circle
 
-        productSizeAdapterHorizontal = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
+        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
         TefalApp.getInstance().setPosition(0);
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
-
-
-        // Bind Color DropDown
-
-        spinnerArray.clear();
-
-        for (Colors color : accessoryDetailRecord.getSizes().get(0).getColors()) {
-            spinnerArray.add(color.getColor());
-        }
-
-        spinnerColor.setAdapter(stringArrayAdapter);
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
 
 
         // Bind Slider
@@ -398,6 +326,31 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         }
 
+    }
+
+    public void showSizeOnColorSelection(int position) {
+
+
+        productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
+
+    }
+
+    public void showSelectedSizeData(int position) {
+
+
+        product_image_viewPager.removeAllSliders();
+        for (String imgUrl : accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages()) {
+
+
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+
+
+            product_image_viewPager.addSlider(textSliderView);
+
+        }
 
 
     }
@@ -490,39 +443,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         text_desc.setText(accessoriesRecord.getProductDesc());
         text_price.setText("PRICE: " + accessoriesRecord.getPrice() + " KWD");
-
-    }
-
-
-    public void showSelectedSizeData(int position) {
-
-        this.currentPosition = position;
-
-        if (accessoryDetailRecord != null) {
-            List<Colors> colors = accessoryDetailRecord.getSizes().get(position).getColors();
-
-
-            if (colors != null) {
-
-
-                spinnerArray.clear();
-
-                for (Colors color : colors) {
-
-
-                    if (color != null && color.getColor() != null)
-                    {
-                        spinnerArray.add(color.getColor());
-                    }
-
-                }
-
-                stringArrayAdapter.notifyDataSetChanged();
-
-            }
-
-        }
-
 
     }
 

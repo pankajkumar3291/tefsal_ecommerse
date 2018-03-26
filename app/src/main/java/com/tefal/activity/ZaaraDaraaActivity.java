@@ -324,8 +324,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         sizeGuideResponseHtml = daraAbayaDetailRecord.getMeasurements();
 
 
-        //Size Array Fill
-
+        //Color Array Fill
 
         for (Colors colors : daraAbayaDetailRecord.getColors()) {
 
