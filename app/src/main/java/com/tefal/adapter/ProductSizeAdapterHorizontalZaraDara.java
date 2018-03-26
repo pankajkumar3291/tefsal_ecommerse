@@ -62,11 +62,11 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
 
             holder.sizeText.setEnabled(true);
 
-            if(!isSet)
-            {
-                TefalApp.getInstance().setPosition(position);
-                isSet = true;
-            }
+//            if(!isSet)
+//            {
+//                TefalApp.getInstance().setPosition(position);
+//                isSet = true;
+//            }
 
             if (position == TefalApp.getInstance().getPosition()) {
                 holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
@@ -89,6 +89,7 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
 
         }
 
+        holder.sizeText.setTag(model);
         holder.sizeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,12 +98,10 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
                 notifyDataSetChanged();
 
 
+                ZaraDaraSizeModel sizeModel = (ZaraDaraSizeModel) v.getTag();
+
                 ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity)activity;
-                zaaraDaraaActivity.showSelectedSizeData(position);
-
-
-
-
+                zaaraDaraaActivity.showSelectedSizeData(position,sizeModel);
 
             }
         });

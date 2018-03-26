@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -132,6 +133,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     public static int price;
     public static int meter = 1;
 
+    public static ZaraDaraSizeModel zaraDaraSizesModel = null;
+
 
     SessionManager session;
     public ProductRecord productRecord;
@@ -169,6 +172,10 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     Set<String> uniqueColorSet = new HashSet<>();
     Set<String> uniqueSizeSet = new HashSet<>();
+
+
+    @BindView(R.id.quntity_LL)
+    LinearLayout quntity_LL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,6 +221,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         //Init Additional
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
+
+        TefalApp.getInstance().setPosition(-1);
     }
 
     private void initIntent() {
@@ -260,6 +269,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         add_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (zaraDaraSizesModel == null) {
+
+                    Toast.makeText(ZaaraDaraaActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 WebCallServiceAddCart();
 
 
@@ -278,13 +293,20 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                meter++;
-                if (meter >= 0 && meter <= 10) {
-                    amount = meter * price;
-                    text_price.setText("PRICE : " + amount + " KWD");
-                    meter_value.setText("" + meter);
+                if (zaraDaraSizesModel != null) {
 
+                    if (meter > 0 && meter < zaraDaraSizesModel.getQuantity()) {
+                        amount = meter * price;
+                        text_price.setText("PRICE : " + amount + " KWD");
+                        meter_value.setText("" + meter);
+                        meter++;
+
+                    }
+
+                } else {
+                    Toast.makeText(ZaaraDaraaActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
 
@@ -342,8 +364,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         }
 
 
-
-
         //Fill color
 
 
@@ -370,15 +390,13 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         }
 
 
-        // Bind Size Circle
+        // Bind sizes
         productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
         TefalApp.getInstance().setColorPosition(0);
         TefalApp.getInstance().setCurrentColorText(zaraDaraSizeModelList.get(0).getColor());
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
-
-
 
 
     }
@@ -460,6 +478,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     public void showSizeOnColorSelection(ZaraDaraSizeModel position) {
 
+        TefalApp.getInstance().setPosition(-1);
         TefalApp.getInstance().setCurrentColorText(position.getColor());
         productSizeAdapterHorizontalZaraDara.isSet = false;
         productSizeAdapterHorizontalZaraDara.notifyDataSetChanged();
@@ -467,23 +486,38 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-    public void showSelectedSizeData(int position) {
+    public void showSelectedSizeData(int position, ZaraDaraSizeModel colors) {
 
         this.currentPosition = position;
 
         mainViewPager.removeAllSliders();
         for (String imgUrl : daraAbayaDetailRecord.getColors().get(currentPosition).getImages()) {
 
-
             textSliderView
                     .image(imgUrl)
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
-
-
             mainViewPager.addSlider(textSliderView);
 
         }
+
+        if (colors != null) {
+            zaraDaraSizesModel = colors;
+
+            if (zaraDaraSizesModel.getQuantity() == 0) {
+                add_cart_btn.setText("SOLD OUT");
+                quntity_LL.setVisibility(View.GONE);
+
+            }
+
+            if (zaraDaraSizesModel.getPrice() != null) {
+                price = Integer.parseInt(zaraDaraSizesModel.getPrice());
+                text_price.setText("PRICE : " + price + " KWD");
+            }
+
+
+        }
+
 
     }
 

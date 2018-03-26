@@ -2,15 +2,12 @@ package com.tefal.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,14 +22,11 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.tefal.Models.AddressResponseModel;
 import com.tefal.Models.GetCartRecord;
 import com.tefal.Models.GetCartResponse;
 import com.tefal.Models.MyAddressesModel;
 import com.tefal.R;
-import com.tefal.adapter.AddressListAdapter;
 import com.tefal.adapter.CartAddressListAdapter;
-import com.tefal.adapter.MyAddressAdapter;
 import com.tefal.adapter.MyCartAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
@@ -62,7 +56,6 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     Button btn_purchase;
 
 
-
     @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
 
@@ -83,7 +76,6 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     public int currentItemsCount = 0;
 
     MyCartAdapter.OnCartItemDeletedListener onCartItemDeletedListener;
-
 
 
     @BindView(R.id.recycler)
@@ -117,6 +109,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     }
 
 
+
     public void WebCallServiceAddresses() {
         SimpleProgressBar.showProgress(this);
         try {
@@ -144,16 +137,14 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                     myAddressAdapter = new CartAddressListAdapter(CartAddressSelectionActivity.this, mResponse.getRecord());
                                     recycler.setAdapter(myAddressAdapter);
 
-                                    if(mResponse.getRecord().size() == 0)
-                                    {
+                                    if (mResponse.getRecord().size() == 0) {
                                         empty_view.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
                                         empty_view.setText(mResponse.getMessage());
 
                                     }
 
-                                }
-                                else {
+                                } else {
 
                                     recycler.setVisibility(View.GONE);
                                     empty_view.setVisibility(View.VISIBLE);
@@ -203,10 +194,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     }
 
 
-
-
     //************************** CART FUNCTIONALITY **********************************//
-
 
 
     private void init() {
@@ -222,8 +210,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 }
 
 
-                if(defaultAddressId == null || defaultAddressId.equalsIgnoreCase(""))
-                {
+                if (defaultAddressId == null || defaultAddressId.equalsIgnoreCase("")) {
                     Toast.makeText(CartAddressSelectionActivity.this, "Please select delivery address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -233,7 +220,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 TefalApp.getInstance().setPayment_method_tc("");
                 TefalApp.getInstance().setPayment_method("");
 
-                Log.e("defaultAddressId",defaultAddressId);
+                Log.e("defaultAddressId", defaultAddressId);
                 startActivity(new Intent(CartAddressSelectionActivity.this, PaymentSelectActivity.class)
                         .putExtra("price", amount.getText().toString())
                         .putExtra("defaultAddressId", defaultAddressId)
@@ -248,29 +235,12 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
             }
         });
 
+
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isDelete) {
-                    /*recycler_view=null;
-                    upadteGetRecord2();
 
-                    isDelete=false;
-                    edit_btn.setText("DONE");*/
-
-                    adapter.activateDeleteOption(true);
-                    edit_btn.setText("DONE");
-                    adapter.notifyDataSetChanged();
-                    isDelete = false;
-
-
-                } else {
-                    adapter.activateDeleteOption(false);
-                    edit_btn.setText("EDIT");
-                    adapter.notifyDataSetChanged();
-                    isDelete = true;
-
-                }
+                onBackPressed();
 
             }
 
@@ -279,7 +249,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
         try {
 
-           WebCallServiceCart();
+            WebCallServiceCart();
 
             WebCallServiceAddresses();
             //=====For getting crash Analytics==================================
@@ -299,7 +269,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         //================================================================================
 
-       // SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
+        // SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
         try {
             final String url = Contents.baseURL + "getCart";
 
@@ -325,8 +295,8 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                         totalPrice += Integer.parseInt(mResponse.getRecord().get(i).getPrice());
                                         //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
                                     }
-                                      amount.setText("TOTAL : " + totalPrice + " KWD");
-                                     currentItemsCount = mResponse.getRecord().size();
+                                    amount.setText("TOTAL : " + totalPrice + " KWD");
+                                    currentItemsCount = mResponse.getRecord().size();
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
@@ -368,6 +338,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
             surError.printStackTrace();
         }
     }
+
     public void updateUifromAdapter(List<GetCartRecord> storeModels) {
         Double totalPrice = 0.0;
         if (mResponse.getRecord().size() <= 1)
@@ -391,7 +362,6 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
         System.out.println("I FROM ACTIVITY====");
     }
-
 
 
     @Override

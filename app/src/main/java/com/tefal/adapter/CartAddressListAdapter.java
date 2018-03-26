@@ -49,7 +49,7 @@ public class CartAddressListAdapter extends RecyclerView.Adapter<CartAddressList
     private Activity activity;
     private List<AddressRecord> record;
     private SessionManager sessionManager;
-    private static int currentAddressPos = -1;
+    private  int currentAddressPos = -1;
 
     public CartAddressListAdapter(Activity activity, List<AddressRecord> record) {
         this.activity = activity;

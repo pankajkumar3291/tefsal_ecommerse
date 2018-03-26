@@ -171,6 +171,8 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
     }
 
+
+
     public void WebCallServiceCart() {
 
         Log.i(TAG, "Setting screen name: " + "CartActivity");
