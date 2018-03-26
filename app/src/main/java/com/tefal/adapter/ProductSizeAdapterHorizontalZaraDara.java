@@ -71,6 +71,7 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
             if (position == TefalApp.getInstance().getPosition()) {
                 holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
                 holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
+
             }
             else
             {

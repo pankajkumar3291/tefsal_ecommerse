@@ -105,5 +105,11 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
     }
 
 
+    public void doManualClick() {
+
+
+    }
+
+
 }
 

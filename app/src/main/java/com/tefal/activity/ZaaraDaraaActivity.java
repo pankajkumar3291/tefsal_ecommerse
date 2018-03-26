@@ -141,7 +141,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     private static Tracker mTracker;
     private static final String TAG = "ZaaraDaraaActivity";
 
-    ProductSizeAdapterHorizontalZaraDara productSizeAdapterHorizontalAccessories;
+    ProductSizeAdapterHorizontalZaraDara productSizeAdapterHorizontalZaraDara;
     ProductColorAdapterHorizontalZaraDara productColorAdapterHorizontalZaraDara;
 
     /*
@@ -371,12 +371,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
         // Bind Size Circle
-        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
+        productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
         TefalApp.getInstance().setColorPosition(0);
         TefalApp.getInstance().setCurrentColorText(zaraDaraSizeModelList.get(0).getColor());
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
 
 
 
@@ -461,8 +461,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     public void showSizeOnColorSelection(ZaraDaraSizeModel position) {
 
         TefalApp.getInstance().setCurrentColorText(position.getColor());
-        productSizeAdapterHorizontalAccessories.isSet = false;
-        productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
+        productSizeAdapterHorizontalZaraDara.isSet = false;
+        productSizeAdapterHorizontalZaraDara.notifyDataSetChanged();
 
     }
 

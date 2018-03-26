@@ -57,6 +57,7 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
             holder.sizeText.setEnabled(true);
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
+
         }
         else
         {
