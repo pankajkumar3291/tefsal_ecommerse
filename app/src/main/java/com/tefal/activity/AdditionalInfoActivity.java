@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -142,6 +143,7 @@ public class AdditionalInfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                Locale.setDefault(Locale.US);
                 int mYear = 0;
                 int mMonth = 0;
                 int mDay = 0;
@@ -202,7 +204,7 @@ public class AdditionalInfoActivity extends BaseActivity {
 
         SimpleProgressBar.showProgress(AdditionalInfoActivity.this);
         try {
-            final String url = Contents.baseURL + "getCountries";
+            final String url = Contents.baseURL + "getAllCountries";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
