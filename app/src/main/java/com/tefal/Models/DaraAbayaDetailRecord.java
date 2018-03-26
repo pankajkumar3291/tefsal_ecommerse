@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DaraAbayaDetailRecord {
 
-    private List<Sizes> sizes;
+
 
     private String measurements;
 
@@ -32,15 +32,19 @@ public class DaraAbayaDetailRecord {
 
     private String brand_name;
 
-    public List<Sizes> getSizes ()
+    private List<Colors> colors;
+    public List<Colors> getColors ()
     {
-        return sizes;
+        return colors;
     }
 
-    public void setSizes (List<Sizes> sizes)
+    public void setColors (List<Colors> colors)
     {
-        this.sizes = sizes;
+        this.colors = colors;
     }
+
+
+
 
     public String getMeasurements ()
     {

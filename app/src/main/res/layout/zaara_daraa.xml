@@ -173,77 +173,95 @@
 
             </RelativeLayout>
 
-
-            <LinearLayout
-                android:id="@+id/sizeGuideLL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/viewPagerIndicator"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:id="@+id/size2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/size"
-
-                    android:gravity="center">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/sizeRecyclerView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    </android.support.v7.widget.RecyclerView>
-                </LinearLayout>
-
-
-                <TextView
-                    android:id="@+id/sizeGuide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/size2"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_sizeGuide_zaara_daraa"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_normal" />
-            </LinearLayout>
-
             <RelativeLayout
                 android:id="@+id/colorAvailable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sizeGuideLL"
+                android:layout_below="@+id/viewPagerIndicator"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp">
 
                 <TextView
+                    android:id="@+id/txtColorLabele"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Color Available"
+                    android:textAllCaps="true"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_normal"
                     android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/spinnerColor"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/colorRecyclerView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true" />
+                    android:layout_below="@+id/txtColorLabele">
+
+                </android.support.v7.widget.RecyclerView>
 
 
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/lblSizeHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colorAvailable"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSizeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size Available"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_normal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sizeGuide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:text="@string/text_sizeGuide_zaara_daraa"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sizeGuideLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblSizeHeader"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/sizeRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:id="@+id/product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/colorAvailable"
+                android:layout_below="@+id/sizeGuideLL"
                 android:orientation="vertical"
                 android:padding="20dp">
 

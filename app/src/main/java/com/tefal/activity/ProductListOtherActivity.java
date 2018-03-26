@@ -310,11 +310,11 @@ public class ProductListOtherActivity extends BaseActivity {
                                         if(daraAbayaCategoriesModel.getSub_category() != null)
                                         {
 
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts()), daraAbayaCategoriesModel.getSub_category());
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(),store_id), daraAbayaCategoriesModel.getSub_category());
                                         }
                                         else
                                         {
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts()), "Sub Category");;
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(),store_id), "Sub Category");;
                                         }
 
 

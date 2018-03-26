@@ -36,6 +36,16 @@ public class TefalApp
     private String paintOverSizeText;
     private int position;
 
+    public int getColorPosition() {
+        return colorPosition;
+    }
+
+    public void setColorPosition(int colorPosition) {
+        this.colorPosition = colorPosition;
+    }
+
+    private int colorPosition;
+
     //This member variable is used to store the minimum meter selected style
     private String min_meters;
 
@@ -49,6 +59,25 @@ public class TefalApp
     private String payment_method_tc;
 
 
+    public String getCurrentSizeText() {
+        return currentSizeText;
+    }
+
+    public void setCurrentSizeText(String currentSizeText) {
+        this.currentSizeText = currentSizeText;
+    }
+
+    private String currentSizeText;
+
+    public String getCurrentColorText() {
+        return currentColorText;
+    }
+
+    public void setCurrentColorText(String currentColorText) {
+        this.currentColorText = currentColorText;
+    }
+
+    private String currentColorText;
 
     // This holds the store id of tailor store as tailor id
     private String tailor_id;

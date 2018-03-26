@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.tefal.Models.ProductRecord;
 import com.tefal.Models.ProductSizes;
 import com.tefal.R;
@@ -92,7 +93,8 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
         String product_name = productRecords.get(position).getProduct_name();
         String max_delivery_days = productRecords.get(position).getMax_delivery_days();
 
-        System.out.println("product_name===" + product_name);
+        holder.txt_discount_amount.setVisibility(View.GONE);
+        holder.txt_discount_off.setVisibility(View.GONE);
 //        if (productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals("")) {
 //            discaunt_amount = "0%";
 //            holder.txt_discount_amount.setVisibility(View.GONE);
@@ -101,7 +103,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 //            discaunt_amount = productRecords.get(position).getProduct_discount();
 //            holder.txt_discount_amount.setText(discaunt_amount);
 //        }
-        //  holder.txt_discount_amount.setText(discaunt_amount);
+//          holder.txt_discount_amount.setText(discaunt_amount);
 
         //This block of code responsible for getting the price of DARRA ABAYA Product price......
         List<ProductSizes> sizes = productRecords.get(position).getSizes();
@@ -113,10 +115,12 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
 
         holder.text_max_delivery_days.setText(max_delivery_days);
-//        Picasso.with(activity).load("")
-//                .placeholder(R.drawable.no_image_placeholder_grid)
-//                .error(R.drawable.no_image_placeholder_grid)
-//                .into(holder.iv_pattern);
+
+        System.out.println("getThumb_url===" + productRecords.get(position).getThumb_url());
+        Picasso.with(activity).load(productRecords.get(position).getThumb_url())
+                .placeholder(R.drawable.no_image_placeholder_grid)
+                .error(R.drawable.no_image_placeholder_grid)
+                .into(holder.iv_pattern);
 
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override

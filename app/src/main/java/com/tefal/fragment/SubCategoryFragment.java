@@ -69,10 +69,11 @@ public class SubCategoryFragment extends Fragment {
 
 
 
-    public static Fragment newInstance(ArrayList<ProductRecord> records1) {
+    public static Fragment newInstance(ArrayList<ProductRecord> records1,String store_id) {
 
         SubCategoryFragment subCategoryFragment =  new SubCategoryFragment();
         Bundle args = new Bundle();
+        args.putString("store_id",store_id);
         args.putSerializable("ProductRecord",records1);
         subCategoryFragment.setArguments(args);
         return  subCategoryFragment;
@@ -94,8 +95,9 @@ public class SubCategoryFragment extends Fragment {
 
         records = (ArrayList<ProductRecord>)  getArguments().getSerializable("ProductRecord");
          Log.e("recordssize ",records.size()+"");
+        store_id =  getArguments().getString("store_id");
 
-
+        Log.e("store_id ",store_id);
         return rootView;
     }
 

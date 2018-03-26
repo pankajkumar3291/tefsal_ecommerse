@@ -16,13 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -47,10 +44,10 @@ import com.tefal.Models.Colors;
 import com.tefal.Models.DaraAbayaDetailRecord;
 import com.tefal.Models.ProductMeasurement;
 import com.tefal.Models.ProductRecord;
-import com.tefal.Models.ProductSizes;
+import com.tefal.Models.ZaraDaraSizeModel;
 import com.tefal.R;
-import com.tefal.adapter.ProductSizeAdapterHorizontal;
-import com.tefal.adapter.ProductSizeAdapterHorizontalAccessories;
+import com.tefal.adapter.ProductColorAdapterHorizontalZaraDara;
+import com.tefal.adapter.ProductSizeAdapterHorizontalZaraDara;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
@@ -64,8 +61,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -138,13 +137,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     public ProductRecord productRecord;
     public DaraAbayaDetailRecord daraAbayaDetailRecord;
     public static List<ProductMeasurement> productMeasurementList;
-    private List<ProductSizes> productSizesList = new ArrayList<ProductSizes>();
+
     private static Tracker mTracker;
     private static final String TAG = "ZaaraDaraaActivity";
-    ProductSizeAdapterHorizontal productSizeAdapterHorizontal;
-    ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
-    private HashMap<String, String> sizePriceMap;
 
+    ProductSizeAdapterHorizontalZaraDara productSizeAdapterHorizontalAccessories;
+    ProductColorAdapterHorizontalZaraDara productColorAdapterHorizontalZaraDara;
 
     /*
    * This dialog is used to show the image which can zoom in zoom out from view pager
@@ -155,19 +153,22 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
 
-    @BindView(R.id.spinnerColor)
-    Spinner spinnerColor;
+
+    @BindView(R.id.colorRecyclerView)
+    RecyclerView colorRecyclerView;
 
 
     int currentPosition = 0;
 
+    int currentColorPosition = 0;
+
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
     DefaultSliderView textSliderView = null;
 
-    List<String> spinnerArray = new ArrayList<String>();
+    List<ZaraDaraSizeModel> zaraDaraSizeModelList = new ArrayList<>();
 
-    ArrayAdapter<String> stringArrayAdapter = null;
-
+    Set<String> uniqueColorSet = new HashSet<>();
+    Set<String> uniqueSizeSet = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -301,44 +302,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         });
 
 
-        spinnerColor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
-
-                Colors colors = daraAbayaDetailRecord.getSizes().get(currentPosition).getColors().get(position);
-
-                if (daraAbayaDetailRecord != null) {
-
-                    mainViewPager.removeAllSliders();
-                    text_price.setText("PRICE: " + colors.getPrice() + " KWD");
-
-                    for (String imgUrl : colors.getImages()) {
-
-
-                        textSliderView
-                                .image(imgUrl)
-                                .setScaleType(BaseSliderView.ScaleType.Fit)
-                                .setOnSliderClickListener(onSliderClickListener);
-
-
-                        mainViewPager.addSlider(textSliderView);
-
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-
-
-            }
-
-        });
-
     }
 
 
@@ -352,52 +315,71 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         mainViewPager.setDuration(5000);
         mainViewPager.addOnPageChangeListener(this);
 
-        stringArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
-
-        stringArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
     }
 
     private void initViewsPostCall() {
 
+        //Size Guide Html
+        sizeGuideResponseHtml = daraAbayaDetailRecord.getMeasurements();
 
+
+        //Size Array Fill
+
+
+        for (Colors colors : daraAbayaDetailRecord.getColors()) {
+
+            if (uniqueColorSet.add(colors.getColor())) {
+                ZaraDaraSizeModel daraSizeModel = colors.getSizes().get(0);
+                ZaraDaraSizeModel zaraDaraSizeModel = new ZaraDaraSizeModel();
+                zaraDaraSizeModel.setColor(colors.getColor());
+                zaraDaraSizeModel.setPrice(daraSizeModel.getPrice());
+                zaraDaraSizeModel.setQuantity(daraSizeModel.getQuantity());
+                zaraDaraSizeModel.setSize(daraSizeModel.getSize());
+                zaraDaraSizeModelList.add(zaraDaraSizeModel);
+            }
+
+
+        }
+
+
+
+
+        //Fill color
+
+
+        productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(zaraDaraSizeModelList, ZaaraDaraaActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
+        TefalApp.getInstance().setColorPosition(0);
+        colorRecyclerView.setAdapter(productColorAdapterHorizontalZaraDara);
+
+
+        //Fill Initial Slider
+
+        for (String imgUrl : daraAbayaDetailRecord.getColors().get(0).getImages()) {
+
+
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
+
+
+            mainViewPager.addSlider(textSliderView);
+
+        }
 
 
         // Bind Size Circle
-        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(daraAbayaDetailRecord.getSizes(), ZaaraDaraaActivity.this);
+        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-        TefalApp.getInstance().setPosition(0);
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontal);
+        TefalApp.getInstance().setColorPosition(0);
+        TefalApp.getInstance().setCurrentColorText(zaraDaraSizeModelList.get(0).getColor());
+        sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
 
 
-        // Bind Color DropDown
-
-        spinnerArray.clear();
-
-        for (Colors color : daraAbayaDetailRecord.getSizes().get(0).getColors()) {
-            spinnerArray.add(color.getColor());
-        }
-
-        spinnerColor.setAdapter(stringArrayAdapter);
-
-
-        //Bind Slider View
-
-//        List<String> stringList = productRecord.getProduct_images();
-//
-//        for (String imgUrl : stringList) {
-//
-//            textSliderView
-//                    .image(imgUrl)
-//                    .setScaleType(BaseSliderView.ScaleType.Fit)
-//                    .setOnSliderClickListener(this);
-//
-//
-//            mainViewPager.addSlider(textSliderView);
-//
-//        }
 
 
     }
@@ -415,9 +397,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                         public void onResponse(String response) {
 
 
-
-
-
                             SimpleProgressBar.closeProgress();
 
                             if (response != null) {
@@ -432,8 +411,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                                         Gson g = new Gson();
                                         daraAbayaDetailRecord = g.fromJson(record, DaraAbayaDetailRecord.class);
 
-                                        if(daraAbayaDetailRecord != null)
-                                        {
+                                        if (daraAbayaDetailRecord != null) {
                                             initViewsPostCall();
                                         }
 
@@ -461,7 +439,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     params.put("product_id", productRecord.getTefsal_product_id());
                     params.put("store_id", productRecord.getStore_id());
 
-                    Log.e("Tefsal tailor == ", url + params);
+                    Log.e(ZaaraDaraaActivity.class.getSimpleName(), url + new JSONObject(params));
 
                     return params;
                 }
@@ -481,34 +459,32 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
+    public void showSizeOnColorSelection(ZaraDaraSizeModel position) {
+
+        TefalApp.getInstance().setCurrentColorText(position.getColor());
+
+        productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
+
+    }
+
+
     public void showSelectedSizeData(int position) {
 
         this.currentPosition = position;
 
-        if (productRecord != null) {
-            List<Colors> colors = daraAbayaDetailRecord.getSizes().get(position).getColors();
+        mainViewPager.removeAllSliders();
+        for (String imgUrl : daraAbayaDetailRecord.getColors().get(currentPosition).getImages()) {
 
 
-            if (colors != null) {
+            textSliderView
+                    .image(imgUrl)
+                    .setScaleType(BaseSliderView.ScaleType.Fit)
+                    .setOnSliderClickListener(this);
 
 
-                spinnerArray.clear();
-
-                for (Colors color : colors) {
-
-
-                    if (color != null && color.getColor() != null) {
-                        spinnerArray.add(color.getColor());
-                    }
-
-                }
-
-                stringArrayAdapter.notifyDataSetChanged();
-
-            }
+            mainViewPager.addSlider(textSliderView);
 
         }
-
 
     }
 

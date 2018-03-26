@@ -1,5 +1,7 @@
 package com.tefal.Models;
 
+import java.util.List;
+
 /**
  * Created by Dell on 03/13/2018.
  */
@@ -17,15 +19,17 @@ public class Colors {
 
     private String info;
 
-    public String getSub_color ()
-    {
-        return sub_color;
+
+    public List<ZaraDaraSizeModel> getSizes() {
+        return sizes;
     }
 
-    public void setSub_color (String sub_color)
-    {
-        this.sub_color = sub_color;
+    public void setSizes(List<ZaraDaraSizeModel> sizes) {
+        this.sizes = sizes;
     }
+
+    private List<ZaraDaraSizeModel> sizes;
+
 
     public String getPrice ()
     {
@@ -35,6 +39,16 @@ public class Colors {
     public void setPrice (String price)
     {
         this.price = price;
+    }
+
+    public String getSub_color ()
+    {
+        return sub_color;
+    }
+
+    public void setSub_color (String sub_color)
+    {
+        this.sub_color = sub_color;
     }
 
     public String getColor ()

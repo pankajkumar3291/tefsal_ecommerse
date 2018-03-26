@@ -49,7 +49,15 @@ public class ProductRecord implements Serializable
 
     private  String product_discount;
 
+    private  String thumb_url;
 
+    public String getThumb_url() {
+        return thumb_url;
+    }
+
+    public void setThumb_url(String thumb_url) {
+        this.thumb_url = thumb_url;
+    }
 
     public List<ProductSizes>  getSizes ()
     {

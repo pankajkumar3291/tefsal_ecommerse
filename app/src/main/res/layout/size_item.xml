@@ -6,11 +6,15 @@
 
     <TextView
         android:id="@+id/sizeText"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/color_circle"
+        android:background="@drawable/my_button_bg"
         android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
         android:text="SL"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/text_mid" />
