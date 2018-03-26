@@ -240,7 +240,7 @@
             android:name=".activity.CartAddressSelectionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.AccessoriesStoreListingActivity"></activity>
+        <activity android:name=".activity.AccessoriesStoreListingActivity"  android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -24,20 +23,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.tefal.Models.AccessoriesProductsResponse;
 import com.tefal.Models.BadgeRecordModel;
 import com.tefal.Models.DaraAbayaCategoriesModel;
 import com.tefal.Models.DaraAbayaProductListResponse;
-import com.tefal.Models.DaraaAbayaRecordsResponse;
-import com.tefal.Models.ProductsResponse;
 import com.tefal.R;
 import com.tefal.fragment.SubCategoryFragment;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -67,9 +62,7 @@ public class ProductListOtherActivity extends BaseActivity {
     @BindView(R.id.total_badge_txt)
     TextView total_badge_txt;
 
-
     SessionManager session;
-
 
     //*************************** New Layout Components *******************************
 
@@ -128,7 +121,7 @@ public class ProductListOtherActivity extends BaseActivity {
     //region New Methods
     private void initViews() {
 
-       // setupViewPager(viewPager);
+        // setupViewPager(viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setCurrentItem(0);
@@ -263,7 +256,6 @@ public class ProductListOtherActivity extends BaseActivity {
         }
     }
 
-
     public void gotoCart(View v) {
         try {
             startActivity(new Intent(ProductListOtherActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -293,30 +285,25 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                 DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
 
-                                if(mResponse.getStatus().equalsIgnoreCase("1"))
-                                {
+                                if (mResponse.getStatus().equalsIgnoreCase("1")) {
 
                                     for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
 
                                         DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
 
 
-
-                                      //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
+                                        //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
                                         //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
-                                       // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
+                                        // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
 
 
-                                        if(daraAbayaCategoriesModel.getSub_category() != null)
-                                        {
+                                        if (daraAbayaCategoriesModel.getSub_category() != null) {
 
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(),store_id), daraAbayaCategoriesModel.getSub_category());
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getSub_category());
+                                        } else {
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), "Sub Category");
+                                            ;
                                         }
-                                        else
-                                        {
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(),store_id), "Sub Category");;
-                                        }
-
 
 
                                     }
@@ -324,8 +311,7 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                     viewPager.setAdapter(viewPagerAdapter);
 
-                                    if(mResponse.getRecord().getCategories().size() == 1 )
-                                    {
+                                    if (mResponse.getRecord().getCategories().size() == 1) {
                                         tabLayout.setVisibility(View.GONE);
                                     }
                                 }
@@ -390,7 +376,14 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                               // AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
+                                AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
+
+                                if (mResponse.getStatus().equals("1")) {
+
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                }
 
                             }
 

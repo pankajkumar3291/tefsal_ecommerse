@@ -12,9 +12,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.AccessoriesModel;
-import com.tefal.Models.TextileProductModel;
 import com.tefal.R;
-import com.tefal.activity.DaraAbayaActivity;
+import com.tefal.activity.AccessoriesStoreListingActivity;
 import com.tefal.activity.OtherStoresActivity;
 import com.tefal.app.TefalApp;
 

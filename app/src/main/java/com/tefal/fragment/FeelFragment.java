@@ -1,26 +1,16 @@
 package com.tefal.fragment;
 
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,18 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.tefal.Models.TailorProductResponse;
 import com.tefal.R;
-import com.tefal.activity.AccessoriesActivity;
-import com.tefal.activity.AccessoryProductDetailsActivity;
-import com.tefal.activity.CartActivity;
-import com.tefal.activity.DaraAbayaActivity;
-import com.tefal.activity.DishDashaProductActivity;
-import com.tefal.activity.MeasermentActivity;
 import com.tefal.activity.TextileDetailActivity;
 import com.tefal.adapter.DishdashaTextileProductAdapter;
-import com.tefal.adapter.TailorProductAdapter;
 import com.tefal.dialogs.DialogKart;
 import com.tefal.utils.Contents;
 import com.tefal.utils.NumberCheck;

@@ -1,13 +1,11 @@
 package com.tefal.fragment;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +16,9 @@ import android.widget.TextView;
 
 import com.tefal.R;
 import com.tefal.activity.AccessoriesActivity;
-import com.tefal.activity.DaraAbayaActivity;
 import com.tefal.activity.DishdishaStyleActivity;
-import com.tefal.activity.MainActivity;
-import com.tefal.activity.MeasermentActivity;
 import com.tefal.activity.OtherStoresActivity;
-import com.tefal.activity.TabbarActivity;
 import com.tefal.app.TefalApp;
-import com.tefal.utils.FontChangeCrawler;
 
 /**
  * Created by prateek on 13/07/17.

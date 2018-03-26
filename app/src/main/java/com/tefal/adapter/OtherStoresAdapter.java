@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.tefal.Models.D_StoreRecord;
 import com.tefal.R;
+import com.tefal.activity.AccessoriesStoreListingActivity;
 import com.tefal.activity.DishDashaProductActivity;
 import com.tefal.activity.OtherStoresActivity;
 import com.tefal.activity.ProductListOtherActivity;
@@ -117,11 +118,26 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
             @Override
             public void onClick(View view) {
 
+                if (!flag.equals("Accessories"))
+                {
                     activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
                             .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                             .putExtra("flag", flag)
                             .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
                             .putExtra("store_name",storeModels.get(holder.getAdapterPosition()).getStore_name()));
+
+                }
+
+                else
+                {
+                    activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class)
+                            .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                            .putExtra("flag", flag)
+                            .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
+                            .putExtra("store_name",storeModels.get(holder.getAdapterPosition()).getStore_name()));
+
+                }
+
 
             }
         });

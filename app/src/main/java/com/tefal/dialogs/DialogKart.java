@@ -1,35 +1,21 @@
 package com.tefal.dialogs;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.tefal.Models.CountryModel;
 import com.tefal.R;
 import com.tefal.activity.CartActivity;
 import com.tefal.activity.DaraAbayaActivity;
 import com.tefal.activity.DishDashaProductActivity;
-import com.tefal.activity.TextileDetailActivity;
-import com.tefal.adapter.CountryAdapter;
 import com.tefal.app.TefalApp;
-import com.tefal.fragment.FragmentTextileStore;
-import com.tefal.fragment.TailorTextileChooseFragment;
-
-import java.util.ArrayList;
 
 /**
  * Created by Dell on 24-02-2018.

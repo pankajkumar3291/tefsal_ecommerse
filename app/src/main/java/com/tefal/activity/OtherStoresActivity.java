@@ -1,7 +1,6 @@
 package com.tefal.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,8 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +23,6 @@ import com.google.gson.Gson;
 import com.tefal.Models.BadgeRecordModel;
 import com.tefal.Models.DishdashaStoreModel;
 import com.tefal.R;
-import com.tefal.adapter.DishdashaAllAdapter;
 import com.tefal.adapter.OtherStoresAdapter;
 import com.tefal.app.TefalApp;
 import com.tefal.fragment.HomeFragment;
