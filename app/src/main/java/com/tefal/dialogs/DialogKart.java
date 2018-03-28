@@ -56,6 +56,7 @@ public class DialogKart extends Dialog {
 
 
 
+
         btnllContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +137,15 @@ public class DialogKart extends Dialog {
         {
             llChooseStore.setVisibility(View.VISIBLE);
             llChooseTailor.setVisibility(View.GONE);
+        }
+
+        if(!categoryId.equalsIgnoreCase("1"))
+        {
+            llChooseStore.setVisibility(View.GONE);
+            llChooseTailor.setVisibility(View.GONE);
+
+            btnllChooseStore.setVisibility(View.GONE);
+            btnllChooseTailor.setVisibility(View.GONE);
         }
 
     }

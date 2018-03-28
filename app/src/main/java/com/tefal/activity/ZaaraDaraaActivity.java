@@ -52,6 +52,7 @@ import com.tefal.adapter.ProductSizeAdapterHorizontalZaraDara;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
+import com.tefal.network.BaseHttpClient;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -275,7 +276,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     Toast.makeText(ZaaraDaraaActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                WebCallServiceAddCart();
+                WebCallServiceAddCartNew();
 
 
             }
@@ -611,6 +612,88 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
+    public void WebCallServiceAddCartNew() {
+
+
+        final String url = Contents.baseURL + "addCart";
+
+
+        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
+        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        SimpleProgressBar.showProgress(this);
+
+        JSONObject params = new JSONObject();
+
+
+        System.out.println("QUANTITY====" + meter_value.getText());
+        System.out.println("currentPosition====" + currentPosition);
+        //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+
+        try {
+            params.put("access_token", session.getToken());
+            params.put("user_id", session.getCustomerId());
+            try {
+                params.put("items", getItems(productRecord));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            params.put("appUser", "tefsal");
+            params.put("appSecret", "tefsal@123");
+            params.put("appVersion", "1.1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("Tefsal tailor == ", url + params);
+
+
+        BaseHttpClient baseHttpClient = new BaseHttpClient();
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+            @Override
+            public void onFailure() {
+                SimpleProgressBar.closeProgress();
+            }
+
+            @Override
+            public void onSuccess(String object) {
+
+                try {
+                    SimpleProgressBar.closeProgress();
+                    Log.e("JSONObject", String.valueOf(object));
+
+                    Log.e("stores response", object);
+
+
+                    System.out.println("ADD CART RESPONSE====" + object);
+
+                    JSONObject jsonObject = null;
+                    try {
+
+                        jsonObject = new JSONObject(object);
+                        String itemType = jsonObject.getString("item_type");
+                        DialogKart dg = new DialogKart(ZaaraDaraaActivity.this, false, itemType, "");
+                        dg.show();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    httpGetBadgesCall();
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    SimpleProgressBar.closeProgress();
+                }
+
+            }
+        });
+
+
+    }
+
     public void WebCallServiceAddCart() {
 
         Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
@@ -701,6 +784,13 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         JSONObject obj = new JSONObject();
         obj.put("product_id", productRecord.getTefsal_product_id());
         obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+        if (productRecord.getFlag().equals("Daraa")) {
+            obj.put("category_id", "3");
+        } else if (productRecord.getFlag().equals("Abaya")) {
+            obj.put("category_id", "2");
+        } else if (productRecord.getFlag().equals("Accessories")) {
+            obj.put("category_id", "4");
+        }
 
 
         if (zaraDaraSizesModel != null) {

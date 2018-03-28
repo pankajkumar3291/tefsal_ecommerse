@@ -43,13 +43,13 @@ import com.squareup.picasso.Picasso;
 import com.tefal.Models.AccessoriesRecord;
 import com.tefal.Models.AccessoryDetailRecord;
 import com.tefal.Models.BadgeRecordModel;
-import com.tefal.Models.Colors;
 import com.tefal.R;
 import com.tefal.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefal.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefal.app.TefalApp;
 import com.tefal.app.TefsalApplication;
 import com.tefal.dialogs.DialogKart;
+import com.tefal.network.BaseHttpClient;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -115,8 +115,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     TextView total_badge_txt;
 
     /*
-    * This dialog is used to show the image which can zoom in zoom out from view pager
-    * */
+     * This dialog is used to show the image which can zoom in zoom out from view pager
+     * */
     Dialog dialog;
 
 
@@ -137,6 +137,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
     ProductColorAdapterHorizontalAccesories productColorAdapterHorizontalAccesories;
+
+    int currentColorPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +168,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             @Override
             public void onClick(View v) {
 
-                httpAddCartCall();
+                WebCallServiceAddCartNew();
 
             }
         });
@@ -330,7 +332,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     public void showSizeOnColorSelection(int position) {
 
-
+        currentColorPosition = position;
         productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
 
     }
@@ -340,7 +342,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         product_image_viewPager.removeAllSliders();
         for (String imgUrl : accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages()) {
-
 
             textSliderView
                     .image(imgUrl)
@@ -447,6 +448,86 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
+    public void WebCallServiceAddCartNew() {
+
+
+        final String url = Contents.baseURL + "addCart";
+
+
+        Log.i(TAG, "Setting screen name: " + "AccessoryProductDetailsActivity");
+        mTracker.setScreenName("Image~" + "AccessoryProductDetailsActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        SimpleProgressBar.showProgress(AccessoryProductDetailsActivity.this);
+
+
+        JSONObject params = new JSONObject();
+
+
+        try {
+            params.put("access_token", session.getToken());
+            params.put("user_id", session.getCustomerId());
+            try {
+                params.put("items", getItems(accessoriesRecord));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            params.put("appUser", "tefsal");
+            params.put("appSecret", "tefsal@123");
+            params.put("appVersion", "1.1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("Tefsal tailor == ", url + params);
+
+
+        BaseHttpClient baseHttpClient = new BaseHttpClient();
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+            @Override
+            public void onFailure() {
+                SimpleProgressBar.closeProgress();
+            }
+
+            @Override
+            public void onSuccess(String object) {
+
+                try {
+                    SimpleProgressBar.closeProgress();
+                    Log.e("JSONObject", String.valueOf(object));
+
+                    Log.e("stores response", object);
+
+
+                    System.out.println("ADD CART RESPONSE====" + object);
+
+                    JSONObject jsonObject = null;
+                    try {
+
+                        jsonObject = new JSONObject(object);
+                        String itemType = jsonObject.getString("item_type");
+                        DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this, false, itemType, "");
+                        dg.show();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    httpGetBadgesCall();
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    SimpleProgressBar.closeProgress();
+                }
+
+            }
+        });
+
+
+    }
+
+
     public void httpAddCartCall() {
 
         Log.i(TAG, "Setting screen name: " + "AccessoryProductDetailsActivity");
@@ -463,7 +544,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         @Override
                         public void onResponse(String response) {
 
-                             SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
@@ -524,11 +605,26 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
     public JSONArray getItems(AccessoriesRecord accessoriesRecord) throws JSONException {
+
+
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", accessoriesRecord.getTefsal_product_id());
         obj.put("item_id", accessoriesRecord.getAttribute_id());
-        obj.put("item_quantity", "1");
+
+        obj.put("category_id", "4");
+
+
+        if (accessoryDetailRecord != null) {
+
+            String colorSelected = accessoryDetailRecord.getSizes().get(currentColorPosition).getColors().get(0).getColor();
+
+            JSONObject item_details = new JSONObject();
+            item_details.put("size", accessoryDetailRecord.getSizes().get(currentColorPosition).getSize());
+            item_details.put("color", colorSelected == null ? "Default" : colorSelected);
+            item_details.put("item_quantity", "1");
+            obj.put("item_details", item_details);
+        }
 
         arry.put(obj);
         return arry;

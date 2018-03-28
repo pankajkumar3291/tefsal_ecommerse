@@ -105,7 +105,7 @@ public class SubCategoryFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), records, store_id);
+        dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), records, store_id,flag);
         recycler.setAdapter(dishdashaAdapter);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -138,7 +138,7 @@ public class SubCategoryFragment extends Fragment {
                                 ProductsResponse mResponse = g.fromJson(response, ProductsResponse.class);
 
                                 if (!mResponse.getStatus().equals("0")) {
-                                    dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), mResponse.getRecord(), store_id);
+                                    dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), mResponse.getRecord(), store_id,flag);
                                     recycler.setAdapter(dishdashaAdapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);

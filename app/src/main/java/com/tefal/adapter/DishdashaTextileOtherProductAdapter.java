@@ -32,11 +32,13 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     List<ProductRecord> productRecords = new ArrayList<>();
     private Context context;
     String storeId;
+    String flag;
 
-    public DishdashaTextileOtherProductAdapter(Activity activity, List<ProductRecord> productRecords, String storeId) {
+    public DishdashaTextileOtherProductAdapter(Activity activity, List<ProductRecord> productRecords, String storeId,String flag) {
         this.activity = activity;
         this.productRecords = productRecords;
         this.storeId = storeId;
+        this.flag = flag;
     }
 
     @Override
@@ -130,6 +132,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
                 Bundle bundle = new Bundle();
                 ProductRecord productRecord = productRecords.get(position);
                 productRecord.setStore_id(storeId);
+                productRecord.setFlag(flag);
                 bundle.putSerializable("productRecords", (Serializable) productRecord);
                 intent.putExtras(bundle);
                 activity.startActivity(intent);

@@ -302,7 +302,7 @@ public class ProductListOtherActivity extends BaseActivity {
                                             viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getSub_category());
                                         } else {
                                             viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), "Sub Category");
-                                            ;
+
                                         }
 
 

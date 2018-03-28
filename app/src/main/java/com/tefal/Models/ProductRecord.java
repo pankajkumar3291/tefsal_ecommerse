@@ -38,6 +38,16 @@ public class ProductRecord implements Serializable
 
     private String store_id;
 
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    private String flag;
+
     private String attribute_id;
 
     private String store_name;
