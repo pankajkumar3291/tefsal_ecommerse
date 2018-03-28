@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -90,13 +91,17 @@ public class PaymentSelectActivity extends BaseActivity {
     @BindView(R.id.txtPreviousTotal)
     TextView txtPreviousTotal;
 
+
+    @BindView(R.id.discount)
+    TextView discount;
+
     @BindView(R.id.txtDiscount)
     TextView txtDiscount;
 
     @BindView(R.id.txtTotal)
     TextView txtTotal;
 
-    String previousAmount = "";
+    int previousAmount = 0;
 
     Double discountAmount = 0.0;
 
@@ -111,9 +116,9 @@ public class PaymentSelectActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         session = new SessionManager(this);
-        previousAmount = getIntent().getStringExtra("price");
+        previousAmount = getIntent().getIntExtra("price", 0);
         header_txt.setText(getIntent().getStringExtra("header"));
-        amount.setText(previousAmount);
+        amount.setText("TOTAL : " + previousAmount + " KWD");
 
 
         bindEvents();
@@ -234,10 +239,12 @@ public class PaymentSelectActivity extends BaseActivity {
 
                     llPromoSection.setVisibility(View.GONE);
                     btnAppyPromo.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-
                     amount.setText("TOTAL : " + previousAmount + " KWD");
-
+                    btnAppyPromo.setText("APPLY");
+                    etPromoCode.setEnabled(true);
+                    etPromoCode.setText("");
+                    btnAppyPromo.setTag("");
+                    //  discount.setVisibility(View.GONE);
                 } else {
                     WebCallServicePromo();
                 }
@@ -272,7 +279,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
                                 if (promoCodesResponseModel.getStatus() == 1) {
 
-                                    Double previousTotal = Double.parseDouble(previousAmount);
+                                    Double previousTotal = Double.parseDouble(previousAmount + "");
                                     discountAmount = Double.parseDouble(promoCodesResponseModel.getRecord().getVoucher_amount());
 
                                     Double newTotal = (previousTotal - discountAmount);
@@ -283,10 +290,14 @@ public class PaymentSelectActivity extends BaseActivity {
                                     amount.setText("TOTAL : " + newTotal + " KWD");
                                     etPromoCode.setEnabled(false);
                                     btnAppyPromo.setBackgroundColor(getResources().getColor(R.color.colorGray));
-
+                                    btnAppyPromo.setText("REMOVE");
                                     btnAppyPromo.setTag("1");
 
                                     llPromoSection.setVisibility(View.VISIBLE);
+                                    //  discount.setVisibility(View.VISIBLE);
+
+                                } else {
+                                    Toast.makeText(PaymentSelectActivity.this, promoCodesResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
 

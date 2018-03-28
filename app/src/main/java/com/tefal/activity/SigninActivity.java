@@ -22,11 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.gson.JsonObject;
-import com.tefal.Models.NormalResponseModel;
-import com.tefal.Models.RegisterResponseModel;
 import com.tefal.R;
-import com.tefal.network.RestClient;
 import com.tefal.utils.Config;
 import com.tefal.utils.Contents;
 import com.tefal.utils.FontChangeCrawler;
@@ -38,15 +34,11 @@ import com.tefal.utils.SimpleProgressBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 
 public class SigninActivity extends BaseActivity {
@@ -157,6 +149,7 @@ public class SigninActivity extends BaseActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
+
     public void WebCallService(final String str_email, final String str_password) {
         SimpleProgressBar.showProgress(SigninActivity.this);
         try {
@@ -184,11 +177,11 @@ public class SigninActivity extends BaseActivity {
                                     session.setToken(jsonObject.getString("access_token"));
                                     session.setKeyUserName(jsonObject.getString("username"));
 
-                                    System.out.println("AFTER DAMP ======== CUSTOMER ID==="+session.getCustomerId());
-                                    System.out.println("AFTER DAMP ======== TOKEN==="+session.getToken());
-                                    System.out.println("AFTER DAMP ======== CUSTOMER NAME==="+session.getKeyUserName());
+                                    System.out.println("AFTER DAMP ======== CUSTOMER ID===" + session.getCustomerId());
+                                    System.out.println("AFTER DAMP ======== TOKEN===" + session.getToken());
+                                    System.out.println("AFTER DAMP ======== CUSTOMER NAME===" + session.getKeyUserName());
 
-                                  //  Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    //  Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
                                     WebCallServiceSetToken();
 
@@ -236,50 +229,7 @@ public class SigninActivity extends BaseActivity {
         }
 
 
-
-
-    /*    SimpleProgressBar.showProgress(SigninActivity.this);
-
-        Call<RegisterResponseModel> loginCall = RestClient.getApiService(SigninActivity.this).customerLogin(createLoginObject(str_email,str_password));
-
-        loginCall.enqueue(new Callback<RegisterResponseModel>() {
-            @Override
-            public void onResponse(Call<RegisterResponseModel> call, retrofit2.Response<RegisterResponseModel> response) {
-
-                SimpleProgressBar.closeProgress();
-                if (response.body() != null) {
-                    if (response.code() == 200) {
-                        session.setCustomerId(response.body().getRecord().getUser_id().toString());
-                        Log.e("Customer_id == ",""+response.body().getRecord().getUser_id().toString());
-                        session.setToken(response.body().getRecord().getAccess_token().toString());
-                        Log.e("AccessToken == ",""+response.body().getRecord().getAccess_token().toString());
-                        WebCallServiceSetToken();
-                    }
-                    else {
-
-                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<RegisterResponseModel> call, Throwable t) {
-                SimpleProgressBar.closeProgress();
-            }
-        });*/
     }
-   /* JsonObject createLoginObject(final String str_email, final String str_password) {
-
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("email", str_email);
-        jsonObject.addProperty("password", str_password);
-        jsonObject.addProperty("appUser", "tefsal");
-        jsonObject.addProperty("appSecret", "tefsal@123");
-        jsonObject.addProperty("appVersion", "1.1");
-
-        Log.e("tefsal signin == ",""+jsonObject);
-        return jsonObject;
-
-    }*/
 
     public void WebCallServiceSetToken() {
         SimpleProgressBar.showProgress(SigninActivity.this);
@@ -348,49 +298,7 @@ public class SigninActivity extends BaseActivity {
         } catch (Exception surError) {
             surError.printStackTrace();
         }
-       /* SimpleProgressBar.showProgress(SigninActivity.this);
 
-        Call<NormalResponseModel> deviceCall = RestClient.getApiService(SigninActivity.this).deviceInfo(createDeviceObject());
-
-        deviceCall.enqueue(new Callback<NormalResponseModel>() {
-            @Override
-            public void onResponse(Call<NormalResponseModel> call, retrofit2.Response<NormalResponseModel> response) {
-
-                SimpleProgressBar.closeProgress();
-                if (response.body() != null) {
-                    if (response.code() == 200) {
-
-                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
-
-                        startActivity(new Intent(SigninActivity.this, MainActivity.class));
-                        finish();
-                    }
-                    else {
-
-                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<NormalResponseModel> call, Throwable t) {
-                SimpleProgressBar.closeProgress();
-            }
-        });*/
     }
-   /* JsonObject createDeviceObject() {
 
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("user_id", session.getCustomerId());
-        jsonObject.addProperty("device_id", session.getDeviceToken());
-        jsonObject.addProperty("device_type", "A");
-        jsonObject.addProperty("access_token", session.getToken());
-        jsonObject.addProperty("appUser", "tefsal");
-        jsonObject.addProperty("appSecret", "tefsal@123");
-        jsonObject.addProperty("appVersion", "1.1");
-
-        Log.e("tefsal device == ",""+jsonObject);
-
-        return jsonObject;
-
-    }*/
 }

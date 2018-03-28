@@ -10,18 +10,21 @@ import com.afollestad.easyvideoplayer.EasyVideoCallback;
 import com.afollestad.easyvideoplayer.EasyVideoPlayer;
 import com.tefal.R;
 
+import static com.tefal.utils.Contents.baseVideoURL;
+
 public class CustomVideoPlayerActivity extends AppCompatActivity implements EasyVideoCallback {
     private EasyVideoPlayer player;
+    //  Tefsal_Arm.mp4  Tefsal_BackH.mp4  Tefsal_Chest.mp4  Tefsal_FrontH.mp4  Tefsal_Intro.mp4  Tefsal_Neck.mp4  Tefsal_Shoulders.mp4  Tefsal_Waist.mp4  Tefsal_Wrist.mp4
 
-    private String videoLink = "http://tefsalkw.com/public/videos/app.3gp";
-    private String videoLink1 = "http://tefsalkw.com/public/videos/app_video_neck.3gp";
-    private String videoLink2 = "http://tefsalkw.com/public/videos/app_video_custom.3gp";
-    private String videoLink3 = "http://tefsalkw.com/public/videos/app_video_chest.3gp";
-    private String videoLink4 = "http://tefsalkw.com/public/videos/app_video_waist.3gp";
-    private String videoLink5 = "http://tefsalkw.com/public/videos/app_video_arm.3gp";
-    private String videoLink6 = "http://tefsalkw.com/public/videos/app_video_wrist.3gp";
-    private String videoLink7 = "http://tefsalkw.com/public/videos/app_video_f_height.3gp";
-    private String videoLink8 = "http://tefsalkw.com/public/videos/app_video_b_height.3gp";
+    private String videoLink = baseVideoURL + "Tefsal_Intro.mp4";
+    private String videoLink1 = baseVideoURL + "Tefsal_Neck.mp4";
+    private String videoLink2 = baseVideoURL + "Tefsal_Shoulders.mp4";
+    private String videoLink3 = baseVideoURL + "Tefsal_Chest.mp4";
+    private String videoLink4 = baseVideoURL + "Tefsal_Waist.mp4";
+    private String videoLink5 = baseVideoURL + "Tefsal_Arm.mp4";
+    private String videoLink6 = baseVideoURL + "Tefsal_Wrist.mp4";
+    private String videoLink7 = baseVideoURL + "hTefsal_FrontH.mp4";
+    private String videoLink8 = baseVideoURL + "Tefsal_BackH.mp4";
 
     String[] literals = {videoLink, videoLink1, videoLink2, videoLink3, videoLink4, videoLink5, videoLink6, videoLink7, videoLink8};
 
@@ -101,7 +104,7 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
         Log.d("onCompletion", "" + currentVideoIs);
 
 
-       int  maxVideosToPlay = isFirstTime ? 1 : 8;
+        int maxVideosToPlay = isFirstTime ? 1 : 8;
         if (currentVideoIs <= maxVideosToPlay) {
 
 

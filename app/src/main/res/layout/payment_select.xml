@@ -55,14 +55,16 @@
                     android:id="@+id/knetPaymentCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_weight="0"
+                    android:enabled="false" />
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.8"
                     android:text="KNET"
-                    android:textColor="@color/colorAccent"
+
                     android:textSize="@dimen/text_normal" />
 
                 <ImageView
@@ -124,14 +126,15 @@
                     android:id="@+id/visa_masterPaymentCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_weight="0"
+                    android:enabled="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.8"
                     android:text="VISA / MASTERCARD"
-                    android:textColor="@color/colorAccent"
+
                     android:textSize="@dimen/text_normal" />
 
                 <ImageView
@@ -196,7 +199,8 @@
                     android:id="@+id/codPaymentCheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_weight="0"
+                    android:checked="true" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -208,13 +212,16 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:text="CASH ON DELIVERY"
+                        android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_normal" />
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(Unavailable,you have tailored items in cart)"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_small"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -259,11 +266,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/llPromoSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <RelativeLayout
 
@@ -408,10 +415,9 @@
             android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/add_address"
-            android:layout_centerHorizontal="true"
             android:text="(Discounts included)"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_small"
+            android:visibility="visible" />
 
         <Button
             android:id="@+id/proceed_payment_method"

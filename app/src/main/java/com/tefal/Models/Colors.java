@@ -19,6 +19,16 @@ public class Colors {
 
     private String info;
 
+    public String getAttribute_id() {
+        return attribute_id;
+    }
+
+    public void setAttribute_id(String attribute_id) {
+        this.attribute_id = attribute_id;
+    }
+
+    private String attribute_id;
+
 
     public List<ZaraDaraSizeModel> getSizes() {
         return sizes;

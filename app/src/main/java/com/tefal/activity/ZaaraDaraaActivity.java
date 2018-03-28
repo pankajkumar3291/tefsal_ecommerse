@@ -148,8 +148,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     ProductColorAdapterHorizontalZaraDara productColorAdapterHorizontalZaraDara;
 
     /*
-   * This dialog is used to show the image which can zoom in zoom out from view pager
-   * */
+     * This dialog is used to show the image which can zoom in zoom out from view pager
+     * */
     Dialog dialog;
 
 
@@ -652,7 +652,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            //     SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -661,6 +661,9 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
                     System.out.println("QUANTITY====" + meter_value.getText());
+                    System.out.println("currentPosition====" + currentPosition);
+                    //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+
                     params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
                     try {
@@ -693,11 +696,21 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     public JSONArray getItems(ProductRecord productRecord) throws JSONException {
 
+
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", productRecord.getTefsal_product_id());
-        obj.put("item_id", productRecord.getAttribute_id());
-        obj.put("item_quantity", meter_value.getText());
+        obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+
+
+        if (zaraDaraSizesModel != null) {
+            JSONObject item_details = new JSONObject();
+            item_details.put("size", zaraDaraSizesModel.getSize());
+            item_details.put("color", daraAbayaDetailRecord.getColors().get(currentPosition).getColor());
+            item_details.put("item_quantity", meter_value.getText());
+            obj.put("item_details", item_details);
+        }
+
 
         arry.put(obj);
         return arry;
@@ -790,7 +803,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                     }
 
-                   /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
+                    /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
 
                 }
             });

@@ -222,7 +222,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                 Log.e("defaultAddressId", defaultAddressId);
                 startActivity(new Intent(CartAddressSelectionActivity.this, PaymentSelectActivity.class)
-                        .putExtra("price", amount.getText().toString())
+                        .putExtra("price", totalPrice)
                         .putExtra("defaultAddressId", defaultAddressId)
                         .putExtra("header", header_txt.getText().toString()));
 

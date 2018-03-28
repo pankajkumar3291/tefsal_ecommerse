@@ -267,7 +267,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     params.put("product_id", accessoriesRecord.getTefsal_product_id());
                     params.put("store_id", storeId);
 
-                    Log.e("Tefsal tailor == ", url + params);
+                    Log.e("Tefsal tailor == ", url + new JSONObject(params));
 
                     return params;
                 }
@@ -463,10 +463,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         @Override
                         public void onResponse(String response) {
 
-                            //  SimpleProgressBar.closeProgress();
+                             SimpleProgressBar.closeProgress();
 
                             if (response != null) {
-                                SimpleProgressBar.closeProgress();
+
                                 Log.e("addCart response", response);
                                 JSONObject jsonObject = null;
                                 try {
