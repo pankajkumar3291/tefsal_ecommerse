@@ -30,7 +30,15 @@ public class TefalApp
 
     private Bitmap bitmap;
 
+    public String getCartId() {
+        return cartId;
+    }
 
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+
+    private String cartId="";
 
     //This meber attribute is used to identify the paint of size text in ProductSizeAdapterHorizantal
     private String paintOverSizeText;
@@ -241,6 +249,8 @@ public class TefalApp
     public void setColor(String color) {
         this.color = color;
     }
+
+
 
     public String getSeason() {
         return season;

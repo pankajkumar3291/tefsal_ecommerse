@@ -1,5 +1,6 @@
 package com.tefal.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,15 +20,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.tefal.Models.GetCartResponse;
 import com.tefal.Models.PromoCodesResponseModel;
 import com.tefal.R;
 import com.tefal.app.TefalApp;
+import com.tefal.app.TefsalApplication;
+import com.tefal.network.BaseHttpClient;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -43,6 +49,7 @@ import butterknife.ButterKnife;
 public class PaymentSelectActivity extends BaseActivity {
 
     private static final String TAG = "PaymentSelectActivity";
+    private static Tracker mTracker;
 
     @BindView(R.id.header_txt)
     TextView header_txt;
@@ -108,6 +115,8 @@ public class PaymentSelectActivity extends BaseActivity {
     @BindView(R.id.llPromoSection)
     LinearLayout llPromoSection;
 
+    public String defaultAddressId = "";
+    public String promoId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +125,13 @@ public class PaymentSelectActivity extends BaseActivity {
 
         ButterKnife.bind(this);
         session = new SessionManager(this);
+
+        //Init Additional
+        TefsalApplication application = (TefsalApplication) getApplication();
+        mTracker = application.getDefaultTracker();
         previousAmount = getIntent().getIntExtra("price", 0);
+
+        defaultAddressId = getIntent().getStringExtra("defaultAddressId");
         header_txt.setText(getIntent().getStringExtra("header"));
         amount.setText("TOTAL : " + previousAmount + " KWD");
 
@@ -228,6 +243,9 @@ public class PaymentSelectActivity extends BaseActivity {
             public void onClick(View v) {
                 System.out.println("OUTPUT==== PAYMENT METHOD====" + TefalApp.getInstance().getPayment_method());
                 System.out.println("OUTPUT==== PAYMENT TC====" + TefalApp.getInstance().getPayment_method_tc());
+
+                WebCallServiceOrder();
+
             }
         });
 
@@ -296,6 +314,8 @@ public class PaymentSelectActivity extends BaseActivity {
                                     llPromoSection.setVisibility(View.VISIBLE);
                                     //  discount.setVisibility(View.VISIBLE);
 
+                                    promoId = promoCodesResponseModel.getRecord().getPromo_id();
+
                                 } else {
                                     Toast.makeText(PaymentSelectActivity.this, promoCodesResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -337,6 +357,87 @@ public class PaymentSelectActivity extends BaseActivity {
         } catch (Exception surError) {
             surError.printStackTrace();
         }
+    }
+
+
+    public void WebCallServiceOrder() {
+
+
+        final String url = Contents.baseURL + "CreateOrder";
+
+
+        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
+        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+        SimpleProgressBar.showProgress(this);
+
+        JSONObject params = new JSONObject();
+
+
+        try {
+            params.put("access_token", session.getToken());
+            params.put("user_id", session.getCustomerId());
+            params.put("appUser", "tefsal");
+            params.put("appSecret", "tefsal@123");
+            params.put("appVersion", "1.1");
+
+            //Api specific
+            params.put("cart_id", session.getKeyCartId());
+            params.put("payment_method", "CASH ON DELIVERY");
+            params.put("address_id", defaultAddressId);
+            params.put("promo_id", promoId);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("Tefsal tailor == ", url + params);
+
+
+        BaseHttpClient baseHttpClient = new BaseHttpClient();
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+            @Override
+            public void onFailure() {
+                SimpleProgressBar.closeProgress();
+            }
+
+            @Override
+            public void onSuccess(String object) {
+
+                try {
+                    SimpleProgressBar.closeProgress();
+                    Log.e("JSONObject", String.valueOf(object));
+
+                    Log.e("stores response", object);
+
+
+                    System.out.println("ADD CART RESPONSE====" + object);
+
+                    JSONObject jsonObject = null;
+                    try {
+
+                        jsonObject = new JSONObject(object);
+
+                        if (jsonObject.getInt("status") == 1) {
+                            Toast.makeText(PaymentSelectActivity.this, jsonObject.getInt("message"), Toast.LENGTH_LONG).show();
+
+                            startActivity(new Intent(PaymentSelectActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    SimpleProgressBar.closeProgress();
+                }
+
+            }
+        });
+
+
     }
 
 }

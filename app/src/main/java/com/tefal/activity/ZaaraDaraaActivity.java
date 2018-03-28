@@ -672,6 +672,10 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     try {
 
                         jsonObject = new JSONObject(object);
+
+                        String cart_id = jsonObject.getString("cart_id");
+                        session.setKeyCartId(cart_id);
+
                         String itemType = jsonObject.getString("item_type");
                         DialogKart dg = new DialogKart(ZaaraDaraaActivity.this, false, itemType, "");
                         dg.show();

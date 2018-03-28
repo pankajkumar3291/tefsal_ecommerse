@@ -78,7 +78,7 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
             public void onClick(View view) {
              //Your work is from here....
                 TefalApp.getInstance().setToolbar_title(accessoriesModels.get(position2).getSub_cat_name());
-                activity.startActivity(new Intent(activity, OtherStoresActivity.class).putExtra("flag", "Accessories").putExtra("sub_cat", accessoriesModels.get(position2).getSub_cat_id()));
+                activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class).putExtra("flag", "Accessories").putExtra("sub_cat", accessoriesModels.get(position2).getSub_cat_id()));
                 //activity.finish();
             }
         });

@@ -40,10 +40,15 @@ public class AccessoriesRecord implements Serializable{
 
     private String tefsal_product_id;
 
+    private String store_id;
 
+    public String getStore_id() {
+        return store_id;
+    }
 
-
-
+    public void setStore_id(String store_id) {
+        this.store_id = store_id;
+    }
 
     @SerializedName("accessory_product_image")
     @Expose

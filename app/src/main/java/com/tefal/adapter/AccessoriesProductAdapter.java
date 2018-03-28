@@ -60,6 +60,9 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
         @BindView(R.id.prize_text)
         TextView prize_text;
 
+        @BindView(R.id.store_text)
+        TextView store_text;
+
         @BindView(R.id.amount_text)
         TextView amount_text;
 
@@ -97,6 +100,7 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
       //  String product_image=productRecords.get(position).getAccessory_product_image();
         String brand_name=productRecords.get(position).getBrandName();
         String product_name=productRecords.get(position).getProductName();
+        String store=productRecords.get(position).getStoreName();
         String product_price=productRecords.get(position).getPrice();
         String max_delivery_days=productRecords.get(position).getMax_delivery_days();
 
@@ -114,7 +118,7 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
             holder.txt_discount_amount.setText(discount_amount);
         }
      //   System.out.println("Product Image==="+product_image);
-
+        holder.store_text.setText(store);
         holder.prize_text.setText(product_name);
         holder.name_text.setText(brand_name);
         holder.amount_text.setText(product_price+" KWD");
@@ -142,7 +146,6 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
                 Bundle bundle=new Bundle();
                 AccessoriesRecord accessoriesRecord=productRecords.get(position);
                 bundle.putSerializable("accessoriesRecord",(Serializable)accessoriesRecord);
-                bundle.putString("storeId",storeId);
                 intent.putExtras(bundle);
                 activity.startActivity(intent);
 

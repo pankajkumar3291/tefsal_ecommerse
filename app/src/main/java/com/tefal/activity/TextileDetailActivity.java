@@ -59,6 +59,7 @@ import com.tefal.adapter.SeasonFilterAdapter;
 import com.tefal.adapter.TextileDetailPager;
 import com.tefal.app.TefalApp;
 import com.tefal.dialogs.DialogKart;
+import com.tefal.network.BaseHttpClient;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -236,8 +237,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     //colorWindow
 
     /*
-  * This dialog is used to show the image which can zoom in zoom out from view pager
-  * */
+     * This dialog is used to show the image which can zoom in zoom out from view pager
+     * */
     Dialog dialog;
 
     //SessionManager sessionManager;
@@ -363,7 +364,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebCallServiceAddCart();
+                WebCallServiceAddCartNew();
             }
         });
        /* product_img.setOnClickListener(new View.OnClickListener() {
@@ -502,8 +503,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         try {
             obj.put("product_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getTefsal_product_id());
             obj.put("item_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getDishdasha_attribute_id());
-            obj.put("item_quantity", meter_value.getText().toString());
+            obj.put("category_id", "1");
 
+            JSONObject item_details = new JSONObject();
+            item_details.put("item_quantity", meter_value.getText());
+            obj.put("item_details", item_details);
 
             arry.put(obj);
         } catch (JSONException e) {
@@ -1120,6 +1124,92 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     }
 
 
+    public void WebCallServiceAddCartNew() {
+
+
+        final String url = Contents.baseURL + "addCart";
+
+
+        SimpleProgressBar.showProgress(this);
+
+        JSONObject params = new JSONObject();
+
+
+        try {
+            params.put("access_token", session.getToken());
+            params.put("user_id", session.getCustomerId());
+            params.put("cart_id", session.getKeyCartId());
+            try {
+                params.put("items", getItems());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            params.put("appUser", "tefsal");
+            params.put("appSecret", "tefsal@123");
+            params.put("appVersion", "1.1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("Tefsal tailor == ", url + params);
+
+
+        BaseHttpClient baseHttpClient = new BaseHttpClient();
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+            @Override
+            public void onFailure() {
+                SimpleProgressBar.closeProgress();
+            }
+
+            @Override
+            public void onSuccess(String object) {
+
+                try {
+                    SimpleProgressBar.closeProgress();
+                    Log.e("JSONObject", String.valueOf(object));
+
+                    Log.e("stores response", object);
+
+
+                    System.out.println("ADD CART RESPONSE====" + object);
+
+                    JSONObject jsonObject = null;
+                    try {
+
+                        jsonObject = new JSONObject(object);
+
+                        String itemType = "";
+                        if (session.getKeyCartId().equals("")) {
+                            String cart_id = jsonObject.getString("cart_id");
+                            session.setKeyCartId(cart_id);
+                            System.out.println("OUTPUT   CART ID FIRST TIME===" + session.getKeyCartId());
+
+                            itemType = jsonObject.getString("item_type");
+                        }
+
+                        String categoryId = "1";
+                        DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
+                        dg.show();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    SimpleProgressBar.closeProgress();
+                }
+
+            }
+        });
+
+
+    }
+
     public void WebCallServiceAddCart() {
         SimpleProgressBar.showProgress(TextileDetailActivity.this);
         try {
@@ -1151,17 +1241,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                                     }
 
                                     String categoryId = "1";
-                                    DialogKart dg = new DialogKart(TextileDetailActivity.this, false,itemType,categoryId);
+                                    DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
                                     dg.show();
-
 
 
                                 } catch (Exception ex) {
 
                                 }
-
-
-
 
 
                             }
@@ -1254,7 +1340,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                     }
 
-                   /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
+                    /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
 
                 }
             });

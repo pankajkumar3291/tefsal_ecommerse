@@ -28,10 +28,10 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefal.Models.AccessoriesProductsResponse;
 import com.tefal.Models.BadgeRecordModel;
-import com.tefal.Models.ProductsResponse;
 import com.tefal.R;
 import com.tefal.adapter.AccessoriesProductAdapter;
 import com.tefal.adapter.DishdashaTextileOtherProductAdapter;
+import com.tefal.app.TefalApp;
 import com.tefal.utils.Contents;
 import com.tefal.utils.SessionManager;
 import com.tefal.utils.SimpleProgressBar;
@@ -63,7 +63,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
 
 
     PopupWindow colorWindow;
-    String store_id, flag;
+    String sub_cat, flag;
     @BindView(R.id.view_cart_btn)
     RelativeLayout view_cart_btn;
 
@@ -84,13 +84,13 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
 
 
         view_cart_btn.setVisibility(View.VISIBLE);
-        store_id = getIntent().getStringExtra("store_id");
+        sub_cat = getIntent().getStringExtra("sub_cat");
         flag = getIntent().getStringExtra("flag");
 
 
         setSupportActionBar(toolbar);
         //toolbar_title.setText(getIntent().getStringExtra("title"));
-        toolbar_title.setText(getIntent().getStringExtra("store_name"));
+        toolbar_title.setText(TefalApp.getInstance().getToolbar_title());
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +219,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
                                 AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
 
                                 if (!mResponse.getStatus().equals("0")) {
-                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, mResponse.getRecord(), store_id);
+                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, mResponse.getRecord(), sub_cat);
                                     recycler.setAdapter(adapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
@@ -245,16 +245,16 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
                     Map<String, String> params = new HashMap<String, String>();
 //                    params.put("access_token", session.getToken());
 
-                    System.out.println("ACCESSORY======= STORE==" + store_id);
+                    System.out.println("ACCESSORY======= STORE==" + sub_cat);
                     //System.out.println("ACCESSORY======= STORE=="+store_id);
                     System.out.println("ACCESSORY======= SUBCAT==" + getIntent().getStringExtra("sub_cat"));
 
 
-                     params.put("store_id", store_id);
+                   // params.put("store_id", sub_cat);
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("sub_cat_id", getIntent().getStringExtra("sub_cat"));
+                    params.put("sub_cat_id", sub_cat);
 
                     Log.e("Tefsal store == ", url + new JSONObject(params));
 

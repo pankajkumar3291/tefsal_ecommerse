@@ -155,8 +155,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (accessoriesRecord != null) {
 
-            String storeId = getIntent().getStringExtra("storeId");
-            getAccessoriesProductDetails(storeId);
+            getAccessoriesProductDetails();
 
         }
 
@@ -218,7 +217,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
-    private void getAccessoriesProductDetails(final String storeId) {
+    private void getAccessoriesProductDetails() {
         SimpleProgressBar.showProgress(AccessoryProductDetailsActivity.this);
         try {
             final String url = Contents.baseURL + "getAccessoriesProductDetails";
@@ -267,7 +266,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");
                     params.put("product_id", accessoriesRecord.getTefsal_product_id());
-                    params.put("store_id", storeId);
+                    params.put("store_id", accessoriesRecord.getStore_id());
 
                     Log.e("Tefsal tailor == ", url + new JSONObject(params));
 
@@ -440,7 +439,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void setData() {
 
         txt_title.setText(accessoriesRecord.getProductName());
-        subtxt_title.setText(accessoriesRecord.getBrandName());
+        subtxt_title.setText(accessoriesRecord.getStoreName());
 
         text_desc.setText(accessoriesRecord.getProductDesc());
         text_price.setText("PRICE: " + accessoriesRecord.getPrice() + " KWD");
@@ -505,6 +504,11 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     try {
 
                         jsonObject = new JSONObject(object);
+
+                        String cart_id = jsonObject.getString("cart_id");
+                        session.setKeyCartId(cart_id);
+
+
                         String itemType = jsonObject.getString("item_type");
                         DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this, false, itemType, "");
                         dg.show();
