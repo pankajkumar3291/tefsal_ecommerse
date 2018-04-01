@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/additional_info_bg"
     android:fitsSystemWindows="true"
-    tools:context="com.tefal.activity.AdditionalInfoActivity">
+    tools:context="com.tefsalkw.activity.AdditionalInfoActivity">
 
     <android.support.v7.widget.Toolbar
         xmlns:app="http://schemas.android.com/apk/res-auto"

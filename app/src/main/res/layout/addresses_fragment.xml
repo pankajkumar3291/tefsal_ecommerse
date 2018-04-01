@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/sign_up_bg_blur"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.AddressesActivity">
+    tools:context="com.tefsalkw.activity.AddressesActivity">
 
     <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->

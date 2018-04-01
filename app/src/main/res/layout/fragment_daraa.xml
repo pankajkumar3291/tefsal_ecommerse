@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.AddressesActivity">
+    tools:context="com.tefsalkw.activity.AddressesActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"

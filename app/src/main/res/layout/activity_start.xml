@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.StartActivity">
+    tools:context="com.tefsalkw.activity.StartActivity">
 
 
     <ImageView

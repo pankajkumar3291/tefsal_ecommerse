@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:fitsSystemWindows="true"
-    tools:context="com.tefal.activity.AboutUsActivity">
+    tools:context="com.tefsalkw.activity.AboutUsActivity">
 
     <include layout="@layout/toolbar_about"
         android:id="@+id/toolbar"/>

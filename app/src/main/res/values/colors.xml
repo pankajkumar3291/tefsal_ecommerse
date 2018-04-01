@@ -38,4 +38,8 @@
     <color name="colorRed">#FFF90404</color>
     <color name="tabColorBg">#DADACF</color>
 
+    <color name="simpletooltip_background">@color/colorAccent</color>
+    <color name="simpletooltip_text">@color/colorWhite</color>
+    <color name="simpletooltip_arrow">@color/colorAccent</color>
+
 </resources>

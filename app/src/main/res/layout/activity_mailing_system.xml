@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_up_bg_blur"
-    tools:context="com.tefal.activity.MailingSystemActivity">
+    tools:context="com.tefsalkw.activity.MailingSystemActivity">
 
     <include layout="@layout/mail_system_toolbar"
         android:id="@+id/toolbar"/>

@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.AddressesActivity">
+    tools:context="com.tefsalkw.activity.AddressesActivity">
 
     <include
         android:id="@+id/toolbar"

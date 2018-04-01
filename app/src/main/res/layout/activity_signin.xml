@@ -7,7 +7,7 @@
     android:background="@drawable/app_bg"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
-    tools:context="com.tefal.activity.SigninActivity">
+    tools:context="com.tefsalkw.activity.SigninActivity">
 
 
 

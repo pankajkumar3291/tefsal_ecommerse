@@ -118,7 +118,7 @@
                 android:background="@drawable/badge_yellow"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_xsmall" />
 
 

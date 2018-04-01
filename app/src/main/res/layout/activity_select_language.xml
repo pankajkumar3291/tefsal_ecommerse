@@ -7,7 +7,7 @@
     android:gravity="center"
     android:background="@drawable/app_bg1"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.SplashActivity">
+    tools:context="com.tefsalkw.activity.SplashActivity">
 
 
     <ImageView

@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.SettingsActivity">
+    tools:context="com.tefsalkw.activity.SettingsActivity">
 
     <include
         android:id="@+id/toolbar"

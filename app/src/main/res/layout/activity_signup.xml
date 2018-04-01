@@ -7,7 +7,7 @@
     android:background="@drawable/sign_up_bg_blur"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.SignupActivity">
+    tools:context="com.tefsalkw.activity.SignupActivity">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -6,7 +6,7 @@
     android:background="@drawable/sign_up_bg_blur"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.tefal.activity.SendMailActivity">
+    tools:context="com.tefsalkw.activity.SendMailActivity">
 
     <include
         android:id="@+id/toolbar"

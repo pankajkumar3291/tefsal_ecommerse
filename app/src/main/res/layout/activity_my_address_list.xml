@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@drawable/bg"
-    tools:context="com.tefal.activity.MyAddressListActivity">
+    tools:context="com.tefsalkw.activity.MyAddressListActivity">
 
     <include layout="@layout/toolbar_my_address_list"
         android:id="@+id/toolbar"/>

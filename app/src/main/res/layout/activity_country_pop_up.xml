@@ -37,7 +37,7 @@
 
         </LinearLayout>
 
-        <com.tefal.utils.GridViewCompat
+        <com.tefsalkw.utils.GridViewCompat
             android:id="@+id/image_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -78,7 +78,7 @@
                 android:drawableRight="@drawable/info"
                 android:text="I have my own textile "
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_mid" />
+                android:textSize="@dimen/text_small" />
 
             <CheckBox
                 android:id="@+id/ownTextileCheckBox"
