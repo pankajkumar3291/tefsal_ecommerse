@@ -344,4 +344,15 @@ public class TefalApp
     public void setStyleName(String styleName) {
         this.styleName = styleName;
     }
+
+
+    public String getNumberDishdashaUserHave() {
+        return numberDishdashaUserHave;
+    }
+
+    public void setNumberDishdashaUserHave(String numberDishdashaUserHave) {
+        this.numberDishdashaUserHave = numberDishdashaUserHave;
+    }
+
+    private  String numberDishdashaUserHave;
 }

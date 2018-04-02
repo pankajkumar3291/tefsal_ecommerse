@@ -562,12 +562,9 @@ public class MeasermentActivity extends BaseActivity {
 
                 // count=count+1;
 
-                if(back_count == 8)
-                {
+                if (back_count == 8) {
                     llFinish.setVisibility(VISIBLE);
-                }
-                else
-                {
+                } else {
                     llFinish.setVisibility(View.GONE);
                 }
 
@@ -640,12 +637,9 @@ public class MeasermentActivity extends BaseActivity {
 
                 String s = "";
 
-                if(count == 8)
-                {
+                if (count == 8) {
                     llFinish.setVisibility(VISIBLE);
-                }
-                else
-                {
+                } else {
                     llFinish.setVisibility(View.GONE);
                 }
 
@@ -862,7 +856,7 @@ public class MeasermentActivity extends BaseActivity {
             }
         });
 
-     /*-----------------Updated 10-23-2017------------------------*/
+        /*-----------------Updated 10-23-2017------------------------*/
 
 
         ll_neck.setOnClickListener(new View.OnClickListener() {
@@ -1042,8 +1036,8 @@ public class MeasermentActivity extends BaseActivity {
         });
 
         /*
-        * N.B: Here is naming conflication collar_btn_switch--Chest button
-        *       button_hidden_switch--collor button */
+         * N.B: Here is naming conflication collar_btn_switch--Chest button
+         *       button_hidden_switch--collor button */
 
 
         collar_btn_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -2211,7 +2205,7 @@ public class MeasermentActivity extends BaseActivity {
 
     private void ll_customDesign() {
         // This line of code is used to hide the soft key while entering the custom screen
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(tv_custom.getWindowToken(), 0);
 
         tv_neck.setVisibility(View.INVISIBLE);

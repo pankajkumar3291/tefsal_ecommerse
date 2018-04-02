@@ -2,8 +2,11 @@ package com.tefsalkw.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -35,7 +39,6 @@ import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.TailorProductActivity;
 import com.tefsalkw.adapter.TailorProductFromCartAdapterListView;
 import com.tefsalkw.app.TefalApp;
-import com.tefsalkw.dialogs.DialogAlert;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -166,7 +169,7 @@ public class TailorTextileChooseFragment extends Fragment {
                             bundle.putString("ownTextileString", myOwnTextileString);
                             startActivity(new Intent(getActivity(), TailorProductActivity.class).putExtras(bundle).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                         } else {
-                            Toast.makeText(getContext(), "Kindly checked the mentioned above option", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Please select available textiles or select your own!", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -250,8 +253,7 @@ public class TailorTextileChooseFragment extends Fragment {
 
                 if (isChecked) {
 
-                    DialogAlert dialogAlert = new DialogAlert(getActivity(), "", "");
-                    dialogAlert.show();
+                    showInputPrompt();
 
                 }
 
@@ -265,6 +267,62 @@ public class TailorTextileChooseFragment extends Fragment {
 
         return v;
     }
+
+    public void showInputPrompt() {
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater LayoutInflater = this.getLayoutInflater();
+        final View dialogView = LayoutInflater.inflate(R.layout.layout_dishdasha_user_have, null);
+        TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
+        final EditText inputmeter = (EditText) dialogView.findViewById(R.id.inputmeter);
+
+
+        //txt_min_meter.setText("You are "+min_dishdasha+"meter as per our \n is that Correct?");
+
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);
+        // ButterKnife.bind(this, dialogView);
+
+        dialogBuilder.setView(dialogView);
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (android.text.TextUtils.isDigitsOnly(inputmeter.getText().toString())) {
+                    alertDialog.dismiss();
+
+
+                    String min_meters = inputmeter.getText().toString();
+
+                    TefalApp.getInstance().setNumberDishdashaUserHave(min_meters);
+
+
+                } else {
+                    Toast.makeText(getActivity(), "Input must be digit", Toast.LENGTH_SHORT).show();
+                }
+                //min_meters=inputmeter.getText().toString();
+                //WebCallServiceCreateStyle();
+
+                // Toast.makeText(MeasermentActivity.this, "You clicked OK", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        dialog_cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ownTextileCheckBox.setChecked(false);
+                alertDialog.dismiss();
+            }
+        });
+    }
+
+
+
 
 
     private List<GetCartRecord> getCartItemTailorProduct(List<GetCartRecord> getCartRecordList) {

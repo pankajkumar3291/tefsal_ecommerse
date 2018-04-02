@@ -16,15 +16,15 @@ public class CustomVideoPlayerActivity extends AppCompatActivity implements Easy
     private EasyVideoPlayer player;
     //  Tefsal_Arm.mp4  Tefsal_BackH.mp4  Tefsal_Chest.mp4  Tefsal_FrontH.mp4  Tefsal_Intro.mp4  Tefsal_Neck.mp4  Tefsal_Shoulders.mp4  Tefsal_Waist.mp4  Tefsal_Wrist.mp4
 
-    private String videoLink = baseVideoURL + "Tefsal_Intro1.mp4";
-    private String videoLink1 = baseVideoURL + "Tefsal_Neck1.mp4";
-    private String videoLink2 = baseVideoURL + "Tefsal_Shoulders1.mp4";
-    private String videoLink3 = baseVideoURL + "Tefsal_Chest1.mp4";
-    private String videoLink4 = baseVideoURL + "Tefsal_Waist1.mp4";
-    private String videoLink5 = baseVideoURL + "Tefsal_Arm1.mp4";
-    private String videoLink6 = baseVideoURL + "Tefsal_Wrist1.mp4";
-    private String videoLink7 = baseVideoURL + "Tefsal_FrontH1.mp4";
-    private String videoLink8 = baseVideoURL + "Tefsal_BackH1.mp4";
+    private String videoLink = baseVideoURL + "Tefsal_Intro.mp4";
+    private String videoLink1 = baseVideoURL + "Tefsal_Neck.mp4";
+    private String videoLink2 = baseVideoURL + "Tefsal_Shoulders.mp4";
+    private String videoLink3 = baseVideoURL + "Tefsal_Chest.mp4";
+    private String videoLink4 = baseVideoURL + "Tefsal_Waist.mp4";
+    private String videoLink5 = baseVideoURL + "Tefsal_Arm.mp4";
+    private String videoLink6 = baseVideoURL + "Tefsal_Wrist.mp4";
+    private String videoLink7 = baseVideoURL + "Tefsal_FrontH.mp4";
+    private String videoLink8 = baseVideoURL + "Tefsal_BackH.mp4";
 
     String[] literals = {videoLink, videoLink1, videoLink2, videoLink3, videoLink4, videoLink5, videoLink6, videoLink7, videoLink8};
 

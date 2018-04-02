@@ -1,10 +1,14 @@
 package com.tefsalkw.activity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -86,8 +90,8 @@ public class DishDashaProductActivity extends BaseActivity {
 
 
     /*
-   * This dialog is used to show the image which can zoom in zoom out from view pager
-   * */
+     * This dialog is used to show the image which can zoom in zoom out from view pager
+     * */
     Dialog dialog;
 
 
@@ -157,6 +161,51 @@ public class DishDashaProductActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+
+        for (Fragment f : fragmentList) {
+            if (f instanceof TailorTextileChooseFragment) {
+
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(this);
+                }
+                builder.setTitle("Cancel Textile Selection")
+                        .setMessage("Are you sure you want to cancel?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+
+
+                                finish();
+
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
+            }
+            else
+            {
+                super.onBackPressed();
+            }
+        }
+
+
+    }
+
     public void gotoCart(View v) {
         try {
             startActivity(new Intent(DishDashaProductActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -170,7 +219,7 @@ public class DishDashaProductActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        Log.e(DishDashaProductActivity.class.getSimpleName(),"onResume");
+        Log.e(DishDashaProductActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
