@@ -48,33 +48,53 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(final ProductSizeAdapterHorizontalAccessories.ViewHolder holder, final int position) {
 
-        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
-        System.out.println("productSizesList=======" + productSizesList.get(position).getSize());
-        holder.sizeText.setText(productSizesList.get(position).getSize());
 
-        if (position == TefalApp.getInstance().getSetAccColorPosition()) {
+       final Sizes model = productSizesList.get(position);
+
+        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
+        System.out.println("productSizesList=======" + model.getSize());
+
+        holder.sizeText.setText(model.getSize());
+        String colorIs = model.getColors().get(0).getColor();
+        colorIs = colorIs != null ? colorIs : "Default";
+        if (colorIs.equalsIgnoreCase(TefalApp.getInstance().getCurrentColorText())) {
 
             holder.sizeText.setEnabled(true);
-            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
-            holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
 
-        }
-        else
-        {
+            if (position == TefalApp.getInstance().getCurrentSizePositionIs()) {
+
+
+                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
+                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
+
+            }
+            else
+            {
+                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent));
+                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg);
+
+            }
+
+
+        } else {
+
+
             holder.sizeText.setEnabled(false);
-            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_roundselected);
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
+
         }
 
+        holder.sizeText.setTag(model);
         holder.sizeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                TefalApp.getInstance().setPosition(position);
+                TefalApp.getInstance().setCurrentSizePositionIs(position);
                 notifyDataSetChanged();
 
                 AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
-                accessoryProductDetailsActivity.showSelectedSizeData(position);
+                accessoryProductDetailsActivity.showSelectedSizeData(position,model);
 
 
             }

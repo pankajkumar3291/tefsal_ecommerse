@@ -58,7 +58,7 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
         holder.sizeText.setText(model.getSize());
 
         System.out.println("getCurrentColorText===" + TefalApp.getInstance().getCurrentColorText());
-        if (productSizesList.get(position).getColor().equalsIgnoreCase(TefalApp.getInstance().getCurrentColorText())) {
+        if (model.getColor().equalsIgnoreCase(TefalApp.getInstance().getCurrentColorText())) {
 
             holder.sizeText.setEnabled(true);
 
@@ -90,6 +90,7 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
         }
 
         holder.sizeText.setTag(model);
+
         holder.sizeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

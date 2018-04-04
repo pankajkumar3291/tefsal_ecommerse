@@ -54,15 +54,25 @@ public class TefalApp
 
     private int colorPosition;
 
-    public int getSetAccColorPosition() {
-        return setAccColorPosition;
+    public int getAccColorPosition() {
+        return accColorPosition;
     }
 
-    public void setSetAccColorPosition(int setAccColorPosition) {
-        this.setAccColorPosition = setAccColorPosition;
+    public void setAccColorPosition(int setAccColorPosition) {
+        this.accColorPosition = setAccColorPosition;
     }
 
-    private int  setAccColorPosition;
+    private int  accColorPosition;
+
+    public int getCurrentSizePositionIs() {
+        return currentSizePositionIs;
+    }
+
+    public void setCurrentSizePositionIs(int currentSizePositionIs) {
+        this.currentSizePositionIs = currentSizePositionIs;
+    }
+
+    private int currentSizePositionIs;
 
     //This member variable is used to store the minimum meter selected style
     private String min_meters;

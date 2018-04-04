@@ -58,10 +58,12 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
             holder.sizeText.setText("Default");
         }
 
-        if (position == TefalApp.getInstance().getSetAccColorPosition()) {
+        if (position == TefalApp.getInstance().getAccColorPosition()) {
 
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
+            //TefalApp.getInstance().setCurrentSizePositionIs(position);
+
 
 
         } else {
@@ -76,15 +78,20 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
             public void onClick(View v) {
 
 
-                TefalApp.getInstance().setSetAccColorPosition(position);
+                TefalApp.getInstance().setAccColorPosition(position);
                 notifyDataSetChanged();
 
                 AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
-                accessoryProductDetailsActivity.showSizeOnColorSelection(position);
+                accessoryProductDetailsActivity.showSizeOnColorSelection(productSizesList.get(position));
 
 
             }
         });
+
+//        if(position == 0)
+//        {
+//            holder.sizeText.performClick();
+//        }
 
 
     }

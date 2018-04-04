@@ -43,6 +43,11 @@ import com.squareup.picasso.Picasso;
 import com.tefsalkw.Models.AccessoriesRecord;
 import com.tefsalkw.Models.AccessoryDetailRecord;
 import com.tefsalkw.Models.BadgeRecordModel;
+import com.tefsalkw.Models.Colors;
+import com.tefsalkw.Models.ColorsRecordModel;
+import com.tefsalkw.Models.ProductSizes;
+import com.tefsalkw.Models.Sizes;
+import com.tefsalkw.Models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
@@ -58,8 +63,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -142,6 +151,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     boolean isSizeSelected = false;
 
+    Set<String> uniqueColorSet = new HashSet<>();
+
+    List<Sizes> productSizesList = new ArrayList<>();
+
+    Colors colorModel = new Colors();
+    public static int price;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -212,12 +228,15 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void initSlider() {
 
         textSliderView = new DefaultSliderView(this);
+        textSliderView.setOnSliderClickListener(onSliderClickListener);
 
         product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
         product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
+
+
 
 
     }
@@ -310,10 +329,24 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         //Color Array Fill
 
 
-        productColorAdapterHorizontalAccesories = new ProductColorAdapterHorizontalAccesories(accessoryDetailRecord.getSizes(), this);
+        //Filtered Colors
+        for (Sizes sizes : accessoryDetailRecord.getSizes()) {
+
+            if (uniqueColorSet.add(sizes.getColors().get(0).getColor())) {
+
+                productSizesList.add(sizes);
+
+
+            }
+
+
+        }
+
+
+        productColorAdapterHorizontalAccesories = new ProductColorAdapterHorizontalAccesories(productSizesList, this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
-        TefalApp.getInstance().setSetAccColorPosition(0);
+        TefalApp.getInstance().setAccColorPosition(-1);
         colorRecyclerView.setAdapter(productColorAdapterHorizontalAccesories);
 
 
@@ -322,7 +355,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-        TefalApp.getInstance().setPosition(0);
+        TefalApp.getInstance().setCurrentColorText("-1");
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
 
 
@@ -335,8 +368,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
             textSliderView
                     .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
 
 
             product_image_viewPager.addSlider(textSliderView);
@@ -345,28 +379,53 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     }
 
-    public void showSizeOnColorSelection(int position) {
+    public void showSizeOnColorSelection(Sizes sizes) {
 
-        currentColorPosition = position;
+        TefalApp.getInstance().setCurrentSizePositionIs(-1);
+        String colorIs = sizes.getColors().get(0).getColor();
+
+        TefalApp.getInstance().setCurrentColorText(colorIs != null ? colorIs : "Default");
+
         productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
 
         isSizeSelected = false;
 
     }
 
-    public void showSelectedSizeData(int position) {
+    public void showSelectedSizeData(int position,Sizes sizes) {
 
+        this.currentColorPosition = position;
 
         product_image_viewPager.removeAllSliders();
         for (String imgUrl : accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages()) {
 
             textSliderView
                     .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit)
-                    .setOnSliderClickListener(this);
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
             product_image_viewPager.addSlider(textSliderView);
+
+        }
+
+
+
+        if (sizes != null) {
+
+            colorModel = sizes.getColors().get(0);
+
+            int qty = colorModel.getQty() != null ? Integer.parseInt(colorModel.getQty()) : 0;
+            if ( qty == 0) {
+                add_cart_btn.setText("SOLD OUT");
+
+
+            }
+
+            if (colorModel.getPrice() != null) {
+                price = Integer.parseInt(colorModel.getPrice());
+                text_price.setText("PRICE : " + price + " KWD");
+            }
+
 
         }
 
@@ -702,6 +761,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @Override
     public void onSliderClick(BaseSliderView slider) {
 
+        Log.e(DishDashaProductActivity.class.getSimpleName(), "onSliderClick");
+        showImageSingleDialog(slider.getUrl());
+
     }
 
     @Override
@@ -861,6 +923,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             container.removeView((LinearLayout) object);
         }
     }
+
 
 
 }

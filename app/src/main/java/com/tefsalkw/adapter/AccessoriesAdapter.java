@@ -66,7 +66,7 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        Picasso.with(activity).load("http://"+accessoriesModels.get(position2).getImage())
+        Picasso.with(activity).load(accessoriesModels.get(position2).getImage())
                 .error(R.drawable.no_image_placeholder_grid)
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .into(holder.iv_accessories);
