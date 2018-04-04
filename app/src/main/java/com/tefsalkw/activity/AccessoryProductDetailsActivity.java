@@ -236,7 +236,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
 
+        if(accessoriesRecord != null)
+        {
+            textSliderView
+                    .image(accessoriesRecord.getAccessory_product_image()[0])
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
 
+        }
 
 
     }

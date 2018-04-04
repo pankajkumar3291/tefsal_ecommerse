@@ -61,12 +61,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -162,17 +159,14 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     RecyclerView colorRecyclerView;
 
 
-    int currentPosition = 0;
-
     int currentColorPosition = 0;
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
     DefaultSliderView textSliderView = null;
 
-    List<ZaraDaraSizeModel> zaraDaraSizeModelList = new ArrayList<>();
+    //List<ZaraDaraSizeModel> zaraDaraSizeModelList = new ArrayList<>();
 
-    Set<String> uniqueColorSet = new HashSet<>();
-    Set<String> uniqueSizeSet = new HashSet<>();
+    // Set<String> uniqueColorSet = new HashSet<>();
 
 
     @BindView(R.id.quntity_LL)
@@ -180,6 +174,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     boolean isSizeSelected = false;
 
+
+    private List<ZaraDaraSizeModel> productSizesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,11 +277,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
 
 
-                if (!isSizeSelected) {
-
-                    Toast.makeText(ZaaraDaraaActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (!isSizeSelected) {
+//
+//                    Toast.makeText(ZaaraDaraaActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 WebCallServiceAddCartNew();
 
@@ -341,6 +337,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     private void initSlider() {
 
+        onSliderClickListener = this;
+
         textSliderView = new DefaultSliderView(this);
         textSliderView.setOnSliderClickListener(onSliderClickListener);
 
@@ -361,35 +359,37 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         //Color Array Fill
 
-        for (Colors colors : daraAbayaDetailRecord.getColors()) {
-
-            if (uniqueColorSet.add(colors.getColor())) {
-                ZaraDaraSizeModel daraSizeModel = colors.getSizes().get(0);
-                ZaraDaraSizeModel zaraDaraSizeModel = new ZaraDaraSizeModel();
-                zaraDaraSizeModel.setColor(colors.getColor());
-                zaraDaraSizeModel.setPrice(daraSizeModel.getPrice());
-                zaraDaraSizeModel.setQuantity(daraSizeModel.getQuantity());
-                zaraDaraSizeModel.setSize(daraSizeModel.getSize());
-                zaraDaraSizeModelList.add(zaraDaraSizeModel);
-            }
-
-
-        }
+//        for (Colors colors : daraAbayaDetailRecord.getColors()) {
+//
+//            if (uniqueColorSet.add(colors.getColor())) {
+//                ZaraDaraSizeModel daraSizeModel = colors.getSizes().get(0);
+//                ZaraDaraSizeModel zaraDaraSizeModel = new ZaraDaraSizeModel();
+//                zaraDaraSizeModel.setColor(colors.getColor());
+//                zaraDaraSizeModel.setPrice(daraSizeModel.getPrice());
+//                zaraDaraSizeModel.setQuantity(daraSizeModel.getQuantity());
+//                zaraDaraSizeModel.setSize(daraSizeModel.getSize());
+//                zaraDaraSizeModelList.add(zaraDaraSizeModel);
+//            }
+//
+//
+//        }
 
 
         //Fill color
 
 
-        productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(zaraDaraSizeModelList, ZaaraDaraaActivity.this);
+        productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
-        TefalApp.getInstance().setColorPosition(-1);
+        TefalApp.getInstance().setColorPosition(0);
         colorRecyclerView.setAdapter(productColorAdapterHorizontalZaraDara);
 
-
         //Fill Initial Slider
+        String[] img = daraAbayaDetailRecord.getColors().get(0).getImages();
 
-        for (String imgUrl : daraAbayaDetailRecord.getColors().get(0).getImages()) {
+
+        mainViewPager.removeAllSliders();
+        for (String imgUrl : img) {
 
 
             textSliderView
@@ -401,13 +401,30 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         }
 
+        if (img.length > 1) {
+            mainViewPager.startAutoCycle();
+
+        } else {
+            mainViewPager.stopAutoCycle();
+        }
+
+
+        zaraDaraSizesModel = daraAbayaDetailRecord.getColors().get(0).getSizes().get(0);
+
+        bindSelectedSizeData();
+
 
         // Bind sizes
-        productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
+
+
+        productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors().get(0).getSizes(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-        TefalApp.getInstance().setCurrentColorText("-1");
+        TefalApp.getInstance().setPosition(0);
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
+
+
+        text_price.setText("PRICE : " + daraAbayaDetailRecord.getColors().get(0).getSizes().get(0).getPrice() + " KWD");
 
 
     }
@@ -487,26 +504,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-    public void showSizeOnColorSelection(ZaraDaraSizeModel position) {
+    public void showSizeOnColorSelection(Colors colors) {
 
-        TefalApp.getInstance().setPosition(-1);
-        productSizeAdapterHorizontalZaraDara.isSet = false;
-
-        TefalApp.getInstance().setCurrentColorText(position.getColor());
-        productSizeAdapterHorizontalZaraDara.notifyDataSetChanged();
-        isSizeSelected = false;
-
-
-    }
-
-
-    public void showSelectedSizeData(int position, ZaraDaraSizeModel colors) {
-
-
-        this.currentPosition = position;
 
         mainViewPager.removeAllSliders();
-        for (String imgUrl : daraAbayaDetailRecord.getColors().get(currentPosition).getImages()) {
+        for (String imgUrl : colors.getImages()) {
 
             textSliderView
                     .image(imgUrl)
@@ -515,24 +517,63 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         }
 
-        if (colors != null) {
-            zaraDaraSizesModel = colors;
+        if (colors.getImages().length > 1) {
+            mainViewPager.startAutoCycle();
 
-            if (zaraDaraSizesModel.getQuantity() == 0) {
-                add_cart_btn.setText("SOLD OUT");
-                quntity_LL.setVisibility(View.GONE);
+        } else {
+            mainViewPager.stopAutoCycle();
+        }
 
-            }
 
-            if (zaraDaraSizesModel.getPrice() != null) {
-                price = Integer.parseInt(zaraDaraSizesModel.getPrice());
-                text_price.setText("PRICE : " + price + " KWD");
-            }
+        TefalApp.getInstance().setPosition(0);
+        zaraDaraSizesModel = colors.getSizes().get(0);
+
+        bindSelectedSizeData();
+
+        productSizeAdapterHorizontalZaraDara.productSizesList = colors.getSizes();
+        productSizeAdapterHorizontalZaraDara.notifyDataSetChanged();
+        isSizeSelected = false;
+
+
+    }
+
+
+    public void showSelectedSizeData(int position, ZaraDaraSizeModel zaraDaraSizeModel) {
+
+
+        this.currentColorPosition = position;
+
+
+        if (zaraDaraSizeModel != null) {
+            zaraDaraSizesModel = zaraDaraSizeModel;
+
+            bindSelectedSizeData();
 
 
         }
 
         isSizeSelected = true;
+
+
+    }
+
+
+    private void bindSelectedSizeData() {
+        if (zaraDaraSizesModel.getQuantity() == 0) {
+            add_cart_btn.setText("SOLD OUT");
+            quntity_LL.setVisibility(View.GONE);
+
+            return;
+        }
+
+        if (zaraDaraSizesModel.getPrice() != null) {
+            price = Integer.parseInt(zaraDaraSizesModel.getPrice());
+            text_price.setText("PRICE : " + price + " KWD");
+            meter = 1;
+            meter_value.setText("" + meter);
+
+        }
+
 
 
     }
@@ -642,8 +683,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
         System.out.println("QUANTITY====" + meter_value.getText());
-        System.out.println("currentPosition====" + currentPosition);
-        //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+        System.out.println("currentPosition====" + currentColorPosition);
+        //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
 
         try {
             params.put("access_token", session.getToken());
@@ -763,8 +804,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
                     System.out.println("QUANTITY====" + meter_value.getText());
-                    System.out.println("currentPosition====" + currentPosition);
-                    //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+                    System.out.println("currentPosition====" + currentColorPosition);
+                    //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
 
                     params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
@@ -802,7 +843,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", productRecord.getTefsal_product_id());
-        obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentPosition).getAttribute_id());
+        obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
         if (productRecord.getFlag().equals("Daraa")) {
             obj.put("category_id", "3");
         } else if (productRecord.getFlag().equals("Abaya")) {
@@ -815,7 +856,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         if (zaraDaraSizesModel != null) {
             JSONObject item_details = new JSONObject();
             item_details.put("size", zaraDaraSizesModel.getSize());
-            item_details.put("color", daraAbayaDetailRecord.getColors().get(currentPosition).getColor());
+            item_details.put("color", daraAbayaDetailRecord.getColors().get(currentColorPosition).getColor());
             item_details.put("item_quantity", meter_value.getText());
             obj.put("item_details", item_details);
         }

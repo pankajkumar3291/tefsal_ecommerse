@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.Colors;
 import com.tefsalkw.Models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 
@@ -24,15 +22,13 @@ import butterknife.ButterKnife;
  * Created by Dell on 20-03-2018.
  */
 
-public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<ProductSizeAdapterHorizontalZaraDara.ViewHolder> {
+public class ProductSizeAdapterHorizontalZaraDara extends RecyclerView.Adapter<ProductSizeAdapterHorizontalZaraDara.ViewHolder> {
 
-    private List<Colors> productSizesList;
+    public List<ZaraDaraSizeModel> productSizesList;
     private Activity activity;
 
-    public boolean isSet = false;
 
-
-    public ProductSizeAdapterHorizontalZaraDara(List<Colors> productSizesList, Activity activity) {
+    public ProductSizeAdapterHorizontalZaraDara(List<ZaraDaraSizeModel> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
 
@@ -51,45 +47,26 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(final ProductSizeAdapterHorizontalZaraDara.ViewHolder holder, final int position) {
 
-        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
-        //System.out.println("productSizesList=======" + productSizesList.get(position).getSizes().get(0).getSize());
-        ZaraDaraSizeModel model =  productSizesList.get(position).getSizes().get(0);
 
-        holder.sizeText.setText(model.getSize());
+        final ZaraDaraSizeModel sizes = productSizesList.get(position);
 
-        System.out.println("getCurrentColorText===" + TefalApp.getInstance().getCurrentColorText());
-        if (model.getColor().equalsIgnoreCase(TefalApp.getInstance().getCurrentColorText())) {
+        holder.sizeText.setText(sizes.getSize());
 
-            holder.sizeText.setEnabled(true);
 
-//            if(!isSet)
-//            {
-//                TefalApp.getInstance().setPosition(position);
-//                isSet = true;
-//            }
+        if (position == TefalApp.getInstance().getPosition()) {
 
-            if (position == TefalApp.getInstance().getPosition()) {
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
-                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
 
-            }
-            else
-            {
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent));
-                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg);
-            }
-
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
+            holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
 
         } else {
 
 
-            holder.sizeText.setEnabled(false);
-            holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_roundselected);
-            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent));
+            holder.sizeText.setBackgroundResource(R.drawable.my_button_bg);
 
         }
 
-        holder.sizeText.setTag(model);
 
         holder.sizeText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +75,10 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
                 TefalApp.getInstance().setPosition(position);
                 notifyDataSetChanged();
 
+                //ZaraDaraSizeModel zaraDaraSizeModel = productSizesList.get(position).getSizes();
 
-                ZaraDaraSizeModel sizeModel = (ZaraDaraSizeModel) v.getTag();
-
-                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity)activity;
-                zaaraDaraaActivity.showSelectedSizeData(position,sizeModel);
+                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
+                zaaraDaraaActivity.showSelectedSizeData(position, sizes);
 
             }
         });
@@ -124,7 +100,6 @@ public class ProductSizeAdapterHorizontalZaraDara  extends RecyclerView.Adapter<
             ButterKnife.bind(this, itemView);
         }
     }
-
 
 
 }

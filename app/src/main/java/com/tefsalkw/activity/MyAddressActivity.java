@@ -21,4 +21,9 @@ public class MyAddressActivity extends BaseActivity
       //  System.out.println("ADDRESS NAME==="+addressRecordModel.getAddress_name());
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

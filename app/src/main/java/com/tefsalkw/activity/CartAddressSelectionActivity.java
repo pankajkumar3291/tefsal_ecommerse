@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +88,14 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     @BindView(R.id.empty_view)
     TextView empty_view;
 
+    @BindView(R.id.llEmpty)
+    LinearLayout llEmpty;
+
+    @BindView(R.id.btnAddAddress)
+    Button btnAddAddress;
+
+
+
 
     public String defaultAddressId = "";
 
@@ -105,10 +114,25 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
         onCartItemDeletedListener = this;
 
+        btnAddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CartAddressSelectionActivity.this, AddressesActivity.class));
+            }
+        });
+
 
     }
 
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        WebCallServiceAddresses();
+
+    }
 
     public void WebCallServiceAddresses() {
         SimpleProgressBar.showProgress(this);
@@ -138,17 +162,17 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                     recycler.setAdapter(myAddressAdapter);
 
                                     if (mResponse.getRecord().size() == 0) {
-                                        empty_view.setVisibility(View.VISIBLE);
+                                        llEmpty.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
-                                        empty_view.setText(mResponse.getMessage());
+                                        empty_view.setText("No address found, please add a new address!");
 
                                     }
 
                                 } else {
 
                                     recycler.setVisibility(View.GONE);
-                                    empty_view.setVisibility(View.VISIBLE);
-                                    empty_view.setText(mResponse.getMessage());
+                                    llEmpty.setVisibility(View.VISIBLE);
+                                    empty_view.setText("No address found, please add a new address!");
                                     // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -251,7 +275,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
             WebCallServiceCart();
 
-            WebCallServiceAddresses();
+
             //=====For getting crash Analytics==================================
 
 

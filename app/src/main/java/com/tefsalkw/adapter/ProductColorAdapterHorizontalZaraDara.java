@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.tefsalkw.Models.Colors;
 import com.tefsalkw.Models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
@@ -26,11 +27,11 @@ import butterknife.ButterKnife;
 
 public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<ProductColorAdapterHorizontalZaraDara.ViewHolder> {
 
-    private List<ZaraDaraSizeModel> productSizesList;
+    private List<Colors> productSizesList;
     private Activity activity;
 
 
-    public ProductColorAdapterHorizontalZaraDara(List<ZaraDaraSizeModel> productSizesList, Activity activity) {
+    public ProductColorAdapterHorizontalZaraDara(List<Colors> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
 

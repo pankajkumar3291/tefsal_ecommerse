@@ -64,14 +64,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
-        <me.grantland.widget.AutofitTextView
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
@@ -84,8 +84,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
             android:textStyle="bold"
-            android:translationZ="99dp"
-            autofit:minTextSize="@dimen/text_normal" />
+            android:translationZ="99dp"/>
 
         <RatingBar
             android:id="@+id/ratingbar"
