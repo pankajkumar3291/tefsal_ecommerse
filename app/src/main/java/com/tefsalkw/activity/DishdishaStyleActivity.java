@@ -92,7 +92,7 @@ public class DishdishaStyleActivity extends BaseActivity {
         }
         else
         {
-            TefalApp.getInstance().setToolbar_title("DISHDISHA STORES");
+            TefalApp.getInstance().setToolbar_title("DISHDASHA");
             startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag","dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
@@ -146,51 +146,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                             .setCancelable(false)
                                             .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
-                                                    /*startActivity(new Intent(DishdishaStyleActivity.this, MeasermentActivity.class));
-                                                    Bundle bundle=new Bundle();
-                                                    mDishdashaStylesRecord=new DishdashaStylesRecord();
 
-
-                                                    mDishdashaStylesRecord.setNeck("");
-                                                    mDishdashaStylesRecord.setChest("");
-                                                    mDishdashaStylesRecord.setWrist("");
-                                                    mDishdashaStylesRecord.setWaist("");
-                                                    mDishdashaStylesRecord.setArm("");
-                                                    mDishdashaStylesRecord.setFront_height("");
-                                                    mDishdashaStylesRecord.setBack_height("");
-                                                    mDishdashaStylesRecord.setShoulder("");
-
-
-
-
-                                                    mDishdashaStylesRecord.setButtons("0");
-                                                    mDishdashaStylesRecord.setPen_pocket("0");
-                                                    mDishdashaStylesRecord.setMobile_pocket("0");
-                                                    mDishdashaStylesRecord.setWide("0");
-                                                    mDishdashaStylesRecord.setCollar_buttons("0");
-                                                    mDishdashaStylesRecord.setCufflink("0");
-                                                    mDishdashaStylesRecord.setId("");
-
-
-
-                                                    mDishdashaStylesRecord.setCategory("0");
-                                                    mDishdashaStylesRecord.setNarrow("0");
-
-                                                    mDishdashaStylesRecord.setUpdated_at("");
-                                                    mDishdashaStylesRecord.setCreated_at("");
-
-                                                    mDishdashaStylesRecord.setName("XYZ");
-
-                                                    mDishdashaStylesRecord.setUser_id(session.getCustomerId());
-
-
-
-                                                    bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-                                                    bundle.putString("ACTION","create");
-                                                    Intent i=new Intent(getApplicationContext(), MeasermentActivity.class);
-                                                    i.putExtras(bundle);
-
-                                                    startActivity(i);*/
                                                     showNamePrompt();
                                                 }
                                             })

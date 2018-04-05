@@ -90,13 +90,12 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
         String dis_amount = "";
 
-        if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty())
-            Picasso.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image())
-                    .placeholder(R.drawable.no_image_placeholder_non_grid)
-                    .error(R.drawable.no_image_placeholder_non_grid)
-                    .into(holder.img);
+        Picasso.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image())
+                .placeholder(R.drawable.no_image_placeholder_non_grid)
+                .error(R.drawable.no_image_placeholder_non_grid)
+                .into(holder.img);
 
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getBio());
+        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
         holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
         holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
 

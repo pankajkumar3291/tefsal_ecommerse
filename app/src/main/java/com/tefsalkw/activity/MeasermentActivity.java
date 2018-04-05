@@ -42,9 +42,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -362,6 +362,7 @@ public class MeasermentActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         toolbar_title.setText("1/9");
+        toolbar_title.setTextSize(24);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -1233,6 +1234,11 @@ public class MeasermentActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
 
+
+        if (tipsLayout.getVisibility() == VISIBLE) {
+            btn_back_tips.performClick();
+            return;
+        }
 
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -2858,7 +2864,7 @@ public class MeasermentActivity extends BaseActivity {
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_dialog, null);
         TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
 
-        txt_min_meter.setText("You are " + min_dishdasha + " meter(s) as per our \n is that Correct?");
+        txt_min_meter.setText("You are " + min_dishdasha + " meters as per our calculation.\nis this correct?");
 
         Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
         Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);

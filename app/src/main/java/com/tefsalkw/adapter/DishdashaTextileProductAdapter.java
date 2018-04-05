@@ -94,7 +94,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         }
        System.out.println("PRODUCT IMAGE SIZE==="+textileModels.get(holder.getAdapterPosition()).getProduct_image().length);
 
-        holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getProduct_name());
+        holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
         holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice()+" KWD");
 
         if(textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals(null)|| textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals(""))

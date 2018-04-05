@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:padding="10dp"
-                android:text="xyzxyx"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="#fff"
                 android:textSize="@dimen/text_normal"

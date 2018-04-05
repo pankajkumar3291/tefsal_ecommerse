@@ -63,7 +63,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="@dimen/activity_small_horizontal_margin"
             android:paddingTop="@dimen/activity_horizontal_margin"
-            android:visibility="visible">
+            android:visibility="gone">
 
 
             <LinearLayout
@@ -74,11 +74,11 @@
                 android:weightSum="100">
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -118,11 +118,11 @@
                     android:background="@color/colorDivider" />
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -162,11 +162,11 @@
                 android:weightSum="100">
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -206,11 +206,11 @@
                     android:background="@color/colorDivider" />
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -250,11 +250,11 @@
                 android:weightSum="100">
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -294,11 +294,11 @@
                     android:background="@color/colorDivider" />
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
                     android:weightSum="100">
 
@@ -342,11 +342,11 @@
                 android:weightSum="100">
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -386,11 +386,11 @@
                     android:background="@color/colorDivider" />
 
                 <LinearLayout
-                    android:paddingEnd="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:orientation="horizontal"
+                    android:paddingEnd="5dp"
                     android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
                     android:weightSum="100">
 
@@ -524,7 +524,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:src="@drawable/pen_small_selected"/>
+                    android:src="@drawable/pen_small_selected" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
@@ -545,6 +545,7 @@
                     android:src="@drawable/key_small_selected" />
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

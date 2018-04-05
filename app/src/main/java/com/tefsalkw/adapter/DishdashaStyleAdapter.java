@@ -98,17 +98,6 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         @BindView(R.id.txt_badge_coat)
         TextView txt_badge_coat;
 
-       /* @BindView(R.id.ic_coatCollar)
-        ImageView ic_coatCollar;
-
-        @BindView(R.id.ic_coat_button)
-        ImageView ic_coat_button;
-
-        @BindView(R.id.ic_cuflink)
-        ImageView ic_cuflink;*/
-
-
-
         @BindView(R.id.txt_narrow_value)
         TextView txt_narrow_value;
 
@@ -174,7 +163,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
                 {
                     holder.Rl_headerbar.setBackgroundResource(R.drawable.two_point_top_shape_cd);
                     Config.expand(holder.innerView);
-                    holder.divider.setVisibility(View.VISIBLE);
+                   // holder.divider.setVisibility(View.VISIBLE);
                     isExtended=true;
                 }
             }
