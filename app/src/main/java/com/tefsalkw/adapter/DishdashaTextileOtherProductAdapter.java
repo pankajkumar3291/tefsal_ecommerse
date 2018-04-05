@@ -13,10 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.ProductRecord;
-import com.tefsalkw.models.ProductSizes;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
+import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     String storeId;
     String flag;
 
-    public DishdashaTextileOtherProductAdapter(Activity activity, List<ProductRecord> productRecords, String storeId,String flag) {
+    public DishdashaTextileOtherProductAdapter(Activity activity, List<ProductRecord> productRecords, String storeId, String flag) {
         this.activity = activity;
         this.productRecords = productRecords;
         this.storeId = storeId;
@@ -98,10 +99,14 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
         holder.txt_discount_amount.setVisibility(View.GONE);
         holder.txt_discount_off.setVisibility(View.GONE);
 
-        List<ProductSizes> sizes = productRecords.get(position).getSizes();
+        List<Colors> colorsList = productRecords.get(position).getColors();
+
+        List<ZaraDaraSizeModel> sizes = colorsList != null ? colorsList.get(0).getSizes() : null;
         if (sizes != null) {
             holder.amount_text.setText(sizes.get(0).getPrice() + " KWD");
+
         }
+
         holder.prize_text.setText(product_name);
         holder.name_text.setText(brand_name);
 

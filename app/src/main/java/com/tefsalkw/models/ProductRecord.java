@@ -20,6 +20,16 @@ public class ProductRecord implements Serializable
 
     private String color;
 
+    public List<Colors> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<Colors> colors) {
+        this.colors = colors;
+    }
+
+    private List<Colors> colors;
+
     private String product_name;
 
     private String product_desc;

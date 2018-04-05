@@ -1,10 +1,12 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Dell on 20-03-2018.
  */
 
-public class ZaraDaraSizeModel {
+public class ZaraDaraSizeModel implements Serializable{
 
     private String size;
     private String color;

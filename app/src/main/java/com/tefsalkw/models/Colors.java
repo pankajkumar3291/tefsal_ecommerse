@@ -1,12 +1,13 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Dell on 03/13/2018.
  */
 
-public class Colors {
+public class Colors implements Serializable{
     private String sub_color;
 
     private String price;
