@@ -21,35 +21,31 @@
 
     <LinearLayout
         android:id="@+id/LL_di"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="-130dp"
+        android:background="@color/colorGold"
+        android:gravity="center"
 
-        android:gravity="right"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:rotation="35"
+        android:transformPivotY="145dp">
 
         <TextView
             android:id="@+id/txt_discount_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50%"
+            android:layout_gravity="center"
+            android:layout_marginStart="130dp"
+            android:gravity="center"
+            android:text="50% OFF"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_mid"
-            android:textStyle="bold"
-            android:translationZ="99dp" />
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txt_discount_off"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="5dp"
-            android:text="OFF"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_mid"
-            android:textStyle="bold"
-            android:translationZ="99dp" />
 
     </LinearLayout>
 
@@ -83,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
             android:numStars="5"
+
             android:rating="3"
             android:stepSize="1"
             android:theme="@style/RatingBar"

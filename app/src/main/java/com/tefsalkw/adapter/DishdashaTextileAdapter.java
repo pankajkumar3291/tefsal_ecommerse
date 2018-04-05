@@ -7,16 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.TextileStoresModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.activity.ProductListOtherActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.TextileStoresModel;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
@@ -71,8 +72,8 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
-        @BindView(R.id.txt_discount_off)
-        TextView txt_discount_off;
+        @BindView(R.id.LL_di)
+        LinearLayout LL_di;
 
 
 
@@ -97,7 +98,10 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
         holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
         holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+       /// holder.ratingbar.setRating(Float.parseFloat("3"));
         holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
+
+
 
 
         if(session.getCustomerId().equals(""))
@@ -108,15 +112,17 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
         if(storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null) || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(""))
         {
-           dis_amount = "0%";
-           holder.txt_discount_off.setVisibility(GONE);
-           holder.txt_discount_amount.setVisibility(GONE);
+             dis_amount = "0%";
+            holder.LL_di.setVisibility(GONE);
         }
         else
         {
             dis_amount=storeModels.get(holder.getAdapterPosition()).getStore_discount();
+
+            holder.LL_di.setVisibility(View.VISIBLE);
         }
-        holder.txt_discount_amount.setText(dis_amount);
+
+        holder.txt_discount_amount.setText(dis_amount+ " OFF");
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

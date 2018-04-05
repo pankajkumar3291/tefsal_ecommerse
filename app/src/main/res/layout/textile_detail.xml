@@ -32,12 +32,12 @@
                         android:id="@+id/product_image_viewPager">
 
                     </android.support.v4.view.ViewPager>-->
-            <android.support.v4.view.ViewPager
+            <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/product_image_viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </android.support.v4.view.ViewPager>
+            </com.daimajia.slider.library.SliderLayout>
 
             <ImageView
                 android:id="@+id/no_image_holder"
@@ -84,7 +84,7 @@
                     android:id="@+id/txt_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10 KWD / METER"
+                    android:text=""
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_large"
                     android:textStyle="bold" />
@@ -103,12 +103,13 @@
             android:id="@+id/viewPagerIndicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_below="@+id/linear1"
-            android:layout_marginTop="-20dp"
 
+            android:layout_marginTop="-20dp"
             android:gravity="center"
-            android:padding="4dp">
+
+            android:padding="4dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/viewPagerCountDots"
@@ -121,10 +122,10 @@
         </RelativeLayout>
 
         <View
-            android:layout_below="@+id/viewPagerIndicator"
             android:id="@+id/sep"
             android:layout_width="match_parent"
-            android:layout_height="2dp"/>
+            android:layout_height="2dp"
+            android:layout_below="@+id/viewPagerIndicator" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
@@ -149,8 +150,8 @@
             android:id="@+id/LL_min_max_controller"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
             android:layout_above="@+id/llCartButton"
+            android:layout_marginBottom="50dp"
             android:background="@color/colorPrimary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -158,21 +159,21 @@
             android:weightSum="100">
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/meter_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
+                android:gravity="center"
                 android:text="1"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="40"
+                android:gravity="center"
                 android:text="METERS"
                 android:textSize="@dimen/text_normal" />
 
@@ -229,34 +230,34 @@
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:focusable="true"
-                android:clickable="true"
                 android:id="@+id/add_to_cart_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorAccent">
+                android:background="@color/colorAccent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
 
                 <ImageView
-                    android:tint="@color/colorWhite"
-                    android:layout_centerInParent="true"
                     android:id="@+id/imgCart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_shopping_cart_black_24dp" />
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_shopping_cart_black_24dp"
+                    android:tint="@color/colorWhite" />
 
                 <TextView
-                    android:layout_marginStart="10dp"
-                    android:gravity="center_vertical"
-                    android:layout_toRightOf="@+id/imgCart"
                     android:id="@+id/add_to_cart_lbl"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@+id/imgCart"
+                    android:gravity="center_vertical"
                     android:text="ADD TO CART"
                     android:textColor="@color/colorWhite" />
 

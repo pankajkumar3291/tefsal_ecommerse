@@ -13,6 +13,6 @@
     <item android:id="@android:id/progress">
         <bitmap
             android:src="@drawable/raring_activate_icon"
-            android:tint="@color/colorYellow" />
+            android:tint="@color/colorGold" />
     </item>
 </layer-list>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -64,11 +65,12 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         TextView text_max_delivery_days;
 
 
-        @BindView(R.id.txt_discount_off)
-        TextView txt_discount_off;
 
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
+
+        @BindView(R.id.LL_di)
+        LinearLayout LL_di;
 
 
         public ViewHolder(View itemView) {
@@ -100,13 +102,14 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
         if(storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null))
         {
-            holder.txt_discount_amount.setVisibility(View.GONE);
-            holder.txt_discount_off.setVisibility(View.GONE);
+            holder.LL_di.setVisibility(View.GONE);
+           /// holder.txt_discount_off.setVisibility(View.GONE);
         }
         else
         {
+            holder.LL_di.setVisibility(View.VISIBLE);
             discount_amount=storeModels.get(holder.getAdapterPosition()).getStore_discount();
-            holder.txt_discount_amount.setText(discount_amount);
+            holder.txt_discount_amount.setText(discount_amount+ " OFF");
         }
 
 

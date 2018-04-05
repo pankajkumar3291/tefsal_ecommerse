@@ -17,6 +17,8 @@
 
 <color name="colorTransparentBlack">#90000000</color>
     <color name="colorYellow">#FFBA00</color>
+    <color name="colorGold">#c6a90b</color>
+
     <color name="colorYellowTransperent">#90FFBA00</color>
     <color name="colorBeige">#e1e3bb</color>
     <color name="colorNavy">#171d3b</color>

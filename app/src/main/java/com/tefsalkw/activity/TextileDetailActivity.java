@@ -2,6 +2,7 @@ package com.tefsalkw.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -9,10 +10,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,17 +42,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.ColorsRecordModel;
-import com.tefsalkw.models.DishdishaFilterResponseModel;
-import com.tefsalkw.models.FilterBrandModel;
-import com.tefsalkw.models.FilterCountryModel;
-import com.tefsalkw.models.FilterPatternModel;
-import com.tefsalkw.models.SeasonResponseModel;
-import com.tefsalkw.models.TextileProductModel;
-import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.BrandFilterAdapter;
 import com.tefsalkw.adapter.CountryFilterAdapter;
@@ -59,6 +59,14 @@ import com.tefsalkw.adapter.SeasonFilterAdapter;
 import com.tefsalkw.adapter.TextileDetailPager;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.dialogs.DialogKart;
+import com.tefsalkw.models.ColorsRecordModel;
+import com.tefsalkw.models.DishdishaFilterResponseModel;
+import com.tefsalkw.models.FilterBrandModel;
+import com.tefsalkw.models.FilterCountryModel;
+import com.tefsalkw.models.FilterPatternModel;
+import com.tefsalkw.models.SeasonResponseModel;
+import com.tefsalkw.models.TextileProductModel;
+import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -79,7 +87,7 @@ import butterknife.ButterKnife;
  * Created by AC 101 on 12-10-2017.
  */
 
-public class TextileDetailActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class TextileDetailActivity extends BaseActivity implements TabLayout.OnTabSelectedListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
@@ -88,7 +96,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     ViewPager viewPager;
 
     @BindView(R.id.product_image_viewPager)
-    ViewPager product_image_viewPager;
+    SliderLayout product_image_viewPager;
 
     @BindView(R.id.no_image_holder)
     ImageView no_image_holder;
@@ -243,6 +251,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     //SessionManager sessionManager;
 
+
+    DefaultSliderView.OnSliderClickListener onSliderClickListener;
+    DefaultSliderView textSliderView = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -364,19 +377,37 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WebCallServiceAddCartNew();
+
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(TextileDetailActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(TextileDetailActivity.this);
+                }
+                builder.setTitle("Disclaimer")
+                        .setMessage("Please make sure that you have viewed the textile with your full brightness, the color and pattern you receive may vary depending on your screen type and brightness. Please make sure to read the color name before Continuing.\n")
+                        .setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                dialog.cancel();
+                                WebCallServiceAddCartNew();
+
+
+                            }
+                        })
+                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
+
+
             }
         });
-       /* product_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-               // showImageSingleDialog(DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image());
-
-
-               // DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image()
-            }
-        });*/
         ic_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -405,7 +436,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         position = getIntent().getIntExtra("pos", 0);
 
         txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
-        toolbar_title.setText(textileProductModel.getProduct_name());
+        toolbar_title.setText(textileProductModel.getDishdasha_product_name());
 
 
         // if (!DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image().equals(""))
@@ -427,41 +458,42 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
 
+        initSlider();
 
-        if (product_image != null) {
-            if (product_image.length != 0) {
-                dishDashaProductPagerAdapter = new DishDashaProductPagerAdapter(TextileDetailActivity.this, product_image);
-                product_image_viewPager.setAdapter(dishDashaProductPagerAdapter);
-                //  product_image_viewPager.setOffscreenPageLimit(dishDashaProductPagerAdapter.getCount());
-                product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        // if()
-                        //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        for (int i = 0; i < dotsCount; i++) {
-                            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-                        }
-                        dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-                });
-
-
-                setUiPageViewController();
-            }
-        } else {
-            no_image_holder.setVisibility(View.VISIBLE);
-            no_image_holder.setImageResource(R.drawable.no_image_placeholder_non_grid);
-        }
+//        if (product_image != null) {
+//            if (product_image.length != 0) {
+//                dishDashaProductPagerAdapter = new DishDashaProductPagerAdapter(TextileDetailActivity.this, product_image);
+//                product_image_viewPager.setAdapter(dishDashaProductPagerAdapter);
+//                //  product_image_viewPager.setOffscreenPageLimit(dishDashaProductPagerAdapter.getCount());
+//                product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//                    @Override
+//                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                        // if()
+//                        //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onPageSelected(int position) {
+//                        for (int i = 0; i < dotsCount; i++) {
+//                            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
+//                        }
+//                        dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
+//                    }
+//
+//                    @Override
+//                    public void onPageScrollStateChanged(int state) {
+//
+//                    }
+//                });
+//
+//
+//                setUiPageViewController();
+//            }
+//        } else {
+//            no_image_holder.setVisibility(View.VISIBLE);
+//            no_image_holder.setImageResource(R.drawable.no_image_placeholder_non_grid);
+//        }
 
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -492,6 +524,46 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
         meter_value.setText("" + Math.round(min_meter));
+
+
+    }
+
+
+    private void initSlider() {
+
+        onSliderClickListener = this;
+
+        textSliderView = new DefaultSliderView(this);
+        textSliderView.setOnSliderClickListener(onSliderClickListener);
+
+        product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
+        product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+        product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
+        product_image_viewPager.setDuration(5000);
+        product_image_viewPager.addOnPageChangeListener(this);
+
+
+        if (product_image != null) {
+            product_image_viewPager.removeAllSliders();
+            for (String imgUrl : product_image) {
+
+
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
+                product_image_viewPager.addSlider(textSliderView);
+
+            }
+
+            if (product_image.length > 1) {
+                product_image_viewPager.startAutoCycle();
+
+            } else {
+                product_image_viewPager.stopAutoCycle();
+            }
+        }
 
 
     }
@@ -1027,6 +1099,30 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
     }
 
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+
+        Log.e(DishDashaProductActivity.class.getSimpleName(), "onSliderClick");
+        showImageSingleDialog(slider.getUrl());
+
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -1196,7 +1292,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
 
 
                 } catch (Exception e1) {
