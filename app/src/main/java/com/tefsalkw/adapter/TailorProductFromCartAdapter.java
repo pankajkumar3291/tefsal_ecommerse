@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.GetCartRecord;
+import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.R;
 
 import java.util.List;

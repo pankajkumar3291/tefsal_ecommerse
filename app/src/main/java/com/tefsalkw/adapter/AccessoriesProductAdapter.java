@@ -13,11 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.AccessoriesRecord;
-import com.tefsalkw.Models.ProductRecord;
+import com.tefsalkw.models.AccessoriesRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

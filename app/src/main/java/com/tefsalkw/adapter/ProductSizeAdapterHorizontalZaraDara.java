@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.ZaraDaraSizeModel;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;

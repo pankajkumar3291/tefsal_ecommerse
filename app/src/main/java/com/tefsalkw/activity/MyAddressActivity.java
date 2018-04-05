@@ -1,9 +1,8 @@
 package com.tefsalkw.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.tefsalkw.Models.AddressRecordModel;
+import com.tefsalkw.models.AddressRecordModel;
 import com.tefsalkw.R;
 
 public class MyAddressActivity extends BaseActivity

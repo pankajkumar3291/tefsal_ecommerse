@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.DishdashaStylesRecord;
+import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.MeasermentActivity;

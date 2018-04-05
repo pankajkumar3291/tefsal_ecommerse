@@ -10,14 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.SeasonsList;
+import com.tefsalkw.models.SeasonsList;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;

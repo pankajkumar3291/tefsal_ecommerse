@@ -23,7 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.tefsalkw.Models.AddressRecord;
+import com.tefsalkw.models.AddressRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AddressUpdateActivity;
 import com.tefsalkw.activity.CartAddressSelectionActivity;

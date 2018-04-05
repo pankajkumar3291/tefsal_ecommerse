@@ -40,14 +40,11 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.AccessoriesRecord;
-import com.tefsalkw.Models.AccessoryDetailRecord;
-import com.tefsalkw.Models.BadgeRecordModel;
-import com.tefsalkw.Models.Colors;
-import com.tefsalkw.Models.ColorsRecordModel;
-import com.tefsalkw.Models.ProductSizes;
-import com.tefsalkw.Models.Sizes;
-import com.tefsalkw.Models.ZaraDaraSizeModel;
+import com.tefsalkw.models.AccessoriesRecord;
+import com.tefsalkw.models.AccessoryDetailRecord;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.Sizes;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
@@ -722,6 +719,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
     public void showImageSingleDialog(String image_url) {
+
+
+        String[] img = {image_url};
         dialog = new Dialog(AccessoryProductDetailsActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
@@ -729,7 +729,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
 
-        AccessoryProductPagerAdapterForDialog accessoryProductPagerAdapterForDialog = new AccessoryProductPagerAdapterForDialog(AccessoryProductDetailsActivity.this, Accessory_product_image);
+        AccessoryProductPagerAdapterForDialog accessoryProductPagerAdapterForDialog = new AccessoryProductPagerAdapterForDialog(AccessoryProductDetailsActivity.this, img);
 
         dialog_viewPager.setAdapter(accessoryProductPagerAdapterForDialog);
         dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.DishdashaTailorProductRecord;
+import com.tefsalkw.models.DishdashaTailorProductRecord;
 import com.tefsalkw.R;
 
 import java.util.ArrayList;

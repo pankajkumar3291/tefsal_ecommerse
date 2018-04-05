@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height2"
@@ -19,15 +18,6 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_transparent" />
 
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
-    <!--android:gravity="center"-->
-    <!--android:text="50%\nOFF"-->
-    <!--android:textColor="@color/colorWhite"-->
-    <!--android:textSize="@dimen/text_normal" />-->
 
     <LinearLayout
         android:id="@+id/LL_di"
@@ -84,7 +74,7 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
             android:textStyle="bold"
-            android:translationZ="99dp"/>
+            android:translationZ="99dp" />
 
         <RatingBar
             android:id="@+id/ratingbar"

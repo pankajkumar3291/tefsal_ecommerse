@@ -8,14 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.Colors;
-import com.tefsalkw.Models.ZaraDaraSizeModel;
+import com.tefsalkw.models.Colors;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

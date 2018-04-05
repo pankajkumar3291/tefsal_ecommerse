@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.DishdashaStoreModel;
+import com.tefsalkw.models.DishdashaStoreModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaAllAdapter;
 import com.tefsalkw.utils.Contents;

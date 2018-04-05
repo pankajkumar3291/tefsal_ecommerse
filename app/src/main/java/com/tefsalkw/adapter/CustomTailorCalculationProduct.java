@@ -6,17 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.DishdashaTailorProductRecord;
-import com.tefsalkw.Models.GetCartRecord;
-import com.tefsalkw.Models.TailoringRecord;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
-import com.tefsalkw.app.TefalApp;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Rituparna Khadka on 1/13/2018.

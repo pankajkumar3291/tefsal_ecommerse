@@ -1,23 +1,16 @@
 package com.tefsalkw.fragment;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -27,12 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.DishdashaStoreModel;
-import com.tefsalkw.Models.DishdashaStylesResponse;
+import com.tefsalkw.models.DishdashaStylesResponse;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.MeasermentActivity;
 import com.tefsalkw.adapter.DishdashaAdapter;
-import com.tefsalkw.adapter.DishdashaAllAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;

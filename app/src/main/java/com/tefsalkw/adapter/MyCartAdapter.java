@@ -23,7 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.GetCartRecord;
+import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.CartActivity;
 import com.tefsalkw.utils.Contents;

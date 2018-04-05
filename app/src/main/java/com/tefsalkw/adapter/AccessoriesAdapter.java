@@ -11,10 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.AccessoriesModel;
+import com.tefsalkw.models.AccessoriesModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesStoreListingActivity;
-import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.app.TefalApp;
 
 import java.util.ArrayList;

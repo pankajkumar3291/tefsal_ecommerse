@@ -1,7 +1,6 @@
 package com.tefsalkw.fragment;
 
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -25,24 +24,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.AccessoriesProductsResponse;
-import com.tefsalkw.Models.DaraAbayaProductsModel;
-import com.tefsalkw.Models.ProductRecord;
-import com.tefsalkw.Models.ProductsResponse;
+import com.tefsalkw.models.AccessoriesProductsResponse;
+import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.ProductsResponse;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.ProductListOtherActivity;
 import com.tefsalkw.adapter.AccessoriesProductAdapter;
 import com.tefsalkw.adapter.DishdashaTextileOtherProductAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;

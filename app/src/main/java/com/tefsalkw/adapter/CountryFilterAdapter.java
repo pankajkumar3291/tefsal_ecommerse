@@ -1,9 +1,7 @@
 package com.tefsalkw.adapter;
 
 import android.app.Activity;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.FilterCountryModel;
+import com.tefsalkw.models.FilterCountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.CircleTransform;

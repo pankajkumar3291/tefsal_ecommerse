@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.D_StoreRecord;
+import com.tefsalkw.models.D_StoreRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.activity.ProductListOtherActivity;

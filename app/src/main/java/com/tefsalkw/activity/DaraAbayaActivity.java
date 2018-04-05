@@ -21,7 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.BadgeRecordModel;
+import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.PagerStoresAdapter;
 import com.tefsalkw.app.TefalApp;

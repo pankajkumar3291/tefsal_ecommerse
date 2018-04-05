@@ -11,8 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.FilterBrandModel;
-import com.tefsalkw.Models.FilterCountryModel;
+import com.tefsalkw.models.FilterBrandModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.CircleTransform;

@@ -1,24 +1,12 @@
 package com.tefsalkw.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.tefsalkw.Models.ProductMeasurement;
-import com.tefsalkw.Models.ProductRecord;
 import com.tefsalkw.R;
-import com.tefsalkw.adapter.SizeGuideAdapter;
-
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SizeGuideActivirty extends BaseActivity {
    //@BindView(R.id.back_btn)

@@ -8,10 +8,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
 
-import com.tefsalkw.Models.CountryModel;
+import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.CountryAdapter;
 

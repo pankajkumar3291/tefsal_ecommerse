@@ -1,8 +1,6 @@
 package com.tefsalkw.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,19 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.CountryModel;
-import com.tefsalkw.Models.FilterCountryModel;
+import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AddAddresssAfterSignUp;
 import com.tefsalkw.activity.SignupActivity;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.dialogs.CountryDialog;
-import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
 

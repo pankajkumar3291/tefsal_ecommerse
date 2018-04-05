@@ -1,8 +1,6 @@
 package com.tefsalkw.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -23,13 +20,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.TextileStoresResponseModel;
+import com.tefsalkw.models.TextileStoresResponseModel;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.TextileDetailActivity;
 import com.tefsalkw.adapter.DishdashaTextileAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
-import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
 

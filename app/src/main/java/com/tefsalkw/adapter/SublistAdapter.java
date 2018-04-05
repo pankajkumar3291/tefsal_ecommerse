@@ -1,6 +1,5 @@
 package com.tefsalkw.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.SublistCartItems;
-import com.tefsalkw.Models.TailorProductModal;
+import com.tefsalkw.models.SublistCartItems;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.SessionManager;
 

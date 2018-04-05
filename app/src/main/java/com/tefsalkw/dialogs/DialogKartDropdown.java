@@ -3,21 +3,17 @@ package com.tefsalkw.dialogs;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.tefsalkw.Models.GetCartRecord;
-import com.tefsalkw.Models.TailoringRecord;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.StringAdapter;
 import com.tefsalkw.fragment.FragmentTailorProducts;
-import com.tefsalkw.fragment.FragmentTailorStore;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Dell on 04-03-2018.

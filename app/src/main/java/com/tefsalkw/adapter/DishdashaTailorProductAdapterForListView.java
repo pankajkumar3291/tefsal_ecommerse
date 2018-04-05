@@ -1,6 +1,5 @@
 package com.tefsalkw.adapter;
 
-import android.app.Activity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -20,16 +18,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.tefsalkw.Models.DishdashaTailorProductRecord;
-import com.tefsalkw.Models.GetAssignedItemsRecord;
-import com.tefsalkw.Models.GetAssignedItemsResponse;
-import com.tefsalkw.Models.GetCartRecord;
-import com.tefsalkw.Models.SublistCartItems;
+import com.tefsalkw.models.GetAssignedItemsRecord;
+import com.tefsalkw.models.SublistCartItems;
 import com.tefsalkw.R;
-import com.tefsalkw.dialogs.DialogKartDropdown;
 import com.tefsalkw.fragment.FragmentTailorProducts;
-import com.tefsalkw.fragment.FragmentTailorStore;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -37,8 +29,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
 
 /**
  * Created by Rituparna Khadka on 1/12/2018.

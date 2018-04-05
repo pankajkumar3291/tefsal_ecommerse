@@ -19,12 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.DishdashaStylesResponse;
+import com.tefsalkw.models.DishdashaStylesResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
-import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.HashMap;
 import java.util.Map;

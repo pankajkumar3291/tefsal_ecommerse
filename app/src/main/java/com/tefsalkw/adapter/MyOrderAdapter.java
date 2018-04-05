@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.MyOrderResponse;
-import com.tefsalkw.Models.OrderRecord;
+import com.tefsalkw.models.OrderRecord;
 import com.tefsalkw.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;

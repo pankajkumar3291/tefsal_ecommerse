@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.MailModel;
+import com.tefsalkw.models.MailModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.MailDetailActivity;
 import com.tefsalkw.app.TefalApp;

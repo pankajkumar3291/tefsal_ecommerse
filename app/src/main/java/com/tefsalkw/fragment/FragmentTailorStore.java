@@ -1,7 +1,6 @@
 package com.tefsalkw.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -22,13 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.tefsalkw.Models.TailorStoresResponseModel;
+import com.tefsalkw.models.TailorStoresResponseModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaTailorAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
-import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
 

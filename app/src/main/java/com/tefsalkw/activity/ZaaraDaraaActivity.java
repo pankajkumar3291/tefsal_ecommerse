@@ -40,12 +40,12 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.BadgeRecordModel;
-import com.tefsalkw.Models.Colors;
-import com.tefsalkw.Models.DaraAbayaDetailRecord;
-import com.tefsalkw.Models.ProductMeasurement;
-import com.tefsalkw.Models.ProductRecord;
-import com.tefsalkw.Models.ZaraDaraSizeModel;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.DaraAbayaDetailRecord;
+import com.tefsalkw.models.ProductMeasurement;
+import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalZaraDara;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalZaraDara;
@@ -61,6 +61,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -983,6 +984,10 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
     public void showImageSingleDialog(String image_url) {
+
+        List<String> img = new ArrayList<>();
+        img.add(image_url);
+
         dialog = new Dialog(ZaaraDaraaActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
@@ -991,7 +996,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
 
-        MainPagerAdapterForDialog mainPagerAdapterForDialog = new MainPagerAdapterForDialog(ZaaraDaraaActivity.this, productRecord.getProduct_images());
+        MainPagerAdapterForDialog mainPagerAdapterForDialog = new MainPagerAdapterForDialog(ZaaraDaraaActivity.this, img);
         dialog_viewPager.setAdapter(mainPagerAdapterForDialog);
         dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

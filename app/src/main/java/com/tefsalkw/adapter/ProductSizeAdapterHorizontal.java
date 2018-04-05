@@ -2,7 +2,6 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.ProductSizes;
+import com.tefsalkw.models.ProductSizes;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 
 import java.util.ArrayList;

@@ -6,19 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.GetCartRecord;
-import com.tefsalkw.Models.TailoringRecord;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
 import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Rituparna Khadka on 1/12/2018.

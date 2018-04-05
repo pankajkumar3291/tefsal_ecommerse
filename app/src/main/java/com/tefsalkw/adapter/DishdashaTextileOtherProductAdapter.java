@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.ProductRecord;
-import com.tefsalkw.Models.ProductSizes;
+import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.ProductSizes;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 
@@ -97,17 +97,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
         holder.txt_discount_amount.setVisibility(View.GONE);
         holder.txt_discount_off.setVisibility(View.GONE);
-//        if (productRecords.get(position).getProduct_discount().equals(null) || productRecords.get(position).getProduct_discount().equals("")) {
-//            discaunt_amount = "0%";
-//            holder.txt_discount_amount.setVisibility(View.GONE);
-//            holder.txt_discount_off.setVisibility(View.GONE);
-//        } else {
-//            discaunt_amount = productRecords.get(position).getProduct_discount();
-//            holder.txt_discount_amount.setText(discaunt_amount);
-//        }
-//          holder.txt_discount_amount.setText(discaunt_amount);
 
-        //This block of code responsible for getting the price of DARRA ABAYA Product price......
         List<ProductSizes> sizes = productRecords.get(position).getSizes();
         if (sizes != null) {
             holder.amount_text.setText(sizes.get(0).getPrice() + " KWD");
@@ -118,7 +108,6 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
         holder.text_max_delivery_days.setText(max_delivery_days);
 
-        System.out.println("getThumb_url===" + productRecords.get(position).getThumb_url());
         Picasso.with(activity).load(productRecords.get(position).getThumb_url())
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .error(R.drawable.no_image_placeholder_grid)
@@ -137,7 +126,6 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
                 intent.putExtras(bundle);
                 activity.startActivity(intent);
 
-                //System.out.println("Hello");
 
             }
         });

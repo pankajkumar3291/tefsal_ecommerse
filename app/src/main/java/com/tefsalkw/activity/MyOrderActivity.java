@@ -20,7 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.MyOrderResponse;
+import com.tefsalkw.models.MyOrderResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyOrderAdapter;
 import com.tefsalkw.utils.Contents;

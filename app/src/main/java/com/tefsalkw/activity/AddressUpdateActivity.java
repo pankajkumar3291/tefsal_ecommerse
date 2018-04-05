@@ -1,12 +1,9 @@
 package com.tefsalkw.activity;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,7 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.tefsalkw.Models.AddressRecord;
+import com.tefsalkw.models.AddressRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.fragment.FragmentMyAddress;

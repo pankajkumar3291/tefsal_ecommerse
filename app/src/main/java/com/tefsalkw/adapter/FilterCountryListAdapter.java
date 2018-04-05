@@ -11,13 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.CountryRecordModel;
-import com.tefsalkw.Models.ProductCountryRecordModel;
+import com.tefsalkw.models.ProductCountryRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
-import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
 

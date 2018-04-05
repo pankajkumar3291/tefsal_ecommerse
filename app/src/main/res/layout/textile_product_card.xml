@@ -52,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/txt_discount_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,14 +61,14 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="10dp"
-                    android:text="50%"
+                    android:text=""
                     android:textAllCaps="true"
                     android:textColor="#fff"
                     android:textSize="@dimen/margin_small"
                     android:textStyle="bold"
                     autofit:minTextSize="10sp" />
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/txt_discount_off"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,34 +78,34 @@
                     android:paddingLeft="10dp"
 
                     android:paddingRight="10dp"
-                    android:text="OFF"
+                    android:text=""
                     android:textAllCaps="true"
                     android:textColor="#fff"
                     android:textSize="@dimen/margin_small"
                     android:textStyle="bold"
                     autofit:minTextSize="10sp" />
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/prize_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
 
                     android:paddingLeft="10dp"
-                    android:text="ABC"
+                    android:text=""
                     android:textColor="#fff"
                     android:textSize="@dimen/text_normal"
                     android:textStyle="bold"
                     autofit:minTextSize="10sp" />
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/store_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
 
                     android:paddingLeft="10dp"
-                    android:text="ABC"
+                    android:text=""
                     android:textColor="#fff"
                     android:textSize="@dimen/text_normal"
                     android:textStyle="bold"
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:text="100.00 KWD"
+                    android:text=""
                     android:textColor="#fff"
                     android:textSize="@dimen/text_normal"
                     android:visibility="gone" />

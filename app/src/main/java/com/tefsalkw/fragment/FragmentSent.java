@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -22,15 +21,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.MailResponseModel;
-import com.tefsalkw.Models.SentMailsResponseModel;
+import com.tefsalkw.models.SentMailsResponseModel;
 import com.tefsalkw.R;
-import com.tefsalkw.adapter.DishdashaAdapter;
-import com.tefsalkw.adapter.InboxAdapter;
 import com.tefsalkw.adapter.SentMailAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
-import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.HashMap;
 import java.util.Map;

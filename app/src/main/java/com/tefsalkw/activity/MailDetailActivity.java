@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.MailModel;
-import com.tefsalkw.Models.SentMailModel;
+import com.tefsalkw.models.MailModel;
+import com.tefsalkw.models.SentMailModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 

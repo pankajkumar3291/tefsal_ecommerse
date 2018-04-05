@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.Models.CountryModel;
+import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.R;
 
 import java.util.ArrayList;

@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -27,18 +26,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.Models.BadgeRecordModel;
+import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
-import com.tefsalkw.fragment.MailFragment;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
-import com.tefsalkw.utils.Utility;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;

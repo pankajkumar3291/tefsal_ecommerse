@@ -1,22 +1,16 @@
 package com.tefsalkw.adapter;
 
 import android.app.Activity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.Models.ProductMeasurement;
+import com.tefsalkw.models.ProductMeasurement;
 import com.tefsalkw.R;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Rituparna Khadka on 12/20/2017.
