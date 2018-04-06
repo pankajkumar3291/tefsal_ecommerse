@@ -524,7 +524,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:src="@drawable/pen_small_selected" />
+                    android:src="@drawable/icon_pen_disabled" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
@@ -532,7 +532,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/margin_mid"
-                    android:src="@drawable/phone_small_selected" />
+                    android:src="@drawable/icon_mobile_disabled" />
 
                 <ImageView
 
@@ -542,7 +542,7 @@
 
                     android:layout_centerHorizontal="true"
                     android:layout_toRightOf="@+id/mobile_pocket"
-                    android:src="@drawable/key_small_selected" />
+                    android:src="@drawable/icon_key_disabled" />
 
             </RelativeLayout>
 

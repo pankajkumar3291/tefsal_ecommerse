@@ -1,6 +1,7 @@
 package com.tefsalkw.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -22,14 +23,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.tefsalkw.models.AddressRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefsalApplication;
+import com.tefsalkw.eventmodels.CartAddressEvent;
 import com.tefsalkw.fragment.FragmentMyAddress;
+import com.tefsalkw.models.AddressRecord;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +45,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddressUpdateActivity extends BaseActivity
-{
+public class AddressUpdateActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -127,7 +129,6 @@ public class AddressUpdateActivity extends BaseActivity
     private int areaPosition;
 
 
-
     AddressRecord addressRecord;
 
     private static Tracker mTracker;
@@ -150,22 +151,21 @@ public class AddressUpdateActivity extends BaseActivity
 
         toolbar_title.setText("EDIT ADDRESS");
 
-        addressRecord=(AddressRecord)getIntent().getExtras().getSerializable("addressRecord");
+        addressRecord = (AddressRecord) getIntent().getExtras().getSerializable("addressRecord");
 
-        System.out.println("ID==="+addressRecord.getAddress_id());
+        System.out.println("ID===" + addressRecord.getAddress_id());
 
-        System.out.println("PROVINCE==="+addressRecord.getCity());
-        System.out.println("PROVINCE==="+addressRecord.getCountry());
+        System.out.println("PROVINCE===" + addressRecord.getCity());
+        System.out.println("PROVINCE===" + addressRecord.getCountry());
 
-        System.out.println("OUT PUT CONUTRY CODE=="+addressRecord.getCountry_iso());
-        System.out.println("OUT PUT PROVINCE CODE=="+addressRecord.getProvince_id());
-        System.out.println("OUT PUT AREA CODE=="+addressRecord.getArea_id());
+        System.out.println("OUT PUT CONUTRY CODE==" + addressRecord.getCountry_iso());
+        System.out.println("OUT PUT PROVINCE CODE==" + addressRecord.getProvince_id());
+        System.out.println("OUT PUT AREA CODE==" + addressRecord.getArea_id());
 
 
         Log.i(TAG, "Setting screen name: " + "AddressUpdateActivity");
         mTracker.setScreenName("Image~" + "AddressUpdateActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
 
 
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -176,35 +176,28 @@ public class AddressUpdateActivity extends BaseActivity
         });
         btn_Save.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //System.out.println("SPINNER DATA===="+spin_area.getSelectedItem()+"==="+spin_area.getSelectedItemPosition());
 
                 if (Contents.isBlank(input_address_name.getText().toString().trim())) {
                     input_address_name.setError(getString(R.string.invalidAddress_name));
                     return;
-                }
-                else if (Contents.isBlank(input_block.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_block.getText().toString().trim())) {
                     input_block.setError(getString(R.string.invalidBlock));
                     return;
-                }
-                else if (Contents.isBlank(input_house.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_house.getText().toString().trim())) {
                     input_house.setError(getString(R.string.invalidHouse));
                     return;
-                }
-                else if (spin_country.getSelectedItemPosition() ==0) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidCountry),Toast.LENGTH_LONG).show();
+                } else if (spin_country.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if (spin_area.getSelectedItemPosition()==-1 ) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidArea),Toast.LENGTH_LONG).show();
+                } else if (spin_area.getSelectedItemPosition() == -1) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidArea), Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if (spin_area.getSelectedItemPosition()==-1) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidCity),Toast.LENGTH_LONG).show();
+                } else if (spin_area.getSelectedItemPosition() == -1) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidCity), Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if(Contents.isBlank(input_street.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_street.getText().toString().trim())) {
                     input_street.setError(getString(R.string.invalidStreet));
                     return;
                 }
@@ -232,11 +225,9 @@ public class AddressUpdateActivity extends BaseActivity
         getCountries();
 
 
-
-
     }
-    private void setData()
-    {
+
+    private void setData() {
         input_address_name.setText(addressRecord.getAddress_name());
         input_block.setText(addressRecord.getBlock());
         input_avenue.setText(addressRecord.getAvenue());
@@ -256,8 +247,6 @@ public class AddressUpdateActivity extends BaseActivity
         Log.i(TAG, "Setting screen name: " + "AddressUpdateActivity");
         mTracker.setScreenName("Image~" + "AddressUpdateActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-
 
 
         SimpleProgressBar.showProgress(AddressUpdateActivity.this);
@@ -281,15 +270,14 @@ public class AddressUpdateActivity extends BaseActivity
                                     //country_name.add("Select Country");
                                     iso_name = new ArrayList<String>();
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         country_name.add(c.getString("name"));
                                         iso_name.add(c.getString("iso"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this,android.R.layout.simple_spinner_item,country_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, country_name);
                                     getCountryPosition();
 
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -298,8 +286,7 @@ public class AddressUpdateActivity extends BaseActivity
 
                                     spin_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
-                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                        {
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                             getProvinces(iso_name.get(position));
                                         }
 
@@ -310,9 +297,9 @@ public class AddressUpdateActivity extends BaseActivity
                                     });
 
 
-                                    System.out.println("POSITION OF COUNTRY==="+countryPosition);
-                                    System.out.println("POSITION OF COUNTRY==="+country_name.size());
-                                 //  int pos =spin_country.getPosi
+                                    System.out.println("POSITION OF COUNTRY===" + countryPosition);
+                                    System.out.println("POSITION OF COUNTRY===" + country_name.size());
+                                    //  int pos =spin_country.getPosi
 
                                 } else {
 
@@ -356,24 +343,20 @@ public class AddressUpdateActivity extends BaseActivity
         }
     }
 
-    private void getCountryPosition()
-    {
-        for(int i=0;i<iso_name.size();i++)
-        {
-            if(iso_name.get(i).equals(addressRecord.getCountry_iso()))
-            {
-                countryPosition=i;
+    private void getCountryPosition() {
+        for (int i = 0; i < iso_name.size(); i++) {
+            if (iso_name.get(i).equals(addressRecord.getCountry_iso())) {
+                countryPosition = i;
 
-                System.out.println("POSITION country===="+countryPosition);
-                System.out.println("POSITION country===="+addressRecord.getCountry_iso());
+                System.out.println("POSITION country====" + countryPosition);
+                System.out.println("POSITION country====" + addressRecord.getCountry_iso());
                 break;
             }
         }
     }
 
-    private void getProvincePosition()
-    {
-        for(int i=0;i<province_id.size();i++) {
+    private void getProvincePosition() {
+        for (int i = 0; i < province_id.size(); i++) {
             if (province_id.get(i).equals(addressRecord.getProvince_id())) {
                 provincePosition = i;
                 System.out.println("POSITION prov====" + provincePosition);
@@ -382,26 +365,22 @@ public class AddressUpdateActivity extends BaseActivity
 
 
             }
-            System.out.println("PROVINCE ID=="+addressRecord.getProvince_id());
+            System.out.println("PROVINCE ID==" + addressRecord.getProvince_id());
         }
 
     }
 
-    private void getAreaPosition()
-    {
-        for(int i=0;i<area_id.size();i++)
-        {
-            if(area_id.get(i).equals(addressRecord.getArea_id()))
-            {
-                areaPosition=i;
-                System.out.println("POSITION area===="+provincePosition);
-                System.out.println("POSITION area===="+addressRecord.getArea_id());
+    private void getAreaPosition() {
+        for (int i = 0; i < area_id.size(); i++) {
+            if (area_id.get(i).equals(addressRecord.getArea_id())) {
+                areaPosition = i;
+                System.out.println("POSITION area====" + provincePosition);
+                System.out.println("POSITION area====" + addressRecord.getArea_id());
                 break;
 
             }
         }
     }
-
 
 
     public void getProvinces(final String isoKey) {
@@ -411,9 +390,8 @@ public class AddressUpdateActivity extends BaseActivity
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
-
         SimpleProgressBar.showProgress(AddressUpdateActivity.this);
-        final ArrayAdapter aa=null;
+        final ArrayAdapter aa = null;
         try {
             final String url = Contents.baseURL + "getProvinces";
 
@@ -432,20 +410,19 @@ public class AddressUpdateActivity extends BaseActivity
 
                                     province_id = new ArrayList<String>();
                                     province_name = new ArrayList<String>();
-                                    area_name=new ArrayList<String>();
-                                   // area_name.add("Select Province");
+                                    area_name = new ArrayList<String>();
+                                    // area_name.add("Select Province");
 
 
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         province_id.add(c.getString("province_id"));
                                         province_name.add(c.getString("province_name"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this,android.R.layout.simple_spinner_item,province_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, province_name);
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     getProvincePosition();
 
@@ -457,7 +434,7 @@ public class AddressUpdateActivity extends BaseActivity
 
                                             getAreas(province_id.get(position));
 
-                                            System.out.println("GET  ID PROVINCE==="+province_id.get(position));
+                                            System.out.println("GET  ID PROVINCE===" + province_id.get(position));
                                         }
 
                                         @Override
@@ -512,7 +489,6 @@ public class AddressUpdateActivity extends BaseActivity
     }
 
 
-
     public void saveAddress() {
         SimpleProgressBar.showProgress(AddressUpdateActivity.this);
 
@@ -521,17 +497,15 @@ public class AddressUpdateActivity extends BaseActivity
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
-        province_code=province_id.get(spin_city.getSelectedItemPosition());
+        province_code = province_id.get(spin_city.getSelectedItemPosition());
 
-        country_iso_code=iso_name.get(spin_country.getSelectedItemPosition());
+        country_iso_code = iso_name.get(spin_country.getSelectedItemPosition());
 
-        area_code=area_id.get(spin_area.getSelectedItemPosition());
-
-
+        area_code = area_id.get(spin_area.getSelectedItemPosition());
 
 
-        System.out.println("CODE ISO CODE="+country_iso_code);
-        System.out.println("CODE PROVINCE CODE="+province_code);
+        System.out.println("CODE ISO CODE=" + country_iso_code);
+        System.out.println("CODE PROVINCE CODE=" + province_code);
 
 
         //province_id
@@ -544,24 +518,28 @@ public class AddressUpdateActivity extends BaseActivity
                         public void onResponse(String response) {
 
                             SimpleProgressBar.closeProgress();
-                            System.out.println("Response==="+response);
+                            System.out.println("Response===" + response);
                             Log.e("device response", response);
                             try {
                                 JSONObject object = new JSONObject(response);
                                 String status = object.getString("status");
                                 String message = object.getString("message");
-                                if (status.equals("1"))
-                                {
+                                if (status.equals("1")) {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     new FragmentMyAddress();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            EventBus.getDefault().post(new CartAddressEvent());
+                                        }
+                                    }, 2000);
+
                                     finish();
-                                }
-                                else
-                                {
+                                } else {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                System.out.println("Error==="+e.getStackTrace());
+                                System.out.println("Error===" + e.getStackTrace());
                                 SimpleProgressBar.closeProgress();
                             }
 
@@ -572,7 +550,7 @@ public class AddressUpdateActivity extends BaseActivity
                         public void onErrorResponse(VolleyError error) {
 
 
-                            System.out.println("Error==="+error.getStackTrace());
+                            System.out.println("Error===" + error.getStackTrace());
 
                             SimpleProgressBar.closeProgress();
                         }
@@ -581,20 +559,20 @@ public class AddressUpdateActivity extends BaseActivity
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("customer_id", session.getCustomerId());
-                    params.put("address_name",input_address_name.getText().toString() );
-                    params.put("address_id",addressRecord.getAddress_id() );
+                    params.put("address_name", input_address_name.getText().toString());
+                    params.put("address_id", addressRecord.getAddress_id());
 
                     params.put("country", country_iso_code);
                     params.put("city", province_code);
                     params.put("area", area_code);
                     params.put("block", input_block.getText().toString());
 
-                    params.put("street", input_street.getText()+"");
+                    params.put("street", input_street.getText() + "");
                     params.put("avenue", input_avenue.getText().toString());
                     params.put("floor", input_floor.getText().toString());
                     params.put("house", input_house.getText().toString());
-                    params.put("flat_number", input_flate.getText()+"");
-                    params.put("phone_number", input_phone.getText()+"");
+                    params.put("flat_number", input_flate.getText() + "");
+                    params.put("phone_number", input_phone.getText() + "");
                     params.put("paci_number", input_paci_num.getText().toString());
                     params.put("addt_info", input_add_desp.getText().toString());
 
@@ -604,7 +582,6 @@ public class AddressUpdateActivity extends BaseActivity
                     params.put("appVersion", "1.1");
 
                     Log.e("Refsal req == ", url + params);
-
 
 
                     return params;
@@ -621,10 +598,11 @@ public class AddressUpdateActivity extends BaseActivity
 
         } catch (Exception surError) {
 
-            System.out.println("Error==="+surError);
+            System.out.println("Error===" + surError);
             surError.printStackTrace();
         }
     }
+
     public void getAreas(final String province_id) {
 
         Log.i(TAG, "Setting screen name: " + "AddressUpdateActivity");
@@ -650,17 +628,16 @@ public class AddressUpdateActivity extends BaseActivity
 
                                     area_id = new ArrayList<String>();
                                     area_name = new ArrayList<String>();
-                                   // area_name.add("Select Area");
+                                    // area_name.add("Select Area");
                                     JSONArray jsonArray = object.getJSONArray("record");
-                                    for (int i =0;i<jsonArray.length();i++)
-                                    {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         area_id.add(c.getString("area_id"));
                                         area_name.add(c.getString("area_name"));
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this,android.R.layout.simple_spinner_item,area_name);
+                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, area_name);
 
                                     getAreaPosition();
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -669,8 +646,7 @@ public class AddressUpdateActivity extends BaseActivity
 
                                     spin_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
-                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                        {
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                                         }
 
@@ -679,10 +655,6 @@ public class AddressUpdateActivity extends BaseActivity
 
                                         }
                                     });
-
-
-
-
 
 
                                 } else {

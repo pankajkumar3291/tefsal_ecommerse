@@ -196,49 +196,31 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         else
         {
            // holder.pen_pocket.setColorFilter(R.color.colorAccent);
-             holder.pen_pocket.setImageResource(R.drawable.pen_small);
+            // holder.pen_pocket.setImageResource(R.drawable.pen_small);
         }
 
 
-        if(record.get(position).getPen_pocket().equals("no"))
-        {
-            // holder.pen_pocket.setVisibility(View.INVISIBLE);
-           // holder.pen_pocket.setColorFilter(R.color.colorDGray);
-        }
-        else
-        {
-            holder.pen_pocket.setImageResource(R.drawable.pen_small);
-        }
 
-        if(record.get(position).getMobile_pocket().equals("no"))
-        {
-            //holder.mobile_pocket.setColorFilter(R.color.colorDGray);
-            //holder.mobile_pocket.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            holder.mobile_pocket.setImageResource(R.drawable.phone_small);
-        }
-        if(record.get(position).getKey_pocket().equals("no"))
-        {
-            System.out.println("KEY POCKET STATUS=="+record.get(position).getKey_pocket());
-           // holder.mobile_pocket.setColorFilter(R.color.colorDGray);
 
-        }
-        else
+        if(!record.get(position).getPen_pocket().equals("no"))
         {
-            holder.key_pocket.setImageResource(R.drawable.key_small);
+            holder.pen_pocket.setImageResource(R.drawable.icon_pen_enabled);
         }
 
 
-            /*if(record.get(position).getKey_pocket().equals("no"))
-            {
-                holder.key_pocket.setColorFilter(R.color.colorDGray);
-            }
-            else
-            {
-                //
-            }*/
+        if(!record.get(position).getMobile_pocket().equals("no"))
+        {
+            holder.mobile_pocket.setImageResource(R.drawable.icon_mobile_enabled);
+        }
+
+        if(!record.get(position).getKey_pocket().equals("no"))
+        {
+            holder.key_pocket.setImageResource(R.drawable.icon_key_enabled);
+
+        }
+
+
+
     }
 
     @Override

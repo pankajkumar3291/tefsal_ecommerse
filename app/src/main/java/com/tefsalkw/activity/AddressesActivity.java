@@ -1,9 +1,7 @@
 package com.tefsalkw.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -27,11 +25,13 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefsalApplication;
+import com.tefsalkw.eventmodels.CartAddressEvent;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -203,8 +203,6 @@ public class AddressesActivity extends BaseActivity {
         getCountries();
 
     }
-
-
 
 
     // This one updated code----
@@ -537,6 +535,15 @@ public class AddressesActivity extends BaseActivity {
                                 if (status.equals("1")) {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     new FragmentMyAddress();
+
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            EventBus.getDefault().post(new CartAddressEvent());
+                                        }
+                                    }, 3000);
+
+
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();

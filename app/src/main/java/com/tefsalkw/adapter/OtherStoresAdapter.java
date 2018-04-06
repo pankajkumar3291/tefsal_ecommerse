@@ -7,16 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.D_StoreRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesStoreListingActivity;
 import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.activity.ProductListOtherActivity;
+import com.tefsalkw.models.D_StoreRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +70,8 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
-        @BindView(R.id.txt_discount_off)
-        TextView txt_discount_off;
+        @BindView(R.id.LL_di)
+        LinearLayout LL_di;
 
 
         public ViewHolder(View itemView) {
@@ -100,12 +101,16 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
         if (storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null)) {
             holder.txt_discount_amount.setVisibility(View.GONE);
-            holder.txt_discount_off.setVisibility(View.GONE);
+            // holder.txt_discount_off.setVisibility(View.GONE);
+
+            holder.LL_di.setVisibility(View.GONE);
         } else {
             discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
             holder.txt_discount_amount.setText(discount_amount);
            /* holder.txt_discount_amount.setVisibility(View.VISIBLE);
             holder.txt_discount_off.setVisibility(View.VISIBLE);*/
+
+            holder.LL_di.setVisibility(View.VISIBLE);
 
 
         }

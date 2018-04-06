@@ -139,7 +139,7 @@
     <string name="invalidArea">Error: Area field required</string>
     <string name="invalidCity">Error: City field required</string>
     <string name="invalidStreet">Error: Street field required</string>
-    <string name="invalidFlate">Error: Flate number field required</string>
+    <string name="invalidFlate">Error: Flat number field required</string>
     <string name="invalidPhone">Error: Phone number field required</string>
 
     <string name="invalidEmailTitle">Error:Title field required</string>

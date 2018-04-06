@@ -404,7 +404,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                         .show();
 
 
-
             }
         });
 
@@ -739,16 +738,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             filterWindow.showAsDropDown(v);
         }
 
-       /* if(_filterWindowFlag)
-        {
-            this.filterWindowFlag=false;
-            filterWindow.showAsDropDown(v);
-        }
-        else
-        {
-            this.filterWindowFlag=true;
-            filterWindow.dismiss();
-        }*/
 
     }
 
@@ -801,18 +790,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                                         // colorsRecordModelArrayList=_mdishdashaFiletrationResponse.getColors();
                                         textileProductModelArrayList = _mdishdashaFiletrationResponse.getProducts();
 
-
-                                        System.out.println("TextileDetailActivity==============colorString==" + colorString);
-                                        System.out.println("TextileDetailActivity==============seasonString==" + seasonString);
-                                        System.out.println("TextileDetailActivity==============countryString==" + countryString);
-                                        System.out.println("TextileDetailActivity==============subColor==" + subColorString);
-                                        System.out.println("TextileDetailActivity==============StoreId==" + TefalApp.getInstance().getStoreId());
-
-                                        System.out.println("TextileDetailActivity==============filterBrandModelArrayList==" + filterBrandModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============filterCountryModelArrayList==" + filterCountryModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============filterPatternModelArrayList==" + filterPatternModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============textileProductModelArrayList==" + textileProductModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============colorsRecordModelArrayList==" + colorsRecordModelArrayList.size());
 
                                         //initPopupFilter();
                                     } else {

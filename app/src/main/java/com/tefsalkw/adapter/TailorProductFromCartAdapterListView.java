@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
@@ -27,8 +27,7 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
     LayoutInflater inflater;
 
 
-
-    public TailorProductFromCartAdapterListView(Activity activity,  ArrayList<TailoringRecord> record) {
+    public TailorProductFromCartAdapterListView(Activity activity, ArrayList<TailoringRecord> record) {
         this.activity = activity;
         this.record = record;
 
@@ -56,53 +55,40 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.tailor_product_item_new, parent, false);
 
-         //  TextView tv=(TextView)convertView.findViewById(R.id.tv);
-            TextView txt_product_name=(TextView)convertView.findViewById(R.id.txt_product_name);
-            final CheckBox checkBox=(CheckBox)convertView.findViewById(R.id.check_box);
-            ImageView imageView=(ImageView)convertView.findViewById(R.id.imageView);
+        //  TextView tv=(TextView)convertView.findViewById(R.id.tv);
+        TextView txt_product_name = (TextView) convertView.findViewById(R.id.txt_product_name);
+        final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-            txt_product_name.setText(record.get(position).getDishdasha_product_name());
-            Picasso.with(activity)
-                    .load("http://ec2-35-164-90-67.us-west-2.compute.amazonaws.com/public/images/store_images/8_1621469147.png")
-                    .error(R.drawable.no_image_placeholder_grid)
-                    .transform(new CircleTransform())
-                    .into(imageView);
-
-
+        txt_product_name.setText(record.get(position).getDishdasha_product_name());
+        Picasso.with(activity)
+                .load(record.get(position).getImage())
+                .error(R.drawable.no_image_placeholder_grid)
+                .transform(new CircleTransform())
+                .into(imageView);
 
 
-
-            if(record.get(position).getChecked())
-            {
-                checkBox.setChecked(true);
-                TailorTextileChooseFragment.ownTextileCheckBox.setChecked(false);
-            }
-            else
-            {
-               // if(getCartRecordList.size()!=0)
-                checkBox.setChecked(false);
-                //getCartRecordList.remove()
-            }
-
-
-
+        if (record.get(position).getChecked()) {
+            checkBox.setChecked(true);
+            TailorTextileChooseFragment.ownTextileCheckBox.setChecked(false);
+        } else {
+            // if(getCartRecordList.size()!=0)
+            checkBox.setChecked(false);
+            //getCartRecordList.remove()
+        }
 
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(checkBox.isChecked())
-                {
+            public void onClick(View v) {
+                if (checkBox.isChecked()) {
                     record.get(position).setChecked(true);
                     //getCartRecordList.get(position).setChecked(true);
-                   // getCartRecordList=getCartRecordList2;
+                    // getCartRecordList=getCartRecordList2;
                     notifyDataSetChanged();
-                }
-                else
-                {
+                } else {
                     record.get(position).setChecked(false);
-                   // getCartRecordList.get(position).setChecked(false);
+                    // getCartRecordList.get(position).setChecked(false);
                     //getCartRecordList=getCartRecordList2;
                     notifyDataSetChanged();
                 }
@@ -119,22 +105,18 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
         getCartRecordList.add(getCartRecord);*/
 
 
+        return convertView;
+    }
 
-
-            return convertView;
+    public void resetData() {
+        for (int i = 0; i < record.size(); i++) {
+            record.get(i).setChecked(false);
         }
+    }
 
-        public void resetData()
-        {
-            for(int i=0;i<record.size();i++)
-            {
-                record.get(i).setChecked(false);
-            }
-        }
-        public ArrayList<TailoringRecord> getData()
-        {
+    public ArrayList<TailoringRecord> getData() {
 
-            return record;
-        }
+        return record;
+    }
 }
 

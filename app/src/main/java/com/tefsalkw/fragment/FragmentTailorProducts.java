@@ -22,10 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.GetAssignedItemsRecord;
-import com.tefsalkw.models.GetAssignedItemsResponse;
-import com.tefsalkw.models.SublistCartItems;
-import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.CustomTailorCalculationProduct;
 import com.tefsalkw.adapter.DishdashaTailorProductAdapterForListView;
@@ -33,6 +29,10 @@ import com.tefsalkw.adapter.DishdashaTailorProductsAdapter;
 import com.tefsalkw.adapter.TailorProductAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.dialogs.DialogKartDropdown;
+import com.tefsalkw.models.GetAssignedItemsRecord;
+import com.tefsalkw.models.GetAssignedItemsResponse;
+import com.tefsalkw.models.SublistCartItems;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -54,14 +54,13 @@ public class FragmentTailorProducts extends Fragment {
    /* List<GetCartRecord> getCartRecordListOfChecked=new ArrayList<GetCartRecord>();
     List<GetCartRecord> getCartRecordListOfCheckedTrue=new ArrayList<GetCartRecord>();*/
 
-    ArrayList<TailoringRecord> tailoringRecordArrayListOfChecked=new ArrayList<TailoringRecord>();
-    ArrayList<TailoringRecord> tailoringRecordArrayListOfCheckedTrue=new ArrayList<TailoringRecord>();
+    ArrayList<TailoringRecord> tailoringRecordArrayListOfChecked = new ArrayList<TailoringRecord>();
+    ArrayList<TailoringRecord> tailoringRecordArrayListOfCheckedTrue = new ArrayList<TailoringRecord>();
 
     ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList = new ArrayList<GetAssignedItemsRecord>();
     GetAssignedItemsResponse getAssignedItemsResponse;
 
     private String ownTextileString;
-
 
 
     @BindView(R.id.loading)
@@ -74,14 +73,8 @@ public class FragmentTailorProducts extends Fragment {
     TextView dishInfoText;
 
 
-   /* @BindView(R.id.recycler)
-    RecyclerView recycler;
-
-    @BindView(R.id.recycler_view)
-    RecyclerView recycler_view;*/
-
-   @BindView(R.id.list)
-   ListView list;
+    @BindView(R.id.list)
+    ListView list;
 
     @BindView(R.id.list2)
     ListView list2;
@@ -107,37 +100,32 @@ public class FragmentTailorProducts extends Fragment {
         View v = inflater.inflate(R.layout.fragment_tailor_product, container, false);
         ButterKnife.bind(this, v);
 
-        sessionManager=new SessionManager(getContext());
+        sessionManager = new SessionManager(getContext());
 
-        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT==="+ TefalApp.getInstance().getStoreId());
+        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT===" + TefalApp.getInstance().getStoreId());
 
-        Bundle bundle=getArguments();
-        tailoringRecordArrayListOfChecked=(ArrayList<TailoringRecord>)bundle.getSerializable("tailoringRecordArrayListOfChecked");
-        ownTextileString=bundle.getString("ownTextileString");
+        Bundle bundle = getArguments();
+        tailoringRecordArrayListOfChecked = (ArrayList<TailoringRecord>) bundle.getSerializable("tailoringRecordArrayListOfChecked");
+        ownTextileString = bundle.getString("ownTextileString");
 
-        dishInfoText.setText(TefalApp.getInstance().getStyleName()+" / "+Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())) +" meter = 1 Dishdasha");
+        dishInfoText.setText(TefalApp.getInstance().getStyleName() + " / " + Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())) + " meter = 1 Dishdasha");
 
-        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT==="+ tailoringRecordArrayListOfChecked);
+        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT===" + tailoringRecordArrayListOfChecked);
 
-        if(tailoringRecordArrayListOfChecked!=null)
-        {
-            for(int i=0;i<tailoringRecordArrayListOfChecked.size();i++)
-            {
-                if(tailoringRecordArrayListOfChecked.get(i).getChecked())
-                {
-                   // GetCartRecord getCartRecord=new GetCartRecord();
+        if (tailoringRecordArrayListOfChecked != null) {
+            for (int i = 0; i < tailoringRecordArrayListOfChecked.size(); i++) {
+                if (tailoringRecordArrayListOfChecked.get(i).getChecked()) {
+                    // GetCartRecord getCartRecord=new GetCartRecord();
                     tailoringRecordArrayListOfCheckedTrue.add(tailoringRecordArrayListOfChecked.get(i));
 
                 }
 
             }
 
-            CustomTailorCalculationProduct customTailorCalculationProduct=new CustomTailorCalculationProduct(getActivity(),tailoringRecordArrayListOfCheckedTrue);
+            CustomTailorCalculationProduct customTailorCalculationProduct = new CustomTailorCalculationProduct(getActivity(), tailoringRecordArrayListOfCheckedTrue);
             list.setAdapter(customTailorCalculationProduct);
 
-        }
-        else
-        {
+        } else {
             ownTextileText.setText(ownTextileString);
         }
 
@@ -147,12 +135,10 @@ public class FragmentTailorProducts extends Fragment {
             public void onClick(View v) {
 
 
-               /* Intent i = new Intent(getActivity(), CartActivity.class);
-                startActivity(i);*/
             }
         });
 
-       WebCallServiceStores();
+        WebCallServiceStores();
         return v;
     }
 
@@ -164,7 +150,7 @@ public class FragmentTailorProducts extends Fragment {
 
 
     public void WebCallServiceStores() {
-         SimpleProgressBar.showProgress(getActivity());
+        SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getAssignedItems";
 
@@ -173,32 +159,28 @@ public class FragmentTailorProducts extends Fragment {
                         @Override
                         public void onResponse(String response) {
 
-                             SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
                             try {
                                 if (response != null) {
 
                                     Log.e("stores response", response);
                                     Gson g = new Gson();
-                                    getAssignedItemsResponse= g.fromJson(response, GetAssignedItemsResponse.class);
+                                    getAssignedItemsResponse = g.fromJson(response, GetAssignedItemsResponse.class);
 
-                                    if (getAssignedItemsResponse.getStatus().equals("1"))
-                                    {
+                                    if (getAssignedItemsResponse.getStatus().equals("1")) {
 
 
-                                        System.out.println("DISHDASHA TAILOR SIZE===="+getAssignedItemsResponse.getRecord().size());
+                                        System.out.println("DISHDASHA TAILOR SIZE====" + getAssignedItemsResponse.getRecord().size());
 
-                                       // dishdashaTailorProductsAdapter=new DishdashaTailorProductsAdapter(getActivity(),mResponse.getRecord());
-                                         dishdashaTailorProductAdapterForListView=new DishdashaTailorProductAdapterForListView(FragmentTailorProducts.this,getAssignedItemsResponse.getRecord());
+                                        // dishdashaTailorProductsAdapter=new DishdashaTailorProductsAdapter(getActivity(),mResponse.getRecord());
+                                        dishdashaTailorProductAdapterForListView = new DishdashaTailorProductAdapterForListView(FragmentTailorProducts.this, getAssignedItemsResponse.getRecord());
 
                                         list2.setAdapter(dishdashaTailorProductAdapterForListView);
 
 
-
                                         //  recycler.setAdapter(dishdashaTailorProductsAdapter);
 
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         Toast.makeText(getActivity(), getAssignedItemsResponse.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
@@ -210,14 +192,14 @@ public class FragmentTailorProducts extends Fragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                                SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 
-                    System.out.println("CART ID======"+sessionManager.getKeyCartId());
+                    System.out.println("CART ID======" + sessionManager.getKeyCartId());
 //                  params.put("access_token", session.getToken());
                     params.put("cart_id", sessionManager.getKeyCartId());
                     params.put("appUser", "tefsal");
@@ -243,21 +225,20 @@ public class FragmentTailorProducts extends Fragment {
         }
     }
 
-    public void showDialog(int position)
-    {
-        DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue,FragmentTailorProducts.this,position);
+    public void showDialog(int position) {
+        DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue, FragmentTailorProducts.this, position);
         dg.show();
 
     }
 
-    public void addItemToTailorItem(TailoringRecord cartRecord,int position) {
+    public void addItemToTailorItem(TailoringRecord cartRecord, int position) {
 
         // Log.e("dropdownId1",dropdownId);
         SublistCartItems sublistCartItems = new SublistCartItems();
         sublistCartItems.setItemName(cartRecord.getDishdasha_product_name());
         sublistCartItems.setProductId(cartRecord.getProduct_id());
 
-        dishdashaTailorProductAdapterForListView.addSublistCartItem(position,sublistCartItems);
+        dishdashaTailorProductAdapterForListView.addSublistCartItem(position, sublistCartItems);
 
         dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
 

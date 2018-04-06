@@ -18,6 +18,16 @@ public class TailoringRecord implements Serializable
 
     private String dishdasha_product_name;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    private String image;
+
     private Boolean isChecked;
 
     public Boolean getChecked()

@@ -23,17 +23,21 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.tefsalkw.models.GetCartRecord;
-import com.tefsalkw.models.GetCartResponse;
-import com.tefsalkw.models.MyAddressesModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.CartAddressListAdapter;
 import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
+import com.tefsalkw.eventmodels.CartAddressEvent;
+import com.tefsalkw.models.GetCartRecord;
+import com.tefsalkw.models.GetCartResponse;
+import com.tefsalkw.models.MyAddressesModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.List;
@@ -95,8 +99,6 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     Button btnAddAddress;
 
 
-
-
     public String defaultAddressId = "";
 
     @Override
@@ -125,14 +127,25 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     }
 
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onCartAddressEvent(CartAddressEvent event) {
+
 
         WebCallServiceAddresses();
-
     }
+
 
     public void WebCallServiceAddresses() {
         SimpleProgressBar.showProgress(this);
@@ -166,6 +179,9 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                         recycler.setVisibility(View.GONE);
                                         empty_view.setText("No address found, please add a new address!");
 
+                                    } else {
+                                        llEmpty.setVisibility(View.GONE);
+                                        recycler.setVisibility(View.VISIBLE);
                                     }
 
                                 } else {
@@ -274,7 +290,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
         try {
 
             WebCallServiceCart();
-
+            WebCallServiceAddresses();
 
             //=====For getting crash Analytics==================================
 
