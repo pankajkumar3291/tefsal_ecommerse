@@ -1,43 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/main_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/blur_bg"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/blur_bg" android:fitsSystemWindows="true" android:id="@+id/main_layout" android:layout_height="match_parent" android:layout_width="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content" android:layout_width="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_white2"/>
+        <include android:id="@+id/toolbar" layout="@layout/toolbar_white2"/>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:elevation="6dp"
-            app:tabTextColor="@color/colorWhite"
-            app:tabIndicatorColor="@color/colorWhite"
-            app:tabIndicatorHeight="4dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorWhite"
-            android:layout_below="@id/tab_layout"/>
+        <android.support.design.widget.TabLayout android:elevation="6dp" android:id="@+id/tab_layout" android:layout_below="@+id/toolbar" android:layout_height="wrap_content" android:layout_width="match_parent" android:minHeight="?attr/actionBarSize" android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" app:tabIndicatorColor="@color/colorWhite" app:tabIndicatorHeight="4dp" app:tabTextColor="@color/colorWhite"/>
+        <View android:background="@color/colorWhite" android:layout_below="@id/tab_layout" android:layout_height="1dp" android:layout_width="match_parent"/>
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@id/tab_layout"/>
+        <android.support.v4.view.ViewPager android:id="@+id/pager" android:layout_below="@id/tab_layout" android:layout_height="fill_parent" android:layout_width="match_parent"/>
     </android.support.design.widget.AppBarLayout>
 </RelativeLayout>

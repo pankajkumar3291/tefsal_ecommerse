@@ -1,31 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical"
-   >
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Please choose the textile"
-        android:textSize="16sp" />
+    <TextView android:id="@+id/textView4" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/tailor_select_cloth_textView4_text" android:textSize="16sp"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
+    <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view" android:layout_height="wrap_content" android:layout_width="match_parent" android:scrollbars="vertical"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CONTINUE" />
+    <Button android:id="@+id/button" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/tailor_select_cloth_button_text"/>
 
 
 

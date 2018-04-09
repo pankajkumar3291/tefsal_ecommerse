@@ -1,168 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/colorPickerBg"
-    android:padding="@dimen/margin_mid">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPickerBg" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="@dimen/margin_mid">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_beige_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_white_color" />
+            <ImageView android:id="@+id/ic_beige_color_picker" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_white_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ic_beige_color_picker"
-                android:gravity="center"
-                android:text="@string/cp_title_white"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_below="@+id/ic_beige_color_picker" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/cp_title_white" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_navy_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_diamond_color" />
+            <ImageView android:id="@+id/ic_navy_color_picker" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_diamond_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/white_cp_title_diamond"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/white_cp_title_diamond" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_brown_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:layout_alignParentRight="true"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_b_white_color" />
+            <ImageView android:id="@+id/ic_brown_color_picker" android:layout_alignParentRight="true" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_b_white_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/white_cp_title_b_white"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/white_cp_title_b_white" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_mid"
-        android:orientation="horizontal"
-        android:weightSum="3">
+    <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_mid" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_white_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_clue_white_color" />
+            <ImageView android:id="@+id/ic_white_color_picker" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_clue_white_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/white_cp_title_clue_white"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/white_cp_title_clue_white" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_olive_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_s_white_color" />
+            <ImageView android:id="@+id/ic_olive_color_picker" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_s_white_color"/>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/white_cp_title_s_white"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/white_cp_title_s_white" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+        <LinearLayout android:gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/ic_gray_color_picker"
-                android:layout_width="@dimen/width_btn_small"
-                android:layout_height="@dimen/width_btn_small"
-                android:layout_alignParentRight="true"
-                android:padding="@dimen/margin_small"
-                android:src="@drawable/shape_white_product_gray_white_color" />
+            <ImageView android:id="@+id/ic_gray_color_picker" android:layout_alignParentRight="true" android:layout_height="@dimen/width_btn_small" android:layout_width="@dimen/width_btn_small" android:padding="@dimen/margin_small" android:src="@drawable/shape_white_product_gray_white_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/ic_gray_color_picker"
-                android:gravity="center"
-                android:text="@string/white_cp_title_grey_white"
-                android:textColor="@color/colorTheme"
-                android:textSize="@dimen/text_small" />
+            <TextView android:gravity="center" android:layout_alignParentRight="true" android:layout_below="@+id/ic_gray_color_picker" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/white_cp_title_grey_white" android:textColor="@color/colorTheme" android:textSize="@dimen/text_small"/>
         </LinearLayout>
     </LinearLayout>
 

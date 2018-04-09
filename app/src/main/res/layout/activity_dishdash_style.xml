@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:background="@drawable/two_point_top_spape_btn"
-            android:text="ADD NEW STYLE"
+            android:text="@string/activity_dishdash_style_add_new_style_text"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
 

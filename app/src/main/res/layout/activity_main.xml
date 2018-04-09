@@ -1,96 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:fitsSystemWindows="false"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:fitsSystemWindows="false" android:id="@+id/drawer_layout" android:layout_height="match_parent" android:layout_width="match_parent" tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <include android:layout_height="match_parent" android:layout_width="match_parent" layout="@layout/app_bar_main"/>
 
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/bg_menu"
-            app:itemTextColor="@color/colorAccent"
-            app:itemIconTint="@color/colorAccent"
-            app:menu="@menu/activity_main_drawer">
+        <android.support.design.widget.NavigationView android:background="@drawable/bg_menu" android:id="@+id/nav_view" android:layout_gravity="start" android:layout_height="match_parent" android:layout_width="wrap_content" app:itemIconTint="@color/colorAccent" app:itemTextColor="@color/colorAccent" app:menu="@menu/activity_main_drawer">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_gravity="bottom"
-                android:background="@color/colorFooter">
+            <RelativeLayout android:background="@color/colorFooter" android:layout_gravity="bottom" android:layout_height="120dp" android:layout_width="match_parent">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:id="@+id/LL_social_media_container"
-                android:paddingBottom="60dp"
-                android:paddingTop="15dp"
-                android:paddingLeft="20dp"
-                android:layout_alignParentBottom="true"
-                android:paddingRight="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="3">
+            <LinearLayout android:clickable="true" android:gravity="center_vertical" android:id="@+id/LL_social_media_container" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingBottom="60dp" android:paddingLeft="20dp" android:paddingRight="20dp" android:paddingTop="15dp" android:weightSum="3">
 
-                <ImageView
-                    android:id="@+id/footer_twitter"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:tint="@color/colorWhite"
-                    android:src="@drawable/twitter_logo" />
+                <ImageView android:gravity="center" android:id="@+id/footer_twitter" android:layout_height="28dp" android:layout_weight="1" android:layout_width="28dp" android:src="@drawable/twitter_logo" android:tint="@color/colorWhite"/>
 
-                <ImageView
-                    android:id="@+id/footer_facebook"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:tint="@color/colorWhite"
-                    android:src="@drawable/facebook_logo" />
+                <ImageView android:gravity="center" android:id="@+id/footer_facebook" android:layout_height="28dp" android:layout_weight="1" android:layout_width="28dp" android:src="@drawable/facebook_logo" android:tint="@color/colorWhite"/>
 
-                <ImageView
-                    android:id="@+id/footer_instagram"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:tint="@color/colorWhite"
-                    android:src="@drawable/instagram_logo" />
+                <ImageView android:gravity="center" android:id="@+id/footer_instagram" android:layout_height="28dp" android:layout_weight="1" android:layout_width="28dp" android:src="@drawable/instagram_logo" android:tint="@color/colorWhite"/>
             </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/LL_copyright_textContainer"
-                    android:orientation="horizontal"
-                    android:layout_alignParentBottom="true"
-                    android:padding="16dp">
+                <LinearLayout android:id="@+id/LL_copyright_textContainer" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:padding="16dp">
 
-                    <ImageView
-                        android:src="@mipmap/ic_launcher"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
-                    <TextView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/colorWhite"
-                        android:text="Tefsal Copyright Protected 2018"/>
+                    <ImageView android:layout_height="20dp" android:layout_width="20dp" android:src="@mipmap/ic_launcher"/>
+                    <TextView android:gravity="center" android:layout_gravity="center_vertical" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Tefsal Copyright Protected 2018" android:textColor="@color/colorWhite"/>
 
                 </LinearLayout>
 

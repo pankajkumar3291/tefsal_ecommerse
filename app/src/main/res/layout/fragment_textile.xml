@@ -1,96 +1,29 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/tab_layout"
-        android:background="@color/colorGray" />
+    <View android:background="@color/colorGray" android:layout_below="@id/tab_layout" android:layout_height="1dp" android:layout_width="match_parent"/>
 
-    <LinearLayout
-        android:id="@+id/_colorBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorDiamond"
-        android:weightSum="3">
+    <LinearLayout android:background="@color/colorDiamond" android:id="@+id/_colorBar" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="3">
 
-        <TextView
-            android:id="@+id/text_season"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="season"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_small" />
+        <TextView android:gravity="center" android:id="@+id/text_season" android:layout_height="40dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/fragment_textile_text_season_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorGray" />
+        <View android:background="@color/colorGray" android:layout_height="match_parent" android:layout_width="1dp"/>
 
-        <TextView
-            android:id="@+id/text_color"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="color"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_small" />
+        <TextView android:gravity="center" android:id="@+id/text_color" android:layout_height="40dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/fragment_textile_text_color_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small"/>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/colorGray" />
+        <View android:background="@color/colorGray" android:layout_height="match_parent" android:layout_width="1dp"/>
 
-        <TextView
-            android:id="@+id/text_country"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="country"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_small" />
+        <TextView android:gravity="center" android:id="@+id/text_country" android:layout_height="40dp" android:layout_weight="1" android:layout_width="0dp" android:text="@string/fragment_textile_text_country_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small"/>
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/tab_layout"
-        android:background="@color/colorGray" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <View android:background="@color/colorGray" android:layout_below="@id/tab_layout" android:layout_height="1dp" android:layout_width="match_parent"/>
+    <android.support.v7.widget.RecyclerView android:id="@+id/recycler" android:layout_height="match_parent" android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true" />
+    <ProgressBar android:id="@+id/loading" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:visibility="gone"/>
 
-     <TextView
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:id="@+id/textNoProduct"
-         android:layout_marginTop="250dp"
-         android:visibility="gone"
-         android:gravity="center"
-         android:textSize="@dimen/text_normal"
-         android:text="No product found!"/>
+     <TextView android:gravity="center" android:id="@+id/textNoProduct" android:layout_height="wrap_content" android:layout_marginTop="250dp" android:layout_width="match_parent" android:text="@string/fragment_textile_textNoProduct_text" android:textSize="@dimen/text_normal" android:visibility="gone"/>
 
 </LinearLayout>

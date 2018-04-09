@@ -378,7 +378,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         //Fill color
 
-
         productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
@@ -416,8 +415,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
         // Bind sizes
-
-
         productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors().get(0).getSizes(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
@@ -505,8 +502,10 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-    public void showSizeOnColorSelection(Colors colors) {
+    public void showSizeOnColorSelection(int position, Colors colors) {
 
+
+        this.currentColorPosition = position;
 
         mainViewPager.removeAllSliders();
         for (String imgUrl : colors.getImages()) {
@@ -539,10 +538,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-    public void showSelectedSizeData(int position, ZaraDaraSizeModel zaraDaraSizeModel) {
-
-
-        this.currentColorPosition = position;
+    public void showSelectedSizeData(ZaraDaraSizeModel zaraDaraSizeModel) {
 
 
         if (zaraDaraSizeModel != null) {

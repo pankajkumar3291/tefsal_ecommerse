@@ -1,32 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:id="@+id/color_item">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="2dp"
-        android:background="@drawable/roun_image_background_ll">
-        <ImageView
-            android:id="@+id/color"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="@drawable/round_image_background_for_color" />
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/color_item" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout android:background="@drawable/roun_image_background_ll" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="2dp">
+        <ImageView android:background="@drawable/round_image_background_for_color" android:id="@+id/color" android:layout_gravity="center" android:layout_height="50dp" android:layout_width="50dp"/>
     </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:id="@+id/colorText"
-            android:text="@string/cp_title_beige"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_small"
-            android:layout_marginBottom="@dimen/marging_bottom_text"/>
+        <TextView android:gravity="center" android:id="@+id/colorText" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/marging_bottom_text" android:layout_width="wrap_content" android:text="@string/cp_title_beige" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
     </LinearLayout>
-

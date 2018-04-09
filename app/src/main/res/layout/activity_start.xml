@@ -1,103 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/app_bg1"
-    android:fitsSystemWindows="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="com.tefsalkw.activity.StartActivity">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/app_bg1" android:fitsSystemWindows="true" android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.StartActivity">
 
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:src="@drawable/logo_white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/logo" android:layout_height="120dp" android:layout_width="wrap_content" android:src="@drawable/logo_white" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
 
-    <LinearLayout
-        android:id="@+id/btn_layout_signin_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_below="@+id/logo"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <LinearLayout android:gravity="center" android:id="@+id/btn_layout_signin_signup" android:layout_below="@+id/logo" android:layout_height="wrap_content" android:layout_marginTop="150dp" android:layout_width="match_parent" android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_signin"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline_button_shape"
-            android:text="@string/title_signin"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_normal" />
+        <Button android:background="@drawable/outline_button_shape" android:id="@+id/btn_signin" android:layout_height="wrap_content" android:layout_width="150dp" android:text="@string/title_signin" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/outline_button_shape"
-            android:text="@string/title_signup"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_normal" />
+        <Button android:background="@drawable/outline_button_shape" android:id="@+id/btn_signup" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_width="150dp" android:text="@string/title_signup" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/terms_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <LinearLayout android:gravity="center" android:id="@+id/terms_layout" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:orientation="horizontal" android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_terms"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_normal" />
+        <TextView android:id="@+id/textView" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/action_terms" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tncText"
-            android:layout_marginLeft="5dp"
-            android:text="@string/action_terms_of_use"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_mid"
-            android:textStyle="bold" />
+        <TextView android:id="@+id/tncText" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_width="wrap_content" android:text="@string/action_terms_of_use" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid" android:textStyle="bold"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/guestUserText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/terms_layout"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:padding="@dimen/margin_small"
-        android:text="@string/action_guest"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_normal"
-        android:textStyle="bold" />
+    <TextView android:gravity="center" android:id="@+id/guestUserText" android:layout_below="@+id/terms_layout" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:padding="@dimen/margin_small" android:text="@string/action_guest" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
 
-    <View
-        android:id="@+id/seperator_view"
-        android:layout_width="150dp"
-        android:layout_height="1dp"
-        android:layout_below="@+id/guestUserText"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorGray" />
+    <View android:background="@color/colorGray" android:id="@+id/seperator_view" android:layout_below="@+id/guestUserText" android:layout_height="1dp" android:layout_marginTop="5dp" android:layout_width="150dp"/>
 
 </LinearLayout>

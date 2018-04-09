@@ -1,92 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/sign_up_bg_blur"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context="com.tefsalkw.activity.AddAddresssAfterSignUp">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/sign_up_bg_blur" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.AddAddresssAfterSignUp">
 
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar"
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
 
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:theme="@style/TransparentToolbar">
+        <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:src="@drawable/ic_left_arrow" />
+        <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_add_addresss_after_sign_up_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            fontPath="fonts/Lato-Bold.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Step 2"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_mid"
-            tools:ignore="MissingPrefix" />
-
-        <Button
-          android:visibility="gone"
-            fontPath="fonts/Lato-Bold.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="@android:color/transparent"
-            android:clickable="false"
-            android:text="Skip"
-            android:textColor="@color/colorAccent"
-            tools:ignore="MissingPrefix" />
+        <Button android:background="@android:color/transparent" android:clickable="false" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Skip" android:textColor="@color/colorAccent" android:visibility="gone" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
     </android.support.v7.widget.Toolbar>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_small">
+        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="@dimen/margin_small">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_address_nameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_address_nameLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_address_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_address_name"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_address_name" android:id="@+id/input_address_name" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -111,148 +47,49 @@
             </LinearLayout>
 
 
-            <LinearLayout
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height2" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height2"
-                android:layout_marginTop="@dimen/margin_small"
+                <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/countryTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_country" android:textColor="@color/colorDGray" android:textSize="@dimen/text_xsmall"/>
 
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/countryTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
-                    android:drawablePadding="@dimen/margin_xxsmall"
-                    android:text="@string/hint_country"
-                    android:textColor="@color/colorDGray"
-                    android:textSize="@dimen/text_xsmall" />
-
-                <RelativeLayout
-                    android:focusable="true"
-                    android:id="@+id/llCountry"
-                    android:clickable="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <RelativeLayout android:clickable="true" android:focusable="true" android:id="@+id/llCountry" android:layout_height="wrap_content" android:layout_width="match_parent">
 
 
-                    <EditText
-                        android:id="@+id/input_mob"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:editable="false"
-                        android:focusable="false"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:singleLine="true"
-                        android:textColor="@color/colorTheme"
-                        android:textColorHint="@color/colorTheme"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:editable="false" android:focusable="false" android:id="@+id/input_mob" android:imeOptions="actionNext" android:inputType="text" android:layout_height="wrap_content" android:layout_width="match_parent" android:singleLine="true" android:textColor="@color/colorTheme" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
 
 
-                    <ImageView
-                        android:id="@+id/imgv_contry_flag1"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:padding="5dp"
-                        android:src="@drawable/kuwait" />
+                    <ImageView android:id="@+id/imgv_contry_flag1" android:layout_alignParentEnd="true" android:layout_height="30dp" android:layout_width="40dp" android:padding="5dp" android:src="@drawable/kuwait"/>
 
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingRight="@dimen/margin_mid" />
-                <Spinner
-                    android:id="@+id/spin_country"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/margin_xxsmall"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:paddingTop="@dimen/margin_small"
-                    android:visibility="gone" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
+                <Spinner android:id="@+id/spin_country" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_xxsmall" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:visibility="gone"/>
 
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height2"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height2" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/cityTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
-                    android:drawablePadding="@dimen/margin_xxsmall"
-                    android:text="@string/hint_city"
-                    android:textColor="@color/colorDGray"
-                    android:textSize="@dimen/text_xsmall" />
+                <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/cityTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_city" android:textColor="@color/colorDGray" android:textSize="@dimen/text_xsmall"/>
 
-                <Spinner
-                    android:id="@+id/spin_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/margin_xxsmall"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:paddingTop="@dimen/margin_small" />
+                <Spinner android:id="@+id/spin_city" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_xxsmall" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingRight="@dimen/margin_mid" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height2"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height2" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/areaTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
-                    android:drawablePadding="@dimen/margin_xxsmall"
-                    android:text="@string/hint_area"
-                    android:textColor="@color/colorDGray"
-                    android:textSize="@dimen/text_small" />
+                <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/areaTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_area" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
 
-                <Spinner
-                    android:id="@+id/spin_area"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/margin_xxsmall"
-                    android:paddingRight="@dimen/margin_mid"
-                    android:paddingTop="@dimen/margin_small" />
+                <Spinner android:id="@+id/spin_area" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_xxsmall" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:paddingRight="@dimen/margin_mid" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!-- <TextView
                      android:layout_width="wrap_content"
@@ -273,39 +110,16 @@
                      android:singleLine="true"
                      android:textColor="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_blockLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_blockLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_block"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_block"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_block" android:id="@+id/input_block" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark"
-
-                    />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -328,38 +142,17 @@
                     android:textSize="@dimen/text_normal" />-->
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_streetLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_streetLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_street"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-
-                        android:hint="@string/hint_street"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_street" android:id="@+id/input_street" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!-- <TextView
                      android:layout_width="wrap_content"
@@ -378,38 +171,17 @@
                      android:textColor="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_avenueLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_avenueLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_avenue"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_avenue"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_avenue" android:id="@+id/input_avenue" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -429,38 +201,17 @@
                     android:textSize="@dimen/text_normal" />-->
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_floorLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_floorLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_floor"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_floor"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_floor" android:id="@+id/input_floor" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -482,38 +233,17 @@
                     android:textColor="@color/colorTheme"
                     android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_houseLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_houseLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_house"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_house"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_house" android:id="@+id/input_house" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!-- <TextView
                      android:layout_width="wrap_content"
@@ -534,37 +264,16 @@
                      android:textColor="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_flateLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_flateLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_flate"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_flate"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_flate" android:id="@+id/input_flate" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!--<TextView
                     android:layout_width="wrap_content"
@@ -587,37 +296,16 @@
                     android:textColor="@color/colorTheme"
                     android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_phoneLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_phoneLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_phone"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_phone"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_phone" android:id="@+id/input_phone" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!-- <TextView
                      android:layout_width="wrap_content"
@@ -637,37 +325,16 @@
                      android:textColorHint="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_paci_numLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_paci_numLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_paci_num"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/hint_paci_number"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_paci_number" android:id="@+id/input_paci_num" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MyAddress_LL_height"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="@dimen/MyAddress_LL_height" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
                 <!-- <TextView
                      android:layout_width="wrap_content"
@@ -687,50 +354,20 @@
                      android:textColorHint="@color/colorTheme"
                      android:textSize="@dimen/text_normal" />-->
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_add_despLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                <android.support.design.widget.TextInputLayout android:id="@+id/input_add_despLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                    <EditText
-                        android:id="@+id/input_add_desp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
-
-                        android:hint="@string/hint_add_desp"
-                        android:imeOptions="actionNext"
-                        android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall" />
+                    <EditText android:background="@android:color/transparent" android:hint="@string/hint_add_desp" android:id="@+id/input_add_desp" android:imeOptions="actionNext" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textSize="@dimen/text_xsmall"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark" />
+                <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_width="match_parent"/>
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="@dimen/margin_xlarge"
-                android:orientation="vertical">
+            <LinearLayout android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:layout_marginTop="@dimen/margin_xlarge" android:layout_width="match_parent" android:orientation="vertical">
 
-                <Button
-
-                    android:id="@+id/btn_Save"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorTheme"
-                    android:text="@string/continue_"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_normal" />
+                <Button android:background="@color/colorTheme" android:id="@+id/btn_Save" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/continue_" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
-

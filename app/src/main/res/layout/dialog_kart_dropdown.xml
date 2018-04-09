@@ -1,38 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:layout_gravity="center_vertical"
-    android:background="@drawable/round_blue_shape_cd"
-    android:orientation="vertical"
-    android:padding="10dp">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/round_blue_shape_cd" android:layout_gravity="center_vertical" android:layout_height="wrap_content" android:layout_margin="20dp" android:layout_width="match_parent" android:orientation="vertical" android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Select Cart Item"
-        android:textSize="22sp" />
+    <TextView android:gravity="center" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Select Cart Item" android:textSize="22sp"/>
 
 
-    <Spinner
-        android:id="@+id/cartitems"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp" />
+    <Spinner android:id="@+id/cartitems" android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:layout_marginTop="20dp" android:layout_width="fill_parent"/>
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:text="Add"
-        android:textColor="@color/md_material_blue_600" />
+    <Button android:background="@android:color/transparent" android:gravity="center" android:id="@+id/btnAdd" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="200dp" android:text="@string/dialog_kart_dropdown_btnAdd_text" android:textColor="@color/md_material_blue_600"/>
 
 
 </LinearLayout>

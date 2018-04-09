@@ -1,63 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
-    android:id="@+id/address_layout"
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPrimary" android:id="@+id/address_layout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent" android:orientation="vertical">
 
-    android:layout_marginTop="10dp"
-    android:layout_height="wrap_content">
+    <TextView android:id="@+id/address_name" android:inputType="textCapCharacters" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:text="@string/my_addresses_item_address_name_text" android:textColor="@color/colorTheme" android:textSize="@dimen/text_mid" android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/address_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_mid"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:inputType="textCapCharacters"
-        android:textColor="@color/colorTheme"
-        android:textStyle="bold"
-        android:text="Name"/>
+    <TextView android:id="@+id/address_text" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:maxLines="2" android:text="@string/my_addresses_item_address_text_text" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
-    <TextView
-        android:id="@+id/address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/text_normal"
-
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/colorGreyDark"
-
-        android:maxLines="2"
-        android:text="Dasma, Block 6 , Street 66, House / Building 6, Phone No. 6611837238"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:gravity="right">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/address_edit_btn"
-            android:text="EDIT"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/address_delete_btn"
-            android:text="DELETE"/>
+    <LinearLayout android:gravity="right" android:layout_height="match_parent" android:layout_marginTop="10dp" android:layout_width="match_parent">
+        <Button android:id="@+id/address_edit_btn" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/my_addresses_item_address_edit_btn_text"/>
+        <Button android:id="@+id/address_delete_btn" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/my_addresses_item_address_delete_btn_text"/>
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorDivider"/>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+        <View android:background="@color/colorDivider" android:layout_height="2dp" android:layout_width="match_parent"/>
     </LinearLayout>
 </LinearLayout>

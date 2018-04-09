@@ -1,268 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/blur_bg">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/blur_bg" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/round_gray_shape">
+    <RelativeLayout android:background="@drawable/round_gray_shape" android:layout_height="250dp" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="50dp" android:layout_width="match_parent">
 
 
-    <RelativeLayout
-        android:id="@+id/headerbar"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/two_point_disdasha_button">
+    <RelativeLayout android:background="@drawable/two_point_disdasha_button" android:id="@+id/headerbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" android:padding="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="2 Button Style"
-            android:textColor="@color/colorGreyDark"
-            android:textSize="@dimen/text_mid" />
+        <TextView android:layout_alignParentLeft="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="2 Button Style" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_mid"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="VIEW"
-            android:textStyle="bold"
-            android:textColor="@color/colorGreyDark"
-            android:textSize="@dimen/text_mid" />
+        <TextView android:layout_alignParentRight="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="VIEW" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_mid" android:textStyle="bold"/>
 
     </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerbar"
-            android:orientation="vertical"
-            android:paddingLeft="8dp"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin">
+        <LinearLayout android:layout_below="@+id/headerbar" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="@dimen/activity_horizontal_margin" android:paddingLeft="8dp" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_xlarge"
-            android:layout_marginTop="@dimen/margin_small"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal">
+        <RelativeLayout android:layout_height="@dimen/margin_xlarge" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:id="@+id/buttons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buttons"
-                android:layout_marginTop="@dimen/margin_mid2"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="@dimen/text_normal" />
+            <TextView android:id="@+id/buttons" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_mid2" android:layout_width="wrap_content" android:text="@string/disdasha_button_buttons_text" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
 
-            <ImageView
-                android:id="@+id/coatCollarBtn"
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
-                android:layout_toLeftOf="@+id/coat_button"
-                android:layout_marginRight="@dimen/margin_mid"
-                android:layout_alignParentBottom="true"
-                android:src="@mipmap/icon_collar_buttons_white" />
+            <ImageView android:id="@+id/coatCollarBtn" android:layout_alignParentBottom="true" android:layout_height="@dimen/margin_large" android:layout_marginRight="@dimen/margin_mid" android:layout_toLeftOf="@+id/coat_button" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_collar_buttons_white"/>
 
-            <TextView
-                android:layout_width="@dimen/margin_mid"
-                android:layout_height="@dimen/margin_mid"
-                android:text="1"
-                android:textSize="@dimen/text_small"
-                android:gravity="center"
-                android:layout_marginLeft="-35dp"
-                android:layout_toRightOf="@+id/coatCollarBtn"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/badge_grey"/>
+            <TextView android:background="@drawable/badge_grey" android:gravity="center" android:layout_height="@dimen/margin_mid" android:layout_marginLeft="-35dp" android:layout_toRightOf="@+id/coatCollarBtn" android:layout_width="@dimen/margin_mid" android:text="1" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-            <ImageView
-                android:id="@+id/coat_button"
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:src="@mipmap/icon_chest_buttons_white" />
+            <ImageView android:id="@+id/coat_button" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="@dimen/margin_large" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_chest_buttons_white"/>
 
 
-            <TextView
-                android:layout_width="@dimen/margin_mid"
-                android:layout_height="@dimen/margin_mid"
-                android:text="2"
-                android:textSize="@dimen/text_small"
-                android:gravity="center"
-                android:layout_marginLeft="-15dp"
-                android:layout_toRightOf="@+id/coat_button"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/badge_grey"/>
+            <TextView android:background="@drawable/badge_grey" android:gravity="center" android:layout_height="@dimen/margin_mid" android:layout_marginLeft="-15dp" android:layout_toRightOf="@+id/coat_button" android:layout_width="@dimen/margin_mid" android:text="2" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-            <ImageView
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
-                android:layout_marginLeft="@dimen/margin_mid"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/coat_button"
-                android:src="@mipmap/icon_cufflink_buttons_white" />
+            <ImageView android:layout_alignParentBottom="true" android:layout_height="@dimen/margin_large" android:layout_marginLeft="@dimen/margin_mid" android:layout_toRightOf="@+id/coat_button" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_cufflink_buttons_white"/>
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal">
+        <RelativeLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="@dimen/activity_horizontal_margin">
 
-            <TextView
-                android:id="@+id/Pockets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pockets"
-                android:layout_centerVertical="true"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="@dimen/text_normal" />
+            <TextView android:id="@+id/Pockets" android:layout_centerVertical="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/disdasha_button_Pockets_text" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
 
-            <ImageView
-                android:id="@+id/mobile_pen"
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
-                android:layout_toLeftOf="@+id/mobile_pocket"
-                android:layout_marginRight="@dimen/margin_mid"
-                android:src="@mipmap/icon_pen_white" />
+            <ImageView android:id="@+id/mobile_pen" android:layout_height="@dimen/margin_large" android:layout_marginRight="@dimen/margin_mid" android:layout_toLeftOf="@+id/mobile_pocket" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_pen_white"/>
 
-            <ImageView
-                android:id="@+id/mobile_pocket"
-                android:layout_width="@dimen/margin_large"
-                android:layout_height="@dimen/margin_large"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/icon_mobile_white" />
+            <ImageView android:id="@+id/mobile_pocket" android:layout_centerHorizontal="true" android:layout_height="@dimen/margin_large" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_mobile_white"/>
 
 
         </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="@dimen/margin_small"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="center" android:layout_height="?attr/actionBarSize" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="Narrow"
-                    android:textColor="@color/colorGreyDark"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:text="Narrow" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="22cm"
-                    android:textColor="@color/colorGreyDark"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:text="22cm" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDGray" />
+                <View android:background="@color/colorDGray" android:layout_height="match_parent" android:layout_marginLeft="4dp" android:layout_marginRight="10dp" android:layout_weight="0.5" android:layout_width="0dp"/>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="Wide"
-                    android:textColor="@color/colorGreyDark"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:text="Wide" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="22cm"
-                    android:textColor="@color/colorGreyDark"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:text="22cm" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
             </LinearLayout>
 
 
         </LinearLayout>
     </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/winter"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/round_shape_light_grey">
+    <RelativeLayout android:background="@drawable/round_shape_light_grey" android:id="@+id/winter" android:layout_height="?attr/actionBarSize" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:padding="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="Winter Style"
-            android:textColor="@color/colorGreyDark"
-            android:textSize="@dimen/text_mid" />
+        <TextView android:layout_alignParentLeft="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Winter Style" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_mid"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="VIEW"
-            android:textStyle="bold"
-            android:textColor="@color/colorGreyDark"
-            android:textSize="@dimen/text_small" />
+        <TextView android:layout_alignParentRight="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="VIEW" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_small" android:textStyle="bold"/>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/create"
-        android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/round_blue_shape">
+    <RelativeLayout android:background="@drawable/round_blue_shape" android:id="@+id/create" android:layout_height="?attr/actionBarSize" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:padding="15dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="Create New"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_mid" />
+        <TextView android:layout_alignParentLeft="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Create New" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-           android:background="@drawable/id_add_white"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_mid" />
+        <ImageView android:background="@drawable/id_add_white" android:layout_alignParentRight="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid"/>
 
     </RelativeLayout>
 </LinearLayout>

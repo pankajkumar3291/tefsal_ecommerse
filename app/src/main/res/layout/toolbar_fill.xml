@@ -1,37 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toolbar"
-    android:background="@color/colorAccent"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorAccent" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent">
 
 
 
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_arrow_back_white_24dp"/>
+    <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_arrow_back_white_24dp"/>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Toolbar Title"
-        android:layout_gravity="center"
-        android:textSize="@dimen/text_mid"
-        android:textAllCaps="true"
-        android:textColor="@color/colorWhite"
-        android:id="@+id/toolbar_title"
-        android:textStyle="bold"
-        tools:ignore="MissingPrefix"
-        fontPath="fonts/Lato-Bold.ttf"
-        />
+    <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/toolbar_fill_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid" android:textStyle="bold" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
 
 </android.support.v7.widget.Toolbar>
-

@@ -1,570 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:background="@drawable/round_blue_shape">
+    <RelativeLayout android:background="@drawable/round_blue_shape" android:layout_height="wrap_content" android:layout_margin="@dimen/activity_vertical_margin" android:layout_width="match_parent">
 
 
-        <RelativeLayout
-            android:id="@+id/headerbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/two_point_top_shape">
+        <RelativeLayout android:background="@drawable/two_point_top_shape" android:id="@+id/headerbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent">
 
-            <TextView
-                android:id="@+id/text_style_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="2 Button Style"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_mid" />
+            <TextView android:id="@+id/text_style_name" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/dishdasha_style_list_item_text_style_name_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid"/>
         </RelativeLayout>
 
 
-        <LinearLayout
-            android:id="@+id/innerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerbar"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/activity_small_horizontal_margin"
-            android:paddingLeft="8dp"
-            android:paddingRight="@dimen/activity_small_horizontal_margin"
-            android:paddingTop="@dimen/activity_horizontal_margin">
+        <LinearLayout android:id="@+id/innerView" android:layout_below="@+id/headerbar" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="@dimen/activity_small_horizontal_margin" android:paddingLeft="8dp" android:paddingRight="@dimen/activity_small_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_xlarge"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="center" android:layout_height="@dimen/margin_xlarge" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/neck" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/neck"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Neck"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Neck" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_neck_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_neck_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_neck_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDivider" />
+                <View android:background="@color/colorDivider" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_marginRight="5dp" android:layout_weight="0.5" android:layout_width="0dp"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/arm" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/arm"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Arm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Arm" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_arm_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="222cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_arm_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_arm_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_xlarge"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="center" android:layout_height="@dimen/margin_xlarge" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/sholder" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/sholder"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:gravity="center"
-                        android:text="Shoulder"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="40" android:layout_width="0dp" android:text="Shoulder" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_shoulder_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="40"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_shoulder_value" android:layout_height="wrap_content" android:layout_weight="40" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_shoulder_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDivider" />
+                <View android:background="@color/colorDivider" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_marginRight="5dp" android:layout_weight="0.5" android:layout_width="0dp"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/wrist" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/wrist"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Wrist"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Wrist" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_wrist_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_wrist_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_wrist_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_xlarge"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="center" android:layout_height="@dimen/margin_xlarge" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/chest" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/chest"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Chest"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Chest" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_chest_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_chest_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_chest_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDivider" />
+                <View android:background="@color/colorDivider" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_marginRight="5dp" android:layout_weight="0.5" android:layout_width="0dp"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:paddingTop="@dimen/dishdasha_style_white_list_item_padding" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/front_height" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/front_height"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Front Height"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Front Height" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_front_height_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_front_height_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_front_height_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_xlarge"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="center" android:layout_height="@dimen/margin_xlarge" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/waist" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/waist"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Waist"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Waist" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_waist_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_waist_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_waist_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="0.5"
-                    android:background="@color/colorDivider" />
+                <View android:background="@color/colorDivider" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_marginRight="5dp" android:layout_weight="0.5" android:layout_width="0dp"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:paddingTop="@dimen/dishdasha_style_white_list_item_padding"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                <LinearLayout android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:orientation="horizontal" android:paddingTop="@dimen/dishdasha_style_white_list_item_padding" android:weightSum="100">
 
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="20"
-                        android:src="@drawable/back_height" />
+                    <ImageView android:layout_height="20dp" android:layout_weight="20" android:layout_width="0dp" android:src="@drawable/back_height"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="30"
-                        android:gravity="center"
-                        android:text="Back Height"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="Back Height" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    <TextView
-                        android:id="@+id/txt_back_height_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="50"
-                        android:gravity="end"
-                        android:text="22cm"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_small" />
+                    <TextView android:gravity="end" android:id="@+id/txt_back_height_value" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/dishdasha_style_list_item_txt_back_height_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
                 </LinearLayout>
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_xlarge"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_small_horizontal_margin">
+            <RelativeLayout android:layout_height="@dimen/margin_xlarge" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="@dimen/activity_small_horizontal_margin">
 
-                <TextView
-                    android:id="@+id/buttons"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_mid2"
-                    android:text="Buttons"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:id="@+id/buttons" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_mid2" android:layout_width="wrap_content" android:text="@string/dishdasha_style_list_item_buttons_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
 
-                <ImageView
-                    android:id="@+id/ic_coatCollar"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="@dimen/margin_mid"
-                    android:layout_toLeftOf="@+id/ic_coat_button"
-                    android:src="@mipmap/icon_collar_buttons_white" />
+                <ImageView android:id="@+id/ic_coatCollar" android:layout_alignParentBottom="true" android:layout_height="@dimen/margin_large" android:layout_marginRight="@dimen/margin_mid" android:layout_toLeftOf="@+id/ic_coat_button" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_collar_buttons_white"/>
 
-                <TextView
-                    android:id="@+id/txtBadge_collar_btn"
-                    android:layout_width="@dimen/margin_mid"
-                    android:layout_height="@dimen/margin_mid"
-                    android:layout_marginLeft="-35dp"
-                    android:layout_toRightOf="@+id/ic_coatCollar"
-                    android:background="@drawable/badge_white"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_small" />
+                <TextView android:background="@drawable/badge_white" android:gravity="center" android:id="@+id/txtBadge_collar_btn" android:layout_height="@dimen/margin_mid" android:layout_marginLeft="-35dp" android:layout_toRightOf="@+id/ic_coatCollar" android:layout_width="@dimen/margin_mid" android:text="@string/dishdasha_style_list_item_txtBadge_collar_btn_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small"/>
 
-                <ImageView
-                    android:id="@+id/ic_coat_button"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/icon_chest_buttons_white" />
+                <ImageView android:id="@+id/ic_coat_button" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="@dimen/margin_large" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_chest_buttons_white"/>
 
 
-                <TextView
-                    android:id="@+id/txt_badge_coat"
-                    android:layout_width="@dimen/margin_mid"
-                    android:layout_height="@dimen/margin_mid"
-                    android:layout_marginLeft="-15dp"
-                    android:layout_toRightOf="@+id/ic_coat_button"
-                    android:background="@drawable/badge_white"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_small" />
+                <TextView android:background="@drawable/badge_white" android:gravity="center" android:id="@+id/txt_badge_coat" android:layout_height="@dimen/margin_mid" android:layout_marginLeft="-15dp" android:layout_toRightOf="@+id/ic_coat_button" android:layout_width="@dimen/margin_mid" android:text="@string/dishdasha_style_list_item_txt_badge_coat_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small"/>
 
-                <ImageView
-                    android:id="@+id/ic_cuflink"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="@dimen/margin_mid"
-                    android:layout_toRightOf="@+id/ic_coat_button"
-                    android:src="@mipmap/icon_cufflink_buttons_white" />
+                <ImageView android:id="@+id/ic_cuflink" android:layout_alignParentBottom="true" android:layout_height="@dimen/margin_large" android:layout_marginLeft="@dimen/margin_mid" android:layout_toRightOf="@+id/ic_coat_button" android:layout_width="@dimen/margin_large" android:src="@mipmap/icon_cufflink_buttons_white"/>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_small_horizontal_margin">
+            <RelativeLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="@dimen/activity_small_horizontal_margin">
 
-                <TextView
-                    android:id="@+id/Pockets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="Pockets"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:id="@+id/Pockets" android:layout_centerVertical="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/dishdasha_style_list_item_Pockets_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
 
-                <ImageView
-                    android:id="@+id/pen_pocket"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:layout_marginRight="@dimen/margin_mid"
-                    android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:src="@drawable/pen_small" />
+                <ImageView android:id="@+id/pen_pocket" android:layout_height="@dimen/margin_large" android:layout_marginRight="@dimen/margin_mid" android:layout_toLeftOf="@+id/mobile_pocket" android:layout_width="@dimen/margin_large" android:src="@drawable/pen_small"/>
 
-                <ImageView
-                    android:id="@+id/mobile_pocket"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:layout_marginRight="@dimen/margin_mid"
-                    android:src="@drawable/phone_small"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-                <ImageView
-                    android:id="@+id/key_pocket"
-                    android:layout_width="@dimen/margin_large"
-                    android:layout_height="@dimen/margin_large"
-                    android:src="@drawable/key_small"
-                    android:layout_toRightOf="@+id/mobile_pocket"
-                    android:layout_centerHorizontal="true" />
+                <ImageView android:id="@+id/mobile_pocket" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:layout_height="@dimen/margin_large" android:layout_marginRight="@dimen/margin_mid" android:layout_width="@dimen/margin_large" android:src="@drawable/phone_small"/>
+                <ImageView android:id="@+id/key_pocket" android:layout_centerHorizontal="true" android:layout_height="@dimen/margin_large" android:layout_toRightOf="@+id/mobile_pocket" android:layout_width="@dimen/margin_large" android:src="@drawable/key_small"/>
             </RelativeLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="5dp"
-                android:gravity="start|center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="100">
+            <LinearLayout android:gravity="start|center_vertical" android:layout_alignParentEnd="true" android:layout_alignParentTop="true" android:layout_height="?attr/actionBarSize" android:layout_marginTop="5dp" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
 
-                <TextView
+                <TextView android:gravity="start" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:paddingLeft="@dimen/activity_small_horizontal_margin" android:text="3 Meter / Dishdasha" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="start"
-                    android:paddingLeft="@dimen/activity_small_horizontal_margin"
-                    android:text="3 Meter / Dishdasha"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_small" />
-
-                <TextView
-                    android:id="@+id/txt_narrow_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:text="22cm"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_small" />
+                <TextView android:gravity="center" android:id="@+id/txt_narrow_value" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="wrap_content" android:text="@string/dishdasha_style_list_item_txt_narrow_value_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
 
 
             </LinearLayout>
         </LinearLayout>
 
 
-        <LinearLayout
-            android:id="@+id/bottomBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_below="@+id/innerView"
-            android:background="@drawable/two_point_bottom_shape"
-            android:orientation="horizontal"
-            android:weightSum="100">
+        <LinearLayout android:background="@drawable/two_point_bottom_shape" android:id="@+id/bottomBar" android:layout_below="@+id/innerView" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
 
-            <Button
-                android:id="@+id/btn_edit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_pencil_striped_symbol_for_interface_edit_buttons"
-                android:drawablePadding="-20dp"
-                android:paddingLeft="50dp"
-                android:text="EDIT"
-                android:textSize="@dimen/text_mid" />
+            <Button android:background="@android:color/transparent" android:drawableLeft="@drawable/ic_pencil_striped_symbol_for_interface_edit_buttons" android:drawablePadding="-20dp" android:id="@+id/btn_edit" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:paddingLeft="50dp" android:text="@string/dishdasha_style_list_item_btn_edit_text" android:textSize="@dimen/text_mid"/>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="#ccc" />
+            <View android:background="#ccc" android:layout_height="match_parent" android:layout_width="1dp"/>
 
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/ic_rubbish_bin"
-                android:drawablePadding="-20dp"
-                android:paddingLeft="30dp"
-                android:text="DELETE"
-                android:textSize="@dimen/text_mid" />
+            <Button android:background="@android:color/transparent" android:drawableLeft="@drawable/ic_rubbish_bin" android:drawablePadding="-20dp" android:id="@+id/btn_delete" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:paddingLeft="30dp" android:text="@string/dishdasha_style_list_item_btn_delete_text" android:textSize="@dimen/text_mid"/>
         </LinearLayout>
     </RelativeLayout>
 

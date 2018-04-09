@@ -1,44 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context="com.tefsalkw.activity.MailDetailActivity">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorPrimary" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.activity.MailDetailActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_about" />
+    <include android:id="@+id/toolbar" layout="@layout/toolbar_about"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:orientation="vertical"
-        android:padding="10dp">
+    <LinearLayout android:layout_below="@+id/toolbar" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="10dp">
 
 
-        <TextView
-            android:id="@+id/txt_mail_heading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:gravity="start"
-            android:text="Subject: Mail Header"
-            android:textColor="@color/colorNavy"
-            android:textSize="@dimen/text_mid" />
+        <TextView android:gravity="start" android:id="@+id/txt_mail_heading" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_width="match_parent" android:text="@string/activity_mail_detail_txt_mail_heading_text" android:textColor="@color/colorNavy" android:textSize="@dimen/text_mid"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/colorDivider" />
+        <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_width="match_parent"/>
 
-        <TextView
-            android:id="@+id/txt_mail_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="" />
+        <TextView android:id="@+id/txt_mail_details" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/activity_mail_detail_txt_mail_details_text"/>
 
 
     </LinearLayout>

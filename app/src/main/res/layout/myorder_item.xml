@@ -1,48 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:padding="10dp"
-    android:layout_marginTop="2dp"
-    android:background="@color/colorPrimary"
-    android:orientation="horizontal">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPrimary" android:layout_height="80dp" android:layout_marginTop="2dp" android:layout_width="match_parent" android:orientation="horizontal" android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/LL_imageContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/LL_imageContainer" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/order_image"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:src="@drawable/logo_tefsal" />
+        <ImageView android:id="@+id/order_image" android:layout_height="60dp" android:layout_width="80dp" android:src="@drawable/logo_tefsal"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/LL_textContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:orientation="vertical">
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/LL_textContainer" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_width="wrap_content" android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/order_status_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="xxxxxx"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_large" />
+        <TextView android:id="@+id/order_status_txt" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/myorder_item_order_status_txt_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_large"/>
 
-        <TextView
-            android:id="@+id/order_date_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="YYYYYY" />
+        <TextView android:id="@+id/order_date_txt" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_width="match_parent" android:text="@string/myorder_item_order_date_txt_text"/>
 
     </LinearLayout>
 

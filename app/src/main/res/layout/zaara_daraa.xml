@@ -1,129 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:autofit="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:autofit="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorPrimary" android:fitsSystemWindows="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
 
-    <RelativeLayout
+    <RelativeLayout android:background="@color/colorPrimary" android:id="@+id/relTootlbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent">
 
-        android:id="@+id/relTootlbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary">
+        <ImageButton android:background="@android:color/transparent" android:id="@+id/back_btn" android:layout_height="match_parent" android:layout_marginStart="15dp" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:background="@android:color/transparent"
-            android:padding="5dp"
-            android:src="@drawable/ic_left_arrow" />
+        <LinearLayout android:gravity="center" android:layout_centerVertical="true" android:layout_height="wrap_content" android:layout_marginLeft="15dp" android:layout_toRightOf="@+id/back_btn" android:layout_width="wrap_content" android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/back_btn"
-            android:gravity="center"
-            android:orientation="vertical">
+            <me.grantland.widget.AutofitTextView android:ellipsize="end" android:gravity="center" android:id="@+id/txt_title" android:layout_alignParentTop="true" android:layout_alignStart="@+id/subtxt_title" android:layout_height="wrap_content" android:layout_width="230dp" android:maxLines="1" android:text="@string/zaara_daraa_txt_title_text" android:textColor="@color/colorBlack" android:textSize="@dimen/text_mid" android:textStyle="bold" autofit:minTextSize="10sp" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
 
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/txt_title"
-                fontPath="fonts/Lato-Bold.ttf"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/subtxt_title"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="Zara Daraa"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_mid"
-                android:textStyle="bold"
-                autofit:minTextSize="10sp"
-                tools:ignore="MissingPrefix" />
-
-            <me.grantland.widget.AutofitTextView
-                android:id="@+id/subtxt_title"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-
-                android:layout_below="@+id/txt_title"
-                android:layout_centerHorizontal="true"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="Casual daraa for dinner"
-                android:textColor="@color/colorBlack"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                autofit:minTextSize="8sp" />
+            <me.grantland.widget.AutofitTextView android:ellipsize="end" android:gravity="center" android:id="@+id/subtxt_title" android:layout_below="@+id/txt_title" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="230dp" android:maxLines="1" android:text="@string/zaara_daraa_subtxt_title_text" android:textColor="@color/colorBlack" android:textSize="12sp" android:textStyle="bold" autofit:minTextSize="8sp"/>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/qr_code_btn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/view_cart_btn1"
-            android:background="@drawable/qr_code_image"
-            android:visibility="gone" />
+        <ImageView android:background="@drawable/qr_code_image" android:id="@+id/qr_code_btn" android:layout_centerVertical="true" android:layout_height="30dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:layout_toLeftOf="@+id/view_cart_btn1" android:layout_width="30dp" android:visibility="gone"/>
 
-        <ImageView
-            android:id="@+id/view_cart_btn1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/ic_shopping_cart_black_24dp"
-            android:onClick="gotoCart"
-            android:visibility="gone" />
+        <ImageView android:background="@drawable/ic_shopping_cart_black_24dp" android:id="@+id/view_cart_btn1" android:layout_alignParentEnd="true" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_height="30dp" android:layout_marginLeft="5dp" android:layout_width="30dp" android:onClick="gotoCart" android:visibility="gone"/>
 
-        <RelativeLayout
-            android:id="@+id/view_cart_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="right"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical"
-            android:onClick="gotoCart"
-            android:orientation="horizontal"
-            android:visibility="visible">
+        <RelativeLayout android:gravity="center_vertical" android:id="@+id/view_cart_btn" android:layout_alignParentEnd="true" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_marginEnd="5dp" android:layout_marginLeft="5dp" android:layout_width="wrap_content" android:onClick="gotoCart" android:orientation="horizontal" android:visibility="visible">
 
-            <ImageView
-                android:id="@+id/header_logo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_shopping_cart_black_24dp" />
+            <ImageView android:id="@+id/header_logo" android:layout_height="48dp" android:layout_width="48dp" android:padding="10dp" android:src="@drawable/ic_shopping_cart_black_24dp"/>
 
-            <TextView
-                android:id="@+id/total_badge_txt"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="-20dp"
-                android:layout_marginTop="2dp"
-                android:layout_toRightOf="@+id/header_logo"
-                android:background="@drawable/badge_yellow"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_xsmall" />
+            <TextView android:background="@drawable/badge_yellow" android:gravity="center" android:id="@+id/total_badge_txt" android:layout_height="20dp" android:layout_marginLeft="-20dp" android:layout_marginTop="2dp" android:layout_toRightOf="@+id/header_logo" android:layout_width="20dp" android:text="@string/zaara_daraa_total_badge_txt_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_xsmall"/>
 
 
         </RelativeLayout>
@@ -132,221 +29,74 @@
     </RelativeLayout>
 
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/LL_add_cart_region"
-        android:layout_below="@+id/relTootlbar">
+    <ScrollView android:id="@+id/scrollView" android:layout_above="@+id/LL_add_cart_region" android:layout_below="@+id/relTootlbar" android:layout_height="match_parent" android:layout_width="match_parent">
 
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:fitsSystemWindows="true">
+        <RelativeLayout android:fitsSystemWindows="true" android:layout_height="wrap_content" android:layout_marginBottom="100dp" android:layout_width="match_parent">
 
 
-            <RelativeLayout
-                android:id="@+id/viewPagerIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
+            <RelativeLayout android:gravity="center" android:id="@+id/viewPagerIndicator" android:layout_height="350dp" android:layout_width="match_parent">
 
-                android:gravity="center">
+                <com.daimajia.slider.library.SliderLayout android:background="@color/colorDivider" android:id="@+id/mainViewPager" android:layout_height="match_parent" android:layout_width="match_parent"/>
 
-                <com.daimajia.slider.library.SliderLayout
-                    android:id="@+id/mainViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorDivider" />
-
-                <LinearLayout
-                    android:id="@+id/viewPagerCountDots"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
+                <LinearLayout android:gravity="center" android:id="@+id/viewPagerCountDots" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="20dp" android:layout_marginBottom="20dp" android:layout_width="match_parent" android:orientation="horizontal"/>
 
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/colorAvailable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/viewPagerIndicator"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+            <RelativeLayout android:id="@+id/colorAvailable" android:layout_below="@+id/viewPagerIndicator" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-                <TextView
-                    android:id="@+id/txtColorLabele"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Color Available"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_normal"
-                    android:textStyle="bold" />
+                <TextView android:id="@+id/txtColorLabele" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/zaara_daraa_txtColorLabele_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/colorRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtColorLabele">
+                <android.support.v7.widget.RecyclerView android:id="@+id/colorRecyclerView" android:layout_below="@+id/txtColorLabele" android:layout_height="wrap_content" android:layout_width="wrap_content">
 
 
                 </android.support.v7.widget.RecyclerView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/colorRecyclerView"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/colorGray" />
+                <View android:background="@color/colorGray" android:layout_below="@+id/colorRecyclerView" android:layout_height="1dp" android:layout_marginBottom="5dp" android:layout_marginTop="5dp" android:layout_width="match_parent"/>
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/lblSizeHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/colorAvailable"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
+            <LinearLayout android:id="@+id/lblSizeHeader" android:layout_below="@+id/colorAvailable" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_width="match_parent" android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtSizeLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Size Available"
-                    android:textAllCaps="true"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_normal"
-                    android:textStyle="bold" />
+                <TextView android:id="@+id/txtSizeLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/zaara_daraa_txtSizeLabel_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/sizeGuide"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:gravity="end"
-                    android:text="@string/text_sizeGuide_zaara_daraa"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:gravity="end" android:id="@+id/sizeGuide" android:layout_gravity="end" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/text_sizeGuide_zaara_daraa" android:textColor="@color/colorBlack" android:textSize="@dimen/text_normal"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/sizeGuideLL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lblSizeHeader"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:gravity="start"
-                android:orientation="vertical">
+            <LinearLayout android:gravity="start" android:id="@+id/sizeGuideLL" android:layout_below="@+id/lblSizeHeader" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_width="match_parent" android:orientation="vertical">
 
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/sizeRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <android.support.v7.widget.RecyclerView android:id="@+id/sizeRecyclerView" android:layout_height="wrap_content" android:layout_width="wrap_content">
 
                 </android.support.v7.widget.RecyclerView>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/colorGray" />
+                <View android:background="@color/colorGray" android:layout_height="1dp" android:layout_marginBottom="5dp" android:layout_marginTop="5dp" android:layout_width="match_parent"/>
             </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/sizeGuideLL"
-                android:orientation="vertical"
-                android:padding="20dp">
+            <LinearLayout android:id="@+id/product" android:layout_below="@+id/sizeGuideLL" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical" android:padding="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Product Description"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/text_mid"
-                    android:textStyle="bold" />
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Product Description" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/text_descp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="descp"
-                    android:textSize="@dimen/text_normal" />
+                <TextView android:id="@+id/text_descp" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/zaara_daraa_text_descp_text" android:textSize="@dimen/text_normal"/>
 
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/quntity_LL"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/product"
-                android:padding="20dp"
-                android:weightSum="100">
+            <LinearLayout android:id="@+id/quntity_LL" android:layout_below="@+id/product" android:layout_height="match_parent" android:layout_width="match_parent" android:padding="20dp" android:weightSum="100">
 
-                <TextView
-                    android:id="@+id/meter_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:text="1"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                <TextView android:id="@+id/meter_value" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="0dp" android:text="@string/zaara_daraa_meter_value_text" android:textColor="#000000" android:textSize="16sp"/>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:text="QUANTITY"
-                    android:textSize="@dimen/text_normal"
+                <TextView android:id="@+id/textView2" android:layout_height="wrap_content" android:layout_weight="50" android:layout_width="0dp" android:text="@string/zaara_daraa_textView2_text" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
 
-                    android:textStyle="bold" />
+                <LinearLayout android:background="@drawable/button_blank" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="25" android:layout_width="0dp" android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:background="@drawable/button_blank"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/less_btn"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_remove_black_24dp" />
+                    <ImageView android:id="@+id/less_btn" android:layout_height="30dp" android:layout_width="40dp" android:src="@drawable/ic_remove_black_24dp"/>
 
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorAccent" />
+                    <View android:background="@color/colorAccent" android:layout_height="match_parent" android:layout_width="1dp"/>
 
-                    <ImageView
-                        android:id="@+id/add_btn"
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_add_black" />
+                    <ImageView android:id="@+id/add_btn" android:layout_height="30dp" android:layout_width="40dp" android:src="@drawable/ic_add_black"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -355,36 +105,11 @@
         </RelativeLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/LL_add_cart_region"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/tabColorBg"
-        android:gravity="center"
-        android:orientation="vertical">
+    <LinearLayout android:background="@color/tabColorBg" android:gravity="center" android:id="@+id/LL_add_cart_region" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text=""
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_normal"
-            android:textStyle="bold" />
+        <TextView android:id="@+id/text_price" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:text="@string/zaara_daraa_text_price_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/add_cart_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorAccent"
-            android:text="ADD TO CART"
-            android:textColor="@color/colorWhite" />
+        <Button android:background="@color/colorAccent" android:id="@+id/add_cart_btn" android:layout_height="50dp" android:layout_marginBottom="10dp" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="@string/zaara_daraa_add_cart_btn_text" android:textColor="@color/colorWhite"/>
 
     </LinearLayout>
 </RelativeLayout>

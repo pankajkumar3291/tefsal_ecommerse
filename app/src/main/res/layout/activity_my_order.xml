@@ -1,38 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    android:fitsSystemWindows="true"
-    tools:context="com.tefsalkw.activity.MyOrderActivity">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_myorder" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/LL_continer"
-        android:orientation="vertical">
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/recycler_view">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.activity.MyOrderActivity">
+    <include android:id="@+id/toolbar" layout="@layout/toolbar_myorder"/>
+    <LinearLayout android:id="@+id/LL_continer" android:layout_below="@+id/toolbar" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view" android:layout_height="wrap_content" android:layout_width="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textMsg"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:text="No Order!"/>
+    <TextView android:gravity="center" android:id="@+id/textMsg" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/activity_my_order_textMsg_text" android:textSize="18sp" android:visibility="gone"/>
 
 </RelativeLayout>

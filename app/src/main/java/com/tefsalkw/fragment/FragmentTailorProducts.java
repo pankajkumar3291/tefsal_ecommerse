@@ -226,6 +226,7 @@ public class FragmentTailorProducts extends Fragment {
     }
 
     public void showDialog(int position) {
+
         DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue, FragmentTailorProducts.this, position);
         dg.show();
 
@@ -243,6 +244,17 @@ public class FragmentTailorProducts extends Fragment {
         dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
 
         //dishdashaAdapter.updateDishDashacount(dropdownId);
+
+
+        String remainingTextile =  tailoringRecordArrayListOfCheckedTrue.get(position).getRemain_textile();
+
+        Integer remaining = Integer.parseInt(remainingTextile);
+        remaining = remaining - 1 ;
+        tailoringRecordArrayListOfCheckedTrue.get(position).setRemain_textile(remaining+"");
+
+
+
+
 
 
     }

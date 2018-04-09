@@ -1,60 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/sign_up_bg_blur"
-    android:fitsSystemWindows="true"
-    tools:context="com.tefsalkw.kotlin.SignupThankYouActivity">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/sign_up_bg_blur" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.kotlin.SignupThankYouActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logo_navy"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView android:id="@+id/imageView" android:layout_height="150dp" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_width="200dp" android:src="@drawable/logo_navy" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/txtStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Registration Successful. Thank you!"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView" />
+    <TextView android:gravity="center" android:id="@+id/txtStatus" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:layout_width="match_parent" android:text="@string/activity_signup_thank_you_txtStatus_text" android:textColor="@color/colorBlack" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@id/imageView"/>
 
 
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-
-        android:layout_marginLeft="16dp"
-
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:background="@color/colorTheme"
-        android:text="Sign in to continue"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_normal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStatus" />
+    <Button android:background="@color/colorTheme" android:id="@+id/buttonLogin" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:layout_marginStart="8dp" android:layout_marginTop="80dp" android:layout_width="0dp" android:text="@string/activity_signup_thank_you_buttonLogin_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@+id/txtStatus"/>
 
 
 </android.support.constraint.ConstraintLayout>

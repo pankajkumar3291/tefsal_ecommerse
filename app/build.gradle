@@ -15,8 +15,8 @@ android {
         applicationId "com.tefsalkw"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -76,3 +76,4 @@ apply plugin: 'com.google.gms.google-services'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'android-string-extractor'

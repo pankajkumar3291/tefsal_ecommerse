@@ -1,77 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/address_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPrimary" android:id="@+id/address_layout" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_width="match_parent" android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/address_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:inputType="textCapCharacters"
-        android:text="Name"
-        android:textColor="@color/colorTheme"
-        android:textSize="@dimen/text_large"
-        android:textStyle="bold" />
+    <TextView android:id="@+id/address_name" android:inputType="textCapCharacters" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:text="@string/row_addresses_cart_address_name_text" android:textColor="@color/colorTheme" android:textSize="@dimen/text_large" android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:maxLines="2"
-        android:text="Dasma, Block 6 , Street 66, House / Building 6, Phone No. 6611837238"
+    <TextView android:id="@+id/address_text" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_width="wrap_content" android:maxLines="2" android:text="@string/row_addresses_cart_address_text_text" android:textColor="@color/colorGreyDark" android:textSize="@dimen/text_normal"/>
 
-        android:textColor="@color/colorGreyDark"
-        android:textSize="@dimen/text_normal" />
+    <LinearLayout android:gravity="start" android:layout_height="match_parent" android:layout_marginBottom="10dp" android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:gravity="start">
+        <Button android:background="@drawable/my_button_bg" android:id="@+id/address_edit_btn" android:layout_height="40dp" android:layout_width="80dp" android:text="@string/row_addresses_cart_address_edit_btn_text" android:textAllCaps="false" android:textSize="12sp"/>
 
-        <Button
-            android:textSize="12sp"
-            android:id="@+id/address_edit_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:background="@drawable/my_button_bg"
-            android:text="Edit"
-            android:textAllCaps="false" />
+        <Button android:background="@drawable/my_button_bg" android:id="@+id/address_delete_btn" android:layout_height="40dp" android:layout_marginLeft="10dp" android:layout_width="80dp" android:text="@string/row_addresses_cart_address_delete_btn_text" android:textAllCaps="false" android:textSize="12sp"/>
 
-        <Button
-            android:textSize="12sp"
-            android:id="@+id/address_delete_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/my_button_bg"
-            android:text="Delete"
-            android:textAllCaps="false" />
-
-        <Button
-            android:textSize="12sp"
-            android:id="@+id/btn_deliver"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/my_button_bg_roundselected"
-            android:paddingEnd="5dp"
-            android:paddingStart="5sp"
-            android:text="Deliver to this address"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite" />
+        <Button android:background="@drawable/my_button_bg_roundselected" android:id="@+id/btn_deliver" android:layout_height="40dp" android:layout_marginEnd="10dp" android:layout_marginLeft="10dp" android:layout_width="wrap_content" android:paddingEnd="5dp" android:paddingStart="5sp" android:text="@string/row_addresses_cart_btn_deliver_text" android:textAllCaps="false" android:textColor="@color/colorWhite" android:textSize="12sp"/>
 
 
     </LinearLayout>

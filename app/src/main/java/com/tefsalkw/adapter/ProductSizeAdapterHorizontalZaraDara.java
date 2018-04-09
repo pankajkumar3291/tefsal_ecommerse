@@ -78,7 +78,7 @@ public class ProductSizeAdapterHorizontalZaraDara extends RecyclerView.Adapter<P
                 //ZaraDaraSizeModel zaraDaraSizeModel = productSizesList.get(position).getSizes();
 
                 ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
-                zaaraDaraaActivity.showSelectedSizeData(position, sizes);
+                zaaraDaraaActivity.showSelectedSizeData(sizes);
 
             }
         });

@@ -1,34 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@color/colorWhite"
-        android:orientation="vertical"
-        android:padding="20dp">
+    <LinearLayout android:background="@color/colorWhite" android:layout_centerInParent="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="20dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Select Country"
-            android:textSize="22sp" />
+        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Select Country" android:textSize="22sp"/>
 
-        <EditText
-            android:id="@+id/etCountrySearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="search..." />
+        <EditText android:hint="@string/dialog_country_etCountrySearch_hint" android:id="@+id/etCountrySearch" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/card_recycler_view1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView android:id="@+id/card_recycler_view1" android:layout_height="match_parent" android:layout_width="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 

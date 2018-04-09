@@ -1,57 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+    <ScrollView android:layout_height="match_parent" android:layout_marginBottom="10dp" android:layout_width="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
+    <LinearLayout android:layout_alignParentStart="true" android:layout_alignParentTop="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+        <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:padding="20dp">
 
 
-        <TextView
-            android:id="@+id/header_txt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lightweight supplex nylon resists wrinkles and odors.The laundered fabric has a soft hand all day comfort"
-            android:textSize="@dimen/text_normal" />
+        <TextView android:id="@+id/header_txt" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/fragment_feel_header_txt_text" android:textSize="@dimen/text_normal"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="10dp"
-            android:weightSum="100">
+        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="40dp" android:layout_width="match_parent" android:orientation="horizontal" android:padding="10dp" android:visibility="gone" android:weightSum="100">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:text="NARROW"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+            <TextView android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="NARROW" android:textColor="#000000" android:textSize="16sp"/>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:orientation="horizontal">
+            <RelativeLayout android:layout_height="wrap_content" android:layout_weight="70" android:layout_width="0dp" android:orientation="horizontal">
 
                 <!--<ImageView-->
                     <!--android:layout_width="wrap_content"-->
@@ -59,68 +22,26 @@
                     <!--android:layout_alignParentRight="true"-->
                     <!--android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />-->
 
-                <Spinner
-                    android:id="@+id/spin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_normal" />
+                <Spinner android:id="@+id/spin" android:layout_height="wrap_content" android:layout_width="match_parent" android:textSize="@dimen/text_normal"/>
 
             </RelativeLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:padding="10dp"
-            android:weightSum="100">
+        <LinearLayout android:gravity="center_vertical" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="horizontal" android:padding="10dp" android:visibility="gone" android:weightSum="100">
 
-            <TextView
-                android:id="@+id/meter_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:text="1"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+            <TextView android:id="@+id/meter_value" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="@string/fragment_feel_meter_value_text" android:textColor="#000000" android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="40"
-                android:text="METERS"
-                android:textSize="@dimen/text_normal" />
+            <TextView android:id="@+id/textView2" android:layout_height="wrap_content" android:layout_weight="40" android:layout_width="0dp" android:text="@string/fragment_feel_textView2_text" android:textSize="@dimen/text_normal"/>
 
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:background="@drawable/button_blank"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <LinearLayout android:background="@drawable/button_blank" android:gravity="center" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/less_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_remove_black_24dp" />
+                <ImageView android:id="@+id/less_btn" android:layout_height="30dp" android:layout_width="40dp" android:src="@drawable/ic_remove_black_24dp"/>
 
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent" />
+                <View android:background="@color/colorAccent" android:layout_height="match_parent" android:layout_width="1dp"/>
 
-                <ImageView
-                    android:id="@+id/add_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_add_black" />
+                <ImageView android:id="@+id/add_btn" android:layout_height="30dp" android:layout_width="40dp" android:src="@drawable/ic_add_black"/>
 
             </LinearLayout>
 
@@ -164,7 +85,3 @@
 
 
 </RelativeLayout>
-
-    
-
-

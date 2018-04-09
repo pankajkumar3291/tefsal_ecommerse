@@ -1,21 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:layout_height="match_parent" android:layout_width="wrap_content">
 
-    <TextView
-        android:id="@+id/card_badge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/badge_shape"
-        android:gravity="center_vertical"
-        android:paddingBottom="3dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="3dp"
-        android:text=""
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_xsmall" />
+    <TextView android:background="@drawable/badge_shape" android:gravity="center_vertical" android:id="@+id/card_badge" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingBottom="3dp" android:paddingLeft="10dp" android:paddingRight="10dp" android:paddingTop="3dp" android:text="@string/menu_counter_card_badge_text" android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:textColor="@color/colorWhite" android:textSize="@dimen/text_xsmall"/>
 </LinearLayout>

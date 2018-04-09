@@ -1,97 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/additional_info_bg"
-    android:fitsSystemWindows="true"
-    tools:context="com.tefsalkw.activity.AdditionalInfoActivity">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/additional_info_bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.activity.AdditionalInfoActivity">
 
-    <android.support.v7.widget.Toolbar
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        app:theme="@style/TransparentToolbar"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_left_arrow"/>
+    <android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
+        <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            android:textSize="@dimen/text_mid"
-            android:text="Step 3"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:id="@+id/toolbar_title"
-            tools:ignore="MissingPrefix"
-            fontPath="fonts/Lato-Bold.ttf" />
+        <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_additional_info_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:visibility="visible" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
 
-        <TextView
-            android:visibility="visible"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="Skip"
-            android:textSize="@dimen/text_mid"
-            android:id="@+id/skipTxt"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:layout_marginRight="10dp"
-            />
+        <TextView android:clickable="true" android:id="@+id/skipTxt" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:layout_width="wrap_content" android:text="@string/activity_additional_info_skipTxt_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:visibility="visible"/>
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LL_content"
-        android:layout_marginTop="120dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolbar"
+    <LinearLayout android:id="@+id/LL_content" android:layout_below="@+id/toolbar" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/activity_horizontal_margin" android:layout_marginTop="120dp" android:layout_width="match_parent" android:orientation="vertical">
+        <TextView android:gravity="center" android:id="@+id/headingTxt" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/activity_additional_info_headingTxt_text" android:textColor="@color/colorTheme" android:textSize="30sp"/>
 
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/headingTxt"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:textColor="@color/colorTheme"
-            android:text="Additional Information"/>
+        <TextView android:id="@+id/descTxt" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="@string/activity_additional_info_descTxt_text" android:textColor="@color/colorTheme"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/descTxt"
-            android:textColor="@color/colorTheme"
-            android:text="Please help us to get to know you more by entering additional information that can help us serve you better"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="@dimen/text_xsmall"
-            android:text="GENDER"/>
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:id="@+id/genderSpinner"
-            android:textSize="@dimen/text_xsmall"
-            android:entries="@array/gender">
+        <TextView android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:text="GENDER" android:textSize="@dimen/text_xsmall"/>
+        <Spinner android:background="@android:color/transparent" android:entries="@array/gender" android:id="@+id/genderSpinner" android:layout_height="match_parent" android:layout_width="match_parent" android:textSize="@dimen/text_xsmall">
         </Spinner>
         <!--<TextView
             android:layout_width="match_parent"
@@ -100,51 +25,16 @@
             android:text="DATE OF BIRTH"/>-->
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dobInputLayout"
-            android:layout_marginTop="10dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:editable="false"
-                android:inputType="none"
-                android:background="@android:color/transparent"
-                android:textSize="@dimen/text_xsmall"
-                android:hint="DATE OF BIRTH"
-                android:id="@+id/input_dob"/>
+        <android.support.design.widget.TextInputLayout android:id="@+id/dobInputLayout" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent">
+            <EditText android:background="@android:color/transparent" android:editable="false" android:hint="@string/activity_additional_info_input_dob_hint" android:id="@+id/input_dob" android:inputType="none" android:layout_height="30dp" android:layout_width="match_parent" android:textSize="@dimen/text_xsmall"/>
         </android.support.design.widget.TextInputLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="5dp"
-            />
+        <View android:background="@color/colorPrimaryDark" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginTop="5dp" android:layout_width="match_parent"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="@dimen/text_xsmall"
-            android:text="NATIOANALITY"/>
-        <Spinner
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:id="@+id/nationalitySpinner">
+        <TextView android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="NATIOANALITY" android:textSize="@dimen/text_xsmall"/>
+        <Spinner android:background="@android:color/transparent" android:id="@+id/nationalitySpinner" android:layout_height="match_parent" android:layout_width="match_parent">
         </Spinner>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_submit"
-            android:layout_marginTop="20dp"
-            android:id="@+id/submintBtn"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorNavy"/>
+        <Button android:background="@color/colorNavy" android:id="@+id/submintBtn" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:text="@string/btn_submit" android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 </RelativeLayout>

@@ -1,50 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LL_textContainer"
-        android:weightSum="2"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:layout_gravity="center"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="left"
-                android:text=""
-                android:textSize="@dimen/text_small"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
-                android:id="@+id/tailor_product_details"/>
+    <LinearLayout android:id="@+id/LL_textContainer" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="2">
+        <LinearLayout android:layout_gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="0dp" android:paddingLeft="5dp">
+            <TextView android:gravity="left" android:id="@+id/tailor_product_details" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="@string/tailor_product_remaining_item_tailor_product_details_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_small" android:textStyle="bold"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_small"
-                android:textColor="@color/colorDivider"
-                android:gravity="left"
-                android:id="@+id/tailor_product_remaining_details"/>
+        <LinearLayout android:layout_gravity="center" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="0dp" android:paddingLeft="5dp">
+            <TextView android:gravity="left" android:id="@+id/tailor_product_remaining_details" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="@string/tailor_product_remaining_item_tailor_product_remaining_details_text" android:textColor="@color/colorDivider" android:textSize="@dimen/text_small" android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 

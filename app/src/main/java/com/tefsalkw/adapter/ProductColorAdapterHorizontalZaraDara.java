@@ -73,7 +73,7 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
                 notifyDataSetChanged();
 
                 ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
-                zaaraDaraaActivity.showSizeOnColorSelection(productSizesList.get(position));
+                zaaraDaraaActivity.showSizeOnColorSelection(position,productSizesList.get(position));
 
 
 
