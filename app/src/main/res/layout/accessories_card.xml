@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:card_view="http://schemas.android.com/apk/res-auto" android:id="@+id/main_layout" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:layout_width="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_width="match_parent">
 
-    <android.support.v7.widget.CardView android:id="@+id/card_view" android:layout_gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" card_view:cardCornerRadius="0dp">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        card_view:cardCornerRadius="0dp">
 
-        <RelativeLayout android:layout_height="200dp" android:layout_width="match_parent">
+        <RelativeLayout
+            android:layout_height="200dp"
+            android:layout_width="match_parent">
 
-            <ImageView android:id="@+id/iv_accessories" android:layout_height="match_parent" android:layout_width="match_parent" android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/iv_accessories"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop" />
 
-            <TextView android:gravity="center" android:id="@+id/acc_sub_cat_name" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_width="wrap_content" android:padding="10dp" android:text="@string/accessories_card_acc_sub_cat_name_text" android:textAllCaps="true" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal" android:textStyle="bold" android:translationZ="10dp"/>
+            <TextView
+                android:gravity="center"
+                android:id="@+id/acc_sub_cat_name"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:text="@string/accessories_card_acc_sub_cat_name_text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold"
+                android:translationZ="10dp" />
 
-            <View android:background="@drawable/gradient_transparent" android:layout_alignParentBottom="true" android:layout_height="100dp" android:layout_width="match_parent"/>
+            <View
+                android:background="@drawable/gradient_transparent"
+                android:layout_alignParentBottom="true"
+                android:layout_height="100dp"
+                android:layout_width="match_parent" />
 
 
         </RelativeLayout>

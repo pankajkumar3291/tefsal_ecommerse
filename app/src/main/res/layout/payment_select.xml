@@ -1,121 +1,379 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPrimary" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar_cart"/>
+    <include layout="@layout/toolbar_cart" />
 
-    <ScrollView android:layout_above="@+id/llPay" android:layout_below="@id/toolbar" android:layout_height="match_parent" android:layout_width="match_parent">
+    <ScrollView
+        android:layout_above="@+id/llPay"
+        android:layout_below="@id/toolbar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-        <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
-            <TextView android:background="@color/tabColorBg" android:gravity="center" android:id="@+id/header_txt" android:layout_below="@+id/toolbar" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="10dp" android:text="@string/payment_select_header_txt_text" android:textColor="@color/colorAccent"/>
+            <TextView
+                android:background="@color/tabColorBg"
+                android:gravity="center"
+                android:id="@+id/header_txt"
+                android:layout_below="@+id/toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:text="@string/payment_select_header_txt_text"
+                android:textColor="@color/colorAccent" />
 
-            <TextView android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent" android:paddingLeft="10dp" android:paddingRight="10dp" android:text="Select Payment Method" android:textColor="@color/colorAccent" android:textSize="@dimen/text_large" android:textStyle="bold"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Select Payment Method"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold" />
 
-            <LinearLayout android:id="@+id/LL_knetPaymentContainer" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:weightSum="3">
+            <LinearLayout
+                android:id="@+id/LL_knetPaymentContainer"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="3">
 
-                <CheckBox android:enabled="false" android:id="@+id/knetPaymentCheck" android:layout_height="wrap_content" android:layout_weight="0" android:layout_width="wrap_content"/>
+                <CheckBox
+                    android:enabled="false"
+                    android:id="@+id/knetPaymentCheck"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content" />
 
-                <TextView android:layout_height="wrap_content" android:layout_weight="2.8" android:layout_width="wrap_content" android:text="KNET" android:textSize="@dimen/text_normal"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:layout_width="wrap_content"
+                    android:text="KNET"
+                    android:textSize="@dimen/text_normal" />
 
-                <ImageView android:background="@drawable/knet" android:layout_gravity="end" android:layout_height="30dp" android:layout_weight=".2" android:layout_width="30dp"/>
+                <ImageView
+                    android:background="@drawable/knet"
+                    android:layout_gravity="end"
+                    android:layout_height="30dp"
+                    android:layout_weight=".2"
+                    android:layout_width="30dp" />
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/LL_knetPaymentTCContainer" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:visibility="gone" android:weightSum="5">
+            <LinearLayout
+                android:id="@+id/LL_knetPaymentTCContainer"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:weightSum="5">
 
-                <LinearLayout android:layout_height="wrap_content" android:layout_weight=".5" android:layout_width="0dp">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:layout_width="0dp">
 
-                    <CheckBox android:id="@+id/knetPaymentTCCheck" android:layout_height="wrap_content" android:layout_weight="0" android:layout_width="wrap_content"/>
+                    <CheckBox
+                        android:id="@+id/knetPaymentTCCheck"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_height="wrap_content" android:layout_weight="4.5" android:layout_width="0dp">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:layout_width="0dp">
 
-                    <TextView android:id="@+id/knetPaymentTCTxt" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/payment_select_knetPaymentTCTxt_text"/>
+                    <TextView
+                        android:id="@+id/knetPaymentTCTxt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/payment_select_knetPaymentTCTxt_text" />
                 </LinearLayout>
 
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/LL_visa_masterPaymentContainer" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:weightSum="3">
+            <LinearLayout
+                android:id="@+id/LL_visa_masterPaymentContainer"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="3">
 
-                <CheckBox android:enabled="false" android:id="@+id/visa_masterPaymentCheck" android:layout_height="wrap_content" android:layout_weight="0" android:layout_width="wrap_content"/>
+                <CheckBox
+                    android:enabled="false"
+                    android:id="@+id/visa_masterPaymentCheck"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content" />
 
-                <TextView android:layout_height="wrap_content" android:layout_weight="2.8" android:layout_width="wrap_content" android:text="VISA / MASTERCARD" android:textSize="@dimen/text_normal"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.8"
+                    android:layout_width="wrap_content"
+                    android:text="VISA / MASTERCARD"
+                    android:textSize="@dimen/text_normal" />
 
-                <ImageView android:background="@drawable/visa" android:layout_height="30dp" android:layout_weight=".2" android:layout_width="30dp"/>
+                <ImageView
+                    android:background="@drawable/visa"
+                    android:layout_height="30dp"
+                    android:layout_weight=".2"
+                    android:layout_width="30dp" />
 
 
             </LinearLayout>
 
 
-            <LinearLayout android:id="@+id/LL_visa_masterPaymentTCContainer" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:visibility="gone" android:weightSum="5">
+            <LinearLayout
+                android:id="@+id/LL_visa_masterPaymentTCContainer"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone"
+                android:weightSum="5">
 
-                <LinearLayout android:layout_height="wrap_content" android:layout_weight=".5" android:layout_width="0dp">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:layout_width="0dp">
 
-                    <CheckBox android:id="@+id/visa_masterPaymentTCCheck" android:layout_height="wrap_content" android:layout_weight="0" android:layout_width="wrap_content"/>
+                    <CheckBox
+                        android:id="@+id/visa_masterPaymentTCCheck"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout android:layout_height="wrap_content" android:layout_weight="4.5" android:layout_width="0dp">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4.5"
+                    android:layout_width="0dp">
 
-                    <TextView android:id="@+id/visa_masterPaymentTCTxt" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/payment_select_visa_masterPaymentTCTxt_text"/>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/LL_codPaymentContainer" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:weightSum="3">
-
-                <CheckBox android:checked="true" android:id="@+id/codPaymentCheck" android:layout_height="wrap_content" android:layout_weight="0" android:layout_width="wrap_content"/>
-
-                <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical">
-
-                    <TextView android:layout_height="wrap_content" android:layout_weight="2" android:layout_width="wrap_content" android:text="CASH ON DELIVERY" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal"/>
-
-                    <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="(Unavailable,you have tailored items in cart)" android:textSize="@dimen/text_small" android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/visa_masterPaymentTCTxt"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/payment_select_visa_masterPaymentTCTxt_text" />
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <TextView android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="PROMO / VOUCHER CODE" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
-
-            <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:weightSum="100">
-
-                <EditText android:id="@+id/etPromoCode" android:layout_gravity="bottom" android:layout_height="wrap_content" android:layout_weight="70" android:layout_width="0dp"/>
-
-                <Button android:background="@color/colorAccent" android:id="@+id/btnAppyPromo" android:layout_height="wrap_content" android:layout_weight="30" android:layout_width="0dp" android:text="@string/payment_select_btnAppyPromo_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid"/>
-
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/llPromoSection" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+            <LinearLayout
+                android:id="@+id/LL_codPaymentContainer"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="3">
 
-                <RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:paddingRight="10dp">
+                <CheckBox
+                    android:checked="true"
+                    android:id="@+id/codPaymentCheck"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content" />
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_width="wrap_content"
+                        android:text="CASH ON DELIVERY"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal" />
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="(Unavailable,you have tailored items in cart)"
+                        android:textSize="@dimen/text_small"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:paddingStart="10dp"
+                android:text="PROMO / VOUCHER CODE"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="100">
+
+                <EditText
+                    android:id="@+id/etPromoCode"
+                    android:layout_gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:layout_width="0dp" />
+
+                <Button
+                    android:background="@color/colorAccent"
+                    android:id="@+id/btnAppyPromo"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:layout_width="0dp"
+                    android:text="@string/payment_select_btnAppyPromo_text"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_mid" />
 
 
-                    <TextView android:layout_alignParentStart="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="PREVIOUS TOTAL" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+            </LinearLayout>
 
-                    <TextView android:gravity="end" android:id="@+id/txtPreviousTotal" android:layout_alignParentEnd="true" android:layout_gravity="start" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="@string/payment_select_txtPreviousTotal_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+            <LinearLayout
+                android:id="@+id/llPromoSection"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="10dp">
+
+
+                    <TextView
+                        android:layout_alignParentStart="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="PREVIOUS TOTAL"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:gravity="end"
+                        android:id="@+id/txtPreviousTotal"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="@string/payment_select_txtPreviousTotal_text"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
-                <RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_width="match_parent" android:paddingRight="10dp">
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="10dp">
 
 
-                    <TextView android:layout_alignParentStart="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="DISCOUNT APPLIED" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_alignParentStart="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="DISCOUNT APPLIED"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
 
-                    <TextView android:gravity="end" android:id="@+id/txtDiscount" android:layout_alignParentEnd="true" android:layout_gravity="start" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="@string/payment_select_txtDiscount_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+                    <TextView
+                        android:gravity="end"
+                        android:id="@+id/txtDiscount"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="@string/payment_select_txtDiscount_text"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
-                <View android:background="@color/colorGreyDark" android:layout_height="1dp" android:layout_margin="5dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorGreyDark"
+                    android:layout_height="1dp"
+                    android:layout_margin="5dp"
+                    android:layout_width="match_parent" />
 
-                <RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_height="wrap_content" android:layout_marginBottom="50dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:paddingRight="10dp">
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="10dp">
 
 
-                    <TextView android:layout_alignParentStart="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="TOTAL" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_alignParentStart="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="TOTAL"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
 
-                    <TextView android:gravity="end" android:id="@+id/txtTotal" android:layout_alignParentEnd="true" android:layout_gravity="start" android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingStart="10dp" android:text="@string/payment_select_txtTotal_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_normal" android:textStyle="bold"/>
+                    <TextView
+                        android:gravity="end"
+                        android:id="@+id/txtTotal"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="@string/payment_select_txtTotal_text"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -125,13 +383,46 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout android:background="@color/tabColorBg" android:gravity="center" android:id="@+id/llPay" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout
+        android:background="@color/tabColorBg"
+        android:gravity="center"
+        android:id="@+id/llPay"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-        <TextView android:id="@+id/amount" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_width="wrap_content" android:text="@string/payment_select_amount_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_large"/>
+        <TextView
+            android:id="@+id/amount"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:text="@string/payment_select_amount_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_large" />
 
-        <TextView android:id="@+id/discount" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/payment_select_discount_text" android:textSize="@dimen/text_small" android:visibility="visible"/>
+        <TextView
+            android:id="@+id/discount"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/payment_select_discount_text"
+            android:textSize="@dimen/text_small"
+            android:visibility="visible" />
 
-        <Button android:background="@color/colorAccent" android:id="@+id/proceed_payment_method" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_marginEnd="20dp" android:layout_marginStart="20dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:text="@string/payment_select_proceed_payment_method_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_large"/>
+        <Button
+            android:background="@color/colorAccent"
+            android:id="@+id/proceed_payment_method"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:text="@string/payment_select_proceed_payment_method_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_large" />
 
     </LinearLayout>
 </RelativeLayout>

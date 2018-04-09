@@ -1,28 +1,94 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.activity.EditProfileActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="com.tefsalkw.activity.EditProfileActivity">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar_editprofile"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_editprofile" />
 
-    <LinearLayout android:id="@+id/LL_content" android:layout_below="@+id/toolbar" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/LL_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-        <ImageView android:id="@+id/profile_image" android:layout_gravity="center" android:layout_height="100dp" android:layout_width="100dp" android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_gravity="center"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:visibility="gone" />
 
-        <ScrollView android:layout_height="wrap_content" android:layout_marginBottom="80dp" android:layout_width="match_parent">
+        <ScrollView
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:layout_width="match_parent">
 
-            <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_first_name" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_width="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_first_name"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_width="match_parent">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_first_name_hint" android:id="@+id/input_first_name" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_first_name_hint"
+                        android:id="@+id/input_first_name"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent" />
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_last_name" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_last_name"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_last_name_hint" android:id="@+id/input_last_name" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_last_name_hint"
+                        android:id="@+id/input_last_name"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
                 <!--<View
@@ -32,9 +98,28 @@
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp" />-->
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_user_name" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent" android:visibility="gone">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_user_name"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:visibility="gone">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_user_name_hint" android:id="@+id/input_user_name" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_user_name_hint"
+                        android:id="@+id/input_user_name"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
                 <!--<View
@@ -44,34 +129,134 @@
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp" />-->
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_email" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent" android:visibility="gone">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_email"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:visibility="gone">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_email_hint" android:id="@+id/input_email" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_email_hint"
+                        android:id="@+id/input_email"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent" />
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_mobile_no" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_mobile_no"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_mobile_no_hint" android:id="@+id/input_mobile_no" android:inputType="number" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_mobile_no_hint"
+                        android:id="@+id/input_mobile_no"
+                        android:inputType="number"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent" />
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_home_no" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_home_no"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_home_no_hint" android:id="@+id/input_home_no" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_home_no_hint"
+                        android:id="@+id/input_home_no"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_width="match_parent" />
 
-                <LinearLayout android:id="@+id/LL_nationality" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:orientation="vertical" android:visibility="visible">
+                <LinearLayout
+                    android:id="@+id/LL_nationality"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
-                    <TextView android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/countryTxt" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group" android:layout_width="wrap_content" android:text="@string/activity_edit_profile_countryTxt_text" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
+                    <TextView
+                        android:drawablePadding="@dimen/margin_xxsmall"
+                        android:id="@+id/countryTxt"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
+                        android:layout_width="wrap_content"
+                        android:text="@string/activity_edit_profile_countryTxt_text"
+                        android:textColor="@color/colorDGray"
+                        android:textSize="@dimen/text_small" />
 
-                    <Spinner android:gravity="left" android:id="@+id/spin_country" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
+                    <Spinner
+                        android:gravity="left"
+                        android:id="@+id/spin_country"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="@dimen/margin_mid"
+                        android:paddingRight="@dimen/margin_mid"
+                        android:paddingTop="@dimen/margin_small" />
                     <!-- <View
                          android:layout_width="match_parent"
                          android:layout_height="1dp"
@@ -82,25 +267,91 @@
 
                 </LinearLayout>
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_nationality" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:visibility="gone">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_nationality"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:visibility="gone">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_nationality_hint" android:id="@+id/input_nationality" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_nationality_hint"
+                        android:id="@+id/input_nationality"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent" />
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_dob" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="10dp" android:layout_width="match_parent">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_dob"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent">
 
-                    <EditText android:background="@android:color/transparent" android:hint="@string/activity_edit_profile_input_dob_hint" android:id="@+id/input_dob" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:hint="@string/activity_edit_profile_input_dob_hint"
+                        android:id="@+id/input_dob"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
 
-                <View android:background="@color/colorDivider" android:layout_height="1dp" android:layout_marginBottom="12dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_width="match_parent"/>
+                <View
+                    android:background="@color/colorDivider"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="match_parent" />
 
-                <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_gender" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent" android:visibility="gone">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_gender"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:visibility="gone">
 
-                    <EditText android:background="@android:color/transparent" android:focusableInTouchMode="false" android:hint="@string/activity_edit_profile_input_gender_hint" android:id="@+id/input_gender" android:inputType="textEmailAddress" android:layout_height="@dimen/MyAddress_EditText_height" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_xsmall"/>
+                    <EditText
+                        android:background="@android:color/transparent"
+                        android:focusableInTouchMode="false"
+                        android:hint="@string/activity_edit_profile_input_gender_hint"
+                        android:id="@+id/input_gender"
+                        android:inputType="textEmailAddress"
+                        android:layout_height="@dimen/MyAddress_EditText_height"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:textColorHint="@color/colorTheme"
+                        android:textSize="@dimen/text_xsmall" />
 
                 </android.support.design.widget.TextInputLayout>
                 <!-- <View
@@ -111,15 +362,44 @@
                      android:layout_marginLeft="8dp"
                      android:layout_marginRight="8dp"/>-->
 
-                <LinearLayout android:id="@+id/LL_radio_container" android:layout_height="wrap_content" android:layout_marginEnd="1dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent" android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/LL_radio_container"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
 
-                    <TextView android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginRight="90dp" android:layout_width="wrap_content" android:text="GENDER" android:textSize="@dimen/text_xsmall"/>
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="90dp"
+                        android:layout_width="wrap_content"
+                        android:text="GENDER"
+                        android:textSize="@dimen/text_xsmall" />
 
-                    <RadioGroup android:id="@+id/radio_btn_group" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group" android:layout_width="wrap_content" android:orientation="horizontal">
+                    <RadioGroup
+                        android:id="@+id/radio_btn_group"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_edit_profile_radio_btn_group"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal">
 
-                        <RadioButton android:id="@+id/radio_male_btn" android:layout_height="wrap_content" android:layout_marginRight="20dp" android:layout_width="wrap_content" android:text="@string/activity_edit_profile_radio_male_btn_text"/>
+                        <RadioButton
+                            android:id="@+id/radio_male_btn"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_edit_profile_radio_male_btn_text" />
 
-                        <RadioButton android:id="@+id/radio_femmale_btn" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_edit_profile_radio_femmale_btn_text"/>
+                        <RadioButton
+                            android:id="@+id/radio_femmale_btn"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_edit_profile_radio_femmale_btn_text" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -128,5 +408,19 @@
 
     </LinearLayout>
 
-    <Button android:background="@color/colorTheme" android:id="@+id/save_btn" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="24dp" android:layout_width="match_parent" android:text="@string/btn_txt_chnge_pwd" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
+    <Button
+        android:background="@color/colorTheme"
+        android:id="@+id/save_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:text="@string/btn_txt_chnge_pwd"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_normal" />
 </RelativeLayout>

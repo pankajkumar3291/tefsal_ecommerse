@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@android:color/transparent" android:layout_gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView android:id="@+id/recycler" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
 
-    <TextView android:gravity="center" android:id="@+id/no_mail_text" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/no_mail_text" android:visibility="gone"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/no_mail_text"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/no_mail_text"
+        android:visibility="gone" />
 
-    <ProgressBar android:id="@+id/loading" android:layout_centerInParent="true" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:visibility="gone"/>
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone" />
 </RelativeLayout>

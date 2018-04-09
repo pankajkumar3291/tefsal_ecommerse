@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <ImageButton android:background="#CC000000" android:id="@id/exo_play" android:layout_gravity="center" android:layout_height="100dp" android:layout_width="100dp" style="@style/ExoMediaButton.Play"/>
+    <ImageButton
+        android:background="#CC000000"
+        android:id="@id/exo_play"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        style="@style/ExoMediaButton.Play" />
 
-    <ImageButton android:background="#CC000000" android:id="@id/exo_pause" android:layout_gravity="center" android:layout_height="100dp" android:layout_width="100dp" style="@style/ExoMediaButton.Pause"/>
+    <ImageButton
+        android:background="#CC000000"
+        android:id="@id/exo_pause"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        style="@style/ExoMediaButton.Pause" />
 
 </FrameLayout>

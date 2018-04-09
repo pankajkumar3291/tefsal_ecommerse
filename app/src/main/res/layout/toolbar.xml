@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    app:theme="@style/TransparentToolbar">
 
 
-    <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="match_parent" android:layout_marginRight="5dp" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:id="@+id/btn_back"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_width="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_left_arrow" />
 
 
     <!--<TextView
@@ -49,26 +62,114 @@
         android:id="@+id/toolbar_title" />-->
 
 
-    <TextView android:ellipsize="end" android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:maxLines="1" android:paddingLeft="5dp" android:paddingRight="5dp" android:singleLine="true" android:text="@string/toolbar_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:textStyle="bold" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
+    <TextView
+        android:ellipsize="end"
+        android:id="@+id/toolbar_title"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:maxLines="1"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:singleLine="true"
+        android:text="@string/toolbar_toolbar_title_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_mid"
+        android:textStyle="bold"
+        fontPath="fonts/Lato-Bold.ttf"
+        tools:ignore="MissingPrefix" />
 
-    <TextView android:gravity="center" android:id="@+id/next_txt" android:layout_gravity="right" android:layout_height="match_parent" android:layout_marginRight="16dp" android:layout_width="wrap_content" android:text="@string/toolbar_next_txt_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:visibility="gone"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/next_txt"
+        android:layout_gravity="right"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:text="@string/toolbar_next_txt_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_mid"
+        android:visibility="gone" />
 
-    <TextView android:gravity="center" android:id="@+id/done_txt" android:layout_gravity="right" android:layout_height="match_parent" android:layout_marginRight="16dp" android:layout_width="wrap_content" android:text="@string/toolbar_done_txt_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:textStyle="bold" android:visibility="gone"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/done_txt"
+        android:layout_gravity="right"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:text="@string/toolbar_done_txt_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_mid"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
-    <ImageView android:id="@+id/ic_filter" android:layout_gravity="right" android:layout_height="match_parent" android:layout_marginRight="16dp" android:layout_width="wrap_content" android:src="@drawable/ic_filter" android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/ic_filter"
+        android:layout_gravity="right"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_filter"
+        android:visibility="gone" />
 
 
-    <ImageView android:background="@drawable/ic_shopping_cart_black_24dp" android:id="@+id/view_cart_btn1" android:layout_gravity="right" android:layout_height="30dp" android:layout_marginRight="5dp" android:layout_width="30dp" android:onClick="gotoCart" android:visibility="gone"/>
+    <ImageView
+        android:background="@drawable/ic_shopping_cart_black_24dp"
+        android:id="@+id/view_cart_btn1"
+        android:layout_gravity="right"
+        android:layout_height="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="30dp"
+        android:onClick="gotoCart"
+        android:visibility="gone" />
 
-    <RelativeLayout android:gravity="center_vertical" android:id="@+id/view_cart_btn" android:layout_alignParentBottom="true" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_marginEnd="5dp" android:layout_width="wrap_content" android:onClick="gotoCart" android:orientation="horizontal" android:visibility="gone">
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:id="@+id/view_cart_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_width="wrap_content"
+        android:onClick="gotoCart"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
-        <ImageView android:id="@+id/header_logo" android:layout_height="48dp" android:layout_width="48dp" android:padding="10dp" android:src="@drawable/ic_shopping_cart_black_24dp"/>
+        <ImageView
+            android:id="@+id/header_logo"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_shopping_cart_black_24dp" />
 
-        <TextView android:background="@drawable/badge_yellow" android:gravity="center" android:id="@+id/total_badge_txt" android:layout_height="20dp" android:layout_marginLeft="-20dp" android:layout_marginTop="2dp" android:layout_toRightOf="@+id/header_logo" android:layout_width="20dp" android:text="@string/toolbar_total_badge_txt_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_xsmall"/>
+        <TextView
+            android:background="@drawable/badge_yellow"
+            android:gravity="center"
+            android:id="@+id/total_badge_txt"
+            android:layout_height="20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@+id/header_logo"
+            android:layout_width="20dp"
+            android:text="@string/toolbar_total_badge_txt_text"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_xsmall" />
 
 
     </RelativeLayout>
 
-    <ImageView android:background="@drawable/qr_code_image" android:id="@+id/qr_code_btn" android:layout_gravity="right" android:layout_height="30dp" android:layout_marginLeft="10dp" android:layout_marginRight="16dp" android:layout_width="30dp" android:visibility="gone"/>
+    <ImageView
+        android:background="@drawable/qr_code_image"
+        android:id="@+id/qr_code_btn"
+        android:layout_gravity="right"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="30dp"
+        android:visibility="gone" />
 
 </android.support.v7.widget.Toolbar>

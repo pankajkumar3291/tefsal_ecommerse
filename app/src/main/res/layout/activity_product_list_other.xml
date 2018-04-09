@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/colorPrimary" android:fitsSystemWindows="true" android:id="@+id/main_layout" android:layout_height="match_parent" android:layout_width="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:id="@+id/main_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-    <android.support.design.widget.TabLayout android:id="@+id/tabSubCategory" android:layout_below="@+id/toolbar" android:layout_height="wrap_content" android:layout_width="match_parent" app:tabBackground="@color/colorPrimary" app:tabIndicatorColor="@color/colorAccent" app:tabIndicatorHeight="5dp" app:tabSelectedTextColor="@color/colorAccent" app:tabTextColor="@color/colorAccent">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabSubCategory"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:tabBackground="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorHeight="5dp"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/colorAccent">
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager android:id="@+id/viewPageSubCat" android:layout_below="@+id/tabSubCategory" android:layout_height="wrap_content" android:layout_width="match_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPageSubCat"
+        android:layout_below="@+id/tabSubCategory"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 </RelativeLayout>

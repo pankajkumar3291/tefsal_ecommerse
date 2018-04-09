@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:clickable="true" android:id="@+id/seasonItem" android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true"
+    android:id="@+id/seasonItem"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout android:background="@drawable/roun_image_background_ll" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="2dp">
+    <LinearLayout
+        android:background="@drawable/roun_image_background_ll"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="2dp">
 
-        <ImageView android:background="@drawable/round_image_background_for_color" android:id="@+id/imgSeason" android:layout_gravity="center" android:layout_height="50dp" android:layout_width="50dp"/>
+        <ImageView
+            android:background="@drawable/round_image_background_for_color"
+            android:id="@+id/imgSeason"
+            android:layout_gravity="center"
+            android:layout_height="50dp"
+            android:layout_width="50dp" />
     </LinearLayout>
 
-    <TextView android:gravity="center" android:id="@+id/txt_season_name" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/marging_bottom_text" android:layout_width="wrap_content" android:text="@string/cp_title_beige" android:textColor="@color/colorWhite" android:textSize="@dimen/text_small"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/txt_season_name"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/marging_bottom_text"
+        android:layout_width="wrap_content"
+        android:text="@string/cp_title_beige"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_small" />
 </LinearLayout>

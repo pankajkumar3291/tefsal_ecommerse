@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorPrimary" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.OtherStoresActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tefsalkw.activity.OtherStoresActivity">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
-    <android.support.v7.widget.RecyclerView android:id="@+id/recycler" android:layout_alignParentStart="true" android:layout_alignParentTop="true" android:layout_height="match_parent" android:layout_width="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 

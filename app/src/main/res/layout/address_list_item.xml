@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/LL_main_layout" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
-    <View android:background="#ccc" android:id="@+id/list_seperator" android:layout_height="2dp" android:layout_width="match_parent"/>
-    <LinearLayout android:layout_height="50dp" android:layout_width="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LL_main_layout"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:background="#ccc"
+        android:id="@+id/list_seperator"
+        android:layout_height="2dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent">
 
 
-    <TextView android:gravity="center" android:id="@+id/address_name_txt" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/address_list_item_address_name_txt_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_large"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/address_name_txt"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/address_list_item_address_name_txt_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_large" />
 
     </LinearLayout>
 

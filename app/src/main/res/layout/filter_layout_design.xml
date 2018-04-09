@@ -1,50 +1,157 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/colorHeader" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="120dp" android:orientation="vertical" app:theme="@style/TransparentToolbar">
-    <ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
-   <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
-    <LinearLayout android:layout_height="20dp" android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL" android:layout_width="match_parent">
-        <TextView android:fitsSystemWindows="true" android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:text="Country" android:textColor="@color/colorPrimary" android:textSize="@dimen/text_normal"/>
-    </LinearLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorHeader"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="120dp"
+    android:orientation="vertical"
+    app:theme="@style/TransparentToolbar">
 
-    <LinearLayout android:id="@+id/LL_recyclerViewCountry" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-        <android.support.v7.widget.RecyclerView android:id="@+id/recyclerViewCountry" android:layout_height="wrap_content" android:layout_width="wrap_content">
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
-    <LinearLayout android:background="@color/colorBGfilterLL" android:layout_height="50dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
-        <TextView android:gravity="center" android:id="@+id/see_all_contry_text" android:layout_height="match_parent" android:layout_width="match_parent" android:text="@string/see_all_txt" android:textAllCaps="true" android:textColor="@color/colorPrimary"/>
-    </LinearLayout>
-       <View android:background="@color/colorGray" android:id="@+id/country_divider" android:layout_height="2dp" android:layout_width="match_parent"/>
-       <LinearLayout android:layout_height="20dp" android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL" android:layout_width="match_parent">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
-           <TextView android:fitsSystemWindows="true" android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:text="Brand" android:textColor="@color/colorPrimary" android:textSize="@dimen/text_normal"/>
+            <LinearLayout
+                android:layout_height="20dp"
+                android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL"
+                android:layout_width="match_parent">
 
-       </LinearLayout>
+                <TextView
+                    android:fitsSystemWindows="true"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="Country"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
 
-       <android.support.v7.widget.RecyclerView android:id="@+id/recyclerViewBrand" android:layout_height="wrap_content" android:layout_width="wrap_content">
-       </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:id="@+id/LL_recyclerViewCountry"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerViewCountry"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"></android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/colorBGfilterLL"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/see_all_contry_text"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="@string/see_all_txt"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+            <View
+                android:background="@color/colorGray"
+                android:id="@+id/country_divider"
+                android:layout_height="2dp"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:layout_height="20dp"
+                android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:fitsSystemWindows="true"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="Brand"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewBrand"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"></android.support.v7.widget.RecyclerView>
 
 
+            <LinearLayout
+                android:background="@color/colorBGfilterLL"
+                android:fitsSystemWindows="true"
+                android:id="@+id/see"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent">
 
-    <LinearLayout android:background="@color/colorBGfilterLL" android:fitsSystemWindows="true" android:id="@+id/see" android:layout_height="50dp" android:layout_marginTop="30dp" android:layout_width="match_parent">
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/see_all_brand_text"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="@string/see_all_txt"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary" />
 
-        <TextView android:gravity="center" android:id="@+id/see_all_brand_text" android:layout_height="match_parent" android:layout_width="match_parent" android:text="@string/see_all_txt" android:textAllCaps="true" android:textColor="@color/colorPrimary"/>
+            </LinearLayout>
 
-    </LinearLayout>
-    <View android:background="@color/colorGray" android:layout_height="2dp" android:layout_width="match_parent"/>
-    <LinearLayout android:layout_height="30dp" android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL" android:layout_width="match_parent">
+            <View
+                android:background="@color/colorGray"
+                android:layout_height="2dp"
+                android:layout_width="match_parent" />
 
-        <TextView android:fitsSystemWindows="true" android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:text="Pattern" android:textColor="@color/colorPrimary" android:textSize="@dimen/text_normal"/>
+            <LinearLayout
+                android:layout_height="30dp"
+                android:layout_marginBottom="@dimen/marginBottom_filter_layout_design_LL"
+                android:layout_width="match_parent">
 
-    </LinearLayout>
-       <android.support.v7.widget.RecyclerView android:id="@+id/recyclerViewPattern" android:layout_height="wrap_content" android:layout_width="wrap_content">
-       </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:fitsSystemWindows="true"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="Pattern"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_normal" />
 
-       <LinearLayout android:background="@color/colorBGfilterLL" android:fitsSystemWindows="true" android:id="@+id/see_all_pattern_text_LL" android:layout_height="50dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+            </LinearLayout>
 
-        <TextView android:background="@drawable/filter_tv_border" android:gravity="center" android:id="@+id/see_all_pattern_text" android:layout_height="match_parent" android:layout_width="match_parent" android:text="@string/see_all_txt" android:textAllCaps="true" android:textColor="@color/colorPrimary"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewPattern"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"></android.support.v7.widget.RecyclerView>
 
-   </LinearLayout>
+            <LinearLayout
+                android:background="@color/colorBGfilterLL"
+                android:fitsSystemWindows="true"
+                android:id="@+id/see_all_pattern_text_LL"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:background="@drawable/filter_tv_border"
+                    android:gravity="center"
+                    android:id="@+id/see_all_pattern_text"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:text="@string/see_all_txt"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -1,31 +1,108 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/round_blue_shape_cd" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/round_blue_shape_cd"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
 
-    <RelativeLayout android:layout_height="150dp" android:layout_margin="@dimen/activity_vertical_margin" android:layout_width="wrap_content">
+    <RelativeLayout
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content">
         <!--android:background="@drawable/round_blue_shape_cd"-->
 
-        <RelativeLayout android:id="@+id/headerbar" android:layout_height="30dp" android:layout_width="match_parent">
+        <RelativeLayout
+            android:id="@+id/headerbar"
+            android:layout_height="30dp"
+            android:layout_width="match_parent">
             <!-- android:background="@drawable/two_point_top_shape"   -->
-            <TextView android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="CONFIRMATION" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="CONFIRMATION"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid" />
         </RelativeLayout>
-        <View android:background="#ccc" android:id="@+id/header_seperator2" android:layout_below="@+id/headerbar" android:layout_height="1dp" android:layout_marginBottom="10dp" android:layout_width="match_parent"/>
+
+        <View
+            android:background="#ccc"
+            android:id="@+id/header_seperator2"
+            android:layout_below="@+id/headerbar"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent" />
 
 
-        <LinearLayout android:id="@+id/LL_message_container" android:layout_alignParentStart="true" android:layout_below="@+id/headerbar" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="@dimen/activity_horizontal_margin" android:paddingLeft="8dp" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin">
-            <RelativeLayout android:layout_height="match_parent" android:layout_marginLeft="@dimen/margin_left_custom_dialog" android:layout_marginRight="@dimen/margin_right_custom_dialog" android:layout_width="match_parent">
+        <LinearLayout
+            android:id="@+id/LL_message_container"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headerbar"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingLeft="8dp"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin">
 
-                <TextView android:gravity="center" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="Are you sure to delete?" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_left_custom_dialog"
+                android:layout_marginRight="@dimen/margin_right_custom_dialog"
+                android:layout_width="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="Are you sure to delete?"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_mid" />
 
             </RelativeLayout>
         </LinearLayout>
 
-        <View android:background="#ccc" android:id="@+id/header_seperator" android:layout_below="@+id/LL_message_container" android:layout_height="1dp" android:layout_marginBottom="10dp" android:layout_width="match_parent"/>
-        <LinearLayout android:id="@+id/bottomBar" android:layout_alignParentBottom="true" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
+        <View
+            android:background="#ccc"
+            android:id="@+id/header_seperator"
+            android:layout_below="@+id/LL_message_container"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_alignParentBottom="true"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
             <!-- android:background="@drawable/two_point_bottom_shape"-->
-            <Button android:background="@android:color/transparent" android:id="@+id/dialog_cancel_btn" android:layout_height="match_parent" android:layout_weight="50" android:layout_width="0dp" android:text="@string/style_prompt_delete_dailog_dialog_cancel_btn_text" android:textSize="@dimen/text_mid"/>
-            <View android:background="#ccc" android:layout_height="match_parent" android:layout_width="1dp"/>
-            <Button android:background="@android:color/transparent" android:id="@+id/dialog_ok_btn" android:layout_height="match_parent" android:layout_weight="50" android:layout_width="0dp" android:text="@string/style_prompt_delete_dailog_dialog_ok_btn_text" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/dialog_cancel_btn"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:text="@string/style_prompt_delete_dailog_dialog_cancel_btn_text"
+                android:textSize="@dimen/text_mid" />
+
+            <View
+                android:background="#ccc"
+                android:layout_height="match_parent"
+                android:layout_width="1dp" />
+
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/dialog_ok_btn"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:text="@string/style_prompt_delete_dailog_dialog_ok_btn_text"
+                android:textSize="@dimen/text_mid" />
         </LinearLayout>
     </RelativeLayout>
 

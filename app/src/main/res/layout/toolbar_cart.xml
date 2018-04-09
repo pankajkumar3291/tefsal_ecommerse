@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorAccent" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent">
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    android:id="@+id/toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_width="match_parent">
 
 
+    <TextView
+        android:background="@android:color/transparent"
+        android:id="@+id/edit_btn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="5dp"
+        android:text="@string/toolbar_cart_edit_btn_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_normal" />
 
-    <TextView android:background="@android:color/transparent" android:id="@+id/edit_btn" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:text="@string/toolbar_cart_edit_btn_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
 
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/toolbar_cart_toolbar_title_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_mid"
+        fontPath="fonts/Lato-Bold.ttf"
+        tools:ignore="MissingPrefix" />
 
-
-    <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/toolbar_cart_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
-
-    <ImageView android:id="@+id/cancel_btn" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:layout_width="wrap_content" android:padding="10dp" android:src="@drawable/ic_close_black_24dp"/>
+    <ImageView
+        android:id="@+id/cancel_btn"
+        android:layout_gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/ic_close_black_24dp" />
 
 </android.support.v7.widget.Toolbar>

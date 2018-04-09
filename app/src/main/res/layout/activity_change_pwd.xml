@@ -1,33 +1,118 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/sign_in_up_bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/sign_in_up_bg"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar_chng_pwd"/>
-    <LinearLayout android:gravity="center" android:id="@+id/LL_content" android:layout_alignParentStart="true" android:layout_alignParentTop="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
-        <ImageView android:id="@+id/imageView" android:layout_height="150dp" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_width="200dp" android:src="@drawable/logo_navy"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_chng_pwd" />
 
-        <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_current_pwd" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="40dp" android:layout_width="match_parent">
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/LL_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-            <EditText android:hint="@string/hint_current_pwd" android:id="@+id/current_pwd" android:inputType="textEmailAddress" android:layout_height="wrap_content" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_normal"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_height="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="200dp"
+            android:src="@drawable/logo_navy" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_current_pwd"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent">
+
+            <EditText
+                android:hint="@string/hint_current_pwd"
+                android:id="@+id/current_pwd"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textColorHint="@color/colorTheme"
+                android:textSize="@dimen/text_normal" />
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout android:id="@+id/input_layout_new_pwd" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_new_pwd"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent">
 
-            <EditText android:hint="@string/hint_new_pwd" android:id="@+id/input_new_pwd" android:inputType="textEmailAddress" android:layout_height="wrap_content" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_normal"/>
+            <EditText
+                android:hint="@string/hint_new_pwd"
+                android:id="@+id/input_new_pwd"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textColorHint="@color/colorTheme"
+                android:textSize="@dimen/text_normal" />
 
         </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout android:gravity="right" android:id="@+id/input_layout_confirm_pwd" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:gravity="right"
+            android:id="@+id/input_layout_confirm_pwd"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent">
 
 
-            <EditText android:hint="@string/hint_confirm_pwd" android:id="@+id/input_confirm_pwd" android:layout_height="wrap_content" android:layout_width="match_parent" android:singleLine="true" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_normal"/>
+            <EditText
+                android:hint="@string/hint_confirm_pwd"
+                android:id="@+id/input_confirm_pwd"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textColorHint="@color/colorTheme"
+                android:textSize="@dimen/text_normal" />
 
         </android.support.design.widget.TextInputLayout>
 
 
-
-        <Button android:background="@color/colorTheme" android:id="@+id/btn_chng_pwd" android:layout_height="wrap_content" android:layout_marginEnd="8dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginStart="8dp" android:layout_marginTop="24dp" android:layout_width="match_parent" android:text="@string/btn_txt_chnge_pwd" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
+        <Button
+            android:background="@color/colorTheme"
+            android:id="@+id/btn_chng_pwd"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:text="@string/btn_txt_chnge_pwd"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_normal" />
 
     </LinearLayout>
 

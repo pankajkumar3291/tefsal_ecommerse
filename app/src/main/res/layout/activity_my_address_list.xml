@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.MyAddressListActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tefsalkw.activity.MyAddressListActivity">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar_my_address_list"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_my_address_list" />
 
-    <android.support.v7.widget.RecyclerView android:id="@+id/recycler_view" android:layout_height="wrap_content" android:layout_width="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-    <TextView android:gravity="center" android:id="@+id/empty_view" android:layout_gravity="center_vertical" android:layout_height="match_parent" android:layout_width="match_parent" android:text="@string/activity_my_address_list_empty_view_text" android:visibility="gone"/>
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/empty_view"
+        android:layout_gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="@string/activity_my_address_list_empty_view_text"
+        android:visibility="gone" />
 </LinearLayout>

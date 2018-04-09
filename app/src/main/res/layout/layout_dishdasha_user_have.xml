@@ -1,30 +1,86 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/round_blue_shape_cd" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/round_blue_shape_cd"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout android:layout_height="200dp" android:layout_margin="@dimen/activity_vertical_margin" android:layout_width="wrap_content">
+    <RelativeLayout
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content">
         <!--android:background="@drawable/round_blue_shape_cd"-->
-        <RelativeLayout android:id="@+id/headerbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent">
+        <RelativeLayout
+            android:id="@+id/headerbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent">
 
             <!-- android:background="@drawable/two_point_top_shape"   -->
 
 
-            <TextView android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Number of Meters" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Number of Meters"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid" />
         </RelativeLayout>
 
 
-        <LinearLayout android:id="@+id/LL_min_txt_container" android:layout_alignParentStart="true" android:layout_below="@+id/headerbar" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:paddingBottom="@dimen/activity_horizontal_margin" android:paddingLeft="8dp" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin">
+        <LinearLayout
+            android:id="@+id/LL_min_txt_container"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/headerbar"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:paddingLeft="8dp"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin">
 
-            <RelativeLayout android:gravity="center" android:layout_height="match_parent" android:layout_marginLeft="@dimen/margin_left_custom_dialog" android:layout_marginRight="@dimen/margin_right_custom_dialog" android:layout_width="match_parent">
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_left_custom_dialog"
+                android:layout_marginRight="@dimen/margin_right_custom_dialog"
+                android:layout_width="match_parent">
 
-                <LinearLayout android:id="@+id/LL_txt_container" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/LL_txt_container"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
 
-                    <TextView android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="How many meters do you have?" android:textColor="@color/colorNavy"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="How many meters do you have?"
+                        android:textColor="@color/colorNavy" />
 
-                    <RelativeLayout android:gravity="center" android:layout_height="40dp" android:layout_width="match_parent">
+                    <RelativeLayout
+                        android:gravity="center"
+                        android:layout_height="40dp"
+                        android:layout_width="match_parent">
 
-                        <EditText android:id="@+id/inputmeter" android:inputType="numberDecimal" android:layout_height="wrap_content" android:layout_width="30dp" android:maxLength="2"/>
+                        <EditText
+                            android:id="@+id/inputmeter"
+                            android:inputType="numberDecimal"
+                            android:layout_height="wrap_content"
+                            android:layout_width="30dp"
+                            android:maxLength="2" />
 
-                        <TextView android:gravity="bottom" android:layout_height="match_parent" android:layout_toRightOf="@+id/inputmeter" android:layout_width="wrap_content" android:text="M" android:textColor="@color/colorNavy" android:textSize="@dimen/text_large"/>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@+id/inputmeter"
+                            android:layout_width="wrap_content"
+                            android:text="M"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_large" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -33,15 +89,44 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <View android:background="#ccc" android:id="@+id/view_footer" android:layout_below="@+id/LL_min_txt_container" android:layout_height="1dp" android:layout_width="match_parent"/>
+        <View
+            android:background="#ccc"
+            android:id="@+id/view_footer"
+            android:layout_below="@+id/LL_min_txt_container"
+            android:layout_height="1dp"
+            android:layout_width="match_parent" />
 
-        <LinearLayout android:id="@+id/bottomBar" android:layout_alignParentBottom="true" android:layout_below="@+id/view_footer" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" android:orientation="horizontal" android:weightSum="100">
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/view_footer"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
             <!-- android:background="@drawable/two_point_bottom_shape"-->
-            <Button android:background="@android:color/transparent" android:id="@+id/dialog_yes_btn" android:layout_height="match_parent" android:layout_weight="50" android:layout_width="0dp" android:text="@string/layout_dishdasha_user_have_dialog_yes_btn_text" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/dialog_yes_btn"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:text="@string/layout_dishdasha_user_have_dialog_yes_btn_text"
+                android:textSize="@dimen/text_mid" />
 
-            <View android:background="#ccc" android:layout_height="match_parent" android:layout_width="1dp"/>
+            <View
+                android:background="#ccc"
+                android:layout_height="match_parent"
+                android:layout_width="1dp" />
 
-            <Button android:background="@android:color/transparent" android:id="@+id/dialog_no_btn" android:layout_height="match_parent" android:layout_weight="50" android:layout_width="0dp" android:text="@string/layout_dishdasha_user_have_dialog_no_btn_text" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/dialog_no_btn"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:layout_width="0dp"
+                android:text="@string/layout_dishdasha_user_have_dialog_no_btn_text"
+                android:textSize="@dimen/text_mid" />
         </LinearLayout>
     </RelativeLayout>
 

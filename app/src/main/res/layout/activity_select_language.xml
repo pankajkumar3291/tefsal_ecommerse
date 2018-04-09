@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/app_bg1" android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.SplashActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/app_bg1"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tefsalkw.activity.SplashActivity">
 
 
-    <ImageView android:id="@+id/logo" android:layout_height="@dimen/width_btn_mid" android:layout_width="wrap_content" android:src="@drawable/logo_white"/>
-    <TextView android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:text="Get tailored to your doorstep" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid"/>
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_height="@dimen/width_btn_mid"
+        android:layout_width="wrap_content"
+        android:src="@drawable/logo_white" />
 
-    <LinearLayout android:gravity="center_horizontal" android:layout_height="wrap_content" android:layout_marginTop="@dimen/width_btn_small" android:layout_width="match_parent" android:orientation="vertical">
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:text="Get tailored to your doorstep"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_mid" />
 
-    <Button android:background="@drawable/outline_button_shape" android:id="@+id/btn_english" android:layout_height="wrap_content" android:layout_width="@dimen/width_btn_xlarge" android:text="@string/btn_english" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_btn_small"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:background="@drawable/outline_button_shape"
+            android:id="@+id/btn_english"
+            android:layout_height="wrap_content"
+            android:layout_width="@dimen/width_btn_xlarge"
+            android:text="@string/btn_english"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_normal" />
 
 
-
-    <Button android:background="@drawable/outline_button_shape" android:id="@+id/btn_arabic" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_mid" android:layout_width="@dimen/width_btn_xlarge" android:text="@string/btn_arabic" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
+        <Button
+            android:background="@drawable/outline_button_shape"
+            android:id="@+id/btn_arabic"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_mid"
+            android:layout_width="@dimen/width_btn_xlarge"
+            android:text="@string/btn_arabic"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_normal" />
     </LinearLayout>
 
 

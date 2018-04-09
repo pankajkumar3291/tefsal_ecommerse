@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent" tools:context="com.tefsalkw.activity.CustomVideoPlayerActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="com.tefsalkw.activity.CustomVideoPlayerActivity">
 
-    <com.afollestad.easyvideoplayer.EasyVideoPlayer android:id="@+id/player" android:layout_height="match_parent" android:layout_width="match_parent" app:evp_autoFullscreen="false" app:evp_autoPlay="true" app:evp_customLabelText="" app:evp_disableControls="false" app:evp_hideControlsOnPlay="true" app:evp_leftAction="restart" app:evp_loop="false" app:evp_pauseDrawable="@drawable/evp_action_pause" app:evp_playDrawable="@drawable/evp_action_play" app:evp_restartDrawable="@drawable/evp_action_restart" app:evp_retryText="@string/evp_retry" app:evp_rightAction="submit" app:evp_submitText="CLOSE" app:evp_themeColor="@color/colorPrimary" app:layout_constraintLeft_toRightOf="parent" app:layout_constraintRight_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+    <com.afollestad.easyvideoplayer.EasyVideoPlayer
+        android:id="@+id/player"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:evp_autoFullscreen="false"
+        app:evp_autoPlay="true"
+        app:evp_customLabelText=""
+        app:evp_disableControls="false"
+        app:evp_hideControlsOnPlay="true"
+        app:evp_leftAction="restart"
+        app:evp_loop="false"
+        app:evp_pauseDrawable="@drawable/evp_action_pause"
+        app:evp_playDrawable="@drawable/evp_action_play"
+        app:evp_restartDrawable="@drawable/evp_action_restart"
+        app:evp_retryText="@string/evp_retry"
+        app:evp_rightAction="submit"
+        app:evp_submitText="CLOSE"
+        app:evp_themeColor="@color/colorPrimary"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

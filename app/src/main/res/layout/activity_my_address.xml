@@ -1,111 +1,348 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/bg" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" tools:context="com.tefsalkw.activity.MyAddressActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tefsalkw.activity.MyAddressActivity">
 
-<android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        app:theme="@style/TransparentToolbar">
 
 
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_back"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/ic_left_arrow" />
 
-    <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/activity_my_address_toolbar_title_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid" />
 
 
+        <ImageView
+            android:id="@+id/editBtn"
+            android:layout_gravity="right"
+            android:layout_height="48dp"
+            android:layout_width="48dp"
+            android:padding="10dp"
+            android:src="@drawable/edit_pencil" />
 
-    <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_my_address_toolbar_title_text" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_small">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_address_name"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:hint="@string/activity_my_address_input_address_name_hint"
+                    android:id="@+id/input_address_name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:id="@+id/countryTxt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_country"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <Spinner
+                    android:id="@+id/spin_country"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingRight="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small" />
+
+                <View
+                    android:background="@color/colorAccent"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="@dimen/margin_mid" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:id="@+id/cityTxt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_city"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <Spinner
+                    android:id="@+id/spin_city"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingRight="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small" />
+
+                <View
+                    android:background="@color/colorAccent"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="@dimen/margin_mid" />
+
+            </LinearLayout>
 
 
-    <ImageView android:id="@+id/editBtn" android:layout_gravity="right" android:layout_height="48dp" android:layout_width="48dp" android:padding="10dp" android:src="@drawable/edit_pencil"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
-</android.support.v7.widget.Toolbar>
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:id="@+id/areaTxt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_area"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
 
-<ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
+                <Spinner
+                    android:id="@+id/spin_area"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingRight="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small" />
 
-    <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:padding="@dimen/margin_small">
+                <View
+                    android:background="@color/colorAccent"
+                    android:layout_height="1dp"
+                    android:layout_width="match_parent"
+                    android:paddingRight="@dimen/margin_mid" />
+            </LinearLayout>
 
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
 
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_address_name" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
-            <EditText android:hint="@string/activity_my_address_input_address_name_hint" android:id="@+id/input_address_name" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textSize="@dimen/text_normal"/>
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_block"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
 
+                <EditText
+                    android:id="@+id/input_block"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_avenue"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:id="@+id/input_avenue"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_floor"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:id="@+id/input_floor"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawablePadding="@dimen/margin_xxsmall"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xsmall"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_house"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:id="@+id/input_house"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_paci_number"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:id="@+id/input_paci_num"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textColorHint="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_xlarge"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/hint_add_desp"
+                    android:textColor="@color/colorDGray"
+                    android:textSize="@dimen/text_small" />
+
+                <EditText
+                    android:id="@+id/input_add_desp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/margin_mid"
+                    android:paddingTop="@dimen/margin_small"
+                    android:singleLine="true"
+                    android:textColor="@color/colorTheme"
+                    android:textColorHint="@color/colorTheme"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/countryTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_country" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <Spinner android:id="@+id/spin_country" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
-
-            <View android:background="@color/colorAccent" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/cityTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_city" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <Spinner android:id="@+id/spin_city" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
-            <View android:background="@color/colorAccent" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:id="@+id/areaTxt" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_area" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <Spinner android:id="@+id/spin_area" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingRight="@dimen/margin_mid" android:paddingTop="@dimen/margin_small"/>
-            <View android:background="@color/colorAccent" android:layout_height="1dp" android:layout_width="match_parent" android:paddingRight="@dimen/margin_mid"/>
-        </LinearLayout>
-
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_block" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_block" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/hint_avenue" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_avenue" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/hint_floor" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_floor" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:drawableLeft="@drawable/ic_star2" android:drawablePadding="@dimen/margin_xxsmall" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/margin_xsmall" android:layout_width="wrap_content" android:text="@string/hint_house" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_house" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/hint_paci_number" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_paci_num" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_height="wrap_content" android:layout_marginBottom="@dimen/margin_xlarge" android:layout_marginTop="@dimen/margin_small" android:layout_width="match_parent" android:orientation="vertical">
-
-            <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/hint_add_desp" android:textColor="@color/colorDGray" android:textSize="@dimen/text_small"/>
-
-            <EditText android:id="@+id/input_add_desp" android:layout_height="wrap_content" android:layout_width="match_parent" android:paddingBottom="@dimen/margin_mid" android:paddingTop="@dimen/margin_small" android:singleLine="true" android:textColor="@color/colorTheme" android:textColorHint="@color/colorTheme" android:textSize="@dimen/text_normal"/>
-
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 </LinearLayout>

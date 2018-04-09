@@ -1,28 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/colorPrimary" android:layout_height="match_parent" android:layout_width="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <LinearLayout android:id="@+id/LL_tailor_product_from_cart" android:layout_height="wrap_content" android:layout_marginBottom="15dp" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/LL_tailor_product_from_cart"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-        <TextView android:gravity="center_horizontal" android:id="@+id/textheader" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="10dp" android:text="@string/fragment_tailor_product_textheader_text" android:textColor="@color/colorGray" android:textSize="@dimen/text_mid"/>
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/textheader"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="@string/fragment_tailor_product_textheader_text"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/text_mid" />
 
 
-        <TextView android:id="@+id/dishInfoText" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="10dp" android:text="@string/fragment_tailor_product_dishInfoText_text" android:textColor="@color/colorNavy"/>
+        <TextView
+            android:id="@+id/dishInfoText"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:text="@string/fragment_tailor_product_dishInfoText_text"
+            android:textColor="@color/colorNavy" />
 
 
-        <ListView android:divider="@android:color/transparent" android:dividerHeight="0dp" android:id="@+id/list" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="10dp">
+        <ListView
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:id="@+id/list"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp">
 
         </ListView>
 
-        <TextView android:gravity="center" android:id="@+id/ownTextileText" android:layout_height="wrap_content" android:layout_width="match_parent" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/ownTextileText"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid" />
 
     </LinearLayout>
 
-    <View android:background="@color/colorDivider" android:id="@+id/seperator_view" android:layout_below="@+id/LL_tailor_product_from_cart" android:layout_height="2dp" android:layout_width="match_parent"/>
+    <View
+        android:background="@color/colorDivider"
+        android:id="@+id/seperator_view"
+        android:layout_below="@+id/LL_tailor_product_from_cart"
+        android:layout_height="2dp"
+        android:layout_width="match_parent" />
 
-    <LinearLayout android:id="@+id/LL_dishdasha_tailor_product" android:layout_below="@+id/seperator_view" android:layout_height="wrap_content" android:layout_marginBottom="60dp" android:layout_width="match_parent">
+    <LinearLayout
+        android:id="@+id/LL_dishdasha_tailor_product"
+        android:layout_below="@+id/seperator_view"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_width="match_parent">
 
 
-        <ListView android:divider="@android:color/transparent" android:dividerHeight="0dp" android:id="@+id/list2" android:layout_height="wrap_content" android:layout_width="match_parent" android:padding="10dp">
+        <ListView
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:id="@+id/list2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:padding="10dp">
 
 
         </ListView>
@@ -31,7 +82,23 @@
     </LinearLayout>
 
 
-    <Button android:background="@color/colorAccent" android:id="@+id/tailor_add" android:layout_alignParentBottom="true" android:layout_height="50dp" android:layout_marginBottom="10dp" android:layout_marginEnd="20dp" android:layout_marginStart="20dp" android:layout_width="match_parent" android:text="@string/fragment_tailor_product_tailor_add_text" android:textColor="@color/colorWhite" android:textSize="@dimen/text_normal"/>
+    <Button
+        android:background="@color/colorAccent"
+        android:id="@+id/tailor_add"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:text="@string/fragment_tailor_product_tailor_add_text"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_normal" />
 
-    <ProgressBar android:id="@+id/loading" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:visibility="gone"/>
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone" />
 </RelativeLayout>

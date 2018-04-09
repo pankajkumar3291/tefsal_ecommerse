@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent" android:padding="@dimen/activity_horizontal_margin">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <TextView android:id="@+id/tv_material" android:layout_height="match_parent" android:layout_width="match_parent" android:text="@string/hello_blank_fragment" android:textSize="@dimen/text_normal"/>
+    <TextView
+        android:id="@+id/tv_material"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="@dimen/text_normal" />
 
 </FrameLayout>

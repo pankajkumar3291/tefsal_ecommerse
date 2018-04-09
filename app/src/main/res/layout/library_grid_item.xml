@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<com.tefsalkw.utils.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/l_gray" android:gravity="center" android:layout_height="80dp" android:layout_width="80dp" android:orientation="vertical">
+<com.tefsalkw.utils.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/l_gray"
+    android:gravity="center"
+    android:layout_height="80dp"
+    android:layout_width="80dp"
+    android:orientation="vertical">
 
 
-    <LinearLayout android:gravity="center" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-        <TextView android:gravity="center" android:id="@+id/txt_country_name" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/library_grid_item_txt_country_name_text" android:textColor="@color/colorPrimaryDark" android:textSize="16sp" android:textStyle="bold"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txt_country_name"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/library_grid_item_txt_country_name_text"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <ImageView android:id="@+id/imgv_image" android:layout_gravity="center" android:layout_height="40dp" android:layout_margin="3dp" android:layout_width="60dp" android:padding="5dp" android:scaleType="fitXY" android:src="@drawable/india"/>
+        <ImageView
+            android:id="@+id/imgv_image"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:layout_width="60dp"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/india" />
     </LinearLayout>
 
 </com.tefsalkw.utils.SquareRelativeLayout>

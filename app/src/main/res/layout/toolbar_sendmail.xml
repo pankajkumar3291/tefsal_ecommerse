@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorAccent" android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    android:id="@+id/toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_width="match_parent"
+    app:theme="@style/TransparentToolbar">
 
 
-    <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow" android:tint="@color/colorWhite"/>
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:id="@+id/btn_back"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="5dp"
+        android:src="@drawable/ic_left_arrow"
+        android:tint="@color/colorWhite" />
 
-    <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAllCaps="true" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_mid"
+        fontPath="fonts/Lato-Bold.ttf"
+        tools:ignore="MissingPrefix" />
 
-    <TextView android:clickable="true" android:id="@+id/btn_sndmail" android:layout_gravity="end" android:layout_height="wrap_content" android:layout_marginEnd="20dp" android:layout_width="wrap_content" android:text="@string/toolbar_sendmail_btn_sndmail_text" android:textAllCaps="true" android:textColor="@color/colorWhite" android:textSize="@dimen/text_mid" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
+    <TextView
+        android:clickable="true"
+        android:id="@+id/btn_sndmail"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_width="wrap_content"
+        android:text="@string/toolbar_sendmail_btn_sndmail_text"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_mid"
+        fontPath="fonts/Lato-Bold.ttf"
+        tools:ignore="MissingPrefix" />
 
 
 </android.support.v7.widget.Toolbar>

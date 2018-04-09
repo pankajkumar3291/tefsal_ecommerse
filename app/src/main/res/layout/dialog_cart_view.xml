@@ -1,46 +1,133 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/round_blue_shape_cd" android:layout_height="wrap_content" android:layout_margin="20dp" android:layout_width="match_parent" android:orientation="vertical" android:padding="10dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/round_blue_shape_cd"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
 
 
-    <TextView android:gravity="center" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="match_parent" android:text="Item added successfully" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid"/>
+    <TextView
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:text="Item added successfully"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_mid" />
 
-    <TextView android:gravity="center" android:id="@+id/txt_min_meter" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_width="wrap_content" android:text="@string/dialog_cart_view_txt_min_meter_text" android:textSize="@dimen/text_normal"/>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/txt_min_meter"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:text="@string/dialog_cart_view_txt_min_meter_text"
+        android:textSize="@dimen/text_normal" />
 
-    <LinearLayout android:layout_height="wrap_content" android:layout_margin="@dimen/activity_vertical_margin" android:layout_width="match_parent" android:orientation="vertical">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout android:id="@+id/llContinue" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/llContinue"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
-            <View android:background="#ccc" android:layout_height="1dp" android:layout_width="match_parent"/>
+            <View
+                android:background="#ccc"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
 
-            <Button android:background="@android:color/transparent" android:id="@+id/btnllContinue" android:layout_height="50dp" android:layout_width="match_parent" android:text="@string/dialog_cart_view_btnllContinue_text" android:textAllCaps="false" android:textColor="@color/md_material_blue_600" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/btnllContinue"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:text="@string/dialog_cart_view_btnllContinue_text"
+                android:textAllCaps="false"
+                android:textColor="@color/md_material_blue_600"
+                android:textSize="@dimen/text_mid" />
 
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/llChooseStore" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+        <LinearLayout
+            android:id="@+id/llChooseStore"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            <View android:background="#ccc" android:layout_height="1dp" android:layout_width="match_parent"/>
+            <View
+                android:background="#ccc"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
 
-            <Button android:background="@android:color/transparent" android:id="@+id/btnllChooseStore" android:layout_height="50dp" android:layout_width="match_parent" android:text="@string/dialog_cart_view_btnllChooseStore_text" android:textAllCaps="false" android:textColor="@color/md_material_blue_600" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/btnllChooseStore"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:text="@string/dialog_cart_view_btnllChooseStore_text"
+                android:textAllCaps="false"
+                android:textColor="@color/md_material_blue_600"
+                android:textSize="@dimen/text_mid" />
 
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/llChooseTailor" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/llChooseTailor"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
-            <View android:background="#ccc" android:layout_height="1dp" android:layout_width="match_parent"/>
+            <View
+                android:background="#ccc"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
 
-            <Button android:background="@android:color/transparent" android:id="@+id/btnllChooseTailor" android:layout_height="50dp" android:layout_width="match_parent" android:text="@string/dialog_cart_view_btnllChooseTailor_text" android:textAllCaps="false" android:textColor="@color/md_material_blue_600" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/btnllChooseTailor"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:text="@string/dialog_cart_view_btnllChooseTailor_text"
+                android:textAllCaps="false"
+                android:textColor="@color/md_material_blue_600"
+                android:textSize="@dimen/text_mid" />
 
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/llGotoCart" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/llGotoCart"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
 
-            <View android:background="#ccc" android:layout_height="1dp" android:layout_width="match_parent"/>
+            <View
+                android:background="#ccc"
+                android:layout_height="1dp"
+                android:layout_width="match_parent" />
 
-            <Button android:background="@android:color/transparent" android:id="@+id/btnllGotoCart" android:layout_height="50dp" android:layout_width="match_parent" android:text="@string/dialog_cart_view_btnllGotoCart_text" android:textAllCaps="false" android:textColor="@color/md_material_blue_600" android:textSize="@dimen/text_mid"/>
+            <Button
+                android:background="@android:color/transparent"
+                android:id="@+id/btnllGotoCart"
+                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:text="@string/dialog_cart_view_btnllGotoCart_text"
+                android:textAllCaps="false"
+                android:textColor="@color/md_material_blue_600"
+                android:textSize="@dimen/text_mid" />
 
 
         </LinearLayout>

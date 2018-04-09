@@ -1,96 +1,332 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:background="@color/colorPrimary" android:fitsSystemWindows="true" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
-    <ScrollView android:layout_below="@+id/toolbar" android:layout_height="match_parent" android:layout_width="match_parent">
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-        <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
 
-            <HorizontalScrollView android:layout_height="wrap_content" android:layout_width="wrap_content" android:scrollbarSize="0dp">
+            <HorizontalScrollView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:scrollbarSize="0dp">
 
-                <LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content" android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
 
-                    <RelativeLayout android:id="@+id/ll_neck" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_neck"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_neck" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_neck_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_neck"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_neck_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/neck_view" android:layout_above="@+id/tv_neck" android:layout_height="2dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/neck_view"
+                            android:layout_above="@+id/tv_neck"
+                            android:layout_height="2dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_neck" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_neck_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_neck"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_neck_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_sldr" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_sldr"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_shoulder" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_sldr_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_shoulder"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_sldr_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/sldr_view" android:layout_above="@+id/tv_shoulder" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/sldr_view"
+                            android:layout_above="@+id/tv_shoulder"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_shoulder" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_shoulder_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_shoulder"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_shoulder_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_chest" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_chest"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_chest" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_chest_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_chest"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_chest_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/chest_view" android:layout_above="@+id/tv_chest" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/chest_view"
+                            android:layout_above="@+id/tv_chest"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_chest" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_chest_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_chest"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_chest_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_waist" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_waist"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_waist" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_waist_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_waist"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_waist_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/waist_view" android:layout_above="@+id/tv_waist" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/waist_view"
+                            android:layout_above="@+id/tv_waist"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_waist" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_waist_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_waist"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_waist_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_arm" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_arm"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_arm" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_arm_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_arm"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_arm_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/arm_view" android:layout_above="@+id/tv_arm" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/arm_view"
+                            android:layout_above="@+id/tv_arm"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_arm" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_arm_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_arm"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_arm_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_wrist" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_wrist"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_wrist" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_wrist_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_wrist"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_wrist_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/wrist_view" android:layout_above="@+id/tv_wrist" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/wrist_view"
+                            android:layout_above="@+id/tv_wrist"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_wrist" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_wrist_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_wrist"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_wrist_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_frnt_height" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_frnt_height"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_f_height" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_height_front_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_f_height"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_height_front_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/f_height_view" android:layout_above="@+id/tv_f_height" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/f_height_view"
+                            android:layout_above="@+id/tv_f_height"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_f_height" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_f_height_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_f_height"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_f_height_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
-                    <RelativeLayout android:id="@+id/ll_back_height" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_back_height"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_b_height" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_height_back_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_b_height"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_height_back_blur" />
 
-                        <View android:background="@color/colorDivider" android:id="@+id/b_height_view" android:layout_above="@+id/tv_b_height" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:id="@+id/b_height_view"
+                            android:layout_above="@+id/tv_b_height"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_b_height" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_b_height_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_b_height"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_b_height_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
 
 
-                    <RelativeLayout android:id="@+id/ll_custom" android:layout_height="110dp" android:layout_width="90dp" android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/ll_custom"
+                        android:layout_height="110dp"
+                        android:layout_width="90dp"
+                        android:orientation="vertical">
 
-                        <ImageView android:id="@+id/ic_custom" android:layout_centerInParent="true" android:layout_height="60dp" android:layout_width="60dp" android:src="@drawable/icon_custom_blur"/>
+                        <ImageView
+                            android:id="@+id/ic_custom"
+                            android:layout_centerInParent="true"
+                            android:layout_height="60dp"
+                            android:layout_width="60dp"
+                            android:src="@drawable/icon_custom_blur" />
 
-                        <View android:background="@color/colorDivider" android:layout_above="@+id/tv_custom" android:layout_height="1dp" android:layout_width="match_parent"/>
+                        <View
+                            android:background="@color/colorDivider"
+                            android:layout_above="@+id/tv_custom"
+                            android:layout_height="1dp"
+                            android:layout_width="match_parent" />
 
-                        <TextView android:gravity="center" android:id="@+id/tv_custom" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_tv_custom_text" android:textColor="@color/colorNavyBlue" android:textSize="@dimen/text_xsmall" android:visibility="invisible"/>
+                        <TextView
+                            android:gravity="center"
+                            android:id="@+id/tv_custom"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_tv_custom_text"
+                            android:textColor="@color/colorNavyBlue"
+                            android:textSize="@dimen/text_xsmall"
+                            android:visibility="invisible" />
                     </RelativeLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -99,56 +335,167 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorDivider" />-->
-            <LinearLayout android:id="@+id/ll_sectionOne" android:layout_height="wrap_content" android:layout_width="match_parent" android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_sectionOne"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
 
-                <LinearLayout android:gravity="center" android:id="@+id/l1" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:layout_width="match_parent" android:orientation="vertical">
+                <LinearLayout
+                    android:gravity="center"
+                    android:id="@+id/l1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
 
-                    <LinearLayout android:gravity="center" android:layout_height="110dp" android:layout_width="match_parent" android:orientation="horizontal">
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_height="110dp"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal">
 
-                        <EditText android:hint="@string/activity_measerment_textValue_hint" android:id="@+id/textValue" android:inputType="number" android:layout_height="wrap_content" android:layout_width="wrap_content" android:maxLength="3" android:textColorHint="@color/colorNavy" android:textSize="80sp"/>
+                        <EditText
+                            android:hint="@string/activity_measerment_textValue_hint"
+                            android:id="@+id/textValue"
+                            android:inputType="number"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:maxLength="3"
+                            android:textColorHint="@color/colorNavy"
+                            android:textSize="80sp" />
 
-                        <TextView android:gravity="bottom" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="." android:textSize="30dp"/>
+                        <TextView
+                            android:gravity="bottom"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="."
+                            android:textSize="30dp" />
 
-                        <TextView android:gravity="bottom" android:id="@+id/textSubValue" android:layout_height="match_parent" android:layout_width="wrap_content" android:text="@string/activity_measerment_textSubValue_text" android:textSize="30dp"/>
+                        <TextView
+                            android:gravity="bottom"
+                            android:id="@+id/textSubValue"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:text="@string/activity_measerment_textSubValue_text"
+                            android:textSize="30dp" />
 
                     </LinearLayout>
 
-                    <TextView android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginLeft="37dp" android:layout_marginTop="-15dp" android:layout_width="wrap_content" android:text="cm" android:textSize="40sp" android:textStyle="bold"/>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="37dp"
+                        android:layout_marginTop="-15dp"
+                        android:layout_width="wrap_content"
+                        android:text="cm"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout android:id="@+id/l2" android:layout_below="@+id/l1" android:layout_height="wrap_content" android:layout_marginBottom="50dp" android:layout_marginTop="10dp" android:layout_width="match_parent" android:orientation="vertical" android:padding="10dp">
+                <LinearLayout
+                    android:id="@+id/l2"
+                    android:layout_below="@+id/l1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                    <RelativeLayout android:layout_height="40dp" android:layout_marginTop="20dp" android:layout_width="match_parent">
+                    <RelativeLayout
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent">
 
-                        <View android:background="@drawable/seekbar_bg" android:layout_centerInParent="true" android:layout_height="20dp" android:layout_width="match_parent">
+                        <View
+                            android:background="@drawable/seekbar_bg"
+                            android:layout_centerInParent="true"
+                            android:layout_height="20dp"
+                            android:layout_width="match_parent">
 
                         </View>
 
-                        <SeekBar android:id="@+id/seekBar" android:layout_centerInParent="true" android:layout_height="wrap_content" android:layout_marginLeft="-10dp" android:layout_width="match_parent" android:progressDrawable="@drawable/seekbar_progress_stroke" android:thumb="@drawable/thumb_stick"/>
+                        <SeekBar
+                            android:id="@+id/seekBar"
+                            android:layout_centerInParent="true"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_width="match_parent"
+                            android:progressDrawable="@drawable/seekbar_progress_stroke"
+                            android:thumb="@drawable/thumb_stick" />
 
                     </RelativeLayout>
 
-                    <Button android:background="@color/colorAccent" android:id="@+id/Video_Btn" android:layout_gravity="center" android:layout_height="50dp" android:layout_marginTop="40dp" android:layout_width="match_parent" android:text="@string/activity_measerment_Video_Btn_text" android:textColor="#ffffff" android:textSize="@dimen/text_normal"/>
+                    <Button
+                        android:background="@color/colorAccent"
+                        android:id="@+id/Video_Btn"
+                        android:layout_gravity="center"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/activity_measerment_Video_Btn_text"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/text_normal" />
 
-                    <Button android:background="@drawable/outline_button" android:id="@+id/viewtip_btn" android:layout_gravity="center" android:layout_height="50dp" android:layout_marginTop="20dp" android:layout_width="match_parent" android:text="@string/activity_measerment_viewtip_btn_text" android:textSize="@dimen/text_normal"/>
+                    <Button
+                        android:background="@drawable/outline_button"
+                        android:id="@+id/viewtip_btn"
+                        android:layout_gravity="center"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:text="@string/activity_measerment_viewtip_btn_text"
+                        android:textSize="@dimen/text_normal" />
                 </LinearLayout>
 
 
             </LinearLayout>
 
-            <include android:id="@+id/ll_sectionTwo" android:visibility="gone" layout="@layout/customized_section"/>
+            <include
+                android:id="@+id/ll_sectionTwo"
+                android:visibility="gone"
+                layout="@layout/customized_section" />
 
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout android:background="@color/colorPrimary" android:id="@+id/tipsLayout" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical" android:visibility="gone">
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:id="@+id/tipsLayout"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar" android:layout_height="?attr/actionBarSize" android:layout_width="match_parent" app:theme="@style/TransparentToolbar">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            app:theme="@style/TransparentToolbar">
 
-            <ImageButton android:background="@android:color/transparent" android:id="@+id/btn_back_tips" android:layout_height="wrap_content" android:layout_marginRight="5dp" android:layout_width="wrap_content" android:padding="5dp" android:src="@drawable/ic_left_arrow"/>
+            <ImageButton
+                android:background="@android:color/transparent"
+                android:id="@+id/btn_back_tips"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:padding="5dp"
+                android:src="@drawable/ic_left_arrow" />
 
-            <TextView android:id="@+id/toolbar_title" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/activity_measerment_toolbar_title_text" android:textAllCaps="true" android:textColor="@color/colorAccent" android:textSize="@dimen/text_mid" android:textStyle="bold" fontPath="fonts/Lato-Bold.ttf" tools:ignore="MissingPrefix"/>
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/activity_measerment_toolbar_title_text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold"
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix" />
         </android.support.v7.widget.Toolbar>
 
         <!-- <android.support.v4.view.ViewPager
@@ -160,7 +507,12 @@
 
          </android.support.v4.view.ViewPager>-->
 
-        <ImageView android:id="@+id/tip_image" android:layout_below="@+id/toolbar" android:layout_height="match_parent" android:layout_width="match_parent" android:padding="20dp"/>
+        <ImageView
+            android:id="@+id/tip_image"
+            android:layout_below="@+id/toolbar"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:padding="20dp" />
 
         <!--<ImageView
             android:id="@+id/leftArrow"
@@ -202,8 +554,20 @@
 -->
     </RelativeLayout>
 
-    <LinearLayout android:id="@+id/llFinish" android:layout_alignParentBottom="true" android:layout_height="wrap_content" android:layout_marginTop="@dimen/margin_custom_section" android:layout_width="match_parent" android:visibility="gone">
+    <LinearLayout
+        android:id="@+id/llFinish"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_custom_section"
+        android:layout_width="match_parent"
+        android:visibility="gone">
 
-        <Button android:background="@color/colorNavyBlue" android:id="@+id/btn_finish" android:layout_height="wrap_content" android:layout_width="match_parent" android:text="@string/activity_measerment_btn_finish_text" android:textColor="@color/colorWhite"/>
+        <Button
+            android:background="@color/colorNavyBlue"
+            android:id="@+id/btn_finish"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/activity_measerment_btn_finish_text"
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 </RelativeLayout>
