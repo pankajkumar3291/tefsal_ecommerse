@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
 android {
     signingConfigs {
         release {
@@ -70,6 +74,10 @@ dependencies {
     implementation 'com.github.douglasjunior:android-simple-tooltip:0.2.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+        transitive = true;
+    }
+    implementation 'com.android.support:multidex:1.0.1'
 }
 apply plugin: 'com.google.gms.google-services'
 

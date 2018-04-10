@@ -72,6 +72,8 @@ public class DishdishaStyleActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
+
+
         session = new SessionManager(this);
 
         setSupportActionBar(toolbar);

@@ -2,14 +2,16 @@ package com.tefsalkw.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
 
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.CertificatePinner;
+import io.fabric.sdk.android.Fabric;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -33,7 +35,8 @@ public class TefsalApplication extends Application {
         sAnalytics = GoogleAnalytics.getInstance(this);
         mInstance = this;
         super.onCreate();
-
+        MultiDex.install(this);
+        Fabric.with(this, new Crashlytics());
         initOkHttpObject();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

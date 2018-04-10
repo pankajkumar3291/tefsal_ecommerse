@@ -1252,14 +1252,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                         jsonObject = new JSONObject(object);
 
-                        String itemType = "";
-                        if (session.getKeyCartId().equals("")) {
-                            String cart_id = jsonObject.getString("cart_id");
-                            session.setKeyCartId(cart_id);
-                            System.out.println("OUTPUT   CART ID FIRST TIME===" + session.getKeyCartId());
-
-                            itemType = jsonObject.getString("item_type");
-                        }
+                        String cart_id = jsonObject.getString("cart_id");
+                        session.setKeyCartId(cart_id);
+                        System.out.println("OUTPUT   CART ID FIRST TIME===" + session.getKeyCartId());
+                        String itemType = jsonObject.getString("item_type");
 
                         String categoryId = "1";
                         DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
@@ -1268,13 +1264,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Toast.makeText(TextileDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        SimpleProgressBar.closeProgress();
                     }
 
 
                 } catch (Exception e1) {
+                    Toast.makeText(TextileDetailActivity.this, e1.getMessage(), Toast.LENGTH_SHORT).show();
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
                 }
+
 
             }
         });
