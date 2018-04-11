@@ -27,8 +27,8 @@ public class BaseActivity extends AppCompatActivity {
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
    */
 
-        Log.e("Activity",this.getClass().getSimpleName());
 
+        Log.e("::::Activity::::",this.getClass().getSimpleName());
 
     }
 

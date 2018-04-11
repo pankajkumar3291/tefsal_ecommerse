@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
  * Created by jagbirsinghkang on 13/07/17.
  */
 
-public class FragmentSent extends Fragment {
+public class FragmentSent extends BaseFragment {
 
 
     @BindView(R.id.recycler)

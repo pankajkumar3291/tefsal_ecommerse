@@ -62,7 +62,7 @@ import butterknife.ButterKnife;
  * Created by jagbirsinghkang on 13/07/17.
  */
 
-public class FragmentTextileProducts extends Fragment {
+public class FragmentTextileProducts extends BaseFragment {
 
     @BindView(R.id.recycler)
     RecyclerView recycler;

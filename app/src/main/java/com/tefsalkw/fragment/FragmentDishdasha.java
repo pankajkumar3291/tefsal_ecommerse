@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 
 
 
-public class FragmentDishdasha extends Fragment {
+public class FragmentDishdasha extends BaseFragment {
 
 
     @BindView(R.id.recycler)

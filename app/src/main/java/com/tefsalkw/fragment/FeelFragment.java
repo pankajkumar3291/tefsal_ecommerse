@@ -42,7 +42,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FeelFragment extends Fragment {
+public class FeelFragment extends BaseFragment {
 
 
     /*@BindView(R.id.add_to_cart_btn)

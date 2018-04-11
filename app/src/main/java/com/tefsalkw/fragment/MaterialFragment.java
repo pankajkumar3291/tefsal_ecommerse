@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MaterialFragment extends Fragment {
+public class MaterialFragment extends BaseFragment {
 
 @BindView(R.id.tv_material)
     TextView tv_material;

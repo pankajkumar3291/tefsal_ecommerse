@@ -48,7 +48,7 @@ import butterknife.ButterKnife;
  * Created by jagbirsinghkang on 13/07/17.
  */
 
-public class FragmentTailorProducts extends Fragment {
+public class FragmentTailorProducts extends BaseFragment {
 
 
    /* List<GetCartRecord> getCartRecordListOfChecked=new ArrayList<GetCartRecord>();

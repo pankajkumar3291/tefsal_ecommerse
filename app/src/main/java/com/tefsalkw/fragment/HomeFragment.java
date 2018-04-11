@@ -24,7 +24,7 @@ import com.tefsalkw.app.TefalApp;
  * Created by prateek on 13/07/17.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
     private int dotsCount;
 

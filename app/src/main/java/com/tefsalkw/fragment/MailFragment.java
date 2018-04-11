@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  * Created by jagbirsinghkang on 13/07/17.
  */
 
-public class MailFragment extends Fragment {
+public class MailFragment extends BaseFragment {
 
     @BindView(R.id.tab_layout)
     TabLayout tab_layout;

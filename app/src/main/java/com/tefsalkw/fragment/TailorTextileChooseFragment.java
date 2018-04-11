@@ -56,7 +56,7 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TailorTextileChooseFragment extends Fragment {
+public class TailorTextileChooseFragment extends BaseFragment {
     private String store_id, flag;
     @BindView(R.id.RL_container)
     RelativeLayout RL_container;

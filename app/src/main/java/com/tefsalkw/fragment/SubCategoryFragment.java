@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SubCategoryFragment extends Fragment {
+public class SubCategoryFragment extends BaseFragment {
 
 
     @BindView(R.id.recycler)
