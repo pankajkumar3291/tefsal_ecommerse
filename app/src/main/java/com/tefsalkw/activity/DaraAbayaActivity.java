@@ -76,6 +76,17 @@ public class DaraAbayaActivity extends BaseActivity {
        // qr_code_btn.setVisibility(View.VISIBLE);
         view_cart_btn.setVisibility(View.VISIBLE);
 
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(DaraAbayaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         toolbar_title.setText( TefalApp.getInstance().getToolbar_title());
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,14 +227,16 @@ public class DaraAbayaActivity extends BaseActivity {
 
 
 
-    public  void gotoCart(View v)
-    {
-        try {
-            startActivity(new Intent(DaraAbayaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+//    public  void gotoCart(View v)
+//    {
+//        try {
+//            startActivity(new Intent(DaraAbayaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//        } catch (Exception e) {
+//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//        }
+//    }
+
+
 //    private void setUpFragment()
 //    {
 //        FragmentAllStores fragmentAllStores = new FragmentAllStores();

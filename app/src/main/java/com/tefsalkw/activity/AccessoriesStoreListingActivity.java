@@ -84,6 +84,16 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
 
 
         view_cart_btn.setVisibility(View.VISIBLE);
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(AccessoriesStoreListingActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         sub_cat = getIntent().getStringExtra("sub_cat");
         flag = getIntent().getStringExtra("flag");
 

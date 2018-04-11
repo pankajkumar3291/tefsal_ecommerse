@@ -87,6 +87,17 @@ public class ProductListOtherActivity extends BaseActivity {
         session = new SessionManager(ProductListOtherActivity.this);
 
         view_cart_btn.setVisibility(View.VISIBLE);
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(ProductListOtherActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         store_id = getIntent().getStringExtra("store_id");
         flag = getIntent().getStringExtra("flag");
 

@@ -36,7 +36,7 @@ public class TefsalApplication extends Application {
         mInstance = this;
         super.onCreate();
         MultiDex.install(this);
-        Fabric.with(this, new Crashlytics());
+
         initOkHttpObject();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

@@ -133,7 +133,16 @@ public class DishDashaProductActivity extends BaseActivity {
 
         qr_code_btn.setVisibility(View.GONE);
         view_cart_btn.setVisibility(View.VISIBLE);
-
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(DishDashaProductActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         //====This block of code is responsible for restarting activity while searching by color season, etc--======
 
         if (getIntent().getStringExtra("store_name") != null) {

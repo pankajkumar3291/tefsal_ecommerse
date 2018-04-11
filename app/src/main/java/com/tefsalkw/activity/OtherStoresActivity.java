@@ -76,7 +76,16 @@ public class OtherStoresActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         view_cart_btn.setVisibility(View.VISIBLE);
-
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(OtherStoresActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         toolbar_title.setText(TefalApp.getInstance().getToolbar_title());
 
@@ -137,10 +146,14 @@ public class OtherStoresActivity extends BaseActivity {
                                     String status = jsonObject.getString("status");
                                     if (status.equals("1")) {
 
-                                        String record = jsonObject.getString("record");
-                                        Gson g = new Gson();
-                                        BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
-                                        total_badge_txt.setText(badgeRecordModel.getCart_badge());
+                                        if(total_badge_txt != null)
+                                        {
+                                            String record = jsonObject.getString("record");
+                                            Gson g = new Gson();
+                                            BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
+                                            total_badge_txt.setText(badgeRecordModel.getCart_badge());
+                                        }
+
 
 
                                     }
@@ -187,14 +200,7 @@ public class OtherStoresActivity extends BaseActivity {
 
 
 
-    public  void gotoCart(View v)
-    {
-        try {
-            startActivity(new Intent(OtherStoresActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+
 
 
     public void WebCallServiceStores() {

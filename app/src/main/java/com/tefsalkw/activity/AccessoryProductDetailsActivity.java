@@ -509,14 +509,14 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
-    public void gotoCart(View view) {
-        try {
-            startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-    }
+//    public void gotoCart(View view) {
+//        try {
+//            startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//        } catch (Exception e) {
+//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//        }
+//
+//    }
 
 
     private void setData() {

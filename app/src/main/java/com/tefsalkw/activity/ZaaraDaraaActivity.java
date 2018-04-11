@@ -236,11 +236,27 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
     private void initBindViews() {
+
+
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(ZaaraDaraaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
         //Bind Text Views
 
         text_descp.setText(productRecord.getProduct_desc());
         txt_title.setText(productRecord.getProduct_name());
         subtxt_title.setText(productRecord.getBrand_name());
+
+
 
     }
 
