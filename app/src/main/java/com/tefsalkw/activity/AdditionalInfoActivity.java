@@ -27,11 +27,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tefsalkw.models.CountryModel;
-import com.tefsalkw.models.SignUpErrorMessageRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.kotlin.SignupThankYouActivity;
+import com.tefsalkw.models.CountryModel;
+import com.tefsalkw.models.SignUpErrorMessageRecordModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -91,6 +91,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     private String customer_id;
     private String customer_name;
     String input_email = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +112,7 @@ public class AdditionalInfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-              doFullSignUp();
+                doFullSignUp();
 
 
             }
@@ -367,7 +368,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 1
     public void WebCallService(final String str_fname, final String str_lname, final String str_mob, final String str_home_num,
                                final String str_email, final String str_password, final String country_code) {
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this,"Registration in progress...Step 1 of 3");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
         try {
             final String url = Contents.baseURL + "customerRegister";
 
@@ -482,7 +483,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 2
     public void saveAddress() {
 
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this,"Registration in progress...Step 2 of 3");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
 
 
         //province_id
@@ -545,14 +546,13 @@ public class AdditionalInfoActivity extends BaseActivity {
                         params.put("address_name", jsonObject.getString("input_address_name"));
 
 
-
-                        params.put("city", jsonObject.getString("spin_city_txt")+ "");
-                        params.put("area", jsonObject.getString("spin_area_txt")+ "");
-                        params.put("block", jsonObject.getString("input_block")+ "");
-                        params.put("street", jsonObject.getString("input_street")+ "");
-                        params.put("avenue", jsonObject.getString("input_avenue")+ "");
-                        params.put("floor", jsonObject.getString("input_floor")+ "");
-                        params.put("house", jsonObject.getString("input_house")+ "");
+                        params.put("city", jsonObject.getString("spin_city_txt") + "");
+                        params.put("area", jsonObject.getString("spin_area_txt") + "");
+                        params.put("block", jsonObject.getString("input_block") + "");
+                        params.put("street", jsonObject.getString("input_street") + "");
+                        params.put("avenue", jsonObject.getString("input_avenue") + "");
+                        params.put("floor", jsonObject.getString("input_floor") + "");
+                        params.put("house", jsonObject.getString("input_house") + "");
                         params.put("flat_number", jsonObject.getString("input_flate") + "");
                         params.put("phone_number", jsonObject.getString("input_phone") + "");
 
@@ -560,14 +560,14 @@ public class AdditionalInfoActivity extends BaseActivity {
                         params.put("addt_info", jsonObject.getString("input_add_desp") + "");
 
 
-                        CountryModel   selectedMobileCountry =  gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
+                        CountryModel selectedMobileCountry = gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
                         }.getType());
 
-                        params.put("country", selectedMobileCountry.getNicename()+ "");
+                        params.put("country", selectedMobileCountry.getNicename() + "");
 
 
                     } catch (Exception ex) {
-                       ex.printStackTrace();
+                        ex.printStackTrace();
                     }
 
 
@@ -599,7 +599,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 3
 
     public void httpAdditionalInfoCall() {
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this,"Registration in progress...Step 3 of 3");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
 
         try {
             final String url = Contents.baseURL + "customerAddtInfo";
@@ -629,7 +629,7 @@ public class AdditionalInfoActivity extends BaseActivity {
                                     session.setToken(jsonObject.getString("access_token"));
                                     session.setKeyUserName(str_fname+" "+str_lname);*/
 
-                                    startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).putExtra("email",input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                    startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).putExtra("email", input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                     // startActivity(new Intent(AdditionalInfoActivity.this, AdditionalInfoActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                                     finish();
 
@@ -685,7 +685,6 @@ public class AdditionalInfoActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
-
 
 
 }

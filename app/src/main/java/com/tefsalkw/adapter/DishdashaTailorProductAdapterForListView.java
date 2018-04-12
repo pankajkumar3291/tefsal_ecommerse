@@ -36,13 +36,15 @@ import java.util.Map;
 
 public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
+
+    public boolean isOwnTextile = false;
     private ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList;
     private FragmentTailorProducts activity;
     LayoutInflater inflater;
 
     RecyclerView recyclerSubList;
     SublistAdapter sublistAdapter;
-    private HashMap<Integer, List<SublistCartItems>> sublistCartItemsHashMap = new HashMap<Integer, List<SublistCartItems>>();
+    public HashMap<Integer, List<SublistCartItems>> sublistCartItemsHashMap = new HashMap<Integer, List<SublistCartItems>>();
 
     DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
@@ -72,8 +74,10 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        if (convertView == null)
+        if (convertView == null) {
             convertView = inflater.inflate(R.layout.dishdasha_tailor_product_item, parent, false);
+        }
+
 
         Button add_btn = (Button) convertView.findViewById(R.id.add_btn);
         TextView product_price = (TextView) convertView.findViewById(R.id.product_price);
@@ -89,7 +93,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         recyclerSubList.setLayoutManager(layoutManager);
         recyclerSubList.setItemAnimator(new DefaultItemAnimator());
 
-        sublistAdapter = new SublistAdapter(activity.getContext(), sublistCartItemsHashMap.get(position), dishdashaTailorProductAdapterForListView);
+        sublistAdapter = new SublistAdapter(activity, sublistCartItemsHashMap.get(position), dishdashaTailorProductAdapterForListView,isOwnTextile);
 
         recyclerSubList.setAdapter(sublistAdapter);
 
@@ -100,7 +104,8 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                assignTailorHttpCall(assignedItemsRecordArrayList.get(position));
+
+                //  assignTailorHttpCall(assignedItemsRecordArrayList.get(position));
 
                 activity.showDialog(position);
 
@@ -166,8 +171,9 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
     }
 
-    public void addSublistCartItem(int position, SublistCartItems sublistCartItems) {
+    public void addSublistCartItem(int position, SublistCartItems sublistCartItems, boolean isOwn) {
 
+        isOwnTextile = isOwn;
 
         if (sublistCartItemsHashMap.containsKey(position)) {
 
@@ -178,6 +184,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
         } else {
 
+
             List<SublistCartItems> sublistitems = new ArrayList<>();
             sublistitems.add(sublistCartItems);
 
@@ -185,6 +192,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
             sublistAdapter.notifyDataSetChanged();
 
         }
+
 
     }
 

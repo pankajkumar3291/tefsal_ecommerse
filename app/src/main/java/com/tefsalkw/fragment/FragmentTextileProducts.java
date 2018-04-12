@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,6 +27,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.tefsalkw.R;
+import com.tefsalkw.activity.DishDashaProductActivity;
+import com.tefsalkw.adapter.DishdashaTextileProductAdapter;
+import com.tefsalkw.adapter.FilterColorListAdapter;
+import com.tefsalkw.adapter.FilterCountryListAdapter;
+import com.tefsalkw.adapter.SeasonFilterAdapter;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.CountryRecordModel;
 import com.tefsalkw.models.ProductCountryRecordModel;
@@ -37,13 +43,6 @@ import com.tefsalkw.models.SeasonsList;
 import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.models.TextileProductResponse;
 import com.tefsalkw.models.dishdashaFiletrationResponse;
-import com.tefsalkw.R;
-import com.tefsalkw.activity.DishDashaProductActivity;
-import com.tefsalkw.adapter.DishdashaTextileProductAdapter;
-import com.tefsalkw.adapter.FilterColorListAdapter;
-import com.tefsalkw.adapter.FilterCountryListAdapter;
-import com.tefsalkw.adapter.SeasonFilterAdapter;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -125,42 +124,48 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                if(colorsRecordModelArrayList == null)
-                {
-                    return;
+                try {
+                    if (colorsRecordModelArrayList == null) {
+                        return;
+                    }
+
+                    LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
+
+
+                    FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, getActivity());
+
+                    filterColorRecyclerView = (RecyclerView) getPopupColorView.findViewById(R.id.recycler_view);
+
+                    RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
+                    filterColorRecyclerView.setLayoutManager(mLayoutManager2);
+                    filterColorRecyclerView.setAdapter(filterColorListAdapter);
+
+
+                    colorWindow = new PopupWindow(
+                            getPopupColorView,
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                    colorWindow.setBackgroundDrawable(new BitmapDrawable());
+                    colorWindow.setOutsideTouchable(true);
+                    colorWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                        @Override
+                        public void onDismiss() {
+                            //TODO do sth here on dismiss
+                        }
+                    });
+
+                    if (alertDialog != null && alertDialog.isShowing()) {
+                        alertDialog.dismiss();
+                    }
+
+                    colorWindow.showAsDropDown(v);
+
+                } catch (Exception exc) {
+
                 }
 
-                LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
-
-
-
-
-
-                FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, getActivity());
-
-                filterColorRecyclerView = (RecyclerView) getPopupColorView.findViewById(R.id.recycler_view);
-
-                RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
-                filterColorRecyclerView.setLayoutManager(mLayoutManager2);
-                filterColorRecyclerView.setAdapter(filterColorListAdapter);
-
-
-                colorWindow = new PopupWindow(
-                        getPopupColorView,
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                colorWindow.setBackgroundDrawable(new BitmapDrawable());
-                colorWindow.setOutsideTouchable(true);
-                colorWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        //TODO do sth here on dismiss
-                    }
-                });
-
-                colorWindow.showAsDropDown(v);
             }
         });
 
@@ -168,8 +173,7 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                if(productCountryRecordModelArrayList == null)
-                {
+                if (productCountryRecordModelArrayList == null) {
                     return;
                 }
 
@@ -208,8 +212,7 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                if(record == null)
-                {
+                if (record == null) {
                     return;
                 }
 
@@ -220,35 +223,28 @@ public class FragmentTextileProducts extends BaseFragment {
                 List<SeasonsList> seasonList = new ArrayList<>();
 
 
-
-                for(String season : record)
-                {
+                for (String season : record) {
 
                     SeasonsList seasonModel = new SeasonsList();
                     seasonModel.setName(season);
 
-                    if(season.toLowerCase().contains("winter"))
-                    {
+                    if (season.toLowerCase().contains("winter")) {
                         seasonModel.setImage(R.drawable.winter);
                     }
 
-                    if(season.toLowerCase().contains("summer"))
-                    {
+                    if (season.toLowerCase().contains("summer")) {
                         seasonModel.setImage(R.drawable.summer);
                     }
 
-                    if(season.toLowerCase().contains("autumn"))
-                    {
+                    if (season.toLowerCase().contains("autumn")) {
                         seasonModel.setImage(R.drawable.autumn);
                     }
 
-                    if(season.toLowerCase().contains("spring"))
-                    {
+                    if (season.toLowerCase().contains("spring")) {
                         seasonModel.setImage(R.drawable.spring);
                     }
 
                     seasonList.add(seasonModel);
-
 
 
                 }
@@ -256,7 +252,7 @@ public class FragmentTextileProducts extends BaseFragment {
                 SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(seasonList, getActivity(), seasonList.size());
 
                 RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
-                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
 
                 //LayoutManager(getActivity(), 3);
                 recyclerViewSeason.setLayoutManager(mLayoutManager);
@@ -305,7 +301,6 @@ public class FragmentTextileProducts extends BaseFragment {
         System.out.println("HELLO STORE ID==" + TefalApp.getInstance().getStoreId());
 
         WebCallServiceStores();
-
 
 
         // ------If you dont want to select multiple filter selection option remove the code------
@@ -466,7 +461,6 @@ public class FragmentTextileProducts extends BaseFragment {
                                         textNoProduct.setVisibility(View.GONE);
 
 
-
                                         /// System.out.println("RECORDS==="+records.length);
 
 
@@ -549,7 +543,6 @@ public class FragmentTextileProducts extends BaseFragment {
                                     textNoProduct.setVisibility(View.GONE);
 
 
-
                                 } else {
 
                                 }
@@ -576,7 +569,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e(FragmentTextileProducts.class.getSimpleName(), url + new JSONObject(params) );
+                    Log.e(FragmentTextileProducts.class.getSimpleName(), url + new JSONObject(params));
 
                     return params;
                 }

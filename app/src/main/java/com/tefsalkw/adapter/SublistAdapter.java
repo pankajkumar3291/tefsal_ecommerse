@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.fragment.FragmentTailorProducts;
 import com.tefsalkw.models.SublistCartItems;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.SessionManager;
@@ -24,17 +26,20 @@ import butterknife.ButterKnife;
 
 public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHolder> {
 
-    private Context activity;
+    private FragmentTailorProducts activity;
     private List<SublistCartItems> storeModels = new ArrayList<>();
     private SessionManager session;
 
     DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
-    public SublistAdapter(Context activity, List<SublistCartItems> storeModels,DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView) {
+    boolean isOwnTextile = false;
+    public SublistAdapter(FragmentTailorProducts activity, List<SublistCartItems> storeModels,DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView, boolean isOwnTextile) {
         this.activity = activity;
         this.storeModels = storeModels;
-        session = new SessionManager(activity);
+        session = new SessionManager(activity.getContext());
         this.dishdashaTailorProductAdapterForListView = dishdashaTailorProductAdapterForListView;
+
+        this.isOwnTextile = isOwnTextile;
     }
 
 
@@ -49,8 +54,28 @@ public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHold
     @Override
     public void onBindViewHolder(SublistAdapter.ViewHolder holder, int position) {
 
+        holder.txtSize.setText("SIZE: "+Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()))+" METERS");
         holder.cartItem.setText(storeModels.get(position).getItemName());
-        holder.imgDelete.setTag(position);
+
+
+
+        holder.imgDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                FragmentTailorProducts fragmentTailorProducts =  (FragmentTailorProducts)activity;
+
+                fragmentTailorProducts.removeItem(storeModels.get(position).getItemPosition());
+
+                storeModels.remove(position);
+
+                notifyDataSetChanged();
+
+            }
+        });
+
     }
 
     @Override
@@ -73,19 +98,7 @@ public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHold
             super(itemView);
             ButterKnife.bind(this, itemView);
 
-            imgDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                    int position = (Integer) view.getTag();
-                  //  dishdashaTailorProductAdapterForListView.onRemove(storeModels.get(position));
-                    storeModels.remove(position);
-
-
-                    notifyDataSetChanged();
-
-                }
-            });
 
         }
     }

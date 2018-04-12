@@ -102,7 +102,7 @@ public class FeelFragment extends BaseFragment {
 
        header_txt.setText(DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getFeel());
 
-        String[] str = DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getPrice().split(" ");
+        //String[] str = DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getPrice().split(" ");
 
         //Bug possible LOC=====================================
        // text_price.setText("PRICE : " + Double.valueOf(str[0]) * meter + "00 KWD");

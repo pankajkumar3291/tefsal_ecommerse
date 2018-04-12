@@ -46,9 +46,51 @@ public class GetCartRecord implements Serializable {
 
     private String image;
 
-
-
     private boolean isChecked;
+
+    public double getDiscounted_price() {
+        return discounted_price;
+    }
+
+    public void setDiscounted_price(double discounted_price) {
+        this.discounted_price = discounted_price;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    private  double discounted_price;
+
+    private  double discount;
+
+
+    public String getProduct_desc() {
+        return product_desc;
+    }
+
+    public void setProduct_desc(String product_desc) {
+        this.product_desc = product_desc;
+    }
+
+    private  String product_desc;
+
+
+    private Tailor_services tailor_services;
+
+    public Tailor_services getTailor_services ()
+    {
+        return tailor_services;
+    }
+
+    public void setTailor_services (Tailor_services tailor_services)
+    {
+        this.tailor_services = tailor_services;
+    }
 
 
     public int getDishDashaRemaining() {

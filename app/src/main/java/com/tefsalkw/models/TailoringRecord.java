@@ -8,13 +8,52 @@ import java.io.Serializable;
 
 public class TailoringRecord implements Serializable
 {
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    private int position;
     private String product_id;
+    private String item_id;
+
+    public String getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
+    }
 
     private String remain_textile;
 
     private String item_quantity;
 
     private String total_textile;
+
+    private int total_dishdasha;
+
+    public int getTotal_dishdasha() {
+        return total_dishdasha;
+    }
+
+    public void setTotal_dishdasha(int total_dishdasha) {
+        this.total_dishdasha = total_dishdasha;
+    }
+
+    public int getRemaining_dishdasha() {
+        return remaining_dishdasha;
+    }
+
+    public void setRemaining_dishdasha(int remaining_dishdasha) {
+        this.remaining_dishdasha = remaining_dishdasha;
+    }
+
+    private int remaining_dishdasha;
 
     private String dishdasha_product_name;
 

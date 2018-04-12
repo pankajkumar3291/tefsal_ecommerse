@@ -3,7 +3,6 @@ package com.tefsalkw.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,20 +24,24 @@ import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.CustomTailorCalculationProduct;
 import com.tefsalkw.adapter.DishdashaTailorProductAdapterForListView;
-import com.tefsalkw.adapter.DishdashaTailorProductsAdapter;
-import com.tefsalkw.adapter.TailorProductAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.dialogs.DialogKart;
 import com.tefsalkw.dialogs.DialogKartDropdown;
-import com.tefsalkw.models.GetAssignedItemsRecord;
 import com.tefsalkw.models.GetAssignedItemsResponse;
 import com.tefsalkw.models.SublistCartItems;
 import com.tefsalkw.models.TailoringRecord;
+import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -57,7 +60,7 @@ public class FragmentTailorProducts extends BaseFragment {
     ArrayList<TailoringRecord> tailoringRecordArrayListOfChecked = new ArrayList<TailoringRecord>();
     ArrayList<TailoringRecord> tailoringRecordArrayListOfCheckedTrue = new ArrayList<TailoringRecord>();
 
-    ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList = new ArrayList<GetAssignedItemsRecord>();
+
     GetAssignedItemsResponse getAssignedItemsResponse;
 
     private String ownTextileString;
@@ -82,16 +85,15 @@ public class FragmentTailorProducts extends BaseFragment {
     @BindView(R.id.ownTextileText)
     TextView ownTextileText;
 
-    TailorProductAdapter productAdapter;
-    SessionManager session;
 
     String store_id;
 
     SessionManager sessionManager;
 
-    DishdashaTailorProductsAdapter dishdashaTailorProductsAdapter;
 
     DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
+
+    CustomTailorCalculationProduct customTailorCalculationProduct;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,19 +115,35 @@ public class FragmentTailorProducts extends BaseFragment {
         System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT===" + tailoringRecordArrayListOfChecked);
 
         if (tailoringRecordArrayListOfChecked != null) {
+
+            int count = 0;
+
             for (int i = 0; i < tailoringRecordArrayListOfChecked.size(); i++) {
+
+
                 if (tailoringRecordArrayListOfChecked.get(i).getChecked()) {
                     // GetCartRecord getCartRecord=new GetCartRecord();
-                    tailoringRecordArrayListOfCheckedTrue.add(tailoringRecordArrayListOfChecked.get(i));
+
+                    TailoringRecord tailoringRecord = tailoringRecordArrayListOfChecked.get(i);
+
+                    int total = Integer.parseInt(tailoringRecord.getItem_quantity()) / Integer.parseInt(TefalApp.getInstance().getMin_meters());
+                    tailoringRecord.setPosition(count);
+                    tailoringRecord.setTotal_dishdasha(total);
+                    tailoringRecord.setRemaining_dishdasha(total);
+                    tailoringRecordArrayListOfCheckedTrue.add(tailoringRecord);
+
+                    count++;
 
                 }
 
             }
 
-            CustomTailorCalculationProduct customTailorCalculationProduct = new CustomTailorCalculationProduct(getActivity(), tailoringRecordArrayListOfCheckedTrue);
+            customTailorCalculationProduct = new CustomTailorCalculationProduct(getActivity(), tailoringRecordArrayListOfCheckedTrue);
             list.setAdapter(customTailorCalculationProduct);
 
         } else {
+
+
             ownTextileText.setText(ownTextileString);
         }
 
@@ -134,6 +152,7 @@ public class FragmentTailorProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
+                WebCallServiceAddCartNew();
 
             }
         });
@@ -225,38 +244,268 @@ public class FragmentTailorProducts extends BaseFragment {
         }
     }
 
+    public void WebCallServiceAddCartNew() {
+
+
+        final String url = Contents.baseURL + "addCart";
+
+
+        JSONObject params = new JSONObject();
+
+
+        try {
+            params.put("access_token", sessionManager.getToken());
+            params.put("user_id", sessionManager.getCustomerId());
+            params.put("cart_id", sessionManager.getKeyCartId());
+            try {
+                params.put("items", getItems());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            params.put("appUser", "tefsal");
+            params.put("appSecret", "tefsal@123");
+            params.put("appVersion", "1.1");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("Tefsal tailor == ", url + params);
+
+        SimpleProgressBar.showProgress(getActivity());
+        BaseHttpClient baseHttpClient = new BaseHttpClient();
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+            @Override
+            public void onFailure() {
+                SimpleProgressBar.closeProgress();
+            }
+
+            @Override
+            public void onSuccess(String object) {
+
+                try {
+                    SimpleProgressBar.closeProgress();
+                    Log.e("JSONObject", String.valueOf(object));
+
+                    Log.e("stores response", object);
+
+
+                    System.out.println("ADD CART RESPONSE====" + object);
+
+                    JSONObject jsonObject = null;
+                    try {
+
+                        jsonObject = new JSONObject(object);
+
+                        String cart_id = jsonObject.getString("cart_id");
+                        sessionManager.setKeyCartId(cart_id);
+                        System.out.println("OUTPUT   CART ID FIRST TIME===" + sessionManager.getKeyCartId());
+                        String itemType = jsonObject.getString("item_type");
+
+                        String categoryId = "1";
+                        DialogKart dg = new DialogKart(getActivity(), false, itemType, categoryId);
+                        dg.show();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        SimpleProgressBar.closeProgress();
+                    }
+
+
+                } catch (Exception e1) {
+                    Toast.makeText(getActivity(), e1.getMessage(), Toast.LENGTH_SHORT).show();
+                    e1.printStackTrace();
+                    SimpleProgressBar.closeProgress();
+                }
+
+
+            }
+        });
+
+
+    }
+
+
+    public JSONArray getItems() {
+        JSONArray arry = new JSONArray();
+        try {
+
+            if (dishdashaTailorProductAdapterForListView != null && dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null) {
+
+                for (int i = 0; i < dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size(); i++) {
+
+                    if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size() > 0) {
+                        List<SublistCartItems> sublistCartItems = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(i);
+
+                        for (SublistCartItems sublistCartItems1 : sublistCartItems) {
+                            JSONObject obj = new JSONObject();
+
+
+                            obj.put("product_id", sublistCartItems1.getProductId());
+                            obj.put("item_id", sublistCartItems1.getItemId());
+                            obj.put("category_id", "1");
+
+                            JSONObject item_details = new JSONObject();
+                            item_details.put("item_quantity", null);
+
+                            JSONObject tailor_services = new JSONObject();
+
+                            tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
+                            tailor_services.put("qty", 1);
+                            tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
+                            tailor_services.put("tailor_id", Math.round(Float.parseFloat(TefalApp.getInstance().getTailor_id())));
+                            item_details.put("tailor_services", tailor_services);
+
+
+                            obj.put("item_details", item_details);
+
+                            arry.put(obj);
+
+                        }
+                    }
+
+
+                }
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("JsonArrayItems", String.valueOf(arry));
+        return arry;
+    }
+
+
     public void showDialog(int position) {
 
-        DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue, FragmentTailorProducts.this, position);
-        dg.show();
 
+        Log.e("tailoringRecordArray", tailoringRecordArrayListOfChecked.size() + "");
+        if (tailoringRecordArrayListOfChecked.size() == 0) {
+
+
+            if (validateAssignOwn(position)) {
+                Toast.makeText(getActivity(), "Sorry, limit reached!", Toast.LENGTH_SHORT).show();
+            } else {
+                addItemToTailorItem(null, position);
+            }
+
+
+        } else {
+            DialogKartDropdown dg = new DialogKartDropdown(tailoringRecordArrayListOfCheckedTrue, FragmentTailorProducts.this, position);
+            dg.show();
+        }
+
+
+    }
+
+
+    public void removeItem(int position) {
+        try {
+            int getRemaining = tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha();
+            getRemaining = getRemaining + 1;
+            tailoringRecordArrayListOfCheckedTrue.get(position).setRemaining_dishdasha(getRemaining);
+            customTailorCalculationProduct.notifyDataSetChanged();
+        } catch (Exception exc) {
+
+        }
     }
 
     public void addItemToTailorItem(TailoringRecord cartRecord, int position) {
 
-        // Log.e("dropdownId1",dropdownId);
-        SublistCartItems sublistCartItems = new SublistCartItems();
-        sublistCartItems.setItemName(cartRecord.getDishdasha_product_name());
-        sublistCartItems.setProductId(cartRecord.getProduct_id());
 
-        dishdashaTailorProductAdapterForListView.addSublistCartItem(position, sublistCartItems);
+        if (cartRecord != null) {
+            // Log.e("dropdownId1",dropdownId);
+            SublistCartItems sublistCartItems = new SublistCartItems();
+            sublistCartItems.setItemPosition(cartRecord.getPosition());
+            sublistCartItems.setItemName(cartRecord.getDishdasha_product_name());
+            sublistCartItems.setProductId(cartRecord.getProduct_id());
+            sublistCartItems.setItemId(cartRecord.getItem_id());
+            dishdashaTailorProductAdapterForListView.addSublistCartItem(position, sublistCartItems, false);
 
-        dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
+            dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
 
-        //dishdashaAdapter.updateDishDashacount(dropdownId);
+            //dishdashaAdapter.updateDishDashacount(dropdownId);
+
+            Integer remaining = tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).getRemaining_dishdasha();
+            remaining = remaining - 1;
+            tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).setRemaining_dishdasha(remaining);
+
+            customTailorCalculationProduct.notifyDataSetChanged();
+        } else {
+
+            SublistCartItems sublistCartItems = new SublistCartItems();
+
+            sublistCartItems.setItemName("Own Textile");
+
+            dishdashaTailorProductAdapterForListView.addSublistCartItem(position, sublistCartItems, true);
 
 
-        String remainingTextile =  tailoringRecordArrayListOfCheckedTrue.get(position).getRemain_textile();
+            dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
 
-        Integer remaining = Integer.parseInt(remainingTextile);
-        remaining = remaining - 1 ;
-        tailoringRecordArrayListOfCheckedTrue.get(position).setRemain_textile(remaining+"");
-
-
-
-
+        }
 
 
     }
+
+
+    public boolean validateAssign(TailoringRecord tailoringRecord) {
+
+
+        if (tailoringRecord != null) {
+
+            Log.e("position", tailoringRecord.getPosition() + "");
+            return tailoringRecord.getRemaining_dishdasha() == 0;
+
+
+        }
+
+        return false;
+
+    }
+
+
+    public boolean validateAssignOwn(int position) {
+
+
+        if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null) {
+            List<SublistCartItems> list = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
+
+            if (list != null) {
+
+
+                int sizeIs = Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
+
+                int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
+
+                return (numberDishdasha / sizeIs) > list.size();
+
+            }
+        }
+
+
+        return false;
+
+    }
+
+
+    public int getSelectedItemCount(int position, String pid) {
+        List<SublistCartItems> sublistCartItems = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
+
+        int count = 0;
+        for (SublistCartItems entry : sublistCartItems) {
+            if (entry.getProductId().equalsIgnoreCase(pid)) {
+                count++;
+            }
+        }
+
+
+        return count;
+
+    }
+
 
 }

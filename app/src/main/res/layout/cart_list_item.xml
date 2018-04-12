@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="5dp"
     android:paddingLeft="20dp"
@@ -11,174 +11,250 @@
 
     <LinearLayout
         android:id="@+id/ll_header"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <View
-            android:background="#bdbdbd"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="#bdbdbd" />
 
         <TextView
             android:id="@+id/text_Tailor_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
             android:text="@string/cart_list_item_text_Tailor_name_text"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_mid"
             android:textStyle="bold" />
 
         <View
-            android:background="#bdbdbd"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="5dp"
-            android:layout_width="match_parent" />
+            android:background="#bdbdbd" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="2.5">
 
         <LinearLayout
             android:id="@+id/LL_imageContainer"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_width="0dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/cart_item_delete"
-                android:layout_gravity="center"
-                android:layout_height="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:src="@drawable/cart_item_delete_icon"
                 android:visibility="gone" />
 
             <ImageView
-                android:background="@mipmap/ic_launcher"
                 android:id="@+id/product_img"
-                android:layout_height="match_parent"
                 android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:background="@mipmap/ic_launcher"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:layout_width="0dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/text_textile"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/cart_list_item_text_textile_text"
+                android:layout_height="wrap_content"
+                android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold" />
 
             <me.grantland.widget.AutofitTextView
+                android:id="@+id/sub_text_textile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:id="@+id/sub_text_textile"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/cart_list_item_sub_text_textile_text"
+                android:text="--"
                 android:textSize="@dimen/text_normal"
                 autofit:minTextSize="@dimen/text_small" />
 
             <me.grantland.widget.AutofitTextView
-                android:ellipsize="end"
-                android:gravity="center"
                 android:id="@+id/text_size"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_width="wrap_content"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="@string/cart_list_item_text_size_text"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_normal"
-                autofit:minTextSize="@dimen/text_small" />
-
-            <me.grantland.widget.AutofitTextView
                 android:ellipsize="end"
                 android:gravity="center"
-                android:id="@+id/text_price"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/cart_list_item_text_price_text"
+                android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_normal"
                 autofit:minTextSize="@dimen/text_small" />
 
-        </LinearLayout>
-        <!-- <ImageView
-             android:layout_width="20dp"
-             android:layout_height="20dp"
-             android:id="@+id/cart_item_delete"
-             android:layout_gravity="center"
-             android:visibility="gone"
-             android:src="@drawable/cart_item_delete_icon"
-             android:layout_marginRight="20dp"/>-->
-        <!-- <ImageView
-             android:id="@+id/product_img"
-             android:layout_width="80dp"
-             android:layout_height="90dp"
-             android:background="@mipmap/ic_launcher"
-             android:scaleType="centerCrop" />-->
 
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/text_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_normal"
+                    autofit:minTextSize="@dimen/text_small" />
+
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/text_price_discounted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/text_normal"
+                    autofit:minTextSize="@dimen/text_small" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#bdbdbd" />
+
+    <LinearLayout
+
+        android:id="@+id/llTailorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="2.5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/img_tailor"
+                android:layout_width="85dp"
+                android:layout_height="match_parent"
+                android:background="@mipmap/ic_launcher"
+                android:scaleType="centerCrop" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_textile"
+                android:id="@+id/txtTailorTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ABC"
+                android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/sub_text_textile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DEF"
-                android:textSize="@dimen/text_normal" />
 
             <TextView
-                android:id="@+id/text_size"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="GHI"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/txtTailorQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_normal" />
 
-            <TextView
-                android:id="@+id/text_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JKL"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_normal" />
 
-        </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTailorPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/text_normal" />
+
+                <TextView
+                    android:id="@+id/txtTailorPriceDicounted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="--"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

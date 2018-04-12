@@ -20,6 +20,16 @@ public class SublistCartItems implements Serializable {
 
     private String productId;
 
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    private String itemId;
+
 
     public int getItemPosition() {
         return itemPosition;

@@ -23,9 +23,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.CartActivity;
+import com.tefsalkw.models.GetCartRecord;
+import com.tefsalkw.models.Tailor_services;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -96,6 +97,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.text_price)
         TextView text_price;
 
+        @BindView(R.id.text_price_discounted)
+        TextView text_price_discounted;
+
+
         @BindView(R.id.product_img)
         ImageView product_img;
 
@@ -106,10 +111,20 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         ImageView cart_item_delete;
 
 
-//
-//
-//        @BindView(R.id.main_layout)
-//        RelativeLayout main_layout;
+        @BindView(R.id.txtTailorTitle)
+        TextView txtTailorTitle;
+
+        @BindView(R.id.txtTailorQty)
+        TextView txtTailorQty;
+
+        @BindView(R.id.txtTailorPrice)
+        TextView txtTailorPrice;
+
+        @BindView(R.id.txtTailorPriceDicounted)
+        TextView txtTailorPriceDicounted;
+
+        @BindView(R.id.llTailorContainer)
+        LinearLayout llTailorContainer;
 
 
         public ViewHolder(View itemView) {
@@ -125,6 +140,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         System.out.println("ITEM TYPE==" + storeModels.get(position2).getItem_type());
 
         if (storeModels.get(position2).getItem_type().equals("DTE")) {
+
+            holder.llTailorContainer.setVisibility(GONE);
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
@@ -132,13 +149,27 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     .into(holder.product_img);
             System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
-            holder.text_textile.setText(storeModels.get(position2).getDishdasha_pattern() + " " + storeModels.get(position2).getDishdasha_material());
-            holder.sub_text_textile.setVisibility(GONE);
-            // holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
-            holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity() + " Dishdasha");
-            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+            holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            // holder.sub_text_textile.setVisibility(GONE);
+            // holder.sub_text_textile.setText();
+            holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+
+            if (storeModels.get(position2).getDiscount() > 0) {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price_discounted.setVisibility(View.VISIBLE);
+            } else {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setVisibility(GONE);
+            }
+
+
         }
+
         if (storeModels.get(position2).getItem_type().equals("DB")) {
+
+            holder.llTailorContainer.setVisibility(GONE);
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
@@ -148,13 +179,23 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setVisibility(GONE);
-            // holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
+            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            // holder.sub_text_textile.setVisibility(GONE);
+            //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity());
-            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+            if (storeModels.get(position2).getDiscount() > 0) {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price_discounted.setVisibility(View.VISIBLE);
+            } else {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setVisibility(GONE);
+            }
 
         }
         if (storeModels.get(position2).getItem_type().equals("A")) {
+
+            holder.llTailorContainer.setVisibility(GONE);
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
                     .error(R.drawable.no_image_placeholder_grid)
@@ -164,10 +205,20 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setVisibility(GONE);
+            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
+            //  holder.sub_text_textile.setVisibility(GONE);
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
-            holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+            if (storeModels.get(position2).getDiscount() > 0) {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price_discounted.setVisibility(View.VISIBLE);
+            } else {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setVisibility(GONE);
+            }
         }
+
         if (storeModels.get(position2).getItem_type().equals("DTA")) {
             Picasso.with(activity)
                     .load(storeModels.get(position2).getStore_image())
@@ -177,19 +228,52 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setVisibility(GONE);
+            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
+            //holder.sub_text_textile.setVisibility(GONE);
             holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity() + " METERS");
-            holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
+            if (storeModels.get(position2).getDiscount() > 0) {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price_discounted.setVisibility(View.VISIBLE);
+            } else {
+                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price_discounted.setVisibility(GONE);
+            }
 
             System.out.println("Image ===" + storeModels.get(position2).getStore_image());
+
+            //Adding Dishdasha services
+
+
+            if (storeModels.get(position2).getTailor_services() != null) {
+
+                holder.llTailorContainer.setVisibility(View.VISIBLE);
+
+                Tailor_services tailor_services = storeModels.get(position2).getTailor_services();
+
+                holder.txtTailorTitle.setText(tailor_services.getService_name());
+                holder.txtTailorQty.setText("QTY: " + tailor_services.getQty() + " Dishdasha");
+
+
+                if (tailor_services.getDiscount() > 0) {
+                    holder.txtTailorPrice.setText(tailor_services.getPrice() + " KWD");
+                    holder.txtTailorPriceDicounted.setText(tailor_services.getDiscounted_price() + " KWD");
+                    holder.text_price_discounted.setVisibility(View.VISIBLE);
+                } else {
+                    holder.txtTailorPrice.setText(tailor_services.getPrice() + " KWD");
+                    holder.txtTailorPriceDicounted.setVisibility(GONE);
+                }
+
+
+            } else {
+                holder.llTailorContainer.setVisibility(View.GONE);
+            }
+
+
         }
 
 
-
-       /* if(storeModels.get(position2).isDelete())
-        {
-            holder.cart_item_delete.setVisibility(View.VISIBLE);
-        }*/
         if (this.activate) {
             holder.cart_item_delete.setVisibility(View.VISIBLE);
         } else {
@@ -206,13 +290,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 // notifyDataSetChanged();
             }
         });
-//        holder.main_layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//            }
-//        });
+
     }
 
 
@@ -229,11 +307,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_ok_btn);
         Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_cancel_btn);
 
-        /*input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
-        input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
-        dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_ok_btn);
-        dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_cancel_btn);*/
-        // ButterKnife.bind(this, dialogView);
 
         dialogBuilder.setView(dialogView);
 

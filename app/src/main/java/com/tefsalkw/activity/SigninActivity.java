@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,12 +68,16 @@ public class SigninActivity extends BaseActivity {
     @BindView(R.id.buttonLogin)
     Button buttonLogin;
 
+    @BindView(R.id.btn_back)
+    ImageButton btn_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
         ButterKnife.bind(this);
+
 
         FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
@@ -122,6 +127,14 @@ public class SigninActivity extends BaseActivity {
                         input_email.getText().toString(),
                         input_password.getText().toString()
                 );
+            }
+        });
+
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.StringAdapter;
 import com.tefsalkw.fragment.FragmentTailorProducts;
+import com.tefsalkw.models.TailoringRecord;
 
 import java.util.ArrayList;
 
@@ -46,13 +47,24 @@ public class DialogKartDropdown extends Dialog {
             @Override
             public void onClick(View view) {
 
-
                 TailoringRecord tailoringRecord = data.get(cartitems.getSelectedItemPosition());
-               // Log.e("getItem_id1",getCartRecord.getItem_id());
-               // Log.e("getSelectedItemPosition",cartitems.getSelectedItemPosition()+"");
 
-                context.addItemToTailorItem(tailoringRecord,position );
-                cancel();
+                if (context.validateAssign(tailoringRecord)) {
+
+                    Toast.makeText(context.getContext(), "Sorry, limit reached!", Toast.LENGTH_SHORT).show();
+                }
+                else 
+                {
+
+                    // Log.e("getItem_id1",getCartRecord.getItem_id());
+                    // Log.e("getSelectedItemPosition",cartitems.getSelectedItemPosition()+"");
+
+                    context.addItemToTailorItem(tailoringRecord, position);
+                    cancel();
+                }
+
+
+             
 
             }
         });
