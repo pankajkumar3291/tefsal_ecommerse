@@ -144,7 +144,7 @@ public class FragmentTailorProducts extends BaseFragment {
         } else {
 
 
-            ownTextileText.setText(ownTextileString);
+            ownTextileText.setText(ownTextileString + " - " + TefalApp.getInstance().getNumberDishdashaUserHave() + "m");
         }
 
 
@@ -383,8 +383,7 @@ public class FragmentTailorProducts extends BaseFragment {
     public void showDialog(int position) {
 
 
-        Log.e("tailoringRecordArray", tailoringRecordArrayListOfChecked.size() + "");
-        if (tailoringRecordArrayListOfChecked.size() == 0) {
+        if (tailoringRecordArrayListOfChecked == null) {
 
 
             if (validateAssignOwn(position)) {
@@ -481,7 +480,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
                 int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
 
-                return (numberDishdasha / sizeIs) > list.size();
+                return numberDishdasha < (sizeIs + (sizeIs * list.size()));
 
             }
         }

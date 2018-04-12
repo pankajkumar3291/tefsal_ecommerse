@@ -270,6 +270,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
 
     public void showInputPrompt() {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        dialogBuilder.setCancelable(false);
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.layout_dishdasha_user_have, null);
         TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);

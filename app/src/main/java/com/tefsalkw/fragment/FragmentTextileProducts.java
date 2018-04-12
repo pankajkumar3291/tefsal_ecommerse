@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -343,38 +344,49 @@ public class FragmentTextileProducts extends BaseFragment {
                         @Override
                         public void onResponse(String response) {
 
-                            // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
-                                Gson g = new Gson();
-                                TextileProductResponse mResponse = g.fromJson(response, TextileProductResponse.class);
 
-                                if (!mResponse.getStatus().equals("0")) {
+                                try {
 
-                                    textileProductModelList = mResponse.getRecord();
-                                    dishdashaAdapter = new DishdashaTextileProductAdapter(getActivity(), textileProductModelList, store_id, flag);
-                                    recycler.setAdapter(dishdashaAdapter);
+                                    Log.e("stores response", response);
+                                    Gson g = new Gson();
+                                    TextileProductResponse mResponse = g.fromJson(response, TextileProductResponse.class);
 
-                                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-                                    recycler.setLayoutManager(mLayoutManager);
-                                    recycler.addItemDecoration(new GridSpacingItemDecoration(2, 10, true));
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
+                                    if (!mResponse.getStatus().equals("0")) {
 
-                                    // This is for new search request
-                                    textNoProduct.setVisibility(View.GONE);
-                                    if (recycler.getVisibility() == View.GONE) {
-                                        recycler.setVisibility(View.VISIBLE);
+                                        textileProductModelList = mResponse.getRecord();
+                                        dishdashaAdapter = new DishdashaTextileProductAdapter(getActivity(), textileProductModelList, store_id, flag);
+                                        recycler.setAdapter(dishdashaAdapter);
+
+                                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+                                        recycler.setLayoutManager(mLayoutManager);
+                                        recycler.addItemDecoration(new GridSpacingItemDecoration(2, 10, true));
+                                        recycler.setItemAnimator(new DefaultItemAnimator());
+
+                                        // This is for new search request
+                                        textNoProduct.setVisibility(View.GONE);
+                                        if (recycler.getVisibility() == View.GONE) {
+                                            recycler.setVisibility(View.VISIBLE);
+                                        }
+
+                                        // if(textileProductModelList.size()==0)
+
+
+                                    } else {
+                                        Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                     }
 
-                                    // if(textileProductModelList.size()==0)
 
-
-                                } else {
-                                    // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                } catch (Exception exc) {
                                 }
+
+
                             }
+
+                            SimpleProgressBar.closeProgress();
+
                             httpGetCountryCall();
                             httpGetColorCall();
                             httpGetFilterSeasonData();
@@ -425,6 +437,7 @@ public class FragmentTextileProducts extends BaseFragment {
 
         } catch (Exception surError) {
             surError.printStackTrace();
+            SimpleProgressBar.closeProgress();
         }
     }
 
@@ -554,7 +567,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
+
                         }
                     }) {
                 @Override
@@ -630,7 +643,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
+
                         }
                     }) {
                 @Override

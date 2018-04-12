@@ -25,6 +25,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaTextileAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
+import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
 
@@ -74,7 +75,7 @@ public class FragmentTextileStore extends BaseFragment {
     }
 
     public void WebCallServiceStores() {
-        // SimpleProgressBar.showProgress(getActivity());
+         SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getStores";
 
@@ -83,31 +84,44 @@ public class FragmentTextileStore extends BaseFragment {
                         @Override
                         public void onResponse(String response) {
 
-                            //  SimpleProgressBar.closeProgress();
+
 
                             if (response != null) {
 
-                                Log.e(FragmentTextileStore.class.getSimpleName(), response);
-                                Gson g = new Gson();
-                                TextileStoresResponseModel mResponse = g.fromJson(response, TextileStoresResponseModel.class);
+                                try
+                                {
+                                    Log.e(FragmentTextileStore.class.getSimpleName(), response);
+                                    Gson g = new Gson();
+                                    TextileStoresResponseModel mResponse = g.fromJson(response, TextileStoresResponseModel.class);
 
 
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-                                recycler.setLayoutManager(layoutManager);
-                                recycler.setItemAnimator(new DefaultItemAnimator());
-                                dishdashaAdapter = new DishdashaTextileAdapter(getActivity(), mResponse.getRecord(), flag);
-                                recycler.setAdapter(dishdashaAdapter);
+                                    recycler.setLayoutManager(layoutManager);
+                                    recycler.setItemAnimator(new DefaultItemAnimator());
+                                    dishdashaAdapter = new DishdashaTextileAdapter(getActivity(), mResponse.getRecord(), flag);
+                                    recycler.setAdapter(dishdashaAdapter);
+                                    SimpleProgressBar.closeProgress();
+                                }
+                                catch (Exception exc)
+                                {
+                                    SimpleProgressBar.closeProgress();
+                                }
+
+
+
 
                             }
+
+
 
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            //SimpleProgressBar.closeProgress();
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -144,7 +158,7 @@ public class FragmentTextileStore extends BaseFragment {
 
         } catch (Exception surError) {
             surError.printStackTrace();
-            // SimpleProgressBar.closeProgress();
+            SimpleProgressBar.closeProgress();
         }
     }
 }
