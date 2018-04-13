@@ -125,7 +125,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="--"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorRed"
                     android:textSize="@dimen/text_normal"
                     autofit:minTextSize="@dimen/text_small" />
 
@@ -171,6 +171,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
+
+            <ImageView
+                android:clickable="false"
+                android:id="@+id/cart_item_delete1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:visibility="gone" />
 
 
             <ImageView

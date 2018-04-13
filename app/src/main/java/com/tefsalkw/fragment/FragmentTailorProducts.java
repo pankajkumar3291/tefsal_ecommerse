@@ -65,6 +65,8 @@ public class FragmentTailorProducts extends BaseFragment {
 
     private String ownTextileString;
 
+    private boolean isOwnTextile = false;
+
 
     @BindView(R.id.loading)
     ProgressBar loading;
@@ -143,7 +145,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
         } else {
 
-
+            isOwnTextile = true;
             ownTextileText.setText(ownTextileString + " - " + TefalApp.getInstance().getNumberDishdashaUserHave() + "m");
         }
 
@@ -358,6 +360,7 @@ public class FragmentTailorProducts extends BaseFragment {
                             tailor_services.put("tailor_id", Math.round(Float.parseFloat(TefalApp.getInstance().getTailor_id())));
                             item_details.put("tailor_services", tailor_services);
 
+                            item_details.put("order_type", isOwnTextile ? "own_textile" : "textile");
 
                             obj.put("item_details", item_details);
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,6 +110,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
         @BindView(R.id.cart_item_delete)
         ImageView cart_item_delete;
+
+        @BindView(R.id.cart_item_delete1)
+        ImageView cart_item_delete1;
 
 
         @BindView(R.id.txtTailorTitle)
@@ -231,13 +235,19 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
             //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             //holder.sub_text_textile.setVisibility(GONE);
-            holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity() + " METERS");
+            holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
             if (storeModels.get(position2).getDiscount() > 0) {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
-                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+
+                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getPrice() + " KWD</strike>"));
+
+                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getDiscounted_price() + " KWD<i>"));
                 holder.text_price_discounted.setVisibility(View.VISIBLE);
+
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
+
             } else {
                 holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                 holder.text_price_discounted.setVisibility(GONE);
             }
 
@@ -257,11 +267,13 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
 
                 if (tailor_services.getDiscount() > 0) {
-                    holder.txtTailorPrice.setText(tailor_services.getPrice() + " KWD");
-                    holder.txtTailorPriceDicounted.setText(tailor_services.getDiscounted_price() + " KWD");
+                    holder.txtTailorPrice.setText(Html.fromHtml("<strike>" + tailor_services.getPrice() + " KWD</strike>"));
+                    holder.txtTailorPriceDicounted.setText(Html.fromHtml("<i>" + tailor_services.getDiscounted_price() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
+                    holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorBlack));
                 } else {
                     holder.txtTailorPrice.setText(tailor_services.getPrice() + " KWD");
+                    holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
                     holder.txtTailorPriceDicounted.setVisibility(GONE);
                 }
 
@@ -276,8 +288,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
         if (this.activate) {
             holder.cart_item_delete.setVisibility(View.VISIBLE);
+            holder.cart_item_delete1.setVisibility(View.VISIBLE);
         } else {
             holder.cart_item_delete.setVisibility(GONE);
+            holder.cart_item_delete1.setVisibility(View.GONE);
 
         }
 
