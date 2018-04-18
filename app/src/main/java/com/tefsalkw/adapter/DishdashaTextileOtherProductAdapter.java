@@ -102,7 +102,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
         List<Colors> colorsList = productRecords.get(position).getColors();
 
         List<ZaraDaraSizeModel> sizes = colorsList != null ? colorsList.get(0).getSizes() : null;
-        if (sizes != null) {
+        if (sizes != null && sizes.size() > 0) {
             holder.amount_text.setText(sizes.get(0).getPrice() + " KWD");
 
         }

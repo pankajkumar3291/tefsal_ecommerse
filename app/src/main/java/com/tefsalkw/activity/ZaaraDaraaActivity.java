@@ -702,6 +702,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         try {
             params.put("access_token", session.getToken());
             params.put("user_id", session.getCustomerId());
+            params.put("user_required_meter", "");
             try {
                 params.put("items", getItems(productRecord));
             } catch (JSONException e) {
@@ -822,6 +823,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                     params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
+
                     try {
                         params.put("items", String.valueOf(getItems(productRecord)));
                     } catch (JSONException e) {
@@ -856,6 +858,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", productRecord.getTefsal_product_id());
+
         obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
         if (productRecord.getFlag().equals("Daraa")) {
             obj.put("category_id", "3");
@@ -868,6 +871,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         if (zaraDaraSizesModel != null) {
             JSONObject item_details = new JSONObject();
+
             item_details.put("size", zaraDaraSizesModel.getSize());
             item_details.put("color", daraAbayaDetailRecord.getColors().get(currentColorPosition).getColor());
             item_details.put("item_quantity", meter_value.getText());

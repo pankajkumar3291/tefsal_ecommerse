@@ -40,17 +40,17 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.AccessoriesRecord;
-import com.tefsalkw.models.AccessoryDetailRecord;
-import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.Colors;
-import com.tefsalkw.models.Sizes;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.dialogs.DialogKart;
+import com.tefsalkw.models.AccessoriesRecord;
+import com.tefsalkw.models.AccessoryDetailRecord;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.Sizes;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -233,14 +233,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
 
-        if(accessoriesRecord != null)
-        {
-            textSliderView
-                    .image(accessoriesRecord.getAccessory_product_image()[0])
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
-
-        }
-
 
     }
 
@@ -365,20 +357,21 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         // Bind Slider
 
         //show images based on selection
-        Accessory_product_image = accessoriesRecord.getAccessory_product_image();
-        for (String imgUrl : Accessory_product_image) {
+        Accessory_product_image = accessoryDetailRecord.getSizes().get(0).getColors().get(0).getImages();
+        if (Accessory_product_image != null) {
+            for (String imgUrl : Accessory_product_image) {
 
 
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
+                product_image_viewPager.addSlider(textSliderView);
 
-
-            product_image_viewPager.addSlider(textSliderView);
-
+            }
         }
+
 
     }
 
@@ -395,7 +388,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     }
 
-    public void showSelectedSizeData(int position,Sizes sizes) {
+    public void showSelectedSizeData(int position, Sizes sizes) {
 
         this.currentColorPosition = position;
 
@@ -412,13 +405,12 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         }
 
 
-
         if (sizes != null) {
 
             colorModel = sizes.getColors().get(0);
 
             int qty = colorModel.getQty() != null ? Integer.parseInt(colorModel.getQty()) : 0;
-            if ( qty == 0) {
+            if (qty == 0) {
                 add_cart_btn.setText("SOLD OUT");
 
 
@@ -547,6 +539,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         try {
             params.put("access_token", session.getToken());
+            params.put("user_required_meter", "");
             params.put("user_id", session.getCustomerId());
             try {
                 params.put("items", getItems(accessoriesRecord));
@@ -929,7 +922,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             container.removeView((LinearLayout) object);
         }
     }
-
 
 
 }

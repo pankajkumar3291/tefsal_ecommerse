@@ -1212,6 +1212,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             params.put("access_token", session.getToken());
             params.put("user_id", session.getCustomerId());
             params.put("cart_id", session.getKeyCartId());
+            params.put("user_required_meter", TefalApp.getInstance().getMin_meters());
             try {
                 params.put("items", getItems());
             } catch (JSONException e) {

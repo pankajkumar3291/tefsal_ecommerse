@@ -539,8 +539,10 @@ public class FragmentTailorProducts extends BaseFragment {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 //                  params.put("access_token", session.getToken());
+                    params.put("user_required_meter", TefalApp.getInstance().getMin_meters());
                     params.put("item_id", getAssignedItemsRecord.getProduct_id());
                     params.put("tailor_id", TefalApp.getInstance().getTailor_id());
+                    params.put("cart_id", sessionManager.getKeyCartId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");

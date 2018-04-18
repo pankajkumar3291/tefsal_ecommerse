@@ -26,19 +26,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.AccessoriesProductsResponse;
-import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.AccessoriesProductAdapter;
 import com.tefsalkw.adapter.DishdashaTextileOtherProductAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.AccessoriesListResponseNew;
+import com.tefsalkw.models.AccessoriesModelNew;
+import com.tefsalkw.models.AccessoriesRecord;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.ColorsNew;
+import com.tefsalkw.models.SizesNew;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -226,10 +232,40 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
+                                AccessoriesListResponseNew mResponse = g.fromJson(response, AccessoriesListResponseNew.class);
 
-                                if (!mResponse.getStatus().equals("0")) {
-                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, mResponse.getRecord(), sub_cat);
+                                if (!mResponse.getStatus().equals("0") && mResponse.getRecord() != null) {
+
+
+                                    List<AccessoriesRecord> accessoriesRecordList = new ArrayList<>();
+
+                                    for (AccessoriesModelNew accessoriesModelNew : mResponse.getRecord()) {
+
+                                        AccessoriesRecord accessoriesRecord = new AccessoriesRecord();
+                                        accessoriesRecord.setTefsal_product_id(accessoriesModelNew.getTefsal_product_id());
+                                        accessoriesRecord.setStore_id(accessoriesModelNew.getStore_id());
+
+                                        accessoriesRecord.setBrandName(accessoriesModelNew.getBrand_name());
+                                        accessoriesRecord.setProductName(accessoriesModelNew.getProduct_name());
+                                        accessoriesRecord.setMax_delivery_days(accessoriesModelNew.getMax_delivery_days());
+                                        accessoriesRecord.setProduct_discount(accessoriesModelNew.getProduct_discount());
+
+                                        List<SizesNew> sizesNew = accessoriesModelNew.getSizes();
+
+                                        if (sizesNew != null && sizesNew.size() > 0) {
+
+                                            ColorsNew colorsNew = (ColorsNew)sizesNew.get(0).getColors();
+                                            accessoriesRecord.setAccessory_product_image(colorsNew.getImages());
+
+                                        }
+
+
+                                        accessoriesRecordList.add(accessoriesRecord);
+
+
+                                    }
+
+                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, accessoriesRecordList, sub_cat);
                                     recycler.setAdapter(adapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
@@ -260,7 +296,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
                     System.out.println("ACCESSORY======= SUBCAT==" + getIntent().getStringExtra("sub_cat"));
 
 
-                   // params.put("store_id", sub_cat);
+                    // params.put("store_id", sub_cat);
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
