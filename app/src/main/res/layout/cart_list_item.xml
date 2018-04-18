@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -39,7 +38,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="2.5">
@@ -63,7 +62,7 @@
             <ImageView
                 android:id="@+id/product_img"
                 android:layout_width="80dp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:background="@mipmap/ic_launcher"
                 android:scaleType="centerCrop" />
 
@@ -84,7 +83,7 @@
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold" />
 
-            <me.grantland.widget.AutofitTextView
+            <TextView
                 android:id="@+id/sub_text_textile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,10 +92,9 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="--"
-                android:textSize="@dimen/text_normal"
-                autofit:minTextSize="@dimen/text_small" />
+                android:textSize="@dimen/text_normal" />
 
-            <me.grantland.widget.AutofitTextView
+            <TextView
                 android:id="@+id/text_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,8 +105,7 @@
                 android:singleLine="true"
                 android:text="--"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_normal"
-                autofit:minTextSize="@dimen/text_small" />
+                android:textSize="@dimen/text_normal" />
 
 
             <LinearLayout
@@ -116,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,22 +123,19 @@
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal"
-                    autofit:minTextSize="@dimen/text_small" />
+                    android:textSize="@dimen/text_normal" />
 
-                <me.grantland.widget.AutofitTextView
+                <TextView
                     android:id="@+id/text_price_discounted"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal"
-                    autofit:minTextSize="@dimen/text_small" />
+                    android:textSize="@dimen/text_normal" />
             </LinearLayout>
 
 
@@ -160,7 +154,7 @@
 
         android:id="@+id/llTailorContainer"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -173,19 +167,19 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:clickable="false"
                 android:id="@+id/cart_item_delete1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
+                android:clickable="false"
                 android:visibility="gone" />
 
 
             <ImageView
                 android:id="@+id/img_tailor"
                 android:layout_width="85dp"
-                android:layout_height="match_parent"
+                android:layout_height="85dp"
                 android:background="@mipmap/ic_launcher"
                 android:scaleType="centerCrop" />
 
@@ -250,11 +244,10 @@
 
                 <TextView
                     android:id="@+id/txtTailorPriceDicounted"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:ellipsize="end"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="--"

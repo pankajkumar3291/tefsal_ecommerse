@@ -2,12 +2,11 @@ package com.tefsalkw.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,7 +27,6 @@ public class SettingsActivity extends BaseActivity {
 
     @BindView(R.id.text_edit_profile)
     TextView text_edit_profile;
-
 
 
     @BindView(R.id.text_language_spinner)
@@ -56,16 +54,16 @@ public class SettingsActivity extends BaseActivity {
     TextView text_change_password;
 
 
-
     @BindView(R.id.view1)
-            View view1;
+    View view1;
     @BindView(R.id.view2)
-            View view2;
+    View view2;
     @BindView(R.id.view7)
-            View view7;
+    View view7;
 
     SessionManager session;
 
+    boolean userIsInteracting = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +76,7 @@ public class SettingsActivity extends BaseActivity {
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
         session = new SessionManager(this);
+
 
         setSupportActionBar(toolbar);
         toolbar_title.setText(R.string.title_settings);
@@ -93,8 +92,7 @@ public class SettingsActivity extends BaseActivity {
 
         // This block of code is used to hide from settings remove edit profile / change password / logout while user enters as guest
 
-        if (session.getCustomerId().equals(""))
-        {
+        if (session.getCustomerId().equals("")) {
             text_logout.setVisibility(GONE);
             text_change_password.setVisibility(GONE);
             text_edit_profile.setVisibility(GONE);
@@ -119,15 +117,11 @@ public class SettingsActivity extends BaseActivity {
 
         text_change_password.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(session.getCustomerId().equals(""))
-                {
+            public void onClick(View v) {
+                if (session.getCustomerId().equals("")) {
                     startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
 
-                }
-                else
-                {
+                } else {
                     startActivity(new Intent(SettingsActivity.this, ChangePasswordActivity.class));
                 }
 
@@ -136,8 +130,7 @@ public class SettingsActivity extends BaseActivity {
 
         text_about.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
             }
         });
@@ -145,21 +138,19 @@ public class SettingsActivity extends BaseActivity {
 
         text_terms.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 startActivity(new Intent(SettingsActivity.this, TC_Actitivity.class));
             }
         });
 
         text_send_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-               // startActivity(new Intent(SettingsActivity.this, FeedBackActivity.class));
+            public void onClick(View v) {
+                // startActivity(new Intent(SettingsActivity.this, FeedBackActivity.class));
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:"));
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"info@tefsalkw.com"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@tefsalkw.com"});
                 // intent.putExtra(Intent.EXTRA_CC, new String[] {"andy@whatever.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Tefsal app feedback");
                 intent.putExtra(Intent.EXTRA_TEXT, "Tell us your positive or negative experience:\n");
@@ -171,18 +162,56 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                if(session.getCustomerId().equals(""))
-                {
+                if (session.getCustomerId().equals("")) {
                     startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
 
-                }
-                else
-                {
+                } else {
                     startActivity(new Intent(SettingsActivity.this, EditProfileActivity.class));
                 }
             }
         });
 
 
+        if (session.getKeyLang().equalsIgnoreCase("Arabic")) {
+            text_language_spinner.setSelection(1);
+        } else {
+            text_language_spinner.setSelection(0);
+        }
+
+
+        text_language_spinner.setSelection(0, false);
+        text_language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+
+                if (userIsInteracting) {
+                    session.setKeyLang(parentView.getSelectedItem().toString());
+
+
+                    Intent i = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(i);
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+
+            }
+
+        });
+
+
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        userIsInteracting = true;
     }
 }

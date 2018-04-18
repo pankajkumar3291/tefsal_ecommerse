@@ -77,7 +77,7 @@ public class SessionManager {
 
     public static final String KEY_CART_ID="key_cart_id";
 
-
+    public static final String KEY_LANG = "key_lang";
 
     public  String getKeyPass()
     {
@@ -392,6 +392,21 @@ public class SessionManager {
     public void setKeyCartId(String cart_id)
     {
         editor.putString(KEY_CART_ID,cart_id);
+        editor.commit();
+    }
+
+
+    //--------------SET/GET LANG------------------------------------
+
+    public String getKeyLang()
+    {
+        return Tefsal_pref.getString(KEY_LANG,"English");
+    }
+
+
+    public void setKeyLang(String lang)
+    {
+        editor.putString(KEY_LANG,lang);
         editor.commit();
     }
 

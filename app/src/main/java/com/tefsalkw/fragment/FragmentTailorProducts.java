@@ -27,6 +27,7 @@ import com.tefsalkw.adapter.DishdashaTailorProductAdapterForListView;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.dialogs.DialogKart;
 import com.tefsalkw.dialogs.DialogKartDropdown;
+import com.tefsalkw.models.GetAssignedItemsRecord;
 import com.tefsalkw.models.GetAssignedItemsResponse;
 import com.tefsalkw.models.SublistCartItems;
 import com.tefsalkw.models.TailoringRecord;
@@ -154,7 +155,12 @@ public class FragmentTailorProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                WebCallServiceAddCartNew();
+                if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null && dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size() > 0) {
+                    WebCallServiceAddCartNew();
+                } else {
+                    Toast.makeText(getActivity(), "Please add one or more tailor products.", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
@@ -260,7 +266,7 @@ public class FragmentTailorProducts extends BaseFragment {
             params.put("user_id", sessionManager.getCustomerId());
             params.put("cart_id", sessionManager.getKeyCartId());
             try {
-                params.put("items", getItems());
+                params.put("items", isOwnTextile ? getItemsOwn() : getItems());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -330,6 +336,56 @@ public class FragmentTailorProducts extends BaseFragment {
     }
 
 
+    public JSONArray getItemsOwn() {
+        JSONArray arry = new JSONArray();
+        try {
+
+
+            if (dishdashaTailorProductAdapterForListView != null && dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null) {
+
+                for (int i = 0; i < dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size(); i++) {
+
+                    if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size() > 0) {
+
+                        List<SublistCartItems> sublistCartItems = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(i);
+
+                        if (sublistCartItems != null && sublistCartItems.size() > 0) {
+                            JSONObject obj = new JSONObject();
+                            obj.put("category_id", "1");
+
+                            JSONObject item_details = new JSONObject();
+                            JSONObject tailor_services = new JSONObject();
+
+                            tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
+                            tailor_services.put("qty", sublistCartItems.size());
+                            tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
+                            tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
+                            item_details.put("tailor_services", tailor_services);
+
+                            item_details.put("order_type", "own_textile");
+
+                            obj.put("item_details", item_details);
+
+                            arry.put(obj);
+                        }
+
+
+                    }
+
+
+                }
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("JsonArrayItems", String.valueOf(arry));
+        return arry;
+    }
+
+
     public JSONArray getItems() {
         JSONArray arry = new JSONArray();
         try {
@@ -357,10 +413,10 @@ public class FragmentTailorProducts extends BaseFragment {
                             tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
                             tailor_services.put("qty", 1);
                             tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
-                            tailor_services.put("tailor_id", Math.round(Float.parseFloat(TefalApp.getInstance().getTailor_id())));
+                            tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
                             item_details.put("tailor_services", tailor_services);
 
-                            item_details.put("order_type", isOwnTextile ? "own_textile" : "textile");
+                            item_details.put("order_type", "textile");
 
                             obj.put("item_details", item_details);
 
@@ -437,6 +493,9 @@ public class FragmentTailorProducts extends BaseFragment {
             tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).setRemaining_dishdasha(remaining);
 
             customTailorCalculationProduct.notifyDataSetChanged();
+            assignTailorHttpCall(cartRecord);
+
+
         } else {
 
             SublistCartItems sublistCartItems = new SublistCartItems();
@@ -450,6 +509,59 @@ public class FragmentTailorProducts extends BaseFragment {
 
         }
 
+
+    }
+
+
+    private void assignTailorHttpCall(final TailoringRecord getAssignedItemsRecord) {
+
+
+        try {
+            final String url = Contents.baseURL + "assignTailor";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            System.out.println("OUTPUT=====assignTailor Response" + response);
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+//                  params.put("access_token", session.getToken());
+                    params.put("item_id", getAssignedItemsRecord.getProduct_id());
+                    params.put("tailor_id", TefalApp.getInstance().getTailor_id());
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    Log.e("assignTailorHttpCall", url + new JSONObject(params));
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
 
     }
 
@@ -474,18 +586,34 @@ public class FragmentTailorProducts extends BaseFragment {
 
 
         if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null) {
-            List<SublistCartItems> list = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
 
-            if (list != null) {
-
-
-                int sizeIs = Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
-
-                int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
-
-                return numberDishdasha < (sizeIs + (sizeIs * list.size()));
+            int count = 0;
+            for (int i = 0; i < dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size(); i++) {
+                List<SublistCartItems> list = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(i);
+                if (list != null) {
+                    count = count + list.size();
+                }
 
             }
+
+            int sizeIs = Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
+            int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
+
+            return numberDishdasha < (sizeIs + (sizeIs * count));
+
+
+//            List<SublistCartItems> list = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
+//
+//            if (list != null) {
+//
+//
+//                int sizeIs = Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
+//
+//                int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
+//
+//                return numberDishdasha < (sizeIs + (sizeIs * list.size()));
+//
+//            }
         }
 
 

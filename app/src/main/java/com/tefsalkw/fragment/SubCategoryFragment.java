@@ -24,12 +24,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.AccessoriesProductsResponse;
+import com.tefsalkw.R;
+import com.tefsalkw.adapter.DishdashaTextileOtherProductAdapter;
 import com.tefsalkw.models.ProductRecord;
 import com.tefsalkw.models.ProductsResponse;
-import com.tefsalkw.R;
-import com.tefsalkw.adapter.AccessoriesProductAdapter;
-import com.tefsalkw.adapter.DishdashaTextileOtherProductAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -54,24 +52,22 @@ public class SubCategoryFragment extends BaseFragment {
 
     SessionManager session;
 
-    ArrayList<ProductRecord>  records;
+    ArrayList<ProductRecord> records;
 
     public SubCategoryFragment() {
 
     }
 
 
+    public static Fragment newInstance(ArrayList<ProductRecord> records1, String store_id) {
 
-    public static Fragment newInstance(ArrayList<ProductRecord> records1,String store_id) {
-
-        SubCategoryFragment subCategoryFragment =  new SubCategoryFragment();
+        SubCategoryFragment subCategoryFragment = new SubCategoryFragment();
         Bundle args = new Bundle();
-        args.putString("store_id",store_id);
-        args.putSerializable("ProductRecord",records1);
+        args.putString("store_id", store_id);
+        args.putSerializable("ProductRecord", records1);
         subCategoryFragment.setArguments(args);
-        return  subCategoryFragment;
+        return subCategoryFragment;
     }
-
 
 
     @Override
@@ -79,18 +75,18 @@ public class SubCategoryFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_sub_category, container, false);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
         session = new SessionManager(getActivity());
 
 
         flag = getActivity().getIntent().getStringExtra("flag");
 
 
-        records = (ArrayList<ProductRecord>)  getArguments().getSerializable("ProductRecord");
-         Log.e("recordssize ",records.size()+"");
-        store_id =  getArguments().getString("store_id");
+        records = (ArrayList<ProductRecord>) getArguments().getSerializable("ProductRecord");
+        Log.e("recordssize ", records.size() + "");
+        store_id = getArguments().getString("store_id");
 
-        Log.e("store_id ",store_id);
+        Log.e("store_id ", store_id);
         return rootView;
     }
 
@@ -98,7 +94,7 @@ public class SubCategoryFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), records, store_id,flag);
+        dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), records, store_id, flag);
         recycler.setAdapter(dishdashaAdapter);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -131,7 +127,7 @@ public class SubCategoryFragment extends BaseFragment {
                                 ProductsResponse mResponse = g.fromJson(response, ProductsResponse.class);
 
                                 if (!mResponse.getStatus().equals("0")) {
-                                    dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), mResponse.getRecord(), store_id,flag);
+                                    dishdashaAdapter = new DishdashaTextileOtherProductAdapter(getActivity(), mResponse.getRecord(), store_id, flag);
                                     recycler.setAdapter(dishdashaAdapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -186,85 +182,6 @@ public class SubCategoryFragment extends BaseFragment {
         }
     }
 
-    public void WebCallAccessoriesProducts() {
-        SimpleProgressBar.showProgress(getActivity());
-        try {
-
-            final String url = Contents.baseURL + "getAccessoriesProducts";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            if (response != null) {
-
-                                Log.e("stores response", response);
-                                Gson g = new Gson();
-                                AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
-
-                                if (!mResponse.getStatus().equals("0")) {
-                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(getActivity(), mResponse.getRecord(), store_id);
-                                    recycler.setAdapter(adapter);
-
-                                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-                                    recycler.setLayoutManager(mLayoutManager);
-                                    recycler.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
-                                } else {
-                                    Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-//                    params.put("access_token", session.getToken());
-
-                    System.out.println("ACCESSORY======= STORE==" + store_id);
-                    //System.out.println("ACCESSORY======= STORE=="+store_id);
-                    System.out.println("ACCESSORY======= SUBCAT==" + getActivity().getIntent().getStringExtra("sub_cat"));
-
-
-                    params.put("store_id", store_id);
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-                    if (flag.equals("Accessories")) {
-                        params.put("sub_cat_id", getActivity().getIntent().getStringExtra("sub_cat"));
-                        System.out.println("ACCESSORY SUBCAT==" + getActivity().getIntent().getStringExtra("sub_cat"));
-                    }
-                    //System.out.println("Store ID=="+store_id+ "SubCategory ID=="+getIntent().getStringExtra("sub_cat"));
-
-                    Log.e("Tefsal store == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 

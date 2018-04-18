@@ -1,17 +1,18 @@
 package com.tefsalkw.app;
 
-import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
+import android.util.DisplayMetrics;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import io.fabric.sdk.android.Fabric;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -20,7 +21,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by Rituparna Khadka on 11/30/2017.
  */
 
-public class TefsalApplication extends Application {
+public class TefsalApplication extends MultiDexApplication {
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
 
@@ -35,6 +36,7 @@ public class TefsalApplication extends Application {
         sAnalytics = GoogleAnalytics.getInstance(this);
         mInstance = this;
         super.onCreate();
+
         MultiDex.install(this);
 
         initOkHttpObject();
@@ -44,7 +46,14 @@ public class TefsalApplication extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+
+
+
+
+
     }
+
+
 
     public static Context getContext() {
         return getContext();

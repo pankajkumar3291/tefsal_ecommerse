@@ -60,7 +60,7 @@ public class DialogKartDropdown extends Dialog {
                     // Log.e("getSelectedItemPosition",cartitems.getSelectedItemPosition()+"");
 
                     context.addItemToTailorItem(tailoringRecord, position);
-                    cancel();
+                    dismiss();
                 }
 
 

@@ -22,12 +22,12 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.tefsalkw.models.GetCartRecord;
-import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
+import com.tefsalkw.models.GetCartRecord;
+import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -69,7 +69,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
     private ImageView cart_item_delete;
 
-    int totalPrice = 0;
+    float totalPrice = 0;
 
     GetCartResponse mResponse;
     boolean isDelete = true;
@@ -96,6 +96,44 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
         onCartItemDeletedListener = this;
 
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        try
+        {
+
+            Intent intent  = getIntent();
+
+            if(intent != null)
+            {
+                boolean fromDialogKart = intent.getBooleanExtra("fromDialogKart",false);
+
+                if(fromDialogKart)
+                {
+                    startActivity(new Intent(CartActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                    finish();
+                }
+                else
+                {
+                    super.onBackPressed();
+                }
+
+            }
+            else
+            {
+                super.onBackPressed();
+            }
+
+
+        }
+        catch (Exception exc)
+        {
+
+        }
 
     }
 
@@ -172,7 +210,6 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     }
 
 
-
     public void WebCallServiceCart() {
 
         Log.i(TAG, "Setting screen name: " + "CartActivity");
@@ -203,7 +240,15 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                         header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
                                     for (int i = 0; i < mResponse.getRecord().size(); i++) {
-                                        totalPrice += Integer.parseInt(mResponse.getRecord().get(i).getPrice());
+
+                                        if (mResponse.getRecord().get(i).getDiscount() > 0) {
+
+
+                                            totalPrice += mResponse.getRecord().get(i).getItem_quantity() * mResponse.getRecord().get(i).getDiscounted_price();
+                                        } else {
+                                            totalPrice += Float.parseFloat(mResponse.getRecord().get(i).getTotal_amount());
+                                        }
+
                                         //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
                                     }
                                     amount.setText("TOTAL : " + totalPrice + " KWD");
@@ -297,7 +342,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     }
 
     public void updateUifromAdapter(List<GetCartRecord> storeModels) {
-        Double totalPrice = 0.0;
+        totalPrice = 0;
         if (mResponse.getRecord().size() <= 1)
             header_txt.setText(mResponse.getRecord().size() + " item in your cart");
         else
@@ -306,7 +351,15 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
         for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
             try {
-                totalPrice = totalPrice + Double.parseDouble(mResponse.getRecord().get(i).getPrice());
+                if (mResponse.getRecord().get(i).getDiscount() > 0) {
+
+
+                    totalPrice += mResponse.getRecord().get(i).getItem_quantity() * mResponse.getRecord().get(i).getDiscounted_price();
+                } else {
+                    totalPrice += Float.parseFloat(mResponse.getRecord().get(i).getTotal_amount());
+                }
+
+
             } catch (Exception ex) {
                 System.out.println("Exception=====" + ex);
             }

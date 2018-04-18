@@ -61,6 +61,7 @@ public class SelectLanguage extends BaseActivity {
         btn_arabic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Locale locale = new Locale("ar");
                 Locale.setDefault(locale);
 

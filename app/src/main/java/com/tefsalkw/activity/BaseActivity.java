@@ -1,17 +1,17 @@
 package com.tefsalkw.activity;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.tefsalkw.R;
-import com.tefsalkw.utils.FontChangeCrawler;
+import com.tefsalkw.utils.SessionManager;
+
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -28,7 +28,25 @@ public class BaseActivity extends AppCompatActivity {
    */
 
 
-        Log.e("::::Activity::::",this.getClass().getSimpleName());
+        Log.e("::::Activity::::", this.getClass().getSimpleName());
+
+//        Configuration conf =  getResources().getConfiguration();
+//        conf.locale = new Locale("ar");
+//        Locale.setDefault(new Locale("ar"));
+//        conf.setLayoutDirection(conf.locale);
+
+//        SessionManager session = new SessionManager(this);
+//
+//        String savedLang = session.getKeyLang();
+//
+//        String localeString = savedLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+//        Log.e("::::localeString::::", localeString);
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        android.content.res.Configuration conf = res.getConfiguration();
+//        conf.setLocale(new Locale(localeString));
+//        res.updateConfiguration(conf, dm);
+
 
     }
 

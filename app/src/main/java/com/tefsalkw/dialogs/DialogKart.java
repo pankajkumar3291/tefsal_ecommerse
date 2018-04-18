@@ -120,7 +120,7 @@ public class DialogKart extends Dialog {
         btnllGotoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               context.startActivity(new Intent(context, CartActivity.class));
+               context.startActivity(new Intent(context, CartActivity.class).putExtra("fromDialogKart",true));
                dismiss();
             }
         });
