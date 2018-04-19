@@ -67,7 +67,7 @@ public class SublistAdapter extends RecyclerView.Adapter<SublistAdapter.ViewHold
 
                 FragmentTailorProducts fragmentTailorProducts =  (FragmentTailorProducts)activity;
 
-                fragmentTailorProducts.removeItem(storeModels.get(position).getItemPosition());
+                fragmentTailorProducts.removeItem(storeModels.get(position),storeModels.get(position).getItemPosition());
 
                 storeModels.remove(position);
 

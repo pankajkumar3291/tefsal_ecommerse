@@ -345,7 +345,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
                 getCartRecord.setBrand_name(getCartRecordList.get(i).getBrand_name());
                 getCartRecord.setDishdasha_feel(getCartRecordList.get(i).getBrand_image());
                 getCartRecord.setPrice(getCartRecordList.get(i).getPrice());
-                getCartRecord.setPrice(getCartRecordList.get(i).getPattern_image());
+                getCartRecord.setPattern_image(getCartRecordList.get(i).getPattern_image());
                 getCartRecord.setColor_image(getCartRecordList.get(i).getColor_image());
                 getCartRecord.setDishdasha_material(getCartRecordList.get(i).getDishdasha_material());
                 getCartRecord.setStore_name(getCartRecordList.get(i).getStore_name());

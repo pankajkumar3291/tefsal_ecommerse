@@ -48,6 +48,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
     DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
+    int selectedPosition = -1;
 
     public DishdashaTailorProductAdapterForListView(FragmentTailorProducts activity, ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList) {
         this.activity = activity;
@@ -106,7 +107,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
             public void onClick(View v) {
 
                 //  assignTailorHttpCall(assignedItemsRecordArrayList.get(position));
-
+                selectedPosition = position;
                 activity.showDialog(position);
 
 
@@ -119,68 +120,23 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         return convertView;
     }
 
-    private void assignTailorHttpCall(final GetAssignedItemsRecord getAssignedItemsRecord) {
 
-        SimpleProgressBar.showProgress(activity.getActivity());
-        try {
-            final String url = Contents.baseURL + "assignTailor";
+    public void addSublistCartItem(SublistCartItems sublistCartItems, boolean isOwn) {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-                            System.out.println("OUTPUT=====assignTailor Response" + response);
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-//                  params.put("access_token", session.getToken());
-                    params.put("item_id", getAssignedItemsRecord.getTefsal_product_id());
-                    params.put("tailor_id", getAssignedItemsRecord.getStore_id());
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-
-                    Log.e("Tefsal tailor == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(activity.getActivity());
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-
-    }
-
-    public void addSublistCartItem(int position, SublistCartItems sublistCartItems, boolean isOwn) {
+        Log.e("selectedPosition",selectedPosition+"");
 
         isOwnTextile = isOwn;
 
-        if (sublistCartItemsHashMap.containsKey(position)) {
+        if (sublistCartItemsHashMap.containsKey(selectedPosition)) {
 
-            List<SublistCartItems> sublistitems = sublistCartItemsHashMap.get(position);
+
+
+            List<SublistCartItems> sublistitems = sublistCartItemsHashMap.get(selectedPosition);
             sublistitems.add(sublistCartItems);
-            sublistCartItemsHashMap.put(position, sublistitems);
+
+            sublistCartItemsHashMap.put(selectedPosition, sublistitems);
             sublistAdapter.notifyDataSetChanged();
+
 
         } else {
 
@@ -188,7 +144,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
             List<SublistCartItems> sublistitems = new ArrayList<>();
             sublistitems.add(sublistCartItems);
 
-            sublistCartItemsHashMap.put(position, sublistitems);
+            sublistCartItemsHashMap.put(selectedPosition, sublistitems);
             sublistAdapter.notifyDataSetChanged();
 
         }

@@ -49,6 +49,7 @@ import static android.view.View.GONE;
  * Created by new on 9/26/2017.
  */
 
+
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder> {
 
     private Activity activity;
@@ -130,6 +131,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.llTailorContainer)
         LinearLayout llTailorContainer;
 
+        @BindView(R.id.llTailorContainerSep)
+        View llTailorContainerSep;
+
+
+        @BindView(R.id.txtShopName)
+        TextView txtShopName;
+
+        @BindView(R.id.txtTailorDesc)
+        TextView txtTailorDesc;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -146,26 +157,30 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         if (storeModels.get(position2).getItem_type().equals("DTE")) {
 
             holder.llTailorContainer.setVisibility(GONE);
+            holder.llTailorContainerSep.setVisibility(GONE);
             Picasso.with(activity)
-                    .load(storeModels.get(position2).getStore_image())
+                    .load(storeModels.get(position2).getImage())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
             System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
-            holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
+            holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Textile");
+            holder.txtShopName.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / METER");
             // holder.sub_text_textile.setVisibility(GONE);
             // holder.sub_text_textile.setText();
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
 
             if (storeModels.get(position2).getDiscount() > 0) {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
-                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                 holder.text_price_discounted.setVisibility(View.VISIBLE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
             } else {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                 holder.text_price_discounted.setVisibility(GONE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
             }
 
 
@@ -174,79 +189,88 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         if (storeModels.get(position2).getItem_type().equals("DB")) {
 
             holder.llTailorContainer.setVisibility(GONE);
+            holder.llTailorContainerSep.setVisibility(GONE);
             Picasso.with(activity)
-                    .load(storeModels.get(position2).getStore_image())
+                    .load(storeModels.get(position2).getImage())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
             System.out.println("Image ===" + storeModels.get(position2).getImage());
 
-            holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
+            holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Dara / Abaya");
+            holder.txtShopName.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / METER");
             // holder.sub_text_textile.setVisibility(GONE);
             //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity());
             if (storeModels.get(position2).getDiscount() > 0) {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
-                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                 holder.text_price_discounted.setVisibility(View.VISIBLE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
             } else {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                 holder.text_price_discounted.setVisibility(GONE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
             }
 
         }
         if (storeModels.get(position2).getItem_type().equals("A")) {
 
             holder.llTailorContainer.setVisibility(GONE);
+            holder.llTailorContainerSep.setVisibility(GONE);
             Picasso.with(activity)
-                    .load(storeModels.get(position2).getStore_image())
+                    .load(storeModels.get(position2).getImage())
                     .error(R.drawable.no_image_placeholder_grid)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .into(holder.product_img);
             System.out.println("Image ===" + storeModels.get(position2).getStore_image());
 
-            holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
+            holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Accessories");
+            holder.txtShopName.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / QTY");
             //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             //  holder.sub_text_textile.setVisibility(GONE);
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
             if (storeModels.get(position2).getDiscount() > 0) {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
-                holder.text_price_discounted.setText(storeModels.get(position2).getDiscounted_price() + " KWD");
+                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                 holder.text_price_discounted.setVisibility(View.VISIBLE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
             } else {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                 holder.text_price_discounted.setVisibility(GONE);
+                holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
             }
         }
 
         if (storeModels.get(position2).getItem_type().equals("DTA")) {
             Picasso.with(activity)
-                    .load(storeModels.get(position2).getStore_image())
+                    .load(storeModels.get(position2).getImage())
                     .error(R.drawable.placeholder_no_image)
                     .placeholder(R.drawable.placeholder_image_loading)
                     .into(holder.product_img);
 
-            holder.text_Tailor_name.setText(storeModels.get(position2).getStore_name());
+            holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Dishdasha Tailoring");
+            holder.txtShopName.setText(storeModels.get(position2).getStore_name());
             holder.text_textile.setText(storeModels.get(position2).getProduct_name());
-            holder.sub_text_textile.setText(storeModels.get(position2).getProduct_desc());
+            holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / METER");
             //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             //holder.sub_text_textile.setVisibility(GONE);
             holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
             if (storeModels.get(position2).getDiscount() > 0) {
 
-                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getPrice() + " KWD</strike>"));
+                holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
 
-                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getDiscounted_price() + " KWD<i>"));
+                holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD<i>"));
                 holder.text_price_discounted.setVisibility(View.VISIBLE);
 
                 holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
 
             } else {
-                holder.text_price.setText(storeModels.get(position2).getPrice() + " KWD");
+                holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                 holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                 holder.text_price_discounted.setVisibility(GONE);
             }
@@ -259,20 +283,23 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             if (storeModels.get(position2).getTailor_services() != null) {
 
                 holder.llTailorContainer.setVisibility(View.VISIBLE);
+                holder.llTailorContainerSep.setVisibility(View.VISIBLE);
 
                 Tailor_services tailor_services = storeModels.get(position2).getTailor_services();
 
                 holder.txtTailorTitle.setText(tailor_services.getService_name());
+                holder.txtTailorDesc.setText(tailor_services.getPrice() + " / QTY");
+
                 holder.txtTailorQty.setText("QTY: " + tailor_services.getQty() + " Dishdasha");
 
 
                 if (tailor_services.getDiscount() > 0) {
-                    holder.txtTailorPrice.setText(Html.fromHtml("<strike>" + tailor_services.getPrice() + " KWD</strike>"));
-                    holder.txtTailorPriceDicounted.setText(Html.fromHtml("<i>" + tailor_services.getDiscounted_price() + " KWD</i>"));
+                    holder.txtTailorPrice.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                    holder.txtTailorPriceDicounted.setText(Html.fromHtml("<i>" + tailor_services.getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorBlack));
                 } else {
-                    holder.txtTailorPrice.setText(tailor_services.getPrice() + " KWD");
+                    holder.txtTailorPrice.setText(tailor_services.getTotal_amount() + " KWD");
                     holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
                     holder.txtTailorPriceDicounted.setVisibility(GONE);
                 }
@@ -280,6 +307,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             } else {
                 holder.llTailorContainer.setVisibility(View.GONE);
+                holder.llTailorContainerSep.setVisibility(View.GONE);
             }
 
 

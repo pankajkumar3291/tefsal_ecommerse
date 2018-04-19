@@ -28,7 +28,7 @@ public class GetCartRecord implements Serializable {
 
     private String brand_image;
 
-    private String price;
+    private float price;
 
     private String pattern_image;
 
@@ -219,12 +219,12 @@ public class GetCartRecord implements Serializable {
         this.brand_image = brand_image;
     }
 
-    public String getPrice ()
+    public float getPrice ()
     {
         return price;
     }
 
-    public void setPrice (String price)
+    public void setPrice (float price)
     {
         this.price = price;
     }

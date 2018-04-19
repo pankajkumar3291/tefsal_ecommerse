@@ -75,6 +75,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtShopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/text_textile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -201,14 +210,15 @@
                 android:textStyle="bold" />
 
 
-            <TextView
 
+            <TextView
+                android:id="@+id/txtTailorDesc"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="--"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_mid"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_mid" />
 
 
             <TextView
@@ -260,6 +270,14 @@
 
 
     </LinearLayout>
+    <View
+        android:visibility="gone"
+        android:id="@+id/llTailorContainerSep"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#bdbdbd" />
+
 
 
 </LinearLayout>

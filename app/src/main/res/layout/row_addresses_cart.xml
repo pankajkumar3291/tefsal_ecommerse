@@ -59,6 +59,7 @@
             android:textSize="12sp" />
 
         <Button
+            android:layout_marginStart="10dp"
             android:background="@drawable/my_button_bg_roundselected"
             android:id="@+id/btn_deliver"
             android:layout_height="40dp"

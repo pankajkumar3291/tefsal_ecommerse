@@ -1,38 +1,64 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
+
 /**
  * Created by AC 101 on 25-10-2017.
  */
 
-public class AddCartResponse
+public class AddCartResponse implements Serializable
 {
-    private AddCartRecord errors;
+    private String message;
 
-    private String status;
+    private String cart_id;
 
-    public AddCartRecord getErrors ()
+    private int status;
+
+    private String item_type;
+
+    public String getMessage ()
     {
-        return errors;
+        return message;
     }
 
-    public void AddCartRecord (AddCartRecord errors)
+    public void setMessage (String message)
     {
-        this.errors = errors;
+        this.message = message;
     }
 
-    public String getStatus ()
+    public String getCart_id ()
+    {
+        return cart_id;
+    }
+
+    public void setCart_id (String cart_id)
+    {
+        this.cart_id = cart_id;
+    }
+
+    public int getStatus ()
     {
         return status;
     }
 
-    public void setStatus (String status)
+    public void setStatus (int status)
     {
         this.status = status;
+    }
+
+    public String getItem_type ()
+    {
+        return item_type;
+    }
+
+    public void setItem_type (String item_type)
+    {
+        this.item_type = item_type;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [errors = "+errors+", status = "+status+"]";
+        return "ClassPojo [message = "+message+", cart_id = "+cart_id+", status = "+status+", item_type = "+item_type+"]";
     }
 }

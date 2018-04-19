@@ -103,35 +103,26 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     @Override
     public void onBackPressed() {
 
-        try
-        {
+        try {
 
-            Intent intent  = getIntent();
+            Intent intent = getIntent();
 
-            if(intent != null)
-            {
-                boolean fromDialogKart = intent.getBooleanExtra("fromDialogKart",false);
+            if (intent != null) {
+                boolean fromDialogKart = intent.getBooleanExtra("fromDialogKart", false);
 
-                if(fromDialogKart)
-                {
+                if (fromDialogKart) {
                     startActivity(new Intent(CartActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                     finish();
-                }
-                else
-                {
+                } else {
                     super.onBackPressed();
                 }
 
-            }
-            else
-            {
+            } else {
                 super.onBackPressed();
             }
 
 
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
 
         }
 
@@ -241,13 +232,21 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
                                     for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
-                                        if (mResponse.getRecord().get(i).getDiscount() > 0) {
+                                        GetCartRecord getCartRecord = mResponse.getRecord().get(i);
+                                        if (getCartRecord != null) {
 
+                                            if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
 
-                                            totalPrice += mResponse.getRecord().get(i).getItem_quantity() * mResponse.getRecord().get(i).getDiscounted_price();
-                                        } else {
-                                            totalPrice += Float.parseFloat(mResponse.getRecord().get(i).getTotal_amount());
+                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+                                                totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
+
+                                            } else {
+
+                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+
+                                            }
                                         }
+
 
                                         //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
                                     }
@@ -351,12 +350,20 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
         for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
             try {
-                if (mResponse.getRecord().get(i).getDiscount() > 0) {
 
+                GetCartRecord getCartRecord = mResponse.getRecord().get(i);
+                if (getCartRecord != null) {
 
-                    totalPrice += mResponse.getRecord().get(i).getItem_quantity() * mResponse.getRecord().get(i).getDiscounted_price();
-                } else {
-                    totalPrice += Float.parseFloat(mResponse.getRecord().get(i).getTotal_amount());
+                    if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
+
+                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+                        totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
+
+                    } else {
+
+                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+
+                    }
                 }
 
 

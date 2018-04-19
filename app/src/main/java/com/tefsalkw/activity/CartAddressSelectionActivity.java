@@ -332,8 +332,20 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                         header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
                                     for (int i = 0; i < mResponse.getRecord().size(); i++) {
-                                        totalPrice += Integer.parseInt(mResponse.getRecord().get(i).getPrice());
-                                        //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
+                                        GetCartRecord getCartRecord = mResponse.getRecord().get(i);
+                                        if (getCartRecord != null) {
+
+                                            if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
+
+                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+                                                totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
+
+                                            } else {
+
+                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+
+                                            }
+                                        }
                                     }
                                     amount.setText("TOTAL : " + totalPrice + " KWD");
                                     currentItemsCount = mResponse.getRecord().size();
@@ -380,7 +392,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     }
 
     public void updateUifromAdapter(List<GetCartRecord> storeModels) {
-        Double totalPrice = 0.0;
+        float totalPrice = 0;
         if (mResponse.getRecord().size() <= 1)
             header_txt.setText(mResponse.getRecord().size() + " item in your cart");
         else
@@ -389,7 +401,20 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
         for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
             try {
-                totalPrice = totalPrice + Double.parseDouble(mResponse.getRecord().get(i).getPrice());
+                GetCartRecord getCartRecord = mResponse.getRecord().get(i);
+                if (getCartRecord != null) {
+
+                    if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
+
+                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+                        totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
+
+                    } else {
+
+                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
+
+                    }
+                }
             } catch (Exception ex) {
                 System.out.println("Exception=====" + ex);
             }

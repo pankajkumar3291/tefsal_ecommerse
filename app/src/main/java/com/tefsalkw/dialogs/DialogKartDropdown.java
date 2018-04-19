@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class DialogKartDropdown extends Dialog {
 
 
-    public DialogKartDropdown(final ArrayList<TailoringRecord> data, final FragmentTailorProducts context, final int position) {
+    public DialogKartDropdown(final ArrayList<TailoringRecord> data, final FragmentTailorProducts context) {
         super(context.getContext());
         this.requestWindowFeature(1);
         this.setContentView(R.layout.dialog_kart_dropdown);
@@ -52,19 +52,15 @@ public class DialogKartDropdown extends Dialog {
                 if (context.validateAssign(tailoringRecord)) {
 
                     Toast.makeText(context.getContext(), "Sorry, limit reached!", Toast.LENGTH_SHORT).show();
-                }
-                else 
-                {
+                } else {
 
                     // Log.e("getItem_id1",getCartRecord.getItem_id());
                     // Log.e("getSelectedItemPosition",cartitems.getSelectedItemPosition()+"");
 
-                    context.addItemToTailorItem(tailoringRecord, position);
+                    context.addItemToTailorItem(tailoringRecord);
                     dismiss();
                 }
 
-
-             
 
             }
         });
