@@ -256,7 +256,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
 
                                             ColorsNew colorsNew = (ColorsNew)sizesNew.get(0).getColors();
                                             accessoriesRecord.setAccessory_product_image(colorsNew.getImages());
-
+                                            accessoriesRecord.setPrice(colorsNew.getPrice());
                                         }
 
 
