@@ -30,9 +30,7 @@
             android:gravity="center"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/back_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="vertical">
 
             <me.grantland.widget.AutofitTextView
@@ -89,6 +87,7 @@
             android:visibility="gone" />
 
         <RelativeLayout
+            android:translationZ="99dp"
             android:gravity="center_vertical"
             android:id="@+id/view_cart_btn"
             android:layout_alignParentEnd="true"

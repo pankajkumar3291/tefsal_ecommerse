@@ -244,7 +244,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
                                         AccessoriesRecord accessoriesRecord = new AccessoriesRecord();
                                         accessoriesRecord.setTefsal_product_id(accessoriesModelNew.getTefsal_product_id());
                                         accessoriesRecord.setStore_id(accessoriesModelNew.getStore_id());
-
+                                        accessoriesRecord.setStoreName(accessoriesModelNew.getStore_name());
                                         accessoriesRecord.setBrandName(accessoriesModelNew.getBrand_name());
                                         accessoriesRecord.setProductName(accessoriesModelNew.getProduct_name());
                                         accessoriesRecord.setMax_delivery_days(accessoriesModelNew.getMax_delivery_days());

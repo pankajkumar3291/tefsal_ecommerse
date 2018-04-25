@@ -108,7 +108,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
-    private String[] Accessory_product_image;
+
     private int dotsCount;
     private ImageView[] dots;
     private AccessoryProductPagerAdapter accessoryProductPagerAdapter;
@@ -357,19 +357,46 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         // Bind Slider
 
         //show images based on selection
-        Accessory_product_image = accessoryDetailRecord.getSizes().get(0).getColors().get(0).getImages();
-        if (Accessory_product_image != null) {
-            for (String imgUrl : Accessory_product_image) {
+        try {
 
+
+            List<String> imagesList = new ArrayList<>();
+
+            for (Sizes sizesNew : accessoryDetailRecord.getSizes()) {
+
+                if (sizesNew != null && sizesNew.getColors() != null) {
+                    for (Colors colors : sizesNew.getColors()) {
+
+                        for (String imgUrl : colors.getImages()) {
+
+                            imagesList.add(imgUrl);
+
+                        }
+
+
+                    }
+                }
+            }
+
+            product_image_viewPager.removeAllSliders();
+
+            for (String imgUrl : imagesList) {
+
+                Log.e("imgUrl",imgUrl);
 
                 textSliderView
                         .image(imgUrl)
                         .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
-                product_image_viewPager.addSlider(textSliderView);
+
 
             }
+
+            product_image_viewPager.addSlider(textSliderView);
+
+        } catch (Exception exc) {
+
         }
 
 

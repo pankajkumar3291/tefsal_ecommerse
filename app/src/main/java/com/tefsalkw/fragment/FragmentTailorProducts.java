@@ -363,7 +363,7 @@ public class FragmentTailorProducts extends BaseFragment {
                             JSONObject item_details = new JSONObject();
                             JSONObject tailor_services = new JSONObject();
 
-                            tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
+                            tailor_services.put("meter", sublistCartItems.size() * Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
                             tailor_services.put("qty", sublistCartItems.size());
                             tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
                             tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
