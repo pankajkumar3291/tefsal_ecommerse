@@ -3,7 +3,6 @@ package com.tefsalkw.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -19,6 +18,7 @@ import com.tefsalkw.activity.AccessoriesActivity;
 import com.tefsalkw.activity.DishdishaStyleActivity;
 import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.utils.SessionManager;
 
 /**
  * Created by prateek on 13/07/17.
@@ -43,15 +43,17 @@ public class HomeFragment extends BaseFragment {
 
     LinearLayout pager_indicator;
 
+    SessionManager sessionManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-
+        sessionManager = new SessionManager(getActivity());
         mainViewPager = (ViewPager) v.findViewById(R.id.mainViewPager);
         pager_indicator = (LinearLayout) v.findViewById(R.id.viewPagerCountDots);
-        title_array=new String[] {getString(R.string.DISHDASHA), getString(R.string.DARAA), getString(R.string.ABAYA), getString(R.string.ACCESSORIES)};
+        title_array = new String[]{getString(R.string.DISHDASHA), getString(R.string.DARAA), getString(R.string.ABAYA), getString(R.string.ACCESSORIES)};
 
         leftArrow = (ImageView) v.findViewById(R.id.leftArrow);
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,15 @@ public class HomeFragment extends BaseFragment {
         });
         adapter = new MainPagerAdapter(getActivity(), img_array);
         mainViewPager.setAdapter(adapter);
+
+        if (sessionManager.isRTL()) {
+
+            mainViewPager.setRotationY(180);
+            leftArrow.setImageResource(R.drawable.right_arrow);
+            rightArrow.setImageResource(R.drawable.left_arrow);
+
+
+        }
         mainViewPager.setOffscreenPageLimit(4);
         mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -81,8 +92,7 @@ public class HomeFragment extends BaseFragment {
 
                 toggleArrowVisibility(position == 0, position == dotsCount - 1);
 
-                for (int i = 0; i < dotsCount; i++)
-                {
+                for (int i = 0; i < dotsCount; i++) {
                     dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
                 }
                 dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
@@ -97,17 +107,22 @@ public class HomeFragment extends BaseFragment {
 
         return v;
     }
+
     public void toggleArrowVisibility(boolean isAtZeroIndex, boolean isAtLastIndex) {
-        if(isAtZeroIndex)
+
+        if (isAtZeroIndex)
             leftArrow.setVisibility(View.INVISIBLE);
         else
             leftArrow.setVisibility(View.VISIBLE);
-        if(isAtLastIndex)
+
+        if (isAtLastIndex)
             rightArrow.setVisibility(View.INVISIBLE);
         else
             rightArrow.setVisibility(View.VISIBLE);
 
+
     }
+
     private void setUiPageViewController() {
 
         dotsCount = adapter.getCount();
@@ -169,25 +184,18 @@ public class HomeFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
 
-                    if (position == 0)
-                    {
+                    if (position == 0) {
                         startActivity(new Intent(getActivity(), DishdishaStyleActivity.class));
                         productFlag = "1";
-                    }
-                    else if (position == 1)
-                    {
+                    } else if (position == 1) {
                         TefalApp.getInstance().setToolbar_title("DARAA STORES");
                         startActivity(new Intent(getActivity(), OtherStoresActivity.class).putExtra("flag", "Daraa"));
                         productFlag = "3";
-                    }
-                    else if (position == 2)
-                    {
+                    } else if (position == 2) {
                         TefalApp.getInstance().setToolbar_title("ABAYA STORES");
                         startActivity(new Intent(getActivity(), OtherStoresActivity.class).putExtra("flag", "Abaya"));
                         productFlag = "2";
-                    }
-                    else if (position == 3)
-                    {
+                    } else if (position == 3) {
                         startActivity(new Intent(getActivity(), AccessoriesActivity.class));
                         productFlag = "4";
                     }

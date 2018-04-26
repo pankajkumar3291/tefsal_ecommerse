@@ -3,171 +3,131 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
-    android:layout_height="?attr/actionBarSize"
     android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
     app:theme="@style/TransparentToolbar">
 
 
-    <ImageButton
-        android:background="@android:color/transparent"
-        android:id="@+id/btn_back"
-        android:layout_height="match_parent"
-        android:layout_marginRight="5dp"
-        android:layout_width="wrap_content"
-        android:padding="5dp"
-        android:src="@drawable/ic_left_arrow" />
-
-
-    <!--<TextView
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:text=""
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textColor="@color/colorAccent"
-        android:id="@+id/toolbar_title" />-->
-    <!--<me.grantland.widget.AutofitTextView
-
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:textSize="@dimen/text_normal"
-        android:paddingLeft="20dp"
-        android:gravity="center"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:singleLine="true"
-        autofit:minTextSize="@dimen/text_normal"
-        android:textColor="@color/colorAccent"
-        android:id="@+id/toolbar_title" />-->
-
-    <!-- <TextView
-
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:textSize="@dimen/text_normal"
-        android:paddingLeft="20dp"
-        android:gravity="center"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:singleLine="true"
-         tools:ignore="MissingPrefix"
-         fontPath="fonts/Lato-Bold.ttf"
-        android:textColor="@color/colorAccent"
-        android:id="@+id/toolbar_title" />-->
-
-
-    <TextView
-        android:ellipsize="end"
-        android:id="@+id/toolbar_title"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:maxLines="1"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:singleLine="true"
-        android:text="@string/toolbar_toolbar_title_text"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_mid"
-        android:textStyle="bold"
-        fontPath="fonts/Lato-Bold.ttf"
-        tools:ignore="MissingPrefix" />
-
-    <TextView
-        android:gravity="center"
-        android:id="@+id/next_txt"
-        android:layout_gravity="right"
-        android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:text="@string/toolbar_next_txt_text"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_mid"
-        android:visibility="gone" />
-
-    <TextView
-        android:gravity="center"
-        android:id="@+id/done_txt"
-        android:layout_gravity="right"
-        android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:text="@string/toolbar_done_txt_text"
-        android:textAllCaps="true"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_mid"
-        android:textStyle="bold"
-        android:visibility="gone" />
-
-    <ImageView
-        android:id="@+id/ic_filter"
-        android:layout_gravity="right"
-        android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_filter"
-        android:visibility="gone" />
-
-
-    <ImageView
-        android:background="@drawable/ic_shopping_cart_black_24dp"
-        android:id="@+id/view_cart_btn1"
-        android:layout_gravity="right"
-        android:layout_height="30dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="30dp"
-        android:visibility="gone" />
-
     <RelativeLayout
-        android:gravity="center_vertical"
-        android:id="@+id/view_cart_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="right"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/header_logo"
-            android:layout_height="48dp"
-            android:layout_width="48dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_shopping_cart_black_24dp" />
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/transparent"
+            android:padding="5dp"
+            android:src="@drawable/ic_left_arrow" />
+
 
         <TextView
-            android:background="@drawable/badge_yellow"
+            android:id="@+id/toolbar_title"
+            fontPath="fonts/Lato-Bold.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:text="@string/toolbar_toolbar_title_text"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid"
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/next_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:id="@+id/total_badge_txt"
-            android:layout_height="20dp"
-            android:layout_marginLeft="-20dp"
-            android:layout_marginTop="2dp"
-            android:layout_toRightOf="@+id/header_logo"
-            android:layout_width="20dp"
-            android:text="@string/toolbar_total_badge_txt_text"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_xsmall" />
+            android:text="@string/toolbar_next_txt_text"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/done_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="@string/toolbar_done_txt_text"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_mid"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/ic_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_filter"
+            android:visibility="gone" />
 
 
+        <RelativeLayout
+            android:id="@+id/view_cart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/header_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_shopping_cart_black_24dp" />
+
+            <TextView
+                android:id="@+id/total_badge_txt"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-20dp"
+                android:layout_marginTop="2dp"
+                android:layout_toEndOf="@+id/header_logo"
+                android:background="@drawable/badge_yellow"
+                android:gravity="center"
+                android:text="@string/toolbar_total_badge_txt_text"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_xsmall" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/qr_code_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/qr_code_image"
+            android:visibility="gone" />
     </RelativeLayout>
 
-    <ImageView
-        android:background="@drawable/qr_code_image"
-        android:id="@+id/qr_code_btn"
-        android:layout_gravity="right"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="16dp"
-        android:layout_width="30dp"
-        android:visibility="gone" />
 
 </android.support.v7.widget.Toolbar>

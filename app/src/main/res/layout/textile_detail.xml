@@ -1,89 +1,59 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_textile_detail" />
 
     <RelativeLayout
         android:id="@+id/RL_product_exist_container"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/linear1"
-            android:layout_height="230dp"
             android:layout_width="match_parent"
+            android:layout_height="230dp"
             android:orientation="vertical">
 
-            <!--<ImageView
-                android:id="@+id/product_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@color/colorGray" />-->
-            <!--        <android.support.v4.view.ViewPager
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/product_image_viewPager">
 
-                    </android.support.v4.view.ViewPager>-->
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/product_image_viewPager"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             </com.daimajia.slider.library.SliderLayout>
 
             <ImageView
                 android:id="@+id/no_image_holder"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_width="match_parent"
                 android:visibility="gone" />
-            <!--<RelativeLayout
-                android:id="@+id/viewPagerIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/mainViewPager"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-20dp"
-                android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:padding="4dp">
 
-                <LinearLayout
-                    android:id="@+id/viewPagerCountDots"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
-
-            </RelativeLayout>-->
 
             <View
-                android:background="@drawable/gradient_transparent"
-                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_width="match_parent" />
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/gradient_transparent" />
 
 
             <LinearLayout
-                android:layout_alignParentBottom="true"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
                 android:orientation="vertical"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/txt_price"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/textile_detail_txt_price_text"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_large"
@@ -91,8 +61,8 @@
 
                 <TextView
                     android:id="@+id/txt_min_meter"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/textile_detail_txt_min_meter_text"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_mid" />
@@ -100,37 +70,37 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:gravity="center"
             android:id="@+id/viewPagerIndicator"
-            android:layout_below="@+id/linear1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-20dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear1"
+            android:layout_marginTop="-20dp"
+            android:gravity="center"
             android:padding="4dp"
             android:visibility="gone">
 
             <LinearLayout
-                android:gravity="center"
                 android:id="@+id/viewPagerCountDots"
-                android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:orientation="horizontal" />
 
         </RelativeLayout>
 
         <View
             android:id="@+id/sep"
-            android:layout_below="@+id/viewPagerIndicator"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_width="match_parent" />
+            android:layout_below="@+id/viewPagerIndicator" />
 
         <android.support.design.widget.TabLayout
-            android:background="@color/tabColorBg"
             android:id="@+id/tabLayout"
-            android:layout_below="@+id/sep"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sep"
+            android:background="@color/tabColorBg"
             android:minHeight="?attr/actionBarSize"
             app:tabSelectedTextColor="@color/colorAccent"
             app:tabTextColor="#616161" />
@@ -139,67 +109,67 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
-            android:layout_below="@+id/tabLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
-            android:layout_width="match_parent" />
+            android:layout_below="@+id/tabLayout"
+            android:layout_marginBottom="120dp" />
 
         <LinearLayout
+            android:id="@+id/LL_min_max_controller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/llCartButton"
+            android:layout_marginBottom="50dp"
             android:background="@color/colorPrimary"
             android:gravity="center_vertical"
-            android:id="@+id/LL_min_max_controller"
-            android:layout_above="@+id/llCartButton"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_width="match_parent"
             android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="100">
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/meter_value"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
-                android:layout_width="0dp"
+                android:gravity="center"
                 android:text="@string/textile_detail_meter_value_text"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
-                android:gravity="center"
                 android:id="@+id/textView2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="40"
-                android:layout_width="0dp"
+                android:gravity="center"
                 android:text="@string/textile_detail_textView2_text"
                 android:textSize="@dimen/text_normal" />
 
 
             <LinearLayout
-                android:background="@drawable/button_blank"
-                android:gravity="center"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
-                android:layout_width="0dp"
+                android:background="@drawable/button_blank"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/less_btn"
-                    android:layout_height="30dp"
                     android:layout_width="40dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/ic_remove_black_24dp" />
 
 
                 <View
-                    android:background="@color/colorAccent"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_width="1dp" />
+                    android:background="@color/colorAccent" />
 
                 <ImageView
                     android:id="@+id/add_btn"
-                    android:layout_height="40dp"
                     android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_add_black" />
 
             </LinearLayout>
@@ -208,54 +178,54 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llCartButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:background="#DADACF"
             android:gravity="center"
-            android:id="@+id/llCartButton"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/text_price"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
                 android:text="@string/textile_detail_text_price_text"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_normal"
                 android:textStyle="bold" />
 
             <RelativeLayout
-                android:background="@color/colorAccent"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
                 android:id="@+id/add_to_cart_btn"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_width="match_parent">
+                android:background="@color/colorAccent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/imgCart"
-                    android:layout_centerInParent="true"
-                    android:layout_height="20dp"
                     android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
                     android:src="@drawable/ic_shopping_cart_black_24dp"
                     android:tint="@color/colorWhite" />
 
                 <TextView
-                    android:gravity="center_vertical"
                     android:id="@+id/add_to_cart_lbl"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="10dp"
                     android:layout_toRightOf="@+id/imgCart"
-                    android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
                     android:text="@string/textile_detail_add_to_cart_lbl_text"
                     android:textColor="@color/colorWhite" />
 
@@ -267,16 +237,16 @@
 
     <RelativeLayout
         android:id="@+id/RL_no_product_found_container"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone">
 
         <TextView
-            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:gravity="center"
             android:text="No product found" />
     </RelativeLayout>
 

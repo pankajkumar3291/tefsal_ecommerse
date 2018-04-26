@@ -133,6 +133,7 @@ public class MyOrderActivity extends BaseActivity {
                     params.put("user_id", sessionManager.getCustomerId());
                     params.put("access_token", sessionManager.getToken());
                     params.put("appUser", "tefsal");
+                    params.put("order_id", "");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 

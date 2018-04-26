@@ -145,6 +145,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     int currentColorPosition = 0;
 
+    int currentSizePosition = 0;
+
     boolean isSizeSelected = false;
 
     Set<String> uniqueColorSet = new HashSet<>();
@@ -586,7 +588,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             params.put("user_required_meter", "");
             params.put("user_id", session.getCustomerId());
             try {
-                params.put("items", getItems(accessoriesRecord));
+                params.put("items", getItems(accessoryDetailRecord));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -701,7 +703,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
                     try {
-                        params.put("items", String.valueOf(getItems(accessoriesRecord)));
+                        params.put("items", String.valueOf(getItems(accessoryDetailRecord)));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -728,13 +730,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         }
     }
 
-    public JSONArray getItems(AccessoriesRecord accessoriesRecord) throws JSONException {
+    public JSONArray getItems(AccessoryDetailRecord accessoriesRecord) throws JSONException {
 
 
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", accessoriesRecord.getTefsal_product_id());
-        obj.put("item_id", accessoriesRecord.getAttribute_id());
+        obj.put("item_id", accessoryDetailRecord.getSizes().get(currentColorPosition).getColors().get(0).getAttribute_id());
 
         obj.put("category_id", "4");
 

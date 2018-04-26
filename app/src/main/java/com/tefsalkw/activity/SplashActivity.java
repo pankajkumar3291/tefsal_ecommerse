@@ -1,9 +1,11 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,11 +21,11 @@ import com.tefsalkw.R;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import io.fabric.sdk.android.Fabric;
@@ -45,8 +47,8 @@ public class SplashActivity extends BaseActivity {
         Fabric.with(this, new Crashlytics());
         session = new SessionManager(this);
 
-        password=session.getKeyPass();
-        email=session.getKeyEmail();
+        password = session.getKeyPass();
+        email = session.getKeyEmail();
 
         if (Contents.isBlank(session.getCustomerId())) {
             new Handler().postDelayed(new Runnable() {
@@ -55,12 +57,9 @@ public class SplashActivity extends BaseActivity {
 
                     // This block of code is used to internal login
 
-                    if (!password.equals("") && !email.equals("") && !password.equals(null) && !email.equals(null) )
-                    {
+                    if (!password.equals("") && !email.equals("") && !password.equals(null) && !email.equals(null)) {
                         WebCallServiceForinternalLogin();
-                    }
-                    else
-                    {
+                    } else {
                         Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
                         startActivity(mainIntent);
                         finish();
@@ -69,13 +68,22 @@ public class SplashActivity extends BaseActivity {
 
                 }
             }, SPLASH_DISPLAY_LENGTH);
-        }
-        else
-        {
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
+                    String keyLang = session.getKeyLang();
+                    String lang = keyLang.equalsIgnoreCase("English") ? "en" : "ar";
+
+                    Locale locale = new Locale(lang);
+                    Locale.setDefault(locale);
+
+                    Resources resources = getResources();
+                    Configuration configuration = resources.getConfiguration();
+                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+                    configuration.setLocale(locale);
+                    resources.updateConfiguration(configuration, displayMetrics);
 
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(mainIntent);
@@ -84,6 +92,8 @@ public class SplashActivity extends BaseActivity {
             }, SPLASH_DISPLAY_LENGTH);
         }
     }
+
+
 
 
     public void WebCallServiceForinternalLogin() {
@@ -127,7 +137,7 @@ public class SplashActivity extends BaseActivity {
                                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                Log.d("JSONException===",e.toString());
+                                Log.d("JSONException===", e.toString());
                             }
 
                         }
@@ -136,9 +146,9 @@ public class SplashActivity extends BaseActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            Log.d("VolleyError===",error.toString());
+                            Log.d("VolleyError===", error.toString());
 
-                            System.out.println("Volley Error==="+error);
+                            System.out.println("Volley Error===" + error);
 
                         }
                     }) {
@@ -166,7 +176,7 @@ public class SplashActivity extends BaseActivity {
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
-            Log.d("Exception===",surError.toString());
+            Log.d("Exception===", surError.toString());
             surError.printStackTrace();
         }
     }
@@ -205,17 +215,16 @@ public class SplashActivity extends BaseActivity {
                     },
                     new Response.ErrorListener() {
                         @Override
-                        public void onErrorResponse(VolleyError error)
-                        {
-                            Log.d("VolleyError===",error.toString());
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("VolleyError===", error.toString());
                         }
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("user_id", session.getCustomerId());
-                    Log.d("Test access_token",session.getToken());
-                    Log.d("Test user_id",session.getCustomerId());
+                    Log.d("Test access_token", session.getToken());
+                    Log.d("Test user_id", session.getCustomerId());
 
 //                    params.put("device_id", session2.getDeviceToken());
                     params.put("device_id", "fgdjyfkudfk");
@@ -241,7 +250,7 @@ public class SplashActivity extends BaseActivity {
 
         } catch (Exception surError) {
 
-            Log.d("Exception===",surError.toString());
+            Log.d("Exception===", surError.toString());
             surError.printStackTrace();
         }
     }

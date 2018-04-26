@@ -1,9 +1,12 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.SessionManager;
+
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -188,11 +193,22 @@ public class SettingsActivity extends BaseActivity {
                 if (userIsInteracting) {
                     session.setKeyLang(parentView.getSelectedItem().toString());
 
+                    String lang =  position == 0 ? "en" : "ar";
+                    Locale locale = new Locale(lang);
+                    Locale.setDefault(locale);
+
+                    Resources resources = getResources();
+                    Configuration configuration = resources.getConfiguration();
+                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+                    configuration.setLocale(locale);
+                    resources.updateConfiguration(configuration, displayMetrics);
+
 
                     Intent i = getBaseContext().getPackageManager()
                             .getLaunchIntentForPackage(getBaseContext().getPackageName());
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
+
                 }
 
 
