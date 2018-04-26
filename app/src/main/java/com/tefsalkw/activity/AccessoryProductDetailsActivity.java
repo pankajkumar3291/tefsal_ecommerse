@@ -138,7 +138,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
-    DefaultSliderView textSliderView = null;
 
 
     ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
@@ -224,8 +223,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     private void initSlider() {
 
-        textSliderView = new DefaultSliderView(this);
-        textSliderView.setOnSliderClickListener(onSliderClickListener);
 
         product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
         product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
@@ -380,20 +377,21 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
             product_image_viewPager.removeAllSliders();
 
+            if (imagesList != null && imagesList.size() <= 1) {
+                product_image_viewPager.stopAutoCycle();
+            }
             for (String imgUrl : imagesList) {
 
-                Log.e("imgUrl",imgUrl);
-
+                Log.e("imgUrl", imgUrl);
+                DefaultSliderView textSliderView = new DefaultSliderView(this);
+                textSliderView.setOnSliderClickListener(onSliderClickListener);
                 textSliderView
                         .image(imgUrl)
                         .setScaleType(BaseSliderView.ScaleType.Fit);
 
-
-
-
+                product_image_viewPager.addSlider(textSliderView);
             }
 
-            product_image_viewPager.addSlider(textSliderView);
 
         } catch (Exception exc) {
 
@@ -420,15 +418,26 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         this.currentColorPosition = position;
 
         product_image_viewPager.removeAllSliders();
-        for (String imgUrl : accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages()) {
 
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+        String[] imagesList = accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages();
+
+        if (imagesList != null && imagesList.length <= 1) {
+            product_image_viewPager.stopAutoCycle();
+        }
+
+        if (imagesList != null) {
+            for (String imgUrl : imagesList) {
+
+                DefaultSliderView textSliderView = new DefaultSliderView(this);
+                textSliderView.setOnSliderClickListener(onSliderClickListener);
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
-            product_image_viewPager.addSlider(textSliderView);
+                product_image_viewPager.addSlider(textSliderView);
 
+            }
         }
 
 
