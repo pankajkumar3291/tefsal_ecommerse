@@ -380,6 +380,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             if (imagesList != null && imagesList.size() <= 1) {
                 product_image_viewPager.stopAutoCycle();
             }
+            else
+            {
+                product_image_viewPager.startAutoCycle();
+            }
             for (String imgUrl : imagesList) {
 
                 Log.e("imgUrl", imgUrl);
@@ -423,6 +427,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (imagesList != null && imagesList.length <= 1) {
             product_image_viewPager.stopAutoCycle();
+        }
+        else
+        {
+            product_image_viewPager.startAutoCycle();
         }
 
         if (imagesList != null) {

@@ -40,18 +40,18 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.Colors;
-import com.tefsalkw.models.DaraAbayaDetailRecord;
-import com.tefsalkw.models.ProductMeasurement;
-import com.tefsalkw.models.ProductRecord;
-import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalZaraDara;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalZaraDara;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.dialogs.DialogKart;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.DaraAbayaDetailRecord;
+import com.tefsalkw.models.ProductMeasurement;
+import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -163,7 +163,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     int currentColorPosition = 0;
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
-    DefaultSliderView textSliderView = null;
+
 
     //List<ZaraDaraSizeModel> zaraDaraSizeModelList = new ArrayList<>();
 
@@ -255,7 +255,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         text_descp.setText(productRecord.getProduct_desc());
         txt_title.setText(productRecord.getProduct_name());
         subtxt_title.setText(productRecord.getBrand_name());
-
 
 
     }
@@ -356,8 +355,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         onSliderClickListener = this;
 
-        textSliderView = new DefaultSliderView(this);
-        textSliderView.setOnSliderClickListener(onSliderClickListener);
 
         mainViewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
         mainViewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
@@ -402,26 +399,27 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         //Fill Initial Slider
         String[] img = daraAbayaDetailRecord.getColors().get(0).getImages();
-
-
         mainViewPager.removeAllSliders();
-        for (String imgUrl : img) {
 
 
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+        if (img != null) {
+            if (img.length <= 1) {
+                mainViewPager.stopAutoCycle();
+            } else {
+                mainViewPager.startAutoCycle();
+            }
+            for (String imgUrl : img) {
+
+                DefaultSliderView textSliderView = new DefaultSliderView(this);
+                textSliderView.setOnSliderClickListener(onSliderClickListener);
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
-            mainViewPager.addSlider(textSliderView);
+                mainViewPager.addSlider(textSliderView);
 
-        }
-
-        if (img.length > 1) {
-            mainViewPager.startAutoCycle();
-
-        } else {
-            mainViewPager.stopAutoCycle();
+            }
         }
 
 
@@ -524,20 +522,29 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         this.currentColorPosition = position;
 
         mainViewPager.removeAllSliders();
-        for (String imgUrl : colors.getImages()) {
 
-            textSliderView
-                    .image(imgUrl)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
-            mainViewPager.addSlider(textSliderView);
+        String[] imgList = colors.getImages();
 
-        }
+        if (imgList != null) {
+            if (imgList.length <= 1) {
+                mainViewPager.stopAutoCycle();
+            } else {
+                mainViewPager.startAutoCycle();
+            }
 
-        if (colors.getImages().length > 1) {
-            mainViewPager.startAutoCycle();
+            for (String imgUrl : imgList) {
 
-        } else {
-            mainViewPager.stopAutoCycle();
+                DefaultSliderView textSliderView = new DefaultSliderView(this);
+                textSliderView.setOnSliderClickListener(onSliderClickListener);
+
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
+                mainViewPager.addSlider(textSliderView);
+
+            }
+
+
         }
 
 
@@ -586,7 +593,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             meter_value.setText("" + meter);
 
         }
-
 
 
     }
