@@ -169,9 +169,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     public static TextView text_price;
     //private int meter=2;
-    private int stock_meter = 2;
-    private int stock_meter_check = 2;
-    private int price;
+    private float stock_meter = 0;
+    private float stock_meter_check = 0;
+    private float price;
 
     //private int check_meter;
     private float min_meter;
@@ -304,19 +304,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             //meter=Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
             min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
             min_meter_check = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-            stock_meter = Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
-            stock_meter_check = Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
+            stock_meter = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
+            stock_meter_check = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
 
             System.out.println("Tefsal output======Minimum MIter===" + min_meter);
             System.out.println("Tefsal output======Dishdasha stock===" + stock_meter);
 
             product_image = textileProductModel.getProduct_image();
-            price = Integer.parseInt(textileProductModel.getPrice());//.split(" ");
+            price = Float.parseFloat(textileProductModel.getPrice());//.split(" ");
 
             System.out.println("Price=====" + price);
         } catch (Exception ex) {
-            min_meter = 2;
-            stock_meter = 1;
 
             System.out.println("Error ===========1" + ex);
         }
@@ -508,7 +506,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 }
 
-                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Integer.valueOf(price) * min_meter) + " KWD");
+                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Float.valueOf(price) * min_meter) + " KWD");
 
             }
         });
@@ -520,7 +518,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     meter_value.setText("" + Math.round(min_meter));
                 }
 
-                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Integer.valueOf(price) * min_meter) + " KWD");
+                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Float.valueOf(price) * min_meter) + " KWD");
             }
         });
 

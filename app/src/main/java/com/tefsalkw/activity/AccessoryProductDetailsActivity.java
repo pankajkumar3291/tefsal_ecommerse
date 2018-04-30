@@ -157,7 +157,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     List<Sizes> productSizesList = new ArrayList<>();
 
     Colors colorModel = new Colors();
-    public static int price;
+    public static float price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -466,7 +466,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             }
 
             if (colorModel.getPrice() != null) {
-                price = Integer.parseInt(colorModel.getPrice());
+                price = Float.parseFloat(colorModel.getPrice());
                 text_price.setText("PRICE : " + price + " KWD");
             }
 

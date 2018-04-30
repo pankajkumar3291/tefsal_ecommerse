@@ -127,13 +127,13 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     TextView meter_value;
 
 
-    int amount;
+    float amount;
     String sizeFlage = "";
     String sizeGuideResponseHtml;
 
     //This member variable used in ProductSizeAdapterHorizontal adapter
-    public static int price;
-    public static int meter = 1;
+    public static float price;
+    public static float meter = 1;
 
     public static ZaraDaraSizeModel zaraDaraSizesModel = null;
 
@@ -590,7 +590,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         }
 
         if (zaraDaraSizesModel.getPrice() != null) {
-            price = Integer.parseInt(zaraDaraSizesModel.getPrice());
+            price = Float.parseFloat(zaraDaraSizesModel.getPrice());
             text_price.setText("PRICE : " + price + " KWD");
             meter = 1;
             meter_value.setText("" + meter);

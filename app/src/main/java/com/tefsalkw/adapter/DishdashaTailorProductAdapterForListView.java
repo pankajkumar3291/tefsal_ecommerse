@@ -18,6 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentTailorProducts;
 import com.tefsalkw.models.GetAssignedItemsRecord;
@@ -148,6 +150,9 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
             sublistAdapter.notifyDataSetChanged();
 
         }
+
+
+       // Log.e("sublistCartItemsHashMap",new Gson().toJson(sublistCartItemsHashMap)+"");
 
 
     }

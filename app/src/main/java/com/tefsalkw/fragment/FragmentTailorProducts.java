@@ -45,6 +45,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -399,45 +400,52 @@ public class FragmentTailorProducts extends BaseFragment {
 
             if (dishdashaTailorProductAdapterForListView != null && dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null) {
 
-                for (int i = 0; i < dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size(); i++) {
-
-                    if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size() > 0) {
-                        List<SublistCartItems> sublistCartItems = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(i);
-
-                        if (sublistCartItems != null) {
-                            for (SublistCartItems sublistCartItems1 : sublistCartItems) {
-
-                                JSONObject obj = new JSONObject();
+                Log.e("sublistCartItemsHashMap", new Gson().toJson(dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap) + "");
 
 
-                                obj.put("product_id", sublistCartItems1.getProductId());
-                                obj.put("item_id", sublistCartItems1.getItemId());
-                                obj.put("category_id", "1");
 
-                                JSONObject item_details = new JSONObject();
-                                item_details.put("item_quantity", null);
 
-                                JSONObject tailor_services = new JSONObject();
+                for (Map.Entry<Integer, List<SublistCartItems>> entry : dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.entrySet()) {
 
-                                tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
-                                tailor_services.put("qty", 1);
-                                tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
-                                tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
-                                item_details.put("tailor_services", tailor_services);
+                    List<SublistCartItems> sublistCartItems = (List<SublistCartItems>) entry.getValue();
 
-                                item_details.put("order_type", "textile");
+                    Log.e("sublistCartItems", new Gson().toJson(sublistCartItems) + "");
 
-                                obj.put("item_details", item_details);
 
-                                arry.put(obj);
+                    if (sublistCartItems != null) {
 
-                            }
+                        for (SublistCartItems sublistCartItems1 : sublistCartItems) {
+
+                            JSONObject obj = new JSONObject();
+
+
+                            obj.put("product_id", sublistCartItems1.getProductId());
+                            obj.put("item_id", sublistCartItems1.getItemId());
+                            obj.put("category_id", "1");
+
+                            JSONObject item_details = new JSONObject();
+                            item_details.put("item_quantity", null);
+
+                            JSONObject tailor_services = new JSONObject();
+
+                            tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
+                            tailor_services.put("qty", 1);
+                            tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(entry.getKey()).getTefsal_product_id());
+                            tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
+                            item_details.put("tailor_services", tailor_services);
+
+                            item_details.put("order_type", "textile");
+
+                            obj.put("item_details", item_details);
+
+                            arry.put(obj);
+
                         }
-
                     }
-
-
                 }
+
+
+
             }
 
 

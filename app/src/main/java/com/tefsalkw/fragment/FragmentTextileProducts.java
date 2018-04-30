@@ -505,6 +505,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     // params.put("user_id", session.getCustomerId());
                     //params.put("access_token", session.getToken());
                     params.put("appUser", "tefsal");
+                    params.put("store_id", store_id);
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
