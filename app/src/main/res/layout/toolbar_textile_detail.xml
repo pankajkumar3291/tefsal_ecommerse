@@ -24,23 +24,45 @@
             android:src="@drawable/ic_left_arrow" />
 
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            fontPath="fonts/Lato-Bold.ttf"
+        <RelativeLayout
+            android:id="@+id/RR_title_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="2"
-            android:singleLine="true"
-            android:text=""
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_mid"
-            tools:ignore="MissingPrefix" />
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                fontPath="fonts/Lato-Bold.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/toolbar_dishdasha_product_activity_toolbar_title_text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:id="@+id/subText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar_title"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/toolbar_dishdasha_product_activity_subText_text"
+                android:textColor="@color/colorAccent" />
+        </RelativeLayout>
+
+
 
 
         <TextView

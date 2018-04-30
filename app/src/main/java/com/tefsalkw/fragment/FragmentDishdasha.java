@@ -93,24 +93,7 @@ public class FragmentDishdasha extends BaseFragment {
                                 recycler.setLayoutManager(layoutManager);
                                 recycler.setItemAnimator(new DefaultItemAnimator());
 
-                                /*recycler.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity(), recycler, new MyClickListener()
-                                {
 
-                                    @Override
-                                    public void onClick(View view, int position)
-                                    {
-                                        Toast.makeText(getActivity(), "onClick==" + view.toString(), Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(getActivity(), "onClick==" + view.toString(), Toast.LENGTH_SHORT).show();
-                                        System.out.println("View=="+view.toString());
-                                       // Toast.makeText(getActivity(), "onLongClick==" + position, Toast.LENGTH_SHORT).show();
-                                    }
-
-
-                                    @Override
-                                    public void onLongClick(View view, int position) {
-                                       // Toast.makeText(getActivity(), "onLongClick==" + position, Toast.LENGTH_SHORT).show();
-                                    }
-                                }));*/
 
                                 dishdashaAdapter = new DishdashaAdapter(getActivity(),mResponse.getRecord(),"1");
                                 recycler.setAdapter(dishdashaAdapter);

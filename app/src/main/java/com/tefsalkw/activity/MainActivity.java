@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,10 +26,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
+import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -80,12 +80,12 @@ public class MainActivity extends BaseActivity
     ImageView footer_twitter;
 
     TextView user_name;
-    public static TextView mail_menu,order_menu,total_badge_txt;
+    public static TextView mail_menu, order_menu, total_badge_txt;
 
 
     SessionManager session;
 
-    String fromMailArg="";
+    String fromMailArg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,17 +128,14 @@ public class MainActivity extends BaseActivity
         });
         session = new SessionManager(this);
 
-        System.out.println("TOKEN==="+session.getToken());
-        System.out.println("USER ID==="+session.getCustomerId());
-
+        System.out.println("TOKEN===" + session.getToken());
+        System.out.println("USER ID===" + session.getCustomerId());
 
 
         nav_view = (NavigationView) findViewById(R.id.nav_view);
         View headerView = nav_view.inflateHeaderView(R.layout.nav_header_main);
         user_name = (TextView) headerView.findViewById(R.id.user_name);
-        total_badge_txt=(TextView)headerView.findViewById(R.id.total_badge_txt);
-
-
+        total_badge_txt = (TextView) headerView.findViewById(R.id.total_badge_txt);
 
 
         nav_view.setNavigationItemSelectedListener(this);
@@ -154,24 +151,19 @@ public class MainActivity extends BaseActivity
         else*/
 
 
-    //These lines should be added in the OnCreate() of your main activity
+        //These lines should be added in the OnCreate() of your main activity
 
         final MenuItem menuItemMail = nav_view.getMenu().findItem(R.id.nav_mail);
         final MenuItem menuItemOrder = nav_view.getMenu().findItem(R.id.nav_my_orders);
 
-        final MenuItem menuItemStyle=nav_view.getMenu().findItem(R.id.nav_styles);
-        final MenuItem menuAddress=nav_view.getMenu().findItem(R.id.nav_my_address);
-        final MenuItem menuOrder=nav_view.getMenu().findItem(R.id.nav_my_orders);
-        final MenuItem menuSetting=nav_view.getMenu().findItem(R.id.nav_settings);
-        final MenuItem menuMail=nav_view.getMenu().findItem(R.id.nav_mail);
-        final MenuItem menuTextile=nav_view.getMenu().findItem(R.id.nav_textiles);
-        final MenuItem menuSignIn=nav_view.getMenu().findItem(R.id.nav_sign_in);
-        final MenuItem menuSignUp=nav_view.getMenu().findItem(R.id.nav_sign_up);
-
-
-
-
-
+        final MenuItem menuItemStyle = nav_view.getMenu().findItem(R.id.nav_styles);
+        final MenuItem menuAddress = nav_view.getMenu().findItem(R.id.nav_my_address);
+        final MenuItem menuOrder = nav_view.getMenu().findItem(R.id.nav_my_orders);
+        final MenuItem menuSetting = nav_view.getMenu().findItem(R.id.nav_settings);
+        final MenuItem menuMail = nav_view.getMenu().findItem(R.id.nav_mail);
+        final MenuItem menuTextile = nav_view.getMenu().findItem(R.id.nav_textiles);
+        final MenuItem menuSignIn = nav_view.getMenu().findItem(R.id.nav_sign_in);
+        final MenuItem menuSignUp = nav_view.getMenu().findItem(R.id.nav_sign_up);
 
 
         View actionView = MenuItemCompat.getActionView(menuItemMail);
@@ -181,7 +173,7 @@ public class MainActivity extends BaseActivity
         order_menu = (TextView) view.findViewById(R.id.card_badge);
 
 
-         fragment = new HomeFragment();
+        fragment = new HomeFragment();
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -229,28 +221,24 @@ public class MainActivity extends BaseActivity
 
 
             //nav_home
-                   // nav_styles.
-           // nav_textiles
-                   // nav_mail
+            // nav_styles.
+            // nav_textiles
+            // nav_mail
             //nav_my_address
-                    //nav_my_orders
+            //nav_my_orders
 
 
-
-        }
-        else
-        {
+        } else {
             user_name.setText(session.getKeyUserName().toString());
             menuTextile.setVisible(false);
-           // if(Utility.isInternetConnected(MainActivity.this))
+            // if(Utility.isInternetConnected(MainActivity.this))
             //{
-                httpGetBadgeCall();
-           // }
-           // else
-           // {
-               // Toast.makeText(this, "No internet available", Toast.LENGTH_SHORT).show();
-           // }
-
+            httpGetBadgeCall();
+            // }
+            // else
+            // {
+            // Toast.makeText(this, "No internet available", Toast.LENGTH_SHORT).show();
+            // }
 
 
             menuSignIn.setVisible(false);
@@ -259,11 +247,18 @@ public class MainActivity extends BaseActivity
 
         }
 
-      //  httpGetBadgeCall();
+        //  httpGetBadgeCall();
+
+
+        View decorView = getWindow().getDecorView();
+
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
     }
 
-    private void httpGetBadgeCall()
-    {
+    private void httpGetBadgeCall() {
         SimpleProgressBar.showProgress(MainActivity.this);
         try {
             final String url = Contents.baseURL + "getBadges";
@@ -274,26 +269,23 @@ public class MainActivity extends BaseActivity
                         public void onResponse(String response) {
 
 
-                            System.out.println("response=="+response.toString());
+                            System.out.println("response==" + response.toString());
                             SimpleProgressBar.closeProgress();
-                            if (response != null)
-                            {
+                            if (response != null) {
                                 Log.e("stores response", response);
-                                try
-                                {
+                                try {
 
-                                            JSONObject jsonObject=new JSONObject(response);
-                                            String status=jsonObject.getString("status");
-                                            if(status.equals("1"))
-                                            {
-                                              String record=jsonObject.getString("record");
-                                                Gson g=new Gson();
-                                                BadgeRecordModel badgeRecordModel=g.fromJson(record,BadgeRecordModel.class);
-                                                initializeCountDrawer(badgeRecordModel);
-                                            }
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("status");
+                                    if (status.equals("1")) {
+                                        String record = jsonObject.getString("record");
+                                        Gson g = new Gson();
+                                        BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
+                                        initializeCountDrawer(badgeRecordModel);
+                                    }
 
                                 } catch (Exception e) {
-                                    System.out.println("EX=="+e);
+                                    System.out.println("EX==" + e);
                                     e.printStackTrace();
                                 }
                             }
@@ -302,7 +294,7 @@ public class MainActivity extends BaseActivity
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -310,7 +302,7 @@ public class MainActivity extends BaseActivity
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("user_id", session.getCustomerId());
-                    params.put("appUser","tefsal");
+                    params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
@@ -334,38 +326,29 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    private void initializeCountDrawer(BadgeRecordModel badgeRecordModel)
-    {
+    private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
         /*System.out.println("orders_badge===="+badgeRecordModel.getOrders_badge());
         System.out.println("mails_badge===="+badgeRecordModel.getMails_badge());
         System.out.println("total_badge===="+badgeRecordModel.getOrders_badge());*/
 
-        if(badgeRecordModel.getOrders_badge().equals("0"))
-        {
+        if (badgeRecordModel.getOrders_badge().equals("0")) {
             order_menu.setVisibility(View.GONE);
+        } else {
+            order_menu.setText("" + badgeRecordModel.getOrders_badge());
         }
-        else
-        {
-            order_menu.setText(""+badgeRecordModel.getOrders_badge());
-        }
-        if(badgeRecordModel.getMails_badge().equals("0"))
-        {
+        if (badgeRecordModel.getMails_badge().equals("0")) {
             mail_menu.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             mail_menu.setText(badgeRecordModel.getMails_badge());
         }
-        if(badgeRecordModel.getTotal_badge().equals("0"))
-        {
+        if (badgeRecordModel.getTotal_badge().equals("0")) {
             total_badge_txt.setVisibility(View.GONE);
-        }
-        else
-        {
-            total_badge_txt.setText(""+badgeRecordModel.getTotal_badge());
+        } else {
+            total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
         }
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -387,9 +370,7 @@ public class MainActivity extends BaseActivity
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentContainer, fragment);
                 ft.commit();
-            }
-            else
-            {
+            } else {
                 super.onBackPressed();
             }
         }
@@ -433,12 +414,9 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_styles) {
             // Handle the camera action
 
-            if(!session.getCustomerId().equals(""))
-            {
+            if (!session.getCustomerId().equals("")) {
                 startActivity(new Intent(MainActivity.this, TabbarActivity.class));
-            }
-            else
-            {
+            } else {
                 startActivity(new Intent(MainActivity.this, SigninActivity.class));
             }
 
@@ -472,7 +450,7 @@ public class MainActivity extends BaseActivity
                 toolbar_title.setText(item.getTitle());
                 fragment = new FragmentMyAddress();
                 btn_write_mail.setVisibility(View.GONE);
-              //  startActivity(new Intent(MainActivity.this, AddressesActivity.class));
+                //  startActivity(new Intent(MainActivity.this, AddressesActivity.class));
                 //startActivity(new Intent(MainActivity.this, MyAddressListActivity.class));
 
             } else {
@@ -481,7 +459,7 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_my_orders) {
             // Handle the camera action
             if (!session.getCustomerId().equals("")) {
-               // btn_ADD.setVisibility(View.GONE);
+                // btn_ADD.setVisibility(View.GONE);
                 //toolbar_title.setText(item.getTitle());
                 btn_write_mail.setVisibility(View.GONE);
                 startActivity(new Intent(MainActivity.this, MyOrderActivity.class));
@@ -491,15 +469,11 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_settings) {
             // Handle the camera action
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-        }
-        else if(id == R.id.nav_sign_up)
-        {
-           startActivity(new Intent(MainActivity.this,SignupActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-           finish();
-        }
-        else if(id == R.id.nav_sign_in)
-        {
-            startActivity(new Intent(MainActivity.this,SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        } else if (id == R.id.nav_sign_up) {
+            startActivity(new Intent(MainActivity.this, SignupActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+        } else if (id == R.id.nav_sign_in) {
+            startActivity(new Intent(MainActivity.this, SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
 

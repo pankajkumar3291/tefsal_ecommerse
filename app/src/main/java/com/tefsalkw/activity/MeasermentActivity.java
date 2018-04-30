@@ -28,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -273,31 +274,6 @@ public class MeasermentActivity extends BaseActivity {
     @BindView(R.id.btn_back_tips)
     ImageButton btn_back_tips;
 
-   /* @BindView(R.id.viewPagerIndicator)
-    RelativeLayout viewPagerIndicator;
-
-    @BindView(R.id.viewPagerCountDots)
-    LinearLayout viewPagerCountDots;*/
-
-  /*  @BindView(R.id.mainViewPager)
-    ViewPager mainViewPager;*/
-
-    /*@BindView(R.id.leftArrow)
-    ImageView leftArrow;
-
-    @BindView(R.id.rightArrow)
-    ImageView rightArrow;
-*/
-
-
-  /*  MainPagerAdapter adapter;
-    private int dotsCount;*/
-
-  /*  private ImageView[] dots;
-    private Integer[] tips_array = {R.drawable.memo1, R.drawable.memo2, R.drawable.memo3, R.drawable.memo4,
-            R.drawable.memo5, R.drawable.memo6, R.drawable.memo7, R.drawable.memo8, R.drawable.memo9};
-//--------------------------------------------*/
-
 
     //Those member variable are used to in video play
 
@@ -307,6 +283,10 @@ public class MeasermentActivity extends BaseActivity {
 
     // = Uri.parse(LINK);
 
+    @BindView(R.id.parentScroll)
+    ScrollView parentScroll;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,41 +295,28 @@ public class MeasermentActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         mDishdashaStylesRecord = (DishdashaStylesRecord) getIntent().getExtras().getSerializable("STYLE_DATA");
+
+        String isCustom = getIntent().getStringExtra("isCustom");
+
+
         flow = getIntent().getExtras().getString("flow");
 
 
-        //App Video playing block======================================
-//        mediaController=new MediaController(this,null);
         videoLink = "http://tefsalkw.com/public/videos/app.3gp";
         videoUri = Uri.parse(videoLink);
 
-        // This function call is for showing video of APP
-        //showAppVideoDialog();
 
-        showIndividualVideo(0);
-        //showIndividualVideoDialog(1);
-        //================================================================
+        if (isCustom == null) {
+            showIndividualVideo(0);
+        }
 
-
-        // mAction=getIntent().getExtras().getString("ACTION");
-        // mCategory=getIntent().getExtras().getString("CATEGORY");
-
-
-        //System.out.println("USER ID=="+mDishdashaStylesRecord.getUser_id());
-
-
-        // This block of code is used to show next text when Activity is launched from edit section
 
         if (TefalApp.getInstance().getmAction().equals("edit")) {
             next_txt.setVisibility(VISIBLE);
         }
-        //=========================================================================
-
 
         ll_sectionOne = (LinearLayout) findViewById(R.id.ll_sectionOne);
 
-
-        // init();
 
         mSessionManager = new SessionManager(getApplicationContext());
         //System.out.println("Token==="+mSessionManager.getToken());
@@ -620,6 +587,7 @@ public class MeasermentActivity extends BaseActivity {
                         ll_customDesign();
                         // textValue.requestFocus();
                         next_txt.setText("FINISH");
+
                         back_count--;
                         break;
                     case -1:
@@ -743,6 +711,7 @@ public class MeasermentActivity extends BaseActivity {
                         ll_customDesign();
                         //  textValue.requestFocus();
                         next_txt.setText("FINISH");
+                        llFinish.setVisibility(VISIBLE);
                         count = count + 1;
                         break;
                     default:
@@ -813,7 +782,11 @@ public class MeasermentActivity extends BaseActivity {
                         && validateNoButtons()*/) {
 
                     if (TefalApp.getInstance().getmAction().equals("edit")) {
-                        WebCallServiceUpdateStyle();
+                        //WebCallServiceUpdateStyle();
+
+
+                        getmeasureMinMetersHttpCall();
+
                         //setPrefData(mDishdashaStylesRecord);
                         System.out.println("===============================");
                         System.out.println("Your are from Edit");
@@ -823,7 +796,7 @@ public class MeasermentActivity extends BaseActivity {
                     if (TefalApp.getInstance().getmAction().equals("create")) {
                         //WebCallServiceCreateStyle();
 
-                        getmeasureMinMetersHttpCall();
+
                         System.out.println("===============================");
                         System.out.println("Your are from create");
                         System.out.println("Category== " + TefalApp.getInstance().getmCategory());
@@ -856,8 +829,6 @@ public class MeasermentActivity extends BaseActivity {
                 //Toast.makeText(getApplicationContext(),"Hi",Toast.LENGTH_SHORT).show();
             }
         });
-
-        /*-----------------Updated 10-23-2017------------------------*/
 
 
         ll_neck.setOnClickListener(new View.OnClickListener() {
@@ -962,8 +933,6 @@ public class MeasermentActivity extends BaseActivity {
         });
 
 
-        //Customize components event handling------------------
-
         culffSwitch_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -1035,10 +1004,6 @@ public class MeasermentActivity extends BaseActivity {
                 }
             }
         });
-
-        /*
-         * N.B: Here is naming conflication collar_btn_switch--Chest button
-         *       button_hidden_switch--collor button */
 
 
         collar_btn_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -1228,6 +1193,12 @@ public class MeasermentActivity extends BaseActivity {
         });
 
 
+        if (isCustom != null && isCustom.equalsIgnoreCase("1")) {
+            count = 8;
+            next_txt.performClick();
+        }
+
+
     }
 
 
@@ -1237,6 +1208,7 @@ public class MeasermentActivity extends BaseActivity {
 
         if (tipsLayout.getVisibility() == VISIBLE) {
             btn_back_tips.performClick();
+            parentScroll.setVisibility(VISIBLE);
             return;
         }
 
@@ -2238,6 +2210,7 @@ public class MeasermentActivity extends BaseActivity {
 
         decimalString = "00";
         next_txt.setText("FINISH");
+        llFinish.setVisibility(VISIBLE);
         count = 8;
         viewTipTrackCount = 9;
 
@@ -2292,28 +2265,6 @@ public class MeasermentActivity extends BaseActivity {
         ll_sectionOne.setVisibility(View.VISIBLE);
     }
 
-    /*public  void playVideo()
-    {
-        String url = "https://www.youtube.com/watch?v=7p1Ii2p7nyg";
-
-        Dialog dialog = new Dialog(MeasermentActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.video_view);
-        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-
-
-        VideoView videoView =(VideoView)dialog.findViewById(R.id.videoView);
-        String uriPath = "android.resource://"+ getPackageName() +"/"+R.raw.sample_video2;
-
-        Uri uri = Uri.parse(uriPath);
-
-      //  videoView.setMediaController(new MediaController(getApplicationContext()));
-        videoView.setVideoURI(uri);
-        videoView.requestFocus();
-        videoView.start();
-
-        dialog.show();
-    }*/
 
     public void setPrefData(DishdashaStylesRecord stylesRecord) {
         System.out.println("=====  stylesRecord.getNeck()" + stylesRecord.getNeck());
@@ -2819,7 +2770,7 @@ public class MeasermentActivity extends BaseActivity {
     private void showTipDialog() {
         // System.out.println("POSITION======"+viewTipTrackCount);
         tipsLayout.setVisibility(View.VISIBLE);
-
+        parentScroll.setVisibility(View.GONE);
         switch (viewTipTrackCount) {
             case 1:
                 tip_image.setImageResource(R.drawable.memo1);
@@ -2852,6 +2803,7 @@ public class MeasermentActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 tipsLayout.setVisibility(View.GONE);
+                parentScroll.setVisibility(VISIBLE);
             }
         });
 
@@ -2880,7 +2832,14 @@ public class MeasermentActivity extends BaseActivity {
             public void onClick(View v) {
 
                 alertDialog.dismiss();
-                WebCallServiceCreateStyle();
+
+                if (TefalApp.getInstance().getmAction().equals("edit")) {
+                    WebCallServiceUpdateStyle();
+                } else {
+                    WebCallServiceCreateStyle();
+
+                }
+
 
                 // Toast.makeText(MeasermentActivity.this, "You clicked OK", Toast.LENGTH_SHORT).show();
 

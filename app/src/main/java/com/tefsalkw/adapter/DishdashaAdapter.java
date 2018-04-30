@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +25,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.MeasermentActivity;
 import com.tefsalkw.activity.TabbarActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -58,8 +60,8 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
     public DishdashaAdapter(Activity activity, List<DishdashaStylesRecord> record, String category) {
         this.activity = activity;
         this.record = record;
-        session=new SessionManager(activity);
-        mCategory=category;
+        session = new SessionManager(activity);
+        mCategory = category;
     }
 
     @Override
@@ -68,7 +70,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         return new ViewHolder(v);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_style_name)
         TextView text_style_name;
@@ -134,11 +136,9 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         ImageView key_pocket;
 
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
 
 
         }
@@ -162,58 +162,52 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
             holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
             holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
             holder.txt_badge_coat.setText(record.get(position).getButtons());
-           // holder.txt_wide_value.setText(record.get(position).getWide() + "m");
+            // holder.txt_wide_value.setText(record.get(position).getWide() + "m");
             holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
 
             //if(record.get(position).getCollar_buttons().equals("0"))
-           // {
-                //holder.ic_coat_button.setVisibility(View.INVISIBLE);
-           // }
+            // {
+            //holder.ic_coat_button.setVisibility(View.INVISIBLE);
+            // }
             //else
-           // {
-                holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
-           // }
+            // {
+            holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
+            // }
 
             //if(record.get(position).getButtons().equals("0"))
             //{
-                //holder.ic_coatCollar.setVisibility(View.INVISIBLE);
-           // }
-          //  else
-          //  {
-                holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
-           // }
+            //holder.ic_coatCollar.setVisibility(View.INVISIBLE);
+            // }
+            //  else
+            //  {
+            holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
+            // }
 
            /* holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
             holder.txtBadge_collar_btn.setText(record.get(position).getButtons());*/
 
-           //System.out.println("CUFFLINK==="+record.get(position).getCufflink().equals("yes"));
-            if(record.get(position).getCufflink().equals("yes"))
-            {
+            //System.out.println("CUFFLINK==="+record.get(position).getCufflink().equals("yes"));
+            if (record.get(position).getCufflink().equals("yes")) {
                 holder.ic_cuflink.setVisibility(View.VISIBLE);
 
-            }
-            else
-            {
+            } else {
 
             }
 
 
-            if(record.get(position).getPen_pocket().equals("yes"))
-            {
+            if (record.get(position).getPen_pocket().equals("yes")) {
                 holder.pen_pocket.setImageResource(R.drawable.pen_small_selected);
 
 
             }
 
-            if(record.get(position).getMobile_pocket().equals("yes"))
-            {
+            if (record.get(position).getMobile_pocket().equals("yes")) {
 
                 holder.mobile_pocket.setImageResource(R.drawable.phone_small_selected);
             }
 
 
-            if(record.get(position).getKey_pocket().equals("yes"))
-            {
+            if (record.get(position).getKey_pocket().equals("yes")) {
 
                 holder.key_pocket.setImageResource(R.drawable.key_small_selected);
             }
@@ -221,22 +215,46 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
             holder.btn_edit.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    wrapStyleData(position,"edit");
+                public void onClick(View v) {
+                    showNamePromptEdit(position,record.get(position).getName());
                     //System.out.println("Edit button click=="+record.get(position).getId());
                 }
             });
 
             holder.btn_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
+                public void onClick(View v) {
                     showNamePrompt(position);
                     //WebCallServiceDeletStyle(position);
-                   // wrapStyleData(position,"delete");
+                    // wrapStyleData(position,"delete");
                     //System.out.println("Delete button click=="+record.get(position).getId());
 
+                }
+            });
+
+
+            holder.pen_pocket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    wrapStyleData(position, "edit",true);
+                }
+            });
+
+
+            holder.mobile_pocket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    wrapStyleData(position, "edit",true);
+                }
+            });
+
+
+            holder.key_pocket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    wrapStyleData(position, "edit",true);
                 }
             });
         }
@@ -249,11 +267,10 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         return record.size();
     }
 
-    public void WebCallServiceDeletStyle(final int position)
-    {
+    public void WebCallServiceDeletStyle(final int position) {
         SimpleProgressBar.showProgress(activity);
         try {
-            final String url = Contents.baseURL +"deleteMyStyle";
+            final String url = Contents.baseURL + "deleteMyStyle";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -261,17 +278,15 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                         public void onResponse(String response) {
 
 
-                            System.out.println("Delete response=="+response.toString());
+                            System.out.println("Delete response==" + response.toString());
 
                             session.setStyleStatus("true");
                             SimpleProgressBar.closeProgress();
 
-                            if (response != null)
-                            {
+                            if (response != null) {
                                 session.clearSizes();
                                 Log.e("stores response", response);
-                                try
-                                {
+                                try {
                                     JSONObject object = new JSONObject(response);
                                     Toast.makeText(activity, object.getString("message"), Toast.LENGTH_LONG).show();
                                     activity.startActivity(new Intent(activity, TabbarActivity.class));
@@ -286,7 +301,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error=="+error.toString());
+                            System.out.println("Error==" + error.toString());
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -303,12 +318,12 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
                     Map<String, String> params = new HashMap<String, String>();
-                   // params.put("access_token", session.getToken());
+                    // params.put("access_token", session.getToken());
                     params.put("user_id", session.getCustomerId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("id",record.get(position).getId());
+                    params.put("id", record.get(position).getId());
 
                     Log.e("Tefsal tailor == ", url + params);
 
@@ -334,8 +349,8 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         LayoutInflater LayoutInflater = activity.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.style_prompt_delete_dailog, null);
 
-        Button dialog_ok_btn=(Button)dialogView .findViewById(R.id.dialog_ok_btn);
-        Button dialog_cancel_btn=(Button)dialogView .findViewById(R.id.dialog_cancel_btn);
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_ok_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_cancel_btn);
 
         /*input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
         input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
@@ -350,8 +365,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 //System.out.println("OK");
                 alertDialog.dismiss();
@@ -368,11 +382,48 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
     }
 
-    public void wrapStyleData(int position, String action)
-    {
+    public void showNamePromptEdit(int position,String styleName) {
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+        LayoutInflater LayoutInflater = activity.getLayoutInflater();
+        final View dialogView = LayoutInflater.inflate(R.layout.style_prompt_name_dialog, null);
 
-        Bundle bundle=new Bundle();
-        DishdashaStylesRecord  mDishdashaStylesRecord=new DishdashaStylesRecord();
+        TextInputLayout  input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
+        EditText input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
+        Button  dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_ok_btn);
+        Button  dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_cancel_btn);
+        // ButterKnife.bind(this, dialogView);
+
+        input_style_name.setText(styleName);
+
+        dialogBuilder.setView(dialogView);
+
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wrapStyleData(position, "edit",false);
+                alertDialog.dismiss();
+
+
+            }
+        });
+        dialog_cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
+
+    public void wrapStyleData(int position, String action, boolean isCustom) {
+
+
+        Bundle bundle = new Bundle();
+        DishdashaStylesRecord mDishdashaStylesRecord = new DishdashaStylesRecord();
 
 
         mDishdashaStylesRecord.setNeck(record.get(position).getNeck().toString());
@@ -385,11 +436,9 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         mDishdashaStylesRecord.setShoulder(record.get(position).getShoulder().toString());
 
 
-
-
         mDishdashaStylesRecord.setButtons(record.get(position).getButtons());
         mDishdashaStylesRecord.setCollar_button_visibility(record.get(position).getCollar_button_visibility());
-       // mDishdashaStylesRecord.setCollar_button_visibility(record.get(position).getShirt_button_visibility());
+        // mDishdashaStylesRecord.setCollar_button_visibility(record.get(position).getShirt_button_visibility());
         mDishdashaStylesRecord.setCollar_buttons_push(record.get(position).getCollar_buttons_push());
 
         mDishdashaStylesRecord.setPen_pocket(record.get(position).getPen_pocket());
@@ -398,12 +447,11 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         mDishdashaStylesRecord.setWide(record.get(position).getWide());
 
         mDishdashaStylesRecord.setCollar_buttons(record.get(position).getCollar_buttons());
-       mDishdashaStylesRecord.setShirt_button_visibility(record.get(position).getShirt_button_visibility());
-       // mDishdashaStylesRecord.setShirt_button_visibility(record.get(position).getCollar_button_visibility());
+        mDishdashaStylesRecord.setShirt_button_visibility(record.get(position).getShirt_button_visibility());
+        // mDishdashaStylesRecord.setShirt_button_visibility(record.get(position).getCollar_button_visibility());
 
         mDishdashaStylesRecord.setCufflink(record.get(position).getCufflink());
         mDishdashaStylesRecord.setId(record.get(position).getId());
-
 
 
         mDishdashaStylesRecord.setCategory(record.get(position).getCategory());
@@ -414,18 +462,22 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         mDishdashaStylesRecord.setUser_id(session.getCustomerId());
 
 
-
         bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        mTefalApp=TefalApp.getInstance();
+        mTefalApp = TefalApp.getInstance();
         mTefalApp.setmAction(action);
         mTefalApp.setmCategory(mCategory);
 
         /*bundle.putString("ACTION",action);
         bundle.putString("CATEGORY","2");*/
 
-        Intent i=new Intent(activity, MeasermentActivity.class);
+        Intent i = new Intent(activity, MeasermentActivity.class);
         i.putExtras(bundle);
+        if (isCustom) {
+            i.putExtra("isCustom", "1");
+        }
         activity.startActivity(i);
     }
+
+
 }
 

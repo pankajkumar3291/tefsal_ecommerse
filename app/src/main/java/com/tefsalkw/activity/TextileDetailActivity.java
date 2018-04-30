@@ -20,8 +20,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,6 +109,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @BindView(R.id.viewPagerIndicator)
     RelativeLayout viewPagerIndicator;
 
+    @BindView(R.id.linear1)
+    RelativeLayout linear1;
+
+
     @BindView(R.id.viewPagerCountDots)
     LinearLayout viewPagerCountDots;
 
@@ -127,6 +133,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     @BindView(R.id.toolbar_title)
     TextView toolbar_title;
+
+    @BindView(R.id.subText)
+    TextView subText;
 
     @BindView(R.id.btn_back)
     ImageButton btn_back;
@@ -353,7 +362,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         try {
 
             text_price.setText("PRICE : " + Math.round(price * min_meter) + " KWD");
-            txt_min_meter.setText("" + TefalApp.getInstance().getMin_meters() + " MIN METERS REQUIRED");
+            txt_min_meter.setText("Minimum - " + TefalApp.getInstance().getMin_meters() + "m Required");
         } catch (Exception ex) {
             System.out.println("Error===============" + ex);
         }
@@ -437,7 +446,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
         toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-
+        subText.setText(textileProductModel.getColor() + " - "+textileProductModel.getSub_color() != null ? textileProductModel.getSub_color() : "");
 
         // if (!DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image().equals(""))
         //Picasso.with(this).load(DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image()).into(product_img);
@@ -460,40 +469,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         initSlider();
 
-//        if (product_image != null) {
-//            if (product_image.length != 0) {
-//                dishDashaProductPagerAdapter = new DishDashaProductPagerAdapter(TextileDetailActivity.this, product_image);
-//                product_image_viewPager.setAdapter(dishDashaProductPagerAdapter);
-//                //  product_image_viewPager.setOffscreenPageLimit(dishDashaProductPagerAdapter.getCount());
-//                product_image_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//                    @Override
-//                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                        // if()
-//                        //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onPageSelected(int position) {
-//                        for (int i = 0; i < dotsCount; i++) {
-//                            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-//                        }
-//                        dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-//                    }
-//
-//                    @Override
-//                    public void onPageScrollStateChanged(int state) {
-//
-//                    }
-//                });
-//
-//
-//                setUiPageViewController();
-//            }
-//        } else {
-//            no_image_holder.setVisibility(View.VISIBLE);
-//            no_image_holder.setImageResource(R.drawable.no_image_placeholder_non_grid);
-//        }
+
 
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -524,6 +500,27 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
         meter_value.setText("" + Math.round(min_meter));
+
+        try
+        {
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+            float dpWidth =  (displayMetrics.widthPixels / displayMetrics.density);
+
+
+
+            int dpWidthInt = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dpWidth, getResources().getDisplayMetrics());
+            Log.e("dpWidthInt",dpWidthInt+"");
+            RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(  ViewGroup.LayoutParams.MATCH_PARENT, dpWidthInt);
+
+            linear1.setLayoutParams(rel_btn);
+
+
+        }
+        catch (Exception exc)
+        {
+
+        }
 
 
     }

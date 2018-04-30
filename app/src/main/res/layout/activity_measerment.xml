@@ -13,6 +13,7 @@
         layout="@layout/toolbar" />
 
     <ScrollView
+        android:id="@+id/parentScroll"
         android:layout_below="@+id/toolbar"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -462,6 +463,7 @@
     </ScrollView>
 
     <RelativeLayout
+
         android:background="@color/colorPrimary"
         android:id="@+id/tipsLayout"
         android:layout_height="match_parent"
@@ -498,14 +500,7 @@
                 tools:ignore="MissingPrefix" />
         </android.support.v7.widget.Toolbar>
 
-        <!-- <android.support.v4.view.ViewPager
-             android:id="@+id/mainViewPager"
-             android:layout_below="@+id/toolbar"
-             android:layout_width="match_parent"
-             android:padding="20dp"
-             android:layout_height="match_parent">
 
-         </android.support.v4.view.ViewPager>-->
 
         <ImageView
             android:id="@+id/tip_image"
@@ -514,44 +509,7 @@
             android:layout_width="match_parent"
             android:padding="20dp" />
 
-        <!--<ImageView
-            android:id="@+id/leftArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:tint="@color/colorAccent"
-            android:layout_centerVertical="true"
-            android:src="@drawable/left_arrow" />
 
-        <ImageView
-            android:id="@+id/rightArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:tint="@color/colorAccent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/right_arrow" />
-
-        <RelativeLayout
-            android:id="@+id/viewPagerIndicator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:padding="4dp">
-
-            <LinearLayout
-                android:id="@+id/viewPagerCountDots"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal" />
-
-        </RelativeLayout>
--->
     </RelativeLayout>
 
     <LinearLayout

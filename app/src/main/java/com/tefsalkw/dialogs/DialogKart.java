@@ -43,16 +43,25 @@ public class DialogKart extends Dialog {
         LinearLayout llChooseTailor =  findViewById(R.id.llChooseTailor);
         LinearLayout llGotoCart =  findViewById(R.id.llGotoCart);
 
-        if(!isStore)
-        {
-            llChooseStore.setVisibility(View.VISIBLE);
-        }
-
-
         Button btnllContinue = findViewById(R.id.btnllContinue);
         Button btnllChooseStore = findViewById(R.id.btnllChooseStore);
         Button btnllChooseTailor =  findViewById(R.id.btnllChooseTailor);
         Button btnllGotoCart =  findViewById(R.id.btnllGotoCart);
+
+        Log.e("isStore",isStore+"");
+        if(isStore)
+        {
+
+            llChooseTailor.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            llChooseStore.setVisibility(View.GONE);
+            llChooseTailor.setVisibility(View.GONE);
+        }
+
+
+
 
 
 
@@ -92,23 +101,7 @@ public class DialogKart extends Dialog {
                     context.startActivity(new Intent(context, DishDashaProductActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
 
 
-//                    String store_id = TefalApp.getInstance().getStoreId();
-//                    Bundle bundle=new Bundle();
-//                    bundle.putString("store_id", store_id);
-//                    bundle.putString("flag", "dish");
-//                    bundle.putString("fromWhere", "tailor");
-//
-//                    FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
-//
-//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                    TailorTextileChooseFragment tailorTextileChooseFragment = new TailorTextileChooseFragment();
-//                    tailorTextileChooseFragment.setArguments(bundle);
-//                    //fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.replace(R.id.fragmentContainer, tailorTextileChooseFragment);
-//                    //
-//                    fragmentTransaction.commit();
 
-                  //  context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
 
                 }
 
@@ -146,6 +139,14 @@ public class DialogKart extends Dialog {
 
             btnllChooseStore.setVisibility(View.GONE);
             btnllChooseTailor.setVisibility(View.GONE);
+        }
+
+
+        if(itemType.equalsIgnoreCase("DTA"))
+        {
+            llChooseStore.setVisibility(View.GONE);
+            llChooseTailor.setVisibility(View.GONE);
+
         }
 
     }
