@@ -12,7 +12,10 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.models.TailorStoresModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
@@ -86,11 +89,18 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         String discount_amount;
 
         if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()) {
-            Picasso.with(activity)
-                    .load(storeModels.get(holder.getAdapterPosition()).getStore_image())
-                    .error(R.drawable.no_image_placeholder_non_grid)
-                    .placeholder(R.drawable.no_image_placeholder_non_grid)
-                    .into(holder.img);
+//            Picasso.with(activity)
+//                    .load(storeModels.get(holder.getAdapterPosition()).getStore_image())
+//                    .error(R.drawable.no_image_placeholder_non_grid)
+//                    .placeholder(R.drawable.no_image_placeholder_non_grid)
+//                    .into(holder.img);
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
+
         }
         else
         {

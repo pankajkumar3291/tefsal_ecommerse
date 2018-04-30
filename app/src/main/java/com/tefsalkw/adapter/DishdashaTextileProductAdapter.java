@@ -10,7 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
@@ -83,10 +87,18 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
 
         if(textileModels.get(holder.getAdapterPosition()).getProduct_image().length!=0)
         {
-            Picasso.with(activity).load(textileModels.get(holder.getAdapterPosition()).getProduct_image()[0])
+//            Picasso.with(activity).load(textileModels.get(holder.getAdapterPosition()).getProduct_image()[0])
+//                    .placeholder(R.drawable.no_image_placeholder_grid)
+//                    .error(R.drawable.no_image_placeholder_grid)
+//                    .into(holder.iv_pattern);
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
-                    .error(R.drawable.no_image_placeholder_grid)
-                    .into(holder.iv_pattern);
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(activity).load(textileModels.get(holder.getAdapterPosition()).getProduct_image()[0]).apply(options).into(holder.iv_pattern);
+
         }
         else
         {

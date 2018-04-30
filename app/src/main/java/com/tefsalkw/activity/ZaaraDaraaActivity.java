@@ -30,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -40,6 +42,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalZaraDara;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalZaraDara;
@@ -984,7 +987,15 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
             });
 
-            Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+           // Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(context).asBitmap().load(img.get(position)).apply(options).into(imageView);
+
+
             container.addView(itemView);
 
             return itemView;
@@ -1108,7 +1119,17 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
             });
 
-            Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+            //Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(ZaaraDaraaActivity.this).asBitmap().load(img.get(position)).apply(options).into(imageView);
+
+
+
             container.addView(itemView);
 
             return itemView;

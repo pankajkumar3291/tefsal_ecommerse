@@ -30,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -40,6 +42,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
@@ -857,7 +860,15 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
-            Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+
+          //  Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(context).asBitmap().load(img[position]).apply(options).into(imageView);
+
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -872,7 +883,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 }
             });
 
-            Picasso.with(AccessoryProductDetailsActivity.this).load(img[position]).into(imageView);
+
             container.addView(itemView);
 
             return itemView;
@@ -947,7 +958,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
-            Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+           // Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(context).asBitmap().load(img[position]).apply(options).into(imageView);
+
+
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -957,7 +977,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 }
             });
 
-            Picasso.with(AccessoryProductDetailsActivity.this).load(img[position]).into(imageView);
+
             container.addView(itemView);
 
             return itemView;

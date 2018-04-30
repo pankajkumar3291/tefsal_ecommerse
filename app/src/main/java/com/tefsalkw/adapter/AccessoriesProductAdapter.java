@@ -12,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.models.AccessoriesRecord;
@@ -117,10 +120,19 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
         holder.text_max_delivery_days.setText(max_delivery_days);
 
         if (accessory_product_image.length != 0) {
-            Picasso.with(activity).load(accessory_product_image[0])
+//            Picasso.with(activity).load(accessory_product_image[0])
+//                    .placeholder(R.drawable.no_image_placeholder_grid)
+//                    .error(R.drawable.no_image_placeholder_grid)
+//                    .into(holder.iv_pattern);
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
-                    .error(R.drawable.no_image_placeholder_grid)
-                    .into(holder.iv_pattern);
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(activity).load(accessory_product_image[0]).apply(options).into(holder.iv_pattern);
+
+
         } else {
             holder.iv_pattern.setImageResource(R.drawable.no_image_placeholder_grid);
         }

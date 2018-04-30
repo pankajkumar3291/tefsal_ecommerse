@@ -67,6 +67,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
             holder.country_flag_imgage.setPadding(6,6,6,6);
 
             Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+
         }
        // Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
         holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener()

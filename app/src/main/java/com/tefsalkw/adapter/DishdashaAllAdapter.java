@@ -11,7 +11,10 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.models.D_StoreRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
@@ -79,7 +82,18 @@ public class DishdashaAllAdapter extends RecyclerView.Adapter<DishdashaAllAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
         if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty())
-            Picasso.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).into(holder.img);
+        {
+           // Picasso.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).into(holder.img);
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
+
+            GlideApp.with(activity).asBitmap().load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
+
+        }
+
 
         holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
         holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));

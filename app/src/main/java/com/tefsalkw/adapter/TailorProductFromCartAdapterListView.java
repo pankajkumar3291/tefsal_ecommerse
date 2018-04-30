@@ -9,7 +9,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
 import com.tefsalkw.models.TailoringRecord;
@@ -61,11 +64,20 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
         txt_product_name.setText(record.get(position).getDishdasha_product_name());
-        Picasso.with(activity)
-                .load(record.get(position).getImage())
-                .error(R.drawable.no_image_placeholder_grid)
-                .transform(new CircleTransform())
-                .into(imageView);
+//        Picasso.with(activity)
+//                .load(record.get(position).getImage())
+//                .error(R.drawable.no_image_placeholder_grid)
+//                .transform(new CircleTransform())
+//                .into(imageView);
+
+        RequestOptions options = new RequestOptions()
+                .priority(Priority.HIGH)
+                .placeholder(R.drawable.no_image_placeholder_grid)
+                .error(R.drawable.no_image_placeholder_grid);
+
+        GlideApp.with(activity).load(record.get(position).getImage()).apply(options).into(imageView);
+
+
 
 
         if (record.get(position).getChecked()) {
