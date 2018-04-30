@@ -4,10 +4,11 @@
     android:layout_height="?actionBarSize"
     android:layout_width="match_parent">
 
+
     <ImageButton
         android:background="@android:color/transparent"
         android:id="@+id/btn_back"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -16,11 +17,12 @@
 
 
     <TextView
+        android:gravity="center"
         android:id="@+id/toolbar_title"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:text="@string/mail_system_toolbar_toolbar_title_text"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
@@ -31,11 +33,11 @@
     <ImageButton
         android:background="@android:color/transparent"
         android:id="@+id/btn_write_mail"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_width="wrap_content"
         android:padding="5dp"
         android:src="@drawable/ic_mail_write" />

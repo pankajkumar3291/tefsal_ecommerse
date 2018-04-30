@@ -23,8 +23,8 @@
     <TextView
         android:id="@+id/address_text"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_width="wrap_content"
         android:maxLines="2"
         android:text="@string/row_addresses_cart_address_text_text"
@@ -35,11 +35,12 @@
         android:gravity="start"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent">
 
         <Button
+            android:layout_marginStart="10dp"
             android:background="@drawable/my_button_bg"
             android:id="@+id/address_edit_btn"
             android:layout_height="40dp"
@@ -52,7 +53,7 @@
             android:background="@drawable/my_button_bg"
             android:id="@+id/address_delete_btn"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_width="80dp"
             android:text="@string/row_addresses_cart_address_delete_btn_text"
             android:textAllCaps="false"
@@ -64,7 +65,6 @@
             android:id="@+id/btn_deliver"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:paddingEnd="5dp"
             android:paddingStart="5sp"

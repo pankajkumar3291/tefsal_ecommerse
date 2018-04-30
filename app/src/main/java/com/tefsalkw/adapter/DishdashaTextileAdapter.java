@@ -72,9 +72,15 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
+        @BindView(R.id.txt_discount_amount1)
+        TextView txt_discount_amount1;
+
+
         @BindView(R.id.LL_di)
         LinearLayout LL_di;
 
+        @BindView(R.id.LL_diRTL)
+        LinearLayout LL_diRTL;
 
 
 
@@ -112,17 +118,31 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
         if(storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null) || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(""))
         {
-             dis_amount = "0%";
+            dis_amount = "0%";
             holder.LL_di.setVisibility(GONE);
+            holder.LL_diRTL.setVisibility(GONE);
         }
         else
         {
             dis_amount=storeModels.get(holder.getAdapterPosition()).getStore_discount();
 
-            holder.LL_di.setVisibility(View.VISIBLE);
+            if(session.isRTL())
+            {
+                holder.LL_diRTL.setVisibility(View.GONE);
+                holder.LL_di.setVisibility(View.GONE);
+            }
+            else
+            {
+                holder.LL_diRTL.setVisibility(View.GONE);
+                holder.LL_di.setVisibility(View.VISIBLE);
+            }
+
+            holder.txt_discount_amount.setText(dis_amount+ " OFF");
+            holder.txt_discount_amount1.setText(dis_amount+ " OFF");
+
         }
 
-        holder.txt_discount_amount.setText(dis_amount+ " OFF");
+
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -9,17 +9,6 @@
     android:orientation="vertical"
     tools:context="com.tefsalkw.activity.AddressesActivity">
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-    <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/addnewBtn"-->
-    <!--android:text="ADD NEW STYLE"-->
-    <!--/>-->
-
-    <!--</LinearLayout>-->
 
 
     <android.support.v7.widget.RecyclerView
