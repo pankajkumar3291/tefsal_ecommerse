@@ -64,7 +64,15 @@ public class DishdashaStylesRecord implements Serializable {
     private String shirt_button_visibility;
     private String collar_buttons_push;
 
+    public boolean isEditMode() {
+        return isEditMode;
+    }
 
+    public void setEditMode(boolean editMode) {
+        isEditMode = editMode;
+    }
+
+    private boolean isEditMode = false;
 
     public String getNeck ()
     {

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,19 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
     private SessionManager session;
     private String mCategory;
     private TefalApp mTefalApp;
+
+
+    public interface OnDoneButtonListner {
+        void onDone(DishdashaStylesRecord dishdashaStylesRecord);
+
+
+    }
+
+    private OnDoneButtonListner onDoneButtonListner;
+
+    public void setOnDoneButtonListner(OnDoneButtonListner listener) {
+        onDoneButtonListner = listener;
+    }
 
     public DishdashaAdapter(Activity activity, List<DishdashaStylesRecord> record, String category) {
         this.activity = activity;
@@ -99,6 +113,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         @BindView(R.id.txt_back_height_value)
         TextView txt_back_height_value;
 
+
         @BindView(R.id.btn_delete)
         Button btn_delete;
 
@@ -120,9 +135,6 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         @BindView(R.id.ic_cuflink)
         ImageView ic_cuflink;
 
-//        @BindView(R.id.txt_wide_value)
-//        TextView txt_wide_value;
-
         @BindView(R.id.txt_narrow_value)
         TextView txt_narrow_value;
 
@@ -135,6 +147,74 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         @BindView(R.id.key_pocket)
         ImageView key_pocket;
 
+
+        //Edit
+        @BindView(R.id.text_style_name1)
+        EditText text_style_name1;
+
+        @BindView(R.id.txt_neck_value1)
+        EditText txt_neck_value1;
+
+        @BindView(R.id.txt_chest_value1)
+        EditText txt_chest_value1;
+
+        @BindView(R.id.txt_shoulder_value1)
+        EditText txt_shoulder_value1;
+
+        @BindView(R.id.txt_waist_value1)
+        EditText txt_waist_value1;
+
+        @BindView(R.id.txt_arm_value1)
+        EditText txt_arm_value1;
+
+        @BindView(R.id.txt_wrist_value1)
+        EditText txt_wrist_value1;
+
+        @BindView(R.id.txt_front_height_value1)
+        EditText txt_front_height_value1;
+
+        @BindView(R.id.txt_back_height_value1)
+        EditText txt_back_height_value1;
+
+        @BindView(R.id.btnDone)
+        Button btnDone;
+
+        @BindView(R.id.btnCancel)
+        Button btnCancel;
+
+        @BindView(R.id.txtBadge_collar_btn1)
+        TextView txtBadge_collar_btn1;
+
+        @BindView(R.id.txt_badge_coat1)
+        TextView txt_badge_coat1;
+
+        @BindView(R.id.ic_coatCollar1)
+        ImageView ic_coatCollar1;
+
+        @BindView(R.id.ic_coat_button1)
+        ImageView ic_coat_button1;
+
+        @BindView(R.id.ic_cuflink1)
+        ImageView ic_cuflink1;
+
+        @BindView(R.id.txt_narrow_value1)
+        TextView txt_narrow_value1;
+
+        @BindView(R.id.pen_pocket1)
+        ImageView pen_pocket1;
+
+        @BindView(R.id.mobile_pocket1)
+        ImageView mobile_pocket1;
+
+        @BindView(R.id.key_pocket1)
+        ImageView key_pocket1;
+
+
+        @BindView(R.id.relEdiStyle)
+        RelativeLayout relEdiStyle;
+
+        @BindView(R.id.relViewStyle)
+        RelativeLayout relViewStyle;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -151,112 +231,190 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         if (record.size() > 0) {
 
 
-            holder.text_style_name.setText(record.get(position).getName());
-            holder.txt_neck_value.setText(record.get(position).getNeck() + "cm");
-            holder.txt_chest_value.setText(record.get(position).getChest() + "cm");
-            holder.txt_shoulder_value.setText(record.get(position).getShoulder() + "cm");
-            holder.txt_waist_value.setText(record.get(position).getWaist() + "cm");
-            holder.txt_arm_value.setText(record.get(position).getArm() + "cm");
-            holder.txt_wrist_value.setText(record.get(position).getWrist() + "cm");
-            holder.txt_front_height_value.setText(record.get(position).getFront_height() + "cm");
-            holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
-            holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
-            holder.txt_badge_coat.setText(record.get(position).getButtons());
-            // holder.txt_wide_value.setText(record.get(position).getWide() + "m");
-            holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
+            if (record.get(position).isEditMode()) {
+                holder.relEdiStyle.setVisibility(View.VISIBLE);
+                holder.relViewStyle.setVisibility(View.GONE);
 
-            //if(record.get(position).getCollar_buttons().equals("0"))
-            // {
-            //holder.ic_coat_button.setVisibility(View.INVISIBLE);
-            // }
-            //else
-            // {
-            holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
-            // }
+                //Edit
 
-            //if(record.get(position).getButtons().equals("0"))
-            //{
-            //holder.ic_coatCollar.setVisibility(View.INVISIBLE);
-            // }
-            //  else
-            //  {
-            holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
-            // }
+                holder.text_style_name1.setText(record.get(position).getName());
+                holder.txt_neck_value1.setText(record.get(position).getNeck());
+                holder.txt_chest_value1.setText(record.get(position).getChest());
+                holder.txt_shoulder_value1.setText(record.get(position).getShoulder());
+                holder.txt_waist_value1.setText(record.get(position).getWaist());
+                holder.txt_arm_value1.setText(record.get(position).getArm());
+                holder.txt_wrist_value1.setText(record.get(position).getWrist());
+                holder.txt_front_height_value1.setText(record.get(position).getFront_height());
+                holder.txt_back_height_value1.setText(record.get(position).getBack_height());
 
-           /* holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
-            holder.txtBadge_collar_btn.setText(record.get(position).getButtons());*/
+                holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
+                holder.txt_badge_coat1.setText(record.get(position).getButtons());
+                holder.txt_narrow_value1.setText(record.get(position).getMin_meters() + "m");
+                holder.txt_badge_coat1.setText(record.get(position).getCollar_buttons());
+                holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
 
-            //System.out.println("CUFFLINK==="+record.get(position).getCufflink().equals("yes"));
-            if (record.get(position).getCufflink().equals("yes")) {
-                holder.ic_cuflink.setVisibility(View.VISIBLE);
+                if (record.get(position).getCufflink().equals("yes")) {
+                    holder.ic_cuflink1.setVisibility(View.VISIBLE);
+
+                }
+
+                if (record.get(position).getPen_pocket().equals("yes")) {
+                    holder.pen_pocket1.setImageResource(R.drawable.pen_small_selected);
+
+                }
+
+                if (record.get(position).getMobile_pocket().equals("yes")) {
+
+                    holder.mobile_pocket1.setImageResource(R.drawable.phone_small_selected);
+                }
+
+                if (record.get(position).getKey_pocket().equals("yes")) {
+
+                    holder.key_pocket1.setImageResource(R.drawable.key_small_selected);
+                }
+
+                holder.pen_pocket1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
+
+                holder.mobile_pocket1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
+
+                holder.key_pocket1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
+                holder.ic_coatCollar1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
+                holder.ic_coat_button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
+
+
+                holder.btnDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        DishdashaStylesRecord dishdashaStylesRecord =  record.get(position);
+
+                        dishdashaStylesRecord.setName(holder.text_style_name1.getText().toString());
+                        dishdashaStylesRecord.setNeck(holder.txt_neck_value1.getText().toString());
+                        dishdashaStylesRecord.setChest(holder.txt_chest_value1.getText().toString());
+                        dishdashaStylesRecord.setShoulder(holder.txt_shoulder_value1.getText().toString());
+                        dishdashaStylesRecord.setWaist(holder.txt_waist_value1.getText().toString());
+                        dishdashaStylesRecord.setArm(holder.txt_arm_value1.getText().toString());
+                        dishdashaStylesRecord.setWrist(holder.txt_wrist_value1.getText().toString());
+                        dishdashaStylesRecord.setFront_height(holder.txt_front_height_value1.getText().toString());
+                        dishdashaStylesRecord.setBack_height(holder.txt_back_height_value1.getText().toString());
+
+                        onDoneButtonListner.onDone(dishdashaStylesRecord);
+
+                    }
+                });
+
+                holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        record.get(position).setEditMode(false);
+                        notifyDataSetChanged();
+                    }
+                });
+
 
             } else {
+                holder.relEdiStyle.setVisibility(View.GONE);
+                holder.relViewStyle.setVisibility(View.VISIBLE);
+
+                holder.text_style_name.setText(record.get(position).getName());
+                holder.txt_neck_value.setText(record.get(position).getNeck() + "cm");
+                holder.txt_chest_value.setText(record.get(position).getChest() + "cm");
+                holder.txt_shoulder_value.setText(record.get(position).getShoulder() + "cm");
+                holder.txt_waist_value.setText(record.get(position).getWaist() + "cm");
+                holder.txt_arm_value.setText(record.get(position).getArm() + "cm");
+                holder.txt_wrist_value.setText(record.get(position).getWrist() + "cm");
+                holder.txt_front_height_value.setText(record.get(position).getFront_height() + "cm");
+                holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
+                holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
+                holder.txt_badge_coat.setText(record.get(position).getButtons());
+                holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
+                holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
+                holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
+
+                if (record.get(position).getCufflink().equals("yes")) {
+                    holder.ic_cuflink.setVisibility(View.VISIBLE);
+
+                }
+
+                if (record.get(position).getPen_pocket().equals("yes")) {
+                    holder.pen_pocket.setImageResource(R.drawable.pen_small_selected);
+
+                }
+
+                if (record.get(position).getMobile_pocket().equals("yes")) {
+
+                    holder.mobile_pocket.setImageResource(R.drawable.phone_small_selected);
+                }
+
+                if (record.get(position).getKey_pocket().equals("yes")) {
+
+                    holder.key_pocket.setImageResource(R.drawable.key_small_selected);
+                }
+
+
+                holder.pen_pocket.setOnClickListener(null);
+                holder.mobile_pocket.setOnClickListener(null);
+                holder.key_pocket.setOnClickListener(null);
+                holder.ic_coatCollar.setOnClickListener(null);
+                holder.ic_coat_button.setOnClickListener(null);
+
+                holder.btn_edit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        record.get(position).setEditMode(true);
+                        notifyDataSetChanged();
+
+                    }
+                });
+
+                holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showNamePrompt(position);
+                        //WebCallServiceDeletStyle(position);
+                        // wrapStyleData(position,"delete");
+                        //System.out.println("Delete button click=="+record.get(position).getId());
+
+                    }
+                });
+
 
             }
 
 
-            if (record.get(position).getPen_pocket().equals("yes")) {
-                holder.pen_pocket.setImageResource(R.drawable.pen_small_selected);
-
-
-            }
-
-            if (record.get(position).getMobile_pocket().equals("yes")) {
-
-                holder.mobile_pocket.setImageResource(R.drawable.phone_small_selected);
-            }
-
-
-            if (record.get(position).getKey_pocket().equals("yes")) {
-
-                holder.key_pocket.setImageResource(R.drawable.key_small_selected);
-            }
-
-
-            holder.btn_edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showNamePromptEdit(position,record.get(position).getName());
-                    //System.out.println("Edit button click=="+record.get(position).getId());
-                }
-            });
-
-            holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showNamePrompt(position);
-                    //WebCallServiceDeletStyle(position);
-                    // wrapStyleData(position,"delete");
-                    //System.out.println("Delete button click=="+record.get(position).getId());
-
-                }
-            });
-
-
-            holder.pen_pocket.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    wrapStyleData(position, "edit",true);
-                }
-            });
-
-
-            holder.mobile_pocket.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    wrapStyleData(position, "edit",true);
-                }
-            });
-
-
-            holder.key_pocket.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    wrapStyleData(position, "edit",true);
-                }
-            });
         }
 
     }
@@ -382,15 +540,15 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
     }
 
-    public void showNamePromptEdit(int position,String styleName) {
+    public void showNamePromptEdit(int position, String styleName) {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
         LayoutInflater LayoutInflater = activity.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.style_prompt_name_dialog, null);
 
-        TextInputLayout  input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
-        EditText input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
-        Button  dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_ok_btn);
-        Button  dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_cancel_btn);
+        TextInputLayout input_layout_style_name = (TextInputLayout) dialogView.findViewById(R.id.input_layout_style_name);
+        EditText input_style_name = (EditText) dialogView.findViewById(R.id.input_style_name);
+        Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_ok_btn);
+        Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_cancel_btn);
         // ButterKnife.bind(this, dialogView);
 
         input_style_name.setText(styleName);
@@ -403,7 +561,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wrapStyleData(position, "edit",false);
+                wrapStyleData(position, "edit", false);
                 alertDialog.dismiss();
 
 

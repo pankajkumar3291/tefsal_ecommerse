@@ -23,7 +23,7 @@
     <dimen name="margin_mid">20dp</dimen>
     <dimen name="margin_mid2">15dp</dimen>
     <dimen name="margin_large">30dp</dimen>
-    <dimen name="margin_xlarge">45dp</dimen>
+    <dimen name="margin_xlarge">55dp</dimen>
 
 
     <dimen name="card_margin">5dp</dimen>

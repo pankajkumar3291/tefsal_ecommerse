@@ -527,6 +527,12 @@ public class MeasermentActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                if (isCustom != null && isCustom.equalsIgnoreCase("1")) {
+                    count = 8;
+                    back_count = 8;
+                    onBackPressed();
+                    return;
+                }
 
                 // count=count+1;
 
@@ -595,6 +601,7 @@ public class MeasermentActivity extends BaseActivity {
                     default:
                         // ll_back_heightDesign();
                         //nOTHING
+                        onBackPressed();
                 }
 
             }
@@ -795,7 +802,7 @@ public class MeasermentActivity extends BaseActivity {
 
                     if (TefalApp.getInstance().getmAction().equals("create")) {
                         //WebCallServiceCreateStyle();
-
+                        getmeasureMinMetersHttpCall();
 
                         System.out.println("===============================");
                         System.out.println("Your are from create");
@@ -1195,6 +1202,7 @@ public class MeasermentActivity extends BaseActivity {
 
         if (isCustom != null && isCustom.equalsIgnoreCase("1")) {
             count = 8;
+            back_count = 8;
             next_txt.performClick();
         }
 
@@ -1424,12 +1432,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyNeckSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
+            lenghtCM = Integer.parseInt(intValue);
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
 
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
@@ -1529,11 +1541,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyChestSize());
         String[] parts = size.split("\\.");
-        String intValue = "" + parts[0];
-        String decimalValue = "" + parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
+
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
 
         seekBar.setProgress(lenghtMM);
         //textValue.setText(""+lenghtCM);
@@ -1628,12 +1645,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeySldrSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
 
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
 
         System.out.println("lenght======    CM===" + lenghtCM);
         System.out.println("lenght======    CM===" + lenghtMM);
@@ -1725,12 +1746,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyWaistSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
 
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
         textSubValue.setText("" + lenghtMM);
@@ -1823,12 +1848,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyArmSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
 
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
         textSubValue.setText("" + lenghtMM);
@@ -1920,12 +1949,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyWristSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
 
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
         textSubValue.setText("" + lenghtMM);
@@ -2019,12 +2052,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyFrontHeightSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+            lenghtCM = Integer.parseInt(intValue);
 
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
         textSubValue.setText("" + lenghtMM);
@@ -2118,13 +2155,16 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyBackHeightSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
 
+            lenghtCM = Integer.parseInt(intValue);
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
-
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
         seekBar.setProgress(lenghtMM);
         // textValue.setText(""+lenghtCM);
         textSubValue.setText("" + lenghtMM);
@@ -2303,11 +2343,17 @@ public class MeasermentActivity extends BaseActivity {
 
         String size = (mSessionManager.getKeyNeckSize());
         String[] parts = size.split("\\.");
-        String intValue = parts[0];
-        String decimalValue = parts[1];
 
-        int lenghtCM = Integer.parseInt(intValue);
-        int lenghtMM = Integer.parseInt(decimalValue);
+        int lenghtCM = 0;
+        int lenghtMM = 0;
+        if (parts.length > 1) {
+            String intValue = parts[0];
+            String decimalValue = parts[1];
+
+            lenghtCM = Integer.parseInt(intValue);
+
+            lenghtMM = Integer.parseInt(decimalValue);
+        }
 
 
         System.out.println("lenght======    CM===" + lenghtCM);

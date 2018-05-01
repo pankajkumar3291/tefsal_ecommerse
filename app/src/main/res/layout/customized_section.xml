@@ -1,316 +1,319 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPrimary"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <ScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_custom_section"
-                android:layout_width="match_parent">
+                android:layout_margin="@dimen/margin_custom_section">
 
                 <LinearLayout
-                    android:gravity="start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="start"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:gravity="start">
 
                     <ImageView
-                        android:gravity="start"
                         android:id="@+id/buttonsImage"
-                        android:layout_gravity="start"
-                        android:layout_height="wrap_content"
                         android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
                         android:src="@drawable/group5" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/ll1"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/buttonHiddenText"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/customized_section_buttonHiddenText_text"
-                        android:textColor="@color/colorNavy"
-                        android:textSize="@dimen/text_normal" />
-
-                    <TextView
-                        android:id="@+id/pushType"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/customized_section_pushType_text"
-                        android:textColor="@color/colorNavy"
-                        android:textSize="@dimen/text_normal" />
-
-                    <TextView
-                        android:id="@+id/noOfButtonText"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/customized_section_noOfButtonText_text"
-                        android:textColor="@color/colorNavy"
-                        android:textSize="@dimen/text_normal" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:gravity="end"
                     android:id="@+id/ll1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
                     android:orientation="vertical">
 
-                    <Switch
-                        android:background="@drawable/switch_selector"
-                        android:id="@+id/button_hidden_switch"
-                        android:layout_height="20dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_width="50dp"
-                        android:thumb="@null" />
-
-                    <Switch
-                        android:background="@drawable/switch_selector"
-                        android:id="@+id/collor_push_visibilty_switch"
-                        android:layout_height="20dp"
-                        android:layout_width="50dp"
-                        android:thumb="@null" />
-
-                    <Spinner
-                        android:entries="@array/no_of_buttons_items"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:id="@+id/noOfButtonSpinner"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content" />
+                        android:orientation="horizontal">
 
-                    <!--<Spinner
-                        android:id="@+id/visibilityTypeSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:entries="@array/visibility_items" />
+                        <TextView
+                            android:id="@+id/pushType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/customized_section_pushType_text"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_normal" />
 
-                    <Spinner
-                        android:id="@+id/noOfButtonSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:entries="@array/no_of_buttons_items" />
+                        <Switch
 
-                    <Spinner
-                        android:id="@+id/pushTypeSpinner"
-                        android:layout_width="wrap_content"
+                            android:id="@+id/button_hidden_switch"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/switch_selector"
+                            android:thumb="@null" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:entries="@array/push_type" />
--->
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/buttonHiddenText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/customized_section_buttonHiddenText_text"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_normal" />
+
+                        <Switch
+                            android:id="@+id/collor_push_visibilty_switch"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/switch_selector"
+                            android:thumb="@null" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/noOfButtonText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/customized_section_noOfButtonText_text"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_normal" />
+
+                        <Spinner
+                            android:id="@+id/noOfButtonSpinner"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:entries="@array/no_of_buttons_items"
+                            android:gravity="end" />
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
             </RelativeLayout>
 
             <View
-                android:background="@color/colorPrimary"
                 android:id="@+id/view"
-                android:layout_height="2dp"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorGray" />
 
 
             <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_custom_section"
-                android:layout_width="match_parent">
+                android:layout_margin="@dimen/margin_custom_section">
 
                 <LinearLayout
-                    android:gravity="start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="start"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:gravity="start">
 
                     <ImageView
-                        android:gravity="start"
                         android:id="@+id/collor_button_image"
-                        android:layout_gravity="start"
-                        android:layout_height="wrap_content"
                         android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
                         android:src="@drawable/group6" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/ll2"
-                    android:layout_width="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/collor_button_hidden_text"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/customized_section_collor_button_hidden_text_text"
-                        android:textColor="@color/colorNavy"
-                        android:textSize="@dimen/text_normal" />
-
-                    <TextView
-                        android:id="@+id/no_of_collor_btn_text"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:text="@string/customized_section_no_of_collor_btn_text_text"
-                        android:textColor="@color/colorNavy"
-                        android:textSize="@dimen/text_normal" />
-
-                </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="end"
                     android:id="@+id/ll2"
-                    android:layout_alignParentEnd="true"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
                     android:orientation="vertical">
 
-                    <Switch
-                        android:background="@drawable/switch_selector"
-                        android:id="@+id/collar_btn_switch"
-                        android:layout_height="20dp"
-                        android:layout_width="50dp"
-                        android:thumb="@null" />
-
-
-                    <Spinner
-                        android:entries="@array/no_of_collor_btn_items"
-                        android:id="@+id/collar_btn_spinner"
-                        android:layout_alignParentRight="true"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content" />
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/collor_button_hidden_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/customized_section_collor_button_hidden_text_text"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_normal" />
+
+                        <Switch
+                            android:id="@+id/collar_btn_switch"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/switch_selector"
+                            android:thumb="@null" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/no_of_collor_btn_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:text="@string/customized_section_no_of_collor_btn_text_text"
+                            android:textColor="@color/colorNavy"
+                            android:textSize="@dimen/text_normal" />
+
+                        <Spinner
+                            android:id="@+id/collar_btn_spinner"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:entries="@array/no_of_collor_btn_items" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </RelativeLayout>
 
             <View
-                android:background="@color/colorPrimary"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:id="@+id/view2"
-                android:layout_height="2dp"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray" />
 
             <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_custom_section"
-                android:layout_width="match_parent">
+                android:layout_margin="@dimen/margin_custom_section">
 
                 <LinearLayout
-                    android:gravity="start"
                     android:id="@+id/ll3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="start"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
+                    android:gravity="start">
 
                     <ImageView
-                        android:gravity="start"
                         android:id="@+id/cufflink_image"
-                        android:layout_gravity="start"
-                        android:layout_height="wrap_content"
                         android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
                         android:src="@drawable/group7" />
+
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/ll3"
-                    android:layout_width="wrap_content">
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true">
                     <TextView
+                        android:layout_marginEnd="20dp"
                         android:id="@+id/cufLinkText"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/customized_section_cufLinkText_text"
                         android:textColor="@color/colorNavy"
                         android:textSize="@dimen/text_normal" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_alignParentEnd="true"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content">
-
                     <Switch
-                        android:background="@drawable/switch_selector"
                         android:id="@+id/culffSwitch_switch"
-                        android:layout_height="20dp"
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/switch_selector"
                         android:thumb="@null" />
 
-                    <!-- <Spinner
-                         android:id="@+id/cufLinkTypeSpinner"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentRight="true"
-                         android:entries="@array/cufflinks" />-->
 
                 </LinearLayout>
             </RelativeLayout>
 
             <View
-                android:background="@color/colorPrimary"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:id="@+id/view3"
-                android:layout_height="2dp"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray" />
 
             <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_custom_section"
-                android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="3">
 
                 <ImageView
                     android:id="@+id/pen_pocket_image"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_width="60dp"
                     android:src="@drawable/pocket_icon_pen_blur" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket_image"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_width="60dp"
                     android:src="@drawable/pocket_icon_mobile_blur" />
 
                 <ImageView
                     android:id="@+id/key_pocket_image"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_width="60dp"
                     android:src="@drawable/pocket_icon_key_blur" />
             </LinearLayout>
 
             <View
-                android:layout_height="80dp"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
 
         </LinearLayout>
     </ScrollView>

@@ -178,6 +178,7 @@ public class TabbarActivity extends BaseActivity {
             requestFocus(input_style_name);
             return false;
         }
+
         return true;
     }
 
@@ -246,8 +247,6 @@ public class TabbarActivity extends BaseActivity {
                     TefalApp.getInstance().setmCategory("1");
                     TefalApp.getInstance().setmAction("create");
                 }
-               // bundle.putString("ACTION","create");
-               // bundle.putString("CATEGORY",""+viewPager.getCurrentItem()+1);
                 Intent i=new Intent(getApplicationContext(), MeasermentActivity.class);
                 i.putExtras(bundle);
 

@@ -28,16 +28,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.DishdashaStylesRecord;
-import com.tefsalkw.models.DishdashaStylesResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaStyleAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.DishdashaStylesRecord;
+import com.tefsalkw.models.DishdashaStylesResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -65,13 +66,14 @@ public class DishdishaStyleActivity extends BaseActivity {
     SessionManager session;
     DishdashaStyleAdapter adapter;
 
+    List<DishdashaStylesRecord> styleRecords;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dishdash_style);
 
         ButterKnife.bind(this);
-
 
 
         session = new SessionManager(this);
@@ -88,17 +90,13 @@ public class DishdishaStyleActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        if(!session.getCustomerId().equals(""))
-        {
+        if (!session.getCustomerId().equals("")) {
             WebCallServiceStores();
-        }
-        else
-        {
+        } else {
             TefalApp.getInstance().setToolbar_title("DISHDASHA");
-            startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag","dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
-
 
 
         add_new_style.setOnClickListener(new View.OnClickListener() {
@@ -124,25 +122,25 @@ public class DishdishaStyleActivity extends BaseActivity {
 
                             SimpleProgressBar.closeProgress();
 
-                           // System.out.println("RESPONSE=="+response);
+                            // System.out.println("RESPONSE=="+response);
                             if (response != null) {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 DishdashaStylesResponse mResponse = g.fromJson(response, DishdashaStylesResponse.class);
-                                if (mResponse.getStatus().toString().equals("1"))
-                                {
+                                if (mResponse.getStatus().toString().equals("1")) {
 
-                                     LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
                                     recycler.setLayoutManager(layoutManager);
                                     recycler.setItemAnimator(new DefaultItemAnimator());
+                                    styleRecords = mResponse.getRecord();
                                     adapter = new DishdashaStyleAdapter(DishdishaStyleActivity.this, mResponse.getRecord());
                                     recycler.setAdapter(adapter);
 
                                 }
-                                if (mResponse.getStatus().toString().equals("0")||mResponse.getRecord().size() == 0) {
+                                if (mResponse.getStatus().toString().equals("0") || mResponse.getRecord().size() == 0) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
                                     builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
                                             .setCancelable(false)
@@ -152,10 +150,14 @@ public class DishdishaStyleActivity extends BaseActivity {
                                                     showNamePrompt();
                                                 }
                                             })
-                                            .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                                            .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
-                                                    finish();
+                                                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                                                    TefalApp.getInstance().setMin_meters("3");
+                                                    TefalApp.getInstance().setStyleName("TefsalDefault");
+                                                    startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish"));
+
                                                     dialog.cancel();
                                                 }
                                             });
@@ -210,10 +212,10 @@ public class DishdishaStyleActivity extends BaseActivity {
         LayoutInflater LayoutInflater = this.getLayoutInflater();
         final View dialogView = LayoutInflater.inflate(R.layout.style_prompt_name_dialog, null);
 
-        input_layout_style_name=(TextInputLayout)dialogView.findViewById(R.id.input_layout_style_name);
-        input_style_name=(EditText)dialogView.findViewById(R.id.input_style_name);
-        dialog_ok_btn=(Button)dialogView.findViewById(R.id.dialog_ok_btn);
-        dialog_cancel_btn=(Button)dialogView.findViewById(R.id.dialog_cancel_btn);
+        input_layout_style_name = (TextInputLayout) dialogView.findViewById(R.id.input_layout_style_name);
+        input_style_name = (EditText) dialogView.findViewById(R.id.input_style_name);
+        dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_ok_btn);
+        dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_cancel_btn);
         // ButterKnife.bind(this, dialogView);
 
         dialogBuilder.setView(dialogView);
@@ -224,8 +226,7 @@ public class DishdishaStyleActivity extends BaseActivity {
         dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateStyleName())
-                {
+                if (validateStyleName() && isUniqueName()) {
                     measurementActivityGo();
                     alertDialog.dismiss();
                 }
@@ -243,15 +244,39 @@ public class DishdishaStyleActivity extends BaseActivity {
     }
 
 
-    private boolean validateStyleName()
-    {
-        if(input_style_name.getText().toString().trim().equals(""))
-        {
+    private boolean validateStyleName() {
+        if (input_style_name.getText().toString().trim().equals("")) {
             input_layout_style_name.setError("Style name should not be empty");
             requestFocus(input_style_name);
             return false;
         }
+
         return true;
+    }
+
+
+    private boolean isUniqueName() {
+        boolean isNameUnique = true;
+        if (styleRecords != null && styleRecords.size() > 0) {
+
+
+            String styleName = input_style_name.getText().toString().toLowerCase().trim();
+            for (DishdashaStylesRecord dishdashaStylesRecord : styleRecords) {
+
+                if (dishdashaStylesRecord.getName().toLowerCase().trim().equalsIgnoreCase(styleName)) {
+                    isNameUnique = false;
+                }
+            }
+        }
+
+
+
+        if (!isNameUnique) {
+            input_layout_style_name.setError("Duplicate style name");
+            requestFocus(input_style_name);
+        }
+
+        return isNameUnique;
     }
 
     private void requestFocus(View view) {
@@ -260,10 +285,9 @@ public class DishdishaStyleActivity extends BaseActivity {
         }
     }
 
-    public void measurementActivityGo()
-    {
-        Bundle bundle=new Bundle();
-        mDishdashaStylesRecord=new DishdashaStylesRecord();
+    public void measurementActivityGo() {
+        Bundle bundle = new Bundle();
+        mDishdashaStylesRecord = new DishdashaStylesRecord();
 
 
         mDishdashaStylesRecord.setNeck("0.0");
@@ -276,8 +300,6 @@ public class DishdishaStyleActivity extends BaseActivity {
         mDishdashaStylesRecord.setShoulder("0.0");
 
 
-
-
         mDishdashaStylesRecord.setButtons("1");
         mDishdashaStylesRecord.setPen_pocket("no");
         mDishdashaStylesRecord.setMobile_pocket("no");
@@ -286,7 +308,6 @@ public class DishdishaStyleActivity extends BaseActivity {
         mDishdashaStylesRecord.setCollar_buttons("3");
         mDishdashaStylesRecord.setCufflink("no");
         mDishdashaStylesRecord.setId("");
-
 
 
         mDishdashaStylesRecord.setCategory("0");
@@ -300,9 +321,8 @@ public class DishdishaStyleActivity extends BaseActivity {
         mDishdashaStylesRecord.setUser_id(session.getCustomerId());
 
 
-
         bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        bundle.putString("flow","DishdishaStyleActivity");
+        bundle.putString("flow", "DishdishaStyleActivity");
 
         TefalApp.getInstance().setmCategory("1");
         TefalApp.getInstance().setmAction("create");
@@ -314,7 +334,7 @@ public class DishdishaStyleActivity extends BaseActivity {
         }*/
         // bundle.putString("ACTION","create");
         // bundle.putString("CATEGORY",""+viewPager.getCurrentItem()+1);
-        Intent i=new Intent(getApplicationContext(), MeasermentActivity.class);
+        Intent i = new Intent(getApplicationContext(), MeasermentActivity.class);
         i.putExtras(bundle);
 
         startActivity(i);
