@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorsRecordModel;
 
 import java.util.ArrayList;
@@ -28,9 +29,9 @@ import butterknife.ButterKnife;
 
 public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubColorListAdapter.ViewHolder> {
     private ArrayList<ColorsRecordModel> colorsRecordModelArrayList;
-    private Activity activity;
+    private FragmentTextileProducts activity;
 
-    public FilterSubColorListAdapter(ArrayList<ColorsRecordModel> colorsRecordModelArrayList, Activity activity) {
+    public FilterSubColorListAdapter(ArrayList<ColorsRecordModel> colorsRecordModelArrayList, FragmentTextileProducts activity) {
         this.activity = activity;
         this.colorsRecordModelArrayList = colorsRecordModelArrayList;
 
@@ -72,11 +73,8 @@ public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubCol
                     if (colorsRecordModelArrayList != null) {
                         System.out.println("COLOR FROM ADAPTER BEFORE SETTING IT TO SINGLETON  SUB===" + colorsRecordModelArrayList.get(position).getId());
                         TefalApp.getInstance().setSubColor(colorsRecordModelArrayList.get(position).getId());
-                        Intent intent = new Intent(activity, DishDashaProductActivity.class);
 
-                        activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                        activity.finish();
-                        // getSubColorHttpCall(colorsRecordModelArrayList.get(position).getId());
+                        activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position).getName(),colorsRecordModelArrayList.get(position).getHexa_value(),colorsRecordModelArrayList.get(position).getId());
 
 
                     }

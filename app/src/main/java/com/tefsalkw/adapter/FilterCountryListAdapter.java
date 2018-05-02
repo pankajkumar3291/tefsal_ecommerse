@@ -30,9 +30,9 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
 {
 
     private ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList;
-    private Activity activity;
+    private FragmentTextileProducts activity;
 
-    public FilterCountryListAdapter(ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList,Activity activity)
+    public FilterCountryListAdapter(ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList,FragmentTextileProducts activity)
     {
         this.productCountryRecordModelArrayList=productCountryRecordModelArrayList;
         this.activity=activity;
@@ -59,7 +59,7 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             holder.country_image.setBackground(drawableSelect);
             holder.country_image.setPadding(6,6,6,6);
 
-            Picasso.with(activity).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
+            Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
 
         }
         else
@@ -68,7 +68,7 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             holder.country_image.setBackground(drawableNonSelect);
             holder.country_image.setPadding(6,6,6,6);
 
-            Picasso.with(activity).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
+            Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
 
         }
 
@@ -78,12 +78,10 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             public void onClick(View v) {
                 FragmentTextileProducts.countryWindow.dismiss();
                 TefalApp.getInstance().setCountry(productCountryRecordModelArrayList.get(position).getId());
-                Intent intent=new Intent(activity,DishDashaProductActivity.class);
-              /*  intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
-                intent.putExtra("flag",TefalApp.getInstance().getFlage());
-                intent.putExtra("store_name",TefalApp.getInstance().getStoreName());*/
-                activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                activity.finish();
+
+                activity.loadCountryFilteredProducts(productCountryRecordModelArrayList.get(position).getName(),productCountryRecordModelArrayList.get(position).getImage());
+
+
             }
         });
 

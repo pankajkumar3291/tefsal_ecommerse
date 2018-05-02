@@ -1,7 +1,5 @@
 package com.tefsalkw.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -22,13 +20,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.tefsalkw.R;
+import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.ColorResponseModel;
 import com.tefsalkw.models.ColorsRecordModel;
-import com.tefsalkw.R;
-import com.tefsalkw.activity.DishDashaProductActivity;
-import com.tefsalkw.app.TefalApp;
-import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -43,40 +40,35 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 12/27/2017.
  */
 
-public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorListAdapter.ViewHolder>
-{
+public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorListAdapter.ViewHolder> {
 
     private ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList;
-    private Activity activity;
-    ArrayList<ColorsRecordModel> sub_colorsRecordModelArrayList=new ArrayList<ColorsRecordModel>();
+    private FragmentTextileProducts activity;
+    ArrayList<ColorsRecordModel> sub_colorsRecordModelArrayList = new ArrayList<ColorsRecordModel>();
 
 
-
-    public FilterColorListAdapter(ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList, Activity activity )
-    {
-        this.activity=activity;
-        this.colorsRecordModelArrayList=colorsRecordModelArrayList;
+    public FilterColorListAdapter(ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList, FragmentTextileProducts activity) {
+        this.activity = activity;
+        this.colorsRecordModelArrayList = colorsRecordModelArrayList;
     }
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.color_item, parent, false);
         return new FilterColorListAdapter.ViewHolder(v);
 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position)
-    {
-           // holder.color;
-           // Picasso.with(activity).load(colorsRecordModelArrayList.get(position).getImage()).into(holder.color);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        // holder.color;
+        // Picasso.with(activity).load(colorsRecordModelArrayList.get(position).getImage()).into(holder.color);
 
 
         //color_item
-            holder.colorText.setText(colorsRecordModelArrayList.get(position).getColor_name());
-          // holder.color.setBackgroundColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
+        holder.colorText.setText(colorsRecordModelArrayList.get(position).getColor_name());
+        // holder.color.setBackgroundColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
 
 
         LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
@@ -89,7 +81,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
             /* LayerDrawable bgDrawable = (LayerDrawable)holder.color.getBackground();
             GradientDrawable shape = (GradientDrawable)   bgDrawable.findDrawableByLayerId(R.id.shape);
            shape.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));*/
-             holder.color.setOnClickListener(new View.OnClickListener() {
+        holder.color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -99,34 +91,22 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                 TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getColor_id());
 
 
-                System.out.println("COLOR FROM ADAPTER BEFORE SETTING IT TO SINGLETON==="+colorsRecordModelArrayList.get(position).getColor_id());
+                System.out.println("COLOR FROM ADAPTER BEFORE SETTING IT TO SINGLETON===" + colorsRecordModelArrayList.get(position).getColor_id());
 
                 getSubColorHttpCall(colorsRecordModelArrayList.get(position).getColor_id(), position);
 
 
-
-
-               /* FragmentTextileProducts.colorWindow.dismiss();
-                TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getId());
-                Intent intent=new Intent(activity,DishDashaProductActivity.class);
-                intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
-                intent.putExtra("flag",TefalApp.getInstance().getFlage());
-                intent.putExtra("store_name",TefalApp.getInstance().getStoreName());
-                activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                activity.finish();*/
             }
         });
 
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return colorsRecordModelArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.color)
         ImageView color;
@@ -142,11 +122,10 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
         }
     }
 
-    private  void getSubColorHttpCall(final String color_id, final int position)
-    {
+    private void getSubColorHttpCall(final String color_id, final int position) {
 
-       //ArrayList<ColorsRecordModel> l_colorsRecordModelArrayList=new ArrayList<ColorsRecordModel>();
-        SimpleProgressBar.showProgress(activity);
+        //ArrayList<ColorsRecordModel> l_colorsRecordModelArrayList=new ArrayList<ColorsRecordModel>();
+        SimpleProgressBar.showProgress(activity.getContext());
         try {
             final String url = Contents.baseURL + "getSubColors";
 
@@ -162,30 +141,25 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 ColorResponseModel mResponse = g.fromJson(response, ColorResponseModel.class);
-                                if (!mResponse.getStatus().equals("0"))
-                                {
+                                if (mResponse.getStatus().equals("1")) {
 
-                                    sub_colorsRecordModelArrayList=mResponse.getRecord();
-                                  //  FragmentTextileProducts.filterColorRecyclerView;
+                                    sub_colorsRecordModelArrayList = mResponse.getRecord();
+                                    //  FragmentTextileProducts.filterColorRecyclerView;
 
-                                    FilterSubColorListAdapter filterSubColorListAdapter=new FilterSubColorListAdapter(sub_colorsRecordModelArrayList,activity);
+                                    FilterSubColorListAdapter filterSubColorListAdapter = new FilterSubColorListAdapter(sub_colorsRecordModelArrayList, activity);
                                     FragmentTextileProducts.filterColorRecyclerView.setAdapter(filterSubColorListAdapter);
-                                   // System.out.println("SUB COPLOR==="+colorsRecordModelArrayList.size());
-                                   // notifyDataSetChanged();
+                                    // System.out.println("SUB COPLOR==="+colorsRecordModelArrayList.size());
+                                    // notifyDataSetChanged();
 
 
-                                    System.out.println("RESPONSE SIZE=="+colorsRecordModelArrayList.size());
+                                    System.out.println("RESPONSE SIZE==" + colorsRecordModelArrayList.size());
                                     // if(textileProductModelList.size()==0)
-                                }
-                                else
-                                {
-                                   // TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getColor_id());
-                                    Intent intent=new Intent(activity,DishDashaProductActivity.class);
-                                   /* intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
-                                    intent.putExtra("flag",TefalApp.getInstance().getFlage());
-                                    intent.putExtra("store_name",TefalApp.getInstance().getStoreName());*/
-                                    activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                                    activity.finish();
+                                } else {
+
+                                    if (colorsRecordModelArrayList != null && colorsRecordModelArrayList.size() > 0) {
+                                        activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position).getColor_name(), colorsRecordModelArrayList.get(position).getHexa_value(), colorsRecordModelArrayList.get(position).getColor_id());
+                                    }
+
                                 }
                             }
 
@@ -200,8 +174,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("color_id",color_id );
-
+                    params.put("color_id", color_id);
 
 
                     params.put("appUser", "tefsal");
@@ -218,13 +191,13 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(activity);
+            RequestQueue requestQueue = Volley.newRequestQueue(activity.getContext());
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
             surError.printStackTrace();
         }
-       // return null;
+        // return null;
     }
 }

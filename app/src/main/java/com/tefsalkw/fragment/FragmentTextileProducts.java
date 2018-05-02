@@ -3,8 +3,11 @@ package com.tefsalkw.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -117,9 +121,16 @@ public class FragmentTextileProducts extends BaseFragment {
 
 
     //Selection
-    RecyclerView recyclerViewSeason;
-    LinearLayout llSelectedSeason;
-    SeasonFilterAdapter seasonFilterAdapter;
+
+
+    private static boolean isSeasonSelected = false;
+
+    private static boolean isColorSelected = false;
+    private static boolean isCountrySelected = false;
+    private int countryImageId = 0;
+
+
+    private static String selectedColorCode = "";
 
 
     @Override
@@ -169,17 +180,20 @@ public class FragmentTextileProducts extends BaseFragment {
 
                 }
 
-                seasonFilterAdapter = new SeasonFilterAdapter(seasonList, getActivity(), seasonList.size());
 
-                recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
+                SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(seasonList, FragmentTextileProducts.this, seasonList.size());
 
-                llSelectedSeason = (LinearLayout) popupSeasonView.findViewById(R.id.llSelectedSeason);
+                RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
+
 
                 RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
 
                 //LayoutManager(getActivity(), 3);
                 recyclerViewSeason.setLayoutManager(mLayoutManager);
                 recyclerViewSeason.setAdapter(seasonFilterAdapter);
+
+
+
 
                 seasonWindow = new PopupWindow(popupSeasonView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 seasonWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -190,6 +204,56 @@ public class FragmentTextileProducts extends BaseFragment {
                         //TODO do sth here on dismiss
                     }
                 });
+
+
+                LinearLayout llSelectedSeason = (LinearLayout) popupSeasonView.findViewById(R.id.llSelectedSeason);
+                ImageView imgSelectedSeason = (ImageView) popupSeasonView.findViewById(R.id.imgSelectedSeason);
+                ImageView imgRemoveSeason = (ImageView) popupSeasonView.findViewById(R.id.imgRemoveSeason);
+
+                TextView txtSelectedSeason = (TextView) popupSeasonView.findViewById(R.id.txtSelectedSeason);
+                imgRemoveSeason.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        isSeasonSelected = false;
+                        season = "";
+                        if (seasonWindow != null) {
+                            seasonWindow.dismiss();
+                        }
+
+                        WebCallServiceStores();
+
+                    }
+                });
+
+                if (isSeasonSelected) {
+                    recyclerViewSeason.setVisibility(View.GONE);
+                    llSelectedSeason.setVisibility(View.VISIBLE);
+
+                    if (season.toLowerCase().contains("winter")) {
+                        imgSelectedSeason.setImageResource(R.drawable.winter);
+                    }
+
+                    if (season.toLowerCase().contains("summer")) {
+                        imgSelectedSeason.setImageResource(R.drawable.summer);
+                    }
+
+                    if (season.toLowerCase().contains("autumn")) {
+                        imgSelectedSeason.setImageResource(R.drawable.autumn);
+                    }
+
+                    if (season.toLowerCase().contains("spring")) {
+                        imgSelectedSeason.setImageResource(R.drawable.spring);
+                    }
+
+                    txtSelectedSeason.setText(season);
+
+
+                } else {
+                    recyclerViewSeason.setVisibility(View.VISIBLE);
+                    llSelectedSeason.setVisibility(View.GONE);
+                }
+
 
                 seasonWindow.showAsDropDown(v);
 
@@ -209,13 +273,15 @@ public class FragmentTextileProducts extends BaseFragment {
                     getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
 
 
-                    FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, getActivity());
+                    FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, FragmentTextileProducts.this);
 
                     filterColorRecyclerView = (RecyclerView) getPopupColorView.findViewById(R.id.recycler_view);
 
                     RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
                     filterColorRecyclerView.setLayoutManager(mLayoutManager2);
                     filterColorRecyclerView.setAdapter(filterColorListAdapter);
+
+
 
 
                     colorWindow = new PopupWindow(
@@ -235,6 +301,45 @@ public class FragmentTextileProducts extends BaseFragment {
                     if (alertDialog != null && alertDialog.isShowing()) {
                         alertDialog.dismiss();
                     }
+
+
+                    LinearLayout llSelectedSeason = (LinearLayout) getPopupColorView.findViewById(R.id.llSelectedSeason);
+                    ImageView imgSelectedSeason = (ImageView) getPopupColorView.findViewById(R.id.imgSelectedSeason);
+                    ImageView imgRemoveSeason = (ImageView) getPopupColorView.findViewById(R.id.imgRemoveSeason);
+                    TextView txtSelectedSeason = (TextView) popupSeasonView.findViewById(R.id.txtSelectedSeason);
+                    imgRemoveSeason.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            isColorSelected = false;
+                            season = "";
+                            if (colorWindow != null) {
+                                colorWindow.dismiss();
+                            }
+
+                            WebCallServiceStores();
+
+                        }
+                    });
+
+                    if (isColorSelected) {
+                        filterColorRecyclerView.setVisibility(View.GONE);
+                        llSelectedSeason.setVisibility(View.VISIBLE);
+
+                        LayerDrawable layerDrawable = (LayerDrawable) getActivity().getResources()
+                                .getDrawable(R.drawable.round_image_background_for_color);
+                        GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable
+                                .findDrawableByLayerId(R.id.item);
+                        gradientDrawable.setColor(Color.parseColor(selectedColorCode));
+                        imgSelectedSeason.setBackground(layerDrawable);
+
+                        txtSelectedSeason.setText(color);
+
+                    } else {
+                        filterColorRecyclerView.setVisibility(View.VISIBLE);
+                        llSelectedSeason.setVisibility(View.GONE);
+                    }
+
 
                     colorWindow.showAsDropDown(v);
 
@@ -258,7 +363,7 @@ public class FragmentTextileProducts extends BaseFragment {
                 popupCountryView = LayoutInflater.inflate(R.layout.choose_country_panel, null);
                 RecyclerView recyclerViewCountry = (RecyclerView) popupCountryView.findViewById(R.id.recyclerViewCountry);
 
-                FilterCountryListAdapter filterCountryListAdapter = new FilterCountryListAdapter(productCountryRecordModelArrayList, getActivity());
+                FilterCountryListAdapter filterCountryListAdapter = new FilterCountryListAdapter(productCountryRecordModelArrayList, FragmentTextileProducts.this);
                 RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(getActivity(), 3);
                 recyclerViewCountry.setLayoutManager(mLayoutManager2);
                 recyclerViewCountry.setAdapter(filterCountryListAdapter);
@@ -280,6 +385,40 @@ public class FragmentTextileProducts extends BaseFragment {
                     }
                 });
 
+
+                LinearLayout llSelectedSeason = (LinearLayout) popupCountryView.findViewById(R.id.llSelectedSeason);
+                ImageView imgSelectedSeason = (ImageView) popupCountryView.findViewById(R.id.imgSelectedSeason);
+                ImageView imgRemoveSeason = (ImageView) popupCountryView.findViewById(R.id.imgRemoveSeason);
+                TextView txtSelectedSeason = (TextView) popupCountryView.findViewById(R.id.txtSelectedSeason);
+                imgRemoveSeason.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        isCountrySelected = false;
+                        season = "";
+                        if (countryWindow != null) {
+                            countryWindow.dismiss();
+                        }
+
+                        WebCallServiceStores();
+
+                    }
+                });
+
+
+                if (isCountrySelected) {
+                    recyclerViewCountry.setVisibility(View.GONE);
+                    llSelectedSeason.setVisibility(View.VISIBLE);
+
+                   // imgSelectedSeason.setImageResource(R.drawable.winter);
+
+                    txtSelectedSeason.setText(country);
+                } else {
+                    recyclerViewCountry.setVisibility(View.VISIBLE);
+                    llSelectedSeason.setVisibility(View.GONE);
+                }
+
+
                 countryWindow.showAsDropDown(v);
             }
         });
@@ -295,10 +434,10 @@ public class FragmentTextileProducts extends BaseFragment {
         System.out.println("TEST  STORE ID FROM ARG===" + store_id);
         System.out.println("TEST  STORE ID FROM SINGLETON===" + TefalApp.getInstance().getStoreId());
 
-        color = TefalApp.getInstance().getColor();
-        season = TefalApp.getInstance().getSeason();
-        country = TefalApp.getInstance().getCountry();
-        sub_color = TefalApp.getInstance().getSubColor();
+//        color = TefalApp.getInstance().getColor();
+//        season = TefalApp.getInstance().getSeason();
+//        country = TefalApp.getInstance().getCountry();
+//        sub_color = TefalApp.getInstance().getSubColor();
 
         System.out.println("HELLO FROM START");
         System.out.println("HELLO COLOR==" + color);
@@ -308,7 +447,17 @@ public class FragmentTextileProducts extends BaseFragment {
         System.out.println("HELLO FLAG==" + TefalApp.getInstance().getFlage());
         System.out.println("HELLO STORE ID==" + TefalApp.getInstance().getStoreId());
 
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        recycler.setLayoutManager(mLayoutManager);
+        recycler.addItemDecoration(new GridSpacingItemDecoration(2, 10, true));
+        recycler.setItemAnimator(new DefaultItemAnimator());
+
         WebCallServiceStores();
+
+        httpGetCountryCall();
+        httpGetColorCall();
+        httpGetFilterSeasonData();
 
 
         // ------If you dont want to select multiple filter selection option remove the code------
@@ -335,11 +484,66 @@ public class FragmentTextileProducts extends BaseFragment {
 
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
     }
+
+
+    //Loading filteration
+    public void loadSeasonFilteredProducts(String selectedSeason) {
+
+        if (selectedSeason.toLowerCase().equalsIgnoreCase("all")) {
+            season = "";
+        } else {
+            season = selectedSeason;
+        }
+
+        isSeasonSelected = true;
+
+
+        WebCallServiceStores();
+    }
+
+
+    public void loadColorFilteredProducts(String selectedColor, String colorCode, String colorId) {
+
+        if (selectedColor.toLowerCase().equalsIgnoreCase("all")) {
+            color = "";
+        } else {
+            color = selectedColor;
+        }
+
+        isColorSelected = true;
+        selectedColorCode = colorCode;
+        sub_color = colorId;
+
+
+        WebCallServiceStores();
+    }
+
+
+    public void loadCountryFilteredProducts(String selectedCountry,String cid) {
+
+        if (selectedCountry.toLowerCase().equalsIgnoreCase("all")) {
+            country = "";
+        } else {
+            country = selectedCountry;
+        }
+
+        isCountrySelected = true;
+        country = cid;
+
+
+        WebCallServiceStores();
+    }
+
+
+
+
+    //End filteration
 
     public void WebCallServiceStores() {
         SimpleProgressBar.showProgress(getActivity());
@@ -361,16 +565,15 @@ public class FragmentTextileProducts extends BaseFragment {
                                     Gson g = new Gson();
                                     TextileProductResponse mResponse = g.fromJson(response, TextileProductResponse.class);
 
-                                    if (!mResponse.getStatus().equals("0")) {
+                                    if (mResponse.getStatus().equals("1")) {
 
+                                        if (textileProductModelList != null && textileProductModelList.size() > 0) {
+                                            textileProductModelList.clear();
+                                        }
                                         textileProductModelList = mResponse.getRecord();
                                         dishdashaAdapter = new DishdashaTextileProductAdapter(getActivity(), textileProductModelList, store_id, flag);
                                         recycler.setAdapter(dishdashaAdapter);
 
-                                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
-                                        recycler.setLayoutManager(mLayoutManager);
-                                        recycler.addItemDecoration(new GridSpacingItemDecoration(2, 10, true));
-                                        recycler.setItemAnimator(new DefaultItemAnimator());
 
                                         // This is for new search request
                                         textNoProduct.setVisibility(View.GONE);
@@ -382,21 +585,31 @@ public class FragmentTextileProducts extends BaseFragment {
 
 
                                     } else {
+
+                                        if (textileProductModelList != null && textileProductModelList.size() > 0) {
+
+
+                                            textileProductModelList.clear();
+                                        }
+
+                                        if (dishdashaAdapter != null) {
+                                            dishdashaAdapter.notifyDataSetChanged();
+                                        }
+
                                         Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                     }
 
+                                    SimpleProgressBar.closeProgress();
+
 
                                 } catch (Exception exc) {
+                                    SimpleProgressBar.showProgress(getActivity());
                                 }
 
 
                             }
 
-                            SimpleProgressBar.closeProgress();
 
-                            httpGetCountryCall();
-                            httpGetColorCall();
-                            httpGetFilterSeasonData();
                         }
                     },
                     new Response.ErrorListener() {
