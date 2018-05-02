@@ -1,24 +1,66 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#90000000"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#90000000"
     android:orientation="vertical"
     android:padding="@dimen/margin_mid">
 
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewSeason"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llSelectedSeason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/roun_image_background_ll"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imgSelectedSeason"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/round_image_background_for_color" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtSelectedSeason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="WINTER"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/imgRemoveSeason"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/cart_item_delete_icon" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 

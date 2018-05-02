@@ -137,7 +137,7 @@
             android:id="@+id/text_about"
             android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:text="@string/title_about"
+            android:text="@string/privacy_policy"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />

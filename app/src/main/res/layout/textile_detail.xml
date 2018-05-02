@@ -11,10 +11,10 @@
 
 
     <RelativeLayout
-        android:layout_below="@+id/toolbar"
         android:id="@+id/RL_product_exist_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
 
         <RelativeLayout
             android:id="@+id/linear1"
@@ -178,6 +178,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/llCartButton"
         android:layout_width="match_parent"

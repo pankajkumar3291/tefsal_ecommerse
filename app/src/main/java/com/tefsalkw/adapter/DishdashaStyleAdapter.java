@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.MeasermentActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.SessionManager;
 
@@ -42,7 +42,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
     public DishdashaStyleAdapter(Activity activity, List<DishdashaStylesRecord> record) {
         this.activity = activity;
         this.record = record;
-        session=new SessionManager(activity);
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -129,7 +129,6 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
             ButterKnife.bind(this, itemView);
 
 
-
         }
     }
 
@@ -137,34 +136,32 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.text_style_name.setText(record.get(position).getName());
-        holder.txt_neck_value.setText(record.get(position).getNeck()+"cm");
-        holder.txt_chest_value.setText(record.get(position).getChest()+"cm");
-        holder.txt_shoulder_value.setText(record.get(position).getShoulder()+"cm");
-        holder.txt_waist_value.setText(record.get(position).getWaist()+"cm");
-        holder.txt_arm_value.setText(record.get(position).getArm()+"cm");
-        holder.txt_wrist_value.setText(record.get(position).getWrist()+"cm");
-        holder.txt_front_height_value.setText(record.get(position).getFront_height()+"cm");
-        holder.txt_back_height_value.setText(record.get(position).getBack_height()+"cm");
+        holder.txt_neck_value.setText(record.get(position).getNeck() + "cm");
+        holder.txt_chest_value.setText(record.get(position).getChest() + "cm");
+        holder.txt_shoulder_value.setText(record.get(position).getShoulder() + "cm");
+        holder.txt_waist_value.setText(record.get(position).getWaist() + "cm");
+        holder.txt_arm_value.setText(record.get(position).getArm() + "cm");
+        holder.txt_wrist_value.setText(record.get(position).getWrist() + "cm");
+        holder.txt_front_height_value.setText(record.get(position).getFront_height() + "cm");
+        holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
         holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
         holder.txt_badge_coat.setText(record.get(position).getButtons());
-       // holder.txt_wide_value.setText(record.get(position).getWide()+"m");
-        holder.txt_narrow_value.setText(record.get(position).getMin_meters()+"m");
+        // holder.txt_wide_value.setText(record.get(position).getWide()+"m");
+        holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
 
         holder.text_viewStyle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (holder.innerView.getVisibility() == View.VISIBLE)
-                {
+                if (holder.innerView.getVisibility() == View.VISIBLE) {
                     holder.Rl_headerbar.setBackgroundResource(R.drawable.four_points_top_shape_cd);
                     Config.collapse(holder.innerView);
                     holder.divider.setVisibility(View.GONE);
-                    isExtended=false;
-                }else
-                {
+                    isExtended = false;
+                } else {
                     holder.Rl_headerbar.setBackgroundResource(R.drawable.two_point_top_shape_cd);
                     Config.expand(holder.innerView);
-                   // holder.divider.setVisibility(View.VISIBLE);
-                    isExtended=true;
+                    // holder.divider.setVisibility(View.VISIBLE);
+                    isExtended = true;
                 }
             }
         });
@@ -175,10 +172,10 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
 
                 //Your work here---
                 //wrapStyleData( position, "edit");
-                 TefalApp.getInstance().setToolbar_title("DISHDISHA STORES");
-                 TefalApp.getInstance().setMin_meters(record.get(position).getMin_meters());
-                 TefalApp.getInstance().setStyleName(record.get(position).getName());
-                 activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag","dish"));
+                TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                TefalApp.getInstance().setMin_meters(record.get(position).getMin_meters());
+                TefalApp.getInstance().setStyleName(record.get(position).getName());
+                activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag", "dish"));
             }
         });
 
@@ -187,38 +184,25 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
 
         holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
 
-        if(record.get(position).getCufflink().equals("no"))
-        {
-            //holder.ic_cuflink.setVisibility(View.VISIBLE);
-          //  holder.pen_pocket.setImageResource(R.drawable.pen_small);
-
-        }
-        else
-        {
-           // holder.pen_pocket.setColorFilter(R.color.colorAccent);
-            // holder.pen_pocket.setImageResource(R.drawable.pen_small);
-        }
-
-
-
-
-        if(!record.get(position).getPen_pocket().equals("no"))
-        {
-            holder.pen_pocket.setImageResource(R.drawable.icon_pen_enabled);
-        }
-
-
-        if(!record.get(position).getMobile_pocket().equals("no"))
-        {
-            holder.mobile_pocket.setImageResource(R.drawable.icon_mobile_enabled);
-        }
-
-        if(!record.get(position).getKey_pocket().equals("no"))
-        {
-            holder.key_pocket.setImageResource(R.drawable.icon_key_enabled);
+        if (record.get(position).getCufflink().equals("yes")) {
+            holder.pen_pocket.setImageResource(R.drawable.icon_cufflink_buttons1_n);
 
         }
 
+
+        if (record.get(position).getPen_pocket().equals("yes")) {
+            holder.pen_pocket.setImageResource(R.drawable.pen_n);
+        }
+
+
+        if (record.get(position).getMobile_pocket().equals("yes")) {
+            holder.mobile_pocket.setImageResource(R.drawable.phone_n);
+        }
+
+        if (record.get(position).getKey_pocket().equals("yes")) {
+            holder.key_pocket.setImageResource(R.drawable.key_n);
+
+        }
 
 
     }
@@ -228,11 +212,10 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         return record.size();
     }
 
-    public void wrapStyleData(int position, String action)
-    {
+    public void wrapStyleData(int position, String action) {
 
-        Bundle bundle=new Bundle();
-        DishdashaStylesRecord  mDishdashaStylesRecord=new DishdashaStylesRecord();
+        Bundle bundle = new Bundle();
+        DishdashaStylesRecord mDishdashaStylesRecord = new DishdashaStylesRecord();
 
 
         mDishdashaStylesRecord.setNeck(record.get(position).getNeck().toString());
@@ -245,16 +228,13 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         mDishdashaStylesRecord.setShoulder(record.get(position).getShoulder().toString());
 
 
-
-
         mDishdashaStylesRecord.setButtons(record.get(position).getButtons());
         mDishdashaStylesRecord.setPen_pocket(record.get(position).getPen_pocket());
         mDishdashaStylesRecord.setMobile_pocket(record.get(position).getMobile_pocket());
-      //  mDishdashaStylesRecord.setWide(record.get(position).getWide());
+        //  mDishdashaStylesRecord.setWide(record.get(position).getWide());
         mDishdashaStylesRecord.setCollar_buttons(record.get(position).getCollar_buttons());
         mDishdashaStylesRecord.setCufflink(record.get(position).getCufflink());
         mDishdashaStylesRecord.setId(record.get(position).getId());
-
 
 
         mDishdashaStylesRecord.setCategory(record.get(position).getCategory());
@@ -265,16 +245,15 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         mDishdashaStylesRecord.setUser_id(session.getCustomerId());
 
 
-
         bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        mTefalApp= TefalApp.getInstance();
+        mTefalApp = TefalApp.getInstance();
         mTefalApp.setmAction(action);
         mTefalApp.setmCategory("1");
 
         /*bundle.putString("ACTION",action);
         bundle.putString("CATEGORY","2");*/
 
-        Intent i=new Intent(activity, MeasermentActivity.class);
+        Intent i = new Intent(activity, MeasermentActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.putExtras(bundle);
         activity.startActivity(i);

@@ -68,7 +68,7 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
 
         DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
-        MediaSource mediaSource = new ExtractorMediaSource(Uri.parse("http://ec2-35-164-90-67.us-west-2.compute.amazonaws.com/stylevideos/hd720/Tefsal_Neck.mp4"),
+        MediaSource mediaSource = new ExtractorMediaSource(Uri.parse("http://tefsalkw.com/stylevideos/hd720/Tefsal_Neck.mp4"),
                 mediaDataSourceFactory, extractorsFactory, null, null);
 
         player.prepare(mediaSource);

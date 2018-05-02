@@ -446,7 +446,7 @@
                     android:layout_marginEnd="@dimen/margin_mid"
                     android:layout_toStartOf="@+id/ic_coat_button"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@mipmap/icon_collar_buttons_white"
+                    android:src="@drawable/icon_collar_buttons_n"
                     android:tint="@color/colorAccent" />
 
                 <TextView
@@ -467,7 +467,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_height="@dimen/margin_large"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@mipmap/icon_chest_buttons_white"
+                    android:src="@drawable/icon_chest_buttons1_n"
                     android:tint="@color/colorAccent" />
 
 
@@ -490,7 +490,7 @@
                     android:layout_marginStart="@dimen/margin_mid"
                     android:layout_toEndOf="@+id/ic_coat_button"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@mipmap/icon_cufflink_buttons_white"
+                    android:src="@drawable/icon_cufflink_buttons1_g"
                     android:tint="@color/colorAccent" />
 
 
@@ -519,7 +519,7 @@
                     android:layout_marginEnd="@dimen/margin_mid"
                     android:layout_toStartOf="@+id/mobile_pocket"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@drawable/icon_pen_disabled" />
+                    android:src="@drawable/pen_g" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
@@ -527,7 +527,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginEnd="@dimen/margin_mid"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@drawable/icon_mobile_disabled" />
+                    android:src="@drawable/phone_g" />
 
                 <ImageView
                     android:id="@+id/key_pocket"
@@ -535,7 +535,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_toEndOf="@+id/mobile_pocket"
                     android:layout_width="@dimen/margin_large"
-                    android:src="@drawable/icon_key_disabled" />
+                    android:src="@drawable/key_g" />
 
             </RelativeLayout>
 

@@ -487,4 +487,5 @@
     <string name="zaara_daraa_textView2_text">QUANTITY</string>
     <string name="zaara_daraa_text_price_text"/>
     <string name="zaara_daraa_add_cart_btn_text">ADD TO CART</string>
+    <string name="privacy_policy">Privacy Policy</string>
 </resources>

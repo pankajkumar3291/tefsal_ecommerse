@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -16,17 +14,16 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -34,7 +31,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -250,7 +246,7 @@ public class MeasermentActivity extends BaseActivity {
     private int flag_neck = 1;
 
 
-    private String flow;
+    private String flow = "";
     private int count = 1;
     private int back_count = 0;
 
@@ -278,14 +274,17 @@ public class MeasermentActivity extends BaseActivity {
     //Those member variable are used to in video play
 
     private MediaController mediaController;
-    private Uri videoUri;
-    private String videoLink;
+
 
     // = Uri.parse(LINK);
 
     @BindView(R.id.parentScroll)
     ScrollView parentScroll;
 
+    @BindView(R.id.hsvBodyICons)
+    HorizontalScrollView hsvBodyICons;
+    @BindView(R.id.viewEditCustom)
+    View viewEditCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,15 +299,6 @@ public class MeasermentActivity extends BaseActivity {
 
 
         flow = getIntent().getExtras().getString("flow");
-
-
-        videoLink = "http://tefsalkw.com/public/videos/app.3gp";
-        videoUri = Uri.parse(videoLink);
-
-
-        if (isCustom == null) {
-            showIndividualVideo(0);
-        }
 
 
         if (TefalApp.getInstance().getmAction().equals("edit")) {
@@ -375,6 +365,7 @@ public class MeasermentActivity extends BaseActivity {
 
         seekBar.setMax(max - min);
         init();
+
 
         textValue.addTextChangedListener(new TextWatcher() {
 
@@ -1200,10 +1191,19 @@ public class MeasermentActivity extends BaseActivity {
         });
 
 
-        if (isCustom != null && isCustom.equalsIgnoreCase("1")) {
+        if (isCustom == null) {
+            showIndividualVideo(0);
+            viewEditCustom.setVisibility(View.GONE);
+        } else {
+
             count = 8;
             back_count = 8;
             next_txt.performClick();
+
+            hsvBodyICons.setVisibility(View.GONE);
+            toolbar_title.setText("Edit Customization");
+            viewEditCustom.setVisibility(VISIBLE);
+
         }
 
 
@@ -2950,158 +2950,11 @@ public class MeasermentActivity extends BaseActivity {
     }
 
 
-    //This block of code is responsible for showing video for For entire App.
-
-    private void showAppVideoDialog() {
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater LayoutInflater = this.getLayoutInflater();
-        final View dialogView = LayoutInflater.inflate(R.layout.video_view_dialog, null);
-        final ProgressBar video_loading_progress = (ProgressBar) dialogView.findViewById(R.id.video_loading_progress);
-        final VideoView videoView = (VideoView) dialogView.findViewById(R.id.app_video_view);
-        TextView skipTxt = (TextView) dialogView.findViewById(R.id.skipTxt);
-        // final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
-        dialogBuilder.setView(dialogView);
-        final AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
-        videoView.requestFocus();
-
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        try {
-            MediaController mediaController = new MediaController(this);
-            mediaController.setAnchorView(videoView);
-            videoView.setMediaController(mediaController);
-            videoView.setVideoURI(videoUri);
-
-
-        } catch (Exception ex) {
-            System.out.println("Video play Exception ex===" + ex);
-            Toast.makeText(this, "Unable to play video", Toast.LENGTH_SHORT).show();
-        }
-
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-
-            public void onPrepared(MediaPlayer mp) {
-
-                // alertDialog.show();
-                video_loading_progress.setVisibility(View.GONE);
-                // view_video_container.setVisibility(View.GONE);
-                videoView.start();
-
-            }
-        });
-
-        skipTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //videoView.st
-                alertDialog.dismiss();
-
-            }
-        });
-
-    }
-
-
-    // This block is responsible for showing video for individual Item like neck, shoulder etc.....
-
     private void showIndividualVideo(int position) {
 
         startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerActivity.class).putExtra("position", position));
 
 
-    }
-
-    private void showIndividualVideoDialog1(int position) {
-
-        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater LayoutInflater = this.getLayoutInflater();
-        final View dialogView = LayoutInflater.inflate(R.layout.video_view_dialog, null);
-        final VideoView videoView = (VideoView) dialogView.findViewById(R.id.app_video_view);
-        final ProgressBar video_loading_progress = (ProgressBar) dialogView.findViewById(R.id.video_loading_progress);
-        TextView skipTxt = (TextView) dialogView.findViewById(R.id.skipTxt);
-
-        // final View view_video_container=(View)dialogView.findViewById(R.id.view_video_container);
-
-
-        switch (position) {
-
-            case 1:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_neck.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 2:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_custom.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 3:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_chest.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 4:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_waist.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 5:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_arm.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 6:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_wrist.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 7:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_f_height.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-            case 8:
-                videoLink = "http://tefsalkw.com/public/videos/app_video_b_height.3gp";
-                videoUri = Uri.parse(videoLink);
-                break;
-
-        }
-
-        dialogBuilder.setView(dialogView);
-        final AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.show();
-        videoView.requestFocus();
-
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
-
-        WindowManager.LayoutParams params = this.getWindow().getAttributes();
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        getWindow().setAttributes(params);
-
-        try {
-            MediaController mediaController = new MediaController(this);
-            mediaController.setAnchorView(videoView);
-            videoView.setMediaController(mediaController);
-            videoView.setVideoURI(videoUri);
-
-
-        } catch (Exception ex) {
-            System.out.println("Video play Exception ex===" + ex);
-            Toast.makeText(this, "Unable to play video", Toast.LENGTH_SHORT).show();
-        }
-
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            // Close the progress bar and play the video
-            public void onPrepared(MediaPlayer mp) {
-
-                video_loading_progress.setVisibility(View.GONE);
-                //view_video_container.setVisibility(View.GONE);
-                videoView.start();
-            }
-        });
-        skipTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                video_loading_progress.setVisibility(View.GONE);
-                alertDialog.dismiss();
-            }
-        });
     }
 
 

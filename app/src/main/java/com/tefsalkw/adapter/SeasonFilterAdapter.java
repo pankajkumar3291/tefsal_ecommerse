@@ -72,6 +72,8 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
                 activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 activity.finish();
                // System.out.println("SEASON NAME=="+record[position]);
+
+
             }
         });
     }

@@ -405,7 +405,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/ic_coat_button"
-                    android:src="@mipmap/icon_collar_buttons_white" />
+                    android:src="@drawable/icon_collar_buttons_g" />
 
                 <TextView
                     android:id="@+id/txtBadge_collar_btn"
@@ -425,7 +425,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@mipmap/icon_chest_buttons_white" />
+                    android:src="@drawable/icon_chest_buttons1_g" />
 
 
                 <TextView
@@ -447,7 +447,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/margin_mid"
                     android:layout_toRightOf="@+id/ic_coat_button"
-                    android:src="@mipmap/icon_cufflink_buttons_white" />
+                    android:src="@drawable/icon_cufflink_buttons1_g" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -473,7 +473,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_marginRight="@dimen/margin_mid"
                     android:layout_toLeftOf="@+id/mobile_pocket"
-                    android:src="@drawable/pen_small" />
+                    android:src="@drawable/pen_g" />
 
                 <ImageView
                     android:id="@+id/mobile_pocket"
@@ -482,7 +482,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="@dimen/margin_mid"
-                    android:src="@drawable/phone_small" />
+                    android:src="@drawable/phone_g" />
 
                 <ImageView
                     android:id="@+id/key_pocket"
@@ -490,7 +490,7 @@
                     android:layout_height="@dimen/margin_large"
                     android:layout_centerHorizontal="true"
                     android:layout_toRightOf="@+id/mobile_pocket"
-                    android:src="@drawable/key_small" />
+                    android:src="@drawable/key_g" />
             </RelativeLayout>
 
 
@@ -693,14 +693,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_arm_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
@@ -789,14 +789,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_wrist_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
@@ -837,14 +837,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_chest_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="40"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
@@ -886,14 +886,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_front_height_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
@@ -934,14 +934,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_waist_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="40"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
@@ -983,14 +983,14 @@
                         android:textSize="@dimen/text_small" />
 
                     <EditText
-                        android:digits="0123456789."
-                        android:inputType="number"
                         android:id="@+id/txt_back_height_value1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:cursorVisible="true"
+                        android:digits="0123456789."
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"

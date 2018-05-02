@@ -7,8 +7,8 @@ package com.tefsalkw.utils;
 
 public class Contents {
 
-    public static String baseURL = "http://ec2-35-164-90-67.us-west-2.compute.amazonaws.com/api/";
-    public static String baseVideoURL = "http://ec2-35-164-90-67.us-west-2.compute.amazonaws.com/stylevideos/";
+    public static String baseURL = "http://tefsalkw.com/api/";
+    public static String baseVideoURL = "http://tefsalkw.com/stylevideos/";
 
 
     public static boolean isBlank(CharSequence string) {

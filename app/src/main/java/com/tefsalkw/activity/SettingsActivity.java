@@ -193,7 +193,7 @@ public class SettingsActivity extends BaseActivity {
                 if (userIsInteracting) {
                     session.setKeyLang(parentView.getSelectedItem().toString());
 
-                    String lang =  position == 0 ? "en" : "ar";
+                    String lang = position == 0 ? "en" : "ar";
                     Locale locale = new Locale(lang);
                     Locale.setDefault(locale);
 

@@ -23,7 +23,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,6 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.BrandFilterAdapter;
@@ -446,7 +444,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
         toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-        subText.setText(textileProductModel.getColor() + " - "+textileProductModel.getSub_color() != null ? textileProductModel.getSub_color() : "");
+        subText.setText(textileProductModel.getColor() + " - " + textileProductModel.getSub_color() != null ? textileProductModel.getSub_color() : "");
 
         // if (!DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image().equals(""))
         //Picasso.with(this).load(DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image()).into(product_img);
@@ -468,8 +466,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         tabLayout.setOnTabSelectedListener(this);
 
         initSlider();
-
-
 
 
         add_btn.setOnClickListener(new View.OnClickListener() {
@@ -501,24 +497,20 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         meter_value.setText("" + Math.round(min_meter));
 
-        try
-        {
+        try {
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
             float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-            float dpWidth =  (displayMetrics.widthPixels / displayMetrics.density);
+            float dpWidth = (displayMetrics.widthPixels / displayMetrics.density);
 
 
-
-            int dpWidthInt = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dpWidth, getResources().getDisplayMetrics());
-            Log.e("dpWidthInt",dpWidthInt+"");
-            RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(  ViewGroup.LayoutParams.MATCH_PARENT, dpWidthInt);
+            int dpWidthInt = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpWidth, getResources().getDisplayMetrics());
+            Log.e("dpWidthInt", dpWidthInt + "");
+            RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpWidthInt);
 
             linear1.setLayoutParams(rel_btn);
 
 
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
 
         }
 
@@ -602,16 +594,16 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         filterWindow = new PopupWindow(
                 popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         filterWindow.setBackgroundDrawable(new BitmapDrawable());
-        filterWindow.setOutsideTouchable(false);
+        filterWindow.setOutsideTouchable(true);
         filterWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                //done_txt.setVisibility(View.GONE);
-                //ic_filter.setVisibility(View.VISIBLE);
+                done_txt.setVisibility(View.GONE);
+                ic_filter.setVisibility(View.VISIBLE);
             }
         });
 
@@ -663,71 +655,83 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
 
 
-        if (filterCountryModelArrayList.size() <= 3) {
-            see_all_country_text.setVisibility(View.GONE);
-        }
-        if (filterBrandModelArrayList.size() <= 3) {
-            see_all_brand_text.setVisibility(View.GONE);
-        }
-        if (filterPatternModelArrayList.size() <= 3) {
-            see_all_pattern_text.setVisibility(View.GONE);
-            see_all_pattern_text_LL.setVisibility(View.GONE);
-        }
+//        if (filterCountryModelArrayList.size() <= 3) {
+//            see_all_country_text.setVisibility(View.GONE);
+//        }
+//        if (filterBrandModelArrayList.size() <= 3) {
+//            see_all_brand_text.setVisibility(View.GONE);
+//        }
+//        if (filterPatternModelArrayList.size() <= 3) {
+//            see_all_pattern_text.setVisibility(View.GONE);
+//            see_all_pattern_text_LL.setVisibility(View.GONE);
+//        }
 
         see_all_brand_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (brand_flage) {
-                    brandFilterAdapter.setLimit(filterBrandModelArrayList.size());
-                    brandFilterAdapter.notifyDataSetChanged();
-                    brand_flage = false;
-                    see_all_brand_text.setText("Hide");
 
-                } else {
+                if (brandFilterAdapter != null) {
+                    if (brand_flage) {
+                        brandFilterAdapter.setLimit(filterBrandModelArrayList.size());
+                        brandFilterAdapter.notifyDataSetChanged();
+                        brand_flage = false;
+                        see_all_brand_text.setText("Hide");
 
-                    brandFilterAdapter.setLimit(filterBrandModelArrayList.size() <= 3 ? filterBrandModelArrayList.size() : 3);
-                    brandFilterAdapter.notifyDataSetChanged();
-                    brand_flage = true;
-                    see_all_brand_text.setText("See all");
+                    } else {
 
+                        brandFilterAdapter.setLimit(filterBrandModelArrayList.size() <= 3 ? filterBrandModelArrayList.size() : 3);
+                        brandFilterAdapter.notifyDataSetChanged();
+                        brand_flage = true;
+                        see_all_brand_text.setText("See all");
+
+                    }
                 }
+
             }
         });
         see_all_pattern_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pattern_flage) {
-                    patternFilterAdapter.setLimit(filterPatternModelArrayList.size());//<=3 ? filterPatternModelArrayList.size() : 3);
-                    patternFilterAdapter.notifyDataSetChanged();
-                    pattern_flage = false;
-                    see_all_pattern_text.setText("Hide");
-                } else {
-                    patternFilterAdapter.setLimit(filterPatternModelArrayList.size() <= 3 ? filterPatternModelArrayList.size() : 3);
-                    patternFilterAdapter.notifyDataSetChanged();
-                    pattern_flage = true;
-                    see_all_pattern_text.setText("See all");
+
+                if (patternFilterAdapter != null) {
+                    if (pattern_flage) {
+                        patternFilterAdapter.setLimit(filterPatternModelArrayList.size());//<=3 ? filterPatternModelArrayList.size() : 3);
+                        patternFilterAdapter.notifyDataSetChanged();
+                        pattern_flage = false;
+                        see_all_pattern_text.setText("Hide");
+                    } else {
+                        patternFilterAdapter.setLimit(filterPatternModelArrayList.size() <= 3 ? filterPatternModelArrayList.size() : 3);
+                        patternFilterAdapter.notifyDataSetChanged();
+                        pattern_flage = true;
+                        see_all_pattern_text.setText("See all");
+                    }
                 }
+
             }
         });
 
         see_all_country_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (country_flage) {
-                    countryFilterAdapter.setLimit(filterCountryModelArrayList.size());
-                    countryFilterAdapter.notifyDataSetChanged();
-                    country_flage = false;
-                    see_all_country_text.setText("Hide");
 
-                } else {
+                if (countryFilterAdapter != null) {
+                    if (country_flage) {
+                        countryFilterAdapter.setLimit(filterCountryModelArrayList.size());
+                        countryFilterAdapter.notifyDataSetChanged();
+                        country_flage = false;
+                        see_all_country_text.setText("Hide");
 
-                    country_flage = true;
-                    see_all_country_text.setText("See all");
-                    countryFilterAdapter.setLimit(filterCountryModelArrayList.size() <= 3 ? filterCountryModelArrayList.size() : 3);
-                    countryFilterAdapter.notifyDataSetChanged();
+                    } else {
+
+                        country_flage = true;
+                        see_all_country_text.setText("See all");
+                        countryFilterAdapter.setLimit(filterCountryModelArrayList.size() <= 3 ? filterCountryModelArrayList.size() : 3);
+                        countryFilterAdapter.notifyDataSetChanged();
 
 
+                    }
                 }
+
             }
         });
 
@@ -1500,7 +1504,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
-         //   Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+            //   Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
 
             /*PhotoViewAttacher photoAttacher;
             photoAttacher= new PhotoViewAttacher(imageView);
@@ -1518,7 +1522,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 }
             });
 
-           // Picasso.with(context).load(img[position]).into(imageView);
+            // Picasso.with(context).load(img[position]).into(imageView);
 
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)

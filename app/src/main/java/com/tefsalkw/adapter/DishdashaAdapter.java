@@ -259,18 +259,18 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 }
 
                 if (record.get(position).getPen_pocket().equals("yes")) {
-                    holder.pen_pocket1.setImageResource(R.drawable.pen_small_selected);
+                    holder.pen_pocket1.setImageResource(R.drawable.pen_w);
 
                 }
 
                 if (record.get(position).getMobile_pocket().equals("yes")) {
 
-                    holder.mobile_pocket1.setImageResource(R.drawable.phone_small_selected);
+                    holder.mobile_pocket1.setImageResource(R.drawable.phone_w);
                 }
 
                 if (record.get(position).getKey_pocket().equals("yes")) {
 
-                    holder.key_pocket1.setImageResource(R.drawable.key_small_selected);
+                    holder.key_pocket1.setImageResource(R.drawable.key_w);
                 }
 
                 holder.pen_pocket1.setOnClickListener(new View.OnClickListener() {
@@ -369,18 +369,18 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 }
 
                 if (record.get(position).getPen_pocket().equals("yes")) {
-                    holder.pen_pocket.setImageResource(R.drawable.pen_small_selected);
+                    holder.pen_pocket.setImageResource(R.drawable.pen_w);
 
                 }
 
                 if (record.get(position).getMobile_pocket().equals("yes")) {
 
-                    holder.mobile_pocket.setImageResource(R.drawable.phone_small_selected);
+                    holder.mobile_pocket.setImageResource(R.drawable.phone_w);
                 }
 
                 if (record.get(position).getKey_pocket().equals("yes")) {
 
-                    holder.key_pocket.setImageResource(R.drawable.key_small_selected);
+                    holder.key_pocket.setImageResource(R.drawable.key_w);
                 }
 
 
@@ -621,6 +621,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
         bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
+        bundle.putString("flow","TabbarActivity");
         mTefalApp = TefalApp.getInstance();
         mTefalApp.setmAction(action);
         mTefalApp.setmCategory(mCategory);

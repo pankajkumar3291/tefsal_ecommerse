@@ -2,6 +2,7 @@ package com.tefsalkw.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -92,8 +93,8 @@ public class AboutUsActivity extends BaseActivity {
                                     String message = object.getString("message");
                                     JSONObject records = object.getJSONObject("record");
 
-                                    tc_text.setText(records.getString("description"));
-                                    toolbar_title.setText(records.getString("title"));
+                                    tc_text.setText(Html.fromHtml(records.getString("description")));
+                                    toolbar_title.setText(records.getString("Privacy Policy"));
 
 
                                     // Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_LONG).show();

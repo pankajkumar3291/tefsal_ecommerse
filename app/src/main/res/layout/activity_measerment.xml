@@ -24,6 +24,7 @@
             android:orientation="vertical">
 
             <HorizontalScrollView
+                android:id="@+id/hsvBodyICons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollbarSize="0dp">
@@ -332,6 +333,14 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <View
+                android:id="@+id/viewEditCustom"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorGray"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/ll_sectionOne"

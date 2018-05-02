@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -115,11 +116,85 @@ public class FragmentTextileProducts extends BaseFragment {
     public static RecyclerView filterColorRecyclerView;
 
 
+    //Selection
+    RecyclerView recyclerViewSeason;
+    LinearLayout llSelectedSeason;
+    SeasonFilterAdapter seasonFilterAdapter;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_textile, container, false);
         ButterKnife.bind(this, v);
+
+        text_season.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (record == null) {
+                    return;
+                }
+
+
+                LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                popupSeasonView = layoutInflater.inflate(R.layout.choose_season_panel, null);
+
+                List<SeasonsList> seasonList = new ArrayList<>();
+
+
+                for (String season : record) {
+
+                    SeasonsList seasonModel = new SeasonsList();
+                    seasonModel.setName(season);
+
+                    if (season.toLowerCase().contains("winter")) {
+                        seasonModel.setImage(R.drawable.winter);
+                    }
+
+                    if (season.toLowerCase().contains("summer")) {
+                        seasonModel.setImage(R.drawable.summer);
+                    }
+
+                    if (season.toLowerCase().contains("autumn")) {
+                        seasonModel.setImage(R.drawable.autumn);
+                    }
+
+                    if (season.toLowerCase().contains("spring")) {
+                        seasonModel.setImage(R.drawable.spring);
+                    }
+
+                    seasonList.add(seasonModel);
+
+
+                }
+
+                seasonFilterAdapter = new SeasonFilterAdapter(seasonList, getActivity(), seasonList.size());
+
+                recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
+
+                llSelectedSeason = (LinearLayout) popupSeasonView.findViewById(R.id.llSelectedSeason);
+
+                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
+
+                //LayoutManager(getActivity(), 3);
+                recyclerViewSeason.setLayoutManager(mLayoutManager);
+                recyclerViewSeason.setAdapter(seasonFilterAdapter);
+
+                seasonWindow = new PopupWindow(popupSeasonView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                seasonWindow.setBackgroundDrawable(new BitmapDrawable());
+                seasonWindow.setOutsideTouchable(true);
+                seasonWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        //TODO do sth here on dismiss
+                    }
+                });
+
+                seasonWindow.showAsDropDown(v);
+
+            }
+        });
 
         text_color.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,74 +284,6 @@ public class FragmentTextileProducts extends BaseFragment {
             }
         });
 
-        text_season.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (record == null) {
-                    return;
-                }
-
-
-                LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                popupSeasonView = layoutInflater.inflate(R.layout.choose_season_panel, null);
-
-                List<SeasonsList> seasonList = new ArrayList<>();
-
-
-                for (String season : record) {
-
-                    SeasonsList seasonModel = new SeasonsList();
-                    seasonModel.setName(season);
-
-                    if (season.toLowerCase().contains("winter")) {
-                        seasonModel.setImage(R.drawable.winter);
-                    }
-
-                    if (season.toLowerCase().contains("summer")) {
-                        seasonModel.setImage(R.drawable.summer);
-                    }
-
-                    if (season.toLowerCase().contains("autumn")) {
-                        seasonModel.setImage(R.drawable.autumn);
-                    }
-
-                    if (season.toLowerCase().contains("spring")) {
-                        seasonModel.setImage(R.drawable.spring);
-                    }
-
-                    seasonList.add(seasonModel);
-
-
-                }
-
-                SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(seasonList, getActivity(), seasonList.size());
-
-                RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
-                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
-
-                //LayoutManager(getActivity(), 3);
-                recyclerViewSeason.setLayoutManager(mLayoutManager);
-                recyclerViewSeason.setAdapter(seasonFilterAdapter);
-
-                seasonWindow = new PopupWindow(
-                        popupSeasonView,
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                seasonWindow.setBackgroundDrawable(new BitmapDrawable());
-                seasonWindow.setOutsideTouchable(true);
-                seasonWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        //TODO do sth here on dismiss
-                    }
-                });
-
-                seasonWindow.showAsDropDown(v);
-
-            }
-        });
 
         session = new SessionManager(getActivity());
 
@@ -713,11 +720,5 @@ public class FragmentTextileProducts extends BaseFragment {
             }
         }
     }
-    /**
-     * Converting dp to pixel
-     */
-   /* private int dpToPx(int dp) {
-        Resources r = getActivity().getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }*/
+
 }
