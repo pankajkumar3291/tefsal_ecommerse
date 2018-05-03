@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.SeasonsList;
 
@@ -54,19 +53,13 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
         holder.seasonItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTextileProducts.seasonWindow.dismiss();
-                TefalApp.getInstance().setSeason(seasonList.get(position).getName().toLowerCase());
-
-//                Intent intent = new Intent(activity.getContext(), DishDashaProductActivity.class);
-//               /* intent.putExtra("store_id",TefalApp.getInstance().getStoreId());
-//                intent.putExtra("flag",TefalApp.getInstance().getFlage());
-//               intent.putExtra("store_name",TefalApp.getInstance().getStoreName());*/
-//                activity.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//                activity.getActivity().finish();
-//                // System.out.println("SEASON NAME=="+record[position]);
 
 
-                activity.loadSeasonFilteredProducts(seasonList.get(position).getName().toLowerCase());
+                if (FragmentTextileProducts.seasonWindow != null) {
+                    FragmentTextileProducts.seasonWindow.dismiss();
+                }
+
+                activity.loadSeasonFilteredProducts(seasonList.get(position));
 
             }
         });

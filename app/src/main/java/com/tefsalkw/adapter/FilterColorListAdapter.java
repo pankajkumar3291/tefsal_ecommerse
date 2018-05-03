@@ -21,7 +21,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.ColorResponseModel;
@@ -85,13 +84,11 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
             @Override
             public void onClick(View v) {
 
+                if (FragmentTextileProducts.colorWindow != null) {
+                    FragmentTextileProducts.colorWindow.dismiss();
+                }
 
-                //Flushing subColor before getting new Color
-                TefalApp.getInstance().setSubColor("");
-                TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getColor_id());
-
-
-                System.out.println("COLOR FROM ADAPTER BEFORE SETTING IT TO SINGLETON===" + colorsRecordModelArrayList.get(position).getColor_id());
+                activity.selectedColorModel = colorsRecordModelArrayList.get(position);
 
                 getSubColorHttpCall(colorsRecordModelArrayList.get(position).getColor_id(), position);
 
@@ -143,21 +140,19 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                                 ColorResponseModel mResponse = g.fromJson(response, ColorResponseModel.class);
                                 if (mResponse.getStatus().equals("1")) {
 
+
+
                                     sub_colorsRecordModelArrayList = mResponse.getRecord();
-                                    //  FragmentTextileProducts.filterColorRecyclerView;
+
 
                                     FilterSubColorListAdapter filterSubColorListAdapter = new FilterSubColorListAdapter(sub_colorsRecordModelArrayList, activity);
                                     FragmentTextileProducts.filterColorRecyclerView.setAdapter(filterSubColorListAdapter);
-                                    // System.out.println("SUB COPLOR==="+colorsRecordModelArrayList.size());
-                                    // notifyDataSetChanged();
-
-
                                     System.out.println("RESPONSE SIZE==" + colorsRecordModelArrayList.size());
-                                    // if(textileProductModelList.size()==0)
+
                                 } else {
 
                                     if (colorsRecordModelArrayList != null && colorsRecordModelArrayList.size() > 0) {
-                                        activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position).getColor_name(), colorsRecordModelArrayList.get(position).getHexa_value(), colorsRecordModelArrayList.get(position).getColor_id());
+                                        activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position));
                                     }
 
                                 }

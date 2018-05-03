@@ -1,7 +1,5 @@
 package com.tefsalkw.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
@@ -13,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.activity.DishDashaProductActivity;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorsRecordModel;
 
@@ -69,12 +65,9 @@ public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubCol
                 public void onClick(View v) {
 
 
-
                     if (colorsRecordModelArrayList != null) {
-                        System.out.println("COLOR FROM ADAPTER BEFORE SETTING IT TO SINGLETON  SUB===" + colorsRecordModelArrayList.get(position).getId());
-                        TefalApp.getInstance().setSubColor(colorsRecordModelArrayList.get(position).getId());
 
-                        activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position).getName(),colorsRecordModelArrayList.get(position).getHexa_value(),colorsRecordModelArrayList.get(position).getId());
+                        activity.loadSubColorFilteredProducts(colorsRecordModelArrayList.get(position));
 
 
                     }

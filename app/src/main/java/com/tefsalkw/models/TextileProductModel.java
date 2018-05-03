@@ -30,6 +30,48 @@ public class TextileProductModel  implements Serializable
     private String min_delivery_days;
     private String max_delivery_days;
 
+
+    public String getDishdasha_color_id() {
+        return dishdasha_color_id;
+    }
+
+    public void setDishdasha_color_id(String dishdasha_color_id) {
+        this.dishdasha_color_id = dishdasha_color_id;
+    }
+
+    public String getDishdasha_sub_color_id() {
+        return dishdasha_sub_color_id;
+    }
+
+    public void setDishdasha_sub_color_id(String dishdasha_sub_color_id) {
+        this.dishdasha_sub_color_id = dishdasha_sub_color_id;
+    }
+
+    public String getDishdasha_country_id() {
+        return dishdasha_country_id;
+    }
+
+    public void setDishdasha_country_id(String dishdasha_country_id) {
+        this.dishdasha_country_id = dishdasha_country_id;
+    }
+
+
+
+    private String dishdasha_color_id;
+    private String dishdasha_sub_color_id;
+    private String dishdasha_country_id;
+
+    public String getDishdasha_season_id() {
+        return dishdasha_season_id;
+    }
+
+    public void setDishdasha_season_id(String dishdasha_season_id) {
+        this.dishdasha_season_id = dishdasha_season_id;
+    }
+
+    private String dishdasha_season_id;
+
+
     public String getDishdasha_product_name() {
         return dishdasha_product_name;
     }

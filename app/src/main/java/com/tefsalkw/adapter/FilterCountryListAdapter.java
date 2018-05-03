@@ -1,7 +1,5 @@
 package com.tefsalkw.adapter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,11 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.ProductCountryRecordModel;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
+import com.tefsalkw.models.ProductCountryRecordModel;
 
 import java.util.ArrayList;
 
@@ -26,16 +23,14 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 11/29/2017.
  */
 
-public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountryListAdapter.ViewHolder>
-{
+public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountryListAdapter.ViewHolder> {
 
     private ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList;
     private FragmentTextileProducts activity;
 
-    public FilterCountryListAdapter(ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList,FragmentTextileProducts activity)
-    {
-        this.productCountryRecordModelArrayList=productCountryRecordModelArrayList;
-        this.activity=activity;
+    public FilterCountryListAdapter(ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList, FragmentTextileProducts activity) {
+        this.productCountryRecordModelArrayList = productCountryRecordModelArrayList;
+        this.activity = activity;
 
     }
 
@@ -46,27 +41,23 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position)
-    {
-       // holder.country_image
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        // holder.country_image
         holder.countryName.setText(productCountryRecordModelArrayList.get(position).getName());
         holder.country_image.setBackgroundResource(0);
 
 
-        if(TefalApp.getInstance().getCountry().equals(productCountryRecordModelArrayList.get(position).getId()))
-        {
+        if (TefalApp.getInstance().getCountry().equals(productCountryRecordModelArrayList.get(position).getId())) {
             Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
             holder.country_image.setBackground(drawableSelect);
-            holder.country_image.setPadding(6,6,6,6);
+            holder.country_image.setPadding(6, 6, 6, 6);
 
             Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
 
-        }
-        else
-        {
-            Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
+        } else {
+            Drawable drawableNonSelect = activity.getResources().getDrawable(R.drawable.round_image_background);
             holder.country_image.setBackground(drawableNonSelect);
-            holder.country_image.setPadding(6,6,6,6);
+            holder.country_image.setPadding(6, 6, 6, 6);
 
             Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
 
@@ -76,10 +67,14 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
         holder.country_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTextileProducts.countryWindow.dismiss();
-                TefalApp.getInstance().setCountry(productCountryRecordModelArrayList.get(position).getId());
 
-                activity.loadCountryFilteredProducts(productCountryRecordModelArrayList.get(position).getName(),productCountryRecordModelArrayList.get(position).getImage());
+
+                if (FragmentTextileProducts.countryWindow != null) {
+                    FragmentTextileProducts.countryWindow.dismiss();
+                }
+
+
+                activity.loadCountryFilteredProducts(productCountryRecordModelArrayList.get(position));
 
 
             }
@@ -92,8 +87,7 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
         return productCountryRecordModelArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.country_image)
         ImageView country_image;
 

@@ -304,53 +304,51 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         } else {
             RL_no_product_found_container.setVisibility(View.GONE);
             RL_product_exist_container.setVisibility(View.VISIBLE);
+
+
+            try {
+                //meter=Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
+                min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
+                min_meter_check = Float.parseFloat(TefalApp.getInstance().getMin_meters());
+                stock_meter = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
+                stock_meter_check = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
+
+                System.out.println("Tefsal output======Minimum MIter===" + min_meter);
+                System.out.println("Tefsal output======Dishdasha stock===" + stock_meter);
+
+                product_image = textileProductModel.getProduct_image();
+                price = Float.parseFloat(textileProductModel.getPrice());//.split(" ");
+
+                System.out.println("Price=====" + price);
+            } catch (Exception ex) {
+
+                System.out.println("Error ===========1" + ex);
+            }
+
+            // This block of code is used to detetermine the max and min
+
+            if (min_meter > stock_meter) {
+                LL_min_max_controller.setVisibility(View.GONE);
+                add_to_cart_lbl.setText("SOLD OUT");
+                text_price.setVisibility(View.GONE);
+                add_to_cart_btn.setEnabled(false);
+            } else {
+
+            }
+
+
+            colorString = textileProductModel.getDishdasha_color_id();
+            seasonString = textileProductModel.getDishdasha_season_id();
+            countryString = textileProductModel.getDishdasha_country_id();
+            subColorString = textileProductModel.getDishdasha_sub_color_id();
+
+
         }
 
-
-        try {
-            //meter=Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
-            min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-            min_meter_check = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-            stock_meter = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
-            stock_meter_check = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
-
-            System.out.println("Tefsal output======Minimum MIter===" + min_meter);
-            System.out.println("Tefsal output======Dishdasha stock===" + stock_meter);
-
-            product_image = textileProductModel.getProduct_image();
-            price = Float.parseFloat(textileProductModel.getPrice());//.split(" ");
-
-            System.out.println("Price=====" + price);
-        } catch (Exception ex) {
-
-            System.out.println("Error ===========1" + ex);
-        }
-
-        // This block of code is used to detetermine the max and min
-
-        if (min_meter > stock_meter) {
-            LL_min_max_controller.setVisibility(View.GONE);
-            add_to_cart_lbl.setText("SOLD OUT");
-            text_price.setVisibility(View.GONE);
-            add_to_cart_btn.setEnabled(false);
-        } else {
-
-        }
-
-        System.out.println("HELLO THE SIZE OF textileProductModel" + textileProductModel.getProduct_image().length);
-
-
-        // System.out.println("IMAGE PRODUCT========"+product_image[0]);
-        // System.out.println("IMAGE PRODUCT========"+product_image[1]);
-
-
-        // Getting info of color, subcolor,country, season etc........
-
-
-        colorString = TefalApp.getInstance().getColor();
-        seasonString = TefalApp.getInstance().getSeason();
-        countryString = TefalApp.getInstance().getCountry();
-        subColorString = TefalApp.getInstance().getSubColor();
+//        colorString = TefalApp.getInstance().getColor();
+//        seasonString = TefalApp.getInstance().getSeason();
+//        countryString = TefalApp.getInstance().getCountry();
+//        subColorString = TefalApp.getInstance().getSubColor();
 
 
         System.out.println("TextileDetailActivity==============colorString==" + colorString);
@@ -840,7 +838,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("pattern_id", "");
 
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e("Tefsal store == ", url + new JSONObject(params));
 
                     return params;
                 }
