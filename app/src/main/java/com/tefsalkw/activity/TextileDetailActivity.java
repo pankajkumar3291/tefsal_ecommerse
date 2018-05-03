@@ -239,6 +239,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     private String countryString;
     private String seasonString;
 
+    private String brandString = "";
+    private String patternString = "";
 
     private String[] product_image;
     //  private String[] str;
@@ -338,12 +340,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             colorString = textileProductModel.getDishdasha_color_id();
-            seasonString = textileProductModel.getDishdasha_season_id();
+            seasonString = textileProductModel.getDishdasha_season().toLowerCase();
             countryString = textileProductModel.getDishdasha_country_id();
             subColorString = textileProductModel.getDishdasha_sub_color_id();
-
-
         }
+
+
 
 //        colorString = TefalApp.getInstance().getColor();
 //        seasonString = TefalApp.getInstance().getSeason();
@@ -834,8 +836,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("color_id", colorString);
                     params.put("sub_color_id", subColorString);
                     params.put("country_id", countryString);
-                    params.put("brand_id", "");
-                    params.put("pattern_id", "");
+                    params.put("brand_id", brandString);
+                    params.put("pattern_id", patternString);
 
 
                     Log.e("Tefsal store == ", url + new JSONObject(params));

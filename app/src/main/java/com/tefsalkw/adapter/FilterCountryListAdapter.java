@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Rituparna Khadka on 11/29/2017.
@@ -58,8 +58,17 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             Drawable drawableNonSelect = activity.getResources().getDrawable(R.drawable.round_image_background);
             holder.country_image.setBackground(drawableNonSelect);
             holder.country_image.setPadding(6, 6, 6, 6);
-
             Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
+        }
+
+        if (productCountryRecordModelArrayList.get(position).isSelected()) {
+            holder.country_image.setBorderColor(activity.getResources().getColor(R.color.colorYellow));
+            holder.country_image.setBorderWidth(3);
+
+        }
+        else
+        {
+            holder.country_image.setBorderWidth(0);
 
         }
 
@@ -68,14 +77,13 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             @Override
             public void onClick(View v) {
 
+                activity.productCountryRecordModelArrayList.get(position).setSelected(true);
 
                 if (FragmentTextileProducts.countryWindow != null) {
                     FragmentTextileProducts.countryWindow.dismiss();
                 }
 
-
                 activity.loadCountryFilteredProducts(productCountryRecordModelArrayList.get(position));
-
 
             }
         });
@@ -89,7 +97,7 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.country_image)
-        ImageView country_image;
+        CircleImageView country_image;
 
         @BindView(R.id.countryName)
         TextView countryName;

@@ -291,41 +291,50 @@ public class ProductListOtherActivity extends BaseActivity {
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
-                                Gson g = new Gson();
 
-                                DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
+                                try
+                                {
+                                    Log.e("stores response", response);
+                                    Gson g = new Gson();
 
-                                if (mResponse.getStatus().equalsIgnoreCase("1")) {
+                                    DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
 
-                                    for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
+                                    if (mResponse.getStatus().equalsIgnoreCase("1")) {
 
-                                        DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
+                                        for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
 
-
-                                        //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
-                                        //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
-                                        // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
+                                            DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
 
 
-                                        if (daraAbayaCategoriesModel.getSub_category() != null) {
+                                            //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
+                                            //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
+                                            // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
 
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getSub_category());
-                                        } else {
-                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), "Sub Category");
+
+                                            if (daraAbayaCategoriesModel.getSub_category() != null) {
+
+                                                viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getSub_category());
+                                            } else {
+                                                viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), "Sub Category");
+
+                                            }
+
 
                                         }
 
 
-                                    }
+                                        viewPager.setAdapter(viewPagerAdapter);
 
-
-                                    viewPager.setAdapter(viewPagerAdapter);
-
-                                    if (mResponse.getRecord().getCategories().size() == 1) {
-                                        tabLayout.setVisibility(View.GONE);
+                                        if (mResponse.getRecord().getCategories().size() == 1) {
+                                            tabLayout.setVisibility(View.GONE);
+                                        }
                                     }
                                 }
+                                catch (Exception exc)
+                                {
+                                    Toast.makeText(ProductListOtherActivity.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
 
                             }
 

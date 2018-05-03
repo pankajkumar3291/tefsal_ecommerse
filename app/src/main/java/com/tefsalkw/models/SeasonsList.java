@@ -24,4 +24,14 @@ public class SeasonsList {
 
     public String name;
     public  int image;
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public  String Id;
 }

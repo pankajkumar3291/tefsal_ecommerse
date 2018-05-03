@@ -46,8 +46,8 @@ public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubCol
         try {
             holder.colorText.setText(colorsRecordModelArrayList.get(position).getName());
 
-            LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
-                    .getDrawable(R.drawable.round_image_background_for_color);
+            LayerDrawable layerDrawable = (LayerDrawable) activity.getResources().getDrawable(R.drawable.round_image_background_for_color);
+
 
             GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable
                     .findDrawableByLayerId(R.id.item);
@@ -56,15 +56,15 @@ public class FilterSubColorListAdapter extends RecyclerView.Adapter<FilterSubCol
 
             if (hexColor != null) {
                 gradientDrawable.setColor(Color.parseColor(hexColor));
-            } else {
-
             }
 
             holder.color.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
+                    if (FragmentTextileProducts.colorWindow != null) {
+                        FragmentTextileProducts.colorWindow.dismiss();
+                    }
                     if (colorsRecordModelArrayList != null) {
 
                         activity.loadSubColorFilteredProducts(colorsRecordModelArrayList.get(position));

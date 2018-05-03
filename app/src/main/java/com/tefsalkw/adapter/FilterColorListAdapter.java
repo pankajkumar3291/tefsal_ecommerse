@@ -84,9 +84,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
             @Override
             public void onClick(View v) {
 
-                if (FragmentTextileProducts.colorWindow != null) {
-                    FragmentTextileProducts.colorWindow.dismiss();
-                }
+
 
                 activity.selectedColorModel = colorsRecordModelArrayList.get(position);
 
@@ -149,7 +147,12 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                                     FragmentTextileProducts.filterColorRecyclerView.setAdapter(filterSubColorListAdapter);
                                     System.out.println("RESPONSE SIZE==" + colorsRecordModelArrayList.size());
 
+
                                 } else {
+
+                                    if (FragmentTextileProducts.colorWindow != null) {
+                                        FragmentTextileProducts.colorWindow.dismiss();
+                                    }
 
                                     if (colorsRecordModelArrayList != null && colorsRecordModelArrayList.size() > 0) {
                                         activity.loadColorFilteredProducts(colorsRecordModelArrayList.get(position));

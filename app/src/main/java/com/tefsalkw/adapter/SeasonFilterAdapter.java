@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Rituparna Khadka on 11/28/2017.
@@ -78,7 +79,7 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
 
 
         @BindView(R.id.imgSeason)
-        ImageView imgSeason;
+        CircleImageView imgSeason;
 
         @BindView(R.id.seasonItem)
         LinearLayout seasonItem;

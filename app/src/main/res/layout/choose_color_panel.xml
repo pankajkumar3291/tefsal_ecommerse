@@ -11,47 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/llSelectedSeason"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:gravity="start"
-        android:orientation="horizontal"
-        android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/roun_image_background_ll"
-            android:padding="2dp">
-
-            <ImageView
-                android:id="@+id/imgSelectedSeason"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/round_image_background_for_color" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtSelectedSeason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:text="ALL"
-            android:textColor="@color/colorWhite" />
-
-        <ImageView
-            android:id="@+id/imgRemoveSeason"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/cart_item_delete_icon" />
-
-    </LinearLayout>
 
 </LinearLayout>
