@@ -14,6 +14,7 @@
         android:src="@drawable/shape_choose_beige_color" />
 
     <TextView
+        android:textColor="@color/colorWhite"
         android:id="@+id/txt_country_name"
         android:layout_gravity="center"
         android:layout_height="wrap_content"

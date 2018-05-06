@@ -77,6 +77,7 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
             public void onClick(View v)
             {
                 TefalApp.getInstance().setPattern(filterPatternModelArrayList.get(position).getPattern_id());
+                notifyDataSetChanged();
             }
         });
 

@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.SeasonsList;
 
@@ -55,6 +55,8 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
             @Override
             public void onClick(View v) {
 
+                TefalApp.getInstance().setSeason(seasonList.get(position).getName());
+                notifyDataSetChanged();
 
                 if (FragmentTextileProducts.seasonWindow != null) {
                     FragmentTextileProducts.seasonWindow.dismiss();
@@ -64,6 +66,15 @@ public class SeasonFilterAdapter extends RecyclerView.Adapter<SeasonFilterAdapte
 
             }
         });
+
+
+        if (seasonList.get(position).getName().equals(TefalApp.getInstance().getSeason())) {
+            holder.imgSeason.setBorderColor(activity.getResources().getColor(R.color.colorYellow));
+            holder.imgSeason.setBorderWidth(5);
+
+        } else {
+            holder.imgSeason.setBorderWidth(0);
+        }
     }
 
     @Override

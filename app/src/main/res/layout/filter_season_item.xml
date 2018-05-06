@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="true"
     android:id="@+id/seasonItem"
-    android:layout_height="wrap_content"
     android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="true"
     android:orientation="vertical">
 
     <LinearLayout
 
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:padding="2dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
 
             android:id="@+id/imgSeason"
-            android:layout_gravity="center"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_width="50dp" />
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <TextView
-        android:gravity="center"
         android:id="@+id/txt_season_name"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/marging_bottom_text"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/marging_bottom_text"
+        android:gravity="center"
         android:text="@string/cp_title_beige"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_small" />

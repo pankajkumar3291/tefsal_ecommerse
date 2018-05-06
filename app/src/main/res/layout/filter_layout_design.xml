@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:translationZ="1dp"
     app:theme="@style/TransparentToolbar">
 
     <ScrollView
@@ -18,18 +19,19 @@
             android:weightSum="4">
 
             <LinearLayout
+                android:id="@+id/llOutside"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
             </LinearLayout>
 
             <LinearLayout
-                android:background="#90000000"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:background="#90000000"
                 android:orientation="vertical">
 
                 <LinearLayout

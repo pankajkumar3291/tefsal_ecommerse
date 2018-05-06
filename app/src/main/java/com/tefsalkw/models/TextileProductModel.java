@@ -30,6 +30,16 @@ public class TextileProductModel  implements Serializable
     private String min_delivery_days;
     private String max_delivery_days;
 
+    public String getDishdasha_brand_id() {
+        return dishdasha_brand_id;
+    }
+
+    public void setDishdasha_brand_id(String dishdasha_brand_id) {
+        this.dishdasha_brand_id = dishdasha_brand_id;
+    }
+
+    private String dishdasha_brand_id;
+
 
     public String getDishdasha_color_id() {
         return dishdasha_color_id;

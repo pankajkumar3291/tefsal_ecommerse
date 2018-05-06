@@ -83,8 +83,8 @@ public class TefsalApplication extends MultiDexApplication {
         builder.readTimeout(YOUR_CUSTOM_TIMEOUT, TimeUnit.SECONDS);
         builder.writeTimeout(YOUR_CUSTOM_TIMEOUT, TimeUnit.SECONDS);
         builder.connectTimeout(YOUR_CUSTOM_TIMEOUT, TimeUnit.SECONDS);
-        builder.retryOnConnectionFailure(true);
-        builder.addInterceptor(logging);
+        builder.retryOnConnectionFailure(false);
+        //builder.addInterceptor(logging);
 
 
         okHttpClient = builder.build();

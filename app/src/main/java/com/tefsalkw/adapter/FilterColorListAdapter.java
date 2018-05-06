@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.ColorResponseModel;
@@ -61,30 +62,15 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        // holder.color;
-        // Picasso.with(activity).load(colorsRecordModelArrayList.get(position).getImage()).into(holder.color);
 
 
-        //color_item
         holder.colorText.setText(colorsRecordModelArrayList.get(position).getColor_name());
-        // holder.color.setBackgroundColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
-
-
-        LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
-                .getDrawable(R.drawable.round_image_background_for_color);
-        GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable
-                .findDrawableByLayerId(R.id.item);
-        gradientDrawable.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
-        holder.color.setBackground(layerDrawable);
-
-            /* LayerDrawable bgDrawable = (LayerDrawable)holder.color.getBackground();
-            GradientDrawable shape = (GradientDrawable)   bgDrawable.findDrawableByLayerId(R.id.shape);
-           shape.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));*/
         holder.color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+                TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getColor_id());
+                notifyDataSetChanged();
 
                 activity.selectedColorModel = colorsRecordModelArrayList.get(position);
 
@@ -93,6 +79,25 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
 
             }
         });
+
+
+        if (colorsRecordModelArrayList.get(position).getColor_id().equals(TefalApp.getInstance().getColor())) {
+
+            LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
+                    .getDrawable(R.drawable.round_mage_background_select);
+            GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable
+                    .findDrawableByLayerId(R.id.item);
+            gradientDrawable.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
+            holder.color.setBackground(layerDrawable);
+        } else {
+            LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
+                    .getDrawable(R.drawable.round_image_background_for_color);
+            GradientDrawable gradientDrawable = (GradientDrawable) layerDrawable
+                    .findDrawableByLayerId(R.id.item);
+            gradientDrawable.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
+            holder.color.setBackground(layerDrawable);
+        }
+
 
     }
 
@@ -137,7 +142,6 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                                 Gson g = new Gson();
                                 ColorResponseModel mResponse = g.fromJson(response, ColorResponseModel.class);
                                 if (mResponse.getStatus().equals("1")) {
-
 
 
                                     sub_colorsRecordModelArrayList = mResponse.getRecord();

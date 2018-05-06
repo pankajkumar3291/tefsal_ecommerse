@@ -61,13 +61,11 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
             Picasso.with(activity.getContext()).load(productCountryRecordModelArrayList.get(position).getImage()).into(holder.country_image);
         }
 
-        if (productCountryRecordModelArrayList.get(position).isSelected()) {
+        if (productCountryRecordModelArrayList.get(position).getId().equals(TefalApp.getInstance().getCountry())) {
             holder.country_image.setBorderColor(activity.getResources().getColor(R.color.colorYellow));
-            holder.country_image.setBorderWidth(3);
+            holder.country_image.setBorderWidth(5);
 
-        }
-        else
-        {
+        } else {
             holder.country_image.setBorderWidth(0);
 
         }
@@ -76,8 +74,8 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
         holder.country_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                activity.productCountryRecordModelArrayList.get(position).setSelected(true);
+                TefalApp.getInstance().setCountry(productCountryRecordModelArrayList.get(position).getId());
+                notifyDataSetChanged();
 
                 if (FragmentTextileProducts.countryWindow != null) {
                     FragmentTextileProducts.countryWindow.dismiss();

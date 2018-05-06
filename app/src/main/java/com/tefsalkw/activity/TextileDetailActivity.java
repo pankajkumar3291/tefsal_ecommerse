@@ -343,15 +343,20 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             seasonString = textileProductModel.getDishdasha_season().toLowerCase();
             countryString = textileProductModel.getDishdasha_country_id();
             subColorString = textileProductModel.getDishdasha_sub_color_id();
+            brandString = textileProductModel.getDishdasha_brand_id();
+
+
+            TefalApp.getInstance().setColor(colorString);
+            TefalApp.getInstance().setSeason(seasonString);
+            TefalApp.getInstance().setCountry(countryString);
+            TefalApp.getInstance().setSubColor(subColorString);
+
         }
-
-
 
 //        colorString = TefalApp.getInstance().getColor();
 //        seasonString = TefalApp.getInstance().getSeason();
 //        countryString = TefalApp.getInstance().getCountry();
 //        subColorString = TefalApp.getInstance().getSubColor();
-
 
         System.out.println("TextileDetailActivity==============colorString==" + colorString);
         System.out.println("TextileDetailActivity==============seasonString==" + seasonString);
@@ -364,12 +369,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         } catch (Exception ex) {
             System.out.println("Error===============" + ex);
         }
+
         /*text_price=(TextView)findViewById(R.id.text_price);
         text_price.setText("PRICE : "+Integer.parseInt(str[0])*meter+" KWD");
         txt_min_meter.setText(""+meter+" MIN METERS REQUIRED");*/
-
-
         // toolbar_title.setText(DishdashaTextileProductAdapter.textileModels.get(position).getPrice()+".000 KWD");
+
         ic_filter.setVisibility(View.VISIBLE);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -422,6 +427,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 initPopupFilter(v, filterWindowFlag);
 
                 done_txt.setVisibility(View.VISIBLE);
+                ic_filter.setClickable(false);
 
             }
         });
@@ -430,12 +436,15 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             @Override
             public void onClick(View v) {
 
+
                 System.out.println("I m hitted");
                 // done_txt.setVisibility(View.GONE);
                 //ic_filter.setVisibility(View.VISIBLE);
 
                 httpGetFilterDataAfterFilter();
                 filterWindow.dismiss();
+
+                ic_filter.setClickable(true);
             }
         });
 
@@ -583,6 +592,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View popupView = layoutInflater.inflate(R.layout.filter_layout_design, null);
 
+
         see_all_country_text = (TextView) popupView.findViewById(R.id.see_all_contry_text);
         see_all_pattern_text = (TextView) popupView.findViewById(R.id.see_all_pattern_text);
         see_all_brand_text = (TextView) popupView.findViewById(R.id.see_all_brand_text);
@@ -590,6 +600,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         recyclerViewCountry = (RecyclerView) popupView.findViewById(R.id.recyclerViewCountry);
         recyclerViewPattern = (RecyclerView) popupView.findViewById(R.id.recyclerViewPattern);
         recyclerViewBrand = (RecyclerView) popupView.findViewById(R.id.recyclerViewBrand);
+
+        LinearLayout llOutside = (LinearLayout) popupView.findViewById(R.id.llOutside);
+        llOutside.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (filterWindow != null) {
+                    filterWindow.dismiss();
+                }
+            }
+        });
         //this.filterWindowFlag=false
 
         filterWindow = new PopupWindow(
@@ -598,12 +619,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         filterWindow.setBackgroundDrawable(new BitmapDrawable());
-        filterWindow.setOutsideTouchable(true);
+        filterWindow.setOutsideTouchable(false);
         filterWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 done_txt.setVisibility(View.GONE);
                 ic_filter.setVisibility(View.VISIBLE);
+                ic_filter.setClickable(true);
             }
         });
 
@@ -637,8 +659,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             recyclerViewBrand.setLayoutManager(mLayoutManager2);
             recyclerViewBrand.setItemAnimator(new DefaultItemAnimator());
             recyclerViewBrand.setAdapter(brandFilterAdapter);
-        } else {
-
         }
 
 
@@ -650,8 +670,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             recyclerViewPattern.setLayoutManager(mLayoutManager3);
             recyclerViewPattern.setItemAnimator(new DefaultItemAnimator());
             recyclerViewPattern.setAdapter(patternFilterAdapter);
-        } else {
-
         }
 
 
@@ -837,7 +855,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("sub_color_id", subColorString);
                     params.put("country_id", countryString);
                     params.put("brand_id", brandString);
-                    params.put("pattern_id", patternString);
+                    params.put("pattern_id", "");
 
 
                     Log.e("Tefsal store == ", url + new JSONObject(params));
@@ -889,35 +907,18 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                                         Gson g = new Gson();
                                         _mdishdashaFiletrationResponse = g.fromJson(response, dishdashaFiletrationResponse.class);
 
-                                       /* filterBrandModelArrayList=_mdishdashaFiletrationResponse.getBrands();
-                                        filterCountryModelArrayList=_mdishdashaFiletrationResponse.getCountries();
-                                        filterPatternModelArrayList=_mdishdashaFiletrationResponse.getPatterns();*/
 
-                                        // colorsRecordModelArrayList=_mdishdashaFiletrationResponse.getColors();
                                         textileProductModelArrayList = _mdishdashaFiletrationResponse.getProducts();
 
                                         if (textileProductModelArrayList == null) {
                                             textileProductModel = null;
                                         } else {
                                             textileProductModel = textileProductModelArrayList.get(0);
+                                            startActivity(new Intent(TextileDetailActivity.this, TextileDetailActivity.class).putExtra("textileProductModel", textileProductModel));
+                                            finish();
                                         }
-                                        startActivity(new Intent(TextileDetailActivity.this, TextileDetailActivity.class).putExtra("textileProductModel", textileProductModel));
-                                        finish();
 
 
-                                        System.out.println("TextileDetailActivity==============AfterFilter colorString==" + colorString);
-                                        System.out.println("TextileDetailActivity==============AfterFilter seasonString==" + seasonString);
-                                        System.out.println("TextileDetailActivity==============AfterFilter countryString==" + countryString);
-                                        System.out.println("TextileDetailActivity==============AfterFilter subColor==" + subColorString);
-                                        System.out.println("TextileDetailActivity==============AfterFilter StoreId==" + TefalApp.getInstance().getStoreId());
-
-                                        System.out.println("TextileDetailActivity==============filterBrandModelArrayList==" + filterBrandModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============filterCountryModelArrayList==" + filterCountryModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============filterPatternModelArrayList==" + filterPatternModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============textileProductModelArrayList==" + textileProductModelArrayList.size());
-                                        System.out.println("TextileDetailActivity==============colorsRecordModelArrayList==" + colorsRecordModelArrayList.size());
-
-                                        //initPopupFilter();
                                     } else {
                                         String errors = object.getString("errors");
                                         Toast.makeText(getApplicationContext(), errors, Toast.LENGTH_SHORT).show();
