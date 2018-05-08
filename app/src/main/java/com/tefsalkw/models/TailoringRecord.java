@@ -35,25 +35,25 @@ public class TailoringRecord implements Serializable
 
     private String total_textile;
 
-    private int total_dishdasha;
+    private float total_dishdasha;
 
-    public int getTotal_dishdasha() {
+    public float getTotal_dishdasha() {
         return total_dishdasha;
     }
 
-    public void setTotal_dishdasha(int total_dishdasha) {
+    public void setTotal_dishdasha(float total_dishdasha) {
         this.total_dishdasha = total_dishdasha;
     }
 
-    public int getRemaining_dishdasha() {
+    public float getRemaining_dishdasha() {
         return remaining_dishdasha;
     }
 
-    public void setRemaining_dishdasha(int remaining_dishdasha) {
+    public void setRemaining_dishdasha(float remaining_dishdasha) {
         this.remaining_dishdasha = remaining_dishdasha;
     }
 
-    private int remaining_dishdasha;
+    private float remaining_dishdasha;
 
     private String dishdasha_product_name;
 

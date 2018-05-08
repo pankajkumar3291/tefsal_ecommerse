@@ -134,7 +134,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
                     TailoringRecord tailoringRecord = tailoringRecordArrayListOfChecked.get(i);
 
-                    int total = Integer.parseInt(tailoringRecord.getItem_quantity()) / Integer.parseInt(TefalApp.getInstance().getMin_meters());
+                    float total = Float.parseFloat(tailoringRecord.getItem_quantity()) / Float.parseFloat(TefalApp.getInstance().getMin_meters());
                     tailoringRecord.setPosition(count);
                     tailoringRecord.setTotal_dishdasha(total);
                     tailoringRecord.setRemaining_dishdasha(total);
@@ -482,7 +482,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
     public void removeItem(SublistCartItems sublistCartItems, int position) {
         try {
-            int getRemaining = tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha();
+            float getRemaining = tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha();
             getRemaining = getRemaining + 1;
             tailoringRecordArrayListOfCheckedTrue.get(position).setRemaining_dishdasha(getRemaining);
             customTailorCalculationProduct.notifyDataSetChanged();
@@ -510,7 +510,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
             //dishdashaAdapter.updateDishDashacount(dropdownId);
 
-            Integer remaining = tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).getRemaining_dishdasha();
+            float remaining = tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).getRemaining_dishdasha();
             remaining = remaining - 1;
             tailoringRecordArrayListOfCheckedTrue.get(cartRecord.getPosition()).setRemaining_dishdasha(remaining);
 
@@ -549,7 +549,7 @@ public class FragmentTailorProducts extends BaseFragment {
             if (integerSet.add(cartItems1.getProduct_id() + cartItems1.getItem_details().getTailor_services().getDishdasha_tailor_product_id())) {
 
                 int countIs = getFrequency(cartItems, cartItems1);
-                int minMeter = Integer.parseInt(TefalApp.getInstance().getMin_meters());
+                float minMeter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
                 System.out.println("a : " + countIs);
 
                 cartItems1.getItem_details().getTailor_services().setQty(countIs + "");
@@ -712,7 +712,7 @@ public class FragmentTailorProducts extends BaseFragment {
         if (tailoringRecord != null) {
 
             Log.e("position", tailoringRecord.getPosition() + "");
-            return tailoringRecord.getRemaining_dishdasha() == 0;
+            return (int)tailoringRecord.getRemaining_dishdasha() == 0;
 
 
         }

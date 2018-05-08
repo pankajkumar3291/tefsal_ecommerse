@@ -210,15 +210,14 @@
                 android:textStyle="bold" />
 
 
-
             <TextView
                 android:id="@+id/txtTailorDesc"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="--"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_small" />
+                android:textSize="@dimen/text_small"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -270,14 +269,14 @@
 
 
     </LinearLayout>
+
     <View
-        android:visibility="gone"
         android:id="@+id/llTailorContainerSep"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="#bdbdbd" />
-
+        android:background="#bdbdbd"
+        android:visibility="gone" />
 
 
 </LinearLayout>

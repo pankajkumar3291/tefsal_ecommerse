@@ -198,6 +198,10 @@ public class SigninActivity extends BaseActivity {
 
                                     WebCallServiceSetToken();
 
+                                    startActivity(new Intent(SigninActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                                    finish();
+
+
                                 } else {
                                     SimpleProgressBar.closeProgress();
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -245,7 +249,7 @@ public class SigninActivity extends BaseActivity {
     }
 
     public void WebCallServiceSetToken() {
-        SimpleProgressBar.showProgress(SigninActivity.this);
+
         try {
             final String url = Contents.baseURL + "deviceInfo";
 
@@ -254,7 +258,7 @@ public class SigninActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) {
 
-                            SimpleProgressBar.closeProgress();
+
                             Log.e("device response", response);
                             try {
                                 JSONObject object = new JSONObject(response);
@@ -263,15 +267,14 @@ public class SigninActivity extends BaseActivity {
                                 if (status.equals("1")) {
                                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
-                                    startActivity(new Intent(SigninActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                                    finish();
+
 
                                 } else {
 
-                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                   // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
-                                SimpleProgressBar.closeProgress();
+
                             }
 
                         }
@@ -279,7 +282,7 @@ public class SigninActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
+
                         }
                     }) {
                 @Override
