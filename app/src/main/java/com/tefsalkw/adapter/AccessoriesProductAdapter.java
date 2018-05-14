@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
@@ -119,7 +118,7 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
         holder.amount_text.setText(product_price + " KWD");
         holder.text_max_delivery_days.setText(max_delivery_days);
 
-        if (accessory_product_image.length != 0) {
+        if (accessory_product_image != null && accessory_product_image.length != 0) {
 //            Picasso.with(activity).load(accessory_product_image[0])
 //                    .placeholder(R.drawable.no_image_placeholder_grid)
 //                    .error(R.drawable.no_image_placeholder_grid)

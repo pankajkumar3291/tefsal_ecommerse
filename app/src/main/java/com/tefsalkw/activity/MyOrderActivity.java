@@ -20,9 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.MyOrderResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyOrderAdapter;
+import com.tefsalkw.models.MyOrderResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -107,13 +107,26 @@ public class MyOrderActivity extends BaseActivity {
                                 MyOrderResponse mResponse = g.fromJson(response, MyOrderResponse.class);
 
                                 if (mResponse.getStatus().equals("1")) {
-                                    LinearLayoutManager layoutManager = new LinearLayoutManager(MyOrderActivity.this);
-                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-                                    recyclerView.setLayoutManager(layoutManager);
-                                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                                    myOrderAdapter = new MyOrderAdapter(MyOrderActivity.this, mResponse.getRecord());
-                                    recyclerView.setAdapter(myOrderAdapter);
+                                    if (mResponse.getRecord() != null && mResponse.getRecord().size() > 0) {
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(MyOrderActivity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+                                        recyclerView.setLayoutManager(layoutManager);
+                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                                                layoutManager.getOrientation());
+                                        recyclerView.addItemDecoration(dividerItemDecoration);
+
+                                        myOrderAdapter = new MyOrderAdapter(MyOrderActivity.this, mResponse.getRecord());
+                                        recyclerView.setAdapter(myOrderAdapter);
+
+                                    } else {
+                                        Toast.makeText(MyOrderActivity.this, "No record found", Toast.LENGTH_LONG).show();
+                                    }
+
+
                                 } else {
                                     Toast.makeText(MyOrderActivity.this, mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
@@ -133,12 +146,11 @@ public class MyOrderActivity extends BaseActivity {
                     params.put("user_id", sessionManager.getCustomerId());
                     params.put("access_token", sessionManager.getToken());
                     params.put("appUser", "tefsal");
-                    params.put("order_id", "");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
 
-                    Log.e("Tefsal tailor == ", url + params);
+                    Log.e("Tefsal tailor == ", url + new Gson().toJson(params));
 
                     return params;
                 }

@@ -363,7 +363,7 @@ public class PaymentSelectActivity extends BaseActivity {
     public void WebCallServiceOrder() {
 
 
-        final String url = Contents.baseURL + "CreateOrder";
+        final String url = Contents.baseURL + "createOrderOld";
 
 
         Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");

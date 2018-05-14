@@ -1,15 +1,19 @@
 package com.tefsalkw.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.tefsalkw.models.OrderRecord;
 import com.tefsalkw.R;
+import com.tefsalkw.activity.OrderDetailsActivity;
+import com.tefsalkw.models.OrderRecord;
+import com.tefsalkw.utils.DateTimeHelper;
 
 import java.util.List;
 
@@ -20,16 +24,15 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 11/13/2017.
  */
 
-public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHolder>
-{
+public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHolder> {
     private Activity activity;
     private List<OrderRecord> myOrderModel;
 
-    public MyOrderAdapter(Activity activity, List<OrderRecord> myOrderModel)
-    {
-        this.activity=activity;
-        this.myOrderModel=myOrderModel;
+    public MyOrderAdapter(Activity activity, List<OrderRecord> myOrderModel) {
+        this.activity = activity;
+        this.myOrderModel = myOrderModel;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.myorder_item, parent, false);
@@ -38,10 +41,38 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position)
-    {
-        holder.order_date_txt.setText(myOrderModel.get(position).getCreated_at().toString());
-        holder.order_status_txt.setText(myOrderModel.get(position).getOrder_status().toString());
+    public void onBindViewHolder(ViewHolder holder, int position) {
+
+        String dateTimeIs = myOrderModel.get(position).getCreated_at();
+
+        if (dateTimeIs != null) {
+            holder.txtOrderDate.setText(DateTimeHelper.getFormattedDate(myOrderModel.get(position).getCreated_at()));
+        }
+
+        holder.txtOrderId.setText("ORDER #" + myOrderModel.get(position).getOrder_id());
+        holder.txtOrderAmount.setText("Order Total: " + myOrderModel.get(position).getAmount() + " KWD");
+        holder.btnStatus.setText((myOrderModel.get(position).getOrder_status() + "").toUpperCase());
+
+        if (myOrderModel.get(position).getOrder_status() != null && myOrderModel.get(position).getOrder_status().toLowerCase().equalsIgnoreCase("pending")) {
+            holder.btnStatus.setBackground(activity.getResources().getDrawable(R.drawable.my_button_bg));
+            holder.btnStatus.setTextColor(activity.getResources().getColor(R.color.colorAccent));
+        }
+
+        if (myOrderModel.get(position).getOrder_status() != null && myOrderModel.get(position).getOrder_status().toLowerCase().equalsIgnoreCase("completed")) {
+            holder.btnStatus.setBackground(activity.getResources().getDrawable(R.drawable.my_button_bg_round));
+            holder.btnStatus.setTextColor(activity.getResources().getColor(R.color.colorWhite));
+        }
+
+
+        holder.rlParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                activity.startActivity(new Intent(activity, OrderDetailsActivity.class)
+                .putExtra("OrderRecord", myOrderModel.get(holder.getAdapterPosition())));
+
+            }
+        });
 
 
     }
@@ -52,21 +83,26 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder
-    {
-        @BindView(R.id.order_status_txt)
-        TextView order_status_txt;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txtOrderDate)
+        TextView txtOrderDate;
 
-        @BindView(R.id.order_date_txt)
-        TextView order_date_txt;
+        @BindView(R.id.txtOrderId)
+        TextView txtOrderId;
 
-        @BindView(R.id.order_image)
-        ImageView order_image;
+        @BindView(R.id.txtOrderAmount)
+        TextView txtOrderAmount;
+
+        @BindView(R.id.btnStatus)
+        Button btnStatus;
+
+        @BindView(R.id.rlParent)
+        RelativeLayout rlParent;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
 
 
         }

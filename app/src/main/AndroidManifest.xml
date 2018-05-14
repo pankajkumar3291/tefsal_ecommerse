@@ -21,8 +21,8 @@
         tools:replace="android:supportsRtl">
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="a1bd58cac502c97c8c1f0fea8153f1354a1a2da7"
-            />
+            android:value="a1bd58cac502c97c8c1f0fea8153f1354a1a2da7" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
@@ -251,7 +251,8 @@
             android:name=".activity.CustomVideoPlayerNewActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.OrderDetailsActivity"   android:screenOrientation="portrait" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

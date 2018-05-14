@@ -1,23 +1,13 @@
 package com.tefsalkw.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-import org.jetbrains.annotations.Nullable;
-
 import java.io.Serializable;
+import java.util.List;
 
-/**
- * Created by Dell on 19-03-2018.
- */
-
-public class DaraAbayaProductListResponse implements Serializable {
-
+public class OrderDetailsResponse   {
 
     private String message;
 
-    private DaraaAbayaRecordsResponse record;
-
+    private List<OrderRecord> record;
 
     private String status;
 
@@ -31,12 +21,12 @@ public class DaraAbayaProductListResponse implements Serializable {
         this.message = message;
     }
 
-    public DaraaAbayaRecordsResponse getRecord ()
+    public List<OrderRecord> getRecord ()
     {
         return record;
     }
 
-    public void setRecord (DaraaAbayaRecordsResponse record)
+    public void setRecord (List<OrderRecord>  record)
     {
         this.record = record;
     }
@@ -56,5 +46,6 @@ public class DaraAbayaProductListResponse implements Serializable {
     {
         return "ClassPojo [message = "+message+", record = "+record+", status = "+status+"]";
     }
+
 
 }

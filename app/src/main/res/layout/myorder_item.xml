@@ -1,50 +1,84 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorPrimary"
-    android:layout_height="80dp"
-    android:layout_marginTop="2dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlParent"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp">
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:id="@+id/LL_imageContainer"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/order_image"
-            android:layout_height="60dp"
             android:layout_width="80dp"
+            android:layout_height="60dp"
             android:src="@drawable/logo_tefsal" />
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:id="@+id/LL_textContainer"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/order_status_txt"
-            android:layout_height="wrap_content"
+            android:id="@+id/txtOrderDate"
             android:layout_width="match_parent"
-            android:text="@string/myorder_item_order_status_txt_text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="--" />
+
+        <TextView
+            android:id="@+id/txtOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="--"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_large" />
 
         <TextView
-            android:id="@+id/order_date_txt"
+            android:id="@+id/txtOrderAmount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:text="@string/myorder_item_order_date_txt_text" />
+            android:text="--" />
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@+id/imgNextArrow"
+        android:background="@drawable/my_button_bg"
+        android:paddingEnd="5dp"
+        android:paddingStart="5sp"
+        android:text="PENDING"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="12sp" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imgNextArrow"
+        android:layout_width="40dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/right_arrow"
+        android:tint="@color/colorAccent" />
+
+
+
+
+</RelativeLayout>

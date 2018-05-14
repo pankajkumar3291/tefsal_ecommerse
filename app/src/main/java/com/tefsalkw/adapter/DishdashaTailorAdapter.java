@@ -137,7 +137,14 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
                 if (flag.equals("dish")) {
 
-                    if (TefalApp.getInstance().getStyleName().equalsIgnoreCase("TefsalDefault")) {
+                   String styleName =  TefalApp.getInstance().getStyleName();
+
+                   if(styleName == null)
+                   {
+                       TefalApp.getInstance().setStyleName("TefsalDefault");
+                       styleName = "TefsalDefault";
+                   }
+                    if (styleName.equalsIgnoreCase("TefsalDefault")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                         builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
                                 .setCancelable(false)

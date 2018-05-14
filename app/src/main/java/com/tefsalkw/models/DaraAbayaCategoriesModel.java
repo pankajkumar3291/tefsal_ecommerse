@@ -1,12 +1,13 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Dell on 19-03-2018.
  */
 
-public class DaraAbayaCategoriesModel {
+public class DaraAbayaCategoriesModel implements Serializable {
 
     private String category;
 

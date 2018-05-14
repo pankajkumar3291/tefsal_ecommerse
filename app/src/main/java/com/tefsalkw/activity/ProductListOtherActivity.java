@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tefsalkw.models.AccessoriesProductsResponse;
 import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.models.DaraAbayaCategoriesModel;
@@ -295,11 +296,15 @@ public class ProductListOtherActivity extends BaseActivity {
                                 try
                                 {
                                     Log.e("stores response", response);
-                                    Gson g = new Gson();
 
-                                    DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
+                                    JSONObject jsonObject = new JSONObject(response);
 
-                                    if (mResponse.getStatus().equalsIgnoreCase("1")) {
+                                    if (jsonObject.getInt("status") == 1) {
+
+                                        Gson g = new Gson();
+                                        DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
+
+                                        Log.e("mResponse", g.toJson(mResponse));
 
                                         for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
 
@@ -328,6 +333,10 @@ public class ProductListOtherActivity extends BaseActivity {
                                         if (mResponse.getRecord().getCategories().size() == 1) {
                                             tabLayout.setVisibility(View.GONE);
                                         }
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(ProductListOtherActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 catch (Exception exc)
