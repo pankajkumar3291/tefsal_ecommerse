@@ -89,6 +89,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
                     .findDrawableByLayerId(R.id.item);
             gradientDrawable.setColor(Color.parseColor(colorsRecordModelArrayList.get(position).getHexa_value()));
             holder.color.setBackground(layerDrawable);
+
         } else {
             LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
                     .getDrawable(R.drawable.round_image_background_for_color);

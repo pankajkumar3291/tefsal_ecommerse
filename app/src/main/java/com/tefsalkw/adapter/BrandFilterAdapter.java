@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.FilterBrandModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.FilterBrandModel;
 import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
         {
             Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
             holder.country_flag_imgage.setBackground(drawableSelect);
-            holder.country_flag_imgage.setPadding(6,6,6,6);
+            holder.country_flag_imgage.setPadding(10,10,10,10);
 
             Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 
@@ -64,7 +64,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
         {
             Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
             holder.country_flag_imgage.setBackground(drawableNonSelect);
-            holder.country_flag_imgage.setPadding(6,6,6,6);
+            holder.country_flag_imgage.setPadding(0,0,0,0);
 
             Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 

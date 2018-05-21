@@ -12,17 +12,20 @@
         android:layout_marginBottom="10dp"
         android:visibility="visible">
 
-        <RelativeLayout
+        <LinearLayout
+            android:weightSum="2"
             android:id="@+id/headerbar"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@drawable/oderitemheader">
 
             <LinearLayout
+                android:gravity="start"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:id="@+id/ll1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
                 android:layout_marginStart="20dp"
                 android:orientation="vertical">
 
@@ -45,10 +48,12 @@
 
 
             <LinearLayout
+                android:gravity="end"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:id="@+id/ll2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
                 android:layout_marginEnd="20dp"
                 android:orientation="vertical">
 
@@ -73,7 +78,7 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
         <LinearLayout

@@ -56,7 +56,7 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
 
             Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
             holder.country_flag_imgage.setBackground(drawableSelect);
-            holder.country_flag_imgage.setPadding(6,6,6,6);
+            holder.country_flag_imgage.setPadding(10,10,10,10);
 
             Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 
@@ -66,7 +66,7 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
 
             Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
             holder.country_flag_imgage.setBackground(drawableNonSelect);
-            holder.country_flag_imgage.setPadding(6,6,6,6);
+            holder.country_flag_imgage.setPadding(0,0,0,0);
 
             Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 

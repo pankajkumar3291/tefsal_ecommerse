@@ -850,11 +850,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("season", seasonString);
-                    params.put("color_id", colorString);
-                    params.put("sub_color_id", subColorString);
-                    params.put("country_id", countryString);
-                    params.put("brand_id", brandString);
+                    params.put("season", seasonString != null ? seasonString : "");
+                    params.put("color_id", colorString != null ? colorString : "");
+                    params.put("sub_color_id", subColorString != null ? subColorString : "");
+                    params.put("country_id", countryString != null ? countryString : "");
+                    params.put("brand_id", brandString != null ? brandString : "");
                     params.put("pattern_id", "");
 
 
@@ -957,12 +957,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("season", seasonString);
-                    params.put("color_id", colorString);
-                    params.put("sub_color_id", subColorString);
-                    params.put("country_id", countryString);
-                    params.put("brand_id", TefalApp.getInstance().getBrand());
-                    params.put("pattern_id", TefalApp.getInstance().getPattern());
+                    params.put("season", seasonString != null? seasonString : "");
+                    params.put("color_id", colorString != null? colorString : "");
+                    params.put("sub_color_id", subColorString != null? subColorString : "");
+                    params.put("country_id", countryString != null? countryString : "");
+                    params.put("brand_id", TefalApp.getInstance().getBrand() != null? TefalApp.getInstance().getBrand() : "");
+                    params.put("pattern_id", TefalApp.getInstance().getPattern() != null? TefalApp.getInstance().getPattern() : "");
 
 
                     Log.e("Tefsal store == ", url + params);

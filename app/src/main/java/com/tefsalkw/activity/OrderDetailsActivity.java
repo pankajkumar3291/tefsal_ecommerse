@@ -204,7 +204,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                                     }
 
                                                     Float totalNew = listHashMap.get(orderItems.getStore_id() + "DAAE").getTotalAmount();
-                                                    totalNew = totalNew + Float.parseFloat(orderItems.getPrice());
+                                                    totalNew = totalNew + Float.parseFloat(orderItems.getTotal_amount());
                                                     listHashMap.get(orderItems.getStore_id() + "DAAE").setTotalAmount(totalNew);
 
                                                 } else {
@@ -220,7 +220,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                                         orderRecordCustom.setStoreId(orderItems.getStore_id());
                                                         orderRecordCustom.setStoreName(orderItems.getStore_name());
                                                         orderRecordCustom.setStyleName(orderItems.getStyle().getName());
-                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getPrice()));
+                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
                                                         orderRecordCustom.setStoreImage(orderItems.getStore_img());
                                                         orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
                                                         orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());
@@ -237,7 +237,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                                         orderRecordCustom.setStoreId(orderItems.getStore_id());
                                                         orderRecordCustom.setStoreName(orderItems.getStore_name());
                                                         orderRecordCustom.setStyleName(orderItems.getStyle().getName());
-                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getPrice()));
+                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
                                                         orderRecordCustom.setStoreImage(orderItems.getStore_img());
                                                         orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
                                                         orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());
@@ -267,7 +267,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                                     }
 
                                                     Float totalNew = listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).getTotalAmount();
-                                                    totalNew = totalNew + Float.parseFloat(orderItems.getPrice());
+                                                    totalNew = totalNew + Float.parseFloat(orderItems.getTotal_amount());
                                                     listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).setTotalAmount(totalNew);
 
 
@@ -282,7 +282,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                                     orderRecordCustom.setItemType(orderItems.getItem_type());
                                                     orderRecordCustom.setStoreId(orderItems.getStore_id());
                                                     orderRecordCustom.setStoreName(orderItems.getStore_name());
-                                                    orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getPrice()));
+                                                    orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
                                                     orderRecordCustom.setStoreImage(orderItems.getStore_img());
                                                     orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
                                                     orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());

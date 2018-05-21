@@ -52,9 +52,17 @@ public class AboutUsActivity extends BaseActivity {
         ButterKnife.bind(this);
         //().hide();
         // getSupportActionBar(null)
-        //setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("Privacy Policy");
+        try
+        {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            toolbar.setTitle("Privacy Policy");
+        }
+        catch (Exception exc)
+        {
+
+        }
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
