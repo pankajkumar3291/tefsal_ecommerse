@@ -14,13 +14,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
-import com.tefsalkw.models.Colors;
 import com.tefsalkw.models.ProductRecord;
-import com.tefsalkw.models.ZaraDaraSizeModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,38 +44,34 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.textile_product_card, viewGroup, false);
-        TextView amount_text = (TextView) v.findViewById(R.id.amount_text);
-        amount_text.setVisibility(View.VISIBLE);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.dara_abaya_products, viewGroup, false);
+
         return new ViewHolder(v);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.main_layout)
+        LinearLayout main_layout;
+
         @BindView(R.id.iv_pattern)
         ImageView iv_pattern;
 
-        @BindView(R.id.name_text)
-        TextView name_text;
+        @BindView(R.id.txt_brand_name)
+        TextView txt_brand_name;
 
-        @BindView(R.id.prize_text)
-        TextView prize_text;
+        @BindView(R.id.txt_product_name)
+        TextView txt_product_name;
 
-        @BindView(R.id.amount_text)
-        TextView amount_text;
+        @BindView(R.id.txt_default_price)
+        TextView txt_default_price;
 
 
         @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
-        @BindView(R.id.txt_discount_amount)
-        TextView txt_discount_amount;
 
-        @BindView(R.id.main_layout)
-        LinearLayout main_layout;
 
-        @BindView(R.id.txt_discount_off)
-        TextView txt_discount_off;
 
 
         public ViewHolder(View itemView) {
@@ -89,44 +82,26 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder( ViewHolder holder,  int position) {
 
-        String discaunt_amount;
 
-        // String product_image = productRecords.get(position).getProduct_images().get(0);
         String brand_name = productRecords.get(position).getBrand_name();
-        //String product_price=productRecords.get(position).getP
         String product_name = productRecords.get(position).getProduct_name();
         String max_delivery_days = productRecords.get(position).getMax_delivery_days();
+        String default_img = productRecords.get(position).getDefault_product_image();
+        String default_price = productRecords.get(position).getDefault_price();
 
-        holder.txt_discount_amount.setVisibility(View.GONE);
-        holder.txt_discount_off.setVisibility(View.GONE);
-
-        List<Colors> colorsList = productRecords.get(position).getColors();
-
-        List<ZaraDaraSizeModel> sizes = colorsList != null ? colorsList.get(0).getSizes() : null;
-        if (sizes != null && sizes.size() > 0) {
-            holder.amount_text.setText(sizes.get(0).getPrice() + " KWD");
-
-        }
-
-        holder.prize_text.setText(product_name);
-        holder.name_text.setText(brand_name);
-
-
+        holder.txt_brand_name.setText(brand_name);
+        holder.txt_product_name.setText(product_name);
         holder.text_max_delivery_days.setText(max_delivery_days);
-
-//        Picasso.with(activity).load(productRecords.get(position).getThumb_url())
-//                .placeholder(R.drawable.no_image_placeholder_grid)
-//                .error(R.drawable.no_image_placeholder_grid)
-//                .into(holder.iv_pattern);
+        holder.txt_default_price.setText(default_price);
 
         RequestOptions options = new RequestOptions()
                 .priority(Priority.HIGH)
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .error(R.drawable.no_image_placeholder_grid);
 
-        GlideApp.with(activity).asBitmap().load(productRecords.get(position).getThumb_url()).apply(options).into(holder.iv_pattern);
+        GlideApp.with(activity).asBitmap().load(default_img).apply(options).into(holder.iv_pattern);
 
 
         holder.main_layout.setOnClickListener(new View.OnClickListener() {

@@ -30,6 +30,84 @@ public class TextileProductModel  implements Serializable
     private String min_delivery_days;
     private String max_delivery_days;
 
+    public String getStock_in_meters() {
+        return stock_in_meters;
+    }
+
+    public void setStock_in_meters(String stock_in_meters) {
+        this.stock_in_meters = stock_in_meters;
+    }
+
+    private String stock_in_meters;
+
+
+    private String season;
+
+    private String color_id;
+
+    public String getAttribute_id() {
+        return attribute_id;
+    }
+
+    public void setAttribute_id(String attribute_id) {
+        this.attribute_id = attribute_id;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public String getColor_id() {
+        return color_id;
+    }
+
+    public void setColor_id(String color_id) {
+        this.color_id = color_id;
+    }
+
+    public String getCountry_id() {
+        return country_id;
+    }
+
+    public void setCountry_id(String country_id) {
+        this.country_id = country_id;
+    }
+
+    public String getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(String brand_id) {
+        this.brand_id = brand_id;
+    }
+
+    public String getPattern_id() {
+        return pattern_id;
+    }
+
+    public void setPattern_id(String pattern_id) {
+        this.pattern_id = pattern_id;
+    }
+
+    private String country_id;
+
+    private String brand_id;
+
+    private String pattern_id;
+    private String sub_color_id;
+
+    public String getSub_color_id() {
+        return sub_color_id;
+    }
+
+    public void setSub_color_id(String sub_color_id) {
+        this.sub_color_id = sub_color_id;
+    }
+
     public String getDishdasha_brand_id() {
         return dishdasha_brand_id;
     }

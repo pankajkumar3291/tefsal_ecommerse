@@ -3,6 +3,7 @@ package com.tefsalkw.activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,13 +28,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.GetCartRecord;
-import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.GetCartRecord;
+import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -186,6 +187,8 @@ public class DishDashaProductActivity extends BaseActivity {
                 } else {
                     builder = new AlertDialog.Builder(this);
                 }
+
+
                 builder.setTitle("Cancel Textile Selection")
                         .setMessage("Are you sure you want to cancel?")
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -202,12 +205,21 @@ public class DishDashaProductActivity extends BaseActivity {
                                 // do nothing
                                 dialog.cancel();
                             }
-                        })
-                        .show();
+                        });
 
-            }
-            else
-            {
+
+                final AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+                        dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+                    }
+                });
+                dialog.show();
+
+
+            } else {
                 super.onBackPressed();
             }
         }

@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaProductActivity;
@@ -46,7 +45,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         this.activity = activity;
         this.storeModels = storeModels;
         this.flag = flag;
-        session=new SessionManager(activity);
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -86,9 +85,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         LinearLayout LL_diRTL;
 
 
-
-        public ViewHolder(View itemView)
-        {
+        public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
@@ -98,102 +95,89 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        String dis_amount = "";
 
-//        Picasso.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image())
-//                .placeholder(R.drawable.no_image_placeholder_non_grid)
-//                .error(R.drawable.no_image_placeholder_non_grid)
-//                .into(holder.img);
-
-        RequestOptions options = new RequestOptions()
-                .priority(Priority.HIGH)
-                .placeholder(R.drawable.no_image_placeholder_grid)
-                .error(R.drawable.no_image_placeholder_grid);
-
-        GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
+        try {
+            String dis_amount = "";
 
 
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
 
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-        holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
-       /// holder.ratingbar.setRating(Float.parseFloat("3"));
-        holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
-
-
-
-
-        if(session.getCustomerId().equals(""))
-        {
-            System.out.println("DISCOUNT AMOUNT====OF STORE ID=="+storeModels.get(holder.getAdapterPosition()).getStore_id()+"==="+storeModels.get(holder.getAdapterPosition()).getStore_discount());
-        }
+            GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
 
 
-        if(storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null) || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(""))
-        {
-            dis_amount = "0%";
-            holder.LL_di.setVisibility(GONE);
-            holder.LL_diRTL.setVisibility(GONE);
-        }
-        else
-        {
-            dis_amount=storeModels.get(holder.getAdapterPosition()).getStore_discount();
+            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            /// holder.ratingbar.setRating(Float.parseFloat("3"));
+            holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
 
-            if(session.isRTL())
-            {
-                holder.LL_diRTL.setVisibility(View.GONE);
-                holder.LL_di.setVisibility(View.GONE);
-            }
-            else
-            {
-                holder.LL_diRTL.setVisibility(View.GONE);
-                holder.LL_di.setVisibility(View.VISIBLE);
+
+            if (session.getCustomerId().equals("")) {
+                System.out.println("DISCOUNT AMOUNT====OF STORE ID==" + storeModels.get(holder.getAdapterPosition()).getStore_id() + "===" + storeModels.get(holder.getAdapterPosition()).getStore_discount());
             }
 
-            holder.txt_discount_amount.setText(dis_amount+ " OFF");
-            holder.txt_discount_amount1.setText(dis_amount+ " OFF");
 
+            if (storeModels.get(holder.getAdapterPosition()).getStore_discount() == null || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("")) {
+                dis_amount = "0%";
+                holder.LL_di.setVisibility(GONE);
+                holder.LL_diRTL.setVisibility(GONE);
+            } else {
+                dis_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
+
+                if (session.isRTL()) {
+                    holder.LL_diRTL.setVisibility(View.GONE);
+                    holder.LL_di.setVisibility(View.GONE);
+                } else {
+                    holder.LL_diRTL.setVisibility(View.GONE);
+                    holder.LL_di.setVisibility(View.VISIBLE);
+                }
+
+                holder.txt_discount_amount.setText(dis_amount + " OFF");
+                holder.txt_discount_amount1.setText(dis_amount + " OFF");
+
+            }
+
+
+            holder.main_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    if (flag.equals("dish")) {
+
+                        //==================== This code used for fresh item list without having color , season, country filter ============================
+                        TefalApp.getInstance().setColor("");
+                        TefalApp.getInstance().setSeason("");
+                        TefalApp.getInstance().setCountry("");
+                        TefalApp.getInstance().setSubColor("");
+                        TefalApp.getInstance().setBrand("");
+                        TefalApp.getInstance().setPattern("");
+
+
+                        TefalApp.getInstance().setFlage("1");
+                        TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
+                        TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+                        TefalApp.getInstance().setWhereFrom("textile");
+
+
+                        activity.startActivity(new Intent(activity, DishDashaProductActivity.class)
+                                .putExtra("title", storeModels.get(holder.getAdapterPosition()).getStore_name())
+                                //.putExtra("Flag", "1")
+                                /*.putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                                .putExtra("store_name",storeModels.get(holder.getAdapterPosition()).getStore_name())
+                                */.putExtra("fromWhere", "textile"));
+                    } else
+                        activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
+                                .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                                .putExtra("Flag", flag));
+                }
+            });
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
 
-
-        holder.main_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                activity.startActivity(new Intent(activity, DishDashaProductActivity.class)
-//                        .putExtra("title",storeModels.get(holder.getAdapterPosition()).getStore_name())
-//                        .putExtra("Flag","1")
-//                        .putExtra("store_id",storeModels.get(holder.getAdapterPosition()).getStore_id()));
-
-                if (flag.equals("dish"))
-                {
-
-                    //==================== This code used for fresh item list without having color , season, country filter ============================
-                    TefalApp.getInstance().setColor("");
-                    TefalApp.getInstance().setSeason("");
-                    TefalApp.getInstance().setCountry("");
-                    TefalApp.getInstance().setSubColor("");
-                    TefalApp.getInstance().setBrand("");
-                    TefalApp.getInstance().setPattern("");
-
-
-
-                    TefalApp.getInstance().setFlage("1");
-                    TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
-                    TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
-                    TefalApp.getInstance().setWhereFrom("textile");
-
-
-                    activity.startActivity(new Intent(activity, DishDashaProductActivity.class)
-                            .putExtra("title", storeModels.get(holder.getAdapterPosition()).getStore_name())
-                            //.putExtra("Flag", "1")
-                            /*.putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                            .putExtra("store_name",storeModels.get(holder.getAdapterPosition()).getStore_name())
-                            */.putExtra("fromWhere","textile"));
-                } else
-                    activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
-                            .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                            .putExtra("Flag", flag));
-            }
-        });
     }
 
 

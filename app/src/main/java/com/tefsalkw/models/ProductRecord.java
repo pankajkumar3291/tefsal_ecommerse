@@ -71,6 +71,25 @@ public class ProductRecord implements Serializable
 
     private  String thumb_url;
 
+    public String getDefault_price() {
+        return default_price;
+    }
+
+    public void setDefault_price(String default_price) {
+        this.default_price = default_price;
+    }
+
+    public String getDefault_product_image() {
+        return default_product_image;
+    }
+
+    public void setDefault_product_image(String default_product_image) {
+        this.default_product_image = default_product_image;
+    }
+
+    private  String default_price;
+    private  String default_product_image;
+
     public String getThumb_url() {
         return thumb_url;
     }

@@ -461,21 +461,17 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                             if (response != null) {
                                 try {
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    String status = jsonObject.getString("success");
-                                    if (status.equals("1")) {
 
-                                        String record = jsonObject.getString("record");
-                                        System.out.println("record==" + record);
 
-                                        Gson g = new Gson();
-                                        daraAbayaDetailRecord = g.fromJson(record, DaraAbayaDetailRecord.class);
 
-                                        if (daraAbayaDetailRecord != null) {
-                                            initViewsPostCall();
-                                        }
+                                    Gson g = new Gson();
+                                    daraAbayaDetailRecord = g.fromJson(response, DaraAbayaDetailRecord.class);
 
+                                    if (daraAbayaDetailRecord != null) {
+                                        initViewsPostCall();
                                     }
+
+
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }

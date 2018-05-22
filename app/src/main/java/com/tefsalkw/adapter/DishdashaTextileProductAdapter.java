@@ -87,10 +87,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
 
         if(textileModels.get(holder.getAdapterPosition()).getProduct_image().length!=0)
         {
-//            Picasso.with(activity).load(textileModels.get(holder.getAdapterPosition()).getProduct_image()[0])
-//                    .placeholder(R.drawable.no_image_placeholder_grid)
-//                    .error(R.drawable.no_image_placeholder_grid)
-//                    .into(holder.iv_pattern);
+
 
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)

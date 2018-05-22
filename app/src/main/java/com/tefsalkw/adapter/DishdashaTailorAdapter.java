@@ -98,98 +98,102 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        String discount_amount;
+        try
+        {
+            String discount_amount;
 
-        if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()) {
-//            Picasso.with(activity)
-//                    .load(storeModels.get(holder.getAdapterPosition()).getStore_image())
-//                    .error(R.drawable.no_image_placeholder_non_grid)
-//                    .placeholder(R.drawable.no_image_placeholder_non_grid)
-//                    .into(holder.img);
-            RequestOptions options = new RequestOptions()
-                    .priority(Priority.HIGH)
-                    .placeholder(R.drawable.no_image_placeholder_grid)
-                    .error(R.drawable.no_image_placeholder_grid);
+            if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()) {
 
-            GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
+                RequestOptions options = new RequestOptions()
+                        .priority(Priority.HIGH)
+                        .placeholder(R.drawable.no_image_placeholder_grid)
+                        .error(R.drawable.no_image_placeholder_grid);
 
-        } else {
-            holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
-        }
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-        holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
-        holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
+                GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
 
-        if (storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null)) {
-            holder.LL_di.setVisibility(View.GONE);
-            /// holder.txt_discount_off.setVisibility(View.GONE);
-        } else {
-            holder.LL_di.setVisibility(View.VISIBLE);
-            discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
-            holder.txt_discount_amount.setText(discount_amount + " OFF");
-        }
-
-
-        holder.main_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                if (flag.equals("dish")) {
-
-                   String styleName =  TefalApp.getInstance().getStyleName();
-
-                   if(styleName == null)
-                   {
-                       TefalApp.getInstance().setStyleName("TefsalDefault");
-                       styleName = "TefsalDefault";
-                   }
-                    if (styleName.equalsIgnoreCase("TefsalDefault")) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                        builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
-                                .setCancelable(false)
-                                .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-
-                                        showNamePrompt();
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-
-                                        dialog.cancel();
-                                    }
-                                });
-
-                        //Creating dialog box
-                        AlertDialog alert = builder.create();
-                        //Setting the title manually
-                        alert.setTitle("No Style Available");
-                        alert.show();
-                        return;
-                    }
-
-
-                    //==================== This code used for fresh item list without having color , season, country filter ============================
-                    TefalApp.getInstance().setColor("");
-                    TefalApp.getInstance().setSeason("");
-                    TefalApp.getInstance().setCountry("");
-
-                    TefalApp.getInstance().setFlage("1");
-                    TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
-                    TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
-                    TefalApp.getInstance().setWhereFrom("tailor");
-                    TefalApp.getInstance().setTailor_id(storeModels.get(holder.getAdapterPosition()).getStore_id());
-
-                    activity.startActivity(new Intent(activity, DishDashaProductActivity.class));
-
-
-                } else
-                    activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
-                            .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                            .putExtra("Flag", flag));
+            } else {
+                holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
             }
-        });
+            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
+
+            if (storeModels.get(holder.getAdapterPosition()).getStore_discount() == null || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("")) {
+                holder.LL_di.setVisibility(View.GONE);
+                /// holder.txt_discount_off.setVisibility(View.GONE);
+            } else {
+                holder.LL_di.setVisibility(View.VISIBLE);
+                discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
+                holder.txt_discount_amount.setText(discount_amount + " OFF");
+            }
+
+
+            holder.main_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    if (flag.equals("dish")) {
+
+                        String styleName =  TefalApp.getInstance().getStyleName();
+
+                        if(styleName == null)
+                        {
+                            TefalApp.getInstance().setStyleName("TefsalDefault");
+                            styleName = "TefsalDefault";
+                        }
+                        if (styleName.equalsIgnoreCase("TefsalDefault")) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                            builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
+                                    .setCancelable(false)
+                                    .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            showNamePrompt();
+                                        }
+                                    })
+                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            //Creating dialog box
+                            AlertDialog alert = builder.create();
+                            //Setting the title manually
+                            alert.setTitle("No Style Available");
+                            alert.show();
+                            return;
+                        }
+
+
+                        //==================== This code used for fresh item list without having color , season, country filter ============================
+                        TefalApp.getInstance().setColor("");
+                        TefalApp.getInstance().setSeason("");
+                        TefalApp.getInstance().setCountry("");
+
+                        TefalApp.getInstance().setFlage("1");
+                        TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
+                        TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+                        TefalApp.getInstance().setWhereFrom("tailor");
+                        TefalApp.getInstance().setTailor_id(storeModels.get(holder.getAdapterPosition()).getStore_id());
+
+                        activity.startActivity(new Intent(activity, DishDashaProductActivity.class));
+
+
+                    } else
+                        activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
+                                .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                                .putExtra("Flag", flag));
+                }
+            });
+        }
+        catch (Exception exc)
+        {
+
+        }
+
     }
 
     @Override

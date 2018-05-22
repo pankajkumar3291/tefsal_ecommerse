@@ -177,12 +177,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     public static TextView text_price;
     //private int meter=2;
     private float stock_meter = 0;
-    private float stock_meter_check = 0;
     private float price;
 
     //private int check_meter;
-    private float min_meter;
-    private float min_meter_check;
+    private float min_meter = 3;
 
     LinearLayout see_all_pattern_text_LL;
 
@@ -247,7 +245,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     private int dotsCount;
 
     private ImageView[] dots;
-    private DishDashaProductPagerAdapter dishDashaProductPagerAdapter;
 
 
 // This model object hold the data of the product from product list;
@@ -296,7 +293,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             ((LinearLayout) root).setDividerDrawable(drawable);
         }
 
-
         System.out.println("OUTPUT OF PRODUCT========" + textileProductModel.toString());
 
         if (textileProductModel == null) {
@@ -311,9 +307,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             try {
                 //meter=Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
                 min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-                min_meter_check = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-                stock_meter = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
-                stock_meter_check = Float.parseFloat(textileProductModel.getDishdasha_qty_meters());
+                stock_meter = Float.parseFloat(textileProductModel.getStock_in_meters());
 
                 System.out.println("Tefsal output======Minimum MIter===" + min_meter);
                 System.out.println("Tefsal output======Dishdasha stock===" + stock_meter);
@@ -334,16 +328,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 add_to_cart_lbl.setText("SOLD OUT");
                 text_price.setVisibility(View.GONE);
                 add_to_cart_btn.setEnabled(false);
-            } else {
-
             }
 
 
-            colorString = textileProductModel.getDishdasha_color_id();
-            seasonString = textileProductModel.getDishdasha_season().toLowerCase();
-            countryString = textileProductModel.getDishdasha_country_id();
-            subColorString = textileProductModel.getDishdasha_sub_color_id();
-            brandString = textileProductModel.getDishdasha_brand_id();
+            colorString = textileProductModel.getColor_id();
+            seasonString = textileProductModel.getSeason().toLowerCase();
+            countryString = textileProductModel.getCountry_id();
+            subColorString = textileProductModel.getSub_color_id();
+            brandString = textileProductModel.getBrand_id();
 
 
             TefalApp.getInstance().setColor(colorString);
@@ -353,10 +345,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         }
 
-//        colorString = TefalApp.getInstance().getColor();
-//        seasonString = TefalApp.getInstance().getSeason();
-//        countryString = TefalApp.getInstance().getCountry();
-//        subColorString = TefalApp.getInstance().getSubColor();
 
         System.out.println("TextileDetailActivity==============colorString==" + colorString);
         System.out.println("TextileDetailActivity==============seasonString==" + seasonString);
@@ -480,7 +468,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (min_meter < stock_meter_check) {
+                if (min_meter < stock_meter) {
                     min_meter++;
                     meter_value.setText("" + Math.round(min_meter));
 
@@ -494,7 +482,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         less_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (min_meter > min_meter_check) {
+                if (min_meter > stock_meter) {
                     min_meter--;
                     meter_value.setText("" + Math.round(min_meter));
                 }
@@ -957,12 +945,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-                    params.put("season", seasonString != null? seasonString : "");
-                    params.put("color_id", colorString != null? colorString : "");
-                    params.put("sub_color_id", subColorString != null? subColorString : "");
-                    params.put("country_id", countryString != null? countryString : "");
-                    params.put("brand_id", TefalApp.getInstance().getBrand() != null? TefalApp.getInstance().getBrand() : "");
-                    params.put("pattern_id", TefalApp.getInstance().getPattern() != null? TefalApp.getInstance().getPattern() : "");
+                    params.put("season", seasonString != null ? seasonString : "");
+                    params.put("color_id", colorString != null ? colorString : "");
+                    params.put("sub_color_id", subColorString != null ? subColorString : "");
+                    params.put("country_id", countryString != null ? countryString : "");
+                    params.put("brand_id", TefalApp.getInstance().getBrand() != null ? TefalApp.getInstance().getBrand() : "");
+                    params.put("pattern_id", TefalApp.getInstance().getPattern() != null ? TefalApp.getInstance().getPattern() : "");
 
 
                     Log.e("Tefsal store == ", url + params);
@@ -1446,32 +1434,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
     }
 
-    private void setUiPageViewController() {
-
-        dotsCount = dishDashaProductPagerAdapter.getCount();
-        if (dotsCount != 0) {
-            dots = new ImageView[dotsCount];
-
-            for (int i = 0; i < dotsCount; i++) {
-                dots[i] = new ImageView(this);
-                dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-
-                params.setMargins(20, 0, 20, 0);
-                viewPagerCountDots.addView(dots[i], params);
-            }
-            dots[0].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-        } else {
-            //do nothing
-        }
-
-        System.out.println("COUNT======" + dotsCount);
-
-    }
 
     // This adapter is used to controll the viewPager of Dialog
 

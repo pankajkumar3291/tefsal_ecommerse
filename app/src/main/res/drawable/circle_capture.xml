@@ -5,7 +5,7 @@
     android:viewportHeight="24.0">
     <path
         android:name="redCircle"
-        android:fillColor="@android:color/white"
+        android:fillColor="#ffffffff"
         android:strokeColor="#000"
         android:strokeLineCap="square"
         android:strokeLineJoin="miter"

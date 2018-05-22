@@ -1242,8 +1242,18 @@ public class MeasermentActivity extends BaseActivity {
                         // do nothing
                         dialog.cancel();
                     }
-                })
-                .show();
+                });
+
+
+        final AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+                dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+            }
+        });
+        dialog.show();
 
     }
 
