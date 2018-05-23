@@ -66,6 +66,10 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
+        @BindView(R.id.store_text)
+        TextView store_text;
+
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -83,11 +87,8 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .error(R.drawable.no_image_placeholder_grid);
 
-        String imgUrl = textileModels.get(position).getProduct_image().length > 0 ? textileModels.get(position).getProduct_image()[0] : "";
-
+        String imgUrl = textileModels.get(position).getDefault_image();
         GlideApp.with(activity).load(imgUrl).apply(options).into(holder.iv_pattern);
-
-
         holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
         holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice() + " KWD");
 
@@ -100,6 +101,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
             holder.txt_discount_amount.setText(discount_amount);
         }
 
+        holder.store_text.setText(textileModels.get(position).getStore_name());
 
         holder.text_max_delivery_days.setText(textileModels.get(holder.getAdapterPosition()).getMax_delivery_days());
         // System.out.println("ITEM ID==="+textileModels.get(holder.getAdapterPosition()).getDishdasha_attribute_id());

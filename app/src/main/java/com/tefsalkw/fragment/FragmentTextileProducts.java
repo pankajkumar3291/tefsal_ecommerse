@@ -262,7 +262,6 @@ public class FragmentTextileProducts extends BaseFragment {
                     LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     getPopupColorView = layoutInflater.inflate(R.layout.choose_color_panel, null);
 
-
                     FilterColorListAdapter filterColorListAdapter = new FilterColorListAdapter(colorsRecordModelArrayList, FragmentTextileProducts.this);
 
                     filterColorRecyclerView = (RecyclerView) getPopupColorView.findViewById(R.id.recycler_view);
@@ -458,8 +457,9 @@ public class FragmentTextileProducts extends BaseFragment {
 
         selectedColorModel = selectedColor;
         isColorSelected = true;
-        Log.e("selectedColorModel", "" + new Gson().toJson(selectedColorModel));
+
         if (selectedColor != null) {
+
             llimgSelectedColor.setVisibility(View.VISIBLE);
             imgRemoveColor.setVisibility(View.VISIBLE);
 
@@ -475,9 +475,6 @@ public class FragmentTextileProducts extends BaseFragment {
             imgSelectedColor.setBackground(layerDrawable);
             text_color.setTextSize(12);
 
-            if (selectedColorModel.getColor_name().toLowerCase().equalsIgnoreCase("all")) {
-                color = "";
-            }
 
             WebCallServiceStores();
 

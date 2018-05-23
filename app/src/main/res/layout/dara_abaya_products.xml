@@ -3,37 +3,37 @@
     xmlns:autofit="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_width="match_parent">
+    android:layout_marginBottom="5dp">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         card_view:cardCornerRadius="0dp">
 
         <RelativeLayout
-            android:layout_height="250dp"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
 
             <ImageView
                 android:id="@+id/iv_pattern"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
 
             <View
-                android:background="@drawable/gradient_transparent"
-                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_width="match_parent" />
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/gradient_transparent" />
 
             <TextView
                 android:id="@+id/txt_brand_name"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:padding="10dp"
                 android:text="@string/textile_product_card_name_text_text"
@@ -46,16 +46,18 @@
 
             <LinearLayout
                 android:id="@+id/LL_price_container"
-                android:layout_alignParentBottom="true"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/llDelivery"
                 android:orientation="vertical">
 
-                <TextView
+                <me.grantland.widget.AutofitTextView
                     android:id="@+id/txt_product_name"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:maxLines="3"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -63,65 +65,64 @@
                     android:text="--"
                     android:textAllCaps="true"
                     android:textColor="#fff"
-                    android:textSize="@dimen/text_normal"
+                    android:textSize="@dimen/text_mid"
                     android:textStyle="bold"
                     autofit:minTextSize="10sp" />
 
-                <TextView
+                <me.grantland.widget.AutofitTextView
                     android:id="@+id/txt_default_price"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:maxLines="3"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingTop="10dp"
                     android:text="--"
                     android:textAllCaps="true"
                     android:textColor="#fff"
                     android:textSize="@dimen/text_normal"
                     android:textStyle="bold"
                     autofit:minTextSize="10sp" />
-
 
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_width="wrap_content">
+                android:layout_marginRight="5dp">
 
                 <RelativeLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/text_max_delivery_days"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/textile_product_card_text_max_delivery_days_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_mid"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_below="@+id/text_max_delivery_days"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_max_delivery_days"
                         android:text="Days"
                         android:textColor="@color/colorWhite" />
 
                     <ImageView
                         android:id="@+id/icon_delivery"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_toRightOf="@+id/text_max_delivery_days"
-                        android:layout_width="25dp"
                         android:src="@drawable/icon_delivery" />
 
                 </RelativeLayout>

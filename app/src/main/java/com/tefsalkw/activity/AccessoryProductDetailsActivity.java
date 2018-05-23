@@ -271,6 +271,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                                     Gson g = new Gson();
                                     accessoryDetailRecord = g.fromJson(response, AccessoryDetailRecord.class);
 
+                                    Log.e("accessoryDetailRecord",response);
                                     initViewsPostCall(accessoryDetailRecord);
 
                                     product_image_viewPager.removeAllSliders();

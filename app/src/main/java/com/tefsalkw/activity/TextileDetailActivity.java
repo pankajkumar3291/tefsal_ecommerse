@@ -250,16 +250,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 // This model object hold the data of the product from product list;
 
     TextileProductModel textileProductModel = new TextileProductModel();
-
-    //colorWindow
-
+    //colorWindowō
     /*
      * This dialog is used to show the image which can zoom in zoom out from view pager
      * */
     Dialog dialog;
-
     //SessionManager sessionManager;
-
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
     DefaultSliderView textSliderView = null;
@@ -274,13 +270,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         session = new SessionManager(TextileDetailActivity.this);
         setSupportActionBar(toolbar);
-
-
         ic_filter.setVisibility(View.VISIBLE);
 
         textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
 
-        Log.e("textileProductModel",new Gson().toJson(textileProductModel));
+        Log.e("textileProductModel", new Gson().toJson(textileProductModel));
 
         text_price = (TextView) findViewById(R.id.text_price);
         System.out.println("Tefsal");
@@ -295,7 +289,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             ((LinearLayout) root).setDividerPadding(10);
             ((LinearLayout) root).setDividerDrawable(drawable);
         }
-
 
 
         if (textileProductModel == null) {
@@ -435,7 +428,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
         toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-        subText.setText(textileProductModel.getColor() + " - " + textileProductModel.getSub_color() != null ? textileProductModel.getSub_color() : "");
+        subText.setText(textileProductModel.getColor() + " - " + textileProductModel.getSub_color());
 
         // if (!DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image().equals(""))
         //Picasso.with(this).load(DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image()).into(product_img);

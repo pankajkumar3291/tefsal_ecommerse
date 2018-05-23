@@ -30,6 +30,35 @@ public class TextileProductModel  implements Serializable
     private String min_delivery_days;
     private String max_delivery_days;
 
+
+    public String getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(String store_id) {
+        this.store_id = store_id;
+    }
+
+    public String getStore_name() {
+        return store_name;
+    }
+
+    public void setStore_name(String store_name) {
+        this.store_name = store_name;
+    }
+
+    public String getDefault_image() {
+        return default_image;
+    }
+
+    public void setDefault_image(String default_image) {
+        this.default_image = default_image;
+    }
+
+    private String store_id;
+    private String store_name;
+    private String default_image;
+
     public String getPrice_pr_miter() {
         return price_pr_miter;
     }

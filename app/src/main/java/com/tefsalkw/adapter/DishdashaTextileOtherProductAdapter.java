@@ -72,8 +72,6 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
 
 
 
-
-
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
