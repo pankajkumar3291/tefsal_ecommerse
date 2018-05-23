@@ -2,7 +2,6 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DaraAbayaActivity;
-import com.tefsalkw.activity.MeasermentActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Config;
@@ -170,10 +168,11 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
             @Override
             public void onClick(View v) {
 
-                //Your work here---
-                //wrapStyleData( position, "edit");
+
+                String minMeters = record.get(position).getMin_meters();
+                minMeters = minMeters != null ? minMeters : "3";
                 TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
-                TefalApp.getInstance().setMin_meters(record.get(position).getMin_meters());
+                TefalApp.getInstance().setMin_meters(minMeters);
                 TefalApp.getInstance().setStyleName(record.get(position).getName());
                 activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag", "dish"));
             }
@@ -212,51 +211,5 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
         return record.size();
     }
 
-    public void wrapStyleData(int position, String action) {
-
-        Bundle bundle = new Bundle();
-        DishdashaStylesRecord mDishdashaStylesRecord = new DishdashaStylesRecord();
-
-
-        mDishdashaStylesRecord.setNeck(record.get(position).getNeck().toString());
-        mDishdashaStylesRecord.setChest(record.get(position).getChest().toString());
-        mDishdashaStylesRecord.setWrist(record.get(position).getWrist().toString());
-        mDishdashaStylesRecord.setWaist(record.get(position).getWaist().toString());
-        mDishdashaStylesRecord.setArm(record.get(position).getArm().toString());
-        mDishdashaStylesRecord.setFront_height(record.get(position).getFront_height().toString());
-        mDishdashaStylesRecord.setBack_height(record.get(position).getBack_height().toString());
-        mDishdashaStylesRecord.setShoulder(record.get(position).getShoulder().toString());
-
-
-        mDishdashaStylesRecord.setButtons(record.get(position).getButtons());
-        mDishdashaStylesRecord.setPen_pocket(record.get(position).getPen_pocket());
-        mDishdashaStylesRecord.setMobile_pocket(record.get(position).getMobile_pocket());
-        //  mDishdashaStylesRecord.setWide(record.get(position).getWide());
-        mDishdashaStylesRecord.setCollar_buttons(record.get(position).getCollar_buttons());
-        mDishdashaStylesRecord.setCufflink(record.get(position).getCufflink());
-        mDishdashaStylesRecord.setId(record.get(position).getId());
-
-
-        mDishdashaStylesRecord.setCategory(record.get(position).getCategory());
-        mDishdashaStylesRecord.setNarrow(record.get(position).getNarrow());
-        mDishdashaStylesRecord.setUpdated_at(record.get(position).getUpdated_at());
-        mDishdashaStylesRecord.setCreated_at(record.get(position).getCreated_at());
-        mDishdashaStylesRecord.setName(record.get(position).getName());
-        mDishdashaStylesRecord.setUser_id(session.getCustomerId());
-
-
-        bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        mTefalApp = TefalApp.getInstance();
-        mTefalApp.setmAction(action);
-        mTefalApp.setmCategory("1");
-
-        /*bundle.putString("ACTION",action);
-        bundle.putString("CATEGORY","2");*/
-
-        Intent i = new Intent(activity, MeasermentActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.putExtras(bundle);
-        activity.startActivity(i);
-    }
 
 }

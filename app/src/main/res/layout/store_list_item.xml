@@ -28,6 +28,7 @@
         android:layout_marginTop="-130dp"
         android:background="@color/colorGold"
         android:gravity="center"
+        android:layoutDirection="ltr"
         android:orientation="horizontal"
         android:padding="5dp"
         android:rotation="35"
@@ -51,19 +52,19 @@
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
-        android:layoutDirection="ltr"
-        android:clipChildren="false"
-        android:pivotX="40%"
-        android:layout_marginTop="15dp"
         android:id="@+id/LL_diRTL"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:background="@color/colorGold"
+        android:clipChildren="false"
+        android:gravity="start"
+        android:layoutDirection="ltr"
         android:orientation="vertical"
         android:padding="5dp"
-        android:gravity="start"
-        android:rotation="-35">
+        android:pivotX="40%"
+        android:rotation="-35"
+        android:visibility="gone">
 
         <TextView
 

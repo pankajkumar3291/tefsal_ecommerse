@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.models.ColorsAcc;
-import com.tefsalkw.models.Sizes;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
-import com.tefsalkw.models.ZaraDaraSizeModel;
+import com.tefsalkw.models.ColorsAcc;
 
 import java.util.List;
 
@@ -64,6 +62,8 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
             TefalApp.getInstance().setCurrentSizeText(productSizesList.get(position).getSizes().getSize());
+            AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
+            accessoryProductDetailsActivity.showSizeOnColorSelection(productSizesList.get(position));
 
 
         } else {
@@ -87,8 +87,6 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
 
             }
         });
-
-
 
 
     }

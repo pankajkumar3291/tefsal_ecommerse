@@ -13,26 +13,25 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
-import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
+import com.tefsalkw.models.TextileProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<DishdashaTextileProductAdapter.ViewHolder>
-{
+
+public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<DishdashaTextileProductAdapter.ViewHolder> {
 
     private Activity activity;
     public static List<TextileProductModel> textileModels = new ArrayList<>();
     private Context context;
 
 
-
-    String storeId,flag;
+    String storeId, flag;
 
     public DishdashaTextileProductAdapter(Activity activity, List<TextileProductModel> textileModels, String storeId, String flag) {
         this.activity = activity;
@@ -67,9 +66,6 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         @BindView(R.id.txt_discount_amount)
         TextView txt_discount_amount;
 
-        @BindView(R.id.txt_discount_off)
-        TextView txt_discount_off;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -79,46 +75,31 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
 
-        // This check is for whether the image is available or not..................................
-        String discount_amount="";
+        RequestOptions options = new RequestOptions()
+                .priority(Priority.HIGH)
+                .placeholder(R.drawable.no_image_placeholder_grid)
+                .error(R.drawable.no_image_placeholder_grid);
 
-        if(textileModels.get(holder.getAdapterPosition()).getProduct_image().length!=0)
-        {
+        String imgUrl = textileModels.get(position).getProduct_image().length > 0 ? textileModels.get(position).getProduct_image()[0] : "";
 
+        GlideApp.with(activity).load(imgUrl).apply(options).into(holder.iv_pattern);
 
-            RequestOptions options = new RequestOptions()
-                    .priority(Priority.HIGH)
-                    .placeholder(R.drawable.no_image_placeholder_grid)
-                    .error(R.drawable.no_image_placeholder_grid);
-
-            GlideApp.with(activity).load(textileModels.get(holder.getAdapterPosition()).getProduct_image()[0]).apply(options).into(holder.iv_pattern);
-
-        }
-        else
-        {
-            holder.iv_pattern.setImageResource(R.drawable.no_image_placeholder_grid);
-        }
-       System.out.println("PRODUCT IMAGE SIZE==="+textileModels.get(holder.getAdapterPosition()).getProduct_image().length);
 
         holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
-        holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice()+" KWD");
+        holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice() + " KWD");
 
-        if(textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals(null)|| textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals(""))
-        {
-            discount_amount="0%";
-            holder.txt_discount_off.setVisibility(View.GONE);
+        if (textileModels.get(holder.getAdapterPosition()).getProduct_discount() == null || textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals("")) {
+
             holder.txt_discount_amount.setVisibility(View.GONE);
-        }
-        else
-        {
-            discount_amount=textileModels.get(holder.getAdapterPosition()).getProduct_discount();
+        } else {
+            String discount_amount = "";
+            discount_amount = textileModels.get(holder.getAdapterPosition()).getProduct_discount();
+            holder.txt_discount_amount.setText(discount_amount);
         }
 
-
-        holder.txt_discount_amount.setText(discount_amount);
 
         holder.text_max_delivery_days.setText(textileModels.get(holder.getAdapterPosition()).getMax_delivery_days());
         // System.out.println("ITEM ID==="+textileModels.get(holder.getAdapterPosition()).getDishdasha_attribute_id());
@@ -126,11 +107,11 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
             @Override
             public void onClick(View view) {
 
-                    activity.startActivity(new Intent(activity, TextileDetailActivity.class)
-                            .putExtra("storeID", storeId)
-                            .putExtra("pos", position)
-                            .putExtra("product_name",textileModels.get(holder.getAdapterPosition()).getProduct_name())
-                            .putExtra("textileProductModel",textileModels.get(position)));
+                activity.startActivity(new Intent(activity, TextileDetailActivity.class)
+                        .putExtra("storeID", storeId)
+                        .putExtra("pos", position)
+                        .putExtra("product_name", textileModels.get(holder.getAdapterPosition()).getProduct_name())
+                        .putExtra("textileProductModel", textileModels.get(position)));
 
 
             }

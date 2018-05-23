@@ -30,6 +30,16 @@ public class TextileProductModel  implements Serializable
     private String min_delivery_days;
     private String max_delivery_days;
 
+    public String getPrice_pr_miter() {
+        return price_pr_miter;
+    }
+
+    public void setPrice_pr_miter(String price_pr_miter) {
+        this.price_pr_miter = price_pr_miter;
+    }
+
+    private String price_pr_miter;
+
     public String getStock_in_meters() {
         return stock_in_meters;
     }

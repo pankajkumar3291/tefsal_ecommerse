@@ -279,6 +279,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         ic_filter.setVisibility(View.VISIBLE);
 
         textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
+
+        Log.e("textileProductModel",new Gson().toJson(textileProductModel));
+
         text_price = (TextView) findViewById(R.id.text_price);
         System.out.println("Tefsal");
 
@@ -293,7 +296,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             ((LinearLayout) root).setDividerDrawable(drawable);
         }
 
-        System.out.println("OUTPUT OF PRODUCT========" + textileProductModel.toString());
+
 
         if (textileProductModel == null) {
             RL_no_product_found_container.setVisibility(View.VISIBLE);
@@ -345,11 +348,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         }
 
-
-        System.out.println("TextileDetailActivity==============colorString==" + colorString);
-        System.out.println("TextileDetailActivity==============seasonString==" + seasonString);
-        System.out.println("TextileDetailActivity==============countryString==" + countryString);
-        System.out.println("TextileDetailActivity==============StoreId==" + TefalApp.getInstance().getStoreId());
         try {
 
             text_price.setText("PRICE : " + Math.round(price * min_meter) + " KWD");
@@ -358,10 +356,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             System.out.println("Error===============" + ex);
         }
 
-        /*text_price=(TextView)findViewById(R.id.text_price);
-        text_price.setText("PRICE : "+Integer.parseInt(str[0])*meter+" KWD");
-        txt_min_meter.setText(""+meter+" MIN METERS REQUIRED");*/
-        // toolbar_title.setText(DishdashaTextileProductAdapter.textileModels.get(position).getPrice()+".000 KWD");
 
         ic_filter.setVisibility(View.VISIBLE);
         btn_back.setOnClickListener(new View.OnClickListener() {

@@ -89,9 +89,9 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
 
 
         try {
+
+
             String discount_amount;
-
-
             String brand_name = productRecords.get(position).getBrandName();
             String product_name = productRecords.get(position).getProductName();
             String store = productRecords.get(position).getStoreName();

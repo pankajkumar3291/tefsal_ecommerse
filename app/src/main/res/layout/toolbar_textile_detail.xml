@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/toolbar_dishdasha_product_activity_subText_text"
+                android:text=""
                 android:textColor="@color/colorAccent" />
         </RelativeLayout>
 
