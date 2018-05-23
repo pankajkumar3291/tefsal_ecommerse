@@ -7,7 +7,7 @@ public class AccessoriesListResponseNew implements Serializable {
 
     private String message;
 
-    private List<AccessoriesModelNew> record;
+    private List<AccessoriesRecord> record;
 
     private String status;
 
@@ -19,11 +19,11 @@ public class AccessoriesListResponseNew implements Serializable {
         this.message = message;
     }
 
-    public List<AccessoriesModelNew> getRecord() {
+    public List<AccessoriesRecord> getRecord() {
         return record;
     }
 
-    public void setRecord(List<AccessoriesModelNew> record) {
+    public void setRecord(List<AccessoriesRecord> record) {
         this.record = record;
     }
 

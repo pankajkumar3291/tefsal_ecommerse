@@ -233,7 +233,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / QTY");
             //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
             //  holder.sub_text_textile.setVisibility(GONE);
-            holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+            holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity());
             if (storeModels.get(position2).getDiscount() > 0) {
                 holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
                 holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));

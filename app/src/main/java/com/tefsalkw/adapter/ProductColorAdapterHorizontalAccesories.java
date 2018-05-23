@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.tefsalkw.models.ColorsAcc;
 import com.tefsalkw.models.Sizes;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 
 import java.util.List;
 
@@ -24,11 +26,11 @@ import butterknife.ButterKnife;
 
 public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapter<ProductColorAdapterHorizontalAccesories.ViewHolder> {
 
-    private List<Sizes> productSizesList;
+    private List<ColorsAcc> productSizesList;
     private Activity activity;
 
 
-    public ProductColorAdapterHorizontalAccesories(List<Sizes> productSizesList, Activity activity) {
+    public ProductColorAdapterHorizontalAccesories(List<ColorsAcc> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
 
@@ -47,12 +49,11 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(final ProductColorAdapterHorizontalAccesories.ViewHolder holder, final int position) {
 
-        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
-        System.out.println("productSizesList=======" + productSizesList.get(position).getColors());
-        String colorIs = productSizesList.get(position).getColors().get(0).getColor();
+
+        String colorIs = productSizesList.get(position).getColor();
 
         if (colorIs != null) {
-            holder.sizeText.setText(productSizesList.get(position).getColors().get(0).getColor());
+            holder.sizeText.setText(colorIs);
 
         } else {
             holder.sizeText.setText("Default");
@@ -62,8 +63,7 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
 
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
-            //TefalApp.getInstance().setCurrentSizePositionIs(position);
-
+            TefalApp.getInstance().setCurrentSizeText(productSizesList.get(position).getSizes().getSize());
 
 
         } else {
@@ -88,10 +88,7 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
             }
         });
 
-//        if(position == 0)
-//        {
-//            holder.sizeText.performClick();
-//        }
+
 
 
     }

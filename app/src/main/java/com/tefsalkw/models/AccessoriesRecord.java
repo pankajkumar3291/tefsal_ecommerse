@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by Hp on 20-11-2017.
  */
 
-public class AccessoriesRecord implements Serializable{
+public class AccessoriesRecord implements Serializable {
     @SerializedName("price")
     @Expose
     private String price;
@@ -38,9 +38,38 @@ public class AccessoriesRecord implements Serializable{
     @Expose
     private String storeName;
 
+
+    @SerializedName("tefsal_product_id")
+    @Expose
     private String tefsal_product_id;
 
+    @SerializedName("store_id")
+    @Expose
     private String store_id;
+
+    @SerializedName("default_image")
+    @Expose
+    private String default_image;
+
+    public String getDefault_image() {
+        return default_image;
+    }
+
+    public void setDefault_image(String default_image) {
+        this.default_image = default_image;
+    }
+
+    public String getDefault_price() {
+        return default_price;
+    }
+
+    public void setDefault_price(String default_price) {
+        this.default_price = default_price;
+    }
+
+    @SerializedName("default_price")
+    @Expose
+    private String default_price;
 
     public String getStore_id() {
         return store_id;
@@ -52,7 +81,7 @@ public class AccessoriesRecord implements Serializable{
 
     @SerializedName("accessory_product_image")
     @Expose
-   private String[] accessory_product_image;
+    private String[] accessory_product_image;
 
     @SerializedName("min_delivery_days")
     @Expose
@@ -67,7 +96,6 @@ public class AccessoriesRecord implements Serializable{
     @SerializedName("product_discount")
     @Expose
     private String product_discount;
-
 
 
     public String getMin_delivery_days() {

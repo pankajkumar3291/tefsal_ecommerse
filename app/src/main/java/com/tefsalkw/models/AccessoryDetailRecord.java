@@ -1,161 +1,159 @@
 package com.tefsalkw.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Dell on 03/13/2018.
  */
 
-public class AccessoryDetailRecord {
+public class AccessoryDetailRecord implements Serializable {
 
-    private List<Sizes> sizes;
-
-    private String sub_cat_name;
-
-    private String product_generated_id;
-
+    @SerializedName("tefsal_product_id")
+    @Expose
+    private Integer tefsalProductId;
+    @SerializedName("store_name")
+    @Expose
+    private String storeName;
+    @SerializedName("sub_cat_name")
+    @Expose
+    private String subCatName;
+    @SerializedName("product_name")
+    @Expose
+    private String productName;
+    @SerializedName("product_desc")
+    @Expose
+    private String productDesc;
+    @SerializedName("tag")
+    @Expose
     private String tag;
-
-    private String max_delivery_days;
-
-    private String product_name;
-
-    private String product_desc;
-
-    private String tefsal_product_id;
-
+    @SerializedName("min_delivery_days")
+    @Expose
+    private Integer minDeliveryDays;
+    @SerializedName("max_delivery_days")
+    @Expose
+    private Integer maxDeliveryDays;
+    @SerializedName("brand_name")
+    @Expose
+    private String brandName;
+    @SerializedName("published")
+    @Expose
     private String published;
+    @SerializedName("product_generated_id")
+    @Expose
+    private String productGeneratedId;
+    @SerializedName("default_image")
+    @Expose
+    private String defaultImage;
+    @SerializedName("colors")
+    @Expose
+    private List<ColorsAcc> colors = null;
 
-    private String min_delivery_days;
-
-    private String store_name;
-
-    private String brand_name;
-
-    public List<Sizes> getSizes ()
-    {
-        return sizes;
+    public Integer getTefsalProductId() {
+        return tefsalProductId;
     }
 
-    public void setSizes (List<Sizes> sizes)
-    {
-        this.sizes = sizes;
+    public void setTefsalProductId(Integer tefsalProductId) {
+        this.tefsalProductId = tefsalProductId;
     }
 
-    public String getSub_cat_name ()
-    {
-        return sub_cat_name;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setSub_cat_name (String sub_cat_name)
-    {
-        this.sub_cat_name = sub_cat_name;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
-    public String getProduct_generated_id ()
-    {
-        return product_generated_id;
+    public String getSubCatName() {
+        return subCatName;
     }
 
-    public void setProduct_generated_id (String product_generated_id)
-    {
-        this.product_generated_id = product_generated_id;
+    public void setSubCatName(String subCatName) {
+        this.subCatName = subCatName;
     }
 
-    public String getTag ()
-    {
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductDesc() {
+        return productDesc;
+    }
+
+    public void setProductDesc(String productDesc) {
+        this.productDesc = productDesc;
+    }
+
+    public String getTag() {
         return tag;
     }
 
-    public void setTag (String tag)
-    {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public String getMax_delivery_days ()
-    {
-        return max_delivery_days;
+    public Integer getMinDeliveryDays() {
+        return minDeliveryDays;
     }
 
-    public void setMax_delivery_days (String max_delivery_days)
-    {
-        this.max_delivery_days = max_delivery_days;
+    public void setMinDeliveryDays(Integer minDeliveryDays) {
+        this.minDeliveryDays = minDeliveryDays;
     }
 
-    public String getProduct_name ()
-    {
-        return product_name;
+    public Integer getMaxDeliveryDays() {
+        return maxDeliveryDays;
     }
 
-    public void setProduct_name (String product_name)
-    {
-        this.product_name = product_name;
+    public void setMaxDeliveryDays(Integer maxDeliveryDays) {
+        this.maxDeliveryDays = maxDeliveryDays;
     }
 
-    public String getProduct_desc ()
-    {
-        return product_desc;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setProduct_desc (String product_desc)
-    {
-        this.product_desc = product_desc;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
-    public String getTefsal_product_id ()
-    {
-        return tefsal_product_id;
-    }
-
-    public void setTefsal_product_id (String tefsal_product_id)
-    {
-        this.tefsal_product_id = tefsal_product_id;
-    }
-
-    public String getPublished ()
-    {
+    public String getPublished() {
         return published;
     }
 
-    public void setPublished (String published)
-    {
+    public void setPublished(String published) {
         this.published = published;
     }
 
-    public String getMin_delivery_days ()
-    {
-        return min_delivery_days;
+    public String getProductGeneratedId() {
+        return productGeneratedId;
     }
 
-    public void setMin_delivery_days (String min_delivery_days)
-    {
-        this.min_delivery_days = min_delivery_days;
+    public void setProductGeneratedId(String productGeneratedId) {
+        this.productGeneratedId = productGeneratedId;
     }
 
-    public String getStore_name ()
-    {
-        return store_name;
+    public String getDefaultImage() {
+        return defaultImage;
     }
 
-    public void setStore_name (String store_name)
-    {
-        this.store_name = store_name;
+    public void setDefaultImage(String defaultImage) {
+        this.defaultImage = defaultImage;
     }
 
-    public String getBrand_name ()
-    {
-        return brand_name;
+    public List<ColorsAcc> getColors() {
+        return colors;
     }
 
-    public void setBrand_name (String brand_name)
-    {
-        this.brand_name = brand_name;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [sizes = "+sizes+", sub_cat_name = "+sub_cat_name+", product_generated_id = "+product_generated_id+", tag = "+tag+", max_delivery_days = "+max_delivery_days+", product_name = "+product_name+", product_desc = "+product_desc+", tefsal_product_id = "+tefsal_product_id+", published = "+published+", min_delivery_days = "+min_delivery_days+", store_name = "+store_name+", brand_name = "+brand_name+"]";
+    public void setColors(List<ColorsAcc> colors) {
+        this.colors = colors;
     }
 
 }

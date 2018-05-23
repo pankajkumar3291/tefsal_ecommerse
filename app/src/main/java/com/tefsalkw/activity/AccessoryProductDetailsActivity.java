@@ -41,7 +41,6 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
@@ -52,8 +51,8 @@ import com.tefsalkw.dialogs.DialogKart;
 import com.tefsalkw.models.AccessoriesRecord;
 import com.tefsalkw.models.AccessoryDetailRecord;
 import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.Colors;
-import com.tefsalkw.models.Sizes;
+import com.tefsalkw.models.ColorsAcc;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -152,12 +151,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     boolean isSizeSelected = false;
 
-    Set<String> uniqueColorSet = new HashSet<>();
 
-    List<Sizes> productSizesList = new ArrayList<>();
-
-    Colors colorModel = new Colors();
     public static float price;
+
+
+    Set<String> uniqueSizeSet = new HashSet<>();
+
+    List<ZaraDaraSizeModel> productSizesList = new ArrayList<>();
+
+
+    ColorsAcc selectedColor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,23 +263,42 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         public void onResponse(String response) {
 
 
-                            System.out.println("response==" + response.toString());
-
-
                             SimpleProgressBar.closeProgress();
 
                             if (response != null) {
                                 try {
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    String status = jsonObject.getString("success");
-                                    if (status.equals("1")) {
 
-                                        String record = jsonObject.getString("record");
-                                        Gson g = new Gson();
-                                        accessoryDetailRecord = g.fromJson(record, AccessoryDetailRecord.class);
+                                    Gson g = new Gson();
+                                    accessoryDetailRecord = g.fromJson(response, AccessoryDetailRecord.class);
 
-                                        initViewsPostCall(accessoryDetailRecord);
+                                    initViewsPostCall(accessoryDetailRecord);
+
+                                    product_image_viewPager.removeAllSliders();
+
+                                    String[] imagesList = accessoryDetailRecord.getColors() != null ? accessoryDetailRecord.getColors().get(0).getImages() : null;
+
+                                    if (imagesList != null && imagesList.length <= 1) {
+                                        product_image_viewPager.stopAutoCycle();
+                                    } else {
+                                        product_image_viewPager.startAutoCycle();
                                     }
+
+                                    if (imagesList != null) {
+                                        for (String imgUrl : imagesList) {
+
+                                            DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
+                                            textSliderView.setOnSliderClickListener(onSliderClickListener);
+                                            textSliderView
+                                                    .image(imgUrl)
+                                                    .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
+                                            product_image_viewPager.addSlider(textSliderView);
+
+                                        }
+                                    }
+
+
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }
@@ -323,155 +345,71 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
 
 
-        //Color Array Fill
-
-
-        //Filtered Colors
-        for (Sizes sizes : accessoryDetailRecord.getSizes()) {
-
-            if (uniqueColorSet.add(sizes.getColors().get(0).getColor())) {
-
-                productSizesList.add(sizes);
-
-
-            }
-
-
-        }
-
-
-        productColorAdapterHorizontalAccesories = new ProductColorAdapterHorizontalAccesories(productSizesList, this);
+        productColorAdapterHorizontalAccesories = new ProductColorAdapterHorizontalAccesories(accessoryDetailRecord.getColors(), this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
-        TefalApp.getInstance().setAccColorPosition(-1);
+        TefalApp.getInstance().setAccColorPosition(0);
         colorRecyclerView.setAdapter(productColorAdapterHorizontalAccesories);
 
 
         // Bind Size Circle
 
-        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(accessoryDetailRecord.getSizes(), AccessoryProductDetailsActivity.this);
+
+        for (ColorsAcc colorsAcc : accessoryDetailRecord.getColors()) {
+            if (uniqueSizeSet.add(colorsAcc.getSizes().getSize())) {
+
+                productSizesList.add(colorsAcc.getSizes());
+
+
+            }
+
+        }
+
+
+        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(productSizesList, AccessoryProductDetailsActivity.this);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
         TefalApp.getInstance().setCurrentColorText("-1");
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
 
 
-        // Bind Slider
-
-        //show images based on selection
-        try {
-
-
-            List<String> imagesList = new ArrayList<>();
-
-            for (Sizes sizesNew : accessoryDetailRecord.getSizes()) {
-
-                if (sizesNew != null && sizesNew.getColors() != null) {
-                    for (Colors colors : sizesNew.getColors()) {
-
-                        for (String imgUrl : colors.getImages()) {
-
-                            imagesList.add(imgUrl);
-
-                        }
-
-
-                    }
-                }
-            }
-
-            product_image_viewPager.removeAllSliders();
-
-            if (imagesList != null && imagesList.size() <= 1) {
-                product_image_viewPager.stopAutoCycle();
-            }
-            else
-            {
-                product_image_viewPager.startAutoCycle();
-            }
-            for (String imgUrl : imagesList) {
-
-                Log.e("imgUrl", imgUrl);
-                DefaultSliderView textSliderView = new DefaultSliderView(this);
-                textSliderView.setOnSliderClickListener(onSliderClickListener);
-                textSliderView
-                        .image(imgUrl)
-                        .setScaleType(BaseSliderView.ScaleType.Fit);
-
-                product_image_viewPager.addSlider(textSliderView);
-            }
-
-
-        } catch (Exception exc) {
-
-        }
-
-
     }
 
-    public void showSizeOnColorSelection(Sizes sizes) {
+    public void showSizeOnColorSelection(ColorsAcc colorsAcc) {
 
+        selectedColor = colorsAcc;
         TefalApp.getInstance().setCurrentSizePositionIs(-1);
-        String colorIs = sizes.getColors().get(0).getColor();
+        String sizeIs = colorsAcc.getSizes().getSize();
 
-        TefalApp.getInstance().setCurrentColorText(colorIs != null ? colorIs : "Default");
+        TefalApp.getInstance().setCurrentSizeText(sizeIs);
 
         productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
 
-        isSizeSelected = false;
+        if (selectedColor != null) {
 
-    }
-
-    public void showSelectedSizeData(int position, Sizes sizes) {
-
-        this.currentColorPosition = position;
-
-        product_image_viewPager.removeAllSliders();
-
-        String[] imagesList = accessoryDetailRecord.getSizes().get(position).getColors().get(0).getImages();
-
-        if (imagesList != null && imagesList.length <= 1) {
-            product_image_viewPager.stopAutoCycle();
-        }
-        else
-        {
-            product_image_viewPager.startAutoCycle();
-        }
-
-        if (imagesList != null) {
-            for (String imgUrl : imagesList) {
-
-                DefaultSliderView textSliderView = new DefaultSliderView(this);
-                textSliderView.setOnSliderClickListener(onSliderClickListener);
-                textSliderView
-                        .image(imgUrl)
-                        .setScaleType(BaseSliderView.ScaleType.Fit);
-
-
-                product_image_viewPager.addSlider(textSliderView);
-
-            }
-        }
-
-
-        if (sizes != null) {
-
-            colorModel = sizes.getColors().get(0);
-
-            int qty = colorModel.getQty() != null ? Integer.parseInt(colorModel.getQty()) : 0;
+            int qty = selectedColor.getSizes().getQuantity();
             if (qty == 0) {
                 add_cart_btn.setText("SOLD OUT");
 
 
             }
 
-            if (colorModel.getPrice() != null) {
-                price = Float.parseFloat(colorModel.getPrice());
+            if (selectedColor.getSizes().getPrice() != null) {
+                price = Float.parseFloat(selectedColor.getSizes().getPrice());
                 text_price.setText("PRICE : " + price + " KWD");
             }
 
 
         }
+
+        isSizeSelected = true;
+
+    }
+
+    public void showSelectedSizeData() {
+
+
+
 
 
         isSizeSelected = true;
@@ -738,19 +676,17 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
-        obj.put("product_id", accessoriesRecord.getTefsal_product_id());
-        obj.put("item_id", accessoryDetailRecord.getSizes().get(currentColorPosition).getColors().get(0).getAttribute_id());
+        obj.put("product_id", accessoriesRecord.getTefsalProductId());
+        obj.put("item_id", selectedColor != null ? selectedColor.getAttribute_id() : "");
 
         obj.put("category_id", "4");
 
 
-        if (accessoryDetailRecord != null) {
-
-            String colorSelected = accessoryDetailRecord.getSizes().get(currentColorPosition).getColors().get(0).getColor();
+        if (selectedColor != null) {
 
             JSONObject item_details = new JSONObject();
-            item_details.put("size", accessoryDetailRecord.getSizes().get(currentColorPosition).getSize());
-            item_details.put("color", colorSelected == null ? "Default" : colorSelected);
+            item_details.put("size", selectedColor.getSizes().getSize());
+            item_details.put("color", selectedColor == null ? "Default" : selectedColor.getColor());
             item_details.put("item_quantity", "1");
             obj.put("item_details", item_details);
         }
@@ -783,10 +719,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
             @Override
             public void onPageSelected(int position) {
-                  /*  for (int i = 0; i < dotsCount; i++) {
-                        dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-                    }
-                    dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));*/
             }
 
             @Override
@@ -861,7 +793,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
 
-          //  Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+            //  Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
@@ -958,7 +890,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
-           // Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
+            // Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
 
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)

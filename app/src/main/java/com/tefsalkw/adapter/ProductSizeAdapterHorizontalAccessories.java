@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.models.Sizes;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.ZaraDaraSizeModel;
 
 import java.util.List;
 
@@ -24,12 +24,11 @@ import butterknife.ButterKnife;
 
 public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapter<ProductSizeAdapterHorizontalAccessories.ViewHolder> {
 
-    private List<Sizes> productSizesList;
+    private List<ZaraDaraSizeModel> productSizesList;
     private Activity activity;
 
 
-
-    public ProductSizeAdapterHorizontalAccessories(List<Sizes> productSizesList, Activity activity) {
+    public ProductSizeAdapterHorizontalAccessories(List<ZaraDaraSizeModel> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
 
@@ -46,34 +45,21 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
     }
 
     @Override
-    public void onBindViewHolder(final ProductSizeAdapterHorizontalAccessories.ViewHolder holder, final int position) {
+    public void onBindViewHolder(ProductSizeAdapterHorizontalAccessories.ViewHolder holder, int position) {
 
 
-       final Sizes model = productSizesList.get(position);
+        final ZaraDaraSizeModel model = productSizesList.get(position);
 
-        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
-        System.out.println("productSizesList=======" + model.getSize());
 
         holder.sizeText.setText(model.getSize());
-        String colorIs = model.getColors().get(0).getColor();
-        colorIs = colorIs != null ? colorIs : "Default";
-        if (colorIs.equalsIgnoreCase(TefalApp.getInstance().getCurrentColorText())) {
+
+
+        if (model.getSize().equalsIgnoreCase(TefalApp.getInstance().getCurrentSizeText())) {
 
             holder.sizeText.setEnabled(true);
 
-            if (position == TefalApp.getInstance().getCurrentSizePositionIs()) {
-
-
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
-                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
-
-            }
-            else
-            {
-                holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorAccent));
-                holder.sizeText.setBackgroundResource(R.drawable.my_button_bg);
-
-            }
+            holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
+            holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
 
 
         } else {
@@ -93,8 +79,8 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
                 TefalApp.getInstance().setCurrentSizePositionIs(position);
                 notifyDataSetChanged();
 
-                AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
-                accessoryProductDetailsActivity.showSelectedSizeData(position,model);
+               // AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
+              //  accessoryProductDetailsActivity.showSelectedSizeData();
 
 
             }

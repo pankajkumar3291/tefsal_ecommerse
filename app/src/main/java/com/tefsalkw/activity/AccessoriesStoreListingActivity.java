@@ -234,38 +234,10 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
                                 Gson g = new Gson();
                                 AccessoriesListResponseNew mResponse = g.fromJson(response, AccessoriesListResponseNew.class);
 
-                                if (!mResponse.getStatus().equals("0") && mResponse.getRecord() != null) {
+                                if (mResponse.getRecord() != null & mResponse.getStatus().equals("1") ) {
 
 
-                                    List<AccessoriesRecord> accessoriesRecordList = new ArrayList<>();
-
-                                    for (AccessoriesModelNew accessoriesModelNew : mResponse.getRecord()) {
-
-                                        AccessoriesRecord accessoriesRecord = new AccessoriesRecord();
-                                        accessoriesRecord.setTefsal_product_id(accessoriesModelNew.getTefsal_product_id());
-                                        accessoriesRecord.setStore_id(accessoriesModelNew.getStore_id());
-                                        accessoriesRecord.setStoreName(accessoriesModelNew.getStore_name());
-                                        accessoriesRecord.setBrandName(accessoriesModelNew.getBrand_name());
-                                        accessoriesRecord.setProductName(accessoriesModelNew.getProduct_name());
-                                        accessoriesRecord.setMax_delivery_days(accessoriesModelNew.getMax_delivery_days());
-                                        accessoriesRecord.setProduct_discount(accessoriesModelNew.getProduct_discount());
-
-                                        List<SizesNew> sizesNew = accessoriesModelNew.getSizes();
-
-                                        if (sizesNew != null && sizesNew.size() > 0) {
-
-                                            ColorsNew colorsNew = (ColorsNew)sizesNew.get(0).getColors();
-                                            accessoriesRecord.setAccessory_product_image(colorsNew.getImages());
-                                            accessoriesRecord.setPrice(colorsNew.getPrice());
-                                        }
-
-
-                                        accessoriesRecordList.add(accessoriesRecord);
-
-
-                                    }
-
-                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, accessoriesRecordList, sub_cat);
+                                    AccessoriesProductAdapter adapter = new AccessoriesProductAdapter(AccessoriesStoreListingActivity.this, mResponse.getRecord(), sub_cat);
                                     recycler.setAdapter(adapter);
 
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
