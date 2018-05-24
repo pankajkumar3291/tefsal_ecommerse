@@ -39,6 +39,17 @@ public class DaraAbayaCategoriesModel implements Serializable {
         this.products = products;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
     @Override
     public String toString() {
         return "ClassPojo [category = " + category + ", products = " + products + "]";

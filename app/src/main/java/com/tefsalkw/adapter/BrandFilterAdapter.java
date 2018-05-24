@@ -25,19 +25,18 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 11/25/2017.
  */
 
-public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.ViewHolder>
-{
+public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.ViewHolder> {
 
     private ArrayList<FilterBrandModel> filterBrandModelArrayList;
     private Activity activity;
     private int limit;
 
-    public BrandFilterAdapter(ArrayList<FilterBrandModel> filterBrandModelArrayList,Activity activity,int limit)
-    {
-        this.filterBrandModelArrayList=filterBrandModelArrayList;
-        this.activity=activity;
-        this.limit=limit;
+    public BrandFilterAdapter(ArrayList<FilterBrandModel> filterBrandModelArrayList, Activity activity, int limit) {
+        this.filterBrandModelArrayList = filterBrandModelArrayList;
+        this.activity = activity;
+        this.limit = limit;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -46,39 +45,44 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position)
-    {
-        holder.txt_country_name.setText(filterBrandModelArrayList.get(position).getBrand_name().toUpperCase());
-        holder.country_flag_imgage.setBackgroundResource(0);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        if(filterBrandModelArrayList.get(position).getBrand_id().equals(TefalApp.getInstance().getBrand()))
+
+        try
         {
-            Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
-            holder.country_flag_imgage.setBackground(drawableSelect);
-            holder.country_flag_imgage.setPadding(10,10,10,10);
+            String brandName = filterBrandModelArrayList.get(position).getBrand_name();
+            brandName = brandName != null ? brandName : "";
+            holder.txt_country_name.setText(brandName);
 
-            Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+            if (filterBrandModelArrayList.get(position).getBrand_id().equals(TefalApp.getInstance().getBrand())) {
+                Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
+                holder.country_flag_imgage.setBackground(drawableSelect);
+                holder.country_flag_imgage.setPadding(10, 10, 10, 10);
 
-        }
-        else
-        {
-            Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
-            holder.country_flag_imgage.setBackground(drawableNonSelect);
-            holder.country_flag_imgage.setPadding(0,0,0,0);
+                Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 
-            Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+            } else {
+                Drawable drawableNonSelect = activity.getResources().getDrawable(R.drawable.round_image_background);
+                holder.country_flag_imgage.setBackground(drawableNonSelect);
+                holder.country_flag_imgage.setPadding(0, 0, 0, 0);
 
-        }
-       // Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
-        holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                TefalApp.getInstance().setBrand(filterBrandModelArrayList.get(position).getBrand_id());
-                notifyDataSetChanged();
+                Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+
             }
-        });
+            // Picasso.with(activity).load(filterBrandModelArrayList.get(position).getBrand_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+            holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TefalApp.getInstance().setBrand(filterBrandModelArrayList.get(position).getBrand_id());
+                    notifyDataSetChanged();
+                }
+            });
+        }
+        catch (Exception exc)
+        {
+
+        }
+
 
     }
 
@@ -87,8 +91,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
         return limit;
     }
 
-    public class ViewHolder extends  RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.country_flag_image)
         ImageView country_flag_imgage;
 
@@ -105,8 +108,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
         }
     }
 
-    public void setLimit(int limit)
-    {
-        this.limit=limit;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

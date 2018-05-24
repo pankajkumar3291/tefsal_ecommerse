@@ -1,6 +1,7 @@
 package com.tefsalkw.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +9,17 @@ import java.util.List;
  */
 
 public class DaraaAbayaRecordsResponse implements Serializable {
+
+
+    public ArrayList<ProductRecord> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<ProductRecord> products) {
+        this.products = products;
+    }
+
+    private ArrayList<ProductRecord> products;
 
     private List<DaraAbayaCategoriesModel> categories;
 

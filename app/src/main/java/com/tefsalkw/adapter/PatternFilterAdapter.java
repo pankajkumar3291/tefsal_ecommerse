@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.FilterPatternModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.FilterPatternModel;
 import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
@@ -25,17 +25,15 @@ import butterknife.ButterKnife;
  * Created by Rituparna Khadka on 11/25/2017.
  */
 
-public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdapter.ViewHolder>
-{
+public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdapter.ViewHolder> {
     private ArrayList<FilterPatternModel> filterPatternModelArrayList;
     private Activity activity;
     private int limit;
 
-    public PatternFilterAdapter(ArrayList<FilterPatternModel> filterPatternModelArrayList,Activity activity,int limit)
-    {
-        this.filterPatternModelArrayList=filterPatternModelArrayList;
-        this.activity=activity;
-        this.limit=limit;
+    public PatternFilterAdapter(ArrayList<FilterPatternModel> filterPatternModelArrayList, Activity activity, int limit) {
+        this.filterPatternModelArrayList = filterPatternModelArrayList;
+        this.activity = activity;
+        this.limit = limit;
 
     }
 
@@ -46,40 +44,45 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position)
-    {
-        holder.txt_country_name.setText(filterPatternModelArrayList.get(position).getPattern_name().toUpperCase());
-        Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
-        holder.country_flag_imgage.setBackgroundResource(0);
-        if(filterPatternModelArrayList.get(position).getPattern_id().equals(TefalApp.getInstance().getPattern()))
-        {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
-            Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
-            holder.country_flag_imgage.setBackground(drawableSelect);
-            holder.country_flag_imgage.setPadding(10,10,10,10);
-
+        try {
+            String pattern = filterPatternModelArrayList.get(position).getPattern_name();
+            pattern = pattern != null ? pattern : "";
+            holder.txt_country_name.setText(pattern.toUpperCase());
             Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 
-        }
-        else
-        {
+            if (filterPatternModelArrayList.get(position).getPattern_id().equals(TefalApp.getInstance().getPattern())) {
 
-            Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
-            holder.country_flag_imgage.setBackground(drawableNonSelect);
-            holder.country_flag_imgage.setPadding(0,0,0,0);
+                Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
+                holder.country_flag_imgage.setBackground(drawableSelect);
+                holder.country_flag_imgage.setPadding(10, 10, 10, 10);
 
-            Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+                Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
 
-        }
+            } else {
 
-        holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                TefalApp.getInstance().setPattern(filterPatternModelArrayList.get(position).getPattern_id());
-                notifyDataSetChanged();
+                Drawable drawableNonSelect = activity.getResources().getDrawable(R.drawable.round_image_background);
+                holder.country_flag_imgage.setBackground(drawableNonSelect);
+                holder.country_flag_imgage.setPadding(0, 0, 0, 0);
+
+                Picasso.with(activity).load(filterPatternModelArrayList.get(position).getPattern_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+
             }
-        });
+
+            holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TefalApp.getInstance().setPattern(filterPatternModelArrayList.get(position).getPattern_id());
+                    notifyDataSetChanged();
+                }
+            });
+
+        } catch (Exception exc)
+
+        {
+
+        }
 
     }
 
@@ -89,8 +92,7 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
     }
 
 
-    public class ViewHolder extends  RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.country_flag_image)
         ImageView country_flag_imgage;
 
@@ -101,15 +103,13 @@ public class PatternFilterAdapter extends RecyclerView.Adapter<PatternFilterAdap
         LinearLayout filter_item_panel_LL;
 
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
 
-    public void setLimit(int limit)
-    {
-        this.limit=limit;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

@@ -39,6 +39,7 @@ import com.tefsalkw.adapter.FilterColorListAdapter;
 import com.tefsalkw.adapter.FilterCountryListAdapter;
 import com.tefsalkw.adapter.SeasonFilterAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.ColorFilterResponse;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.ColorsRecordModel;
 import com.tefsalkw.models.ProductCountryRecordModel;
@@ -637,7 +638,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e("Tefsal store == ", url + new JSONObject(params));
 
                     return params;
                 }
@@ -803,7 +804,7 @@ public class FragmentTextileProducts extends BaseFragment {
 
     public void httpGetColorCall() {
         try {
-            final String url = Contents.baseURL + "dishdashaFiletration";
+            final String url = Contents.baseURL + "getColors";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -812,13 +813,13 @@ public class FragmentTextileProducts extends BaseFragment {
 
                             SimpleProgressBar.closeProgress();
 
-                            System.out.println("RESPONSE OF COUNTRY===" + response);
+                            System.out.println("RESPONSE OF COLORS===" + response);
 
                             if (response != null) {
 
-                                Log.e("stores response", response);
+                                Log.e("getColors response", response);
                                 Gson g = new Gson();
-                                dishdashaFiletrationResponse mResponse = g.fromJson(response, dishdashaFiletrationResponse.class);
+                                ColorFilterResponse mResponse = g.fromJson(response, ColorFilterResponse.class);
                                 if (mResponse.getStatus().equals("1")) {
                                     colorsRecordModelArrayList = mResponse.getColors();
 
@@ -902,62 +903,5 @@ public class FragmentTextileProducts extends BaseFragment {
     }
 
 
-    public void httpFilterCall() {
-        try {
-            final String url = Contents.baseURL + "dishdashaFiletration";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            System.out.println("RESPONSE OF COUNTRY===" + response);
-
-                            if (response != null) {
-
-                                Log.e("stores response", response);
-                                Gson g = new Gson();
-                                dishdashaFiletrationResponse mResponse = g.fromJson(response, dishdashaFiletrationResponse.class);
-                                if (mResponse.getStatus().equals("1")) {
-
-
-                                }
-
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-                    params.put("store_id", TefalApp.getInstance().getStoreId());
-                    Log.e("Tefsal store == ", url + new JSONObject(params));
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
 
 }

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
-import com.tefsalkw.adapter.DishdashaTextileProductAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,9 +20,15 @@ import butterknife.ButterKnife;
  */
 public class MaterialFragment extends BaseFragment {
 
-@BindView(R.id.tv_material)
+    @BindView(R.id.tv_material)
     TextView tv_material;
 
+
+    public static Fragment newInstance() {
+
+
+        return  new MaterialFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,8 +36,8 @@ public class MaterialFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_material, container, false);
         ButterKnife.bind(this, v);
-        tv_material.setText(DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getMaterial());
 
+        tv_material.setText(TextileDetailActivity.materialString);
         return v;
     }
 

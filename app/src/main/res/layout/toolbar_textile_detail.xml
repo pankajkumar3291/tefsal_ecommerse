@@ -32,6 +32,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:layout_centerInParent="true"
                 android:id="@+id/toolbar_title"
                 fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"

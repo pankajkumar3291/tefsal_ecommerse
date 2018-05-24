@@ -11,9 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.tefsalkw.models.FilterCountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.FilterCountryModel;
 import com.tefsalkw.utils.CircleTransform;
 
 import java.util.ArrayList;
@@ -32,18 +32,16 @@ public class CountryFilterAdapter extends RecyclerView.Adapter<CountryFilterAdap
     private Activity activity;
     private int limit;
 
-    public CountryFilterAdapter( ArrayList<FilterCountryModel> filterCountryModelArrayList, Activity activity,int limit)
-    {
-        this.activity=activity;
-        this.filterCountryModelArrayList=filterCountryModelArrayList;
-        this.limit=limit;
+    public CountryFilterAdapter(ArrayList<FilterCountryModel> filterCountryModelArrayList, Activity activity, int limit) {
+        this.activity = activity;
+        this.filterCountryModelArrayList = filterCountryModelArrayList;
+        this.limit = limit;
 
     }
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.filter_item, parent, false);
         return new CountryFilterAdapter.ViewHolder(v);
@@ -51,54 +49,50 @@ public class CountryFilterAdapter extends RecyclerView.Adapter<CountryFilterAdap
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position)
-    {
-        holder.txt_country_name.setText(filterCountryModelArrayList.get(position).getCountry_name().toUpperCase());
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-         System.out.println("Country code Of model=="+filterCountryModelArrayList.get(position).getCountry_id());
-        System.out.println("Country code Of dump=="+ TefalApp.getInstance().getCountry());
-        holder.country_flag_imgage.setBackgroundResource(0);
-
-
-        if(filterCountryModelArrayList.get(position).getCountry_id().equals(TefalApp.getInstance().getCountry()))
-       {
+        try {
+            String countryName = filterCountryModelArrayList.get(position).getCountry_name();
+            countryName = countryName != null ? countryName : "";
+            holder.txt_country_name.setText(countryName.toUpperCase());
 
 
-           Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
-           holder.country_flag_imgage.setBackground(drawableSelect);
-           holder.country_flag_imgage.setPadding(10,10,10,10);
-         //  holder.country_flag_imgage.setPadding(4,4,4,4);
-           Picasso.with(activity).load(filterCountryModelArrayList.get(position).getCountry_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
-
-          // holder.country_flag_imgage.setColorFilter(ContextCompat.getColor(activity, R.color.colorYellowTransperent), android.graphics.PorterDuff.Mode.MULTIPLY);
-       }
-       else
-        {
-            Drawable drawableNonSelect=activity.getResources().getDrawable(R.drawable.round_image_background);
-            holder.country_flag_imgage.setBackground(drawableNonSelect);
-            holder.country_flag_imgage.setPadding(0,0,0,0);
-           // holder.country_flag_imgage.setPadding(4,4,4,4);
-            Picasso.with(activity).load(filterCountryModelArrayList.get(position).getCountry_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
-
-            //  holder.country_flag_imgage.setColorFilter(ContextCompat.getColor(activity, R.color.colorTranspernt), android.graphics.PorterDuff.Mode.MULTIPLY);
-        }
+            if (filterCountryModelArrayList.get(position).getCountry_id().equals(TefalApp.getInstance().getCountry())) {
 
 
+                Drawable drawableSelect = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
+                holder.country_flag_imgage.setBackground(drawableSelect);
+                holder.country_flag_imgage.setPadding(10, 10, 10, 10);
+                //  holder.country_flag_imgage.setPadding(4,4,4,4);
+                Picasso.with(activity).load(filterCountryModelArrayList.get(position).getCountry_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+
+                // holder.country_flag_imgage.setColorFilter(ContextCompat.getColor(activity, R.color.colorYellowTransperent), android.graphics.PorterDuff.Mode.MULTIPLY);
+            } else {
+                Drawable drawableNonSelect = activity.getResources().getDrawable(R.drawable.round_image_background);
+                holder.country_flag_imgage.setBackground(drawableNonSelect);
+                holder.country_flag_imgage.setPadding(0, 0, 0, 0);
+                // holder.country_flag_imgage.setPadding(4,4,4,4);
+                Picasso.with(activity).load(filterCountryModelArrayList.get(position).getCountry_image()).transform(new CircleTransform()).into(holder.country_flag_imgage);
+
+                //  holder.country_flag_imgage.setColorFilter(ContextCompat.getColor(activity, R.color.colorTranspernt), android.graphics.PorterDuff.Mode.MULTIPLY);
+            }
 
 
-        holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
+            holder.filter_item_panel_LL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                /* Drawable d = activity.getResources().getDrawable(R.drawable.round_mage_background_select);
                 holder.country_flag_imgage.setBackground(d);*/
-                TefalApp.getInstance().setCountry(filterCountryModelArrayList.get(position).getCountry_id());
-                notifyDataSetChanged();
+                    TefalApp.getInstance().setCountry(filterCountryModelArrayList.get(position).getCountry_id());
+                    notifyDataSetChanged();
 
-             //  ColorFilter colorFilter= holder.country_flag_imgage.getColorFilter();
-            }
-        });
+                    //  ColorFilter colorFilter= holder.country_flag_imgage.getColorFilter();
+                }
+            });
 
+        } catch (Exception exc) {
+
+        }
 
 
     }
@@ -108,8 +102,7 @@ public class CountryFilterAdapter extends RecyclerView.Adapter<CountryFilterAdap
         return limit;
     }
 
-    public class ViewHolder extends  RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.country_flag_image)
         ImageView country_flag_imgage;
 
@@ -129,8 +122,7 @@ public class CountryFilterAdapter extends RecyclerView.Adapter<CountryFilterAdap
         }
     }
 
-    public void setLimit(int limit)
-    {
-        this.limit=limit;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

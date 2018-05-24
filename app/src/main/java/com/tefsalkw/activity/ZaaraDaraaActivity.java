@@ -41,7 +41,6 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalZaraDara;
@@ -127,11 +126,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     TextView meter_value;
 
 
-    float amount;
     String sizeFlage = "";
     String sizeGuideResponseHtml;
 
     //This member variable used in ProductSizeAdapterHorizontal adapter
+    float amount;
     public static float price;
     public static float meter = 1;
 
@@ -462,8 +461,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                             if (response != null) {
                                 try {
 
-
-
+                                    Log.e("getProductDetails", response);
                                     Gson g = new Gson();
                                     daraAbayaDetailRecord = g.fromJson(response, DaraAbayaDetailRecord.class);
 
@@ -548,7 +546,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
         TefalApp.getInstance().setPosition(0);
-        zaraDaraSizesModel = colors.getSizes().get(0);
+        zaraDaraSizesModel = colors.getSizes().size() > 0 ? colors.getSizes().get(0) : null;
 
         bindSelectedSizeData();
 
@@ -567,29 +565,32 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             zaraDaraSizesModel = zaraDaraSizeModel;
 
             bindSelectedSizeData();
-
+            isSizeSelected = true;
 
         }
-
-        isSizeSelected = true;
 
 
     }
 
 
     private void bindSelectedSizeData() {
-        if (zaraDaraSizesModel.getQuantity() == 0) {
-            add_cart_btn.setText("SOLD OUT");
-            quntity_LL.setVisibility(View.GONE);
 
-            return;
-        }
+        if (zaraDaraSizesModel != null) {
 
-        if (zaraDaraSizesModel.getPrice() != null) {
-            price = Float.parseFloat(zaraDaraSizesModel.getPrice());
-            text_price.setText("PRICE : " + price + " KWD");
-            meter = 1;
-            meter_value.setText("" + meter);
+            if (zaraDaraSizesModel.getQuantity() == 0) {
+                add_cart_btn.setText("SOLD OUT");
+                quntity_LL.setVisibility(View.GONE);
+                return;
+            }
+
+            if (zaraDaraSizesModel.getPrice() != null) {
+                price = Float.parseFloat(zaraDaraSizesModel.getPrice());
+                text_price.setText("PRICE : " + price + " KWD");
+                meter = 1;
+                meter_value.setText("" + meter);
+
+            }
+
 
         }
 
@@ -983,7 +984,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
             });
 
-           // Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+            // Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
@@ -1123,7 +1124,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     .error(R.drawable.no_image_placeholder_grid);
 
             GlideApp.with(ZaaraDaraaActivity.this).asBitmap().load(img.get(position)).apply(options).into(imageView);
-
 
 
             container.addView(itemView);

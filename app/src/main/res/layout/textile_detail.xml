@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include  layout="@layout/toolbar_textile_detail" />
+    <include layout="@layout/toolbar_textile_detail" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -70,7 +70,7 @@
                         android:id="@+id/txt_min_meter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/textile_detail_txt_min_meter_text"
+                        android:text=""
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_mid" />
                 </LinearLayout>
@@ -113,17 +113,57 @@
                     android:id="@+id/tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:background="@color/tabColorBg"
                     android:minHeight="?attr/actionBarSize"
                     app:tabSelectedTextColor="@color/colorAccent"
                     app:tabTextColor="#616161" />
 
-
-                <android.support.v4.view.ViewPager
+                <com.tefsalkw.adapter.CustomViewPager
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp" />
+                    android:layout_height="wrap_content">
+
+                </com.tefsalkw.adapter.CustomViewPager>
+
+
+
+
+                <RelativeLayout
+                    android:id="@+id/colorAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/txtColorLabele"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_accessory_product_details_txtColorLabele_text"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/colorRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtColorLabele">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/colorRecyclerView"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/colorGray" />
+
+                </RelativeLayout>
+
             </LinearLayout>
 
 

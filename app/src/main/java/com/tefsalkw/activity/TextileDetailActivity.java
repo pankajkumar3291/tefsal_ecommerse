@@ -4,20 +4,22 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -58,16 +60,16 @@ import com.tefsalkw.adapter.BrandFilterAdapter;
 import com.tefsalkw.adapter.CountryFilterAdapter;
 import com.tefsalkw.adapter.DishdashaTextileProductAdapter;
 import com.tefsalkw.adapter.PatternFilterAdapter;
-import com.tefsalkw.adapter.SeasonFilterAdapter;
-import com.tefsalkw.adapter.TextileDetailPager;
+import com.tefsalkw.adapter.ProductColorHorizontalDishdasha;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.dialogs.DialogKart;
+import com.tefsalkw.fragment.FeelFragment;
+import com.tefsalkw.fragment.MaterialFragment;
+import com.tefsalkw.models.Colors;
 import com.tefsalkw.models.ColorsRecordModel;
-import com.tefsalkw.models.DishdishaFilterResponseModel;
 import com.tefsalkw.models.FilterBrandModel;
 import com.tefsalkw.models.FilterCountryModel;
 import com.tefsalkw.models.FilterPatternModel;
-import com.tefsalkw.models.SeasonResponseModel;
 import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.network.BaseHttpClient;
@@ -81,6 +83,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -174,13 +177,20 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     TextView see_all_brand_text;
     TextView see_all_pattern_text;
 
-    public static TextView text_price;
+    @BindView(R.id.text_price)
+    TextView text_price;
+
+
     //private int meter=2;
     private float stock_meter = 0;
     private float price;
 
     //private int check_meter;
     private float min_meter = 3;
+
+    float amount;
+
+    public static float meter = 3;
 
     LinearLayout see_all_pattern_text_LL;
 
@@ -197,16 +207,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     private boolean isExpanded = false;
     private boolean filterWindowFlag = true;
 
-    DishdishaFilterResponseModel dishdishaFilterResponseModel;
 
     dishdashaFiletrationResponse _mdishdashaFiletrationResponse;
-    SeasonResponseModel seasonResponseModel;
 
     CountryFilterAdapter countryFilterAdapter;
     BrandFilterAdapter brandFilterAdapter;
     PatternFilterAdapter patternFilterAdapter;
-
-    SeasonFilterAdapter seasonFilterAdapter;
 
 
     ArrayList<FilterCountryModel> filterCountryModelArrayList = new ArrayList<FilterCountryModel>();
@@ -217,14 +223,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     ArrayList<TextileProductModel> textileProductModelArrayList = new ArrayList<TextileProductModel>();
 
 
-    String seasonRecord[];
-
-
     boolean country_flage = true;
     boolean brand_flage = true;
     boolean pattern_flage = true;
-    //  boolean color_flage=true;
-    //boolean season_flage=true;
 
 
     SessionManager session;
@@ -259,6 +260,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
     DefaultSliderView textSliderView = null;
+    ProductColorHorizontalDishdasha productColorHorizontalDishdasha;
+
+    @BindView(R.id.colorRecyclerView)
+    RecyclerView colorRecyclerView;
+
+    Colors selectedColor = null;
+
+    public static String feelString = "", materialString = "";
 
 
     @Override
@@ -270,14 +279,34 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         session = new SessionManager(TextileDetailActivity.this);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         ic_filter.setVisibility(View.VISIBLE);
 
         textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
 
         Log.e("textileProductModel", new Gson().toJson(textileProductModel));
 
-        text_price = (TextView) findViewById(R.id.text_price);
-        System.out.println("Tefsal");
+        if (textileProductModel != null) {
+            productColorHorizontalDishdasha = new ProductColorHorizontalDishdasha(textileProductModel.getColors(), this);
+            LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
+            TefalApp.getInstance().setAccColorPosition(0);
+            colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
+
+
+        }
+
+
+        min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
+        meter = min_meter;
+        meter_value.setText("" + meter);
+        txt_min_meter.setText("Minimum - " + min_meter + "m required");
+        StoreID = getIntent().getStringExtra("storeID");
+        position = getIntent().getIntExtra("pos", 0);
+
+        txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
+        toolbar_title.setText(textileProductModel.getDishdasha_product_name());
+        // subText.setText(textileProductModel.getColor() + (textileProductModel.getSub_color() != null ? " - " + textileProductModel.getSub_color() : ""));
 
 
         View root = tabLayout.getChildAt(0);
@@ -300,53 +329,22 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             RL_product_exist_container.setVisibility(View.VISIBLE);
 
 
-            try {
-                //meter=Integer.parseInt(textileProductModel.getDishdasha_qty_meters());
-                min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-                stock_meter = Float.parseFloat(textileProductModel.getStock_in_meters());
-
-                System.out.println("Tefsal output======Minimum MIter===" + min_meter);
-                System.out.println("Tefsal output======Dishdasha stock===" + stock_meter);
-
-                product_image = textileProductModel.getProduct_image();
-                price = Float.parseFloat(textileProductModel.getPrice());//.split(" ");
-
-                System.out.println("Price=====" + price);
-            } catch (Exception ex) {
-
-                System.out.println("Error ===========1" + ex);
-            }
-
-            // This block of code is used to detetermine the max and min
-
-            if (min_meter > stock_meter) {
-                LL_min_max_controller.setVisibility(View.GONE);
-                add_to_cart_lbl.setText("SOLD OUT");
-                text_price.setVisibility(View.GONE);
-                add_to_cart_btn.setEnabled(false);
-            }
-
-
             colorString = textileProductModel.getColor_id();
             seasonString = textileProductModel.getSeason().toLowerCase();
             countryString = textileProductModel.getCountry_id();
             subColorString = textileProductModel.getSub_color_id();
             brandString = textileProductModel.getBrand_id();
+            patternString = textileProductModel.getPattern_id();
 
 
             TefalApp.getInstance().setColor(colorString);
             TefalApp.getInstance().setSeason(seasonString);
-            TefalApp.getInstance().setCountry(countryString);
             TefalApp.getInstance().setSubColor(subColorString);
 
-        }
 
-        try {
-
-            text_price.setText("PRICE : " + Math.round(price * min_meter) + " KWD");
-            txt_min_meter.setText("Minimum - " + TefalApp.getInstance().getMin_meters() + "m Required");
-        } catch (Exception ex) {
-            System.out.println("Error===============" + ex);
+            TefalApp.getInstance().setCountry(countryString);
+            TefalApp.getInstance().setBrand(brandString);
+            TefalApp.getInstance().setPattern(patternString);
         }
 
 
@@ -358,7 +356,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
         });
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         httpGetFilterData();
 
@@ -423,16 +420,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
         });
 
-        StoreID = getIntent().getStringExtra("storeID");
-        position = getIntent().getIntExtra("pos", 0);
-
-        txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
-        toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-        subText.setText(textileProductModel.getColor() + " - " + textileProductModel.getSub_color());
-
-        // if (!DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image().equals(""))
-        //Picasso.with(this).load(DishdashaTextileProductAdapter.textileModels.get(position).getProduct_image()).into(product_img);
-
 
         //Adding the tabs using addTab() method
         tabLayout.addTab(tabLayout.newTab().setText("FEEL"));
@@ -441,7 +428,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
         //Creating our pager adapter
-        TextileDetailPager adapter = new TextileDetailPager(getSupportFragmentManager(), tabLayout.getTabCount());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(FeelFragment.newInstance());
+        adapter.addFragment(MaterialFragment.newInstance());
+
 
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
@@ -449,37 +439,42 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         //Adding onTabSelectedListener to swipe views
         tabLayout.setOnTabSelectedListener(this);
 
+        tabLayout.setupWithViewPager(viewPager);
+
         initSlider();
 
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (min_meter < stock_meter) {
-                    min_meter++;
-                    meter_value.setText("" + Math.round(min_meter));
+                if (meter > 0 && meter < stock_meter) {
 
+                    amount = meter * price;
+                    text_price.setText("PRICE : " + amount + " KWD");
+
+                    meter_value.setText("" + meter);
+                    meter++;
 
                 }
 
-                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Float.valueOf(price) * min_meter) + " KWD");
 
             }
         });
         less_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (min_meter > stock_meter) {
-                    min_meter--;
-                    meter_value.setText("" + Math.round(min_meter));
+
+                if (meter >= min_meter) {
+                    meter--;
+                    amount = meter * price;
+                    text_price.setText("PRICE : " + amount + " KWD");
+                    meter_value.setText("" + meter);
                 }
 
-                TextileDetailActivity.text_price.setText("PRICE : " + Math.round(Float.valueOf(price) * min_meter) + " KWD");
+
             }
         });
 
-
-        meter_value.setText("" + Math.round(min_meter));
 
         try {
             DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -502,6 +497,104 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     }
 
 
+    public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment) {
+            mFragmentList.add(fragment);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return position == 0 ? "FEEL" : "MATERIAL";
+        }
+
+
+    }
+
+
+    public void showSizeOnColorSelection(Colors colors) {
+
+        this.selectedColor = colors;
+
+
+        if (selectedColor != null) {
+
+            try {
+
+                price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
+                stock_meter = Float.parseFloat(colors.getStock_in_meters());
+
+                text_price.setText("PRICE : " + price * meter + " KWD");
+
+            } catch (Exception ex) {
+
+                System.out.println("Error ===========1" + ex);
+            }
+
+
+            if (min_meter > stock_meter) {
+
+                LL_min_max_controller.setVisibility(View.GONE);
+                add_to_cart_lbl.setText("SOLD OUT");
+                text_price.setVisibility(View.GONE);
+                add_to_cart_btn.setEnabled(false);
+            }
+
+
+            feelString = selectedColor.getFeel();
+            feelString = feelString != null ? feelString : "";
+            materialString = selectedColor.getMaterial();
+            materialString = materialString != null ? materialString : "";
+            Log.e("feelString", feelString);
+            Log.e("materialString", materialString);
+
+
+            if (selectedColor.getProduct_image() != null && selectedColor.getProduct_image().length <= 1) {
+                product_image_viewPager.stopAutoCycle();
+            } else {
+                product_image_viewPager.startAutoCycle();
+            }
+
+
+            if (selectedColor.getProduct_image() != null) {
+                product_image = selectedColor.getProduct_image();
+                for (String imgUrl : selectedColor.getProduct_image()) {
+
+                    DefaultSliderView textSliderView = new DefaultSliderView(TextileDetailActivity.this);
+                    textSliderView.setOnSliderClickListener(onSliderClickListener);
+                    textSliderView
+                            .image(imgUrl)
+                            .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
+                    product_image_viewPager.addSlider(textSliderView);
+
+                }
+            }
+
+
+        }
+
+
+    }
+
+
     private void initSlider() {
 
         onSliderClickListener = this;
@@ -514,29 +607,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
-
-
-        if (product_image != null) {
-            product_image_viewPager.removeAllSliders();
-            for (String imgUrl : product_image) {
-
-
-                textSliderView
-                        .image(imgUrl)
-                        .setScaleType(BaseSliderView.ScaleType.Fit);
-
-
-                product_image_viewPager.addSlider(textSliderView);
-
-            }
-
-            if (product_image.length > 1) {
-                product_image_viewPager.startAutoCycle();
-
-            } else {
-                product_image_viewPager.stopAutoCycle();
-            }
-        }
 
 
     }
@@ -618,14 +688,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
 
 
-        //------------------------------------This for Seasons list--------------------------------------------------------
-     /*   seasonFilterAdapter=new SeasonFilterAdapter(seasonRecord,TextileDetailActivity.this,seasonRecord.length<=3 ? seasonRecord.length : 3);
-        RecyclerView.LayoutManager mLayoutManager2 = new GridLayoutManager(TextileDetailActivity.this, 3);
-        recyclerViewSeason.setLayoutManager(mLayoutManager2);
-        recyclerViewSeason.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewSeason.setAdapter(seasonFilterAdapter);*/
-
-
         //------------------------This is for Brand list-------------------------------------------------------------------
 
         if (filterBrandModelArrayList.size() != 0) {
@@ -647,17 +709,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             recyclerViewPattern.setAdapter(patternFilterAdapter);
         }
 
-
-//        if (filterCountryModelArrayList.size() <= 3) {
-//            see_all_country_text.setVisibility(View.GONE);
-//        }
-//        if (filterBrandModelArrayList.size() <= 3) {
-//            see_all_brand_text.setVisibility(View.GONE);
-//        }
-//        if (filterPatternModelArrayList.size() <= 3) {
-//            see_all_pattern_text.setVisibility(View.GONE);
-//            see_all_pattern_text_LL.setVisibility(View.GONE);
-//        }
 
         see_all_brand_text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -810,16 +861,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    // params.put("user_id", session.getCustomerId());
-                    //params.put("access_token", session.getToken());
-
-                    System.out.println("TextileDetailActivity======Parameter season===" + seasonString);
-                    System.out.println("TextileDetailActivity======Parameter color_id===" + colorString);
-                    System.out.println("TextileDetailActivity======Parameter sub_color_id===" + subColorString);
-                    System.out.println("TextileDetailActivity======Parameter country_id===" + countryString);
-                    System.out.println("TextileDetailActivity======Parameter brand_id===");
-                    System.out.println("TextileDetailActivity======Parameter pattern_id===");
-                    System.out.println("TextileDetailActivity======Parameter store_id===" + TefalApp.getInstance().getStoreId());
 
                     params.put("store_id", TefalApp.getInstance().getStoreId());
                     params.put("appUser", "tefsal");
@@ -917,16 +958,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    // params.put("user_id", session.getCustomerId());
-                    //params.put("access_token", session.getToken());
-
-                    System.out.println("TextileDetailActivity======Parameter season===" + seasonString);
-                    System.out.println("TextileDetailActivity======Parameter color_id===" + colorString);
-                    System.out.println("TextileDetailActivity======Parameter sub_color_id===" + subColorString);
-                    System.out.println("TextileDetailActivity======Parameter country_id===" + countryString);
-                    System.out.println("TextileDetailActivity======Parameter brand_id===");
-                    System.out.println("TextileDetailActivity======Parameter pattern_id===");
-                    System.out.println("TextileDetailActivity======Parameter store_id===" + TefalApp.getInstance().getStoreId());
 
                     params.put("store_id", TefalApp.getInstance().getStoreId());
                     params.put("appUser", "tefsal");
@@ -971,88 +1002,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
     }
 
-    private void httpGetFilterSeasonData() {
-        // SimpleProgressBar.showProgress(TextileDetailActivity.this);
-        try {
-            final String url = Contents.baseURL + "getSeasons";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-
-                            SimpleProgressBar.closeProgress();
-
-                            System.out.println("SEASONS RESPONSE===" + response);
-
-
-                            if (response != null) {
-                                try {
-                                    JSONObject object = new JSONObject(response);
-                                    String status = object.getString("status");
-
-                                    if (status.equals("1")) {
-                                        SimpleProgressBar.closeProgress();
-                                        Gson g = new Gson();
-                                        seasonResponseModel = g.fromJson(response, SeasonResponseModel.class);
-                                        seasonRecord = seasonResponseModel.getRecord();
-
-
-                                        /// System.out.println("RECORDS==="+records.length);
-
-
-                                        //filterPatternModelArrayList=dishdishaFilterResponseModel.getPatterns();
-                                    } else {
-                                       /* String errors=object.getString("errors");
-                                        Toast.makeText(getApplicationContext(),errors,Toast.LENGTH_SHORT).show();*/
-                                    }
-                                } catch (Exception ex) {
-
-                                }
-
-
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            System.out.println("ERROR===" + error);
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    // params.put("user_id", session.getCustomerId());
-                    //params.put("access_token", session.getToken());
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-
-                    Log.e("Tefsal store == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(TextileDetailActivity.this);
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            System.out.println("ERROR===" + surError);
-
-            surError.printStackTrace();
-        }
-    }
 
     @Override
     public void onSliderClick(BaseSliderView slider) {
@@ -1071,6 +1020,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public void onPageSelected(int position) {
 
+
     }
 
     @Override
@@ -1079,59 +1029,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     }
 
 
-    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
-
-        private int spanCount;
-        private int spacing;
-        private boolean includeEdge;
-
-        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
-            this.spanCount = spanCount;
-            this.spacing = spacing;
-            this.includeEdge = includeEdge;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            int position = parent.getChildAdapterPosition(view); // item position
-            int column = position % spanCount; // item column
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
-                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
-
-                if (position < spanCount) { // top edge
-                    outRect.top = spacing;
-                }
-                outRect.bottom = spacing; // item bottom
-            } else {
-                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
-                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-                if (position >= spanCount) {
-                    outRect.top = spacing; // item top
-                }
-            }
-        }
-    }
-
-    /**
-     * Converting dp to pixel
-     */
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
-
-
     public void showImageSingleDialog(String image_url) {
         dialog = new Dialog(TextileDetailActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
+        dialog.setCanceledOnTouchOutside(true);
+
 
         ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
         //==========================================================================
-        if (product_image.length != 0) {
+        if (product_image != null && product_image.length != 0) {
 
             DishDashaProductPagerAdapterForDialog dishDashaProductPagerAdapterForDialog = new DishDashaProductPagerAdapterForDialog(TextileDetailActivity.this, product_image);
             //dishDashaProductPagerAdapter = new DishDashaProductPagerAdapter(TextileDetailActivity.this, product_image);
@@ -1147,10 +1055,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 @Override
                 public void onPageSelected(int position) {
-                  /*  for (int i = 0; i < dotsCount; i++) {
-                        dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-                    }
-                    dots[position].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));*/
                 }
 
                 @Override
@@ -1159,17 +1063,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 }
             });
 
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-            // setUiPageViewController();
+            dialog.show();
+
+
         }
-
-        //==================================================================================
-
-
-        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        dialog.show();
 
 
     }
@@ -1261,168 +1161,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     }
 
-    public void WebCallServiceAddCart() {
-        SimpleProgressBar.showProgress(TextileDetailActivity.this);
-        try {
-            final String url = Contents.baseURL + "addCart";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            System.out.println("CART RESPONSE==" + response);
-
-
-                            if (response != null) {
-
-                                Log.e("stores response", response);
-                                try {
-
-                                    String itemType = "";
-                                    if (session.getKeyCartId().equals("")) {
-                                        JSONObject jsonObject = new JSONObject(response);
-                                        String cart_id = jsonObject.getString("cart_id");
-                                        session.setKeyCartId(cart_id);
-                                        System.out.println("OUTPUT   CART ID FIRST TIME===" + session.getKeyCartId());
-
-                                        itemType = jsonObject.getString("item_type");
-                                    }
-
-                                    String categoryId = "1";
-                                    DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
-                                    dg.show();
-
-
-                                } catch (Exception ex) {
-
-                                }
-
-
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            System.out.println("Exception==" + error);
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("access_token", session.getToken());
-                    params.put("user_id", session.getCustomerId());
-                    params.put("items", getItems().toString());
-                    params.put("cart_id", session.getKeyCartId());
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-
-                    Log.e("Tefsal add carttailor", url + new JSONObject(params));
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(TextileDetailActivity.this);
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
-
-
-    public class DishDashaProductPagerAdapter extends PagerAdapter {
-        Context context;
-        String[] img;
-        LayoutInflater layoutInflater;
-
-
-        public DishDashaProductPagerAdapter(Context context, String[] img) {
-            this.context = context;
-            this.img = img;
-            System.out.println("IMAGE COUNT======" + img.length);
-            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public int getCount() {
-            return img.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout) object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, final int position) {
-            View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
-
-            ImageView imageView = (ImageView) itemView.findViewById(R.id.zaara);
-
-            System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
-
-            //  Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
-            RequestOptions options = new RequestOptions()
-                    .priority(Priority.HIGH)
-                    .placeholder(R.drawable.no_image_placeholder_grid)
-                    .error(R.drawable.no_image_placeholder_grid);
-
-            GlideApp.with(context).load(img[position]).apply(options).into(imageView);
-
-
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                   /* imageView1=imageView;
-                    System.out.println("POSITION==="+position);
-                    System.out.println();
-*/
-                    try {
-                        showImageSingleDialog(img[position]);
-                    } catch (Exception ex) {
-                        Log.d("Error=", ex.fillInStackTrace().toString());
-
-                    }
-
-                    /* scaleGestureDetector = new ScaleGestureDetector(getApplicationContext(),new ScaleListener());*/
-
-                }
-            });
-
-            //Picasso.with(TextileDetailActivity.this).load(img[position]).into(imageView);
-
-
-            GlideApp.with(context).load(img[position]).apply(options).into(imageView);
-
-
-            container.addView(itemView);
-
-            return itemView;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout) object);
-        }
-    }
-
-
-    // This adapter is used to controll the viewPager of Dialog
 
     public class DishDashaProductPagerAdapterForDialog extends PagerAdapter {
         Context context;

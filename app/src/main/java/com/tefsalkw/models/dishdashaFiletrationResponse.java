@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class dishdashaFiletrationResponse
 {
     private String message;
-
+    private String status;
     private ArrayList<FilterBrandModel> brands;
 
     private ArrayList<FilterPatternModel> patterns;
 
-    private String status;
+
 
     private ArrayList<ColorRecordFromDishdashaFilteration> colors;
 

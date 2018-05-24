@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
@@ -70,7 +72,6 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         TextView store_text;
 
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -109,6 +110,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
             @Override
             public void onClick(View view) {
 
+                Log.e("textileProductModel",new Gson().toJson(textileModels.get(position)));
                 activity.startActivity(new Intent(activity, TextileDetailActivity.class)
                         .putExtra("storeID", storeId)
                         .putExtra("pos", position)

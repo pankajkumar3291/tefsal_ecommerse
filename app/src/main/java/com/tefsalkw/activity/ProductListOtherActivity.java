@@ -23,13 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.tefsalkw.R;
+import com.tefsalkw.fragment.SubCategoryFragment;
 import com.tefsalkw.models.AccessoriesProductsResponse;
 import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.models.DaraAbayaCategoriesModel;
 import com.tefsalkw.models.DaraAbayaProductListResponse;
-import com.tefsalkw.R;
-import com.tefsalkw.fragment.SubCategoryFragment;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -181,6 +180,8 @@ public class ProductListOtherActivity extends BaseActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+
     //endregion
 
 
@@ -293,54 +294,56 @@ public class ProductListOtherActivity extends BaseActivity {
                             if (response != null) {
 
 
-                                try
-                                {
+                                try {
                                     Log.e("stores response", response);
 
                                     JSONObject jsonObject = new JSONObject(response);
 
                                     if (jsonObject.getInt("status") == 1) {
 
+
                                         Gson g = new Gson();
                                         DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
 
-                                        Log.e("mResponse", g.toJson(mResponse));
 
-                                        for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
+                                        if (mResponse.getRecord().getProducts() != null && mResponse.getRecord().getProducts().size() > 0) {
 
-                                            DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
-
-
-                                            //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
-                                            //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
-                                            // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
+                                            viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(mResponse.getRecord().getProducts(), store_id), "Default");
 
 
-                                            if (daraAbayaCategoriesModel.getSub_category() != null) {
+                                        }
 
-                                                viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getSub_category());
-                                            } else {
-                                                viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), "Sub Category");
+
+                                        if (mResponse.getRecord().getCategories() != null) {
+
+                                            for (int i = 0; i < mResponse.getRecord().getCategories().size(); i++) {
+
+                                                DaraAbayaCategoriesModel daraAbayaCategoriesModel = mResponse.getRecord().getCategories().get(i);
+
+                                                //  Log.e("getSub_category",daraAbayaCategoriesModel.getSub_category()+"");
+                                                //SubCategoryFragment subCategoryFragment =     new SubCategoryFragment();
+                                                // subCategoryFragment.setProducts(daraAbayaCategoriesModel.getProducts());
+
+                                                viewPagerAdapter.addFragment(SubCategoryFragment.newInstance(daraAbayaCategoriesModel.getProducts(), store_id), daraAbayaCategoriesModel.getName());
+
 
                                             }
 
-
+                                        } else {
+                                            tabLayout.setVisibility(View.GONE);
                                         }
 
 
                                         viewPager.setAdapter(viewPagerAdapter);
 
-                                        if (mResponse.getRecord().getCategories().size() == 1) {
+                                        if (viewPager.getAdapter().getCount() <= 1) {
                                             tabLayout.setVisibility(View.GONE);
                                         }
-                                    }
-                                    else
-                                    {
+
+                                    } else {
                                         Toast.makeText(ProductListOtherActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                                     }
-                                }
-                                catch (Exception exc)
-                                {
+                                } catch (Exception exc) {
                                     Toast.makeText(ProductListOtherActivity.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 

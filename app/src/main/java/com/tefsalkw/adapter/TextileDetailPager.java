@@ -13,34 +13,34 @@ import com.tefsalkw.fragment.MaterialFragment;
 
 public class TextileDetailPager extends FragmentStatePagerAdapter {
 
-    //integer to count number of tabs
+
     int tabCount;
 
-    //Constructor to the class
     public TextileDetailPager(FragmentManager fm, int tabCount) {
         super(fm);
-        //Initializing tab count
+
         this.tabCount = tabCount;
     }
 
-    //Overriding method getItem
+
     @Override
     public Fragment getItem(int position) {
         //Returning the current tabs
         switch (position) {
             case 0:
-                FeelFragment tab1 = new FeelFragment();
-                return tab1;
+                FeelFragment f1 =  new FeelFragment();
+                return f1;
+
             case 1:
-                MaterialFragment tab2 = new MaterialFragment();
-                return tab2;
+                MaterialFragment f2 =  new MaterialFragment();
+                return f2;
 
             default:
-                return null;
+                FeelFragment f3 =  new FeelFragment();
+                return f3;
         }
     }
 
-    //Overriden method getCount to get the number of tabs
     @Override
     public int getCount() {
         return tabCount;
