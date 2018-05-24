@@ -162,6 +162,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     ColorsAcc selectedColor = null;
 
+    String default_image = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,6 +179,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (accessoriesRecord != null) {
 
+            default_image = accessoriesRecord.getDefault_image();
             getAccessoriesProductDetails();
 
         }
@@ -273,31 +276,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
                                     Log.e("accessoryDetailRecord", response);
                                     initViewsPostCall(accessoryDetailRecord);
-
-                                    product_image_viewPager.removeAllSliders();
-
-                                    String[] imagesList = accessoryDetailRecord.getColors() != null ? accessoryDetailRecord.getColors().get(0).getImages() : null;
-
-                                    if (imagesList != null && imagesList.length <= 1) {
-                                        product_image_viewPager.stopAutoCycle();
-                                    } else {
-                                        product_image_viewPager.startAutoCycle();
-                                    }
-
-                                    if (imagesList != null) {
-                                        for (String imgUrl : imagesList) {
-
-                                            DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
-                                            textSliderView.setOnSliderClickListener(onSliderClickListener);
-                                            textSliderView
-                                                    .image(imgUrl)
-                                                    .setScaleType(BaseSliderView.ScaleType.Fit);
-
-
-                                            product_image_viewPager.addSlider(textSliderView);
-
-                                        }
-                                    }
 
 
                                 } catch (Exception ex) {
@@ -407,6 +385,42 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
         }
+
+
+        product_image_viewPager.removeAllSliders();
+
+        String[] imagesList = selectedColor.getImages();
+
+        if (imagesList != null && imagesList.length <= 1) {
+            product_image_viewPager.stopAutoCycle();
+        } else {
+            product_image_viewPager.startAutoCycle();
+        }
+
+        if (imagesList != null && imagesList.length > 0) {
+            for (String imgUrl : imagesList) {
+
+                DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
+                textSliderView.setOnSliderClickListener(onSliderClickListener);
+                textSliderView
+                        .image(imgUrl)
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
+                product_image_viewPager.addSlider(textSliderView);
+
+            }
+        } else {
+            DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
+            textSliderView.setOnSliderClickListener(onSliderClickListener);
+            textSliderView
+                    .image(default_image)
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+
+
+            product_image_viewPager.addSlider(textSliderView);
+        }
+
 
         isSizeSelected = true;
 

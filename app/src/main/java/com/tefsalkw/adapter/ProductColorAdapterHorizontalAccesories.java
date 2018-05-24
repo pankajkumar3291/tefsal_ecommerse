@@ -62,6 +62,7 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
             TefalApp.getInstance().setCurrentSizeText(productSizesList.get(position).getSizes().getSize());
+
             AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
             accessoryProductDetailsActivity.showSizeOnColorSelection(productSizesList.get(position));
 
