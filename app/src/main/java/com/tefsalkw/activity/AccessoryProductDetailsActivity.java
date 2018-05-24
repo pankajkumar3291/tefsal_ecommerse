@@ -271,7 +271,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                                     Gson g = new Gson();
                                     accessoryDetailRecord = g.fromJson(response, AccessoryDetailRecord.class);
 
-                                    Log.e("accessoryDetailRecord",response);
+                                    Log.e("accessoryDetailRecord", response);
                                     initViewsPostCall(accessoryDetailRecord);
 
                                     product_image_viewPager.removeAllSliders();
@@ -388,10 +388,15 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (selectedColor != null) {
 
-            int qty = selectedColor.getSizes().getQuantity();
+            int qty = selectedColor.getSizes() != null ? selectedColor.getSizes().getQuantity() : 0;
+
             if (qty == 0) {
                 add_cart_btn.setText("SOLD OUT");
+                add_cart_btn.setEnabled(false);
 
+            } else {
+                add_cart_btn.setEnabled(true);
+                add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
 
             }
 
@@ -408,9 +413,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
     public void showSelectedSizeData() {
-
-
-
 
 
         isSizeSelected = true;
@@ -595,82 +597,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     }
 
-
-    public void httpAddCartCall() {
-
-        Log.i(TAG, "Setting screen name: " + "AccessoryProductDetailsActivity");
-        mTracker.setScreenName("Image~" + "AccessoryProductDetailsActivity");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        SimpleProgressBar.showProgress(AccessoryProductDetailsActivity.this);
-
-
-        try {
-            final String url = Contents.baseURL + "addCart";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            if (response != null) {
-
-                                Log.e("addCart response", response);
-                                JSONObject jsonObject = null;
-                                try {
-                                    jsonObject = new JSONObject(response);
-                                    String itemType = jsonObject.getString("item_type");
-                                    DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this, false, itemType, "");
-                                    dg.show();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                                httpGetBadgesCall();
-
-
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("access_token", session.getToken());
-                    params.put("user_id", session.getCustomerId());
-                    try {
-                        params.put("items", String.valueOf(getItems(accessoryDetailRecord)));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-
-                    Log.e("Tefsal tailor == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(AccessoryProductDetailsActivity.this);
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
 
     public JSONArray getItems(AccessoryDetailRecord accessoriesRecord) throws JSONException {
 

@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@color/colorPrimary"
         android:id="@+id/RR_toolbar"
-        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:layout_width="match_parent">
+        android:background="@color/colorPrimary">
 
         <ImageView
-            android:background="@drawable/ic_left_arrow"
             android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_width="wrap_content" />
+            android:background="@drawable/ic_left_arrow" />
 
         <LinearLayout
-            android:gravity="center"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:orientation="vertical">
 
             <me.grantland.widget.AutofitTextView
-                android:ellipsize="end"
-                android:gravity="center"
                 android:id="@+id/txt_title"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/subtxt_title"
-                android:layout_height="wrap_content"
-                android:layout_width="210dp"
+                android:ellipsize="end"
+                android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/activity_accessory_product_details_txt_title_text"
                 android:textColor="@color/colorBlack"
@@ -49,13 +49,13 @@
                 autofit:minTextSize="10sp" />
 
             <me.grantland.widget.AutofitTextView
-                android:ellipsize="end"
-                android:gravity="center"
                 android:id="@+id/subtxt_title"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/txt_title"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_width="230dp"
+                android:ellipsize="end"
+                android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/activity_accessory_product_details_subtxt_title_text"
                 android:textColor="@color/colorBlack"
@@ -65,57 +65,57 @@
         </LinearLayout>
 
         <ImageView
-            android:background="@drawable/qr_code_image"
             android:id="@+id/qr_code_btn"
-            android:layout_centerVertical="true"
+            android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/view_cart_btn"
-            android:layout_width="30dp"
+            android:background="@drawable/qr_code_image"
             android:visibility="gone" />
 
         <ImageView
-            android:background="@drawable/ic_shopping_cart_black_24dp"
             android:id="@+id/view_cart_btn1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
+            android:background="@drawable/ic_shopping_cart_black_24dp"
             android:onClick="gotoCart"
             android:visibility="gone" />
 
         <RelativeLayout
-            android:translationZ="99dp"
-            android:gravity="center_vertical"
             android:id="@+id/view_cart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="end"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
             android:onClick="gotoCart"
             android:orientation="horizontal"
+            android:translationZ="99dp"
             android:visibility="visible">
 
             <ImageView
                 android:id="@+id/header_logo"
-                android:layout_height="48dp"
                 android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:padding="10dp"
                 android:src="@drawable/ic_shopping_cart_black_24dp" />
 
             <TextView
-                android:background="@drawable/badge_yellow"
-                android:gravity="center"
                 android:id="@+id/total_badge_txt"
+                android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="-20dp"
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/header_logo"
-                android:layout_width="20dp"
+                android:background="@drawable/badge_yellow"
+                android:gravity="center"
                 android:text="@string/activity_accessory_product_details_total_badge_txt_text"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_xsmall" />
@@ -128,60 +128,60 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_above="@+id/LL_add_cart_region"
-        android:layout_below="@+id/RR_toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_above="@+id/LL_add_cart_region"
+        android:layout_below="@+id/RR_toolbar">
 
         <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="100dp"
-            android:layout_width="match_parent">
+            android:layout_marginBottom="100dp">
 
             <RelativeLayout
-                android:gravity="center"
                 android:id="@+id/RR__viewpagerHolder"
+                android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_width="match_parent">
+                android:gravity="center">
 
                 <com.daimajia.slider.library.SliderLayout
-                    android:background="@color/colorDivider"
                     android:id="@+id/product_image_viewPager"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                    android:background="@color/colorDivider" />
 
                 <LinearLayout
-                    android:gravity="center"
                     android:id="@+id/viewPagerCountDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_height="20dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_width="match_parent"
+                    android:gravity="center"
                     android:orientation="horizontal" />
 
 
             </RelativeLayout>
 
             <LinearLayout
-                android:fitsSystemWindows="true"
-                android:layout_below="@+id/RR__viewpagerHolder"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RR__viewpagerHolder"
+                android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/colorAvailable"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent">
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/txtColorLabele"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/activity_accessory_product_details_txtColorLabele_text"
                         android:textAllCaps="true"
                         android:textColor="@color/colorAccent"
@@ -190,35 +190,35 @@
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/colorRecyclerView"
-                        android:layout_below="@+id/txtColorLabele"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
+                        android:layout_below="@+id/txtColorLabele">
 
                     </android.support.v7.widget.RecyclerView>
 
                     <View
-                        android:background="@color/colorGray"
-                        android:layout_below="@+id/colorRecyclerView"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@+id/colorRecyclerView"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
-                        android:layout_width="match_parent" />
+                        android:background="@color/colorGray" />
 
                 </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/lblSizeHeader"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtSizeLabel"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/activity_accessory_product_details_txtSizeLabel_text"
                         android:textAllCaps="true"
                         android:textColor="@color/colorAccent"
@@ -229,41 +229,41 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="start"
                     android:id="@+id/sizeGuideLL"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
+                    android:gravity="start"
                     android:orientation="vertical">
 
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/sizeRecyclerView"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
 
                     <View
-                        android:background="@color/colorGray"
-                        android:layout_below="@+id/colorRecyclerView"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
+                        android:layout_below="@+id/colorRecyclerView"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
-                        android:layout_width="match_parent" />
+                        android:background="@color/colorGray" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/product"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="20dp">
 
                     <TextView
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Product Description"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_mid"
@@ -271,8 +271,8 @@
 
                     <TextView
                         android:id="@+id/text_descp"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/activity_accessory_product_details_text_descp_text"
                         android:textSize="@dimen/text_normal" />
                 </LinearLayout>
@@ -283,35 +283,33 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/LL_add_cart_region"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/tabColorBg"
         android:gravity="center"
-        android:id="@+id/LL_add_cart_region"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_price"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/activity_accessory_product_details_text_price_text"
+            android:layout_height="wrap_content"
+            android:text="--"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/margin_mid" />
 
         <Button
-            android:background="@color/colorAccent"
             android:id="@+id/add_cart_btn"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
+            android:background="@color/colorAccent"
             android:text="@string/activity_accessory_product_details_add_cart_btn_text"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/text_large" />
+            android:textColor="@color/colorWhite" />
 
     </LinearLayout>
 

@@ -266,18 +266,22 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             @Override
             public void onClick(View v) {
 
-                // Toast.makeText(getApplicationContext(),"Hi",Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(ZaaraDaraaActivity.this,SizeGuideActivirty.class));
+
                 try {
-                    Intent intent = new Intent(ZaaraDaraaActivity.this, SizeGuideActivirty.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
 
-                    intent.putExtras(bundle);
+                    if (sizeGuideResponseHtml != null && !sizeGuideResponseHtml.equalsIgnoreCase("")) {
+                        Intent intent = new Intent(ZaaraDaraaActivity.this, SizeGuideActivirty.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
 
-                    //intent.putExtra("sizeGuideResponseHtml",sizeGuideResponseHtml);
+                        intent.putExtras(bundle);
 
-                    startActivity(intent);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ZaaraDaraaActivity.this, "Sorry! Size guide not available!", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 } catch (Exception ex) {
                     System.out.println("Error==" + ex);
                 }
@@ -372,26 +376,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         //Size Guide Html
         sizeGuideResponseHtml = daraAbayaDetailRecord.getMeasurements();
 
-
-        //Color Array Fill
-
-//        for (Colors colors : daraAbayaDetailRecord.getColors()) {
-//
-//            if (uniqueColorSet.add(colors.getColor())) {
-//                ZaraDaraSizeModel daraSizeModel = colors.getSizes().get(0);
-//                ZaraDaraSizeModel zaraDaraSizeModel = new ZaraDaraSizeModel();
-//                zaraDaraSizeModel.setColor(colors.getColor());
-//                zaraDaraSizeModel.setPrice(daraSizeModel.getPrice());
-//                zaraDaraSizeModel.setQuantity(daraSizeModel.getQuantity());
-//                zaraDaraSizeModel.setSize(daraSizeModel.getSize());
-//                zaraDaraSizeModelList.add(zaraDaraSizeModel);
-//            }
-//
-//
-//        }
-
-
-        //Fill color
+        text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
 
         productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -560,6 +545,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     public void showSelectedSizeData(ZaraDaraSizeModel zaraDaraSizeModel) {
 
+        Log.e("zaraDaraSizeModel", new Gson().toJson(zaraDaraSizeModel));
 
         if (zaraDaraSizeModel != null) {
             zaraDaraSizesModel = zaraDaraSizeModel;
@@ -575,12 +561,21 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     private void bindSelectedSizeData() {
 
+
+        Log.e("bindSelectedSizeData", new Gson().toJson(zaraDaraSizesModel));
+
         if (zaraDaraSizesModel != null) {
 
             if (zaraDaraSizesModel.getQuantity() == 0) {
                 add_cart_btn.setText("SOLD OUT");
+                add_cart_btn.setEnabled(false);
                 quntity_LL.setVisibility(View.GONE);
+
                 return;
+            } else {
+                add_cart_btn.setEnabled(true);
+                add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
+                quntity_LL.setVisibility(View.VISIBLE);
             }
 
             if (zaraDaraSizesModel.getPrice() != null) {
@@ -588,9 +583,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 text_price.setText("PRICE : " + price + " KWD");
                 meter = 1;
                 meter_value.setText("" + meter);
-
             }
-
 
         }
 

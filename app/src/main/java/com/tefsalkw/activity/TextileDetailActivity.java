@@ -464,7 +464,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             @Override
             public void onClick(View v) {
 
-                if (meter >= min_meter) {
+                if (meter > min_meter) {
                     meter--;
                     amount = meter * price;
                     text_price.setText("PRICE : " + amount + " KWD");

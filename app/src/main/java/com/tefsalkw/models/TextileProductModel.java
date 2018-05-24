@@ -30,6 +30,16 @@ public class TextileProductModel implements Serializable {
     private String min_delivery_days;
     private String max_delivery_days;
 
+    public String getMeasurements() {
+        return measurements;
+    }
+
+    public void setMeasurements(String measurements) {
+        this.measurements = measurements;
+    }
+
+    private String measurements;
+
     private List<Colors> colors;
 
     public List<Colors> getColors() {
