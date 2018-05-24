@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.models.Colors;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.Colors;
 
 import java.util.List;
 
@@ -47,9 +47,21 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(final ProductColorAdapterHorizontalZaraDara.ViewHolder holder, final int position) {
 
-        // System.out.println("NISSAN===" + TefalApp.getInstance().getPaintOverSizeText());
-        System.out.println("productSizesList=======" + productSizesList.get(position).getColor());
-        holder.sizeText.setText(productSizesList.get(position).getColor());
+        String subColorIs = productSizesList.get(position).getSub_color();
+        if (subColorIs != null) {
+
+            holder.sizeText.setText(productSizesList.get(position).getSub_color());
+
+        } else {
+
+            String colorIs = productSizesList.get(position).getColor();
+            if (colorIs != null) {
+                holder.sizeText.setText(colorIs);
+            } else {
+                holder.sizeText.setText("Default");
+            }
+
+        }
 
         if (position == TefalApp.getInstance().getColorPosition()) {
 
@@ -73,9 +85,7 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
                 notifyDataSetChanged();
 
                 ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
-                zaaraDaraaActivity.showSizeOnColorSelection(position,productSizesList.get(position));
-
-
+                zaaraDaraaActivity.showSizeOnColorSelection(position, productSizesList.get(position));
 
 
             }

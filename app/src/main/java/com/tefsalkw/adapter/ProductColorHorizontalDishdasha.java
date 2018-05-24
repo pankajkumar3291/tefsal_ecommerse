@@ -41,16 +41,23 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
     }
 
     @Override
-    public void onBindViewHolder( ProductColorHorizontalDishdasha.ViewHolder holder,  int position) {
+    public void onBindViewHolder(ProductColorHorizontalDishdasha.ViewHolder holder, int position) {
 
 
-        String colorIs = productSizesList.get(position).getColor();
+        String subColorIs = productSizesList.get(position).getSub_color();
 
-        if (colorIs != null) {
-            holder.sizeText.setText(colorIs);
+        if (subColorIs != null) {
+            holder.sizeText.setText(subColorIs);
 
         } else {
-            holder.sizeText.setText("Default");
+
+            String colorIs = productSizesList.get(position).getColor();
+            if (colorIs != null) {
+                holder.sizeText.setText(subColorIs);
+            } else {
+                holder.sizeText.setText("Default");
+            }
+
         }
 
         if (position == TefalApp.getInstance().getAccColorPosition()) {

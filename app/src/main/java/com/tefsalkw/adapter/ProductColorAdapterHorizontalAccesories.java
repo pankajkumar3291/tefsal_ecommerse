@@ -48,14 +48,22 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
     public void onBindViewHolder(final ProductColorAdapterHorizontalAccesories.ViewHolder holder, final int position) {
 
 
-        String colorIs = productSizesList.get(position).getColor();
+        String subColorIs = productSizesList.get(position).getSub_color();
+        if (subColorIs != null) {
 
-        if (colorIs != null) {
-            holder.sizeText.setText(colorIs);
+            holder.sizeText.setText(productSizesList.get(position).getSub_color());
 
         } else {
-            holder.sizeText.setText("Default");
+
+            String colorIs = productSizesList.get(position).getColor();
+            if (colorIs != null) {
+                holder.sizeText.setText(colorIs);
+            } else {
+                holder.sizeText.setText("Default");
+            }
+
         }
+
 
         if (position == TefalApp.getInstance().getAccColorPosition()) {
 

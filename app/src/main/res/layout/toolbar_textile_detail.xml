@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
-    android:translationZ="99dp"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:translationZ="99dp"
     app:theme="@style/TransparentToolbar">
 
 
@@ -27,17 +27,17 @@
 
         <RelativeLayout
             android:id="@+id/RR_title_container"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true">
 
-            <TextView
-                android:layout_centerInParent="true"
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/toolbar_title"
                 fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
@@ -45,14 +45,15 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/toolbar_dishdasha_product_activity_toolbar_title_text"
+                android:text=""
                 android:textAllCaps="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold"
+                app:minTextSize="@dimen/text_small"
                 tools:ignore="MissingPrefix" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/subText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,36 +62,46 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text=""
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                app:minTextSize="@dimen/text_small" />
         </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/done_txt"
+        <RelativeLayout
+            android:id="@+id/rlFilter"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_gravity="end"
-            android:layout_marginEnd="16dp"
-            android:gravity="center"
-            android:text="@string/toolbar_textile_detail_done_txt_text"
-            android:textAllCaps="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_mid"
-            android:textStyle="bold"
-            android:translationZ="999dp"
-            android:visibility="gone" />
+            android:visibility="gone">
 
-        <ImageView
+            <TextView
+                android:id="@+id/done_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="@string/toolbar_textile_detail_done_txt_text"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_mid"
+                android:textStyle="bold"
+                android:translationZ="999dp"
+                android:visibility="gone" />
 
-            android:id="@+id/ic_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="end"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_filter" />
+            <ImageView
+
+                android:id="@+id/ic_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_filter" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 
