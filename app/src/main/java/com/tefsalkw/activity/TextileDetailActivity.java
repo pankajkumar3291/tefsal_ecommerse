@@ -280,7 +280,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         session = new SessionManager(TextileDetailActivity.this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ic_filter.setVisibility(View.VISIBLE);
+        ic_filter.setVisibility(View.GONE);
 
         textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
 
@@ -304,7 +304,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         StoreID = getIntent().getStringExtra("storeID");
         position = getIntent().getIntExtra("pos", 0);
 
-        txt_price.setText(textileProductModel.getPrice() + " KWD / METER");
+
         toolbar_title.setText(textileProductModel.getDishdasha_product_name());
         // subText.setText(textileProductModel.getColor() + (textileProductModel.getSub_color() != null ? " - " + textileProductModel.getSub_color() : ""));
 
@@ -348,7 +348,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
 
 
-        ic_filter.setVisibility(View.VISIBLE);
+        ic_filter.setVisibility(View.GONE);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -542,6 +542,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 text_price.setText("PRICE : " + price * meter + " KWD");
 
+                txt_price.setText(price + " KWD / METER");
+
             } catch (Exception ex) {
 
                 System.out.println("Error ===========1" + ex);
@@ -561,9 +563,24 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             feelString = feelString != null ? feelString : "";
             materialString = selectedColor.getMaterial();
             materialString = materialString != null ? materialString : "";
-            Log.e("feelString", feelString);
-            Log.e("materialString", materialString);
+           // Log.e("feelString", feelString);
+            //Log.e("materialString", materialString);
 
+
+
+            //Creating our pager adapter
+            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+            adapter.addFragment(FeelFragment.newInstance());
+            adapter.addFragment(MaterialFragment.newInstance());
+
+
+            //Adding adapter to pager
+            viewPager.setAdapter(adapter);
+
+            if(viewPager.getAdapter() != null)
+            {
+                viewPager.getAdapter().notifyDataSetChanged();
+            }
 
             if (selectedColor.getProduct_image() != null && selectedColor.getProduct_image().length <= 1) {
                 product_image_viewPager.stopAutoCycle();
@@ -572,6 +589,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
+            product_image_viewPager.removeAllSliders();
             if (selectedColor.getProduct_image() != null) {
                 product_image = selectedColor.getProduct_image();
                 for (String imgUrl : selectedColor.getProduct_image()) {

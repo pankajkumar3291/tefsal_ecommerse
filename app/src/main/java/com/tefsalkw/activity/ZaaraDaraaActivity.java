@@ -514,6 +514,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 mainViewPager.startAutoCycle();
             }
 
+            mainViewPager.removeAllSliders();
             for (String imgUrl : imgList) {
 
                 DefaultSliderView textSliderView = new DefaultSliderView(this);

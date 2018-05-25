@@ -53,7 +53,7 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
 
             String colorIs = productSizesList.get(position).getColor();
             if (colorIs != null) {
-                holder.sizeText.setText(subColorIs);
+                holder.sizeText.setText(colorIs);
             } else {
                 holder.sizeText.setText("Default");
             }
