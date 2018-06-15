@@ -9,7 +9,7 @@ import android.graphics.Bitmap;
 
 public class TefalApp
 {
-    private static volatile TefalApp mTefalApp = new TefalApp();
+
 
     private String color="";
     private String subColor="";
@@ -75,7 +75,7 @@ public class TefalApp
     private int currentSizePositionIs;
 
     //This member variable is used to store the minimum meter selected style
-    private String min_meters;
+    private String min_meters = "3";
 
     // This member variable is used to hold the style name
        private String styleName;
@@ -297,11 +297,11 @@ public class TefalApp
     private String mCategory;
     private String mAction;
 
-    private TefalApp(){
+    public TefalApp(){
         mCategory="1";
     }
     public static TefalApp getInstance() {
-        return mTefalApp;
+        return TefsalApplication.getContext().getInstance();
     }
 
     public Bitmap getBitmap() {

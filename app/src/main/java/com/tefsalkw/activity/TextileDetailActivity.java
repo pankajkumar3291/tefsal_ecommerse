@@ -275,221 +275,233 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.textile_detail);
 
-        ButterKnife.bind(this);
-
-        session = new SessionManager(TextileDetailActivity.this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        ic_filter.setVisibility(View.GONE);
-
-        textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
-
-        Log.e("textileProductModel", new Gson().toJson(textileProductModel));
-
-        if (textileProductModel != null) {
-            productColorHorizontalDishdasha = new ProductColorHorizontalDishdasha(textileProductModel.getColors(), this);
-            LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-            colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
-            TefalApp.getInstance().setAccColorPosition(0);
-            colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
-
-
-        }
-
-
-        min_meter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
-        meter = min_meter;
-        meter_value.setText("" + meter);
-        txt_min_meter.setText("Minimum - " + min_meter + "m required");
-        StoreID = getIntent().getStringExtra("storeID");
-        position = getIntent().getIntExtra("pos", 0);
-
-
-        toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-        // subText.setText(textileProductModel.getColor() + (textileProductModel.getSub_color() != null ? " - " + textileProductModel.getSub_color() : ""));
-
-
-        View root = tabLayout.getChildAt(0);
-        if (root instanceof LinearLayout) {
-            ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
-            drawable.setSize(2, 1);
-            ((LinearLayout) root).setDividerPadding(10);
-            ((LinearLayout) root).setDividerDrawable(drawable);
-        }
-
-
-        if (textileProductModel == null) {
-            RL_no_product_found_container.setVisibility(View.VISIBLE);
-            RL_product_exist_container.setVisibility(View.GONE);
-            return;
-        } else {
-            RL_no_product_found_container.setVisibility(View.GONE);
-            RL_product_exist_container.setVisibility(View.VISIBLE);
-
-
-            colorString = textileProductModel.getColor_id();
-            seasonString = textileProductModel.getSeason().toLowerCase();
-            countryString = textileProductModel.getCountry_id();
-            subColorString = textileProductModel.getSub_color_id();
-            brandString = textileProductModel.getBrand_id();
-            patternString = textileProductModel.getPattern_id();
-
-
-            TefalApp.getInstance().setColor(colorString);
-            TefalApp.getInstance().setSeason(seasonString);
-            TefalApp.getInstance().setSubColor(subColorString);
-
-
-            TefalApp.getInstance().setCountry(countryString);
-            TefalApp.getInstance().setBrand(brandString);
-            TefalApp.getInstance().setPattern(patternString);
-        }
-
-
-        ic_filter.setVisibility(View.GONE);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-
-        httpGetFilterData();
-
-        add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new AlertDialog.Builder(TextileDetailActivity.this, android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new AlertDialog.Builder(TextileDetailActivity.this);
-                }
-                builder.setTitle("Disclaimer")
-                        .setMessage("Please make sure that you have viewed the textile with your full brightness, the color and pattern you receive may vary depending on your screen type and brightness. Please make sure to read the color name before Continuing.\n")
-                        .setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-                                dialog.cancel();
-                                WebCallServiceAddCartNew();
-
-
-                            }
-                        })
-                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
-
-
-            }
-        });
-
-        ic_filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ic_filter.setVisibility(View.GONE);
-                initPopupFilter(v, filterWindowFlag);
-
-                done_txt.setVisibility(View.VISIBLE);
-                ic_filter.setClickable(false);
-
-            }
-        });
-
-        done_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                System.out.println("I m hitted");
-                // done_txt.setVisibility(View.GONE);
-                //ic_filter.setVisibility(View.VISIBLE);
-
-                httpGetFilterDataAfterFilter();
-                filterWindow.dismiss();
-
-                ic_filter.setClickable(true);
-            }
-        });
-
-
-        //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("FEEL"));
-        tabLayout.addTab(tabLayout.newTab().setText("MATERIAL"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-
-        //Creating our pager adapter
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(FeelFragment.newInstance());
-        adapter.addFragment(MaterialFragment.newInstance());
-
-
-        //Adding adapter to pager
-        viewPager.setAdapter(adapter);
-
-        //Adding onTabSelectedListener to swipe views
-        tabLayout.setOnTabSelectedListener(this);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        initSlider();
-
-
-        add_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (meter > 0 && meter < stock_meter) {
-
-                    amount = meter * price;
-                    text_price.setText("PRICE : " + amount + " KWD");
-
-                    meter_value.setText("" + meter);
-                    meter++;
-
-                }
-
-
-            }
-        });
-        less_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (meter > min_meter) {
-                    meter--;
-                    amount = meter * price;
-                    text_price.setText("PRICE : " + amount + " KWD");
-                    meter_value.setText("" + meter);
-                }
-
-
-            }
-        });
-
 
         try {
-            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-            float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-            float dpWidth = (displayMetrics.widthPixels / displayMetrics.density);
+            ButterKnife.bind(this);
+
+            session = new SessionManager(TextileDetailActivity.this);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            ic_filter.setVisibility(View.GONE);
+
+            textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
+
+            Log.e("textileProductModel", new Gson().toJson(textileProductModel));
+
+            if (textileProductModel != null) {
+                productColorHorizontalDishdasha = new ProductColorHorizontalDishdasha(textileProductModel.getColors(), this);
+                LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
+                TefalApp.getInstance().setAccColorPosition(0);
+                colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
 
-            int dpWidthInt = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpWidth, getResources().getDisplayMetrics());
-            Log.e("dpWidthInt", dpWidthInt + "");
-            RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpWidthInt);
-
-            linear1.setLayoutParams(rel_btn);
+            }
 
 
-        } catch (Exception exc) {
+            String minMtr = TefalApp.getInstance().getMin_meters();
+            minMtr = minMtr != null ? minMtr : "3";
+
+            min_meter = Float.parseFloat(minMtr);
+
+            meter = min_meter;
+            meter_value.setText("" + meter);
+            txt_min_meter.setText("Minimum - " + min_meter + "m required");
+            StoreID = getIntent().getStringExtra("storeID");
+            position = getIntent().getIntExtra("pos", 0);
+
+
+            toolbar_title.setText(textileProductModel.getDishdasha_product_name());
+            // subText.setText(textileProductModel.getColor() + (textileProductModel.getSub_color() != null ? " - " + textileProductModel.getSub_color() : ""));
+
+
+            View root = tabLayout.getChildAt(0);
+            if (root instanceof LinearLayout) {
+                ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+                GradientDrawable drawable = new GradientDrawable();
+                drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
+                drawable.setSize(2, 1);
+                ((LinearLayout) root).setDividerPadding(10);
+                ((LinearLayout) root).setDividerDrawable(drawable);
+            }
+
+
+            if (textileProductModel == null) {
+                RL_no_product_found_container.setVisibility(View.VISIBLE);
+                RL_product_exist_container.setVisibility(View.GONE);
+                return;
+            } else {
+                RL_no_product_found_container.setVisibility(View.GONE);
+                RL_product_exist_container.setVisibility(View.VISIBLE);
+
+
+                colorString = textileProductModel.getColor_id();
+                seasonString = textileProductModel.getSeason().toLowerCase();
+                countryString = textileProductModel.getCountry_id();
+                subColorString = textileProductModel.getSub_color_id();
+                brandString = textileProductModel.getBrand_id();
+                patternString = textileProductModel.getPattern_id();
+
+
+                TefalApp.getInstance().setColor(colorString);
+                TefalApp.getInstance().setSeason(seasonString);
+                TefalApp.getInstance().setSubColor(subColorString);
+
+
+                TefalApp.getInstance().setCountry(countryString);
+                TefalApp.getInstance().setBrand(brandString);
+                TefalApp.getInstance().setPattern(patternString);
+            }
+
+
+            ic_filter.setVisibility(View.GONE);
+            btn_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+
+
+            httpGetFilterData();
+
+            add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    AlertDialog.Builder builder;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        builder = new AlertDialog.Builder(TextileDetailActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                    } else {
+                        builder = new AlertDialog.Builder(TextileDetailActivity.this);
+                    }
+                    builder.setTitle("Disclaimer")
+                            .setMessage("Please make sure that you have viewed the textile with your full brightness, the color and pattern you receive may vary depending on your screen type and brightness. Please make sure to read the color name before Continuing.\n")
+                            .setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                    dialog.cancel();
+                                    WebCallServiceAddCartNew();
+
+
+                                }
+                            })
+                            .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // do nothing
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
+
+
+                }
+            });
+
+            ic_filter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ic_filter.setVisibility(View.GONE);
+                    initPopupFilter(v, filterWindowFlag);
+
+                    done_txt.setVisibility(View.VISIBLE);
+                    ic_filter.setClickable(false);
+
+                }
+            });
+
+            done_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    System.out.println("I m hitted");
+                    // done_txt.setVisibility(View.GONE);
+                    //ic_filter.setVisibility(View.VISIBLE);
+
+                    httpGetFilterDataAfterFilter();
+                    filterWindow.dismiss();
+
+                    ic_filter.setClickable(true);
+                }
+            });
+
+
+            //Adding the tabs using addTab() method
+            tabLayout.addTab(tabLayout.newTab().setText("FEEL"));
+            tabLayout.addTab(tabLayout.newTab().setText("MATERIAL"));
+            tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+            //Creating our pager adapter
+            ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+            adapter.addFragment(FeelFragment.newInstance());
+            adapter.addFragment(MaterialFragment.newInstance());
+
+
+            //Adding adapter to pager
+            viewPager.setAdapter(adapter);
+
+            //Adding onTabSelectedListener to swipe views
+            tabLayout.setOnTabSelectedListener(this);
+
+            tabLayout.setupWithViewPager(viewPager);
+
+            initSlider();
+
+
+            add_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (meter > 0 && meter < stock_meter) {
+
+                        amount = Math.round(price * meter);
+                        text_price.setText("PRICE : " + amount + " KWD");
+
+                        meter_value.setText("" + meter);
+                        meter++;
+
+                    }
+
+
+                }
+            });
+            less_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (meter > min_meter) {
+                        meter--;
+                        amount = Math.round(price * meter);
+                        text_price.setText("PRICE : " + amount + " KWD");
+                        meter_value.setText("" + meter);
+                    }
+
+
+                }
+            });
+
+
+            try {
+                DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+                float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+                float dpWidth = (displayMetrics.widthPixels / displayMetrics.density);
+
+
+                int dpWidthInt = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpWidth, getResources().getDisplayMetrics());
+                Log.e("dpWidthInt", dpWidthInt + "");
+                RelativeLayout.LayoutParams rel_btn = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpWidthInt);
+
+                linear1.setLayoutParams(rel_btn);
+
+
+            } catch (Exception exc) {
+
+            }
+
+        }
+        catch (Exception exc)
+        {
 
         }
 
@@ -540,7 +552,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText("PRICE : " + price * meter + " KWD");
+                text_price.setText("PRICE : " + Math.round(price * meter)  + " KWD");
 
                 txt_price.setText(price + " KWD / METER");
 

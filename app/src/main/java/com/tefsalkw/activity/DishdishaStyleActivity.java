@@ -128,7 +128,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 DishdashaStylesResponse mResponse = g.fromJson(response, DishdashaStylesResponse.class);
-                                if (mResponse.getStatus().toString().equals("1")) {
+                                if (mResponse.getStatus().equals("1")) {
 
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -140,7 +140,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                     recycler.setAdapter(adapter);
 
                                 }
-                                if (mResponse.getStatus().toString().equals("0") || mResponse.getRecord().size() == 0) {
+                                if (mResponse.getStatus().equals("0") || mResponse.getRecord().size() == 0) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
                                     builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
                                             .setCancelable(false)

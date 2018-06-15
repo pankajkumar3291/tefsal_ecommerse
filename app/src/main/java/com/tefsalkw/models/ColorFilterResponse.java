@@ -7,6 +7,15 @@ public class ColorFilterResponse {
     private String message;
     private String status;
 
+    public ArrayList<ColorRecordFromDishdashaFilteration> getRecord() {
+        return record;
+    }
+
+    public void setRecord(ArrayList<ColorRecordFromDishdashaFilteration> record) {
+        this.record = record;
+    }
+
+    private ArrayList<ColorRecordFromDishdashaFilteration> record;
     public String getMessage() {
         return message;
     }

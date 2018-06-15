@@ -1,15 +1,36 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Rituparna Khadka on 1/17/2018.
  */
 
-public class ColorRecordFromDishdashaFilteration
+public class ColorRecordFromDishdashaFilteration implements Serializable
 {
 
     private String color_id;
     private String color_name;
     private String hexa_value;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String id;
+    private String name;
 
     public String getColor_id() {
         return color_id;

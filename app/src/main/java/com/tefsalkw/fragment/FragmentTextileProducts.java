@@ -255,6 +255,8 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
+                Log.e("colorsRecordModelArra",new Gson().toJson(colorsRecordModelArrayList));
+
                 try {
                     if (colorsRecordModelArrayList == null) {
                         return;
@@ -286,9 +288,7 @@ public class FragmentTextileProducts extends BaseFragment {
                         }
                     });
 
-                    if (alertDialog != null && alertDialog.isShowing()) {
-                        alertDialog.dismiss();
-                    }
+
 
 
                     colorWindow.showAsDropDown(v);
@@ -464,7 +464,7 @@ public class FragmentTextileProducts extends BaseFragment {
             llimgSelectedColor.setVisibility(View.VISIBLE);
             imgRemoveColor.setVisibility(View.VISIBLE);
 
-            color = selectedColorModel.getColor_id();
+            color = selectedColorModel.getId();
 
             text_color.setText(selectedColorModel.getColor_name());
 
@@ -630,10 +630,10 @@ public class FragmentTextileProducts extends BaseFragment {
                     System.out.println("Fragment Textile parameter HELLO COUNTRY==" + country);
 
 
-                    params.put("color", color);
-                    params.put("sub_color", sub_color);
-                    params.put("country", country);
-                    params.put("season", season);
+                    params.put("color", color+"");
+                    params.put("sub_color", sub_color+"");
+                    params.put("country", country+"");
+                    params.put("season", season+"");
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -821,7 +821,7 @@ public class FragmentTextileProducts extends BaseFragment {
                                 Gson g = new Gson();
                                 ColorFilterResponse mResponse = g.fromJson(response, ColorFilterResponse.class);
                                 if (mResponse.getStatus().equals("1")) {
-                                    colorsRecordModelArrayList = mResponse.getColors();
+                                    colorsRecordModelArrayList = mResponse.getRecord();
 
 
                                 }
@@ -840,7 +840,7 @@ public class FragmentTextileProducts extends BaseFragment {
                     Map<String, String> params = new HashMap<String, String>();
 //                    params.put("access_token", session.getToken());
 
-
+                    params.put("category", "dishdasha");
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");

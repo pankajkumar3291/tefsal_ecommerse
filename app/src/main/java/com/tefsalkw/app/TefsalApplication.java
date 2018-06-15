@@ -1,16 +1,12 @@
 package com.tefsalkw.app;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
-import android.util.DisplayMetrics;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
 
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -28,6 +24,7 @@ public class TefsalApplication extends MultiDexApplication {
     private static TefsalApplication mInstance;
     private static OkHttpClient okHttpClient;
     int YOUR_CUSTOM_TIMEOUT = 30;
+    public TefalApp mTefalApp = null;
 
     @Override
     public void onCreate() {
@@ -48,15 +45,18 @@ public class TefsalApplication extends MultiDexApplication {
         );
 
 
-
+        mTefalApp = new TefalApp();
 
 
     }
 
+    public TefalApp getInstance() {
+        return mTefalApp;
+    }
 
 
-    public static Context getContext() {
-        return getContext();
+    public static TefsalApplication getContext() {
+        return mInstance;
     }
 
     synchronized public Tracker getDefaultTracker() {

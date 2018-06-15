@@ -30,7 +30,6 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
 
     private ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList;
     private FragmentTextileProducts activity;
-    ArrayList<ColorsRecordModel> sub_colorsRecordModelArrayList = new ArrayList<ColorsRecordModel>();
 
 
     public FilterColorListAdapter(ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList, FragmentTextileProducts activity) {
@@ -55,7 +54,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
             @Override
             public void onClick(View v) {
 
-                TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getColor_id());
+                TefalApp.getInstance().setColor(colorsRecordModelArrayList.get(position).getId());
                 notifyDataSetChanged();
 
                 activity.selectedColorModel = colorsRecordModelArrayList.get(position);
@@ -73,7 +72,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
         });
 
 
-        if (colorsRecordModelArrayList.get(position).getColor_id().equals(TefalApp.getInstance().getColor())) {
+        if (colorsRecordModelArrayList.get(position).getId().equals(TefalApp.getInstance().getColor())) {
 
             LayerDrawable layerDrawable = (LayerDrawable) activity.getResources()
                     .getDrawable(R.drawable.round_mage_background_select);
