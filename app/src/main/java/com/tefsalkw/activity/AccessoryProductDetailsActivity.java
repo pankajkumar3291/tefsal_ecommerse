@@ -48,11 +48,11 @@ import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.dialogs.DialogKart;
+import com.tefsalkw.models.AccColor;
+import com.tefsalkw.models.AccSizes;
 import com.tefsalkw.models.AccessoriesRecord;
 import com.tefsalkw.models.AccessoryDetailRecord;
 import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.ColorsAcc;
-import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -62,12 +62,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,9 +73,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
     private AccessoriesRecord accessoriesRecord;
-   /* @BindView(R.id.productImage)
-    ImageView imageView;*/
-
 
     @BindView(R.id.text_descp)
     TextView text_desc;
@@ -122,9 +116,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.total_badge_txt)
     TextView total_badge_txt;
 
-    /*
-     * This dialog is used to show the image which can zoom in zoom out from view pager
-     * */
+
     Dialog dialog;
 
 
@@ -145,9 +137,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     ProductSizeAdapterHorizontalAccessories productSizeAdapterHorizontalAccessories;
     ProductColorAdapterHorizontalAccesories productColorAdapterHorizontalAccesories;
 
-    int currentColorPosition = 0;
-
-    int currentSizePosition = 0;
 
     boolean isSizeSelected = false;
 
@@ -155,17 +144,14 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     public static float price;
 
 
-    Set<String> uniqueSizeSet = new HashSet<>();
-
-    List<ZaraDaraSizeModel> productSizesList = new ArrayList<>();
-
-
-    ColorsAcc selectedColor = null;
+    AccColor selectedColor = null;
 
     String default_image = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accessory_product_details);
         ButterKnife.bind(this);
@@ -192,16 +178,16 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             @Override
             public void onClick(View v) {
 
-                if (accessoryDetailRecord == null) {
+                if (selectedColor == null) {
 
                     Toast.makeText(AccessoryProductDetailsActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                if (!isSizeSelected) {
+                if (price == 0) {
 
-                    Toast.makeText(AccessoryProductDetailsActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AccessoryProductDetailsActivity.this, "Sorry, Not available!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -331,105 +317,106 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         colorRecyclerView.setAdapter(productColorAdapterHorizontalAccesories);
 
 
-        // Bind Size Circle
-
-
-        for (ColorsAcc colorsAcc : accessoryDetailRecord.getColors()) {
-            if (uniqueSizeSet.add(colorsAcc.getSizes().getSize())) {
-
-                productSizesList.add(colorsAcc.getSizes());
-
-
-            }
-
-        }
-
-
-        productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(productSizesList, AccessoryProductDetailsActivity.this);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
-        sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
-        TefalApp.getInstance().setCurrentColorText("-1");
-        sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
-
-
     }
 
-    public void showSizeOnColorSelection(ColorsAcc colorsAcc) {
 
-        selectedColor = colorsAcc;
-        TefalApp.getInstance().setCurrentSizePositionIs(-1);
-        String sizeIs = colorsAcc.getSizes().getSize();
+    public void showSizeOnColorSelection(AccColor accColor) {
 
-        TefalApp.getInstance().setCurrentSizeText(sizeIs);
-
-        productSizeAdapterHorizontalAccessories.notifyDataSetChanged();
+        selectedColor = accColor;
 
         if (selectedColor != null) {
 
-            int qty = selectedColor.getSizes() != null ? selectedColor.getSizes().getQuantity() : 0;
 
-            if (qty == 0) {
-                add_cart_btn.setText("SOLD OUT");
-                add_cart_btn.setEnabled(false);
+            //Fill Size
 
+            productSizeAdapterHorizontalAccessories = new ProductSizeAdapterHorizontalAccessories(selectedColor.getSizes(), AccessoryProductDetailsActivity.this);
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(AccessoryProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
+            sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
+            TefalApp.getInstance().setCurrentSizePositionIs(0);
+            sizeRecyclerView.setAdapter(productSizeAdapterHorizontalAccessories);
+
+
+            //Show images
+            product_image_viewPager.removeAllSliders();
+
+            List<String> imagesList = selectedColor.getImages();
+
+            if (imagesList != null && imagesList.size() <= 1) {
+                product_image_viewPager.stopAutoCycle();
             } else {
-                add_cart_btn.setEnabled(true);
-                add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
-
+                product_image_viewPager.startAutoCycle();
             }
 
-            if (selectedColor.getSizes().getPrice() != null) {
-                price = Float.parseFloat(selectedColor.getSizes().getPrice());
-                text_price.setText("PRICE : " + price + " KWD");
-            }
+            if (imagesList != null && imagesList.size() > 0) {
+                for (String imgUrl : imagesList) {
+
+                    DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
+                    textSliderView.setOnSliderClickListener(onSliderClickListener);
+                    textSliderView
+                            .image(imgUrl)
+                            .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
-        }
+                    product_image_viewPager.addSlider(textSliderView);
 
-
-        product_image_viewPager.removeAllSliders();
-
-        String[] imagesList = selectedColor.getImages();
-
-        if (imagesList != null && imagesList.length <= 1) {
-            product_image_viewPager.stopAutoCycle();
-        } else {
-            product_image_viewPager.startAutoCycle();
-        }
-
-        if (imagesList != null && imagesList.length > 0) {
-            for (String imgUrl : imagesList) {
-
+                }
+            } else {
                 DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
                 textSliderView.setOnSliderClickListener(onSliderClickListener);
                 textSliderView
-                        .image(imgUrl)
+                        .image(default_image)
                         .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
                 product_image_viewPager.addSlider(textSliderView);
-
             }
-        } else {
-            DefaultSliderView textSliderView = new DefaultSliderView(AccessoryProductDetailsActivity.this);
-            textSliderView.setOnSliderClickListener(onSliderClickListener);
-            textSliderView
-                    .image(default_image)
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
 
 
-            product_image_viewPager.addSlider(textSliderView);
         }
 
 
-        isSizeSelected = true;
-
     }
+
 
     public void showSelectedSizeData() {
 
 
-        isSizeSelected = true;
+        if (selectedColor != null) {
+
+            AccSizes accSizes = selectedColor.getSizes().get(TefalApp.getInstance().getCurrentSizePositionIs());
+
+            if (accSizes != null) {
+                int qty = accSizes.getQuantity() != null ? accSizes.getQuantity() : 0;
+
+                if (qty == 0) {
+                    add_cart_btn.setText("SOLD OUT");
+                    add_cart_btn.setEnabled(false);
+
+                } else {
+                    add_cart_btn.setEnabled(true);
+                    add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
+
+                }
+
+
+                if (accSizes.getPrice() != null) {
+
+                    price = Float.parseFloat(accSizes.getPrice().toString());
+                    text_price.setText("PRICE : " + price + " KWD");
+
+                } else {
+
+                    price = 0;
+                    text_price.setText("NOT AVAILABLE");
+                }
+            }
+            else
+            {
+
+            }
+
+
+        }
 
 
     }
@@ -505,23 +492,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
-//    public void gotoCart(View view) {
-//        try {
-//            startActivity(new Intent(AccessoryProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-//        } catch (Exception e) {
-//            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-//        }
-//
-//    }
-
-
     private void setData() {
 
         txt_title.setText(accessoriesRecord.getProductName());
         subtxt_title.setText(accessoriesRecord.getStoreName());
 
         text_desc.setText(accessoriesRecord.getProductDesc());
-        text_price.setText("PRICE: " + accessoriesRecord.getPrice() + " KWD");
+
 
     }
 
@@ -618,7 +595,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("product_id", accessoriesRecord.getTefsalProductId());
-        obj.put("item_id", selectedColor != null ? selectedColor.getAttribute_id() : "");
+        obj.put("item_id", selectedColor != null ? selectedColor.getAttributeId() : "");
 
         obj.put("category_id", "4");
 
@@ -626,7 +603,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         if (selectedColor != null) {
 
             JSONObject item_details = new JSONObject();
-            item_details.put("size", selectedColor.getSizes().getSize());
+            item_details.put("size", selectedColor.getSizes().get(TefalApp.getInstance().getAccColorPosition()).getSize());
             item_details.put("color", selectedColor == null ? "Default" : selectedColor.getColor());
             item_details.put("item_quantity", "1");
             obj.put("item_details", item_details);

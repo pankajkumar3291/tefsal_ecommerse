@@ -48,9 +48,12 @@ public class AccessoryDetailRecord implements Serializable {
     @SerializedName("default_image")
     @Expose
     private String defaultImage;
+    @SerializedName("description")
+    @Expose
+    private String description;
     @SerializedName("colors")
     @Expose
-    private List<ColorsAcc> colors = null;
+    private List<AccColor> colors = null;
 
     public Integer getTefsalProductId() {
         return tefsalProductId;
@@ -148,11 +151,19 @@ public class AccessoryDetailRecord implements Serializable {
         this.defaultImage = defaultImage;
     }
 
-    public List<ColorsAcc> getColors() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<AccColor> getColors() {
         return colors;
     }
 
-    public void setColors(List<ColorsAcc> colors) {
+    public void setColors(List<AccColor> colors) {
         this.colors = colors;
     }
 

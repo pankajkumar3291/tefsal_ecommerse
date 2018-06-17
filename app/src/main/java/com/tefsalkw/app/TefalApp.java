@@ -107,6 +107,8 @@ public class TefalApp
 
     private String currentColorText;
 
+
+
     // This holds the store id of tailor store as tailor id
     private String tailor_id;
 
