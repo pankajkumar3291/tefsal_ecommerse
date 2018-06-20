@@ -19,7 +19,7 @@ public class SessionManager {
 
     private static final String PREF_NAME = "TefsalPref";
 
-
+    public static final String KEY_GUEST= "guest";
     public static final String KEY_CUS_ID = "id";
     public static final String KEY_TOKEN = "token";
 
@@ -183,6 +183,23 @@ public class SessionManager {
         return Tefsal_pref.getString(KEY_CUS_ID, "");
 
     }
+
+
+    public void setIsGuestUser(boolean isGuestUser) {
+
+        editor.putBoolean(KEY_GUEST, isGuestUser);
+        editor.commit();
+    }
+
+    public boolean getIsGuestId() {
+
+        // Storing type in pref
+        return Tefsal_pref.getBoolean(KEY_GUEST, false);
+
+    }
+
+
+
 
     public void setToken(String token) {
 

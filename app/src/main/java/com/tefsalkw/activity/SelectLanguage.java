@@ -3,52 +3,32 @@ package com.tefsalkw.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.tefsalkw.R;
-import com.tefsalkw.utils.Contents;
-import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.SessionManager;
-import com.tefsalkw.utils.SimpleProgressBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class SelectLanguage extends BaseActivity {
 
     Button btn_arabic, btn_english;
 
 
-
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_language);
 
+        sessionManager = new SessionManager(this);
+
         btn_arabic = (Button) findViewById(R.id.btn_arabic);
         btn_english = (Button) findViewById(R.id.btn_english);
-
-
-
 
 
     }
@@ -65,6 +45,8 @@ public class SelectLanguage extends BaseActivity {
                 Locale locale = new Locale("ar");
                 Locale.setDefault(locale);
 
+                sessionManager.setKeyLang("Arabic");
+
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
@@ -80,9 +62,10 @@ public class SelectLanguage extends BaseActivity {
         btn_english.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Locale locale = new Locale("eg");
                 Locale.setDefault(locale);
-
+                sessionManager.setKeyLang("English");
                 Resources resources = getResources();
                 Configuration configuration = resources.getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
@@ -95,10 +78,7 @@ public class SelectLanguage extends BaseActivity {
         });
 
 
-
-
     }
-
 
 
 }

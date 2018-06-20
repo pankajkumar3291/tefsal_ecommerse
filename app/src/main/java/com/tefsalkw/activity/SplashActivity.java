@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
+import android.provider.Settings.Secure;
 import io.fabric.sdk.android.Fabric;
 
 public class SplashActivity extends BaseActivity {
@@ -47,8 +48,8 @@ public class SplashActivity extends BaseActivity {
         Fabric.with(this, new Crashlytics());
         session = new SessionManager(this);
 
-        password = session.getKeyPass();
-        email = session.getKeyEmail();
+        //password = session.getKeyPass();
+        // email = session.getKeyEmail();
 
         if (Contents.isBlank(session.getCustomerId())) {
             new Handler().postDelayed(new Runnable() {
@@ -57,14 +58,9 @@ public class SplashActivity extends BaseActivity {
 
                     // This block of code is used to internal login
 
-                    if (!password.equals("") && !email.equals("") && !password.equals(null) && !email.equals(null)) {
-                        WebCallServiceForinternalLogin();
-                    } else {
-                        Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
-                        startActivity(mainIntent);
-                        finish();
-                    }
-
+                    Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
+                    startActivity(mainIntent);
+                    finish();
 
                 }
             }, SPLASH_DISPLAY_LENGTH);
@@ -72,6 +68,9 @@ public class SplashActivity extends BaseActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+
+
+                    WebCallServiceSetToken();
 
                     String keyLang = session.getKeyLang();
                     String lang = keyLang.equalsIgnoreCase("English") ? "en" : "ar";
@@ -92,8 +91,6 @@ public class SplashActivity extends BaseActivity {
             }, SPLASH_DISPLAY_LENGTH);
         }
     }
-
-
 
 
     public void WebCallServiceForinternalLogin() {
@@ -184,6 +181,10 @@ public class SplashActivity extends BaseActivity {
     public void WebCallServiceSetToken() {
 
         try {
+
+          String  androidDeviceId = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
+
+
             final String url = Contents.baseURL + "deviceInfo";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -226,8 +227,8 @@ public class SplashActivity extends BaseActivity {
                     Log.d("Test access_token", session.getToken());
                     Log.d("Test user_id", session.getCustomerId());
 
-//                    params.put("device_id", session2.getDeviceToken());
-                    params.put("device_id", "fgdjyfkudfk");
+
+                    params.put("device_id", androidDeviceId);
                     params.put("device_type", "A");
                     params.put("access_token", session.getToken());
                     params.put("appUser", "tefsal");
