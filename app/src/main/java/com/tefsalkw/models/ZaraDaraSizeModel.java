@@ -45,4 +45,14 @@ public class ZaraDaraSizeModel implements Serializable{
 
     private int quantity;
     private String price;
+
+    public String getAttribute_meta_id() {
+        return attribute_meta_id;
+    }
+
+    public void setAttribute_meta_id(String attribute_meta_id) {
+        this.attribute_meta_id = attribute_meta_id;
+    }
+
+    private String attribute_meta_id;
 }

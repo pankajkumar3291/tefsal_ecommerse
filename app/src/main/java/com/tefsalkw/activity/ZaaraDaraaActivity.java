@@ -701,10 +701,10 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         try {
             params.put("access_token", session.getToken());
-            params.put("user_id", session.getCustomerId());
-            params.put("user_required_meter", "");
+            params.put("unique_id", session.getCustomerId());
+
             try {
-                params.put("items", getItems(productRecord));
+                params.put("items", getItems());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -768,115 +768,31 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     }
 
-    public void WebCallServiceAddCart() {
-
-        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-        SimpleProgressBar.showProgress(this);
-        try {
-            final String url = Contents.baseURL + "addCart";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            if (response != null) {
-
-                                Log.e("stores response", response);
 
 
-                                System.out.println("ADD CART RESPONSE====" + response);
-
-                                JSONObject jsonObject = null;
-                                try {
-                                    jsonObject = new JSONObject(response);
-                                    String itemType = jsonObject.getString("item_type");
-                                    DialogKart dg = new DialogKart(ZaaraDaraaActivity.this, false, itemType, "");
-                                    dg.show();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                                httpGetBadgesCall();
-
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-
-
-                    System.out.println("QUANTITY====" + meter_value.getText());
-                    System.out.println("currentPosition====" + currentColorPosition);
-                    //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
-
-                    params.put("access_token", session.getToken());
-                    params.put("user_id", session.getCustomerId());
-
-                    try {
-                        params.put("items", String.valueOf(getItems(productRecord)));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-
-                    Log.e("Tefsal tailor == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(ZaaraDaraaActivity.this);
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
-
-    public JSONArray getItems(ProductRecord productRecord) throws JSONException {
+    public JSONArray getItems() throws JSONException {
 
 
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
+
+        if (productRecord.getFlag().equals("Daraa")) {
+
+            obj.put("category_id", "3");
+        }
+        if (productRecord.getFlag().equals("Abaya")) {
+
+            obj.put("category_id", "2");
+        }
         obj.put("product_id", productRecord.getTefsal_product_id());
 
-        obj.put("item_id", "" + daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
-        if (productRecord.getFlag().equals("Daraa")) {
-            obj.put("category_id", "3");
-        } else if (productRecord.getFlag().equals("Abaya")) {
-            obj.put("category_id", "2");
-        } else if (productRecord.getFlag().equals("Accessories")) {
-            obj.put("category_id", "4");
-        }
+        obj.put("item_id", zaraDaraSizesModel != null ? zaraDaraSizesModel.getAttribute_meta_id() : "" );
 
-
-        if (zaraDaraSizesModel != null) {
-            JSONObject item_details = new JSONObject();
-
-            item_details.put("size", zaraDaraSizesModel.getSize());
-            item_details.put("color", daraAbayaDetailRecord.getColors().get(currentColorPosition).getColor());
-            item_details.put("item_quantity", meter_value.getText());
-            obj.put("item_details", item_details);
-        }
+        JSONObject item_details = new JSONObject();
+        //item_details.put("size", zaraDaraSizesModel.getSize());
+        // item_details.put("color", daraAbayaDetailRecord.getColors().get(currentColorPosition).getColor());
+        item_details.put("item_quantity", meter_value.getText());
+        obj.put("item_details", item_details);
 
 
         arry.put(obj);

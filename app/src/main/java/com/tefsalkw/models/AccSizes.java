@@ -13,7 +13,20 @@ public class AccSizes {
     private Integer quantity;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private String price;
+
+    public String getAttribute_meta_id() {
+        return attribute_meta_id;
+    }
+
+    public void setAttribute_meta_id(String attribute_meta_id) {
+        this.attribute_meta_id = attribute_meta_id;
+    }
+
+    @SerializedName("attribute_meta_id")
+    @Expose
+    private String attribute_meta_id;
+
 
     public String getSize() {
         return size;
@@ -31,11 +44,11 @@ public class AccSizes {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

@@ -146,6 +146,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     AccColor selectedColor = null;
 
+    AccSizes selectedSize = null;
+
     String default_image = null;
 
 
@@ -383,10 +385,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (selectedColor != null) {
 
-            AccSizes accSizes = selectedColor.getSizes().get(TefalApp.getInstance().getCurrentSizePositionIs());
+             selectedSize = selectedColor.getSizes().get(TefalApp.getInstance().getCurrentSizePositionIs());
 
-            if (accSizes != null) {
-                int qty = accSizes.getQuantity() != null ? accSizes.getQuantity() : 0;
+            if (selectedSize != null) {
+                int qty = selectedSize.getQuantity() != null ? selectedSize.getQuantity() : 0;
 
                 if (qty == 0) {
                     add_cart_btn.setText("SOLD OUT");
@@ -399,9 +401,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 }
 
 
-                if (accSizes.getPrice() != null) {
+                if (selectedSize.getPrice() != null) {
 
-                    price = Float.parseFloat(accSizes.getPrice().toString());
+                    price = Float.parseFloat(selectedSize.getPrice().toString());
                     text_price.setText("PRICE : " + price + " KWD");
 
                 } else {
@@ -410,10 +412,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     text_price.setText("NOT AVAILABLE");
                 }
             }
-            else
-            {
 
-            }
 
 
         }
@@ -520,10 +519,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         try {
             params.put("access_token", session.getToken());
-            params.put("user_required_meter", "");
-            params.put("user_id", session.getCustomerId());
+            params.put("unique_id", session.getCustomerId());
             try {
-                params.put("items", getItems(accessoryDetailRecord));
+                params.put("items", getItems());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -589,22 +587,21 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
-    public JSONArray getItems(AccessoryDetailRecord accessoriesRecord) throws JSONException {
+    public JSONArray getItems() throws JSONException {
 
 
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
-        obj.put("product_id", accessoriesRecord.getTefsalProductId());
-        obj.put("item_id", selectedColor != null ? selectedColor.getAttributeId() : "");
-
         obj.put("category_id", "4");
+        obj.put("product_id", accessoryDetailRecord.getTefsalProductId());
+        obj.put("item_id", selectedSize != null ? selectedSize.getAttribute_meta_id() : "");
 
 
         if (selectedColor != null) {
 
             JSONObject item_details = new JSONObject();
-            item_details.put("size", selectedColor.getSizes().get(TefalApp.getInstance().getAccColorPosition()).getSize());
-            item_details.put("color", selectedColor == null ? "Default" : selectedColor.getColor());
+           // item_details.put("size", selectedColor.getSizes().get(TefalApp.getInstance().getAccColorPosition()).getSize());
+            //item_details.put("color", selectedColor == null ? "Default" : selectedColor.getColor());
             item_details.put("item_quantity", "1");
             obj.put("item_details", item_details);
         }
