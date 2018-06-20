@@ -169,30 +169,16 @@ public class AddressesActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
                 }
-                /*else if (spin_area.getSelectedItemPosition()==-1 ) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidArea),Toast.LENGTH_LONG).show();
-                    return;
-                }*/
-               /* else if (spin_area.getSelectedItemPosition()==-1) {
-                    Toast.makeText(getApplicationContext(),getString(R.string.invalidCity),Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 else if (Contents.isBlank(input_street.getText().toString().trim())) {
                     input_street.setError(getString(R.string.invalidStreet));
                     return;
                 }
 
-              /* else if(Contents.isBlank(input_flate.getText().toString().trim())) {
-                   input_flate.setError(getString(R.string.invalidFlate));
-                   return;
-               }
-               else if(Contents.isBlank(input_phone.getText().toString().trim())) {
-                   input_phone.setError(getString(R.string.invalidPhone));
-                   return;
-               }*/
+
                 saveAddress();
 
-                // System.out.println("SAVE");
+
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);

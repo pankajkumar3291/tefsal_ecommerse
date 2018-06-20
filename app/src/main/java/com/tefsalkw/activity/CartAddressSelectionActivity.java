@@ -7,9 +7,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +42,11 @@ import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,8 +106,88 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     @BindView(R.id.btnAddAddress)
     Button btnAddAddress;
 
+    @BindView(R.id.llRegisteredUser)
+    LinearLayout llRegisteredUser;
+
+    @BindView(R.id.llGuestMode)
+    LinearLayout llGuestMode;
+
 
     public String defaultAddressId = "";
+
+
+    @BindView(R.id.spin_country)
+    Spinner spin_country;
+
+    @BindView(R.id.spin_city)
+    Spinner spin_city;
+
+    @BindView(R.id.spin_area)
+    Spinner spin_area;
+
+    @BindView(R.id.input_address_name)
+    EditText input_address_name;
+
+    @BindView(R.id.input_first_name)
+    EditText input_first_name;
+
+
+    @BindView(R.id.input_last_name)
+    EditText input_last_name;
+
+    @BindView(R.id.input_block)
+    EditText input_block;
+
+    @BindView(R.id.input_avenue)
+    EditText input_avenue;
+
+    @BindView(R.id.input_floor)
+    EditText input_floor;
+
+    @BindView(R.id.input_house)
+    EditText input_house;
+
+    @BindView(R.id.input_paci_num)
+    EditText input_paci_num;
+
+    @BindView(R.id.input_add_desp)
+    EditText input_add_desp;
+
+    @BindView(R.id.areaTxt)
+    TextView areaTxt;
+
+    @BindView(R.id.cityTxt)
+    TextView cityTxt;
+
+    @BindView(R.id.countryTxt)
+    TextView countryTxt;
+
+    @BindView(R.id.input_street)
+    EditText input_street;
+
+
+    @BindView(R.id.input_phone)
+    EditText input_phone;
+
+    @BindView(R.id.input_flate)
+    EditText input_flate;
+
+
+    List<String> country_name;
+    List<String> iso_name;
+
+    List<String> province_id;
+    List<String> province_name;
+
+
+    List<String> area_id;
+    List<String> area_name;
+    private String country_iso_code;
+    private String province_code;
+    private String area_code;
+
+    private int position;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,6 +331,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
             @Override
             public void onClick(View v) {
 
+                // Here you need to flush payment method info....
+                TefalApp.getInstance().setPayment_method_tc("");
+                TefalApp.getInstance().setPayment_method("");
+
                 if (currentItemsCount == 0) {
 
                     Toast.makeText(CartAddressSelectionActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
@@ -250,21 +342,76 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 }
 
 
-                if (defaultAddressId == null || defaultAddressId.equalsIgnoreCase("")) {
-                    Toast.makeText(CartAddressSelectionActivity.this, "Please select delivery address!", Toast.LENGTH_SHORT).show();
-                    return;
+                Intent intent = new Intent(CartAddressSelectionActivity.this, PaymentSelectActivity.class);
+
+                if (session.getIsGuestId()) {
+
+                    if (Contents.isBlank(input_address_name.getText().toString().trim())) {
+                        input_address_name.setError(getString(R.string.invalidAddress_name));
+                        return;
+                    } else if (Contents.isBlank(input_block.getText().toString().trim())) {
+                        input_block.setError(getString(R.string.invalidBlock));
+                        return;
+                    } else if (Contents.isBlank(input_house.getText().toString().trim())) {
+                        input_house.setError(getString(R.string.invalidHouse));
+                        return;
+                    } else if (spin_country.getSelectedItemPosition() == 0) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                        input_street.setError(getString(R.string.invalidStreet));
+                        return;
+                    }
+
+                    HashMap<String, Object> guest = new HashMap<String, Object>();
+
+
+                    try {
+
+                        guest.put("first_name", input_last_name.getText().toString());
+                        guest.put("last_name", input_last_name.getText().toString());
+
+                        Map<String, String> address = new HashMap<String, String>();
+                        address.put("address_name", input_address_name.getText().toString());
+                        address.put("country", spin_country.getSelectedItem().toString());
+                        address.put("province", spin_city.getSelectedItem().toString());
+                        address.put("area", spin_area.getSelectedItem().toString());
+                        address.put("block", input_block.getText().toString());
+                        address.put("street", input_street.getText().toString());
+                        address.put("avenue", input_avenue.getText().toString());
+                        address.put("floor", input_floor.getText().toString());
+                        address.put("house", input_house.getText().toString());
+                        address.put("flat_number", input_flate.getText().toString());
+                        address.put("phone_number", input_phone.getText().toString());
+                        address.put("paci_number", input_paci_num.getText().toString());
+                        address.put("addt_info", input_add_desp.getText().toString());
+
+                        guest.put("address", address);
+
+
+                    } catch (Exception ex) {
+
+                    }
+
+                    intent.putExtra("guest", guest);
+
+
+                } else {
+
+                    if (defaultAddressId == null || defaultAddressId.equalsIgnoreCase("")) {
+                        Toast.makeText(CartAddressSelectionActivity.this, "Please select delivery address!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    intent.putExtra("defaultAddressId", defaultAddressId);
                 }
 
+                intent.putExtra("price", totalPrice);
+                intent.putExtra("header", header_txt.getText().toString());
+                startActivity(intent);
 
-                // Here you need to flush payment method info....
-                TefalApp.getInstance().setPayment_method_tc("");
-                TefalApp.getInstance().setPayment_method("");
-
-                Log.e("defaultAddressId", defaultAddressId);
-                startActivity(new Intent(CartAddressSelectionActivity.this, PaymentSelectActivity.class)
-                        .putExtra("price", totalPrice)
-                        .putExtra("defaultAddressId", defaultAddressId)
-                        .putExtra("header", header_txt.getText().toString()));
 
             }
         });
@@ -289,8 +436,22 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
         try {
 
+
             WebCallServiceCart();
-            WebCallServiceAddresses();
+
+            if (session.getIsGuestId()) {
+
+                llRegisteredUser.setVisibility(View.GONE);
+                llGuestMode.setVisibility(View.VISIBLE);
+
+                getCountries();
+
+            } else {
+                llRegisteredUser.setVisibility(View.VISIBLE);
+                llGuestMode.setVisibility(View.GONE);
+                WebCallServiceAddresses();
+            }
+
 
             //=====For getting crash Analytics==================================
 
@@ -366,8 +527,12 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", session.getCustomerId());
-                    params.put("access_token", session.getToken());
+                    if (session.getIsGuestId()) {
+                        params.put("unique_id", session.getCustomerId());
+                    } else {
+                        params.put("user_id", session.getCustomerId());
+                        params.put("access_token", session.getToken());
+                    }
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -391,43 +556,6 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
         }
     }
 
-    public void updateUifromAdapter(List<GetCartRecord> storeModels) {
-        float totalPrice = 0;
-        if (mResponse.getRecord().size() <= 1)
-            header_txt.setText(mResponse.getRecord().size() + " item in your cart");
-        else
-            header_txt.setText(mResponse.getRecord().size() + " items in your cart");
-
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-
-            try {
-                GetCartRecord getCartRecord = mResponse.getRecord().get(i);
-                if (getCartRecord != null) {
-
-                    if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
-
-                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-                        totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
-
-                    } else {
-
-                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-
-                    }
-                }
-            } catch (Exception ex) {
-                System.out.println("Exception=====" + ex);
-            }
-
-
-            // totalPrice -= Double.valueOf(mResponse.getRecord().get(i).getPrice());
-        }
-        amount.setText("TOTAL : " + totalPrice + "00 KWD");
-
-
-        System.out.println("I FROM ACTIVITY====");
-    }
-
 
     @Override
     public void onCartItemDeleted(int currentCount) {
@@ -438,6 +566,301 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
             edit_btn.setVisibility(View.GONE);
         } else {
             edit_btn.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    public void getCountries() {
+
+
+        SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
+        try {
+            final String url = Contents.baseURL + "getAllCountries";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            SimpleProgressBar.closeProgress();
+                            Log.e("device response", response);
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                String status = object.getString("status");
+                                String message = object.getString("message");
+                                if (status.equals("1")) {
+
+                                    country_name = new ArrayList<String>();
+                                    iso_name = new ArrayList<String>();
+                                    JSONArray jsonArray = object.getJSONArray("record");
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject c = jsonArray.getJSONObject(i);
+                                        country_name.add(c.getString("name"));
+                                        iso_name.add(c.getString("iso"));
+                                    }
+
+                                    //Creating the ArrayAdapter instance having the country list
+                                    ArrayAdapter aa = new ArrayAdapter(CartAddressSelectionActivity.this, android.R.layout.simple_spinner_item, country_name);
+                                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    spin_country.setAdapter(aa);
+
+                                    spin_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                                            System.out.println("OSO NAME===" + iso_name.get(position));
+                                            getProvinces(iso_name.get(position));
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                        }
+                                    });
+
+                                    for (int i = 0; i < iso_name.size(); i++) {
+                                        if (iso_name.get(i).contains("KW")) {
+                                            position = i;
+                                            //mDob=iso_name.get(position);
+                                            break;
+                                        }
+                                    }
+
+                                    spin_country.setSelection(position);
+
+                                } else {
+
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                SimpleProgressBar.closeProgress();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    Log.e("Refsal device == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(CartAddressSelectionActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
+
+    public void getProvinces(final String isoKey) {
+
+        Log.i(TAG, "Setting screen name: " + "AddressesActivity");
+        mTracker.setScreenName("Image~" + "AddressesActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
+        final ArrayAdapter aa = null;
+        try {
+            final String url = Contents.baseURL + "getProvinces";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            SimpleProgressBar.closeProgress();
+                            Log.e("device response", response);
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                String status = object.getString("status");
+                                String message = object.getString("message");
+                                if (status.equals("1")) {
+
+                                    province_id = new ArrayList<String>();
+                                    province_name = new ArrayList<String>();
+                                    area_name = new ArrayList<String>();
+                                    //area_name.add("Select Province");
+                                    JSONArray jsonArray = object.getJSONArray("record");
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject c = jsonArray.getJSONObject(i);
+                                        province_id.add(c.getString("province_id"));
+                                        province_name.add(c.getString("province_name"));
+                                    }
+
+                                    //Creating the ArrayAdapter instance having the country list
+                                    ArrayAdapter aa = new ArrayAdapter(CartAddressSelectionActivity.this, android.R.layout.simple_spinner_item, province_name);
+
+                                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    spin_city.setAdapter(aa);
+
+                                    spin_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                                            getAreas(province_id.get(position));
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                        }
+                                    });
+
+                                } else {
+
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    //clearSpinnerData(aa);
+                                }
+                            } catch (JSONException e) {
+                                SimpleProgressBar.closeProgress();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("country_iso", isoKey);
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    Log.e("Refsal device == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(CartAddressSelectionActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
+    public void getAreas(final String province_id) {
+
+        Log.i(TAG, "Setting screen name: " + "AddressesActivity");
+        mTracker.setScreenName("Image~" + "AddressesActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+
+        SimpleProgressBar.showProgress(CartAddressSelectionActivity.this);
+        try {
+            final String url = Contents.baseURL + "getAreas";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            SimpleProgressBar.closeProgress();
+                            Log.e("device response", response);
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                String status = object.getString("status");
+                                String message = object.getString("message");
+                                if (status.equals("1")) {
+
+                                    area_id = new ArrayList<String>();
+                                    area_name = new ArrayList<String>();
+                                    //area_name.add("Select Area");
+                                    JSONArray jsonArray = object.getJSONArray("record");
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject c = jsonArray.getJSONObject(i);
+                                        area_id.add(c.getString("area_id"));
+                                        area_name.add(c.getString("area_name"));
+                                    }
+
+                                    //Creating the ArrayAdapter instance having the country list
+                                    ArrayAdapter aa = new ArrayAdapter(CartAddressSelectionActivity.this, android.R.layout.simple_spinner_item, area_name);
+
+                                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    spin_area.setAdapter(aa);
+
+                                    spin_area.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                                        }
+
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
+
+                                        }
+                                    });
+
+                                } else {
+
+                                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                SimpleProgressBar.closeProgress();
+                            }
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("province_id", province_id);
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    Log.e("Refsal device == ", url + params);
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(CartAddressSelectionActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
         }
     }
 

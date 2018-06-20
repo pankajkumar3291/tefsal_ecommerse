@@ -117,7 +117,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
     public String defaultAddressId = "";
     public String promoId = "";
-
+    public  HashMap<String, Object> guest = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +132,7 @@ public class PaymentSelectActivity extends BaseActivity {
         previousAmount = getIntent().getIntExtra("price", 0);
 
         defaultAddressId = getIntent().getStringExtra("defaultAddressId");
+        guest =  (HashMap<String, Object>) getIntent().getSerializableExtra("guest");
         header_txt.setText(getIntent().getStringExtra("header"));
         amount.setText("TOTAL : " + previousAmount + " KWD");
 
@@ -220,6 +221,7 @@ public class PaymentSelectActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+
                     LL_visa_masterPaymentTCContainer.setVisibility(View.GONE);
                     LL_knetPaymentTCContainer.setVisibility(View.GONE);
 
@@ -363,20 +365,31 @@ public class PaymentSelectActivity extends BaseActivity {
     public void WebCallServiceOrder() {
 
 
-        final String url = Contents.baseURL + "createOrderOld";
+        final String url = Contents.baseURL + "checkout";
 
 
-        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+       // Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
+       // mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         SimpleProgressBar.showProgress(this);
 
-        JSONObject params = new JSONObject();
 
+        Map<String, Object> params = new HashMap<String, Object>();
 
         try {
-            params.put("access_token", session.getToken());
-            params.put("user_id", session.getCustomerId());
+
+            if (session.getIsGuestId()) {
+
+                params.put("unique_id", session.getCustomerId());
+                params.put("guest", guest);
+
+            } else {
+                params.put("user_id", session.getCustomerId());
+                params.put("access_token", session.getToken());
+                params.put("address_id", defaultAddressId);
+            }
+
+
             params.put("appUser", "tefsal");
             params.put("appSecret", "tefsal@123");
             params.put("appVersion", "1.1");
@@ -384,18 +397,17 @@ public class PaymentSelectActivity extends BaseActivity {
             //Api specific
             params.put("cart_id", session.getKeyCartId());
             params.put("payment_method", "CASH ON DELIVERY");
-            params.put("address_id", defaultAddressId);
             params.put("promo_id", promoId);
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Log.e("Tefsal tailor == ", url + params);
+        Log.e("Tefsal tailor == ", url + new JSONObject(params));
 
 
         BaseHttpClient baseHttpClient = new BaseHttpClient();
-        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+        baseHttpClient.doPost(url, new JSONObject(params), new BaseHttpClient.TaskCompleteListener<String>() {
             @Override
             public void onFailure() {
                 SimpleProgressBar.closeProgress();

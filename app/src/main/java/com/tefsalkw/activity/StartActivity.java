@@ -53,7 +53,7 @@ public class StartActivity extends BaseActivity {
                 Random rand = new Random();
                 int num = rand.nextInt(90000) + 10000;
 
-                session.setCustomerId(num + "");
+                session.setCustomerId(System.currentTimeMillis()+num + "");
                 session.setIsGuestUser(true);
 
                 startActivity(new Intent(StartActivity.this, MainActivity.class));

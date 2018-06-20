@@ -278,8 +278,13 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", session.getCustomerId());
-                    params.put("access_token", session.getToken());
+                    if (session.getIsGuestId()) {
+                        params.put("unique_id", session.getCustomerId());
+                    } else {
+                        params.put("user_id", session.getCustomerId());
+                        params.put("access_token", session.getToken());
+                    }
+
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -303,42 +308,6 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
         }
     }
 
-    public void upadteGetRecord() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-
-            mResponse.getRecord().get(i).setDelete(false);
-            //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
-        }
-        // adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-      /*  adapter=null;
-        adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
-        recycler_view.setAdapter(adapter);*/
-
-    }
-
-    public void upadteGetRecord3() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-
-            mResponse.getRecord().get(i).setDelete(false);
-            //Log.d()
-            System.out.println("AT SET DELETE VALUE EDIT===" + mResponse.getRecord().get(i).isDelete());
-        }
-        //adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-      /*  adapter=null;
-        adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
-        recycler_view.setAdapter(adapter);*/
-        //adapter.notifyDataSetChanged();
-    }
-
-    public void upadteGetRecord2() {
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
-            mResponse.getRecord().get(i).setDelete(true);
-            System.out.println("AT SET DELETE VALUE DELETE===" + mResponse.getRecord().get(i).isDelete());
-
-        }
-        adapter.notifyItemRangeChanged(0, mResponse.getRecord().size());
-    }
 
     public void updateUifromAdapter(List<GetCartRecord> storeModels) {
         totalPrice = 0;
