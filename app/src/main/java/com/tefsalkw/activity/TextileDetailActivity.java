@@ -292,7 +292,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 productColorHorizontalDishdasha = new ProductColorHorizontalDishdasha(textileProductModel.getColors(), this);
                 LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
                 colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
-                TefalApp.getInstance().setAccColorPosition(0);
+                TefalApp.getInstance().setColorPosition(0);
                 colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
 
@@ -646,15 +646,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         JSONObject obj = new JSONObject();
 
         try {
-            obj.put("product_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getTefsal_product_id());
-            obj.put("item_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getDishdasha_attribute_id());
+
             obj.put("category_id", "1");
+            obj.put("product_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getTefsal_product_id());
+            obj.put("item_id", selectedColor.getAttribute_id());
 
             JSONObject item_details = new JSONObject();
+
             item_details.put("item_quantity", meter_value.getText());
             obj.put("item_details", item_details);
-
             arry.put(obj);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1117,10 +1119,15 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
         try {
-            params.put("access_token", session.getToken());
-            params.put("user_id", session.getCustomerId());
+            if (session.getIsGuestId()) {
+                params.put("unique_id", session.getCustomerId());
+            } else {
+                params.put("user_id", session.getCustomerId());
+                params.put("access_token", session.getToken());
+            }
+
             params.put("cart_id", session.getKeyCartId());
-            params.put("user_required_meter", TefalApp.getInstance().getMin_meters());
+
             try {
                 params.put("items", getItems());
             } catch (JSONException e) {

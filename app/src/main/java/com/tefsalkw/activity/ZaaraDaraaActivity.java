@@ -700,8 +700,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
 
         try {
-            params.put("access_token", session.getToken());
-            params.put("unique_id", session.getCustomerId());
+            if (session.getIsGuestId()) {
+                params.put("unique_id", session.getCustomerId());
+            } else {
+                params.put("user_id", session.getCustomerId());
+                params.put("access_token", session.getToken());
+            }
 
             try {
                 params.put("items", getItems());

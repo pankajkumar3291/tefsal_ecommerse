@@ -269,6 +269,7 @@ public class FragmentTailorProducts extends BaseFragment {
         try {
             params.put("access_token", sessionManager.getToken());
             params.put("user_id", sessionManager.getCustomerId());
+            params.put("style_id", TefalApp.getInstance().getStyleId());
             params.put("cart_id", sessionManager.getKeyCartId());
             try {
                 params.put("items", isOwnTextile ? getItemsOwn() : getFinalCartList());
@@ -364,13 +365,12 @@ public class FragmentTailorProducts extends BaseFragment {
                             JSONObject item_details = new JSONObject();
                             JSONObject tailor_services = new JSONObject();
 
-                            tailor_services.put("meter", sublistCartItems.size() * Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
                             tailor_services.put("qty", sublistCartItems.size());
                             tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(i).getTefsal_product_id());
-                            tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
+
                             item_details.put("tailor_services", tailor_services);
 
-                            item_details.put("order_type", "own_textile");
+                            item_details.put("order_type", "own");
 
                             obj.put("item_details", item_details);
 
@@ -424,14 +424,9 @@ public class FragmentTailorProducts extends BaseFragment {
                             obj.put("category_id", "1");
 
                             JSONObject item_details = new JSONObject();
-                            item_details.put("item_quantity", null);
-
                             JSONObject tailor_services = new JSONObject();
-
-                            tailor_services.put("meter", Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
                             tailor_services.put("qty", 1);
                             tailor_services.put("dishdasha_tailor_product_id", getAssignedItemsResponse.getRecord().get(entry.getKey()).getTefsal_product_id());
-                            tailor_services.put("tailor_id", TefalApp.getInstance().getTailor_id());
                             item_details.put("tailor_services", tailor_services);
 
                             item_details.put("order_type", "textile");

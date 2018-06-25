@@ -81,6 +81,16 @@ public class TefalApp
        private String styleName;
 
 
+    public String getStyleId() {
+        return styleId;
+    }
+
+    public void setStyleId(String styleId) {
+        this.styleId = styleId;
+    }
+
+    private String styleId;
+
     // These member varialble is used to hold the info of payemnt method along with its corresponding TC.
 
     private String payment_method;

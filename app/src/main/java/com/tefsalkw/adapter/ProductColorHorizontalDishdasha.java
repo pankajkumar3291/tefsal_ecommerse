@@ -60,7 +60,7 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
 
         }
 
-        if (position == TefalApp.getInstance().getAccColorPosition()) {
+        if (position == TefalApp.getInstance().getColorPosition()) {
 
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
@@ -81,7 +81,7 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
             public void onClick(View v) {
 
 
-                TefalApp.getInstance().setAccColorPosition(position);
+                TefalApp.getInstance().setColorPosition(position);
                 notifyDataSetChanged();
 
                 TextileDetailActivity textileDetailActivity = (TextileDetailActivity) activity;

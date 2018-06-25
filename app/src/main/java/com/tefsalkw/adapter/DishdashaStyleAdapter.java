@@ -174,6 +174,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
                 TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
                 TefalApp.getInstance().setMin_meters(minMeters);
                 TefalApp.getInstance().setStyleName(record.get(position).getName());
+                TefalApp.getInstance().setStyleId(record.get(position).getId());
                 activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag", "dish"));
             }
         });
