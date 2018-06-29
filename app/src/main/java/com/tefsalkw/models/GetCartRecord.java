@@ -1,6 +1,7 @@
 package com.tefsalkw.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Hp on 01-11-2017.
@@ -80,14 +81,14 @@ public class GetCartRecord implements Serializable {
     private  String product_desc;
 
 
-    private Tailor_services tailor_services;
+    private List<Tailor_services> tailor_services;
 
-    public Tailor_services getTailor_services ()
+    public List<Tailor_services> getTailor_services ()
     {
         return tailor_services;
     }
 
-    public void setTailor_services (Tailor_services tailor_services)
+    public void setTailor_services (List<Tailor_services> tailor_services)
     {
         this.tailor_services = tailor_services;
     }

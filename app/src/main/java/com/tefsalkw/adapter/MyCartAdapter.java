@@ -270,35 +270,30 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //Adding Dishdasha services
 
 
-                if (storeModels.get(position2).getTailor_services() != null) {
-
-                    holder.llTailorContainer.setVisibility(View.VISIBLE);
-                    holder.llTailorContainerSep.setVisibility(View.VISIBLE);
-
-                    Tailor_services tailor_services = storeModels.get(position2).getTailor_services();
-
-                    holder.txtTailorTitle.setText(tailor_services.getService_name());
-                    holder.txtTailorDesc.setText(tailor_services.getPrice() + " / QTY");
-
-                    holder.txtTailorQty.setText("QTY: " + tailor_services.getQty() + " Dishdasha");
-
-
-                    if (tailor_services.getDiscount() > 0) {
-                        holder.txtTailorPrice.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
-                        holder.txtTailorPriceDicounted.setText(Html.fromHtml("<i>" + tailor_services.getTotal_amount() + " KWD</i>"));
-                        holder.text_price_discounted.setVisibility(View.VISIBLE);
-                        holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorBlack));
-                    } else {
-                        holder.txtTailorPrice.setText(tailor_services.getTotal_amount() + " KWD");
-                        holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
-                        holder.txtTailorPriceDicounted.setVisibility(GONE);
-                    }
-
-
-                } else {
-                    holder.llTailorContainer.setVisibility(View.GONE);
-                    holder.llTailorContainerSep.setVisibility(View.GONE);
-                }
+//                if (storeModels.get(position2).getTailor_services() != null) {
+//
+//                    holder.llTailorContainer.setVisibility(View.VISIBLE);
+//                    holder.llTailorContainerSep.setVisibility(View.VISIBLE);
+//
+//                    List<Tailor_services> tailor_services = storeModels.get(position2).getTailor_services();
+//
+//
+//                    holder.txtTailorTitle.setText(tailor_services.getServiceName());
+//                    holder.txtTailorDesc.setText(tailor_services.getPrice() + " / QTY");
+//
+//                    holder.txtTailorQty.setText("QTY: " + tailor_services.getQty() + " Dishdasha");
+//
+//
+//                    holder.txtTailorPrice.setText(tailor_services.getTotalAmount() + " KWD");
+//                    holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
+//                    holder.txtTailorPriceDicounted.setVisibility(GONE);
+//
+//
+//
+//                } else {
+//                    holder.llTailorContainer.setVisibility(View.GONE);
+//                    holder.llTailorContainerSep.setVisibility(View.GONE);
+//                }
 
 
             }
@@ -410,7 +405,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                                         notifyDataSetChanged();
                                         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-                                        ((CartActivity) activity).updateUifromAdapter(storeModels);
+                                        ((CartActivity) activity).updateUifromAdapter();
 
                                     } else {
                                         Toast.makeText(activity, "Something gone wrong", Toast.LENGTH_SHORT).show();

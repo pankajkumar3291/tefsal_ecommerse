@@ -78,7 +78,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
     private ImageView cart_item_delete;
 
-    int totalPrice = 0;
+    String totalPrice = null;
 
     GetCartResponse mResponse;
     boolean isDelete = true;
@@ -492,25 +492,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                     else
                                         header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
-                                    for (int i = 0; i < mResponse.getRecord().size(); i++) {
-                                        GetCartRecord getCartRecord = mResponse.getRecord().get(i);
-                                        if (getCartRecord != null) {
 
-                                            if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
-
-                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-                                                totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
-
-                                            } else {
-
-                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-
-                                            }
-                                        }
-                                    }
-                                    amount.setText("TOTAL : " + totalPrice + " KWD");
+                                    amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + " KWD");
                                     currentItemsCount = mResponse.getRecord().size();
-
+                                    totalPrice =  mResponse.getTotal_amount_cart();
                                 } else {
                                     Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }

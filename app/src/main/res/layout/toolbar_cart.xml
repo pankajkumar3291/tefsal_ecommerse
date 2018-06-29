@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:background="@android:color/transparent"
         android:id="@+id/edit_btn"
         android:layout_height="wrap_content"

@@ -230,27 +230,8 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                     else
                                         header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
-                                    for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
-                                        GetCartRecord getCartRecord = mResponse.getRecord().get(i);
-                                        if (getCartRecord != null) {
-
-                                            if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
-
-                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-                                                //totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
-
-                                            } else {
-
-                                                totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-
-                                            }
-                                        }
-
-
-                                        //totalPrice += Double.valueOf(mResponse.getRecord().get(i).getPrice());
-                                    }
-                                    amount.setText("TOTAL : " + totalPrice + " KWD");
+                                    amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + " KWD");
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -309,41 +290,15 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     }
 
 
-    public void updateUifromAdapter(List<GetCartRecord> storeModels) {
+    public void updateUifromAdapter() {
         totalPrice = 0;
         if (mResponse.getRecord().size() <= 1)
             header_txt.setText(mResponse.getRecord().size() + " item in your cart");
         else
             header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
-        for (int i = 0; i < mResponse.getRecord().size(); i++) {
 
-            try {
-
-                GetCartRecord getCartRecord = mResponse.getRecord().get(i);
-                if (getCartRecord != null) {
-
-                    if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
-
-                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-                        totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
-
-                    } else {
-
-                        totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-
-                    }
-                }
-
-
-            } catch (Exception ex) {
-                System.out.println("Exception=====" + ex);
-            }
-
-
-            // totalPrice -= Double.valueOf(mResponse.getRecord().get(i).getPrice());
-        }
-        amount.setText("TOTAL : " + totalPrice + "00 KWD");
+        amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + "00 KWD");
 
 
         System.out.println("I FROM ACTIVITY====");

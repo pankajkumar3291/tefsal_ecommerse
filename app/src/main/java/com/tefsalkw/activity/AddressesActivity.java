@@ -556,14 +556,11 @@ public class AddressesActivity extends BaseActivity {
 
                         params.put("customer_id", session.getCustomerId());
                         params.put("address_name", input_address_name.getText() + "");
-
-                        System.out.println("CODE COUNTRY===" + country_iso_code);
-                        System.out.println("CODE CITY===" + province_code);
                         params.put("country", country_iso_code);
+                        params.put("province", province_code);
                         params.put("city", province_code);
                         params.put("area", area_code);
                         params.put("block", input_block.getText() + "");
-
                         params.put("street", input_street.getText() + "");
                         params.put("avenue", input_avenue.getText() + "");
                         params.put("floor", input_floor.getText() + "");
@@ -583,7 +580,7 @@ public class AddressesActivity extends BaseActivity {
                     }
 
 
-                    Log.e("Refsal req == ", url + params);
+                    Log.e("Refsal req == ", url + new JSONObject(params));
 
 
                     return params;

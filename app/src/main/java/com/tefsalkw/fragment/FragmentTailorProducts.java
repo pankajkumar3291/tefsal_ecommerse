@@ -541,7 +541,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
         for (CartItems cartItems1 : cartItems) {
 
-            if (integerSet.add(cartItems1.getProduct_id() + cartItems1.getItem_details().getTailor_services().getDishdasha_tailor_product_id())) {
+            if (integerSet.add(cartItems1.getProduct_id() + cartItems1.getItem_details().getTailor_services().getDishdashaTailorProductId())) {
 
                 int countIs = getFrequency(cartItems, cartItems1);
                 float minMeter = Float.parseFloat(TefalApp.getInstance().getMin_meters());
@@ -571,10 +571,10 @@ public class FragmentTailorProducts extends BaseFragment {
         int count = 0;
         try {
 
-            String comparator = cartItems.getProduct_id() + cartItems.getItem_details().getTailor_services().getDishdasha_tailor_product_id();
+            String comparator = cartItems.getProduct_id() + cartItems.getItem_details().getTailor_services().getDishdashaTailorProductId();
             for (CartItems cartItems1 : cartItemsList) {
 
-                String compareWith = cartItems1.getProduct_id() + cartItems1.getItem_details().getTailor_services().getDishdasha_tailor_product_id();
+                String compareWith = cartItems1.getProduct_id() + cartItems1.getItem_details().getTailor_services().getDishdashaTailorProductId();
 
                 if (comparator.equalsIgnoreCase(compareWith)) {
 

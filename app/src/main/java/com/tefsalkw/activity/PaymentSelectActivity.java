@@ -108,7 +108,7 @@ public class PaymentSelectActivity extends BaseActivity {
     @BindView(R.id.txtTotal)
     TextView txtTotal;
 
-    int previousAmount = 0;
+    String previousAmount = "0";
 
     Double discountAmount = 0.0;
 
@@ -129,7 +129,7 @@ public class PaymentSelectActivity extends BaseActivity {
         //Init Additional
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
-        previousAmount = getIntent().getIntExtra("price", 0);
+        previousAmount = getIntent().getStringExtra("price");
 
         defaultAddressId = getIntent().getStringExtra("defaultAddressId");
         guest =  (HashMap<String, Object>) getIntent().getSerializableExtra("guest");
@@ -182,7 +182,7 @@ public class PaymentSelectActivity extends BaseActivity {
                     knetPaymentTCCheck.setChecked(false);
                     codPaymentCheck.setChecked(false);
 
-                    TefalApp.getInstance().setPayment_method("VIMA");
+                    TefalApp.getInstance().setPayment_method("CARD");
 
 
                 } else {
@@ -396,7 +396,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
             //Api specific
             params.put("cart_id", session.getKeyCartId());
-            params.put("payment_method", "CASH ON DELIVERY");
+            params.put("payment_method", "COD");
             params.put("promo_id", promoId);
 
         } catch (Exception e) {

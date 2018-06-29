@@ -43,6 +43,16 @@ public class GetCartResponse {
         this.status = status;
     }
 
+    public String getTotal_amount_cart() {
+        return total_amount_cart;
+    }
+
+    public void setTotal_amount_cart(String total_amount_cart) {
+        this.total_amount_cart = total_amount_cart;
+    }
+
+    private  String total_amount_cart;
+
     @Override
     public String toString()
     {
