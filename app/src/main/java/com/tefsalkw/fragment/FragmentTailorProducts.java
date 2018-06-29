@@ -134,7 +134,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
                     TailoringRecord tailoringRecord = tailoringRecordArrayListOfChecked.get(i);
 
-                    float total = Float.parseFloat(tailoringRecord.getItem_quantity()) / Float.parseFloat(TefalApp.getInstance().getMin_meters());
+                    float total = Float.parseFloat(tailoringRecord.getItemQuantity()) / Float.parseFloat(TefalApp.getInstance().getMin_meters());
                     tailoringRecord.setPosition(count);
                     tailoringRecord.setTotal_dishdasha(total);
                     tailoringRecord.setRemaining_dishdasha(total);
@@ -184,7 +184,7 @@ public class FragmentTailorProducts extends BaseFragment {
     public void WebCallServiceStores() {
         SimpleProgressBar.showProgress(getActivity());
         try {
-            final String url = Contents.baseURL + "getAssignedItems";
+            final String url = Contents.baseURL + "getDishdashaTailorProducts";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -231,9 +231,9 @@ public class FragmentTailorProducts extends BaseFragment {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 
-                    System.out.println("CART ID======" + sessionManager.getKeyCartId());
+                  //  System.out.println("CART ID======" + sessionManager.getKeyCartId());
 //                  params.put("access_token", session.getToken());
-                    params.put("cart_id", sessionManager.getKeyCartId());
+                    params.put("store_id",  TefalApp.getInstance().getStoreId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -496,9 +496,9 @@ public class FragmentTailorProducts extends BaseFragment {
             // Log.e("dropdownId1",dropdownId);
             SublistCartItems sublistCartItems = new SublistCartItems();
             sublistCartItems.setItemPosition(cartRecord.getPosition());
-            sublistCartItems.setItemName(cartRecord.getDishdasha_product_name());
-            sublistCartItems.setProductId(cartRecord.getProduct_id());
-            sublistCartItems.setItemId(cartRecord.getItem_id());
+            sublistCartItems.setItemName(cartRecord.getDishdashaProductName());
+            sublistCartItems.setProductId(cartRecord.getProductId());
+            sublistCartItems.setItemId(cartRecord.getItemId());
             dishdashaTailorProductAdapterForListView.addSublistCartItem(sublistCartItems, false);
 
             dishdashaTailorProductAdapterForListView.notifyDataSetChanged();
@@ -618,7 +618,7 @@ public class FragmentTailorProducts extends BaseFragment {
                     Map<String, String> params = new HashMap<String, String>();
 //                  params.put("access_token", session.getToken());
                     params.put("user_required_meter", TefalApp.getInstance().getMin_meters());
-                    params.put("item_id", getAssignedItemsRecord.getProduct_id());
+                    params.put("item_id", getAssignedItemsRecord.getProductId());
                     params.put("tailor_id", TefalApp.getInstance().getTailor_id());
                     params.put("cart_id", sessionManager.getKeyCartId());
                     params.put("appUser", "tefsal");

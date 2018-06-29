@@ -63,19 +63,15 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
         final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-        txt_product_name.setText(record.get(position).getDishdasha_product_name());
-//        Picasso.with(activity)
-//                .load(record.get(position).getImage())
-//                .error(R.drawable.no_image_placeholder_grid)
-//                .transform(new CircleTransform())
-//                .into(imageView);
+        txt_product_name.setText(record.get(position).getDishdashaProductName());
+
 
         RequestOptions options = new RequestOptions()
                 .priority(Priority.HIGH)
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .error(R.drawable.no_image_placeholder_grid);
 
-        GlideApp.with(activity).load(record.get(position).getImage()).apply(options).into(imageView);
+        GlideApp.with(activity).load(record.get(position).getImg()).apply(options).into(imageView);
 
 
 

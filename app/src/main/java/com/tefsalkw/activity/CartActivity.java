@@ -238,7 +238,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                             if (getCartRecord.getItem_type().equalsIgnoreCase("DTA")) {
 
                                                 totalPrice += Float.parseFloat(getCartRecord.getTotal_amount());
-                                                totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
+                                                //totalPrice += Float.parseFloat(getCartRecord.getTailor_services().getTotal_amount());
 
                                             } else {
 

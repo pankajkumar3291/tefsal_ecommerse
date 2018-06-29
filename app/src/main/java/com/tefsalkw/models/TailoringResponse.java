@@ -10,7 +10,7 @@ public class TailoringResponse
 {
     private String message;
 
-    private ArrayList<TailoringRecord> record;
+    private ArrayList<TailoringRecord> records;
 
     private String status;
 
@@ -26,12 +26,12 @@ public class TailoringResponse
 
     public ArrayList<TailoringRecord> getRecord ()
     {
-        return record;
+        return records;
     }
 
     public void setRecord (ArrayList<TailoringRecord> record)
     {
-        this.record = record;
+        this.records = record;
     }
 
     public String getStatus ()
@@ -47,6 +47,6 @@ public class TailoringResponse
     @Override
     public String toString()
     {
-        return "ClassPojo [message = "+message+", record = "+record+", status = "+status+"]";
+        return "ClassPojo [message = "+message+", record = "+records+", status = "+status+"]";
     }
 }

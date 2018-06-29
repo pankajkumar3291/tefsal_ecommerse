@@ -660,8 +660,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println("CART RESPONSE ARRAY item_id==" + DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getDishdasha_attribute_id());
-        System.out.println("CART RESPONSE ARRAY==" + arry.toString());
+
         return arry;
     }
 
@@ -1125,7 +1124,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 params.put("user_id", session.getCustomerId());
                 params.put("access_token", session.getToken());
             }
-
+            params.put("style_id", TefalApp.getInstance().getStyleId());
             params.put("cart_id", session.getKeyCartId());
 
             try {

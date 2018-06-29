@@ -369,7 +369,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
     private void getTailoringHttpCall() {
         SimpleProgressBar.showProgress(getActivity());
         try {
-            final String url = Contents.baseURL + "tailoring";
+            final String url = Contents.baseURL + "getTextilesInCart";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -412,8 +412,8 @@ public class TailorTextileChooseFragment extends BaseFragment {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("user_id", session.getCustomerId());
+                    params.put("unique_id", "");
                     params.put("access_token", session.getToken());
-                    params.put("user_required_meter", TefalApp.getInstance().getMin_meters());
                     params.put("cart_id", session.getKeyCartId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");

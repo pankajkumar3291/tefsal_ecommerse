@@ -64,7 +64,7 @@ public class StringAdapter extends ArrayAdapter<TailoringRecord> {
         convertView = this.inflater.inflate(R.layout.string_item, null);
 
 
-        String itemName = this.getItem(position).getDishdasha_product_name();
+        String itemName = this.getItem(position).getDishdashaProductName();
 
         TextView item = (TextView) convertView.findViewById(R.id.item);
 

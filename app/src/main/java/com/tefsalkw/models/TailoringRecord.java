@@ -1,5 +1,8 @@
 package com.tefsalkw.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -18,20 +21,14 @@ public class TailoringRecord implements Serializable
     }
 
     private int position;
-    private String product_id;
-    private String item_id;
 
-    public String getItem_id() {
-        return item_id;
-    }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
-    }
+
+
 
     private String remain_textile;
 
-    private String item_quantity;
+
 
     private String total_textile;
 
@@ -55,17 +52,9 @@ public class TailoringRecord implements Serializable
 
     private float remaining_dishdasha;
 
-    private String dishdasha_product_name;
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
-    private String image;
 
     private Boolean isChecked;
 
@@ -79,15 +68,7 @@ public class TailoringRecord implements Serializable
         isChecked = checked;
     }
 
-    public String getProduct_id ()
-    {
-        return product_id;
-    }
 
-    public void setProduct_id (String product_id)
-    {
-        this.product_id = product_id;
-    }
 
     public String getRemain_textile ()
     {
@@ -99,15 +80,7 @@ public class TailoringRecord implements Serializable
         this.remain_textile = remain_textile;
     }
 
-    public String getItem_quantity ()
-    {
-        return item_quantity;
-    }
 
-    public void setItem_quantity (String item_quantity)
-    {
-        this.item_quantity = item_quantity;
-    }
 
     public String getTotal_textile ()
     {
@@ -119,19 +92,75 @@ public class TailoringRecord implements Serializable
         this.total_textile = total_textile;
     }
 
-    public String getDishdasha_product_name ()
-    {
-        return dishdasha_product_name;
+
+
+    @SerializedName("cart_id")
+    @Expose
+    private String cartId;
+    @SerializedName("product_id")
+    @Expose
+    private String productId;
+    @SerializedName("item_id")
+    @Expose
+    private String itemId;
+    @SerializedName("dishdasha_product_name")
+    @Expose
+    private String dishdashaProductName;
+    @SerializedName("item_quantity")
+    @Expose
+    private String itemQuantity;
+    @SerializedName("img")
+    @Expose
+    private String img;
+
+
+
+
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setDishdasha_product_name (String dishdasha_product_name)
-    {
-        this.dishdasha_product_name = dishdasha_product_name;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [product_id = "+product_id+", remain_textile = "+remain_textile+", item_quantity = "+item_quantity+", total_textile = "+total_textile+", dishdasha_product_name = "+dishdasha_product_name+"]";
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getDishdashaProductName() {
+        return dishdashaProductName;
+    }
+
+    public void setDishdashaProductName(String dishdashaProductName) {
+        this.dishdashaProductName = dishdashaProductName;
+    }
+
+    public String getItemQuantity() {
+        return itemQuantity;
+    }
+
+    public void setItemQuantity(String itemQuantity) {
+        this.itemQuantity = itemQuantity;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

@@ -165,10 +165,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
-
-
-
-
                 System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
                 holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Textile");
                 holder.txtShopName.setText(storeModels.get(position2).getStore_name());
