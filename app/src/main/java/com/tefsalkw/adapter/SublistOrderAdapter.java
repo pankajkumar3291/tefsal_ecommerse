@@ -22,14 +22,10 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
 
     private Context activity;
     private List<Order_items> orderItemsList = new ArrayList<>();
-    private List<Tailor_services> tailorServicesList = new ArrayList<>();
-    int itemType = -1;
 
-    public SublistOrderAdapter(Context activity, int itemType, List<Order_items> orderItemsList, List<Tailor_services> tailorServicesList) {
+    public SublistOrderAdapter(Context activity,  List<Order_items> orderItemsList) {
         this.activity = activity;
         this.orderItemsList = orderItemsList;
-        this.tailorServicesList = tailorServicesList;
-        this.itemType = itemType;
     }
 
 
@@ -43,15 +39,16 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
     @Override
     public void onBindViewHolder(SublistOrderAdapter.ViewHolder holder, int position) {
 
-        Log.e("itemType",itemType + "");
-        if (itemType == 1) {
-            Tailor_services orderItems = tailorServicesList.get(position);
 
-            holder.txtDesc.setText(orderItems.getServiceName());
-            holder.txtQty.setText("");
-            holder.txtPrice.setText(orderItems.getPrice() + " KWD");
-        } else {
+
             Order_items orderItems = orderItemsList.get(position);
+
+            if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
+
+                holder.txtDesc.setText(orderItems.getProduct_name());
+                holder.txtQty.setText(orderItems.getItem_quantity() + "m");
+            }
+
 
             if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
 
@@ -80,7 +77,7 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
 
             holder.txtPrice.setText(orderItems.getItem_price() + " KWD");
 
-        }
+
 
 
     }

@@ -40,6 +40,25 @@ public class Order_items implements Serializable {
     private String Brandname;
     private String size;
 
+    private String grand_total;
+
+    public String getGrand_total() {
+        return grand_total;
+    }
+
+    public void setGrand_total(String grand_total) {
+        this.grand_total = grand_total;
+    }
+
+    public String getTailor_total_qty() {
+        return tailor_total_qty;
+    }
+
+    public void setTailor_total_qty(String tailor_total_qty) {
+        this.tailor_total_qty = tailor_total_qty;
+    }
+
+    private String tailor_total_qty;
     public String getExpected_delivery_date() {
         return expected_delivery_date;
     }

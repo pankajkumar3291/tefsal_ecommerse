@@ -31,7 +31,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     private List<Order_items> orderItems;
 
     SublistOrderAdapter sublistAdapter;
-
+    SublistTailorServiceAdapter sublistTailorServiceAdapter;
     public OrderDetailsAdapter(Activity activity, List<Order_items> orderItems) {
         this.activity = activity;
         this.orderItems = orderItems;
@@ -55,7 +55,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             holder.txtStoreName.setText(orderRecordCustom.getStore_name());
             holder.txtOrderItemSerial.setText("ORDER ITEM #" + (position + 1));
-            holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
+
             holder.txtOrderAction.setText(Html.fromHtml("<i>" + orderStatus + "</i>"));
             holder.txtExpectedDelivery.setText("Expected Delivery: " + orderRecordCustom.getExpected_delivery_date());
 
@@ -70,10 +70,10 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTA")) {
 
-
+                holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " KWD");
                 holder.txtOrderItemType.setText("TAILOR & TEXTILE");
                 holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
-                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
+                holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
 
                 //Textile section
                 holder.llSectionOne.setVisibility(View.VISIBLE);
@@ -82,14 +82,16 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
-                sublistAdapter = new SublistOrderAdapter(activity, 1, orderItemsList, null);
 
+                sublistAdapter = new SublistOrderAdapter(activity, orderItemsList);
+                holder.rcvFirst.setAdapter(sublistAdapter);
 
                 //Tailor section
                 holder.llSectionTwo.setVisibility(View.VISIBLE);
                 holder.lblSecond.setText("Tailors:");
-                sublistAdapter = new SublistOrderAdapter(activity, 1, null, orderRecordCustom.getTailor_services());
-                holder.rcvSecond.setAdapter(sublistAdapter);
+
+                sublistTailorServiceAdapter = new SublistTailorServiceAdapter(activity, orderRecordCustom.getTailor_services());
+                holder.rcvSecond.setAdapter(sublistTailorServiceAdapter);
 
 
             }
@@ -97,28 +99,29 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTE")) {
 
-
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
                 holder.txtOrderItemType.setText("TEXTILE");
+                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
 
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.lblSecond.setText("");
-                holder.txtStyleUsed.setVisibility(View.GONE);
+                holder.txtStyleUsed.setVisibility(View.VISIBLE);
                 holder.lblFirst.setText("Textiles:");
 
 
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
-                sublistAdapter = new SublistOrderAdapter(activity, 1, orderItemsList, null);
-
+                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
+                holder.rcvFirst.setAdapter(sublistAdapter);
 
             }
 
 
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("DB")) {
 
-
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
                 holder.lblFirst.setText("Item Description");
                 holder.lblSecond.setText("");
@@ -131,17 +134,14 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
-
-                sublistAdapter = new SublistOrderAdapter(activity, 2, orderItemsList, null);
-
+                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
                 holder.rcvFirst.setAdapter(sublistAdapter);
-
 
             }
 
 
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("A")) {
-
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
                 holder.lblFirst.setText("Item Description:");
                 holder.lblSecond.setText("");
@@ -149,11 +149,10 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.txtStyleUsed.setVisibility(View.GONE);
                 holder.txtOrderItemType.setText("ACCESSORIES");
-
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
 
-                sublistAdapter = new SublistOrderAdapter(activity, 2, orderItemsList, null);
+                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
 
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
