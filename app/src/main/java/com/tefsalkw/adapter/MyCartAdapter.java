@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -60,6 +62,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     private SessionManager session;
     private boolean activate;
 
+    SublistTailorAdapter sublistTailorAdapter;
 
     public interface OnCartItemDeletedListener {
         void onCartItemDeleted(int currentCount);
@@ -115,21 +118,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.cart_item_delete)
         ImageView cart_item_delete;
 
-        @BindView(R.id.cart_item_delete1)
-        ImageView cart_item_delete1;
 
-
-        @BindView(R.id.txtTailorTitle)
-        TextView txtTailorTitle;
-
-        @BindView(R.id.txtTailorQty)
-        TextView txtTailorQty;
-
-        @BindView(R.id.txtTailorPrice)
-        TextView txtTailorPrice;
-
-        @BindView(R.id.txtTailorPriceDicounted)
-        TextView txtTailorPriceDicounted;
 
         @BindView(R.id.llTailorContainer)
         LinearLayout llTailorContainer;
@@ -141,8 +130,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.txtShopName)
         TextView txtShopName;
 
-        @BindView(R.id.txtTailorDesc)
-        TextView txtTailorDesc;
+        @BindView(R.id.recyclerSubList)
+        RecyclerView recyclerSubList;
+
 
 
         public ViewHolder(View itemView) {
@@ -270,30 +260,33 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //Adding Dishdasha services
 
 
-//                if (storeModels.get(position2).getTailor_services() != null) {
-//
-//                    holder.llTailorContainer.setVisibility(View.VISIBLE);
-//                    holder.llTailorContainerSep.setVisibility(View.VISIBLE);
-//
-//                    List<Tailor_services> tailor_services = storeModels.get(position2).getTailor_services();
-//
-//
-//                    holder.txtTailorTitle.setText(tailor_services.getServiceName());
-//                    holder.txtTailorDesc.setText(tailor_services.getPrice() + " / QTY");
-//
-//                    holder.txtTailorQty.setText("QTY: " + tailor_services.getQty() + " Dishdasha");
-//
-//
-//                    holder.txtTailorPrice.setText(tailor_services.getTotalAmount() + " KWD");
-//                    holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
-//                    holder.txtTailorPriceDicounted.setVisibility(GONE);
-//
-//
-//
-//                } else {
-//                    holder.llTailorContainer.setVisibility(View.GONE);
-//                    holder.llTailorContainerSep.setVisibility(View.GONE);
-//                }
+                if (storeModels.get(position2).getTailor_services() != null) {
+
+                    holder.llTailorContainer.setVisibility(View.VISIBLE);
+                    holder.llTailorContainerSep.setVisibility(View.VISIBLE);
+
+
+
+                    List<Tailor_services> tailor_services = storeModels.get(position2).getTailor_services();
+
+
+                    RecyclerView recyclerSubList = (RecyclerView) holder.recyclerSubList;
+                    //Recycler
+
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+                    recyclerSubList.setLayoutManager(layoutManager);
+                    recyclerSubList.setItemAnimator(new DefaultItemAnimator());
+
+                    sublistTailorAdapter = new SublistTailorAdapter(activity, tailor_services);
+
+                    recyclerSubList.setAdapter(sublistTailorAdapter);
+
+                } else {
+                    holder.llTailorContainer.setVisibility(View.GONE);
+                    holder.llTailorContainerSep.setVisibility(View.GONE);
+                }
 
 
             }
@@ -301,10 +294,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             if (this.activate) {
                 holder.cart_item_delete.setVisibility(View.VISIBLE);
-                holder.cart_item_delete1.setVisibility(View.VISIBLE);
+                //holder.cart_item_delete1.setVisibility(View.VISIBLE);
             } else {
                 holder.cart_item_delete.setVisibility(GONE);
-                holder.cart_item_delete1.setVisibility(View.GONE);
+               // holder.cart_item_delete1.setVisibility(View.GONE);
 
             }
 
