@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:supportsRtl">
+        tools:replace="android:allowBackup,icon,theme,label,supportsRtl">
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a1bd58cac502c97c8c1f0fea8153f1354a1a2da7" />

@@ -15,8 +15,9 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
-import com.tefsalkw.models.OrderRecordCustom;
+import com.tefsalkw.models.Order_items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,11 +28,11 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
 
     private Activity activity;
-    private List<OrderRecordCustom> orderItems;
+    private List<Order_items> orderItems;
 
     SublistOrderAdapter sublistAdapter;
 
-    public OrderDetailsAdapter(Activity activity, List<OrderRecordCustom> orderItems) {
+    public OrderDetailsAdapter(Activity activity, List<Order_items> orderItems) {
         this.activity = activity;
         this.orderItems = orderItems;
     }
@@ -48,71 +49,79 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
         try {
 
-            OrderRecordCustom orderRecordCustom = orderItems.get(position);
+            Order_items orderRecordCustom = orderItems.get(position);
 
-            holder.txtStoreName.setText(orderRecordCustom.getStoreName());
+            String orderStatus = orderRecordCustom.getStatus() != null ? orderRecordCustom.getStatus() : "Pending";
+
+            holder.txtStoreName.setText(orderRecordCustom.getStore_name());
             holder.txtOrderItemSerial.setText("ORDER ITEM #" + (position + 1));
-            holder.txtTotalAmount.setText(orderRecordCustom.getTotalAmount() + " KWD");
-            holder.txtOrderAction.setText(Html.fromHtml("<i>" + orderRecordCustom.getDelivery_status() + "</i>"));
+            holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
+            holder.txtOrderAction.setText(Html.fromHtml("<i>" + orderStatus + "</i>"));
             holder.txtExpectedDelivery.setText("Expected Delivery: " + orderRecordCustom.getExpected_delivery_date());
+
+
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .error(R.drawable.no_image_placeholder_grid);
-            GlideApp.with(activity).load(orderRecordCustom.getStoreImage()).apply(options).into(holder.imgStore);
 
-            if (orderItems.get(position).getItemType().equalsIgnoreCase("DTA") || orderItems.get(position).getItemType().equalsIgnoreCase("DTE")) {
-
-                int itemCount = 0;
-
-                //fill
-                if (orderRecordCustom.getTextileItems() != null && orderRecordCustom.getTextileItems().size() > 0) {
-                    itemCount += orderRecordCustom.getTextileItems().size();
-
-                    holder.llSectionOne.setVisibility(View.VISIBLE);
-
-                    holder.lblFirst.setText("Textiles:");
-
-                    sublistAdapter = new SublistOrderAdapter(activity, orderRecordCustom.getTextileItems());
-                    holder.rcvFirst.setAdapter(sublistAdapter);
+            GlideApp.with(activity).load(orderRecordCustom.getImage()).apply(options).into(holder.imgStore);
 
 
-                } else {
-                    holder.llSectionOne.setVisibility(View.GONE);
-                    holder.lblFirst.setText("");
-                }
-
-                if (orderRecordCustom.getTailorItems() != null && orderRecordCustom.getTailorItems().size() > 0) {
-                    itemCount += orderRecordCustom.getTailorItems().size();
-                    holder.llSectionTwo.setVisibility(View.VISIBLE);
-
-                    holder.lblSecond.setText("Tailors:");
-
-                    sublistAdapter = new SublistOrderAdapter(activity, orderRecordCustom.getTailorItems());
-
-                    holder.rcvSecond.setAdapter(sublistAdapter);
+            if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTA")) {
 
 
-                } else {
-                    holder.llSectionTwo.setVisibility(View.GONE);
-                    holder.lblSecond.setText("");
-                }
-
-                holder.txtItemCount.setText(itemCount + "x Dishdasha");
-
-                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
                 holder.txtOrderItemType.setText("TAILOR & TEXTILE");
+                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
+
+                //Textile section
+                holder.llSectionOne.setVisibility(View.VISIBLE);
+                holder.lblFirst.setText("Textiles:");
+
+
+                List<Order_items> orderItemsList = new ArrayList<>();
+                orderItemsList.add(orderRecordCustom);
+                sublistAdapter = new SublistOrderAdapter(activity, 1, orderItemsList, null);
+
+
+                //Tailor section
+                holder.llSectionTwo.setVisibility(View.VISIBLE);
+                holder.lblSecond.setText("Tailors:");
+                sublistAdapter = new SublistOrderAdapter(activity, 1, null, orderRecordCustom.getTailor_services());
+                holder.rcvSecond.setAdapter(sublistAdapter);
+
 
             }
 
 
-            if (orderItems.get(position).getItemType().equalsIgnoreCase("DB")) {
+            if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTE")) {
 
-                if (orderRecordCustom.getOtherItems() != null && orderRecordCustom.getOtherItems().size() > 0) {
-                    holder.txtItemCount.setText(orderRecordCustom.getOtherItems().size() > 1 ? orderRecordCustom.getOtherItems().size() + " Items" : orderRecordCustom.getOtherItems().size() + " Item");
-                    holder.lblFirst.setText("Item Description");
-                    holder.lblSecond.setText("");
-                }
+
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
+                holder.txtOrderItemType.setText("TEXTILE");
+
+                holder.llSectionOne.setVisibility(View.VISIBLE);
+                holder.llSectionTwo.setVisibility(View.GONE);
+                holder.lblSecond.setText("");
+                holder.txtStyleUsed.setVisibility(View.GONE);
+                holder.lblFirst.setText("Textiles:");
+
+
+                List<Order_items> orderItemsList = new ArrayList<>();
+                orderItemsList.add(orderRecordCustom);
+                sublistAdapter = new SublistOrderAdapter(activity, 1, orderItemsList, null);
+
+
+            }
+
+
+            if (orderItems.get(position).getItem_type().equalsIgnoreCase("DB")) {
+
+
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
+                holder.lblFirst.setText("Item Description");
+                holder.lblSecond.setText("");
 
 
                 holder.llSectionOne.setVisibility(View.VISIBLE);
@@ -120,7 +129,10 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.txtStyleUsed.setVisibility(View.GONE);
                 holder.txtOrderItemType.setText("DARA / ABAYA");
 
-                sublistAdapter = new SublistOrderAdapter(activity, orderRecordCustom.getOtherItems());
+                List<Order_items> orderItemsList = new ArrayList<>();
+                orderItemsList.add(orderRecordCustom);
+
+                sublistAdapter = new SublistOrderAdapter(activity, 2, orderItemsList, null);
 
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
@@ -128,20 +140,20 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             }
 
 
-            if (orderItems.get(position).getItemType().equalsIgnoreCase("A")) {
-                if (orderRecordCustom.getOtherItems() != null && orderRecordCustom.getOtherItems().size() > 0) {
-                    holder.txtItemCount.setText(orderRecordCustom.getOtherItems().size() > 1 ? orderRecordCustom.getOtherItems().size() + " Items" : orderRecordCustom.getOtherItems().size() + " Item");
-                    holder.lblFirst.setText("Item Description:");
-                    holder.lblSecond.setText("");
+            if (orderItems.get(position).getItem_type().equalsIgnoreCase("A")) {
 
-                }
-
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
+                holder.lblFirst.setText("Item Description:");
+                holder.lblSecond.setText("");
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.txtStyleUsed.setVisibility(View.GONE);
                 holder.txtOrderItemType.setText("ACCESSORIES");
 
-                sublistAdapter = new SublistOrderAdapter(activity, orderRecordCustom.getOtherItems());
+                List<Order_items> orderItemsList = new ArrayList<>();
+                orderItemsList.add(orderRecordCustom);
+
+                sublistAdapter = new SublistOrderAdapter(activity, 2, orderItemsList, null);
 
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
@@ -149,7 +161,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
 
         } catch (Exception exc) {
-
+            exc.printStackTrace();
         }
 
 

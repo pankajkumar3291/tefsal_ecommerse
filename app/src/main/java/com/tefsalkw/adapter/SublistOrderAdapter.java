@@ -2,13 +2,15 @@ package com.tefsalkw.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.models.OrderItems;
+import com.tefsalkw.models.Order_items;
+import com.tefsalkw.models.Tailor_services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +21,15 @@ import butterknife.ButterKnife;
 public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapter.ViewHolder> {
 
     private Context activity;
-    private List<OrderItems> orderItemsList = new ArrayList<>();
+    private List<Order_items> orderItemsList = new ArrayList<>();
+    private List<Tailor_services> tailorServicesList = new ArrayList<>();
+    int itemType = -1;
 
-    float totalAmount = 0;
-
-    public SublistOrderAdapter(Context activity, List<OrderItems> orderItemsList) {
+    public SublistOrderAdapter(Context activity, int itemType, List<Order_items> orderItemsList, List<Tailor_services> tailorServicesList) {
         this.activity = activity;
         this.orderItemsList = orderItemsList;
+        this.tailorServicesList = tailorServicesList;
+        this.itemType = itemType;
     }
 
 
@@ -39,40 +43,46 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
     @Override
     public void onBindViewHolder(SublistOrderAdapter.ViewHolder holder, int position) {
 
-        OrderItems orderItems = orderItemsList.get(position);
+        Log.e("itemType",itemType + "");
+        if (itemType == 1) {
+            Tailor_services orderItems = tailorServicesList.get(position);
 
-        if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
-
-            holder.txtDesc.setText(orderItems.getStore_name());
+            holder.txtDesc.setText(orderItems.getServiceName());
             holder.txtQty.setText("");
+            holder.txtPrice.setText(orderItems.getPrice() + " KWD");
+        } else {
+            Order_items orderItems = orderItemsList.get(position);
+
+            if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
+
+                holder.txtDesc.setText(orderItems.getProduct_name());
+                holder.txtQty.setText(orderItems.getItem_quantity() + "m");
+            }
+
+            if (orderItems.getItem_type().equalsIgnoreCase("A")) {
+
+                String prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
+                String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
+                String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
+
+                holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
+                holder.txtQty.setText(orderItems.getItem_quantity());
+            }
+
+            if (orderItems.getItem_type().equalsIgnoreCase("DB")) {
+                String prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
+                String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
+                String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
+
+                holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
+                holder.txtQty.setText(orderItems.getItem_quantity());
+            }
+
+            holder.txtPrice.setText(orderItems.getItem_price() + " KWD");
+
         }
-        if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
-            holder.txtDesc.setText(orderItems.getDishdasha_material());
-            holder.txtQty.setText(orderItems.getItem_quantity() + "m");
-        }
 
-        if (orderItems.getItem_type().equalsIgnoreCase("A")) {
 
-            String brandName = orderItems.getBrandname() != null ? orderItems.getBrandname() : "";
-            String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
-            String colorName = orderItems.getColor_name() != null ? orderItems.getColor_name() : "";
-
-            holder.txtDesc.setText(brandName + " - " + sizeName + " - " + colorName);
-            holder.txtQty.setText(orderItems.getItem_quantity());
-        }
-
-        if (orderItems.getItem_type().equalsIgnoreCase("DB")) {
-            String brandName = orderItems.getBrandname() != null ? orderItems.getBrandname() : "";
-            String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
-            String colorName = orderItems.getColor_name() != null ? orderItems.getColor_name() : "";
-
-            holder.txtDesc.setText(brandName + " - " + sizeName + " - " + colorName);
-            holder.txtQty.setText(orderItems.getItem_quantity());
-        }
-
-        holder.txtPrice.setText(orderItems.getPrice() + " KWD");
-
-        totalAmount += Float.parseFloat(orderItems.getPrice());
     }
 
     @Override

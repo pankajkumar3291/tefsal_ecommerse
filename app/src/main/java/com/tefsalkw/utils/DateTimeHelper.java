@@ -11,7 +11,7 @@ public class DateTimeHelper {
     public  static String getFormattedDate(String inputDateStr)
     {
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         Date date = null;
         try {

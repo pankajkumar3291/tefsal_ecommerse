@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesActivity;
+import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.DishdishaStyleActivity;
 import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.app.TefalApp;
@@ -185,8 +186,16 @@ public class HomeFragment extends BaseFragment {
                 public void onClick(View v) {
 
                     if (position == 0) {
-                        startActivity(new Intent(getActivity(), DishdishaStyleActivity.class));
-                        productFlag = "1";
+
+                        if(sessionManager.getIsGuestId()){
+                            startActivity(new Intent(getActivity(), DaraAbayaActivity.class).putExtra("flag", "dish"));
+                        }
+                        else
+                        {
+                            startActivity(new Intent(getActivity(), DishdishaStyleActivity.class));
+                            productFlag = "1";
+                        }
+
                     } else if (position == 1) {
                         TefalApp.getInstance().setToolbar_title("DARAA STORES");
                         startActivity(new Intent(getActivity(), OtherStoresActivity.class).putExtra("flag", "Daraa"));

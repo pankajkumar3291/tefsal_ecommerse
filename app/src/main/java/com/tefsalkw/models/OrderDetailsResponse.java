@@ -3,13 +3,13 @@ package com.tefsalkw.models;
 import java.io.Serializable;
 import java.util.List;
 
-public class OrderDetailsResponse   {
+public class OrderDetailsResponse implements  Serializable  {
 
     private String message;
 
-    private List<OrderRecord> record;
+    private OrderDetails record;
 
-    private String status;
+    private int status;
 
     public String getMessage ()
     {
@@ -21,22 +21,22 @@ public class OrderDetailsResponse   {
         this.message = message;
     }
 
-    public List<OrderRecord> getRecord ()
+    public OrderDetails getRecord ()
     {
         return record;
     }
 
-    public void setRecord (List<OrderRecord>  record)
+    public void setRecord (OrderDetails  record)
     {
         this.record = record;
     }
 
-    public String getStatus ()
+    public int getStatus ()
     {
         return status;
     }
 
-    public void setStatus (String status)
+    public void setStatus (int status)
     {
         this.status = status;
     }

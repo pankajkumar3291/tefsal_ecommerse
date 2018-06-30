@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by new on 9/26/2017.
@@ -132,6 +134,15 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                 @Override
                 public void onClick(View view) {
 
+                    if(session.getIsGuestId())
+                    {
+
+                        new SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Oops...")
+                                .setContentText("Please Sign-up to continue...!")
+                                .show();
+                        return;
+                    }
 
                     if (flag.equals("dish")) {
 

@@ -41,19 +41,19 @@ public class OrderRecordCustom implements Serializable {
         this.styleName = styleName;
     }
 
-    public List<OrderItems> getTextileItems() {
+    public List<Order_items> getTextileItems() {
         return textileItems;
     }
 
-    public void setTextileItems(List<OrderItems> textileItems) {
+    public void setTextileItems(List<Order_items> textileItems) {
         this.textileItems = textileItems;
     }
 
-    public List<OrderItems> getTailorItems() {
+    public List<Order_items> getTailorItems() {
         return tailorItems;
     }
 
-    public void setTailorItems(List<OrderItems> tailorItems) {
+    public void setTailorItems(List<Order_items> tailorItems) {
         this.tailorItems = tailorItems;
     }
 
@@ -81,19 +81,19 @@ public class OrderRecordCustom implements Serializable {
 
     private float totalAmount;
 
-    private List<OrderItems> textileItems;
+    private List<Order_items> textileItems;
 
-    private List<OrderItems> tailorItems;
+    private List<Order_items> tailorItems;
 
-    public List<OrderItems> getOtherItems() {
+    public List<Order_items> getOtherItems() {
         return otherItems;
     }
 
-    public void setOtherItems(List<OrderItems> otherItems) {
+    public void setOtherItems(List<Order_items> otherItems) {
         this.otherItems = otherItems;
     }
 
-    private List<OrderItems> otherItems;
+    private List<Order_items> otherItems;
 
 
 

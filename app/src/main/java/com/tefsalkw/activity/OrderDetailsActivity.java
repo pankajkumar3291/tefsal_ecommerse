@@ -23,11 +23,10 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.OrderDetailsAdapter;
-import com.tefsalkw.models.MyOrderResponse;
+import com.tefsalkw.models.Customer_address;
+import com.tefsalkw.models.OrderDetails;
 import com.tefsalkw.models.OrderDetailsResponse;
-import com.tefsalkw.models.OrderItems;
 import com.tefsalkw.models.OrderRecord;
-import com.tefsalkw.models.OrderRecordCustom;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.DateTimeHelper;
 import com.tefsalkw.utils.SessionManager;
@@ -35,7 +34,6 @@ import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -81,8 +79,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_details);
 
         ButterKnife.bind(this);
-
-
 
 
         sessionManager = new SessionManager(this);
@@ -139,190 +135,40 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                MyOrderResponse mResponse = g.fromJson(response, MyOrderResponse.class);
 
-                                if (mResponse.getStatus().equals("1")) {
 
-                                    if (mResponse.getRecord() != null && mResponse.getRecord().size() > 0) {
+                                OrderDetailsResponse orderDetailsResponse = g.fromJson(response, OrderDetailsResponse.class);
 
-                                        //Set address details
 
-                                        OrderRecord orderRecord = mResponse.getRecord().get(0);
+                                if (orderDetailsResponse != null && orderDetailsResponse.getStatus() == 1) {
 
-                                        txtTxnDate.setText(DateTimeHelper.getFormattedDate(orderRecord.getCreated_at()));
+                                    OrderDetails mResponse = orderDetailsResponse.getRecord();
 
-                                        String fullAddress = orderRecord.getHouse() + " " + orderRecord.getAddress_name() + " " + orderRecord.getAvenue() + " " + orderRecord.getBlock() + " " + orderRecord.getStreet() + " " + orderRecord.getFloor() + " " + orderRecord.getFlat_number();
-                                        txtCustomerAddress.setText(fullAddress);
-                                        txtPaymentType.setText(orderRecord.getPayment_method());
+                                    //Set address details
 
-                                        //fill box
+                                    txtTxnDate.setText(DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
 
-                                        //Log.e("orderRecordCustomList", new Gson().toJson(mResponse.getRecord()));
+                                    Customer_address customer_address = mResponse.getCustomer_address();
 
-                                        HashMap<String, OrderRecordCustom> listHashMap = new HashMap<String, OrderRecordCustom>();
+                                    String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getAvenue() + " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number();
+                                    txtCustomerAddress.setText(fullAddress);
+                                    txtPaymentType.setText(mResponse.getPayment_method());
 
 
-                                        for (OrderItems orderItems : orderRecord.getItems()) {
+                                    LinearLayoutManager layoutManager = new LinearLayoutManager(OrderDetailsActivity.this);
+                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-                                            if (orderItems.getItem_type().equalsIgnoreCase("DTA") || orderItems.getItem_type().equalsIgnoreCase("DTE")) {
-
-                                                if (listHashMap.containsKey(orderItems.getStore_id() + "DAAE")) {
-
-
-                                                    if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
-
-                                                        List<OrderItems> textileItems = listHashMap.get(orderItems.getStore_id() + "DAAE").getTextileItems();
-
-                                                        if (textileItems != null) {
-
-                                                            listHashMap.get(orderItems.getStore_id() + "DAAE").getTextileItems().add(orderItems);
-                                                        } else {
-
-                                                            List<OrderItems> orderItemsList = new ArrayList<>();
-                                                            orderItemsList.add(orderItems);
-                                                            listHashMap.get(orderItems.getStore_id() + "DAAE").setTextileItems(orderItemsList);
-                                                        }
-
-
-                                                    }
-
-                                                    if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
-
-                                                        List<OrderItems> textileItems = listHashMap.get(orderItems.getStore_id() + "DAAE").getTailorItems();
-
-                                                        if (textileItems != null) {
-
-                                                            listHashMap.get(orderItems.getStore_id() + "DAAE").getTailorItems().add(orderItems);
-                                                        } else {
-
-                                                            List<OrderItems> orderItemsList = new ArrayList<>();
-                                                            orderItemsList.add(orderItems);
-                                                            listHashMap.get(orderItems.getStore_id() + "DAAE").setTailorItems(orderItemsList);
-                                                        }
-
-
-                                                    }
-
-                                                    Float totalNew = listHashMap.get(orderItems.getStore_id() + "DAAE").getTotalAmount();
-                                                    totalNew = totalNew + Float.parseFloat(orderItems.getTotal_amount());
-                                                    listHashMap.get(orderItems.getStore_id() + "DAAE").setTotalAmount(totalNew);
-
-                                                } else {
-
-                                                    OrderRecordCustom orderRecordCustom = new OrderRecordCustom();
-
-                                                    if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
-                                                        List<OrderItems> orderItemsList = new ArrayList<>();
-                                                        orderItemsList.add(orderItems);
-
-                                                        orderRecordCustom.setTextileItems(orderItemsList);
-                                                        orderRecordCustom.setItemType(orderItems.getItem_type());
-                                                        orderRecordCustom.setStoreId(orderItems.getStore_id());
-                                                        orderRecordCustom.setStoreName(orderItems.getStore_name());
-                                                        orderRecordCustom.setStyleName(orderItems.getStyle().getName());
-                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
-                                                        orderRecordCustom.setStoreImage(orderItems.getStore_img());
-                                                        orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
-                                                        orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());
-                                                        listHashMap.put(orderItems.getStore_id() + "DAAE", orderRecordCustom);
-                                                    }
-
-                                                    if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
-                                                        List<OrderItems> orderItemsList = new ArrayList<>();
-                                                        orderItemsList.add(orderItems);
-
-                                                        orderRecordCustom.setTailorItems(orderItemsList);
-
-                                                        orderRecordCustom.setItemType(orderItems.getItem_type());
-                                                        orderRecordCustom.setStoreId(orderItems.getStore_id());
-                                                        orderRecordCustom.setStoreName(orderItems.getStore_name());
-                                                        orderRecordCustom.setStyleName(orderItems.getStyle().getName());
-                                                        orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
-                                                        orderRecordCustom.setStoreImage(orderItems.getStore_img());
-                                                        orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
-                                                        orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());
-                                                        listHashMap.put(orderItems.getStore_id() + "DAAE", orderRecordCustom);
-                                                    }
-
-                                                }
-
-
-                                            } else {
-
-
-                                                if (listHashMap.containsKey(orderItems.getStore_id() + orderItems.getItem_type())) {
-
-
-                                                    List<OrderItems> textileItems = listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).getOtherItems();
-
-                                                    if (textileItems != null) {
-
-                                                        listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).getOtherItems().add(orderItems);
-                                                    } else {
-
-                                                        List<OrderItems> orderItemsList = new ArrayList<>();
-                                                        orderItemsList.add(orderItems);
-
-                                                        listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).setOtherItems(orderItemsList);
-                                                    }
-
-                                                    Float totalNew = listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).getTotalAmount();
-                                                    totalNew = totalNew + Float.parseFloat(orderItems.getTotal_amount());
-                                                    listHashMap.get(orderItems.getStore_id() + orderItems.getItem_type()).setTotalAmount(totalNew);
-
-
-                                                } else {
-
-                                                    OrderRecordCustom orderRecordCustom = new OrderRecordCustom();
-
-                                                    List<OrderItems> orderItemsList = new ArrayList<>();
-                                                    orderItemsList.add(orderItems);
-
-                                                    orderRecordCustom.setOtherItems(orderItemsList);
-                                                    orderRecordCustom.setItemType(orderItems.getItem_type());
-                                                    orderRecordCustom.setStoreId(orderItems.getStore_id());
-                                                    orderRecordCustom.setStoreName(orderItems.getStore_name());
-                                                    orderRecordCustom.setTotalAmount(Float.parseFloat(orderItems.getTotal_amount()));
-                                                    orderRecordCustom.setStoreImage(orderItems.getStore_img());
-                                                    orderRecordCustom.setExpected_delivery_date(DateTimeHelper.getDeliveryDate(orderRecord.getCreated_at(),orderItems.getMax_delivery_days()));
-                                                    orderRecordCustom.setDelivery_status(orderRecord.getDelivery_status());
-                                                    listHashMap.put(orderItems.getStore_id() + orderItems.getItem_type(), orderRecordCustom);
-                                                }
-
-
-                                            }
-
-                                        }
-
-                                        // Log.e("listHashMap", new Gson().toJson(listHashMap));
-
-                                        List<OrderRecordCustom> orderRecordCustomList = new ArrayList<>();
-
-                                        for (Map.Entry<String, OrderRecordCustom> entry : listHashMap.entrySet()) {
-
-                                            OrderRecordCustom value = entry.getValue();
-                                            orderRecordCustomList.add(value);
-
-                                        }
-                                        Log.e("orderRecordCustomList", new Gson().toJson(orderRecordCustomList));
-
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(OrderDetailsActivity.this);
-                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-                                        recyclerView.setLayoutManager(layoutManager);
-                                        recyclerView.setItemAnimator(new DefaultItemAnimator());
-                                        orderDetailsAdapter = new OrderDetailsAdapter(OrderDetailsActivity.this, orderRecordCustomList);
-                                        recyclerView.setAdapter(orderDetailsAdapter);
-
-
-                                    } else {
-                                        Toast.makeText(OrderDetailsActivity.this, "No record found", Toast.LENGTH_LONG).show();
-                                    }
+                                    recyclerView.setLayoutManager(layoutManager);
+                                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                                    orderDetailsAdapter = new OrderDetailsAdapter(OrderDetailsActivity.this, mResponse.getOrder_items());
+                                    recyclerView.setAdapter(orderDetailsAdapter);
 
 
                                 } else {
-                                    Toast.makeText(OrderDetailsActivity.this, mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(OrderDetailsActivity.this, "No record found", Toast.LENGTH_LONG).show();
                                 }
+
+
                             }
                         }
                     },
