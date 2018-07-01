@@ -137,10 +137,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                     if(session.getIsGuestId())
                     {
 
-                        new SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Oops...")
-                                .setContentText("Please Sign-up to continue...!")
-                                .show();
+                        Toast.makeText(activity, "Sign up to continue...", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

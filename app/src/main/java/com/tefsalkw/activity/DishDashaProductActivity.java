@@ -292,7 +292,11 @@ public class DishDashaProductActivity extends BaseActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", session.getCustomerId());
+                    if (session.getIsGuestId()) {
+                        params.put("unique_id", session.getCustomerId());
+                    } else {
+                        params.put("user_id", session.getCustomerId());
+                    }
                     params.put("appUser", "tefsal");
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");

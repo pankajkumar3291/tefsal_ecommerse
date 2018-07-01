@@ -143,7 +143,16 @@ public class MyOrderActivity extends BaseActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", sessionManager.getCustomerId());
+
+                    if(sessionManager.getIsGuestId())
+                    {
+                        params.put("unique_id", sessionManager.getCustomerId());
+                    }
+                    else
+                    {
+                        params.put("user_id", sessionManager.getCustomerId());
+                    }
+
                     params.put("access_token", sessionManager.getToken());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");

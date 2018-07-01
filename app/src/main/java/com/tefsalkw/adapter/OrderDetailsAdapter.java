@@ -72,7 +72,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " KWD");
                 holder.txtOrderItemType.setText("TAILOR & TEXTILE");
-                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
+                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
                 holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
 
                 //Textile section
@@ -102,7 +102,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
                 holder.txtOrderItemType.setText("TEXTILE");
-                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyleName() + "</i>"));
+                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
 
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);

@@ -103,6 +103,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
     CustomTailorCalculationProduct customTailorCalculationProduct;
 
+    int textile_meter = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -270,6 +271,8 @@ public class FragmentTailorProducts extends BaseFragment {
             params.put("access_token", sessionManager.getToken());
             params.put("user_id", sessionManager.getCustomerId());
             params.put("style_id", TefalApp.getInstance().getStyleId());
+
+
             params.put("cart_id", sessionManager.getKeyCartId());
             try {
                 params.put("items", isOwnTextile ? getItemsOwn() : getFinalCartList());
@@ -279,7 +282,7 @@ public class FragmentTailorProducts extends BaseFragment {
             params.put("appUser", "tefsal");
             params.put("appSecret", "tefsal@123");
             params.put("appVersion", "1.1");
-
+            params.put("textile_meter", textile_meter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -375,6 +378,8 @@ public class FragmentTailorProducts extends BaseFragment {
                             obj.put("item_details", item_details);
 
                             arry.put(obj);
+
+                            textile_meter += sublistCartItems.size() * Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
                         }
 
 
@@ -737,18 +742,6 @@ public class FragmentTailorProducts extends BaseFragment {
             return numberDishdasha < (sizeIs + (sizeIs * count));
 
 
-//            List<SublistCartItems> list = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
-//
-//            if (list != null) {
-//
-//
-//                int sizeIs = Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters()));
-//
-//                int numberDishdasha = Math.round(Float.parseFloat(TefalApp.getInstance().getNumberDishdashaUserHave()));
-//
-//                return numberDishdasha < (sizeIs + (sizeIs * list.size()));
-//
-//            }
         }
 
 
@@ -757,20 +750,7 @@ public class FragmentTailorProducts extends BaseFragment {
     }
 
 
-    public int getSelectedItemCount(int position, String pid) {
-        List<SublistCartItems> sublistCartItems = dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.get(position);
 
-        int count = 0;
-        for (SublistCartItems entry : sublistCartItems) {
-            if (entry.getProductId().equalsIgnoreCase(pid)) {
-                count++;
-            }
-        }
-
-
-        return count;
-
-    }
 
 
 }

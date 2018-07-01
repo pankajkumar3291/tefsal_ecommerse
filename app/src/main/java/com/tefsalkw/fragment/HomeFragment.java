@@ -186,7 +186,7 @@ public class HomeFragment extends BaseFragment {
                 public void onClick(View v) {
 
                     if (position == 0) {
-
+                        TefalApp.getInstance().setToolbar_title("TEXTILE STORES");
                         if(sessionManager.getIsGuestId()){
                             startActivity(new Intent(getActivity(), DaraAbayaActivity.class).putExtra("flag", "dish"));
                         }

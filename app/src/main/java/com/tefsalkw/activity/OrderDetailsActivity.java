@@ -182,7 +182,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", sessionManager.getCustomerId());
+                    if (sessionManager.getIsGuestId()) {
+                        params.put("unique_id", sessionManager.getCustomerId());
+                    } else {
+                        params.put("user_id", sessionManager.getCustomerId());
+                    }
                     params.put("order_id", orderRecord.getOrder_id());
                     params.put("access_token", sessionManager.getToken());
                     params.put("appUser", "tefsal");

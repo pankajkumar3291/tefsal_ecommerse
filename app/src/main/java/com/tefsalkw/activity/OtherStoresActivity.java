@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,12 +21,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.DishdashaStoreModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.OtherStoresAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.HomeFragment;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.DishdashaStoreModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -100,10 +101,9 @@ public class OtherStoresActivity extends BaseActivity {
         flag = getIntent().getStringExtra("flag");
 
 
-        if (flag.equals("Accessories"))
-        {
+        if (flag.equals("Accessories")) {
             sub_cat_id = getIntent().getStringExtra("sub_cat");
-            System.out.println("SUB CATEGORY==="+sub_cat_id);
+            System.out.println("SUB CATEGORY===" + sub_cat_id);
 
         }
 
@@ -117,7 +117,7 @@ public class OtherStoresActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -146,14 +146,12 @@ public class OtherStoresActivity extends BaseActivity {
                                     String status = jsonObject.getString("status");
                                     if (status.equals("1")) {
 
-                                        if(total_badge_txt != null)
-                                        {
+                                        if (total_badge_txt != null) {
                                             String record = jsonObject.getString("record");
                                             Gson g = new Gson();
                                             BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
                                             total_badge_txt.setText(badgeRecordModel.getCart_badge());
                                         }
-
 
 
                                     }
@@ -173,7 +171,13 @@ public class OtherStoresActivity extends BaseActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", session.getCustomerId());
+
+                    if (session.getIsGuestId()) {
+                        params.put("unique_id", session.getCustomerId());
+                    } else {
+                        params.put("user_id", session.getCustomerId());
+                    }
+
                     params.put("appUser", "tefsal");
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");
@@ -198,11 +202,6 @@ public class OtherStoresActivity extends BaseActivity {
     }
 
 
-
-
-
-
-
     public void WebCallServiceStores() {
         SimpleProgressBar.showProgress(OtherStoresActivity.this);
         try {
@@ -222,12 +221,11 @@ public class OtherStoresActivity extends BaseActivity {
 
 
                                 try {
-                                    JSONObject object=new JSONObject(response);
-                                    String status=object.getString("status");
-                                    String msg=object.getString("message");
+                                    JSONObject object = new JSONObject(response);
+                                    String status = object.getString("status");
+                                    String msg = object.getString("message");
 
-                                    if(status.equals("1"))
-                                    {
+                                    if (status.equals("1")) {
                                         Gson g = new Gson();
                                         DishdashaStoreModel mResponse = g.fromJson(response, DishdashaStoreModel.class);
 
@@ -238,10 +236,8 @@ public class OtherStoresActivity extends BaseActivity {
                                         recycler.setItemAnimator(new DefaultItemAnimator());
                                         adapter = new OtherStoresAdapter(OtherStoresActivity.this, mResponse.getRecord(), flag);
                                         recycler.setAdapter(adapter);
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

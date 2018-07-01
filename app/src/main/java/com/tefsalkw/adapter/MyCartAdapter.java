@@ -155,6 +155,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
+                holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
                 holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Textile");
                 holder.txtShopName.setText(storeModels.get(position2).getStore_name());
@@ -182,7 +183,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
-
+                holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getImage());
 
                 holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Dara / Abaya");
@@ -208,7 +209,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
-
+                holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getStore_image());
 
                 holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Accessories");
@@ -234,12 +235,15 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
 
                 holder.text_Tailor_name.setText("Order - " + (position2 + 1) + " Dishdasha Tailoring");
-                holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+
                 holder.text_textile.setText(storeModels.get(position2).getProduct_name());
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / METER");
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 //holder.sub_text_textile.setVisibility(GONE);
+
+
                 holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+
                 if (storeModels.get(position2).getDiscount() > 0) {
 
                     holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
@@ -250,6 +254,17 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
 
                 } else {
+
+                    if(storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE"))
+                    {
+                        holder.text_price.setVisibility(View.GONE);
+                        holder.txtShopName.setVisibility(View.GONE);
+                    }
+                    else {
+                        holder.text_price.setVisibility(View.VISIBLE);
+                        holder.txtShopName.setVisibility(View.VISIBLE);
+                    }
+
                     holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                     holder.text_price_discounted.setVisibility(GONE);
