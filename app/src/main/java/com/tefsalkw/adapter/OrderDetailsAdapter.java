@@ -5,6 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.models.Order_items;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +34,14 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
     SublistOrderAdapter sublistAdapter;
     SublistTailorServiceAdapter sublistTailorServiceAdapter;
+
+    SessionManager sessionManager;
     public OrderDetailsAdapter(Activity activity, List<Order_items> orderItems) {
+        sessionManager = new SessionManager(activity);
         this.activity = activity;
         this.orderItems = orderItems;
+
+        //Log.e("sessionManager",sessionManager.getIsGuestId()+"");
     }
 
     @Override
@@ -72,8 +79,18 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " KWD");
                 holder.txtOrderItemType.setText("TAILOR & TEXTILE");
-                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
-                holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
+
+                if (sessionManager.getIsGuestId()) {
+
+                    holder.txtStyleUsed.setVisibility(View.GONE);
+
+                } else {
+                    holder.txtStyleUsed.setVisibility(View.VISIBLE);
+                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
+
+                }
+
+                  holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
 
                 //Textile section
                 holder.llSectionOne.setVisibility(View.VISIBLE);
@@ -102,15 +119,20 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
                 holder.txtOrderItemType.setText("TEXTILE");
-                holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
+                if (sessionManager.getIsGuestId()) {
 
+                    holder.txtStyleUsed.setVisibility(View.GONE);
+
+                } else {
+                    holder.txtStyleUsed.setVisibility(View.VISIBLE);
+                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
+
+                }
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.lblSecond.setText("");
-                holder.txtStyleUsed.setVisibility(View.VISIBLE);
+
                 holder.lblFirst.setText("Textiles:");
-
-
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
                 sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
