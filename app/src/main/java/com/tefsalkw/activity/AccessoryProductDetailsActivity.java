@@ -752,32 +752,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         }
     }
 
-    private void setUiPageViewController() {
-
-        dotsCount = accessoryProductPagerAdapter.getCount();
-        if (dotsCount != 0) {
-            dots = new ImageView[dotsCount];
-
-            for (int i = 0; i < dotsCount; i++) {
-                dots[i] = new ImageView(this);
-                dots[i].setImageDrawable(getResources().getDrawable(R.drawable.dot_non_selected));
-
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                );
-
-                params.setMargins(20, 0, 20, 0);
-                viewPagerCountDots.addView(dots[i], params);
-            }
-            dots[0].setImageDrawable(getResources().getDrawable(R.drawable.dot_select));
-        } else {
-            //do nothing
-        }
-
-        System.out.println("COUNT======" + dotsCount);
-
-    }
 
     public class AccessoryProductPagerAdapterForDialog extends PagerAdapter {
         Context context;

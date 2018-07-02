@@ -60,6 +60,7 @@
             android:textSize="@dimen/text_large" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

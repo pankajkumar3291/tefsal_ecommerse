@@ -60,7 +60,6 @@
                 android:id="@+id/product_img"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@mipmap/ic_launcher"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>

@@ -224,6 +224,7 @@
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -234,6 +235,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
@@ -398,17 +400,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
-            android:text="@string/payment_select_amount_text"
+            android:text="@string/cart_amount_text"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_large" />
 
         <TextView
+
             android:id="@+id/discount"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/payment_select_discount_text"
             android:textSize="@dimen/text_small"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <Button
             android:background="@color/colorAccent"

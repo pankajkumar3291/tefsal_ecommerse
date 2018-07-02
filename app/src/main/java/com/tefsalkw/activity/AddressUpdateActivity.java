@@ -202,19 +202,9 @@ public class AddressUpdateActivity extends BaseActivity {
                     return;
                 }
 
-               /* else if(Contents.isBlank(input_flate.getText().toString().trim())) {
-                    input_flate.setError(getString(R.string.invalidFlate));
-                    return;
-                }
-                else if(Contents.isBlank(input_phone.getText().toString().trim())) {
-                    input_phone.setError(getString(R.string.invalidPhone));
-                    return;
-                }
-                */
 
                 saveAddress();
 
-                // System.out.println("SAVE");
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);

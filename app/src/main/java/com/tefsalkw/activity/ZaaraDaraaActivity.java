@@ -324,12 +324,12 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             @Override
             public void onClick(View v) {
                 if (zaraDaraSizesModel != null) {
-
+                    meter++;
                     if (meter > 0 && meter < zaraDaraSizesModel.getQuantity()) {
                         amount = meter * price;
                         text_price.setText("PRICE : " + amount + " KWD");
                         meter_value.setText("" + meter);
-                        meter++;
+
 
                     }
 

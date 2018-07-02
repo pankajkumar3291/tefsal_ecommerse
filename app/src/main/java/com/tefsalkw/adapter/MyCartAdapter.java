@@ -244,6 +244,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
 
+
+                if(storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE"))
+                {
+                    holder.text_price.setVisibility(View.GONE);
+                    holder.txtShopName.setVisibility(View.GONE);
+                }
+                else {
+                    holder.text_price.setVisibility(View.VISIBLE);
+                    holder.txtShopName.setVisibility(View.VISIBLE);
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                }
+
                 if (storeModels.get(position2).getDiscount() > 0) {
 
                     holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
@@ -255,15 +267,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 } else {
 
-                    if(storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE"))
-                    {
-                        holder.text_price.setVisibility(View.GONE);
-                        holder.txtShopName.setVisibility(View.GONE);
-                    }
-                    else {
-                        holder.text_price.setVisibility(View.VISIBLE);
-                        holder.txtShopName.setVisibility(View.VISIBLE);
-                    }
+
 
                     holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));

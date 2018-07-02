@@ -453,13 +453,17 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             add_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    meter++;
+
+                  //  Log.e("meter",meter+"");
                     if (meter > 0 && meter < stock_meter) {
 
                         amount = Math.round(price * meter);
                         text_price.setText("PRICE : " + amount + " KWD");
 
                         meter_value.setText("" + meter);
-                        meter++;
+
 
                     }
 
