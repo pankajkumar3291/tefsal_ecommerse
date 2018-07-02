@@ -1,5 +1,6 @@
 package com.tefsalkw.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -70,6 +71,24 @@ public class DialogKart extends Dialog {
             @Override
             public void onClick(View view) {
                 dismiss();
+
+                Activity activity =  (Activity)context;
+
+
+
+              if(activity.getClass().getSimpleName().equalsIgnoreCase("TailorProductActivity"))
+              {
+
+
+
+                  context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+
+              }
+              else
+              {
+                  activity.finish();
+              }
+
             }
         });
 

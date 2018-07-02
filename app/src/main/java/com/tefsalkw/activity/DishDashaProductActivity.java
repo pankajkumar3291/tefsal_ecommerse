@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.fragment.FragmentTailorStore;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
 import com.tefsalkw.models.BadgeRecordModel;
@@ -360,6 +361,9 @@ public class DishDashaProductActivity extends BaseActivity {
 
             // Toast.makeText(this, "HEllo Tailor", Toast.LENGTH_SHORT).show();
         }
+
+
+
 
 
     }

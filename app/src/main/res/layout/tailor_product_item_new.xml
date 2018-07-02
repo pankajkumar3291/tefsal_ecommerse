@@ -18,13 +18,14 @@
             android:layout_margin="5dp"
             android:layout_width="60dp" />
 
-        <TextView
+        <me.grantland.widget.AutofitTextView
             android:ellipsize="end"
             android:id="@+id/txt_product_name"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imageView"
+            android:layout_toLeftOf="@+id/check_box"
             android:layout_width="wrap_content"
             android:maxLines="1"
             android:text="@string/tailor_product_item_new_txt_product_name_text"
