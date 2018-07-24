@@ -150,7 +150,15 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                                     Customer_address customer_address = mResponse.getCustomer_address();
 
-                                    String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getAvenue() + " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number();
+                                    String fullAddress = customer_address.getAddress_name() + "\n"
+                                            + "House / Building " + customer_address.getHouse() + " , "
+                                            + "Street " + customer_address.getStreet() + " , "
+                                            + "Block " + customer_address.getBlock() + " , "
+                                            + "Area " + customer_address.getArea() + " , "
+                                            + "City " + customer_address.getProvince() + " "
+                                            + customer_address.getCountry();
+
+                                    // String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getProvince() + " " + customer_address.getArea()+ " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number()+ " " + customer_address.getHouse();
                                     txtCustomerAddress.setText(fullAddress);
                                     txtPaymentType.setText(mResponse.getPayment_method());
 

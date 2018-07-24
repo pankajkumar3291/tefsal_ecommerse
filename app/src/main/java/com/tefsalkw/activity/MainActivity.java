@@ -98,7 +98,20 @@ public class MainActivity extends BaseActivity
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
+
+
+
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+
         //fromMailArg=getIntent().getStringExtra("Mail");
+
 
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -139,19 +152,6 @@ public class MainActivity extends BaseActivity
 
 
         nav_view.setNavigationItemSelectedListener(this);
-        // System.out.println("Token==="+session.getToken());
-        //System.out.println("Token==="+session.getCustomerId());
-
-//        FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-LightItalic.ttf");
-//        fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
-
-        /*if(!fromMailArg.equals(""))
-
-            fragment = new MailFragment();
-        else*/
-
-
-        //These lines should be added in the OnCreate() of your main activity
 
         final MenuItem menuItemMail = nav_view.getMenu().findItem(R.id.nav_mail);
         final MenuItem menuItemOrder = nav_view.getMenu().findItem(R.id.nav_my_orders);
@@ -217,38 +217,17 @@ public class MainActivity extends BaseActivity
             menuTextile.setVisible(false);
             menuMail.setVisible(false);
 
-            //menuSetting.setVisible(false);
-
-
-            //nav_home
-            // nav_styles.
-            // nav_textiles
-            // nav_mail
-            //nav_my_address
-            //nav_my_orders
 
 
         } else {
             user_name.setText(session.getKeyUserName().toString());
             menuTextile.setVisible(false);
-            // if(Utility.isInternetConnected(MainActivity.this))
-            //{
             httpGetBadgeCall();
-            // }
-            // else
-            // {
-            // Toast.makeText(this, "No internet available", Toast.LENGTH_SHORT).show();
-            // }
-
-
             menuSignIn.setVisible(false);
             menuSignUp.setVisible(false);
 
 
         }
-
-        //  httpGetBadgeCall();
-
 
         View decorView = getWindow().getDecorView();
 
@@ -332,9 +311,7 @@ public class MainActivity extends BaseActivity
 
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
-        /*System.out.println("orders_badge===="+badgeRecordModel.getOrders_badge());
-        System.out.println("mails_badge===="+badgeRecordModel.getMails_badge());
-        System.out.println("total_badge===="+badgeRecordModel.getOrders_badge());*/
+
 
         if (badgeRecordModel.getOrders_badge().equals("0")) {
             order_menu.setVisibility(View.GONE);
@@ -380,27 +357,7 @@ public class MainActivity extends BaseActivity
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

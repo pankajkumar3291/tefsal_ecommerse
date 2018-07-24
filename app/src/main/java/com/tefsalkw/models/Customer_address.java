@@ -4,43 +4,43 @@ import java.io.Serializable;
 
 public class Customer_address implements Serializable {
 
-    private String phone_number;
+    private String phone_number = "";
 
-    private String isdefault;
+    private String isdefault= "";
 
-    private String flat_number;
+    private String flat_number= "";
 
-    private String street;
+    private String street= "";
 
-    private String deleted_at;
+    private String deleted_at= "";
 
-    private String block;
+    private String block= "";
 
-    private String addt_info;
+    private String addt_info= "";
 
-    private String house;
+    private String house= "";
 
-    private String country;
+    private String country= "";
 
     private String id;
 
-    private String updated_at;
+    private String updated_at= "";
 
-    private String area;
+    private String area= "";
 
-    private String floor;
+    private String floor= "";
 
-    private String paci_number;
+    private String paci_number= "";
 
-    private String avenue;
+    private String avenue = "";
 
-    private String address_name;
+    private String address_name= "";
 
-    private String province;
+    private String province= "";
 
-    private String created_at;
+    private String created_at= "";
 
-    private String customer_id;
+    private String customer_id= "";
 
     public String getPhone_number ()
     {

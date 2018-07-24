@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -177,6 +178,8 @@ public class SettingsActivity extends BaseActivity {
         });
 
 
+        Log.e("session.getKeyLang()",session.getKeyLang());
+
         if (session.getKeyLang().equalsIgnoreCase("Arabic")) {
             text_language_spinner.setSelection(1);
         } else {
@@ -184,13 +187,14 @@ public class SettingsActivity extends BaseActivity {
         }
 
 
-        text_language_spinner.setSelection(0, false);
+
         text_language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
 
                 if (userIsInteracting) {
+
                     session.setKeyLang(parentView.getSelectedItem().toString());
 
                     String lang = position == 0 ? "en" : "ar";

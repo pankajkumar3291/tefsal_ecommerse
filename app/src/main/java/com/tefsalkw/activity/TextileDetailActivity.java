@@ -459,8 +459,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                   //  Log.e("meter",meter+"");
                     if (meter > 0 && meter < stock_meter) {
 
-                        amount = Math.round(price * meter);
-                        text_price.setText("PRICE : " + amount + " KWD");
+                        amount = price * meter;
+
+                        text_price.setText("PRICE : " + String.format("%.2f", amount) + " KWD");
 
                         meter_value.setText("" + meter);
 
@@ -476,8 +477,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                     if (meter > min_meter) {
                         meter--;
-                        amount = Math.round(price * meter);
-                        text_price.setText("PRICE : " + amount + " KWD");
+                        amount = price * meter;
+                        text_price.setText("PRICE : " + String.format("%.2f", amount) + " KWD");
                         meter_value.setText("" + meter);
                     }
 
@@ -556,7 +557,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText("PRICE : " + Math.round(price * meter)  + " KWD");
+                text_price.setText("PRICE : " + price * meter  + " KWD");
 
                 txt_price.setText(price + " KWD / METER");
 
