@@ -239,10 +239,6 @@
             android:theme="@style/TransparentTheme" />
         <activity android:name=".kotlin.SignupThankYouActivity" />
         <activity
-            android:name=".activity.CustomVideoPlayerActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.CartAddressSelectionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -253,6 +249,7 @@
             android:name=".activity.CustomVideoPlayerNewActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.OrderDetailsActivity"

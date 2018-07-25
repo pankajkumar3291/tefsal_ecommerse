@@ -26,14 +26,12 @@ import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
-import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -66,10 +64,6 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
     MyCartAdapter adapter;
     SessionManager session;
-
-    private ImageView cart_item_delete;
-
-    float totalPrice = 0;
 
     GetCartResponse mResponse;
     boolean isDelete = true;
@@ -291,17 +285,20 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
 
     public void updateUifromAdapter() {
-        totalPrice = 0;
-        if (mResponse.getRecord().size() <= 1)
-            header_txt.setText(mResponse.getRecord().size() + " item in your cart");
-        else
-            header_txt.setText(mResponse.getRecord().size() + " items in your cart");
 
+        WebCallServiceCart();
 
-        amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + "00 KWD");
-
-
-        System.out.println("I FROM ACTIVITY====");
+//        totalPrice = 0;
+//        if (mResponse.getRecord().size() <= 1)
+//            header_txt.setText(mResponse.getRecord().size() + " item in your cart");
+//        else
+//            header_txt.setText(mResponse.getRecord().size() + " items in your cart");
+//
+//
+//        amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + " KWD");
+//
+//
+//        System.out.println("I FROM ACTIVITY====");
     }
 
 

@@ -2962,7 +2962,8 @@ public class MeasermentActivity extends BaseActivity {
 
     private void showIndividualVideo(int position) {
 
-        startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerActivity.class).putExtra("position", position));
+
+        startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerNewActivity.class).putExtra("position", position));
 
 
     }

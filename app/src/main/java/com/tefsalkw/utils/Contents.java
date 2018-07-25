@@ -9,7 +9,7 @@ public class Contents {
 
     public static String baseURL = "http://tefsalkw.com/api/";
     public static String baseVideoURL = "https://s3-eu-west-1.amazonaws.com/tefsalvideos/";
-
+    //public static String baseVideoURL = "https://d1ulopo9in3mc8.cloudfront.net/";
 
     public static boolean isBlank(CharSequence string) {
         return (string == null || string.toString().trim().length() == 0);

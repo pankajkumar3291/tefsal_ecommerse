@@ -134,6 +134,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         RecyclerView recyclerSubList;
 
 
+        @BindView(R.id.LL_imageContainer)
+        LinearLayout LL_imageContainer;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -320,7 +323,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             }
 
-            holder.cart_item_delete.setOnClickListener(new View.OnClickListener() {
+            holder.LL_imageContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -329,6 +332,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     // notifyDataSetChanged();
                 }
             });
+
 
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
@@ -446,10 +450,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
-                    System.out.println("CART ID==" + storeModels.get(pos).getCart_item_id());
-                    System.out.println("");
+                    params.put("cart_id", session.getKeyCartId());
                     params.put("access_token", session.getToken());
+
+
                     params.put("user_id", session.getCustomerId());
+
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");

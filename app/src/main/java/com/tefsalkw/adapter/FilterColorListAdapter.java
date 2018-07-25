@@ -49,7 +49,7 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
-        holder.colorText.setText(colorsRecordModelArrayList.get(position).getColor_name());
+        holder.colorText.setText(colorsRecordModelArrayList.get(position).getName());
         holder.color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
