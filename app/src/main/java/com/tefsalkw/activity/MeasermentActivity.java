@@ -1285,18 +1285,14 @@ public class MeasermentActivity extends BaseActivity {
 
         //This block of code used to handle collor button -----
 
-        if (mSessionManager.getKeyButtons().equals("0")) {
+         if (mSessionManager.getKeyButtons().equals("1")) {
             noOfButtonSpinner.setSelection(0);
-            buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
-
-            // buttonHiddenText.setText("VISIBILTY");
-
-        } else if (mSessionManager.getKeyButtons().equals("1")) {
-            noOfButtonSpinner.setSelection(1);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
 
-        } else if (mSessionManager.getKeyButtons().equals("2")) {
-            noOfButtonSpinner.setSelection(2);
+        }
+
+        if (mSessionManager.getKeyButtons().equals("2")) {
+            noOfButtonSpinner.setSelection(1);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
         }
 
@@ -2889,7 +2885,9 @@ public class MeasermentActivity extends BaseActivity {
 
                 alertDialog.dismiss();
 
-                if (TefalApp.getInstance().getmAction().equals("edit")) {
+                Log.e("getmAction()",TefalApp.getInstance().getmAction());
+
+                if (TefalApp.getInstance().getmAction().equalsIgnoreCase("edit")) {
                     WebCallServiceUpdateStyle();
                 } else {
                     WebCallServiceCreateStyle();

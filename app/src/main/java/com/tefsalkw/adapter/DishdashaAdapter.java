@@ -273,6 +273,16 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                     holder.key_pocket1.setImageResource(R.drawable.key_w);
                 }
 
+
+                holder.ic_cuflink1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        wrapStyleData(position, "edit", true);
+                    }
+                });
+
                 holder.pen_pocket1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -393,6 +403,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 holder.btn_edit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
 
                         record.get(position).setEditMode(true);
                         notifyDataSetChanged();
@@ -625,6 +636,8 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
         mTefalApp = TefalApp.getInstance();
         mTefalApp.setmAction(action);
         mTefalApp.setmCategory(mCategory);
+
+        TefalApp.getInstance().setmAction(action);
 
         /*bundle.putString("ACTION",action);
         bundle.putString("CATEGORY","2");*/
