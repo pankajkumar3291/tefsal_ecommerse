@@ -100,16 +100,6 @@ public class MainActivity extends BaseActivity
         getSupportActionBar().setHomeButtonEnabled(false);
 
 
-
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-
-
         //fromMailArg=getIntent().getStringExtra("Mail");
 
 
@@ -311,23 +301,11 @@ public class MainActivity extends BaseActivity
 
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
+        order_menu.setText("" + badgeRecordModel.getOrders_badge());
+        mail_menu.setText("" +badgeRecordModel.getMails_badge());
+        total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
 
 
-        if (badgeRecordModel.getOrders_badge().equals("0")) {
-            order_menu.setVisibility(View.GONE);
-        } else {
-            order_menu.setText("" + badgeRecordModel.getOrders_badge());
-        }
-        if (badgeRecordModel.getMails_badge().equals("0")) {
-            mail_menu.setVisibility(View.GONE);
-        } else {
-            mail_menu.setText(badgeRecordModel.getMails_badge());
-        }
-        if (badgeRecordModel.getTotal_badge().equals("0")) {
-            total_badge_txt.setVisibility(View.GONE);
-        } else {
-            total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
-        }
     }
 
     @Override

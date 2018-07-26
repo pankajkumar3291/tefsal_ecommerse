@@ -303,31 +303,11 @@ public class SendMailActivity extends BaseActivity {
         /*System.out.println("orders_badge===="+badgeRecordModel.getOrders_badge());
         System.out.println("mails_badge===="+badgeRecordModel.getMails_badge());
         System.out.println("total_badge===="+badgeRecordModel.getOrders_badge());*/
+        order_menu.setText(""+badgeRecordModel.getOrders_badge());
+        mail_menu.setText(""+badgeRecordModel.getMails_badge());
+        total_badge_txt.setText(""+badgeRecordModel.getTotal_badge());
 
-        if(badgeRecordModel.getOrders_badge().equals("0"))
-        {
-            order_menu.setVisibility(View.GONE);
-        }
-        else
-        {
-            order_menu.setText(""+badgeRecordModel.getOrders_badge());
-        }
-        if(badgeRecordModel.getMails_badge().equals("0"))
-        {
-            mail_menu.setVisibility(View.GONE);
-        }
-        else
-        {
-            mail_menu.setText(badgeRecordModel.getMails_badge());
-        }
-        if(badgeRecordModel.getTotal_badge().equals("0"))
-        {
-            total_badge_txt.setVisibility(View.GONE);
-        }
-        else
-        {
-            total_badge_txt.setText(""+badgeRecordModel.getTotal_badge());
-        }
+
     }
 
 }

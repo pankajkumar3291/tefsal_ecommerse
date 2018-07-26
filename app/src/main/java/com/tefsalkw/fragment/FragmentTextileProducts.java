@@ -466,7 +466,7 @@ public class FragmentTextileProducts extends BaseFragment {
 
             color = selectedColorModel.getId();
 
-            text_color.setText(selectedColorModel.getColor_name());
+            text_color.setText(selectedColorModel.getName());
 
             LayerDrawable layerDrawable = (LayerDrawable) getActivity().getResources()
                     .getDrawable(R.drawable.round_image_background_for_color);

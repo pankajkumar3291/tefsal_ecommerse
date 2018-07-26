@@ -454,7 +454,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     params.put("access_token", session.getToken());
 
 
-                    params.put("user_id", session.getCustomerId());
+                    if (session.getIsGuestId()) {
+                        params.put("unique_id", session.getCustomerId());
+                    } else {
+                        params.put("user_id", session.getCustomerId());
+                    }
 
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");

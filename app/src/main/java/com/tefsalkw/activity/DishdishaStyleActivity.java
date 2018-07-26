@@ -90,8 +90,15 @@ public class DishdishaStyleActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        if (!session.getCustomerId().equals("")) {
-            WebCallServiceStores();
+        if (session.getCustomerId() != null) {
+            if (!session.getCustomerId().equals("")) {
+                WebCallServiceStores();
+            } else {
+                TefalApp.getInstance().setToolbar_title("DISHDASHA");
+                startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
+            }
+
         } else {
             TefalApp.getInstance().setToolbar_title("DISHDASHA");
             startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -128,19 +135,53 @@ public class DishdishaStyleActivity extends BaseActivity {
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
                                 DishdashaStylesResponse mResponse = g.fromJson(response, DishdashaStylesResponse.class);
-                                if (mResponse.getStatus().equals("1")) {
 
-                                    LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
-                                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                if(mResponse != null)
+                                {
+                                    if (mResponse.getStatus().equals("1")) {
 
-                                    recycler.setLayoutManager(layoutManager);
-                                    recycler.setItemAnimator(new DefaultItemAnimator());
-                                    styleRecords = mResponse.getRecord();
-                                    adapter = new DishdashaStyleAdapter(DishdishaStyleActivity.this, mResponse.getRecord());
-                                    recycler.setAdapter(adapter);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
+                                        recycler.setLayoutManager(layoutManager);
+                                        recycler.setItemAnimator(new DefaultItemAnimator());
+                                        styleRecords = mResponse.getRecord();
+                                        adapter = new DishdashaStyleAdapter(DishdishaStyleActivity.this, mResponse.getRecord());
+                                        recycler.setAdapter(adapter);
+
+                                    }
+                                    if (mResponse.getStatus().equals("0") || mResponse.getRecord().size() == 0) {
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
+                                        builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
+                                                .setCancelable(false)
+                                                .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+
+                                                        showNamePrompt();
+                                                    }
+                                                })
+                                                .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        //  Action for 'NO' Button
+                                                        TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                                                        TefalApp.getInstance().setMin_meters("3");
+                                                        TefalApp.getInstance().setStyleName("TefsalDefault");
+                                                        startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish"));
+
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                        //Creating dialog box
+                                        AlertDialog alert = builder.create();
+                                        //Setting the title manually
+                                        alert.setTitle("No Style Available");
+                                        alert.show();
+                                    }
                                 }
-                                if (mResponse.getStatus().equals("0") || mResponse.getRecord().size() == 0) {
+                                else
+                                {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
                                     builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
                                             .setCancelable(false)
@@ -168,6 +209,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                     alert.setTitle("No Style Available");
                                     alert.show();
                                 }
+
                             }
 
                         }
@@ -268,7 +310,6 @@ public class DishdishaStyleActivity extends BaseActivity {
                 }
             }
         }
-
 
 
         if (!isNameUnique) {
