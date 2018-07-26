@@ -28,7 +28,7 @@
 
                     <ImageView
                         android:id="@+id/buttonsImage"
-                        android:layout_width="140dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -60,7 +60,7 @@
 
                         <Switch
 
-                            android:id="@+id/button_hidden_switch"
+                            android:id="@+id/collor_push_visibilty_switch"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:layout_marginBottom="5dp"
@@ -71,7 +71,6 @@
 
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -88,7 +87,8 @@
                             android:textSize="@dimen/text_normal" />
 
                         <Switch
-                            android:id="@+id/collor_push_visibilty_switch"
+                            android:id="@+id/button_hidden_switch"
+
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:background="@drawable/switch_selector"
@@ -148,7 +148,7 @@
 
                     <ImageView
                         android:id="@+id/collor_button_image"
-                        android:layout_width="140dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -175,7 +175,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
-                            android:text="COLLAR"
+                            android:text="@string/customized_section_collor_button_hidden_text_text"
                             android:textColor="@color/colorNavy"
                             android:textSize="@dimen/text_normal" />
 
@@ -219,11 +219,11 @@
             </RelativeLayout>
 
             <View
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGray" />
 
             <RelativeLayout
@@ -241,7 +241,7 @@
 
                     <ImageView
                         android:id="@+id/cufflink_image"
-                        android:layout_width="140dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:gravity="start"
@@ -251,15 +251,16 @@
 
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true">
+                    android:layout_alignParentEnd="true"
+                    android:orientation="horizontal">
+
                     <TextView
-                        android:layout_marginEnd="20dp"
                         android:id="@+id/cufLinkText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
                         android:text="@string/customized_section_cufLinkText_text"
                         android:textColor="@color/colorNavy"
                         android:textSize="@dimen/text_normal" />
@@ -276,11 +277,11 @@
             </RelativeLayout>
 
             <View
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorGray" />
 
             <LinearLayout

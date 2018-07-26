@@ -311,7 +311,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-            subText.setText(textileProductModel.getPattern() != null ? textileProductModel.getPattern() : "");
+
 
 
             View root = tabLayout.getChildAt(0);
@@ -581,6 +581,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             materialString = materialString != null ? materialString : "";
             // Log.e("feelString", feelString);
             //Log.e("materialString", materialString);
+
+           // Log.e("patternName","patternName"+selectedColor.getPattern_name());
+
+            subText.setVisibility(View.VISIBLE);
+            subText.setText(selectedColor.getPattern_name() != null ? selectedColor.getPattern_name() : "");
 
 
             //Creating our pager adapter

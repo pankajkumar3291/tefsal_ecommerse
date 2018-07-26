@@ -21,6 +21,16 @@ public class TextileProductModel implements Serializable {
     private String brand_image;
     private String price;
     private String pattern;
+
+    public String getPattern_name() {
+        return pattern_name;
+    }
+
+    public void setPattern_name(String pattern_name) {
+        this.pattern_name = pattern_name;
+    }
+
+    private String pattern_name;
     private String color;
     private String pattern_image;
     private String[] product_image;

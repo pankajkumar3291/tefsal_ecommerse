@@ -62,7 +62,15 @@ public class Colors implements Serializable {
 
     private String feel;
 
+    public String getPattern_name() {
+        return pattern_name;
+    }
 
+    public void setPattern_name(String pattern_name) {
+        this.pattern_name = pattern_name;
+    }
+
+    private String pattern_name;
     private String pattern_id;
 
     private String default_image;
