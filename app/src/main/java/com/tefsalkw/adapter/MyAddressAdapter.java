@@ -90,12 +90,32 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
 
-        holder.address_name.setText(record.get(holder.getAdapterPosition()).getAddress_name());
-        holder.address_text.setText("Block " + record.get(holder.getAdapterPosition()).getBlock()
-                + " , Street " + record.get(holder.getAdapterPosition()).getStreet()
-                + " , House / Building " + record.get(holder.getAdapterPosition()).getHouse()
-                + " , City " + record.get(holder.getAdapterPosition()).getCity()
-                + " , " + record.get(holder.getAdapterPosition()).getCountry());
+        String addressName = record.get(holder.getAdapterPosition()).getAddress_name();
+        addressName = addressName != null ? addressName.toUpperCase() : "";
+        holder.address_name.setText(addressName);
+
+
+        String house = record.get(holder.getAdapterPosition()).getHouse();
+        String street = record.get(holder.getAdapterPosition()).getHouse();
+        String block = record.get(holder.getAdapterPosition()).getHouse();
+        String area = record.get(holder.getAdapterPosition()).getHouse();
+        String city = record.get(holder.getAdapterPosition()).getHouse();
+
+        house = house != null ? house : "-";
+        street = street != null ? street : "-";
+        block = block != null ? block : "-";
+        area = area != null ? area : "-";
+        city = city != null ? city : "-";
+
+        String fullAddress = "House / Building: " + house + " , "
+                + "Street: " + street + " , "
+                + "Block: " + block + " , "
+                + "Area: " + area + " , "
+                + "City: " + city + " ";
+
+
+        holder.address_text.setText(fullAddress);
+
 
         holder.address_layout.setOnClickListener(new View.OnClickListener() {
             @Override

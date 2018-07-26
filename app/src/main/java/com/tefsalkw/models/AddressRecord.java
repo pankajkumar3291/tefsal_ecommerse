@@ -30,6 +30,14 @@ public class AddressRecord implements Serializable{
 
     private String customer_id;
 
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
     private String province;
 
     private String country;

@@ -295,7 +295,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 TefalApp.getInstance().setColorPosition(0);
                 colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
-
             }
 
 
@@ -312,7 +311,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             toolbar_title.setText(textileProductModel.getDishdasha_product_name());
-            // subText.setText(textileProductModel.getColor() + (textileProductModel.getSub_color() != null ? " - " + textileProductModel.getSub_color() : ""));
+            subText.setText(textileProductModel.getPattern() != null ? textileProductModel.getPattern() : "");
 
 
             View root = tabLayout.getChildAt(0);
@@ -327,9 +326,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             if (textileProductModel == null) {
+
                 RL_no_product_found_container.setVisibility(View.VISIBLE);
                 RL_product_exist_container.setVisibility(View.GONE);
                 return;
+
             } else {
                 RL_no_product_found_container.setVisibility(View.GONE);
                 RL_product_exist_container.setVisibility(View.VISIBLE);
@@ -456,7 +457,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                     meter++;
 
-                  //  Log.e("meter",meter+"");
+                    //  Log.e("meter",meter+"");
                     if (meter > 0 && meter < stock_meter) {
 
                         amount = price * meter;
@@ -504,9 +505,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
             }
 
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
 
         }
 
@@ -557,7 +556,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText("PRICE : " + price * meter  + " KWD");
+                text_price.setText("PRICE : " + price * meter + " KWD");
 
                 txt_price.setText(price + " KWD / METER");
 
@@ -580,9 +579,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             feelString = feelString != null ? feelString : "";
             materialString = selectedColor.getMaterial();
             materialString = materialString != null ? materialString : "";
-           // Log.e("feelString", feelString);
+            // Log.e("feelString", feelString);
             //Log.e("materialString", materialString);
-
 
 
             //Creating our pager adapter
@@ -594,8 +592,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             //Adding adapter to pager
             viewPager.setAdapter(adapter);
 
-            if(viewPager.getAdapter() != null)
-            {
+            if (viewPager.getAdapter() != null) {
                 viewPager.getAdapter().notifyDataSetChanged();
             }
 
