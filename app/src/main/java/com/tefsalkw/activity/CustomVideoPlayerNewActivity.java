@@ -1,27 +1,26 @@
 package com.tefsalkw.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.ui.PlaybackControlView;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -33,7 +32,7 @@ import com.tefsalkw.R;
 
 import static com.tefsalkw.utils.Contents.baseVideoURL;
 
-public class CustomVideoPlayerNewActivity extends AppCompatActivity {
+public class CustomVideoPlayerNewActivity extends AppCompatActivity implements Player.EventListener    {
 
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
@@ -60,6 +59,8 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
     int currentVideoIs = 0;
 
     boolean isFirstTime = false;
+    DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+    MediaSource mediaSource = null;
 
 
 
@@ -72,12 +73,15 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
         mediaDataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
         window = new Timeline.Window();
 
+
+
     }
 
 
     private void initializePlayer() {
 
         simpleExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.player_view);
+
         simpleExoPlayerView.requestFocus();
 
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
@@ -86,6 +90,7 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
         trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
         player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
+        player.addListener(this);
 
         simpleExoPlayerView.setPlayer(player);
 
@@ -109,21 +114,14 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
         }
 
 
-        DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
-        MediaSource mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl),
+         mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl),
                 mediaDataSourceFactory, extractorsFactory, null, null);
 
-        player.prepare(mediaSource);
-
+         player.prepare(mediaSource);
 
 
     }
-
-
-
-
-
 
 
     private void releasePlayer() {
@@ -159,5 +157,74 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         releasePlayer();
+    }
+
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
+
+    }
+
+    @Override
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+
+    }
+
+    @Override
+    public void onLoadingChanged(boolean isLoading) {
+
+    }
+
+    @Override
+    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
+        if (playbackState == ExoPlayer.STATE_ENDED){
+            currentVideoIs++;
+
+
+            Log.d("onCompletion", "" + currentVideoIs);
+
+
+            int maxVideosToPlay = isFirstTime ? 1 : 8;
+            if (currentVideoIs <= maxVideosToPlay) {
+
+
+                mediaSource = new ExtractorMediaSource(Uri.parse(literals[currentVideoIs]),
+                        mediaDataSourceFactory, extractorsFactory, null, null);
+
+                player.prepare(mediaSource);
+
+            }
+
+        }
+    }
+
+    @Override
+    public void onRepeatModeChanged(int repeatMode) {
+
+    }
+
+    @Override
+    public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+
+    }
+
+    @Override
+    public void onPlayerError(ExoPlaybackException error) {
+
+    }
+
+    @Override
+    public void onPositionDiscontinuity(int reason) {
+
+    }
+
+    @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+
+    }
+
+    @Override
+    public void onSeekProcessed() {
+
     }
 }
