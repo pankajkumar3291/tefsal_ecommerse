@@ -37,29 +37,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_neck"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_neck"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_neck_blur" />
 
                         <View
                             android:id="@+id/neck_view"
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_above="@+id/tv_neck"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ic_neck"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_neck"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/neck_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_neck_text"
                             android:textColor="@color/colorNavyBlue"
@@ -70,29 +72,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_sldr"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_shoulder"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_sldr_blur" />
 
                         <View
                             android:id="@+id/sldr_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_shoulder"
+                            android:layout_below="@+id/ic_shoulder"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_shoulder"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/sldr_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_shoulder_text"
                             android:textColor="@color/colorNavyBlue"
@@ -103,29 +107,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_chest"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_chest"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_chest_blur" />
 
                         <View
                             android:id="@+id/chest_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_chest"
+                            android:layout_below="@+id/ic_chest"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_chest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/chest_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_chest_text"
                             android:textColor="@color/colorNavyBlue"
@@ -136,29 +142,32 @@
                     <RelativeLayout
                         android:id="@+id/ll_waist"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_waist"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_waist_blur" />
 
                         <View
                             android:id="@+id/waist_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_waist"
+                            android:layout_below="@+id/ic_waist"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
+
                             android:id="@+id/tv_waist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/waist_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_waist_text"
                             android:textColor="@color/colorNavyBlue"
@@ -169,29 +178,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_arm"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_arm"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_arm_blur" />
 
                         <View
                             android:id="@+id/arm_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_arm"
+                            android:layout_below="@+id/ic_arm"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_arm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/arm_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_arm_text"
                             android:textColor="@color/colorNavyBlue"
@@ -202,29 +213,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_wrist"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_wrist"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_wrist_blur" />
 
                         <View
                             android:id="@+id/wrist_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_wrist"
+                            android:layout_below="@+id/ic_wrist"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_wrist"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/wrist_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_wrist_text"
                             android:textColor="@color/colorNavyBlue"
@@ -235,29 +248,32 @@
                     <RelativeLayout
                         android:id="@+id/ll_frnt_height"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_f_height"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_height_front_blur" />
 
                         <View
                             android:id="@+id/f_height_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_f_height"
+                            android:layout_below="@+id/ic_f_height"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_f_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/f_height_view"
+
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_f_height_text"
                             android:textColor="@color/colorNavyBlue"
@@ -268,29 +284,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_back_height"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_b_height"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_height_back_blur" />
 
                         <View
                             android:id="@+id/b_height_view"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_b_height"
+                            android:layout_below="@+id/ic_b_height"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_b_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/b_height_view"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_b_height_text"
                             android:textColor="@color/colorNavyBlue"
@@ -302,28 +320,31 @@
                     <RelativeLayout
                         android:id="@+id/ll_custom"
                         android:layout_width="90dp"
-                        android:layout_height="110dp"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/ic_custom"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_centerInParent="true"
+                            android:layout_centerHorizontal="true"
                             android:src="@drawable/icon_custom_blur" />
 
                         <View
+                            android:id="@+id/b_custom"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_above="@+id/tv_custom"
+                            android:layout_below="@+id/ic_custom"
+                            android:layout_marginTop="5dp"
                             android:background="@color/colorDivider" />
 
                         <TextView
                             android:id="@+id/tv_custom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="true"
+                            android:layout_below="@+id/b_custom"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:text="@string/activity_measerment_tv_custom_text"
                             android:textColor="@color/colorNavyBlue"

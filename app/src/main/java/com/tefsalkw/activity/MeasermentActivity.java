@@ -325,42 +325,42 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 210;
+       // ic_neck.getLayoutParams().height = 210;
         ic_neck.setImageResource(R.drawable.a);
         tv_neck.setVisibility(VISIBLE);
 
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+      //  ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+        //ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+       // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
 
 
         seekBar.setMax(max - min);
@@ -1474,39 +1474,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 210;
+        //ic_neck.getLayoutParams().height = 210;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+      //  ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+       // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
 
 
     }
@@ -1581,39 +1581,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+        //ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 210;
+       // ic_chest.getLayoutParams().height = 210;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+        //ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
 
     }
 
@@ -1685,39 +1685,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+        //ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 210;
+        //ic_shoulder.getLayoutParams().height = 210;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+        //ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+       // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_waistDesign() {
@@ -1786,39 +1786,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+        //ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+        //ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 210;
+       // ic_waist.getLayoutParams().height = 210;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+        //ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_armDesign() {
@@ -1887,39 +1887,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+        //ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+        //ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 210;
+       // ic_arm.getLayoutParams().height = 210;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+        //ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+      //  ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
 
     }
 
@@ -1990,39 +1990,39 @@ public class MeasermentActivity extends BaseActivity {
         //flag_chest=flag_neck=flag_sldr=flag_arm=flag_wrist=flag_front_height=flag_back_height=flag_customized=0;
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+       // ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+        //ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+        //ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 210;
+       // ic_wrist.getLayoutParams().height = 210;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+       // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_frnt_heightDesign() {
@@ -2093,39 +2093,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+       // ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 210;
+       // ic_f_height.getLayoutParams().height = 210;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+        //ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+       // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_back_heightDesign() {
@@ -2196,39 +2196,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+       // ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+       // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 210;
+       // ic_b_height.getLayoutParams().height = 210;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 190;
+        //ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_customDesign() {
@@ -2267,39 +2267,39 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-        ic_neck.getLayoutParams().height = 190;
+        //ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-        ic_shoulder.getLayoutParams().height = 190;
+       // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-        ic_chest.getLayoutParams().height = 190;
+       // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-        ic_waist.getLayoutParams().height = 190;
+        //ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-        ic_arm.getLayoutParams().height = 190;
+       // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-        ic_wrist.getLayoutParams().height = 190;
+       // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+      //  ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-        ic_b_height.getLayoutParams().height = 190;
+       // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-        ic_custom.getLayoutParams().height = 210;
+        //ic_custom.getLayoutParams().height = 210;
 
         ll_sectionOne.setVisibility(View.GONE);
         ll_sectionTwo.setVisibility(View.VISIBLE);
