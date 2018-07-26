@@ -309,10 +309,10 @@ public class MeasermentActivity extends BaseActivity {
 
 
         mSessionManager = new SessionManager(getApplicationContext());
-        //System.out.println("Token==="+mSessionManager.getToken());
+
         setPrefData(mDishdashaStylesRecord);
 
-        testCase();
+
 
         setCustomDesignData();
 
@@ -352,7 +352,7 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-        ic_f_height.getLayoutParams().height = 190;
+       // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
@@ -1111,9 +1111,7 @@ public class MeasermentActivity extends BaseActivity {
 
 
 
-        int numButton = Integer.parseInt(mSessionManager.getKeyButtons());
 
-        noOfButtonSpinner.setSelection(numButton);
 
         noOfButtonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1121,6 +1119,7 @@ public class MeasermentActivity extends BaseActivity {
 
                 System.out.println("noOfButtonSpinner==" + noOfButtonSpinner.getItemAtPosition(position).toString());
 
+                mSessionManager.setKeyButtons(noOfButtonSpinner.getItemAtPosition(position).toString());
 
                 switch (noOfButtonSpinner.getItemAtPosition(position).toString()) {
                     case "1":
@@ -1259,12 +1258,7 @@ public class MeasermentActivity extends BaseActivity {
     }
 
     public void setCustomDesignData() {
-           /* System.out.println("OUTPUT  BUTTONS=="+mSessionManager.getKeyButtons());
-            System.out.println("OUTPUT  CUFFLINK=="+mSessionManager.getKeyCufflink());
-            System.out.println("OUTPUT COLLOR BUTTON=="+mSessionManager.getKeyCollarButton());
-            System.out.println("OUTPUT  PEN POCKET==="+mSessionManager.getKeyPenPocket());
-            System.out.println("OUTPUT  MOBILE POCKET=="+mSessionManager.getKeyMobilePocket());*/
-        //System.out.println("OUTPUT");
+
 
         decimalString = "00";
         int pos = 0;
@@ -1285,14 +1279,15 @@ public class MeasermentActivity extends BaseActivity {
 
 
 
+        Log.e("CollarButtonCount",mSessionManager.getKeyButtons());
         if (mSessionManager.getKeyButtons().equals("1")) {
-            noOfButtonSpinner.setSelection(1);
+            noOfButtonSpinner.setSelection(0);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
 
         }
 
         if (mSessionManager.getKeyButtons().equals("2")) {
-            noOfButtonSpinner.setSelection(2);
+            noOfButtonSpinner.setSelection(1);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
         }
 

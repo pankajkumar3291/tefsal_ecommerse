@@ -253,6 +253,24 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 holder.txt_badge_coat1.setText(record.get(position).getCollar_buttons());
                 holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
 
+
+                if (record.get(position).getCollar_button_visibility().equals("yes")) {
+                    holder.txtBadge_collar_btn1.setVisibility(View.VISIBLE);
+
+                } else {
+                    holder.txtBadge_collar_btn1.setVisibility(View.GONE);
+                }
+
+
+
+                if (record.get(position).getShirt_button_visibility().equals("yes")) {
+                    holder.txt_badge_coat1.setVisibility(View.VISIBLE);
+
+                } else {
+                    holder.txt_badge_coat1.setVisibility(View.GONE);
+                }
+
+
                 if (record.get(position).getCufflink().equals("yes")) {
                     holder.ic_cuflink1.setVisibility(View.VISIBLE);
 
@@ -323,12 +341,11 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 });
 
 
-
                 holder.btnDone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        DishdashaStylesRecord dishdashaStylesRecord =  record.get(position);
+                        DishdashaStylesRecord dishdashaStylesRecord = record.get(position);
 
                         dishdashaStylesRecord.setName(holder.text_style_name1.getText().toString());
                         dishdashaStylesRecord.setNeck(holder.txt_neck_value1.getText().toString());
@@ -372,6 +389,26 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
                 holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
                 holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
+
+
+
+
+                if (record.get(position).getCollar_button_visibility().equals("yes")) {
+                    holder.txtBadge_collar_btn.setVisibility(View.VISIBLE);
+
+                } else {
+                    holder.txtBadge_collar_btn.setVisibility(View.GONE);
+                }
+
+
+                if (record.get(position).getShirt_button_visibility().equals("yes")) {
+                    holder.txt_badge_coat.setVisibility(View.VISIBLE);
+
+                } else {
+                    holder.txt_badge_coat.setVisibility(View.GONE);
+                }
+
+
 
                 if (record.get(position).getCufflink().equals("yes")) {
                     holder.ic_cuflink.setVisibility(View.VISIBLE);
@@ -632,7 +669,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
         bundle.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        bundle.putString("flow","TabbarActivity");
+        bundle.putString("flow", "TabbarActivity");
         mTefalApp = TefalApp.getInstance();
         mTefalApp.setmAction(action);
         mTefalApp.setmCategory(mCategory);

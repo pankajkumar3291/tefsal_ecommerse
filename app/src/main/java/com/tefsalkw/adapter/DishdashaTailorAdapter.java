@@ -40,6 +40,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.view.View.GONE;
+
 /**
  * Created by new on 9/26/2017.
  */
@@ -101,6 +103,18 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
         try
         {
+
+            if(!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y"))
+            {
+                holder.main_layout.setVisibility(GONE);
+            }
+
+            else
+            {
+                holder.main_layout.setVisibility(View.VISIBLE);
+            }
+
+
             String discount_amount;
 
             if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()) {

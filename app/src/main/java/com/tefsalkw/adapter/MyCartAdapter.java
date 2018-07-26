@@ -169,7 +169,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
 
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -197,7 +197,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity());
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -223,7 +223,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //  holder.sub_text_textile.setVisibility(GONE);
                 holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity());
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -261,7 +261,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 if (storeModels.get(position2).getDiscount() > 0) {
 
-                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getItem_quantity() * storeModels.get(position2).getPrice() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
 
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD<i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
@@ -269,8 +269,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
 
                 } else {
-
-
 
                     holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " KWD");
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
@@ -464,7 +462,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e("Tefsal store == ", url + new JSONObject(params));
 
                     return params;
 

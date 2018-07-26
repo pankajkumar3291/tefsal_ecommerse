@@ -97,6 +97,19 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
 
         try {
+
+
+            if(!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y"))
+            {
+                holder.main_layout.setVisibility(GONE);
+            }
+
+            else
+            {
+                holder.main_layout.setVisibility(View.VISIBLE);
+            }
+
+
             String dis_amount = "";
 
 

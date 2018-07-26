@@ -233,6 +233,8 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
                     params.put("pen_pocket", dishdashaStylesRecord.getPen_pocket());
                     params.put("key_pocket", dishdashaStylesRecord.getKey_pocket());
                     params.put("buttons", dishdashaStylesRecord.getButtons());
+
+
                     params.put("name", dishdashaStylesRecord.getName());
 
                     params.put("id", dishdashaStylesRecord.getId());
@@ -263,56 +265,5 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
 
 
 
-    /*lass RecyclerViewTouchListener implements  RecyclerView.OnItemTouchListener
-    {
 
-        private GestureDetector gastureDetector;
-        private MyClickListener clickListener;
-        public RecyclerViewTouchListener(Context context, final RecyclerView recyclerView, final MyClickListener clickListener)
-        {
-
-            this.clickListener=clickListener;
-            gastureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
-                @Override
-                public boolean onSingleTapUp(MotionEvent e)
-                {
-                    clickListener.onClick(recyclerView.findChildViewUnder(e.getX(),e.getY()),recyclerView.getChildLayoutPosition(recyclerView.findChildViewUnder(e.getX(),e.getY())));
-                    return true;
-                }
-
-                @Override
-                public void onLongPress(MotionEvent e)
-                {
-                    clickListener.onLongClick(recyclerView.findChildViewUnder(e.getX(),e.getY()),recyclerView.getChildLayoutPosition(recyclerView.findChildViewUnder(e.getX(),e.getY())));
-                }
-            });
-        }
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            View child=rv.findChildViewUnder(e.getX(),e.getY());
-            if(child!=null && clickListener!=null )
-            {
-                gastureDetector.onTouchEvent(e);
-                // clickListener.onClick(child,rv.getChildLayoutPosition(child));
-            }
-            return false;
-
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-        }
-    }
-
-    public  static interface MyClickListener
-    {
-        public void onClick(View view,int position);
-        public void onLongClick(View view,int position);
-    }*/
 }

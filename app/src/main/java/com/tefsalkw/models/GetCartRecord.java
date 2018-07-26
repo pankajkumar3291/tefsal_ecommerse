@@ -17,7 +17,7 @@ public class GetCartRecord implements Serializable {
 
     private String product_id;
 
-    private int item_quantity;
+    private String item_quantity;
 
     private String store_image;
 
@@ -160,12 +160,12 @@ public class GetCartRecord implements Serializable {
         this.product_id = product_id;
     }
 
-    public int getItem_quantity ()
+    public String getItem_quantity ()
     {
         return item_quantity;
     }
 
-    public void setItem_quantity (int item_quantity)
+    public void setItem_quantity (String item_quantity)
     {
         this.item_quantity = item_quantity;
     }
