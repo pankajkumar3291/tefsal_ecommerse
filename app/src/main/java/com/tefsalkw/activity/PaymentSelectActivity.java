@@ -23,11 +23,11 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.tefsalkw.models.GetCartResponse;
-import com.tefsalkw.models.PromoCodesResponseModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
+import com.tefsalkw.models.GetCartResponse;
+import com.tefsalkw.models.PromoCodesResponseModel;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
@@ -117,7 +117,17 @@ public class PaymentSelectActivity extends BaseActivity {
 
     public String defaultAddressId = "";
     public String promoId = "";
-    public  HashMap<String, Object> guest = null;
+    public HashMap<String, Object> guest = null;
+
+    GetCartResponse cartResponse = null;
+
+    @BindView(R.id.txtDeliveryCharge)
+    TextView txtDeliveryCharge;
+
+    @BindView(R.id.txtSubTotal)
+    TextView txtSubTotal;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,12 +139,42 @@ public class PaymentSelectActivity extends BaseActivity {
         //Init Additional
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
-        previousAmount = getIntent().getStringExtra("price");
+
 
         defaultAddressId = getIntent().getStringExtra("defaultAddressId");
-        guest =  (HashMap<String, Object>) getIntent().getSerializableExtra("guest");
+        guest = (HashMap<String, Object>) getIntent().getSerializableExtra("guest");
         header_txt.setText(getIntent().getStringExtra("header"));
-        amount.setText("TOTAL : " + previousAmount + " KWD");
+
+        cartResponse = (GetCartResponse) getIntent().getSerializableExtra("CartResponse");
+
+        if (cartResponse != null) {
+
+            previousAmount = cartResponse.getTotal_amount_cart();
+
+            String deliveryCharge = cartResponse.getDelivery_charge();
+
+            Double deliveryAmount = 0.000;
+
+            double grandTotal = Double.parseDouble(previousAmount);
+
+            if (deliveryCharge != null && !deliveryCharge.equalsIgnoreCase("free")) {
+
+                deliveryAmount = Double.parseDouble(deliveryCharge);
+
+                deliveryCharge = String.format("%.3f", deliveryAmount) + " KWD";
+
+                grandTotal = grandTotal + deliveryAmount;
+
+            }
+
+
+            txtDeliveryCharge.setText(deliveryCharge);
+
+            txtSubTotal.setText(previousAmount + " KWD");
+
+
+            amount.setText("TOTAL : " + String.format("%.3f", grandTotal) + " KWD");
+        }
 
 
         bindEvents();
@@ -368,8 +408,8 @@ public class PaymentSelectActivity extends BaseActivity {
         final String url = Contents.baseURL + "checkout";
 
 
-       // Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-       // mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        // Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
+        // mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         SimpleProgressBar.showProgress(this);
 

@@ -7,42 +7,43 @@ package com.tefsalkw.models;
 public class BadgeRecordModel
 {
 
-    public int getTotal_badge() {
+
+    public String getTotal_badge() {
         return total_badge;
     }
 
-    public void setTotal_badge(int total_badge) {
+    public void setTotal_badge(String total_badge) {
         this.total_badge = total_badge;
     }
 
-    public int getMails_badge() {
+    public String getMails_badge() {
         return mails_badge;
     }
 
-    public void setMails_badge(int mails_badge) {
+    public void setMails_badge(String mails_badge) {
         this.mails_badge = mails_badge;
     }
 
-    public int getOrders_badge() {
+    public String getOrders_badge() {
         return orders_badge;
     }
 
-    public void setOrders_badge(int orders_badge) {
+    public void setOrders_badge(String orders_badge) {
         this.orders_badge = orders_badge;
     }
 
-    public int getCart_badge() {
+    public String getCart_badge() {
         return cart_badge;
     }
 
-    public void setCart_badge(int cart_badge) {
+    public void setCart_badge(String cart_badge) {
         this.cart_badge = cart_badge;
     }
 
-    private int total_badge = 0;
-    private int mails_badge = 0;
-    private int orders_badge = 0;
-    private int cart_badge= 0;
+    private String total_badge = "0";
+    private String mails_badge = "0";
+    private String orders_badge = "0";
+    private String cart_badge= "0";
 
 
 

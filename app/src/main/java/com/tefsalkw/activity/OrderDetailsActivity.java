@@ -73,6 +73,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     OrderRecord orderRecord = null;
 
+    @BindView(R.id.txtDeliveryCharge)
+    TextView txtDeliveryCharge;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +152,19 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                                     txtTxnDate.setText(DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
 
+                                    String deliveryCharge = mResponse.getDelivery_charge();
+
+
+                                    if (deliveryCharge != null && !deliveryCharge.equalsIgnoreCase("free")) {
+
+
+                                        deliveryCharge = String.format("%.3f", Double.parseDouble(deliveryCharge)) + " KWD";
+
+
+                                    }
+
+
+                                    txtDeliveryCharge.setText(deliveryCharge);
                                     Customer_address customer_address = mResponse.getCustomer_address();
 
                                     String name = customer_address.getAddress_name();
@@ -163,8 +180,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     block = block != null ? block : "-";
                                     area = area != null ? area : "-";
                                     city = city != null ? city : "-";
-
-
 
 
                                     String fullAddress = name.toUpperCase() + "\n"

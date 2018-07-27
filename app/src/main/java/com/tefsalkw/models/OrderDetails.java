@@ -45,6 +45,16 @@ public class OrderDetails implements Serializable{
 
     private String promo_amount;
 
+    public String getDelivery_charge() {
+        return delivery_charge;
+    }
+
+    public void setDelivery_charge(String delivery_charge) {
+        this.delivery_charge = delivery_charge;
+    }
+
+    private String delivery_charge;
+
     public String getPromo_id ()
     {
         return promo_id;

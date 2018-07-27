@@ -178,7 +178,7 @@ public class AccessoriesActivity extends BaseActivity {
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");
 
-                    Log.e("Tefsal tailor == ", url + params);
+                    Log.e("Tefsal tailor == ", url + new JSONObject(params));
 
                     return params;
                 }

@@ -65,7 +65,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     MyCartAdapter adapter;
     SessionManager session;
 
-    GetCartResponse mResponse;
+    GetCartResponse cartResponse;
     boolean isDelete = true;
 
     private static Tracker mTracker;
@@ -217,28 +217,28 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
                                 Log.e(CartActivity.class.getSimpleName(), response);
                                 Gson g = new Gson();
-                                mResponse = g.fromJson(response, GetCartResponse.class);
-                                if (!mResponse.getStatus().equals("0")) {
-                                    if (mResponse.getRecord().size() <= 1)
-                                        header_txt.setText(mResponse.getRecord().size() + " item in your cart");
+                                cartResponse = g.fromJson(response, GetCartResponse.class);
+                                if (!cartResponse.getStatus().equals("0")) {
+                                    if (cartResponse.getRecord().size() <= 1)
+                                        header_txt.setText(cartResponse.getRecord().size() + " item in your cart");
                                     else
-                                        header_txt.setText(mResponse.getRecord().size() + " items in your cart");
+                                        header_txt.setText(cartResponse.getRecord().size() + " items in your cart");
 
 
-                                    amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + " KWD");
+                                    amount.setText("TOTAL : " + cartResponse.getTotal_amount_cart() + " KWD");
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
                                     recycler_view.setLayoutManager(layoutManager);
                                     recycler_view.setItemAnimator(new DefaultItemAnimator());
                                     // upadteGetRecord();
-                                    adapter = new MyCartAdapter(CartActivity.this, mResponse.getRecord());
+                                    adapter = new MyCartAdapter(CartActivity.this, cartResponse.getRecord());
                                     adapter.setOnCartItemDeletedListener(onCartItemDeletedListener);
                                     recycler_view.setAdapter(adapter);
-                                    currentItemsCount = mResponse.getRecord().size();
+                                    currentItemsCount = cartResponse.getRecord().size();
 
                                 } else {
-                                    Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), cartResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
 

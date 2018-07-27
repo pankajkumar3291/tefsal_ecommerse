@@ -381,16 +381,22 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorGreyDark" />
 
-            <LinearLayout
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <TextView
+                    android:id="@+id/lblDeliveryCharge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -401,18 +407,53 @@
                     android:textSize="@dimen/text_large" />
 
                 <TextView
+
+                    android:id="@+id/txtDeliveryCharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="0.000 KWD"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_large" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="1.000 KWD"
+                    android:text="Sub Total: "
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/text_large" />
+
+                <TextView
+                    android:id="@+id/txtSubTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="0.000 KWD"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_large" />
 
 
-            </LinearLayout>
-
+            </RelativeLayout>
 
         </LinearLayout>
 

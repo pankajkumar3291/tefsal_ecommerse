@@ -1,12 +1,13 @@
 package com.tefsalkw.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Hp on 01-11-2017.
  */
 
-public class GetCartResponse {
+public class GetCartResponse implements Serializable {
     private String message;
 
     private List<GetCartRecord> record;
@@ -53,6 +54,15 @@ public class GetCartResponse {
 
     private  String total_amount_cart;
 
+    public String getDelivery_charge() {
+        return delivery_charge;
+    }
+
+    public void setDelivery_charge(String delivery_charge) {
+        this.delivery_charge = delivery_charge;
+    }
+
+    private  String delivery_charge;
     @Override
     public String toString()
     {

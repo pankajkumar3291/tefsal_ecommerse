@@ -80,7 +80,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
     String totalPrice = null;
 
-    GetCartResponse mResponse;
+    GetCartResponse cartResponse;
     boolean isDelete = true;
 
     private static Tracker mTracker;
@@ -409,6 +409,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 }
 
                 intent.putExtra("price", totalPrice);
+                intent.putExtra("CartResponse",cartResponse);
                 intent.putExtra("header", header_txt.getText().toString());
                 startActivity(intent);
 
@@ -485,19 +486,19 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                                 Log.e(CartActivity.class.getSimpleName(), response);
                                 Gson g = new Gson();
-                                mResponse = g.fromJson(response, GetCartResponse.class);
-                                if (!mResponse.getStatus().equals("0")) {
-                                    if (mResponse.getRecord().size() <= 1)
-                                        header_txt.setText(mResponse.getRecord().size() + " item in your cart");
+                                cartResponse = g.fromJson(response, GetCartResponse.class);
+                                if (!cartResponse.getStatus().equals("0")) {
+                                    if (cartResponse.getRecord().size() <= 1)
+                                        header_txt.setText(cartResponse.getRecord().size() + " item in your cart");
                                     else
-                                        header_txt.setText(mResponse.getRecord().size() + " items in your cart");
+                                        header_txt.setText(cartResponse.getRecord().size() + " items in your cart");
 
 
-                                    amount.setText("TOTAL : " + mResponse.getTotal_amount_cart() + " KWD");
-                                    currentItemsCount = mResponse.getRecord().size();
-                                    totalPrice =  mResponse.getTotal_amount_cart();
+                                    amount.setText("TOTAL : " + cartResponse.getTotal_amount_cart() + " KWD");
+                                    currentItemsCount = cartResponse.getRecord().size();
+                                    totalPrice =  cartResponse.getTotal_amount_cart();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), cartResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
 
