@@ -90,6 +90,9 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         @BindView(R.id.LL_di)
         LinearLayout LL_di;
 
+        @BindView(R.id.storeCloseLayout)
+        RelativeLayout storeCloseLayout;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -101,17 +104,22 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        try
-        {
+        try {
 
-            if(!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y"))
-            {
+            if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y")) {
                 holder.main_layout.setVisibility(GONE);
+            } else {
+                holder.main_layout.setVisibility(View.VISIBLE);
             }
 
-            else
-            {
-                holder.main_layout.setVisibility(View.VISIBLE);
+
+            if (storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
+
+                holder.storeCloseLayout.setVisibility(View.VISIBLE);
+
+
+            } else {
+                holder.storeCloseLayout.setVisibility(View.GONE);
             }
 
 
@@ -147,8 +155,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                 @Override
                 public void onClick(View view) {
 
-                    if(session.getIsGuestId())
-                    {
+                    if (session.getIsGuestId()) {
 
                         Toast.makeText(activity, "Sign up to continue...", Toast.LENGTH_SHORT).show();
                         return;
@@ -156,10 +163,9 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
                     if (flag.equals("dish")) {
 
-                        String styleName =  TefalApp.getInstance().getStyleName();
+                        String styleName = TefalApp.getInstance().getStyleName();
 
-                        if(styleName == null)
-                        {
+                        if (styleName == null) {
                             TefalApp.getInstance().setStyleName("TefsalDefault");
                             styleName = "TefsalDefault";
                         }
@@ -209,10 +215,21 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                                 .putExtra("Flag", flag));
                 }
             });
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
 
+        }
+
+
+        if (!storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
+
+            holder.storeCloseLayout.setVisibility(View.VISIBLE);
+            holder.main_layout.setClickable(false);
+            holder.storeCloseLayout.setClickable(false);
+
+        } else {
+            holder.storeCloseLayout.setVisibility(View.GONE);
+            holder.main_layout.setClickable(true);
+            holder.storeCloseLayout.setClickable(true);
         }
 
     }

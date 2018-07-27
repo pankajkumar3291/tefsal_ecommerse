@@ -41,6 +41,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
     String flag;
     SessionManager session;
 
+
     public DishdashaTextileAdapter(Activity activity, List<TextileStoresModel> storeModels, String flag) {
         this.activity = activity;
         this.storeModels = storeModels;
@@ -85,6 +86,10 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         LinearLayout LL_diRTL;
 
 
+        @BindView(R.id.storeCloseLayout)
+        RelativeLayout storeCloseLayout;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -99,13 +104,9 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         try {
 
 
-            if(!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y"))
-            {
+            if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y")) {
                 holder.main_layout.setVisibility(GONE);
-            }
-
-            else
-            {
+            } else {
                 holder.main_layout.setVisibility(View.VISIBLE);
             }
 
@@ -189,6 +190,19 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
             });
         } catch (Exception exc) {
             exc.printStackTrace();
+        }
+
+
+        if (!storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
+
+            holder.storeCloseLayout.setVisibility(View.VISIBLE);
+            holder.main_layout.setClickable(false);
+            holder.storeCloseLayout.setClickable(false);
+
+        } else {
+            holder.storeCloseLayout.setVisibility(View.GONE);
+            holder.main_layout.setClickable(true);
+            holder.storeCloseLayout.setClickable(true);
         }
 
     }

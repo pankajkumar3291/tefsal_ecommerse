@@ -2,7 +2,6 @@ package com.tefsalkw.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.TextileStoresResponseModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.DishdashaTextileAdapter;
+import com.tefsalkw.models.TextileStoresResponseModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -75,7 +74,7 @@ public class FragmentTextileStore extends BaseFragment {
     }
 
     public void WebCallServiceStores() {
-         SimpleProgressBar.showProgress(getActivity());
+        SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getStores";
 
@@ -85,11 +84,9 @@ public class FragmentTextileStore extends BaseFragment {
                         public void onResponse(String response) {
 
 
-
                             if (response != null) {
 
-                                try
-                                {
+                                try {
                                     Log.e(FragmentTextileStore.class.getSimpleName(), response);
                                     Gson g = new Gson();
                                     TextileStoresResponseModel mResponse = g.fromJson(response, TextileStoresResponseModel.class);
@@ -103,17 +100,12 @@ public class FragmentTextileStore extends BaseFragment {
                                     dishdashaAdapter = new DishdashaTextileAdapter(getActivity(), mResponse.getRecord(), flag);
                                     recycler.setAdapter(dishdashaAdapter);
                                     SimpleProgressBar.closeProgress();
-                                }
-                                catch (Exception exc)
-                                {
+                                } catch (Exception exc) {
                                     SimpleProgressBar.closeProgress();
                                 }
 
 
-
-
                             }
-
 
 
                         }
