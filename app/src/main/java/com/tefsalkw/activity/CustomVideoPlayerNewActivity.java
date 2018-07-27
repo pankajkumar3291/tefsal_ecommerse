@@ -32,7 +32,7 @@ import com.tefsalkw.R;
 
 import static com.tefsalkw.utils.Contents.baseVideoURL;
 
-public class CustomVideoPlayerNewActivity extends AppCompatActivity implements Player.EventListener    {
+public class CustomVideoPlayerNewActivity extends AppCompatActivity implements Player.EventListener {
 
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
@@ -59,9 +59,9 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     int currentVideoIs = 0;
 
     boolean isFirstTime = false;
+
     DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     MediaSource mediaSource = null;
-
 
 
     @Override
@@ -74,19 +74,32 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
         window = new Timeline.Window();
 
 
-
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+
+        if (currentVideoIs == 0) {
+            mediaSource = new ExtractorMediaSource(Uri.parse(literals[1]),
+                    mediaDataSourceFactory, extractorsFactory, null, null);
+
+            player.prepare(mediaSource);
+            currentVideoIs = 1;
+
+
+        } else {
+
+            super.onBackPressed();
+        }
+    }
 
     private void initializePlayer() {
 
         simpleExoPlayerView = (SimpleExoPlayerView) findViewById(R.id.player_view);
-
         simpleExoPlayerView.requestFocus();
-
         TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
-
-
         trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
         player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
@@ -100,7 +113,9 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
         Integer positionIs = intent.getIntExtra("position", 0);
 
         if (positionIs == 0) {
+
             isFirstTime = true;
+
 
         }
 
@@ -113,12 +128,10 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
 
         }
 
+        mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl), mediaDataSourceFactory, extractorsFactory, null, null);
 
 
-         mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl),
-                mediaDataSourceFactory, extractorsFactory, null, null);
-
-         player.prepare(mediaSource);
+        player.prepare(mediaSource);
 
 
     }
@@ -177,7 +190,7 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
 
-        if (playbackState == ExoPlayer.STATE_ENDED){
+        if (playbackState == ExoPlayer.STATE_ENDED) {
             currentVideoIs++;
 
 

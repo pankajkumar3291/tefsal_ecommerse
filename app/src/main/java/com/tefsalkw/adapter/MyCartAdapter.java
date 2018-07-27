@@ -27,7 +27,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.CartActivity;
@@ -119,7 +118,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         ImageView cart_item_delete;
 
 
-
         @BindView(R.id.llTailorContainer)
         LinearLayout llTailorContainer;
 
@@ -150,8 +148,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
         System.out.println("ITEM TYPE==" + storeModels.get(position2).getItem_type());
 
-        try
-        {
+        try {
 
 
             if (storeModels.get(position2).getItem_type().equals("DTE")) {
@@ -169,7 +166,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
 
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -197,7 +194,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity());
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -223,7 +220,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //  holder.sub_text_textile.setVisibility(GONE);
                 holder.text_size.setText("QTY: " + storeModels.get(position2).getItem_quantity());
                 if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" +  storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
+                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " KWD</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -248,12 +245,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
 
 
-                if(storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE"))
-                {
+                if (storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE")) {
                     holder.text_price.setVisibility(View.GONE);
                     holder.txtShopName.setVisibility(View.GONE);
-                }
-                else {
+                } else {
                     holder.text_price.setVisibility(View.VISIBLE);
                     holder.txtShopName.setVisibility(View.VISIBLE);
                     holder.txtShopName.setText(storeModels.get(position2).getStore_name());
@@ -286,7 +281,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     holder.llTailorContainerSep.setVisibility(View.VISIBLE);
 
 
-
                     List<Tailor_services> tailor_services = storeModels.get(position2).getTailor_services();
 
 
@@ -317,7 +311,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //holder.cart_item_delete1.setVisibility(View.VISIBLE);
             } else {
                 holder.cart_item_delete.setVisibility(GONE);
-               // holder.cart_item_delete1.setVisibility(View.GONE);
+                // holder.cart_item_delete1.setVisibility(View.GONE);
 
             }
 
@@ -339,9 +333,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
 
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
             exc.printStackTrace();
         }
 
@@ -446,8 +438,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
+
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
+
                     params.put("cart_id", session.getKeyCartId());
                     params.put("access_token", session.getToken());
 
@@ -457,6 +450,13 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     } else {
                         params.put("user_id", session.getCustomerId());
                     }
+
+                    if (storeModels.get(pos).getItem_type().equalsIgnoreCase("DTA")) {
+                        params.put("tailor_service_id", storeModels.get(pos).getCart_item_id());
+                    } else {
+                        params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
+                    }
+
 
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
