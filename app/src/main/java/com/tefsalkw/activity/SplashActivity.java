@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.crashlytics.android.Crashlytics;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.Contents;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 
 import org.json.JSONException;
@@ -87,6 +88,8 @@ public class SplashActivity extends BaseActivity {
                     Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(mainIntent);
                     finish();
+
+
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -14,13 +16,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesActivity;
 import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.DishdishaStyleActivity;
 import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by prateek on 13/07/17.
@@ -47,16 +56,27 @@ public class HomeFragment extends BaseFragment {
 
     SessionManager sessionManager;
 
+    @BindView(R.id.relSlide)
+    public RelativeLayout relSlide;
+
+    @BindView(R.id.imgIntro)
+    ImageView imgIntro;
+
+    public static HomeFragment homeFragment;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
 
-
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        homeFragment = this;
+
+        ButterKnife.bind(this, v);
         sessionManager = new SessionManager(getActivity());
         mainViewPager = (ViewPager) v.findViewById(R.id.mainViewPager);
         pager_indicator = (LinearLayout) v.findViewById(R.id.viewPagerCountDots);
@@ -112,8 +132,37 @@ public class HomeFragment extends BaseFragment {
         });
         setUiPageViewController();
 
+
+        boolean isFirstTimeLaunch = PreferencesUtil.getBool(getActivity().getApplicationContext(), "isFirstTimeLaunch1", true);
+        if (!isFirstTimeLaunch) {
+
+            relSlide.setVisibility(View.GONE);
+
+        } else {
+
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH);
+
+            GlideApp.with(getActivity()).load("http://tefsalkw.com/img/intro/tut1.gif").apply(options).into(imgIntro);
+
+
+        }
+
+
+        relSlide.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                //Log.e("setOnTouchListener", v.getId() + "");
+
+                return true;
+            }
+        });
+
+
         return v;
     }
+
 
     public void toggleArrowVisibility(boolean isAtZeroIndex, boolean isAtLastIndex) {
 
@@ -129,6 +178,7 @@ public class HomeFragment extends BaseFragment {
 
 
     }
+
 
     private void setUiPageViewController() {
 
@@ -178,7 +228,7 @@ public class HomeFragment extends BaseFragment {
         public Object instantiateItem(ViewGroup container, final int position) {
             final View itemView = layoutInflater.inflate(R.layout.pager_item, container, false);
 
-            final ImageView imageView = (ImageView) itemView.findViewById(R.id.m_image);
+            ImageView  imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
 
             imageView.setImageResource(img[position]);
@@ -193,11 +243,9 @@ public class HomeFragment extends BaseFragment {
 
                     if (position == 0) {
                         TefalApp.getInstance().setToolbar_title("TEXTILE STORES");
-                        if(sessionManager.getIsGuestId()){
+                        if (sessionManager.getIsGuestId()) {
                             startActivity(new Intent(getActivity(), DaraAbayaActivity.class).putExtra("flag", "dish"));
-                        }
-                        else
-                        {
+                        } else {
                             startActivity(new Intent(getActivity(), DishdishaStyleActivity.class));
                             productFlag = "1";
                         }
@@ -216,6 +264,9 @@ public class HomeFragment extends BaseFragment {
                     }
                 }
             });
+
+
+
 
             return itemView;
         }

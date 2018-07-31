@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "364282676131",
-    "firebase_url": "https://tefsal-5261e.firebaseio.com",
-    "project_id": "tefsal-5261e",
-    "storage_bucket": "tefsal-5261e.appspot.com"
+    "project_number": "1081963882592",
+    "firebase_url": "https://tefsalapp.firebaseio.com",
+    "project_id": "tefsalapp",
+    "storage_bucket": "tefsalapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:364282676131:android:e5cf4798e6373607",
+        "mobilesdk_app_id": "1:1081963882592:android:e5cf4798e6373607",
         "android_client_info": {
           "package_name": "com.tefsalkw"
         }
       },
       "oauth_client": [
         {
-          "client_id": "364282676131-idsj9d3dtndc449bamorheqfv3qkm0e7.apps.googleusercontent.com",
+          "client_id": "1081963882592-pv2ac1cpdtdvp4kkbegn1tbrsknud3p2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDaLfHU9zVbQ7N3MBcG2hj3EkLqxaFK7aI"
+          "current_key": "AIzaSyA2bI52QIuiuIJMqJDy9bLTdfsBdRBkWiw"
         }
       ],
       "services": {

@@ -20,15 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,icon,theme,label,supportsRtl">
-        <meta-data android:name="android.max_aspect" android:value="2.1" />
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a1bd58cac502c97c8c1f0fea8153f1354a1a2da7" />
 
         <activity
+            android:theme="@style/AppTheme.NoActionBar"
             android:name=".activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,8 +38,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.MainIntroActivity"
             android:resizeableActivity="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.MainActivity"
+            android:resizeableActivity="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -256,6 +263,7 @@
             android:name=".activity.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

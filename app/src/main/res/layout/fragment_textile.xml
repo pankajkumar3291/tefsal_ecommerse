@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <View
+        android:id="@+id/viewSepTop"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGray" />
@@ -13,6 +14,7 @@
         android:id="@+id/_colorBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/viewSepTop"
         android:background="@color/colorDiamond"
         android:orientation="horizontal"
         android:weightSum="3">
@@ -186,15 +188,18 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/viewSepBottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/tab_layout"
-        android:background="@color/colorGray" />
+        android:layout_below="@id/_colorBar"
+        android:background="@color/colorGray"
+        android:labelFor="@+id/_colorBar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/viewSepBottom">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -209,10 +214,33 @@
         android:id="@+id/textNoProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginTop="250dp"
         android:gravity="center"
         android:text="@string/fragment_textile_textNoProduct_text"
         android:textSize="@dimen/text_normal"
         android:visibility="gone" />
 
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relSlide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/btnClose"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:onClick="navigateIntro"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tut3" />
+
+    </RelativeLayout>
+</RelativeLayout>

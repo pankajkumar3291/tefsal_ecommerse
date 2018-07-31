@@ -553,4 +553,25 @@
             android:text="@string/activity_measerment_btn_finish_text"
             android:textColor="@color/colorWhite" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relSlide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="999dp">
+
+        <LinearLayout
+            android:id="@+id/btnClose"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:onClick="navigateIntro"
+            android:orientation="horizontal"></LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/tut2" />
+
+    </RelativeLayout>
 </RelativeLayout>

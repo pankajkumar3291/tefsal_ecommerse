@@ -39,10 +39,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
+import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Contents;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -286,6 +290,11 @@ public class MeasermentActivity extends BaseActivity {
     @BindView(R.id.viewEditCustom)
     View viewEditCustom;
 
+    @BindView(R.id.btnClose)
+    LinearLayout btnClose;
+
+    @BindView(R.id.relSlide)
+    RelativeLayout relSlide;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -513,6 +522,22 @@ public class MeasermentActivity extends BaseActivity {
 
             }
         });
+
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch2", false);
+                relSlide.setVisibility(View.GONE);
+            }
+        });
+
+        boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch2", true);
+        if (!isFirstTimeLaunch) {
+
+            relSlide.setVisibility(View.GONE);
+
+        }
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

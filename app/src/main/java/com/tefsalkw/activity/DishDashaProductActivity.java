@@ -3,7 +3,6 @@ package com.tefsalkw.activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,7 +29,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
-import com.tefsalkw.fragment.FragmentTailorStore;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
 import com.tefsalkw.models.BadgeRecordModel;
@@ -53,7 +51,7 @@ public class DishDashaProductActivity extends BaseActivity {
 
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    public Toolbar toolbar;
 
     @BindView(R.id.toolbar_title)
     TextView toolbar_title;
@@ -361,9 +359,6 @@ public class DishDashaProductActivity extends BaseActivity {
 
             // Toast.makeText(this, "HEllo Tailor", Toast.LENGTH_SHORT).show();
         }
-
-
-
 
 
     }

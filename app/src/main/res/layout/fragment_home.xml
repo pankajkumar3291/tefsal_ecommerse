@@ -50,4 +50,34 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/relSlide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".8"
+        android:background="@color/colorBlack"
+        android:translationZ="900dp">
+
+
+
+        <ImageView
+            android:id="@+id/imgIntro"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:tint="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgIntro"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Swipe to view categories\nTap to enter"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

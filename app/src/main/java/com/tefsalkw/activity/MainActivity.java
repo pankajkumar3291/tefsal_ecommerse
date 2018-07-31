@@ -31,6 +31,7 @@ import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
 import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.utils.Contents;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -61,8 +62,13 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
+    @BindView(R.id.btnClose)
+    TextView btnClose;
+
+
+
     @BindView(R.id.btn_menu)
-    ImageButton btn_menu;
+    public  ImageButton btn_menu;
 
     @BindView(R.id.btn_write_mail)
     ImageButton btn_write_mail;
@@ -98,6 +104,8 @@ public class MainActivity extends BaseActivity
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
+
+
 
 
         //fromMailArg=getIntent().getStringExtra("Mail");
@@ -224,6 +232,37 @@ public class MainActivity extends BaseActivity
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
+
+
+        boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch1", true);
+        if (!isFirstTimeLaunch) {
+
+            btn_menu.setVisibility(View.VISIBLE);
+            btnClose.setVisibility(View.GONE);
+
+
+        } else {
+
+            btn_menu.setVisibility(View.GONE);
+            btnClose.setVisibility(View.VISIBLE);
+
+        }
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch1", false);
+
+                btn_menu.setVisibility(View.VISIBLE);
+                btnClose.setVisibility(View.GONE);
+
+                HomeFragment.homeFragment.relSlide.setVisibility(View.GONE);
+
+
+            }
+        });
+
 
     }
 

@@ -451,11 +451,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                         params.put("user_id", session.getCustomerId());
                     }
 
-                    if (storeModels.get(pos).getItem_type().equalsIgnoreCase("DTA")) {
-                        params.put("tailor_service_id", storeModels.get(pos).getCart_item_id());
-                    } else {
-                        params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
-                    }
+                    String item_type = storeModels.get(pos).getItem_type();
+
+                    params.put("item_type", item_type);
+
+                    params.put("cart_item_id", storeModels.get(pos).getCart_item_id());
 
 
                     params.put("appUser", "tefsal");

@@ -7,7 +7,6 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.tefsalkw.utils.Config;
-import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
 
 /**

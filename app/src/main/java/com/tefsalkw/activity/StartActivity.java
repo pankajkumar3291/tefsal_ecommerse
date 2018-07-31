@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Random;
@@ -56,7 +57,8 @@ public class StartActivity extends BaseActivity {
                 session.setCustomerId(System.currentTimeMillis()+num + "");
                 session.setIsGuestUser(true);
 
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
+                Intent mainIntent = new Intent(StartActivity.this, MainActivity.class);
+                startActivity(mainIntent);
                 finish();
             }
         });

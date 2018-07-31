@@ -438,6 +438,7 @@ public class PaymentSelectActivity extends BaseActivity {
             params.put("cart_id", session.getKeyCartId());
             params.put("payment_method", "COD");
             params.put("promo_id", promoId);
+            params.put("delivery_charge", cartResponse.getDelivery_charge());
 
         } catch (Exception e) {
             e.printStackTrace();

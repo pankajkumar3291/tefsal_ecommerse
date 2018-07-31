@@ -28,6 +28,7 @@ import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.NotificationUtils;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -198,7 +199,8 @@ public class SigninActivity extends BaseActivity {
 
                                     WebCallServiceSetToken();
 
-                                    startActivity(new Intent(SigninActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                                    Intent mainIntent = new Intent(SigninActivity.this, MainActivity.class);
+                                    startActivity(mainIntent);
                                     finish();
 
 

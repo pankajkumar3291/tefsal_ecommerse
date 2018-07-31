@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
@@ -30,6 +31,8 @@ import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -218,7 +221,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                 Log.e(CartActivity.class.getSimpleName(), response);
                                 Gson g = new Gson();
                                 cartResponse = g.fromJson(response, GetCartResponse.class);
-                                if (!cartResponse.getStatus().equals("0")) {
+                                if (cartResponse != null && !cartResponse.getStatus().equals("0")) {
                                     if (cartResponse.getRecord().size() <= 1)
                                         header_txt.setText(cartResponse.getRecord().size() + " item in your cart");
                                     else
@@ -264,7 +267,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal store == ", url + params);
+                    Log.e("Tefsal store == ", url + new JSONObject(params));
 
                     return params;
                 }
@@ -306,7 +309,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     public void onCartItemDeleted(int currentCount) {
 
         currentItemsCount = currentCount;
-
+        edit_btn.setText("EDIT");
         if (currentItemsCount == 0) {
             edit_btn.setVisibility(View.GONE);
         } else {

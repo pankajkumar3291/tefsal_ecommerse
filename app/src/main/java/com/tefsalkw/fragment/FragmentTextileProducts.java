@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.tefsalkw.R;
+import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.adapter.DishdashaTextileProductAdapter;
 import com.tefsalkw.adapter.FilterColorListAdapter;
 import com.tefsalkw.adapter.FilterCountryListAdapter;
@@ -48,8 +50,8 @@ import com.tefsalkw.models.SeasonResponseModel;
 import com.tefsalkw.models.SeasonsList;
 import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.models.TextileProductResponse;
-import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.utils.Contents;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -167,6 +169,11 @@ public class FragmentTextileProducts extends BaseFragment {
     @BindView(R.id.imgRemoveCountry)
     TextView imgRemoveCountry;
 
+    @BindView(R.id.btnClose)
+    LinearLayout btnClose;
+
+    @BindView(R.id.relSlide)
+    RelativeLayout relSlide;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -255,7 +262,7 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                Log.e("colorsRecordModelArra",new Gson().toJson(colorsRecordModelArrayList));
+                Log.e("colorsRecordModelArra", new Gson().toJson(colorsRecordModelArrayList));
 
                 try {
                     if (colorsRecordModelArrayList == null) {
@@ -287,8 +294,6 @@ public class FragmentTextileProducts extends BaseFragment {
                             //TODO do sth here on dismiss
                         }
                     });
-
-
 
 
                     colorWindow.showAsDropDown(v);
@@ -390,6 +395,32 @@ public class FragmentTextileProducts extends BaseFragment {
 
             }
         });
+
+        DishDashaProductActivity dishDashaProductActivity = (DishDashaProductActivity) getActivity();
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PreferencesUtil.putBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", false);
+                dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
+                relSlide.setVisibility(View.GONE);
+            }
+        });
+
+
+        boolean isFirstTimeLaunch = PreferencesUtil.getBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", true);
+        if (!isFirstTimeLaunch) {
+
+            relSlide.setVisibility(View.GONE);
+
+
+            dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
+
+        } else {
+
+            relSlide.setVisibility(View.VISIBLE);
+            dishDashaProductActivity.toolbar.setVisibility(View.GONE);
+        }
 
 
         session = new SessionManager(getActivity());
@@ -630,10 +661,10 @@ public class FragmentTextileProducts extends BaseFragment {
                     System.out.println("Fragment Textile parameter HELLO COUNTRY==" + country);
 
 
-                    params.put("color", color+"");
-                    params.put("sub_color", sub_color+"");
-                    params.put("country", country+"");
-                    params.put("season", season+"");
+                    params.put("color", color + "");
+                    params.put("sub_color", sub_color + "");
+                    params.put("country", country + "");
+                    params.put("season", season + "");
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -901,7 +932,6 @@ public class FragmentTextileProducts extends BaseFragment {
             }
         }
     }
-
 
 
 }

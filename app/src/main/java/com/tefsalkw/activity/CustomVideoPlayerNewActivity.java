@@ -111,6 +111,7 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
 
         Intent intent = getIntent();
         Integer positionIs = intent.getIntExtra("position", 0);
+        currentVideoIs = positionIs;
 
         if (positionIs == 0) {
 
