@@ -143,7 +143,7 @@ public class HomeFragment extends BaseFragment {
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH);
 
-            GlideApp.with(getActivity()).load("http://tefsalkw.com/img/intro/tut1.gif").apply(options).into(imgIntro);
+            GlideApp.with(getActivity()).load("https://tefsalkw.com/img/intro/tut1.gif").apply(options).into(imgIntro);
 
 
         }
