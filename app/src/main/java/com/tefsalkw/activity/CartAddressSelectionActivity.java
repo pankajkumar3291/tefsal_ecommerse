@@ -169,6 +169,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
     @BindView(R.id.input_phone)
     EditText input_phone;
 
+
+    @BindView(R.id.input_email)
+    EditText input_email;
+
     @BindView(R.id.input_flate)
     EditText input_flate;
 
@@ -358,9 +362,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                     } else if (spin_country.getSelectedItemPosition() == 0) {
                         Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                         return;
-                    }
-
-                    else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                    } else if (Contents.isBlank(input_email.getText().toString().trim())) {
+                        input_email.setError("Email Required");
+                        return;
+                    } else if (Contents.isBlank(input_street.getText().toString().trim())) {
                         input_street.setError(getString(R.string.invalidStreet));
                         return;
                     }
@@ -370,9 +375,9 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                     try {
 
-                        guest.put("first_name", input_last_name.getText().toString());
+                        guest.put("first_name", input_first_name.getText().toString());
                         guest.put("last_name", input_last_name.getText().toString());
-
+                        guest.put("email", input_email.getText().toString());
                         Map<String, String> address = new HashMap<String, String>();
                         address.put("address_name", input_address_name.getText().toString());
                         address.put("country", spin_country.getSelectedItem().toString());
@@ -385,6 +390,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         address.put("house", input_house.getText().toString());
                         address.put("flat_number", input_flate.getText().toString());
                         address.put("phone_number", input_phone.getText().toString());
+
                         address.put("paci_number", input_paci_num.getText().toString());
                         address.put("addt_info", input_add_desp.getText().toString());
 
@@ -409,7 +415,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 }
 
                 intent.putExtra("price", totalPrice);
-                intent.putExtra("CartResponse",cartResponse);
+                intent.putExtra("CartResponse", cartResponse);
                 intent.putExtra("header", header_txt.getText().toString());
                 startActivity(intent);
 
@@ -496,7 +502,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                                     amount.setText("TOTAL : " + cartResponse.getTotal_amount_cart() + " KWD");
                                     currentItemsCount = cartResponse.getRecord().size();
-                                    totalPrice =  cartResponse.getTotal_amount_cart();
+                                    totalPrice = cartResponse.getTotal_amount_cart();
                                 } else {
                                     Toast.makeText(getApplicationContext(), cartResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
