@@ -1,25 +1,34 @@
 package com.tefsalkw.services;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.content.LocalBroadcastManager;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.MainActivity;
+import com.tefsalkw.activity.MyOrderActivity;
 import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.NotificationUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Random;
 
 /**
  * Created by jagbirsinghkang on 09/08/17.
@@ -30,36 +39,98 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = MyFirebaseMessagingService.class.getSimpleName();
 
     private NotificationUtils notificationUtils;
+    final static String KEY_GROUP = "Tefsal";
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.e(TAG, "From: " + remoteMessage.getFrom());
 
-        if (remoteMessage == null)
-            return;
+        Log.e(TAG, "NotificationPayload: " + new Gson().toJson(remoteMessage.getNotification()));
+        Log.e(TAG, "DataPayload: " + new Gson().toJson(remoteMessage.getData()));
 
-        // Check if message contains a notification payload.
+        handlePush(remoteMessage);
+    }
+
+
+    private void handlePush(RemoteMessage remoteMessage) {
+
+        String title = "";
+        String message = "";
+
         if (remoteMessage.getNotification() != null) {
-            Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
-            handleNotification(remoteMessage.getNotification().getBody());
+            title = remoteMessage.getNotification().getTitle();
+            message = remoteMessage.getNotification().getBody();
+
         }
 
-        // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
-            Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
 
-            try {
-                JSONObject json = new JSONObject(remoteMessage.getData().toString());
-                handleDataMessage(json);
-            } catch (Exception e) {
-                Log.e(TAG, "Exception: " + e.getMessage());
-            }
+
+        Intent intent = new Intent(getApplicationContext(), MyOrderActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_ONE_SHOT);
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+        final int nId = new Random().nextInt(61) + 20;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String id = "tefsal";
+
+            CharSequence name = id.toString();
+            String description = "Tefsal";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(id, name, importance);
+            channel.setDescription(description);
+
+            notificationManager.createNotificationChannel(channel);
+
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), "id_product")
+                    .setSmallIcon(R.drawable.logo_blue) //your app icon
+                    .setBadgeIconType(R.drawable.logo_blue) //your app icon
+                    .setChannelId(id)
+                    .setContentTitle(title)
+                    .setAutoCancel(false)
+                    .setContentIntent(pendingIntent)
+                    .setColor(255)
+                    .setContentText(message)
+                    .setWhen(System.currentTimeMillis());
+
+
+            NotificationManagerCompat notificationManager2 = NotificationManagerCompat.from(this);
+
+            notificationManager2.notify(nId, notificationBuilder.build());
+
+
+        } else {
+
+
+            Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.logo_blue)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_blue))
+                    .setAutoCancel(false)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setSound(defaultSoundUri)
+                    .setGroup(KEY_GROUP)
+                    .setContentIntent(pendingIntent);
+
+
+            notificationManager.notify(nId, notificationBuilder.build());
+
         }
     }
 
+
     private void handleNotification(String message) {
+
         if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {
-            // app is in foreground, broadcast the push message
+
+
             Intent pushNotification = new Intent(Config.PUSH_NOTIFICATION);
             pushNotification.putExtra("message", message);
             LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
@@ -67,8 +138,69 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             // play notification sound
             NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
             notificationUtils.playNotificationSound();
-        }else{
-            // If the app is in background, firebase itself handles the notification
+
+
+        } else {
+
+
+            Intent intent = new Intent(getApplicationContext(), MyOrderActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                    PendingIntent.FLAG_ONE_SHOT);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                String id = "tefsal";
+
+                CharSequence name = id.toString();
+                String description = "Tefsal";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel(id, name, importance);
+                channel.setDescription(description);
+                // Register the channel with the system; you can't change the importance
+                // or other notification behaviors after this
+
+                notificationManager.createNotificationChannel(channel);
+
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext(), "id_product")
+                        .setSmallIcon(R.drawable.logo_blue) //your app icon
+                        .setBadgeIconType(R.drawable.logo_blue) //your app icon
+                        .setChannelId(id)
+                        .setContentTitle("Tefsal")
+                        .setAutoCancel(false).setContentIntent(pendingIntent)
+                        .setNumber(1)
+                        .setColor(255)
+                        .setContentText(String.format("Tefsal", 1))
+                        .setWhen(System.currentTimeMillis());
+
+
+                NotificationManagerCompat notificationManager2 = NotificationManagerCompat.from(this);
+
+                notificationManager2.notify(1, notificationBuilder.build());
+
+            } else {
+
+
+                Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.logo_blue)
+                        .setContentTitle("Tefsal")
+                        .setContentText(message)
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_blue))
+                        .setAutoCancel(false)
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setPriority(Notification.PRIORITY_HIGH)
+                        .setSound(defaultSoundUri)
+                        .setGroup(KEY_GROUP)
+                        .setContentIntent(pendingIntent);
+
+
+                notificationManager.notify((int) (System.currentTimeMillis() / 1000)/* ID of notification */, notificationBuilder.build());
+
+            }
+
         }
     }
 

@@ -30,9 +30,11 @@ import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
 import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.services.MyFirebaseInstanceIDService;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
+import com.tefsalkw.utils.SessionManagerToken;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
@@ -91,6 +93,7 @@ public class MainActivity extends BaseActivity
 
     SessionManager session;
 
+    SessionManagerToken sessionManagerToken;
     String fromMailArg = "";
 
     @Override
@@ -105,8 +108,10 @@ public class MainActivity extends BaseActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
 
+        sessionManagerToken = new SessionManagerToken(getApplicationContext());
+        session = new SessionManager(this);
 
-
+        sendRegistrationToServer();
 
         //fromMailArg=getIntent().getStringExtra("Mail");
 
@@ -137,7 +142,7 @@ public class MainActivity extends BaseActivity
                 startActivity(browserIntent);
             }
         });
-        session = new SessionManager(this);
+
 
         System.out.println("TOKEN===" + session.getToken());
         System.out.println("USER ID===" + session.getCustomerId());
@@ -262,6 +267,65 @@ public class MainActivity extends BaseActivity
 
             }
         });
+
+
+    }
+
+
+
+    private void sendRegistrationToServer() {
+
+        try {
+
+
+            final String token = sessionManagerToken.getDeviceToken();
+
+            final String url = Contents.baseURL + "registerNotificationToken";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            Log.e("FCM Response", response);
+
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+                    params.put("user_id", session.getCustomerId());
+                    params.put("token", token);
+
+                    Log.e("NotificationToken == ", url + new JSONObject(params));
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
 
 
     }
