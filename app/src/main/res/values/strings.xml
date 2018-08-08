@@ -17,6 +17,7 @@
     <string name="additional_info">Additional Information</string>
     <string name="additional_note">Please help us to get to know you more by entering\nadditional information that can help us serve you better</string>
 
+    <string name="notification_channel_id">tefsal</string>
     <!--Toolbar Label-->
 
     <string name="skip">SKIP</string>

@@ -1,5 +1,6 @@
 package com.tefsalkw.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -76,6 +77,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     @BindView(R.id.txtDeliveryCharge)
     TextView txtDeliveryCharge;
 
+    String orderId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,15 +99,26 @@ public class OrderDetailsActivity extends AppCompatActivity {
         });
 
 
-        orderRecord = (OrderRecord) getIntent().getSerializableExtra("OrderRecord");
+        Intent intent = getIntent();
+
+
+        if (intent != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
+
+
+            orderId = intent.getStringExtra("order_id") + "";
+        } else {
+            orderRecord = (OrderRecord) getIntent().getSerializableExtra("OrderRecord");
+            if (orderRecord != null && orderRecord.getOrder_id() != null) {
+                orderId = orderRecord.getOrder_id();
+            }
+        }
+
 
         try {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
+            toolbar_title.setText("ORDER #" + orderId);
 
-            if (orderRecord != null && orderRecord.getOrder_id() != null) {
-                toolbar_title.setText("ORDER #" + orderRecord.getOrder_id());
-            }
 
         } catch (Exception exc) {
 
@@ -226,7 +239,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                     } else {
                         params.put("user_id", sessionManager.getCustomerId());
                     }
-                    params.put("order_id", orderRecord.getOrder_id());
+                    params.put("order_id", orderId);
                     params.put("access_token", sessionManager.getToken());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");

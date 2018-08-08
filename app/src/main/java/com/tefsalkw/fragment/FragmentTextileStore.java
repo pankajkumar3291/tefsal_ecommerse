@@ -1,5 +1,6 @@
 package com.tefsalkw.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -62,6 +63,7 @@ public class FragmentTextileStore extends BaseFragment {
 
         session = new SessionManager(getActivity());
         WebCallServiceStores();
+
 
         flag = getArguments().getString("flag");
         return v;

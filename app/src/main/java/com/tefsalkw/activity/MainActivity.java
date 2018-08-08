@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,7 +31,6 @@ import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
 import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.services.MyFirebaseInstanceIDService;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -68,9 +68,8 @@ public class MainActivity extends BaseActivity
     TextView btnClose;
 
 
-
     @BindView(R.id.btn_menu)
-    public  ImageButton btn_menu;
+    public ImageButton btn_menu;
 
     @BindView(R.id.btn_write_mail)
     ImageButton btn_write_mail;
@@ -221,7 +220,6 @@ public class MainActivity extends BaseActivity
             menuMail.setVisible(false);
 
 
-
         } else {
             user_name.setText(session.getKeyUserName().toString());
             menuTextile.setVisible(false);
@@ -272,10 +270,11 @@ public class MainActivity extends BaseActivity
     }
 
 
-
     private void sendRegistrationToServer() {
 
         try {
+
+            String androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
 
             final String token = sessionManagerToken.getDeviceToken();
@@ -307,8 +306,8 @@ public class MainActivity extends BaseActivity
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
                     params.put("user_id", session.getCustomerId());
+                    params.put("device_id", androidDeviceId);
                     params.put("token", token);
-
                     Log.e("NotificationToken == ", url + new JSONObject(params));
 
                     return params;
@@ -405,7 +404,7 @@ public class MainActivity extends BaseActivity
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
         order_menu.setText("" + badgeRecordModel.getOrders_badge());
-        mail_menu.setText("" +badgeRecordModel.getMails_badge());
+        mail_menu.setText("" + badgeRecordModel.getMails_badge());
         total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
 
 
@@ -437,7 +436,6 @@ public class MainActivity extends BaseActivity
             }
         }
     }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")

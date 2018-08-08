@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.TextileProductModel;
 
 import java.util.ArrayList;
@@ -110,7 +111,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
             @Override
             public void onClick(View view) {
 
-                Log.e("textileProductModel",new Gson().toJson(textileModels.get(position)));
+                Log.e("textileProductModel", new Gson().toJson(textileModels.get(position)));
                 activity.startActivity(new Intent(activity, TextileDetailActivity.class)
                         .putExtra("storeID", storeId)
                         .putExtra("pos", position)
@@ -120,6 +121,17 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
 
             }
         });
+
+        Log.e("getFromPush", TefalApp.getInstance().getFromPush());
+        Log.e("getStoreId", TefalApp.getInstance().getStoreId());
+        Log.e("getProductId", TefalApp.getInstance().getProductId());
+        if (TefalApp.getInstance().getFromPush().equals("yes")) {
+
+            if (textileModels.get(position).getTefsal_product_id().equalsIgnoreCase(TefalApp.getInstance().getProductId())) {
+                holder.main_layout.performClick();
+            }
+
+        }
     }
 
 

@@ -20,8 +20,16 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
+import com.tefsalkw.activity.AccessoryProductDetailsActivity;
+import com.tefsalkw.activity.DaraAbayaActivity;
+import com.tefsalkw.activity.DishDashaProductActivity;
+import com.tefsalkw.activity.MailingSystemActivity;
 import com.tefsalkw.activity.MainActivity;
 import com.tefsalkw.activity.MyOrderActivity;
+import com.tefsalkw.activity.OrderDetailsActivity;
+import com.tefsalkw.activity.OtherStoresActivity;
+import com.tefsalkw.activity.ZaaraDaraaActivity;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.NotificationUtils;
 
@@ -44,6 +52,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+        Log.e(TAG, "TimeStamp: " + remoteMessage.getSentTime());
         Log.e(TAG, "NotificationPayload: " + new Gson().toJson(remoteMessage.getNotification()));
         Log.e(TAG, "DataPayload: " + new Gson().toJson(remoteMessage.getData()));
 
@@ -63,11 +72,119 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
 
+        String type = "general";
 
-        Intent intent = new Intent(getApplicationContext(), MyOrderActivity.class);
+        String category = "";
+        if (remoteMessage.getData() != null) {
+
+            title = remoteMessage.getData().get("title");
+            message = remoteMessage.getData().get("message");
+            type = remoteMessage.getData().get("type");
+            category = remoteMessage.getData().get("category");
+        }
+
+        Intent intent = null;
+
+        try {
+
+            if (type.equalsIgnoreCase("store")) {
+                if (category.equalsIgnoreCase("DTA")) {
+
+                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                    TefalApp.getInstance().setMin_meters("3");
+                    TefalApp.getInstance().setStyleName("TefsalDefault");
+
+                    intent = new Intent(getApplicationContext(), DaraAbayaActivity.class);
+                    intent.putExtra("sub_category", "6");
+                    intent.putExtra("flag", "dish");
+
+                }
+
+                if (category.equalsIgnoreCase("DTE")) {
+
+                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                    TefalApp.getInstance().setMin_meters("3");
+                    TefalApp.getInstance().setStyleName("TefsalDefault");
+
+
+                    intent = new Intent(getApplicationContext(), DaraAbayaActivity.class);
+                    intent.putExtra("sub_category", "5");
+                    intent.putExtra("flag", "dish");
+                }
+
+                if (category.equalsIgnoreCase("DB")) {
+
+                    intent = new Intent(getApplicationContext(), OtherStoresActivity.class);
+                }
+
+
+            }
+
+
+            if (type.equalsIgnoreCase("product")) {
+
+//                if (category.equalsIgnoreCase("DTA")) {
+//                    intent = new Intent(getApplicationContext(), TextileDetailActivity.class);
+//                    intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
+//                    intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+//                }
+
+                if (category.equalsIgnoreCase("DTE")) {
+                    intent = new Intent(getApplicationContext(), DishDashaProductActivity.class);
+                    intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
+                    intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+
+                    TefalApp.getInstance().setStoreId(remoteMessage.getData().get("store_id"));
+                    TefalApp.getInstance().setProductId(remoteMessage.getData().get("product_id"));
+                    TefalApp.getInstance().setWhereFrom("textile");
+                    TefalApp.getInstance().setFlage("dish");
+                    TefalApp.getInstance().setFromPush("yes");
+                }
+
+                if (category.equalsIgnoreCase("DB")) {
+                    intent = new Intent(getApplicationContext(), ZaaraDaraaActivity.class);
+                    intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
+                    intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+                }
+
+
+                if (category.equalsIgnoreCase("A")) {
+                    intent = new Intent(getApplicationContext(), AccessoryProductDetailsActivity.class);
+                    intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
+                    intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+
+                }
+
+
+            }
+
+
+            if (type.equalsIgnoreCase("order")) {
+                intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
+                intent.putExtra("order_id", remoteMessage.getData().get("order_id"));
+                intent.putExtra(" order_item_id", remoteMessage.getData().get(" order_item_id"));
+            }
+
+
+            if (type.equalsIgnoreCase("mail")) {
+                intent = new Intent(getApplicationContext(), MailingSystemActivity.class);
+                intent.putExtra("mail_id", remoteMessage.getData().get("mail_id"));
+            }
+
+
+            if (intent == null) {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+            }
+
+
+        } catch (Exception exc) {
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+        }
+
+        intent.setAction("FromPushNotification");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -76,7 +193,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         final int nId = new Random().nextInt(61) + 20;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String id = "tefsal";
+            String id = getResources().getString(R.string.notification_channel_id);
 
             CharSequence name = id.toString();
             String description = "Tefsal";
@@ -91,7 +208,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setBadgeIconType(R.drawable.logo_blue) //your app icon
                     .setChannelId(id)
                     .setContentTitle(title)
-                    .setAutoCancel(false)
+                    .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
                     .setColor(255)
                     .setContentText(message)
@@ -112,7 +229,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentTitle(title)
                     .setContentText(message)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_blue))
-                    .setAutoCancel(false)
+                    .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setSound(defaultSoundUri)

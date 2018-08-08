@@ -1,9 +1,9 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -21,10 +21,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.PagerStoresAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -58,7 +58,7 @@ public class DaraAbayaActivity extends BaseActivity {
     @BindView(R.id.total_badge_txt)
     TextView total_badge_txt;
 
-    public static String flag="";
+    public static String flag = "";
 
     SessionManager session;
 
@@ -72,8 +72,11 @@ public class DaraAbayaActivity extends BaseActivity {
 
         session = new SessionManager(this);
 
+        TefalApp.getInstance().setFromPush("no");
+
+
         setSupportActionBar(toolbar);
-       // qr_code_btn.setVisibility(View.VISIBLE);
+        // qr_code_btn.setVisibility(View.VISIBLE);
         view_cart_btn.setVisibility(View.VISIBLE);
 
         view_cart_btn.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +90,7 @@ public class DaraAbayaActivity extends BaseActivity {
             }
         });
 
-        toolbar_title.setText( TefalApp.getInstance().getToolbar_title());
+        toolbar_title.setText(TefalApp.getInstance().getToolbar_title());
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,12 +101,8 @@ public class DaraAbayaActivity extends BaseActivity {
 
         flag = getIntent().getStringExtra("flag");
 
-        boolean fromDialogKart = getIntent().getBooleanExtra("fromDialogKart",false);
+        boolean fromDialogKart = getIntent().getBooleanExtra("fromDialogKart", false);
 
-        if(fromDialogKart)
-        {
-
-        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         /*tabLayout.addTab(tabLayout.newTab().setText(R.string.btn_view_all));*/
@@ -115,13 +114,12 @@ public class DaraAbayaActivity extends BaseActivity {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(3);
         final PagerStoresAdapter adapter = new PagerStoresAdapter
-                (getSupportFragmentManager(), tabLayout.getTabCount(),flag);
+                (getSupportFragmentManager(), tabLayout.getTabCount(), flag);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab)
-            {
+            public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
@@ -136,8 +134,7 @@ public class DaraAbayaActivity extends BaseActivity {
             }
         });
 
-        if(fromDialogKart)
-        {
+        if (fromDialogKart) {
             viewPager.setCurrentItem(1);
         }
 //        setUpFragment();
@@ -149,7 +146,7 @@ public class DaraAbayaActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(),"onResume");
+        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -170,7 +167,7 @@ public class DaraAbayaActivity extends BaseActivity {
                             System.out.println("response==" + response.toString());
 
 
-                           // SimpleProgressBar.closeProgress();
+                            // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
                                 try {
@@ -228,7 +225,6 @@ public class DaraAbayaActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
-
 
 
 //    public  void gotoCart(View v)

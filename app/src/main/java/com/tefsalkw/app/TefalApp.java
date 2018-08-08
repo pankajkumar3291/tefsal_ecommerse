@@ -1,32 +1,38 @@
 package com.tefsalkw.app;
 
-import android.app.Application;
 import android.graphics.Bitmap;
 
 /**
  * Created by Rituparna Khadka on 11/9/2017.
  */
 
-public class TefalApp
-{
+public class TefalApp {
 
 
-    private String color="";
-    private String subColor="";
+    private String color = "";
+    private String subColor = "";
 
 
-
-    private String season="";
-    private String country="";
-
+    private String season = "";
+    private String country = "";
 
 
-    private String brand="";
-    private String pattern="";
+    private String brand = "";
+    private String pattern = "";
 
-    private String storeId="";
-    private String flage="";
-    private String toolbar_title="";
+    private String storeId = "";
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    private String productId = "";
+    private String flage = "";
+    private String toolbar_title = "";
 
     private Bitmap bitmap;
 
@@ -38,7 +44,7 @@ public class TefalApp
         this.cartId = cartId;
     }
 
-    private String cartId="";
+    private String cartId = "";
 
     //This meber attribute is used to identify the paint of size text in ProductSizeAdapterHorizantal
     private String paintOverSizeText;
@@ -62,7 +68,7 @@ public class TefalApp
         this.accColorPosition = setAccColorPosition;
     }
 
-    private int  accColorPosition;
+    private int accColorPosition;
 
     public int getCurrentSizePositionIs() {
         return currentSizePositionIs;
@@ -78,7 +84,7 @@ public class TefalApp
     private String min_meters = "3";
 
     // This member variable is used to hold the style name
-       private String styleName;
+    private String styleName;
 
 
     public String getStyleId() {
@@ -118,7 +124,6 @@ public class TefalApp
     private String currentColorText;
 
 
-
     // This holds the store id of tailor store as tailor id
     private String tailor_id;
 
@@ -135,6 +140,16 @@ public class TefalApp
     private String regSuccessMsg;
 
 
+    public String getFromPush() {
+        return fromPush;
+    }
+
+    public void setFromPush(String fromPush) {
+        this.fromPush = fromPush;
+    }
+
+    private String fromPush = "no";
+
     public String getRegSuccessMsg() {
         return regSuccessMsg;
     }
@@ -143,18 +158,13 @@ public class TefalApp
         this.regSuccessMsg = regSuccessMsg;
     }
 
-    public String getWhereFromInMail()
-    {
+    public String getWhereFromInMail() {
         return whereFromInMail;
     }
 
-    public void setWhereFromInMail(String whereFromInMail)
-    {
+    public void setWhereFromInMail(String whereFromInMail) {
         this.whereFromInMail = whereFromInMail;
     }
-
-
-
 
 
     public String getPayment_method() {
@@ -190,7 +200,6 @@ public class TefalApp
     }
 
 
-
     public String getAccessToken() {
         return accessToken;
     }
@@ -202,16 +211,13 @@ public class TefalApp
     private String accessToken;
 
 
-    public String getCustomer_id()
-    {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(String customer_id)
-    {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
-
 
 
     public int getPosition() {
@@ -230,7 +236,7 @@ public class TefalApp
         this.storeName = storeName;
     }
 
-    private String storeName="";
+    private String storeName = "";
 
     public String getToolbar_title() {
         return toolbar_title;
@@ -273,7 +279,6 @@ public class TefalApp
     }
 
 
-
     public String getSeason() {
         return season;
     }
@@ -309,9 +314,10 @@ public class TefalApp
     private String mCategory;
     private String mAction;
 
-    public TefalApp(){
-        mCategory="1";
+    public TefalApp() {
+        mCategory = "1";
     }
+
     public static TefalApp getInstance() {
         return TefsalApplication.getContext().getInstance();
     }
@@ -376,5 +382,5 @@ public class TefalApp
         this.numberDishdashaUserHave = numberDishdashaUserHave;
     }
 
-    private  String numberDishdashaUserHave;
+    private String numberDishdashaUserHave;
 }
