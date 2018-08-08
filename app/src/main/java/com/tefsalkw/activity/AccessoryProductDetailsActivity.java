@@ -150,6 +150,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     String default_image = null;
 
+    String productId = "";
+    String storeId = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,15 +165,29 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
-        accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
+
+        Intent intent = getIntent();
+
+        if (intent.getAction() != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
+
+            storeId = intent.getStringExtra("store_id");
+            productId = intent.getStringExtra("product_id");
+
+        } else {
+            accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
+        }
 
 
         if (accessoriesRecord != null) {
 
             default_image = accessoriesRecord.getDefault_image();
-            getAccessoriesProductDetails();
+            storeId = accessoriesRecord.getStore_id();
+            productId = accessoriesRecord.getTefsal_product_id();
 
         }
+
+        getAccessoriesProductDetails();
+
 
         initSlider();
         setData();
@@ -261,7 +278,12 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
                                     Gson g = new Gson();
                                     accessoryDetailRecord = g.fromJson(response, AccessoryDetailRecord.class);
+                                    if (accessoryDetailRecord != null) {
+                                        txt_title.setText(accessoryDetailRecord.getProductName());
+                                        subtxt_title.setText(accessoryDetailRecord.getStoreName());
 
+                                        text_desc.setText(accessoryDetailRecord.getProductDesc());
+                                    }
                                     Log.e("accessoryDetailRecord", response);
                                     initViewsPostCall(accessoryDetailRecord);
 
@@ -286,8 +308,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     params.put("appUser", "tefsal");
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");
-                    params.put("product_id", accessoriesRecord.getTefsal_product_id());
-                    params.put("store_id", accessoriesRecord.getStore_id());
+                    params.put("product_id", productId);
+                    params.put("store_id", storeId);
 
                     Log.e("Tefsal tailor == ", url + new JSONObject(params));
 
@@ -496,10 +518,12 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     private void setData() {
 
-        txt_title.setText(accessoriesRecord.getProductName());
-        subtxt_title.setText(accessoriesRecord.getStoreName());
+        if (accessoriesRecord != null) {
+            txt_title.setText(accessoriesRecord.getProductName());
+            subtxt_title.setText(accessoriesRecord.getStoreName());
 
-        text_desc.setText(accessoriesRecord.getProductDesc());
+            text_desc.setText(accessoriesRecord.getProductDesc());
+        }
 
 
     }

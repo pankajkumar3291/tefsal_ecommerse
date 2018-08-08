@@ -180,6 +180,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     private List<ZaraDaraSizeModel> productSizesList;
 
+
+    String productId = "";
+    String storeId = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,13 +213,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         //********************  Call Web API  ********************/
 
-        if (productRecord != null) {
 
-
-            getProductDetails();
-
-        }
-
+        getProductDetails();
 
     }
 
@@ -232,7 +232,22 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         ButterKnife.bind(this);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        productRecord = (ProductRecord) bundle.getSerializable("productRecords");
+
+
+        if (intent.getAction() != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
+
+            storeId = intent.getStringExtra("store_id");
+            productId = intent.getStringExtra("product_id");
+
+        } else {
+            productRecord = (ProductRecord) bundle.getSerializable("productRecords");
+
+            if (productRecord != null) {
+                storeId = productRecord.getStore_id();
+                productId = productRecord.getTefsal_product_id();
+            }
+        }
+
 
     }
 
@@ -254,9 +269,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         //Bind Text Views
 
-        text_descp.setText(productRecord.getProduct_desc());
-        txt_title.setText(productRecord.getProduct_name());
-        subtxt_title.setText(productRecord.getBrand_name());
+        if (productRecord != null) {
+            text_descp.setText(productRecord.getProduct_desc());
+            txt_title.setText(productRecord.getProduct_name());
+            subtxt_title.setText(productRecord.getBrand_name());
+        }
 
 
     }
@@ -373,6 +390,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
     private void initViewsPostCall() {
 
+
         //Size Guide Html
         sizeGuideResponseHtml = daraAbayaDetailRecord.getMeasurements();
 
@@ -452,6 +470,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                                     if (daraAbayaDetailRecord != null) {
                                         initViewsPostCall();
+
+                                        text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
+                                        txt_title.setText(daraAbayaDetailRecord.getProduct_name());
+                                        subtxt_title.setText(daraAbayaDetailRecord.getBrand_name());
+
                                     }
 
 
@@ -475,8 +498,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     params.put("appUser", "tefsal");
                     params.put("appVersion", "1.1");
                     params.put("appSecret", "tefsal@123");
-                    params.put("product_id", productRecord.getTefsal_product_id());
-                    params.put("store_id", productRecord.getStore_id());
+                    params.put("product_id", productId);
+                    params.put("store_id", storeId);
 
                     Log.e(ZaaraDaraaActivity.class.getSimpleName(), url + new JSONObject(params));
 
@@ -777,7 +800,6 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
 
-
     public JSONArray getItems() throws JSONException {
 
 
@@ -794,7 +816,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         }
         obj.put("product_id", productRecord.getTefsal_product_id());
 
-        obj.put("item_id", zaraDaraSizesModel != null ? zaraDaraSizesModel.getAttribute_meta_id() : "" );
+        obj.put("item_id", zaraDaraSizesModel != null ? zaraDaraSizesModel.getAttribute_meta_id() : "");
 
         JSONObject item_details = new JSONObject();
         //item_details.put("size", zaraDaraSizesModel.getSize());
