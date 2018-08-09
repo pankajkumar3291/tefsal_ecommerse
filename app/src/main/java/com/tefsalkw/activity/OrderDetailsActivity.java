@@ -102,7 +102,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        if (intent != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
+        if (intent != null && intent.getAction() != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
 
 
             orderId = intent.getStringExtra("order_id") + "";

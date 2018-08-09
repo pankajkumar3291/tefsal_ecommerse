@@ -403,9 +403,19 @@ public class MainActivity extends BaseActivity
 
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
-        order_menu.setText("" + badgeRecordModel.getOrders_badge());
-        mail_menu.setText("" + badgeRecordModel.getMails_badge());
-        total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
+        if(badgeRecordModel != null)
+        {
+            order_menu.setText("" + badgeRecordModel.getOrders_badge());
+            mail_menu.setText("" + badgeRecordModel.getMails_badge());
+            total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
+        }
+        else
+        {
+            order_menu.setText("0");
+            mail_menu.setText("0");
+            total_badge_txt.setText("0");
+        }
+
 
 
     }
