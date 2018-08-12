@@ -1234,35 +1234,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                 multipart.addFormField("appSecret", "tefsal@123");
                 multipart.addFormField("appVersion", "1.1");
                 System.out.println("RESPONSE MULTIPART===" + multipart.finish());
-/*
-System.out.println("RESPONSE MULTIPART==="+multipart.finish());
-                    JSONObject object= (JSONObject) multipart.finish();
 
-                    JSONArray jsonArray=object.getJSONArray()
-                    if(object.getString("status").equals("1"))
-                    {
-                        Toast.makeText(getApplicationContext(),object.getString("message").toString(),Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(),"Profile not updated", Toast.LENGTH_SHORT).show();
-                    }
-*/
-                   /* List<String> response= multipart.finish();
-
-                    for (String line : response) {
-                        System.out.println("LINE=="+line);
-
-                        result = line;
-                    }*/
-                //Toast.makeText(getApplicationContext(),"Profile updated successfully", Toast.LENGTH_SHORT).show();
-                   /*// JSONObject object=new JSONObject(result);
-
-                    System.out.println("HIIII=="+object.getString("message"));
-                    Toast.makeText(getApplicationContext(),object.getString("message"), Toast.LENGTH_SHORT).show();*/
-                // System.out.println("HIIII"+response.get(0));
-
-                //System.out.println("RESPONSE MULTIPART==="+multipart.finish());
             } catch (Exception ex) {
                 System.out.println("EXCEPTION===" + ex);
             }

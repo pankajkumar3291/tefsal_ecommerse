@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesStoreListingActivity;
@@ -27,6 +26,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.view.View.GONE;
 
 /**
  * Created by new on 9/26/2017.
@@ -77,6 +78,9 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
         LinearLayout LL_di;
 
 
+        @BindView(R.id.storeCloseLayout)
+        RelativeLayout storeCloseLayout;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -88,67 +92,85 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
 
-        String discount_amount;
+        try {
+            if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y")) {
+                holder.main_layout.setVisibility(GONE);
+            } else {
+                holder.main_layout.setVisibility(View.VISIBLE);
+            }
 
-//        Picasso.with(activity).load(storeModels.get(position2).getStore_image())
-//                .error(R.drawable.no_image_placeholder_grid)
-//                .placeholder(R.drawable.no_image_placeholder_grid)
-//                .into(holder.img);
-
-        RequestOptions options = new RequestOptions()
-                .priority(Priority.HIGH)
-                .placeholder(R.drawable.no_image_placeholder_grid)
-                .error(R.drawable.no_image_placeholder_grid);
-
-        GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getStore_image()).apply(options).into(holder.img);
+            String discount_amount;
 
 
+            RequestOptions options = new RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.drawable.no_image_placeholder_grid)
+                    .error(R.drawable.no_image_placeholder_grid);
 
-        holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-        holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
-        holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
-        System.out.println("DALIVERY DATE   MIN" + storeModels.get(position2).getMin_delivery_days());
-        System.out.println("DALIVERY DATE   MAX" + storeModels.get(position2).getMax_delivery_days());
+            GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getStore_image()).apply(options).into(holder.img);
 
-        if (storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null)) {
-            holder.txt_discount_amount.setVisibility(View.GONE);
-            // holder.txt_discount_off.setVisibility(View.GONE);
 
-            holder.LL_di.setVisibility(View.GONE);
-        } else {
-            discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
-            holder.txt_discount_amount.setText(discount_amount);
+            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
+            System.out.println("DALIVERY DATE   MIN" + storeModels.get(position2).getMin_delivery_days());
+            System.out.println("DALIVERY DATE   MAX" + storeModels.get(position2).getMax_delivery_days());
+
+            if (storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null)) {
+                holder.txt_discount_amount.setVisibility(View.GONE);
+                // holder.txt_discount_off.setVisibility(View.GONE);
+
+                holder.LL_di.setVisibility(View.GONE);
+            } else {
+                discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
+                holder.txt_discount_amount.setText(discount_amount);
            /* holder.txt_discount_amount.setVisibility(View.VISIBLE);
             holder.txt_discount_off.setVisibility(View.VISIBLE);*/
 
-            holder.LL_di.setVisibility(View.VISIBLE);
-
-
-        }
-
-        holder.main_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (!flag.equals("Accessories")) {
-                    activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
-                            .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                            .putExtra("flag", flag)
-                            .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
-                            .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
-
-                } else {
-                    activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class)
-                            .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                            .putExtra("flag", flag)
-                            .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
-                            .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
-
-                }
+                holder.LL_di.setVisibility(View.VISIBLE);
 
 
             }
-        });
+
+            holder.main_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (!flag.equals("Accessories")) {
+                        activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
+                                .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                                .putExtra("flag", flag)
+                                .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
+                                .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
+
+                    } else {
+                        activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class)
+                                .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
+                                .putExtra("flag", flag)
+                                .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
+                                .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
+
+                    }
+
+
+                }
+            });
+
+
+            if (!storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
+
+                holder.storeCloseLayout.setVisibility(View.VISIBLE);
+                holder.main_layout.setClickable(false);
+                holder.storeCloseLayout.setClickable(false);
+
+            } else {
+                holder.storeCloseLayout.setVisibility(View.GONE);
+                holder.main_layout.setClickable(true);
+                holder.storeCloseLayout.setClickable(true);
+            }
+        } catch (Exception exc) {
+
+        }
 
 
     }

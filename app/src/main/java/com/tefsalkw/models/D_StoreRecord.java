@@ -39,7 +39,25 @@ public class D_StoreRecord {
 
     private String store_discount;
 
+    private String is_open;
 
+    public String getIs_open() {
+        return is_open;
+    }
+
+    public void setIs_open(String is_open) {
+        this.is_open = is_open;
+    }
+
+    public String getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(String is_active) {
+        this.is_active = is_active;
+    }
+
+    private String is_active;
 
     public String getMin_delivery_days() {
         return min_delivery_days;
