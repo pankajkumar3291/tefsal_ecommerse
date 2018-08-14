@@ -135,6 +135,7 @@ public class AddressUpdateActivity extends BaseActivity {
     private static final String TAG = "AddressUpdateActivity";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,17 +154,12 @@ public class AddressUpdateActivity extends BaseActivity {
 
         addressRecord = (AddressRecord) getIntent().getExtras().getSerializable("addressRecord");
 
-        System.out.println("ID===" + addressRecord.getAddress_id());
-
-        System.out.println("PROVINCE===" + addressRecord.getCity());
-        System.out.println("PROVINCE===" + addressRecord.getCountry());
-
-        System.out.println("OUT PUT CONUTRY CODE==" + addressRecord.getCountry_iso());
-        System.out.println("OUT PUT PROVINCE CODE==" + addressRecord.getProvince_id());
-        System.out.println("OUT PUT AREA CODE==" + addressRecord.getArea_id());
 
 
-        Log.i(TAG, "Setting screen name: " + "AddressUpdateActivity");
+        System.out.println("OUT PUT getCountry_iso==" + addressRecord.getCountry_iso());
+        System.out.println("OUT PUT getCountry==" + addressRecord.getCountry());
+
+
         mTracker.setScreenName("Image~" + "AddressUpdateActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
@@ -212,7 +208,6 @@ public class AddressUpdateActivity extends BaseActivity {
         session = new SessionManager(this);
 
         setData();
-        getCountries();
 
 
     }
@@ -230,6 +225,9 @@ public class AddressUpdateActivity extends BaseActivity {
         input_flate.setText(addressRecord.getFlat_number());
         //params.put("street", input_street.getText()+"");
 
+
+        getCountries();
+
     }
 
     public void getCountries() {
@@ -241,7 +239,7 @@ public class AddressUpdateActivity extends BaseActivity {
 
         SimpleProgressBar.showProgress(AddressUpdateActivity.this);
         try {
-            final String url = Contents.baseURL + "getCountries";
+            final String url = Contents.baseURL + "getAllCountries";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -252,32 +250,53 @@ public class AddressUpdateActivity extends BaseActivity {
                             Log.e("device response", response);
                             try {
                                 JSONObject object = new JSONObject(response);
-                                String status = object.getString("status");
+                                Integer status = object.getInt("status");
                                 String message = object.getString("message");
-                                if (status.equals("1")) {
+                                if (status == 1) {
 
                                     country_name = new ArrayList<String>();
                                     //country_name.add("Select Country");
                                     iso_name = new ArrayList<String>();
                                     JSONArray jsonArray = object.getJSONArray("record");
                                     for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject c = jsonArray.getJSONObject(i);
-                                        country_name.add(c.getString("name"));
-                                        iso_name.add(c.getString("iso"));
+                                        try {
+                                            JSONObject c = jsonArray.getJSONObject(i);
+                                            country_name.add(c.getString("name"));
+                                            iso_name.add(c.getString("iso"));
+                                        } catch (Exception exc) {
+
+                                        }
+
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
                                     ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, country_name);
-                                    getCountryPosition();
+
+
+
 
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     spin_country.setAdapter(aa);
+
+                                    for (int i = 0; i < country_name.size(); i++) {
+                                        if (country_name.get(i).contains(addressRecord.getCountry_iso())) {
+                                            countryPosition = i;
+                                            //mDob=iso_name.get(position);
+                                            break;
+                                        }
+                                    }
+
+                                    Log.e("countryPosition",""+countryPosition);
+
+
+
                                     spin_country.setSelection(countryPosition);
 
                                     spin_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                             getProvinces(iso_name.get(position));
+
                                         }
 
                                         @Override
@@ -287,15 +306,12 @@ public class AddressUpdateActivity extends BaseActivity {
                                     });
 
 
-                                    System.out.println("POSITION OF COUNTRY===" + countryPosition);
-                                    System.out.println("POSITION OF COUNTRY===" + country_name.size());
-                                    //  int pos =spin_country.getPosi
-
                                 } else {
 
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
+                                e.printStackTrace();
                                 SimpleProgressBar.closeProgress();
                             }
 

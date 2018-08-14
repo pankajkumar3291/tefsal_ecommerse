@@ -27,6 +27,8 @@ import com.tefsalkw.adapter.SentMailAdapter;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -133,7 +135,7 @@ public class FragmentSent extends BaseFragment {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal mail == ", url + params);
+                    Log.e("Tefsal mail == ", url + new JSONObject(params));
 
                     return params;
                 }
