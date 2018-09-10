@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@string/toolbar_dishdasha_product_activity_toolbar_title_text"
+                android:text="--"
                 android:textAllCaps="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_mid"
@@ -63,7 +63,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/toolbar_dishdasha_product_activity_subText_text"
+                android:text="--"
                 android:textColor="@color/colorAccent" />
         </RelativeLayout>
 

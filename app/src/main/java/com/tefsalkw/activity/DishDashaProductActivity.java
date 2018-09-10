@@ -102,26 +102,34 @@ public class DishDashaProductActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
+
         store_id = TefalApp.getInstance().getStoreId();
         flag = TefalApp.getInstance().getFlage();
         fromWhere = TefalApp.getInstance().getWhereFrom();
-
         color = TefalApp.getInstance().getColor();
         season = TefalApp.getInstance().getSeason();
         country = TefalApp.getInstance().getCountry();
         sub_color = TefalApp.getInstance().getSubColor();
         session = new SessionManager(this);
 
-        System.out.println("OUTPUT========STORE ID" + store_id);
-        System.out.println("OUTPUT========FLAG" + flag);
-        System.out.println("OUTPUT========FROMWHERE" + fromWhere);
-        System.out.println("OUTPUT========COLOR" + color);
-        System.out.println("OUTPUT========SEASON" + season);
-        System.out.println("OUTPUT========COUNTRY" + country);
-        System.out.println("OUTPUT========SUB COLOR" + sub_color);
+        System.out.println("OUTPUT========STORE ID :: " + store_id);
+        System.out.println("OUTPUT========FLAG :: " + flag);
+        System.out.println("OUTPUT========FROMWHERE :: " + fromWhere);
+        System.out.println("OUTPUT========COLOR :: " + color);
+        System.out.println("OUTPUT========SEASON :: " + season);
+        System.out.println("OUTPUT========COUNTRY :: " + country);
+        System.out.println("OUTPUT========SUB COLOR :: " + sub_color);
 
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.getAction() != null && intent.getAction().equals("FromPushNotification")) {
+                store_id = intent.getStringExtra("store_id");
+                flag = intent.getStringExtra("flag");
+                fromWhere = intent.getStringExtra("fromWhere");
 
+            }
+        }
 
 
         /*TefalApp.getInstance().setFlage(flag);
@@ -143,28 +151,20 @@ public class DishDashaProductActivity extends BaseActivity {
                 }
             }
         });
-        //====This block of code is responsible for restarting activity while searching by color season, etc--======
 
-        if (getIntent().getStringExtra("store_name") != null) {
-            TefalApp.getInstance().setStoreName(getIntent().getStringExtra("store_name"));
-        }
+
         toolbar_title.setText(TefalApp.getInstance().getStoreName());
 
-
-        // TefalApp.getInstance().setStoreName(getIntent().getStringExtra("store_name"));
-        // System.out.println("HELLO=="+getIntent().getStringExtra("store_name"));
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
         });
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
         fragmentInflate();
 
 
@@ -323,47 +323,47 @@ public class DishDashaProductActivity extends BaseActivity {
     private void fragmentInflate() {
 
 
-        if (fromWhere.equals("textile")) {
-            Bundle bundle = new Bundle();
-            bundle.putString("store_id", store_id);
-            bundle.putString("flag", "dish");
+        if (fromWhere != null) {
 
-            subText.setText("Textiles");
+            if (fromWhere.equals("textile")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("store_id", store_id);
+                bundle.putString("flag", "dish");
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            FragmentTextileProducts fragmentTextileProducts = new FragmentTextileProducts();
-            fragmentTextileProducts.setArguments(bundle);
-            // fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.fragmentContainer, fragmentTextileProducts);
-            fragmentTransaction.commit();
-        }
-        if (fromWhere.equals("tailor")) {
-            //  WebCallServiceCart() ;
+                subText.setText("Textiles");
 
-            subText.setText("Tailors");
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentTextileProducts fragmentTextileProducts = new FragmentTextileProducts();
+                fragmentTextileProducts.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragmentTextileProducts);
+                fragmentTransaction.commit();
 
-            Bundle bundle = new Bundle();
-            bundle.putString("store_id", store_id);
-            bundle.putString("flag", "dish");
-
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            TailorTextileChooseFragment tailorTextileChooseFragment = new TailorTextileChooseFragment();
-            tailorTextileChooseFragment.setArguments(bundle);
-            //fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.fragmentContainer, tailorTextileChooseFragment);
-            //
-            fragmentTransaction.commit();
+            }
+            if (fromWhere.equals("tailor")) {
 
 
-            // Toast.makeText(this, "HEllo Tailor", Toast.LENGTH_SHORT).show();
+                subText.setText("Tailors");
+
+                Bundle bundle = new Bundle();
+                bundle.putString("store_id", store_id);
+                bundle.putString("flag", "dish");
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                TailorTextileChooseFragment tailorTextileChooseFragment = new TailorTextileChooseFragment();
+                tailorTextileChooseFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentContainer, tailorTextileChooseFragment);
+
+                fragmentTransaction.commit();
+
+
+            }
+
         }
 
 
     }
 
-
-    // public interface FragmentActivityCommunication
 
 }

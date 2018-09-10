@@ -71,7 +71,7 @@ public class SplashActivity extends BaseActivity {
                 public void run() {
 
 
-                    WebCallServiceSetToken();
+                  //  WebCallServiceSetToken();
 
                     String keyLang = session.getKeyLang();
                     String lang = keyLang.equalsIgnoreCase("English") ? "en" : "ar";
@@ -128,7 +128,7 @@ public class SplashActivity extends BaseActivity {
                                     Log.d("user_name == ", session.getKeyUserName());
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
-                                    WebCallServiceSetToken();
+                                   // WebCallServiceSetToken();
 
                                 } else {
                                     Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
@@ -201,16 +201,7 @@ public class SplashActivity extends BaseActivity {
                                 JSONObject object = new JSONObject(response);
                                 String status = object.getString("status");
                                 String message = object.getString("message");
-                                if (status.equals("1")) {
-                                    //  Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
-                                    startActivity(new Intent(SplashActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                                    finish();
-
-                                } else {
-
-                                    // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                }
                             } catch (JSONException e) {
 
                             }

@@ -313,7 +313,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             toolbar_title.setText(textileProductModel.getDishdasha_product_name());
 
 
-
             View root = tabLayout.getChildAt(0);
             if (root instanceof LinearLayout) {
                 ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
@@ -489,6 +488,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             try {
+
                 DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
                 float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
                 float dpWidth = (displayMetrics.widthPixels / displayMetrics.density);
@@ -554,6 +554,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             try {
 
                 price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
+
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
                 text_price.setText("PRICE : " + price * meter + " KWD");
@@ -582,7 +583,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             // Log.e("feelString", feelString);
             //Log.e("materialString", materialString);
 
-           // Log.e("patternName","patternName"+selectedColor.getPattern_name());
+            // Log.e("patternName","patternName"+selectedColor.getPattern_name());
 
             subText.setVisibility(View.VISIBLE);
             subText.setText(selectedColor.getPattern_name() != null ? selectedColor.getPattern_name() : "");
@@ -694,6 +695,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 }
             }
         });
+
         //this.filterWindowFlag=false
 
         filterWindow = new PopupWindow(
@@ -1272,5 +1274,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((LinearLayout) object);
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        TefalApp.getInstance().setFromPush("no");
+
+        super.onBackPressed();
     }
 }

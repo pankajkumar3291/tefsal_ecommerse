@@ -130,15 +130,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //                }
 
                 if (category.equalsIgnoreCase("DTE")) {
+
                     intent = new Intent(getApplicationContext(), DishDashaProductActivity.class);
                     intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
                     intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+                    intent.putExtra("fromWhere", "textile");
+                    intent.putExtra("flag", "dish");
 
                     TefalApp.getInstance().setStoreId(remoteMessage.getData().get("store_id"));
                     TefalApp.getInstance().setProductId(remoteMessage.getData().get("product_id"));
                     TefalApp.getInstance().setWhereFrom("textile");
                     TefalApp.getInstance().setFlage("dish");
                     TefalApp.getInstance().setFromPush("yes");
+
                 }
 
                 if (category.equalsIgnoreCase("DB")) {
@@ -225,7 +229,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.logo_blue)
+                    .setSmallIcon(R.drawable.logo_blue) //your app icon
+                    .setBadgeIconType(R.drawable.logo_blue) //your app icon
                     .setContentTitle(title)
                     .setContentText(message)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_blue))
