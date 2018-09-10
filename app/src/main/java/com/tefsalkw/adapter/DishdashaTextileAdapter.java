@@ -185,7 +185,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
                     } else
                         activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
-                                .putExtra("Flag", flag));
+                                .putExtra("flag", flag));
                 }
             });
         } catch (Exception exc) {

@@ -295,6 +295,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 TefalApp.getInstance().setColorPosition(0);
                 colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
+                TefalApp.getInstance().setStoreName(textileProductModel.getStore_name());
             }
 
 

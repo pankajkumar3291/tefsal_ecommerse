@@ -219,7 +219,12 @@ public class DishDashaProductActivity extends BaseActivity {
 
 
             } else {
-                super.onBackPressed();
+
+                Intent mainIntent = new Intent(DishDashaProductActivity.this, MainActivity.class);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mainIntent);
+                //finish();
+
             }
         }
 
@@ -241,6 +246,8 @@ public class DishDashaProductActivity extends BaseActivity {
 
         Log.e(DishDashaProductActivity.class.getSimpleName(), "onResume");
 
+        if (toolbar_title != null)
+            toolbar_title.setText(TefalApp.getInstance().getStoreName());
         httpGetBadgesCall();
 
     }

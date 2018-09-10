@@ -580,8 +580,6 @@ public class FragmentTextileProducts extends BaseFragment {
 
 
     //End filteration
-
-
     //Remove filteration
 
 
@@ -932,6 +930,7 @@ public class FragmentTextileProducts extends BaseFragment {
             }
         }
     }
+
 
 
 }
