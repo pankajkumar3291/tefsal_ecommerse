@@ -98,13 +98,23 @@ public class OtherStoresActivity extends BaseActivity {
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
         flag = getIntent().getStringExtra("flag");
 
 
-        if (flag.equals("Accessories")) {
-            sub_cat_id = getIntent().getStringExtra("sub_cat");
-            System.out.println("SUB CATEGORY===" + sub_cat_id);
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.getAction() != null && intent.getAction().equals("FromPushNotification")) {
 
+                flag = intent.getStringExtra("flag");
+
+                if (flag.equals("Accessories")) {
+
+                    sub_cat_id = getIntent().getStringExtra("sub_cat");
+
+                }
+
+            }
         }
 
 

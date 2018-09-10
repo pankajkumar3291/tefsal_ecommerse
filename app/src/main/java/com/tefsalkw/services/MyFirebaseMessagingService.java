@@ -88,6 +88,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         try {
 
             if (type.equalsIgnoreCase("store")) {
+
                 if (category.equalsIgnoreCase("DTA")) {
 
                     TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
@@ -115,6 +116,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 if (category.equalsIgnoreCase("DB")) {
 
                     intent = new Intent(getApplicationContext(), OtherStoresActivity.class);
+                    intent.putExtra("flag", "Daraa");
+                }
+
+                if (category.equalsIgnoreCase("AB")) {
+
+                    intent = new Intent(getApplicationContext(), OtherStoresActivity.class);
+                    intent.putExtra("flag", "Abaya");
                 }
 
 
@@ -149,6 +157,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent = new Intent(getApplicationContext(), ZaaraDaraaActivity.class);
                     intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
                     intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
+                    intent.putExtra("fromWhere", "textile");
+                    intent.putExtra("flag", "dish");
                 }
 
 
