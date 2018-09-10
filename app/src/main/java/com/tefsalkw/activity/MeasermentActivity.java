@@ -2504,7 +2504,7 @@ public class MeasermentActivity extends BaseActivity {
                     System.out.println("OUTPUT  PEN POCKET===" + mSessionManager.getKeyPenPocket());
                     System.out.println("OUTPUT  MOBILE POCKET==" + mSessionManager.getKeyMobilePocket());
 
-                    Log.d("Tefsal", url + params);
+                    Log.d("Tefsal", url + new JSONObject(params));
 
                     return params;
                 }
