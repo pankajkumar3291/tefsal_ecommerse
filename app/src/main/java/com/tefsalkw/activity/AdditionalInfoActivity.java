@@ -29,7 +29,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
-import com.tefsalkw.kotlin.SignupThankYouActivity;
 import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.models.SignUpErrorMessageRecordModel;
 import com.tefsalkw.utils.Contents;
@@ -629,7 +628,7 @@ public class AdditionalInfoActivity extends BaseActivity {
                                     session.setToken(jsonObject.getString("access_token"));
                                     session.setKeyUserName(str_fname+" "+str_lname);*/
 
-                                    startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).putExtra("email", input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                    startActivity(new Intent(AdditionalInfoActivity.this, SignUpThankYouActivity.class).putExtra("email", input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                     // startActivity(new Intent(AdditionalInfoActivity.this, AdditionalInfoActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                                     finish();
 
