@@ -141,9 +141,6 @@
             android:name=".activity.TextileDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.AddressPageActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.PaymentSelectActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
@@ -152,15 +149,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.TailorSelectClothActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.DishdishaStyleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.ChangePasswordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.ChangePwdActivity" />
         <activity
             android:name=".activity.TermsConditionActitivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -251,7 +244,6 @@
         <activity
             android:name=".activity.CountryPopUpActivity"
             android:theme="@style/TransparentTheme" />
-        <activity android:name=".kotlin.SignupThankYouActivity" />
         <activity
             android:name=".activity.CartAddressSelectionActivity"
             android:screenOrientation="portrait"
