@@ -98,8 +98,9 @@ public class SettingsActivity extends BaseActivity {
 
         // This block of code is used to hide from settings remove edit profile / change password / logout while user enters as guest
 
-        if (session.getCustomerId().equals("")) {
-            text_logout.setVisibility(GONE);
+        if (session.getIsGuestId()) {
+
+          //  text_logout.setVisibility(GONE);
             text_change_password.setVisibility(GONE);
             text_edit_profile.setVisibility(GONE);
             view1.setVisibility(GONE);

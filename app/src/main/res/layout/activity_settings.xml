@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     android:orientation="vertical"
     tools:context="com.tefsalkw.activity.SettingsActivity">
 
@@ -15,72 +14,72 @@
 
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
         <TextView
+            android:id="@+id/text_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_profile"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_edit_profile"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/title_edit_profile"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view1"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <TextView
+            android:id="@+id/text_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_key"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_change_password"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/title_change_password"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view2"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="100">
 
             <TextView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="60"
                 android:drawableLeft="@drawable/ic_language"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:layout_height="50dp"
-                android:layout_weight="60"
-                android:layout_width="0dp"
                 android:text="@string/title_change_language"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_normal"
                 android:textStyle="bold" />
 
             <Spinner
-                android:entries="@array/language"
-                android:gravity="center_vertical|right"
                 android:id="@+id/text_language_spinner"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="40"
-                android:layout_width="0dp"
+                android:entries="@array/language"
+                android:gravity="center_vertical|right"
                 android:text="@string/btn_english"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_small"
@@ -89,82 +88,82 @@
         </LinearLayout>
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view3"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <TextView
+            android:id="@+id/text_send_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_mail"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_send_feedback"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/title_send_feedback"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view4"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <TextView
+            android:id="@+id/text_terms"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_notebook"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_terms"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/title_term_conditions"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view5"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <TextView
+            android:id="@+id/text_about"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_about"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_about"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/privacy_policy"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view6"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
         <TextView
+            android:id="@+id/text_logout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:drawableLeft="@drawable/ic_logout"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:id="@+id/text_logout"
-            android:layout_height="50dp"
-            android:layout_width="match_parent"
             android:text="@string/title_logout"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold" />
 
         <View
-            android:background="@color/colorDivider"
             android:id="@+id/view7"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDivider" />
 
     </LinearLayout>
 

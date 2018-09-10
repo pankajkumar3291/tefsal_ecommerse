@@ -206,7 +206,7 @@ public class MainActivity extends BaseActivity
         });
 
 
-        if (session.getCustomerId().equals("")) {
+        if (session.getIsGuestId()) {
             user_name.setText("Guest");
             order_menu.setVisibility(View.GONE);
             mail_menu.setVisibility(View.GONE);
@@ -407,19 +407,15 @@ public class MainActivity extends BaseActivity
 
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 
-        if(badgeRecordModel != null)
-        {
+        if (badgeRecordModel != null) {
             order_menu.setText("" + badgeRecordModel.getOrders_badge());
             mail_menu.setText("" + badgeRecordModel.getMails_badge());
             total_badge_txt.setText("" + badgeRecordModel.getTotal_badge());
-        }
-        else
-        {
+        } else {
             order_menu.setText("0");
             mail_menu.setText("0");
             total_badge_txt.setText("0");
         }
-
 
 
     }
