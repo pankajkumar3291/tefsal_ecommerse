@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
+import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.Colors;
 
@@ -84,7 +84,7 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
                 TefalApp.getInstance().setColorPosition(position);
                 notifyDataSetChanged();
 
-                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
+                DaraAbayaProductDetailsActivity zaaraDaraaActivity = (DaraAbayaProductDetailsActivity) activity;
                 zaaraDaraaActivity.showSizeOnColorSelection(position, productSizesList.get(position));
 
 

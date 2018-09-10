@@ -143,7 +143,7 @@ public class TailorProductActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DishDashaStoresActivity.class.getSimpleName(),"onResume");
+        Log.e(TailorProductActivity.class.getSimpleName(),"onResume");
 
         httpGetBadgesCall();
 

@@ -21,6 +21,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
+import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.activity.DaraAbayaStoresActivity;
 import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishDashaProductActivity;
@@ -28,7 +29,6 @@ import com.tefsalkw.activity.MailingSystemActivity;
 import com.tefsalkw.activity.MainActivity;
 import com.tefsalkw.activity.MyOrderActivity;
 import com.tefsalkw.activity.OrderDetailsActivity;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.NotificationUtils;
@@ -154,7 +154,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
 
                 if (category.equalsIgnoreCase("DB")) {
-                    intent = new Intent(getApplicationContext(), ZaaraDaraaActivity.class);
+                    intent = new Intent(getApplicationContext(), DaraAbayaProductDetailsActivity.class);
                     intent.putExtra("store_id", remoteMessage.getData().get("store_id"));
                     intent.putExtra("product_id", remoteMessage.getData().get("product_id"));
                     intent.putExtra("fromWhere", "textile");

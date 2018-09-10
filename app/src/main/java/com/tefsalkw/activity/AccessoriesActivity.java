@@ -26,10 +26,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.AccessoriesResponse;
-import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.AccessoriesAdapter;
+import com.tefsalkw.models.AccessoriesResponse;
+import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -93,11 +93,9 @@ public class AccessoriesActivity extends BaseActivity {
         session = new SessionManager(getApplicationContext());
 
         view_cart_btn.setVisibility(View.VISIBLE);
-        view_cart_btn.setOnClickListener(new View.OnClickListener()
-        {
+        view_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 try {
                     startActivity(new Intent(AccessoriesActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 } catch (Exception e) {
@@ -117,7 +115,7 @@ public class AccessoriesActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DishDashaStoresActivity.class.getSimpleName(),"onResume");
+        Log.e(AccessoriesActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -198,9 +196,6 @@ public class AccessoriesActivity extends BaseActivity {
     }
 
 
-
-
-
     public void WebCallServiceStores() {
         try {
             final String url = Contents.baseURL + "getAccessoriesSubCats";
@@ -226,10 +221,8 @@ public class AccessoriesActivity extends BaseActivity {
                                     recycler.setLayoutManager(mLayoutManager);
                                     recycler.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                                     recycler.setItemAnimator(new DefaultItemAnimator());
-                                }
-                                else
-                                {
-                                    Toast.makeText(AccessoriesActivity.this,mResponse.getMessage(),Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(AccessoriesActivity.this, mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
 
                             }
@@ -267,6 +260,7 @@ public class AccessoriesActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;

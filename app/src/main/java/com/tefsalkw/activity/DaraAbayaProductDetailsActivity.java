@@ -73,7 +73,7 @@ import butterknife.ButterKnife;
 
 //import android.widget.RelativeLayout.LayoutParams;
 
-public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class DaraAbayaProductDetailsActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     private int dotsCount;
 
@@ -143,7 +143,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     public static List<ProductMeasurement> productMeasurementList;
 
     private static Tracker mTracker;
-    private static final String TAG = "ZaaraDaraaActivity";
+    private static final String TAG = "DaraAbayaProductDetailsActivity";
 
     ProductSizeAdapterHorizontalZaraDara productSizeAdapterHorizontalZaraDara;
     ProductColorAdapterHorizontalZaraDara productColorAdapterHorizontalZaraDara;
@@ -188,7 +188,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.zaara_daraa);
+        setContentView(R.layout.activity_dara_abaya_product_details);
 
 
         //********************  Init Session  ********************/
@@ -259,7 +259,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(ZaaraDaraaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    startActivity(new Intent(DaraAbayaProductDetailsActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -287,7 +287,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 try {
 
                     if (sizeGuideResponseHtml != null && !sizeGuideResponseHtml.equalsIgnoreCase("")) {
-                        Intent intent = new Intent(ZaaraDaraaActivity.this, SizeGuideActivirty.class);
+                        Intent intent = new Intent(DaraAbayaProductDetailsActivity.this, SizeGuideActivirty.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
 
@@ -295,7 +295,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                         startActivity(intent);
                     } else {
-                        Toast.makeText(ZaaraDaraaActivity.this, "Sorry! Size guide not available!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DaraAbayaProductDetailsActivity.this, "Sorry! Size guide not available!", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -311,14 +311,14 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
                 if (daraAbayaDetailRecord == null) {
 
-                    Toast.makeText(ZaaraDaraaActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaraAbayaProductDetailsActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
 //                if (!isSizeSelected) {
 //
-//                    Toast.makeText(ZaaraDaraaActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DaraAbayaProductDetailsActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
 
@@ -351,7 +351,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     }
 
                 } else {
-                    Toast.makeText(ZaaraDaraaActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DaraAbayaProductDetailsActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -396,8 +396,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
         text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
 
-        productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), ZaaraDaraaActivity.this);
-        LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), DaraAbayaProductDetailsActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(DaraAbayaProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         colorRecyclerView.setLayoutManager(horizontalLayoutManagaer1);
         TefalApp.getInstance().setColorPosition(0);
         colorRecyclerView.setAdapter(productColorAdapterHorizontalZaraDara);
@@ -434,8 +434,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
 
 
         // Bind sizes
-        productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors().get(0).getSizes(), ZaaraDaraaActivity.this);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(ZaaraDaraaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        productSizeAdapterHorizontalZaraDara = new ProductSizeAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors().get(0).getSizes(), DaraAbayaProductDetailsActivity.this);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(DaraAbayaProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
         sizeRecyclerView.setLayoutManager(horizontalLayoutManagaer);
         TefalApp.getInstance().setPosition(0);
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
@@ -501,7 +501,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                     params.put("product_id", productId);
                     params.put("store_id", storeId);
 
-                    Log.e(ZaaraDaraaActivity.class.getSimpleName(), url + new JSONObject(params));
+                    Log.e(DaraAbayaProductDetailsActivity.class.getSimpleName(), url + new JSONObject(params));
 
                     return params;
                 }
@@ -620,7 +620,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         super.onResume();
 
 
-        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
+        Log.e(DaraAbayaProductDetailsActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -714,8 +714,8 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         final String url = Contents.baseURL + "addCart";
 
 
-        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        Log.i(TAG, "Setting screen name: " + "DaraAbayaProductDetailsActivity");
+        mTracker.setScreenName("Image~" + "DaraAbayaProductDetailsActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         SimpleProgressBar.showProgress(this);
 
@@ -778,7 +778,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                         session.setKeyCartId(cart_id);
 
                         String itemType = jsonObject.getString("item_type");
-                        DialogKart dg = new DialogKart(ZaaraDaraaActivity.this, false, itemType, "");
+                        DialogKart dg = new DialogKart(DaraAbayaProductDetailsActivity.this, false, itemType, "");
                         dg.show();
 
                     } catch (JSONException e) {
@@ -924,7 +924,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
             });
 
-            // Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+            // Picasso.with(DaraAbayaProductDetailsActivity.this).load(img.get(position)).into(imageView);
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
@@ -945,11 +945,11 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
     }
 
     public void gotoCart(View v) {
-        Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-        mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
+        Log.i(TAG, "Setting screen name: " + "DaraAbayaProductDetailsActivity");
+        mTracker.setScreenName("Image~" + "DaraAbayaProductDetailsActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
-        startActivity(new Intent(ZaaraDaraaActivity.this, CartActivity.class));
+        startActivity(new Intent(DaraAbayaProductDetailsActivity.this, CartActivity.class));
 
     }
 
@@ -958,7 +958,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         List<String> img = new ArrayList<>();
         img.add(image_url);
 
-        dialog = new Dialog(ZaaraDaraaActivity.this);
+        dialog = new Dialog(DaraAbayaProductDetailsActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.image_show_dialog);
 
@@ -966,7 +966,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         ViewPager dialog_viewPager = (ViewPager) dialog.findViewById(R.id.dialog_viewPager);
 
 
-        MainPagerAdapterForDialog mainPagerAdapterForDialog = new MainPagerAdapterForDialog(ZaaraDaraaActivity.this, img);
+        MainPagerAdapterForDialog mainPagerAdapterForDialog = new MainPagerAdapterForDialog(DaraAbayaProductDetailsActivity.this, img);
         dialog_viewPager.setAdapter(mainPagerAdapterForDialog);
         dialog_viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -1056,14 +1056,14 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
                 }
             });
 
-            //Picasso.with(ZaaraDaraaActivity.this).load(img.get(position)).into(imageView);
+            //Picasso.with(DaraAbayaProductDetailsActivity.this).load(img.get(position)).into(imageView);
 
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .error(R.drawable.no_image_placeholder_grid);
 
-            GlideApp.with(ZaaraDaraaActivity.this).asBitmap().load(img.get(position)).apply(options).into(imageView);
+            GlideApp.with(DaraAbayaProductDetailsActivity.this).asBitmap().load(img.get(position)).apply(options).into(imageView);
 
 
             container.addView(itemView);

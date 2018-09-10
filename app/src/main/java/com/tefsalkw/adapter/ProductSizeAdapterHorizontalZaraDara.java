@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class ProductSizeAdapterHorizontalZaraDara extends RecyclerView.Adapter<P
 
                 //ZaraDaraSizeModel zaraDaraSizeModel = productSizesList.get(position).getSizes();
 
-                ZaaraDaraaActivity zaaraDaraaActivity = (ZaaraDaraaActivity) activity;
+                DaraAbayaProductDetailsActivity zaaraDaraaActivity = (DaraAbayaProductDetailsActivity) activity;
                 zaaraDaraaActivity.showSelectedSizeData(sizes);
 
             }

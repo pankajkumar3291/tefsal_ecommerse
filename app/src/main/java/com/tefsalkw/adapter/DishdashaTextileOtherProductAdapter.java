@@ -16,7 +16,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.ZaaraDaraaActivity;
+import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.models.ProductRecord;
 
 import java.io.Serializable;
@@ -106,7 +106,7 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(activity, ZaaraDaraaActivity.class);
+                Intent intent = new Intent(activity, DaraAbayaProductDetailsActivity.class);
                 Bundle bundle = new Bundle();
                 ProductRecord productRecord = productRecords.get(position);
                 productRecord.setStore_id(storeId);

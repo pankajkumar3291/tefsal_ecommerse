@@ -127,7 +127,7 @@ public class DaraAbayaStoresActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
+        Log.e(DaraAbayaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

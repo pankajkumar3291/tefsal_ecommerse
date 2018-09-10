@@ -132,7 +132,7 @@
             android:name=".activity.AccessoriesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.ZaaraDaraaActivity"
+            android:name=".activity.DaraAbayaProductDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CartActivity"

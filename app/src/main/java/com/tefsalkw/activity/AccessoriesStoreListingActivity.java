@@ -123,7 +123,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
+        Log.e(AccessoriesStoreListingActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
