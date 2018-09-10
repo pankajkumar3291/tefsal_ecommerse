@@ -162,7 +162,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ChangePwdActivity" />
         <activity
-            android:name=".activity.TC_Actitivity"
+            android:name=".activity.TermsConditionActitivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AboutUsActivity"

@@ -146,7 +146,7 @@ public class SettingsActivity extends BaseActivity {
         text_terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SettingsActivity.this, TC_Actitivity.class));
+                startActivity(new Intent(SettingsActivity.this, TermsConditionActitivity.class));
             }
         });
 

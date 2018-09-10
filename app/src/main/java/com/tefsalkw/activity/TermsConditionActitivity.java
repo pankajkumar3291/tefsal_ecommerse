@@ -28,7 +28,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TC_Actitivity extends BaseActivity {
+public class TermsConditionActitivity extends BaseActivity {
     @BindView(R.id.toolbar_title)
     TextView toolbar_title;
 
@@ -45,7 +45,7 @@ public class TC_Actitivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tc__actitivity);
+        setContentView(R.layout.activity_terms_condition);
 
         ButterKnife.bind(this);
         //().hide();
@@ -66,7 +66,7 @@ public class TC_Actitivity extends BaseActivity {
     }
 
     private void httpCallTC() {
-        SimpleProgressBar.showProgress(TC_Actitivity.this);
+        SimpleProgressBar.showProgress(TermsConditionActitivity.this);
         try {
             final String url = Contents.baseURL + "getStaticPages";
 

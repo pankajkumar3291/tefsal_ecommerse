@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Random;
@@ -67,7 +66,7 @@ public class StartActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(StartActivity.this, TC_Actitivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(StartActivity.this, TermsConditionActitivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
     }
