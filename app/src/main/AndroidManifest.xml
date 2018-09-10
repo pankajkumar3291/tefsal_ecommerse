@@ -112,7 +112,7 @@
         <!-- ./Firebase Notifications -->
 
         <activity
-            android:name=".activity.DaraAbayaActivity"
+            android:name=".activity.DishDashaStoresActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -191,7 +191,7 @@
             android:name=".activity.ProductListOtherActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.OtherStoresActivity"
+            android:name=".activity.DaraAbayaStoresActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AccessoryProductDetailsActivity"

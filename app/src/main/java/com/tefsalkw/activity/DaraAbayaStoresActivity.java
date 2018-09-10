@@ -40,7 +40,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OtherStoresActivity extends BaseActivity {
+public class DaraAbayaStoresActivity extends BaseActivity {
 
     @BindView(R.id.recycler)
     RecyclerView recycler;
@@ -69,7 +69,7 @@ public class OtherStoresActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_other_stores);
+        setContentView(R.layout.activity_dara_abaya_stores);
 
         ButterKnife.bind(this);
         session = new SessionManager(this);
@@ -81,7 +81,7 @@ public class OtherStoresActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(OtherStoresActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    startActivity(new Intent(DaraAbayaStoresActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -127,7 +127,7 @@ public class OtherStoresActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
+        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 
@@ -213,7 +213,7 @@ public class OtherStoresActivity extends BaseActivity {
 
 
     public void WebCallServiceStores() {
-        SimpleProgressBar.showProgress(OtherStoresActivity.this);
+        SimpleProgressBar.showProgress(DaraAbayaStoresActivity.this);
         try {
             final String url = Contents.baseURL + "getStores";
 
@@ -239,12 +239,12 @@ public class OtherStoresActivity extends BaseActivity {
                                         Gson g = new Gson();
                                         DishdashaStoreModel mResponse = g.fromJson(response, DishdashaStoreModel.class);
 
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(OtherStoresActivity.this);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(DaraAbayaStoresActivity.this);
                                         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
                                         recycler.setLayoutManager(layoutManager);
                                         recycler.setItemAnimator(new DefaultItemAnimator());
-                                        adapter = new OtherStoresAdapter(OtherStoresActivity.this, mResponse.getRecord(), flag);
+                                        adapter = new OtherStoresAdapter(DaraAbayaStoresActivity.this, mResponse.getRecord(), flag);
                                         recycler.setAdapter(adapter);
                                     } else {
                                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -291,7 +291,7 @@ public class OtherStoresActivity extends BaseActivity {
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(OtherStoresActivity.this);
+            RequestQueue requestQueue = Volley.newRequestQueue(DaraAbayaStoresActivity.this);
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
 

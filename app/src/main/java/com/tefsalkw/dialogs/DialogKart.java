@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 
 import com.tefsalkw.R;
 import com.tefsalkw.activity.CartActivity;
-import com.tefsalkw.activity.DaraAbayaActivity;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.app.TefalApp;
 
@@ -81,7 +81,7 @@ public class DialogKart extends Dialog {
 
 
 
-                  context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+                  context.startActivity(new Intent(context, DishDashaStoresActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
 
               }
               else
@@ -100,7 +100,7 @@ public class DialogKart extends Dialog {
                 if(categoryId.equalsIgnoreCase("1"))
                 {
 
-                    context.startActivity(new Intent(context, DaraAbayaActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
+                    context.startActivity(new Intent(context, DishDashaStoresActivity.class).putExtra("flag","dish").putExtra("fromDialogKart",true));
 
                 }
 

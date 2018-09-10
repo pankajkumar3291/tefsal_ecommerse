@@ -21,13 +21,13 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
-import com.tefsalkw.activity.DaraAbayaActivity;
+import com.tefsalkw.activity.DaraAbayaStoresActivity;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishDashaProductActivity;
 import com.tefsalkw.activity.MailingSystemActivity;
 import com.tefsalkw.activity.MainActivity;
 import com.tefsalkw.activity.MyOrderActivity;
 import com.tefsalkw.activity.OrderDetailsActivity;
-import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.activity.ZaaraDaraaActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.Config;
@@ -95,7 +95,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     TefalApp.getInstance().setMin_meters("3");
                     TefalApp.getInstance().setStyleName("TefsalDefault");
 
-                    intent = new Intent(getApplicationContext(), DaraAbayaActivity.class);
+                    intent = new Intent(getApplicationContext(), DishDashaStoresActivity.class);
                     intent.putExtra("sub_category", "6");
                     intent.putExtra("flag", "dish");
 
@@ -108,20 +108,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     TefalApp.getInstance().setStyleName("TefsalDefault");
 
 
-                    intent = new Intent(getApplicationContext(), DaraAbayaActivity.class);
+                    intent = new Intent(getApplicationContext(), DishDashaStoresActivity.class);
                     intent.putExtra("sub_category", "5");
                     intent.putExtra("flag", "dish");
                 }
 
                 if (category.equalsIgnoreCase("DB")) {
 
-                    intent = new Intent(getApplicationContext(), OtherStoresActivity.class);
+                    intent = new Intent(getApplicationContext(), DaraAbayaStoresActivity.class);
                     intent.putExtra("flag", "Daraa");
                 }
 
                 if (category.equalsIgnoreCase("AB")) {
 
-                    intent = new Intent(getApplicationContext(), OtherStoresActivity.class);
+                    intent = new Intent(getApplicationContext(), DaraAbayaStoresActivity.class);
                     intent.putExtra("flag", "Abaya");
                 }
 

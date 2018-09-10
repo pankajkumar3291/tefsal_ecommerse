@@ -95,13 +95,13 @@ public class DishdishaStyleActivity extends BaseActivity {
                 WebCallServiceStores();
             } else {
                 TefalApp.getInstance().setToolbar_title("DISHDASHA");
-                startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 finish();
             }
 
         } else {
             TefalApp.getInstance().setToolbar_title("DISHDASHA");
-            startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish").setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         }
 
@@ -167,7 +167,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                                         TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
                                                         TefalApp.getInstance().setMin_meters("3");
                                                         TefalApp.getInstance().setStyleName("TefsalDefault");
-                                                        startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish"));
+                                                        startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
                                                         dialog.cancel();
                                                     }
@@ -197,7 +197,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                                     TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
                                                     TefalApp.getInstance().setMin_meters("3");
                                                     TefalApp.getInstance().setStyleName("TefsalDefault");
-                                                    startActivity(new Intent(DishdishaStyleActivity.this, DaraAbayaActivity.class).putExtra("flag", "dish"));
+                                                    startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
                                                     dialog.cancel();
                                                 }

@@ -37,7 +37,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DaraAbayaActivity extends BaseActivity {
+public class DishDashaStoresActivity extends BaseActivity {
 
 
     @BindView(R.id.toolbar)
@@ -66,7 +66,7 @@ public class DaraAbayaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dara_abaya);
+        setContentView(R.layout.activity_dishdasha_stores);
 
         ButterKnife.bind(this);
 
@@ -83,7 +83,7 @@ public class DaraAbayaActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(DaraAbayaActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    startActivity(new Intent(DishDashaStoresActivity.this, CartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -146,7 +146,7 @@ public class DaraAbayaActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
+        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

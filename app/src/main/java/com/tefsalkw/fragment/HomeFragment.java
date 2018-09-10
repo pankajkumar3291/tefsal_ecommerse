@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,9 +20,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesActivity;
-import com.tefsalkw.activity.DaraAbayaActivity;
+import com.tefsalkw.activity.DaraAbayaStoresActivity;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishdishaStyleActivity;
-import com.tefsalkw.activity.OtherStoresActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -244,7 +243,7 @@ public class HomeFragment extends BaseFragment {
                     if (position == 0) {
                         TefalApp.getInstance().setToolbar_title("TEXTILE STORES");
                         if (sessionManager.getIsGuestId()) {
-                            startActivity(new Intent(getActivity(), DaraAbayaActivity.class).putExtra("flag", "dish"));
+                            startActivity(new Intent(getActivity(), DishDashaStoresActivity.class).putExtra("flag", "dish"));
                         } else {
                             startActivity(new Intent(getActivity(), DishdishaStyleActivity.class));
                             productFlag = "1";
@@ -252,11 +251,11 @@ public class HomeFragment extends BaseFragment {
 
                     } else if (position == 1) {
                         TefalApp.getInstance().setToolbar_title("DARAA STORES");
-                        startActivity(new Intent(getActivity(), OtherStoresActivity.class).putExtra("flag", "Daraa"));
+                        startActivity(new Intent(getActivity(), DaraAbayaStoresActivity.class).putExtra("flag", "Daraa"));
                         productFlag = "3";
                     } else if (position == 2) {
                         TefalApp.getInstance().setToolbar_title("ABAYA STORES");
-                        startActivity(new Intent(getActivity(), OtherStoresActivity.class).putExtra("flag", "Abaya"));
+                        startActivity(new Intent(getActivity(), DaraAbayaStoresActivity.class).putExtra("flag", "Abaya"));
                         productFlag = "2";
                     } else if (position == 3) {
                         startActivity(new Intent(getActivity(), AccessoriesActivity.class));

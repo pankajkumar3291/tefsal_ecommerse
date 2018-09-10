@@ -193,7 +193,7 @@ public class ProductListOtherActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
+        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

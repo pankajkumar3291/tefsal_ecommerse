@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.activity.DaraAbayaActivity;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.Config;
@@ -177,7 +177,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
                 TefalApp.getInstance().setMin_meters(minMeterFloat+"");
                 TefalApp.getInstance().setStyleName(record.get(position).getName());
                 TefalApp.getInstance().setStyleId(record.get(position).getId());
-                activity.startActivity(new Intent(activity, DaraAbayaActivity.class).putExtra("flag", "dish"));
+                activity.startActivity(new Intent(activity, DishDashaStoresActivity.class).putExtra("flag", "dish"));
             }
         });
 

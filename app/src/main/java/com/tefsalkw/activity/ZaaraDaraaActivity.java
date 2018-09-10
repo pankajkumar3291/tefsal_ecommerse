@@ -620,7 +620,7 @@ public class ZaaraDaraaActivity extends BaseActivity implements BaseSliderView.O
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
+        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

@@ -30,12 +30,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.models.TailoringResponse;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.DaraAbayaActivity;
 import com.tefsalkw.activity.TailorProductActivity;
 import com.tefsalkw.adapter.TailorProductFromCartAdapterListView;
 import com.tefsalkw.app.TefalApp;
@@ -223,7 +223,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
             public void onClick(View v) {
 
                 TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
-                startActivity(new Intent(getActivity(), DaraAbayaActivity.class).putExtra("flag", "dish"));
+                startActivity(new Intent(getActivity(), DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
                 //DishDashaProductActivity.viewPager.setCurrentItem(0);
             }

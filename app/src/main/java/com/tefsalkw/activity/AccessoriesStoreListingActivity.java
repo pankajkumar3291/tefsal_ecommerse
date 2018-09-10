@@ -31,20 +31,14 @@ import com.tefsalkw.adapter.AccessoriesProductAdapter;
 import com.tefsalkw.adapter.DishdashaTextileOtherProductAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.AccessoriesListResponseNew;
-import com.tefsalkw.models.AccessoriesModelNew;
-import com.tefsalkw.models.AccessoriesRecord;
 import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.ColorsNew;
-import com.tefsalkw.models.SizesNew;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -129,7 +123,7 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(DaraAbayaActivity.class.getSimpleName(), "onResume");
+        Log.e(DishDashaStoresActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

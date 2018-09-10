@@ -17,7 +17,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoriesStoreListingActivity;
-import com.tefsalkw.activity.OtherStoresActivity;
+import com.tefsalkw.activity.DaraAbayaStoresActivity;
 import com.tefsalkw.activity.ProductListOtherActivity;
 import com.tefsalkw.models.D_StoreRecord;
 
@@ -140,14 +140,14 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
                         activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                                 .putExtra("flag", flag)
-                                .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
+                                .putExtra("sub_cat", DaraAbayaStoresActivity.sub_cat_id)
                                 .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
 
                     } else {
                         activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                                 .putExtra("flag", flag)
-                                .putExtra("sub_cat", OtherStoresActivity.sub_cat_id)
+                                .putExtra("sub_cat", DaraAbayaStoresActivity.sub_cat_id)
                                 .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
 
                     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    tools:context="com.tefsalkw.activity.OtherStoresActivity">
+    tools:context="com.tefsalkw.activity.DaraAbayaStoresActivity">
 
     <include layout="@layout/toolbar" />
 
