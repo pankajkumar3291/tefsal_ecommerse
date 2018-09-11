@@ -28,7 +28,6 @@ import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.NotificationUtils;
-import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -190,7 +189,7 @@ public class SigninActivity extends BaseActivity {
                                     session.setCustomerId(jsonObject.getString("user_id"));
                                     session.setToken(jsonObject.getString("access_token"));
                                     session.setKeyUserName(jsonObject.getString("username"));
-
+                                    session.setIsGuestUser(false);
                                     System.out.println("AFTER DAMP ======== CUSTOMER ID===" + session.getCustomerId());
                                     System.out.println("AFTER DAMP ======== TOKEN===" + session.getToken());
                                     System.out.println("AFTER DAMP ======== CUSTOMER NAME===" + session.getKeyUserName());
@@ -270,10 +269,9 @@ public class SigninActivity extends BaseActivity {
                                     //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
 
-
                                 } else {
 
-                                   // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
 
