@@ -113,13 +113,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     intent.putExtra("flag", "dish");
                 }
 
-                if (category.equalsIgnoreCase("DB")) {
+                if (category.equalsIgnoreCase("D")) {
 
                     intent = new Intent(getApplicationContext(), DaraAbayaStoresActivity.class);
                     intent.putExtra("flag", "Daraa");
                 }
 
-                if (category.equalsIgnoreCase("AB")) {
+                if (category.equalsIgnoreCase("B")) {
 
                     intent = new Intent(getApplicationContext(), DaraAbayaStoresActivity.class);
                     intent.putExtra("flag", "Abaya");

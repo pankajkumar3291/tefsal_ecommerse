@@ -22,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
@@ -240,8 +239,20 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                     recycler_view.setAdapter(adapter);
                                     currentItemsCount = cartResponse.getRecord().size();
 
+                                    if (currentItemsCount > 0) {
+
+                                        edit_btn.setVisibility(View.VISIBLE);
+                                    } else {
+                                        edit_btn.setVisibility(View.GONE);
+                                        finish();
+                                    }
+
+
                                 } else {
-                                    Toast.makeText(getApplicationContext(), cartResponse.getMessage(), Toast.LENGTH_LONG).show();
+
+                                    edit_btn.setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(), "Cart is Empty!", Toast.LENGTH_LONG).show();
+
                                 }
                             }
 
@@ -302,6 +313,8 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 //
 //
 //        System.out.println("I FROM ACTIVITY====");
+
+
     }
 
 
@@ -312,8 +325,13 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
         edit_btn.setText("EDIT");
         if (currentItemsCount == 0) {
             edit_btn.setVisibility(View.GONE);
+
+            finish();
+
         } else {
             edit_btn.setVisibility(View.VISIBLE);
         }
+
+
     }
 }
