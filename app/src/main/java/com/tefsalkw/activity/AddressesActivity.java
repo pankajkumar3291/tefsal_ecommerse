@@ -168,9 +168,7 @@ public class AddressesActivity extends BaseActivity {
                 } else if (spin_country.getSelectedItemPosition() == 0) {
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
-                }
-
-                else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_street.getText().toString().trim())) {
                     input_street.setError(getString(R.string.invalidStreet));
                     return;
                 }
@@ -556,10 +554,10 @@ public class AddressesActivity extends BaseActivity {
 
                         params.put("customer_id", session.getCustomerId());
                         params.put("address_name", input_address_name.getText() + "");
-                        params.put("country", country_iso_code);
-                        params.put("province", province_code);
-                        params.put("city", province_code);
-                        params.put("area", area_code);
+                        params.put("country", spin_country.getSelectedItem().toString());
+                        params.put(" province", spin_city.getSelectedItem().toString());
+                        //params.put("city", province_code);
+                        params.put("area", spin_area.getSelectedItem().toString());
                         params.put("block", input_block.getText() + "");
                         params.put("street", input_street.getText() + "");
                         params.put("avenue", input_avenue.getText() + "");
