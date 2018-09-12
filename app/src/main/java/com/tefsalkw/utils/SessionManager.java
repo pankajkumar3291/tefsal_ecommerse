@@ -19,7 +19,7 @@ public class SessionManager {
 
     private static final String PREF_NAME = "TefsalPref";
 
-    public static final String KEY_GUEST= "guest";
+    public static final String KEY_GUEST = "guest";
     public static final String KEY_CUS_ID = "id";
     public static final String KEY_TOKEN = "token";
 
@@ -166,8 +166,11 @@ public class SessionManager {
 
     public SessionManager(Context context) {
         this._context = context;
-        Tefsal_pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
-        editor = Tefsal_pref.edit();
+        if (context != null) {
+            Tefsal_pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+            editor = Tefsal_pref.edit();
+        }
+
     }
 
 
@@ -197,8 +200,6 @@ public class SessionManager {
         return Tefsal_pref.getBoolean(KEY_GUEST, false);
 
     }
-
-
 
 
     public void setToken(String token) {
