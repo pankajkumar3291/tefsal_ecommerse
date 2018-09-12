@@ -27,11 +27,11 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.dialogs.CountryDialog;
+import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -223,7 +223,7 @@ public class AddAddresssAfterSignUp extends BaseActivity {
             public void onClick(View view) {
 
 
-                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,AddAddresssAfterSignUp.this,"3");
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString, AddAddresssAfterSignUp.this, "3");
                 countryDialog.show();
 
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -249,8 +249,8 @@ public class AddAddresssAfterSignUp extends BaseActivity {
             outState.put("spin_city", spin_city.getSelectedItemPosition());
             outState.put("spin_area", spin_area.getSelectedItemPosition());
 
-            outState.put("spin_city_txt", ""+spin_city.getSelectedItem().toString());
-            outState.put("spin_area_txt", ""+spin_area.getSelectedItem().toString());
+            outState.put("spin_city_txt", "" + spin_city.getSelectedItem().toString());
+            outState.put("spin_area_txt", "" + spin_area.getSelectedItem().toString());
 
 
             outState.put("input_block", input_block.getText().toString().trim());
@@ -308,7 +308,7 @@ public class AddAddresssAfterSignUp extends BaseActivity {
                 input_add_desp.setText(jsonObject.getString("input_add_desp"));
 
 
-                selectedMobileCountry =  gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
+                selectedMobileCountry = gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
                 }.getType());
 
                 input_mob.setText(selectedMobileCountry.getNicename());
@@ -337,8 +337,7 @@ public class AddAddresssAfterSignUp extends BaseActivity {
     }
 
 
-    public  void setCountryFlag()
-    {
+    public void setCountryFlag() {
         input_mob.setText(selectedMobileCountry.getNicename());
         imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
     }
@@ -1262,8 +1261,6 @@ public class AddAddresssAfterSignUp extends BaseActivity {
     }
 
 
-
-
     // This one updated code----
     public void getCountries() {
 
@@ -1625,9 +1622,9 @@ public class AddAddresssAfterSignUp extends BaseActivity {
 
                         System.out.println("CODE COUNTRY===" + country_iso_code);
                         System.out.println("CODE CITY===" + province_code);
-                        params.put("country", country_iso_code);
-                        params.put("city", province_code);
-                        params.put("area", area_code);
+                        params.put("country", spin_country.getSelectedItem().toString());
+                        params.put("province", spin_city.getSelectedItem().toString());
+                        params.put("area", spin_area.getSelectedItem().toString());
                         params.put("block", input_block.getText() + "");
 
                         params.put("street", input_street.getText() + "");
@@ -1689,14 +1686,13 @@ public class AddAddresssAfterSignUp extends BaseActivity {
 
                 imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
 
-               // getProvinces("KW");
+                // getProvinces("KW");
             }
         }
 
     }
 
-    public  void loadAreas()
-    {
+    public void loadAreas() {
         input_mob.setText(selectedMobileCountry.getNicename());
 
         imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());

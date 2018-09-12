@@ -56,9 +56,9 @@ public class FragmentMyAddress extends BaseFragment {
         View v = inflater.inflate(R.layout.addresses_fragment, container, false);
         ButterKnife.bind(this, v);
 
-        session = new SessionManager(getActivity());
 
-        WebCallServiceAddresses();
+
+       // WebCallServiceAddresses();
 
 
         return v;
@@ -67,7 +67,9 @@ public class FragmentMyAddress extends BaseFragment {
     public void onResume() {
         super.onResume();
 
-// add your code here which executes when the Fragment is visible and intractable.
+        session = new SessionManager(getActivity());
+        WebCallServiceAddresses();
+
     }
 
     public void WebCallServiceAddresses() {

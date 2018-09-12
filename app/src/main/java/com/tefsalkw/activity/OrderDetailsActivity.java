@@ -180,27 +180,37 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                     txtDeliveryCharge.setText(deliveryCharge);
                                     Customer_address customer_address = mResponse.getCustomer_address();
 
-                                    String name = customer_address.getAddress_name();
-                                    String house = customer_address.getHouse();
-                                    String street = customer_address.getStreet();
-                                    String block = customer_address.getBlock();
-                                    String area = customer_address.getArea();
-                                    String city = customer_address.getProvince();
+                                    String fullAddress = "";
 
-                                    name = name != null ? name : "-";
-                                    house = house != null ? house : "-";
-                                    street = street != null ? street : "-";
-                                    block = block != null ? block : "-";
-                                    area = area != null ? area : "-";
-                                    city = city != null ? city : "-";
+                                    if(customer_address != null)
+                                    {
+                                        String name = customer_address.getAddress_name();
+                                        String house = customer_address.getHouse();
+                                        String street = customer_address.getStreet();
+                                        String block = customer_address.getBlock();
+                                        String area = customer_address.getArea();
+                                        String city = customer_address.getProvince();
+
+                                        name = name != null ? name : "-";
+                                        house = house != null ? house : "-";
+                                        street = street != null ? street : "-";
+                                        block = block != null ? block : "-";
+                                        area = area != null ? area : "-";
+                                        city = city != null ? city : "-";
+
+                                         fullAddress = name.toUpperCase() + "\n"
+                                                + "House / Building: " + house + " , "
+                                                + "Street: " + street + " , "
+                                                + "Block: " + block + " , "
+                                                + "Area: " + area + " , "
+                                                + "City: " + city + " ";
+                                    }
 
 
-                                    String fullAddress = name.toUpperCase() + "\n"
-                                            + "House / Building: " + house + " , "
-                                            + "Street: " + street + " , "
-                                            + "Block: " + block + " , "
-                                            + "Area: " + area + " , "
-                                            + "City: " + city + " ";
+
+
+
+
 
                                     // String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getProvince() + " " + customer_address.getArea()+ " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number()+ " " + customer_address.getHouse();
                                     txtCustomerAddress.setText(fullAddress);

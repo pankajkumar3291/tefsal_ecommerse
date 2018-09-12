@@ -2,7 +2,6 @@ package com.tefsalkw.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,9 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.SentMailsResponseModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.SentMailAdapter;
+import com.tefsalkw.models.SentMailsResponseModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 
@@ -63,10 +62,11 @@ public class FragmentSent extends BaseFragment {
 
         session = new SessionManager(getActivity());
 
-       // WebCallServiceStores();
+        // WebCallServiceStores();
 
         return v;
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -75,6 +75,7 @@ public class FragmentSent extends BaseFragment {
 
 // add your code here which executes when the Fragment gets visible.
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -85,7 +86,7 @@ public class FragmentSent extends BaseFragment {
     }
 
     public void WebCallServiceStores() {
-       // SimpleProgressBar.showProgress(getActivity());
+        // SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getSentMails";
 
@@ -94,7 +95,7 @@ public class FragmentSent extends BaseFragment {
                         @Override
                         public void onResponse(String response) {
 
-                           // SimpleProgressBar.closeProgress();
+                            // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
 
@@ -103,18 +104,19 @@ public class FragmentSent extends BaseFragment {
                                 SentMailsResponseModel mResponse = g.fromJson(response, SentMailsResponseModel.class);
 
 
-                                if (!mResponse.getStatus().equals("0")) {
+                                if (mResponse != null && mResponse.getStatus().equals("1")) {
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
                                     recycler.setLayoutManager(layoutManager);
                                     recycler.setItemAnimator(new DefaultItemAnimator());
-                                    adapter = new SentMailAdapter(getActivity(), mResponse.getRecord());
+                                    adapter = new SentMailAdapter(getActivity(), mResponse.getRecord().getMails());
                                     recycler.setAdapter(adapter);
+
                                 } else {
                                     no_mail_text.setVisibility(View.VISIBLE);
                                     recycler.setVisibility(View.GONE);
-                                   // Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    // Toast.makeText(getActivity(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -123,13 +125,13 @@ public class FragmentSent extends BaseFragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                          //  SimpleProgressBar.closeProgress();
+                            //  SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("sender_id",session.getCustomerId());
+                    params.put("sender_id", session.getCustomerId());
                     params.put("access_token", session.getToken());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");

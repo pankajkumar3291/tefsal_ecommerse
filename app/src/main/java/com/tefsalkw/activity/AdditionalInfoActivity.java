@@ -547,6 +547,7 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                         params.put("city", jsonObject.getString("spin_city_txt") + "");
                         params.put("area", jsonObject.getString("spin_area_txt") + "");
+                        params.put("province", jsonObject.getString("spin_city_txt") + "");
                         params.put("block", jsonObject.getString("input_block") + "");
                         params.put("street", jsonObject.getString("input_street") + "");
                         params.put("avenue", jsonObject.getString("input_avenue") + "");

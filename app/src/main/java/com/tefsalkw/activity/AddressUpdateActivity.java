@@ -279,7 +279,7 @@ public class AddressUpdateActivity extends BaseActivity {
                                     spin_country.setAdapter(aa);
 
                                     for (int i = 0; i < country_name.size(); i++) {
-                                        if (country_name.get(i).contains(addressRecord.getCountry_iso())) {
+                                        if (country_name.get(i).toUpperCase().equals(addressRecord.getCountry().toUpperCase())) {
                                             countryPosition = i;
                                             //mDob=iso_name.get(position);
                                             break;
@@ -567,11 +567,11 @@ public class AddressUpdateActivity extends BaseActivity {
                     params.put("customer_id", session.getCustomerId());
                     params.put("address_name", input_address_name.getText().toString());
                     params.put("address_id", addressRecord.getAddress_id());
-
-                    params.put("country", country_iso_code);
-                    params.put("city", province_code);
-                    params.put("area", area_code);
-                    params.put("block", input_block.getText().toString());
+                    params.put("country", spin_country.getSelectedItem().toString());
+                    params.put("province", spin_city.getSelectedItem().toString());
+                    //params.put("city", province_code);
+                    params.put("area", spin_area.getSelectedItem().toString());
+                    params.put("block", input_block.getText() + "");
 
                     params.put("street", input_street.getText() + "");
                     params.put("avenue", input_avenue.getText().toString());

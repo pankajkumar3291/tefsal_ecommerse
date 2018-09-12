@@ -555,7 +555,7 @@ public class AddressesActivity extends BaseActivity {
                         params.put("customer_id", session.getCustomerId());
                         params.put("address_name", input_address_name.getText() + "");
                         params.put("country", spin_country.getSelectedItem().toString());
-                        params.put(" province", spin_city.getSelectedItem().toString());
+                        params.put("province", spin_city.getSelectedItem().toString());
                         //params.put("city", province_code);
                         params.put("area", spin_area.getSelectedItem().toString());
                         params.put("block", input_block.getText() + "");

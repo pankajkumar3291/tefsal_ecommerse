@@ -9,7 +9,7 @@ import java.util.List;
 public class SentMailsResponseModel {
     private String message;
 
-    private List<SentMailModel> record;
+    private Records record;
 
     private String status;
 
@@ -23,12 +23,12 @@ public class SentMailsResponseModel {
         this.message = message;
     }
 
-    public List<SentMailModel> getRecord ()
+    public Records getRecord ()
     {
         return record;
     }
 
-    public void setRecord (List<SentMailModel> record)
+    public void setRecord (Records record)
     {
         this.record = record;
     }

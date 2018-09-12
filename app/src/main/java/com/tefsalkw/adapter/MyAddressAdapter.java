@@ -172,6 +172,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                                         record.remove(position2);
                                         notifyDataSetChanged();
                                         //activity.finish();
+                                        Toast.makeText(activity, "Address Deleted Successfully", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
                                     }

@@ -186,6 +186,7 @@ public class CartAddressListAdapter extends RecyclerView.Adapter<CartAddressList
                                     if (status.equals("1")) {
                                         //new FragmentMyAddress();
                                         record.remove(position2);
+                                        Toast.makeText(activity, "Address Deleted Successfully", Toast.LENGTH_SHORT).show();
                                         notifyDataSetChanged();
                                         //activity.finish();
                                     } else {
