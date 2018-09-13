@@ -63,7 +63,7 @@ public class MyOrderActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar_title.setText("MY ORDERS");
+        toolbar_title.setText(getString(R.string.nav_myorders));
 
         sessionManager = new SessionManager(this);
         btn_back.setOnClickListener(new View.OnClickListener() {

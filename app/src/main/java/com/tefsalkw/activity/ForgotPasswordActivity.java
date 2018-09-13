@@ -99,6 +99,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                                 if (status.equals("1")) {
 
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                    finish();
 
                                 }
                                 else if (status.equals("0"))

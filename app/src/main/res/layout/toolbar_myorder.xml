@@ -9,6 +9,7 @@
 
 
     <ImageButton
+        android:autoMirrored="true"
         android:background="@android:color/transparent"
         android:id="@+id/btn_back"
         android:layout_height="wrap_content"
