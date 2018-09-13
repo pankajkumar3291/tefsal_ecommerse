@@ -91,7 +91,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 if (category.equalsIgnoreCase("DTA")) {
 
-                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                    TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                     TefalApp.getInstance().setMin_meters("3");
                     TefalApp.getInstance().setStyleName("TefsalDefault");
 
@@ -103,7 +103,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                 if (category.equalsIgnoreCase("DTE")) {
 
-                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                    TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                     TefalApp.getInstance().setMin_meters("3");
                     TefalApp.getInstance().setStyleName("TefsalDefault");
 

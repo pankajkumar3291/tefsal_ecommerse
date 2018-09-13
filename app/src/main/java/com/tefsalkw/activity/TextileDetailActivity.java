@@ -376,9 +376,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     } else {
                         builder = new AlertDialog.Builder(TextileDetailActivity.this);
                     }
-                    builder.setTitle("Disclaimer")
-                            .setMessage("Please make sure that you have viewed the textile with your full brightness, the color and pattern you receive may vary depending on your screen type and brightness. Please make sure to read the color name before Continuing.\n")
-                            .setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                    builder.setTitle(R.string.disclaimer)
+                            .setMessage(R.string.textile_warning_text)
+                            .setPositiveButton(R.string.agree, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // continue with delete
                                     dialog.cancel();
@@ -387,7 +387,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                                 }
                             })
-                            .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // do nothing
                                     dialog.cancel();
@@ -429,8 +429,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             //Adding the tabs using addTab() method
-            tabLayout.addTab(tabLayout.newTab().setText("FEEL"));
-            tabLayout.addTab(tabLayout.newTab().setText("MATERIAL"));
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feel)));
+            tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.material)));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
@@ -462,7 +462,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                         amount = price * meter;
 
-                        text_price.setText("PRICE : " + String.format("%.2f", amount) + " KWD");
+                        text_price.setText(getString(R.string.textile_detail_text_price_text) + ": " + String.format("%.2f", amount) + " " + getString(R.string.kwd));
 
                         meter_value.setText("" + meter);
 
@@ -479,7 +479,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     if (meter > min_meter) {
                         meter--;
                         amount = price * meter;
-                        text_price.setText("PRICE : " + String.format("%.2f", amount) + " KWD");
+                        text_price.setText(getString(R.string.textile_detail_text_price_text) + ": " + String.format("%.2f", amount) + " " + getString(R.string.kwd));
                         meter_value.setText("" + meter);
                     }
 
@@ -538,7 +538,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return position == 0 ? "FEEL" : "MATERIAL";
+            return position == 0 ? getString(R.string.feel) : getString(R.string.material);
         }
 
 
@@ -558,9 +558,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText("PRICE : " + price * meter + " KWD");
+                text_price.setText(getString(R.string.textile_detail_text_price_text) + " " + price * meter + " "+getString(R.string.kwd));
 
-                txt_price.setText(price + " KWD / METER");
+                txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
 
             } catch (Exception ex) {
 
@@ -571,7 +571,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             if (min_meter > stock_meter) {
 
                 LL_min_max_controller.setVisibility(View.GONE);
-                add_to_cart_lbl.setText("SOLD OUT");
+                add_to_cart_lbl.setText(R.string.sold_out);
                 text_price.setVisibility(View.GONE);
                 add_to_cart_btn.setEnabled(false);
             }

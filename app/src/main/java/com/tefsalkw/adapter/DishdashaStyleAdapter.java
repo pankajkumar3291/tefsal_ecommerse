@@ -173,7 +173,7 @@ public class DishdashaStyleAdapter extends RecyclerView.Adapter<DishdashaStyleAd
                 minMeters = minMeters != null ? minMeters : "3";
                 float minMeterFloat = Math.round(Float.parseFloat(minMeters)) ;
 
-                TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                TefalApp.getInstance().setToolbar_title(activity.getString(R.string.dishdasha_stores));
                 TefalApp.getInstance().setMin_meters(minMeterFloat+"");
                 TefalApp.getInstance().setStyleName(record.get(position).getName());
                 TefalApp.getInstance().setStyleId(record.get(position).getId());

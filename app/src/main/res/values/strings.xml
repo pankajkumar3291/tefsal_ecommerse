@@ -449,7 +449,7 @@
     <string name="textile_detail_txt_min_meter_text">MIN METERS REQUIRED</string>
     <string name="textile_detail_meter_value_text">1</string>
     <string name="textile_detail_textView2_text">METERS</string>
-    <string name="textile_detail_text_price_text">PRICE:</string>
+    <string name="textile_detail_text_price_text">PRICE</string>
     <string name="textile_detail_add_to_cart_lbl_text">ADD TO CART</string>
     <string name="textile_product_card_name_text_text" />
     <string name="textile_product_card_txt_discount_amount_text" />
@@ -488,10 +488,24 @@
     <string name="zaara_daraa_textView2_text">QUANTITY</string>
     <string name="zaara_daraa_text_price_text" />
     <string name="zaara_daraa_add_cart_btn_text">ADD TO CART</string>
+
+
+
     <string name="privacy_policy">Privacy Policy</string>
     <string name="accessories">Accessories</string>
     <string name="step2">STEP 2</string>
     <string name="gender_male">M</string>
     <string name="gender_female">F</string>
     <string name="add_address">ADD ADDRESS</string>
+    <string name="dishdasha_stores">DISHDASHA STORES</string>
+    <string name="feel">FEEL</string>
+    <string name="material">MATERIAL</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="textile_warning_text">Please make sure that you have viewed the textile with your full brightness, the color and pattern you receive may vary depending on your screen type and brightness. Please make sure to read the color name before Continuing.</string>
+    <string name="agree">AGREE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="kwd">KWD</string>
+    <string name="sold_out">SOLD OUT</string>
+    <string name="kwd_per_meter">KWD / METER</string>
+    <string name="item_added_successfully">Item added successfully</string>
 </resources>

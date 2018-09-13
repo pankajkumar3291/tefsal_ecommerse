@@ -222,7 +222,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                 startActivity(new Intent(getActivity(), DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
                 //DishDashaProductActivity.viewPager.setCurrentItem(0);

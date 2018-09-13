@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:text="Item added successfully"
+        android:text="@string/item_added_successfully"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_mid" />
 

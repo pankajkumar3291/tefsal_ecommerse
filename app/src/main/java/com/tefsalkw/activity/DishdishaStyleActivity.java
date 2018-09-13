@@ -164,7 +164,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                                 .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         //  Action for 'NO' Button
-                                                        TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                                                        TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                                                         TefalApp.getInstance().setMin_meters("3");
                                                         TefalApp.getInstance().setStyleName("TefsalDefault");
                                                         startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
@@ -194,7 +194,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                             .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
-                                                    TefalApp.getInstance().setToolbar_title("DISHDASHA STORES");
+                                                    TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                                                     TefalApp.getInstance().setMin_meters("3");
                                                     TefalApp.getInstance().setStyleName("TefsalDefault");
                                                     startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
