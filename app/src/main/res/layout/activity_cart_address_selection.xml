@@ -114,7 +114,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/MyAddress_EditText_height"
                             android:background="@android:color/transparent"
-                            android:hint="First Name"
+                            android:hint="@string/activity_edit_profile_input_first_name_hint"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
                             android:textSize="@dimen/text_xsmall" />
@@ -147,7 +147,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/MyAddress_EditText_height"
                             android:background="@android:color/transparent"
-                            android:hint="Last Name"
+                            android:hint="@string/activity_edit_profile_input_last_name_hint"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
                             android:textSize="@dimen/text_xsmall" />
@@ -504,13 +504,13 @@
                         android:layout_marginTop="10dp">
 
                         <EditText
-                            android:inputType="phone"
                             android:id="@+id/input_phone"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/MyAddress_EditText_height"
                             android:background="@android:color/transparent"
                             android:hint="@string/hint_phone"
                             android:imeOptions="actionNext"
+                            android:inputType="phone"
                             android:singleLine="true"
                             android:textSize="@dimen/text_xsmall" />
                     </android.support.design.widget.TextInputLayout>
@@ -522,6 +522,7 @@
                         android:background="@color/colorPrimaryDark" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyAddress_LL_height"
@@ -536,13 +537,13 @@
                         android:layout_marginTop="10dp">
 
                         <EditText
-                            android:inputType="textEmailAddress"
                             android:id="@+id/input_email"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/MyAddress_EditText_height"
                             android:background="@android:color/transparent"
-                            android:hint="EMAIL ADDRESS"
+                            android:hint="@string/activity_edit_profile_input_email_hint"
                             android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
                             android:singleLine="true"
                             android:textSize="@dimen/text_xsmall" />
                     </android.support.design.widget.TextInputLayout>
@@ -554,6 +555,7 @@
                         android:background="@color/colorPrimaryDark" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/MyAddress_LL_height"
@@ -646,14 +648,14 @@
             android:textSize="@dimen/text_large" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/add_address"
             android:layout_centerHorizontal="true"
             android:text="@string/activity_cart_address_selection_discount_text"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_small"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btn_purchase"

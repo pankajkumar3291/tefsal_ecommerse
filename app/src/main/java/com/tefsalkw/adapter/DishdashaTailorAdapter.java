@@ -157,7 +157,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
                     if (session.getIsGuestId()) {
 
-                        Toast.makeText(activity, "Sign up to continue...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, R.string.sign_up_to_continue, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -171,15 +171,15 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                         }
                         if (styleName.equalsIgnoreCase("TefsalDefault")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                            builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
+                            builder.setMessage(R.string.no_style_warning_text)
                                     .setCancelable(false)
-                                    .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.create_new, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
                                             showNamePrompt();
                                         }
                                     })
-                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
 
                                             dialog.cancel();
@@ -189,7 +189,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                             //Creating dialog box
                             AlertDialog alert = builder.create();
                             //Setting the title manually
-                            alert.setTitle("No Style Available");
+                            alert.setTitle(activity.getString(R.string.no_style_available));
                             alert.show();
                             return;
                         }
@@ -261,7 +261,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
             public void onClick(View v) {
 
                 if (input_style_name.getText().toString().trim().equals("")) {
-                    input_layout_style_name.setError("Style name should not be empty");
+                    input_layout_style_name.setError(activity.getString(R.string.style_name_validation));
                     requestFocus(input_style_name);
 
                 } else {

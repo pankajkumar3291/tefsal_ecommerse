@@ -43,7 +43,7 @@
             android:background="@drawable/outline_button_shape"
             android:id="@+id/btn_signup"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_width="150dp"
             android:text="@string/title_signup"
             android:textColor="@color/colorWhite"

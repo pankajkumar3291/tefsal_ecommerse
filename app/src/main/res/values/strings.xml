@@ -508,4 +508,22 @@
     <string name="sold_out">SOLD OUT</string>
     <string name="kwd_per_meter">KWD / METER</string>
     <string name="item_added_successfully">Item added successfully</string>
+    <string name="textile_stores">TEXTILE STORES</string>
+    <string name="daraa_stores">DARAA STORES</string>
+    <string name="abaya_stores">ABAYA STORES</string>
+    <string name="sign_up_to_continue">Sign up to continue...</string>
+    <string name="no_style_warning_text">You currently do not have any stored styles for Dishdisha.</string>
+    <string name="create_new">Create New</string>
+    <string name="no_style_available">No Style Available</string>
+    <string name="style_name_validation">Style name should not be empty</string>
+    <string name="product_description">Product Description</string>
+    <string name="cash_on_delivery">CASH ON DELIVERY</string>
+    <string name="item_in_your_cart">item in your cart</string>
+    <string name="items_in_your_cart">items in your cart</string>
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="previous_total">PREVIOUS TOTAL</string>
+    <string name="discount_applied">DISCOUNT APPLIED</string>
+    <string name="total">TOTAL</string>
+    <string name="delivery_charge">Delivery Charge: </string>
+    <string name="sub_total">Sub Total:</string>
 </resources>

@@ -33,7 +33,6 @@ import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.eventmodels.CartAddressEvent;
-import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.models.MyAddressesModel;
 import com.tefsalkw.utils.Contents;
@@ -495,9 +494,9 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                 cartResponse = g.fromJson(response, GetCartResponse.class);
                                 if (!cartResponse.getStatus().equals("0")) {
                                     if (cartResponse.getRecord().size() <= 1)
-                                        header_txt.setText(cartResponse.getRecord().size() + " item in your cart");
+                                        header_txt.setText(cartResponse.getRecord().size() + " " + getString(R.string.item_in_your_cart));
                                     else
-                                        header_txt.setText(cartResponse.getRecord().size() + " items in your cart");
+                                        header_txt.setText(cartResponse.getRecord().size() + " " + getString(R.string.items_in_your_cart));
 
 
                                     amount.setText("TOTAL : " + cartResponse.getTotal_amount_cart() + " KWD");

@@ -241,7 +241,7 @@ public class HomeFragment extends BaseFragment {
                 public void onClick(View v) {
 
                     if (position == 0) {
-                        TefalApp.getInstance().setToolbar_title("TEXTILE STORES");
+                        TefalApp.getInstance().setToolbar_title(getString(R.string.textile_stores));
                         if (sessionManager.getIsGuestId()) {
                             startActivity(new Intent(getActivity(), DishDashaStoresActivity.class).putExtra("flag", "dish"));
                         } else {
@@ -250,11 +250,11 @@ public class HomeFragment extends BaseFragment {
                         }
 
                     } else if (position == 1) {
-                        TefalApp.getInstance().setToolbar_title("DARAA STORES");
+                        TefalApp.getInstance().setToolbar_title(getString(R.string.daraa_stores));
                         startActivity(new Intent(getActivity(), DaraAbayaStoresActivity.class).putExtra("flag", "Daraa"));
                         productFlag = "3";
                     } else if (position == 2) {
-                        TefalApp.getInstance().setToolbar_title("ABAYA STORES");
+                        TefalApp.getInstance().setToolbar_title(getString(R.string.abaya_stores));
                         startActivity(new Intent(getActivity(), DaraAbayaStoresActivity.class).putExtra("flag", "Abaya"));
                         productFlag = "2";
                     } else if (position == 3) {

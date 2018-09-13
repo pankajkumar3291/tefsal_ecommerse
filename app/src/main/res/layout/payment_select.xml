@@ -36,7 +36,7 @@
                 android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Select Payment Method"
+                android:text="@string/select_payment_method"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_large"
                 android:textStyle="bold" />
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="CASH ON DELIVERY"
+                        android:text="@string/cash_on_delivery"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_normal" />
 
@@ -284,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:paddingStart="10dp"
-                        android:text="PREVIOUS TOTAL"
+                        android:text="@string/previous_total"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
@@ -318,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:paddingStart="10dp"
-                        android:text="DISCOUNT APPLIED"
+                        android:text="@string/discount_applied"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
@@ -359,7 +359,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:paddingStart="10dp"
-                        android:text="TOTAL"
+                        android:text="@string/total"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_normal"
                         android:textStyle="bold" />
@@ -402,7 +402,7 @@
                     android:layout_marginTop="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Delivery Charge: "
+                    android:text="@string/delivery_charge"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_large" />
 
@@ -436,7 +436,7 @@
                     android:layout_marginTop="5dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Sub Total: "
+                    android:text="@string/sub_total"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_large" />
 
