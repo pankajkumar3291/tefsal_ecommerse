@@ -1,100 +1,102 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginTop="20dp"
-    android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Select Payment Method"
+        android:layout_height="wrap_content"
+        android:text="@string/select_payment_method"
         android:textSize="@dimen/text_large"
         android:textStyle="bold" />
 
     <LinearLayout
+        android:layoutDirection="ltr"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <CheckBox
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:layout_width="wrap_content" />
+            android:layout_weight="0" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_width="wrap_content"
             android:text="KNET"
             android:textSize="@dimen/text_mid" />
 
         <ImageView
-            android:background="@drawable/knet"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:layout_width="30dp" />
+            android:background="@drawable/knet" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:layoutDirection="ltr"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <CheckBox
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:layout_width="wrap_content" />
+            android:layout_weight="0" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_width="wrap_content"
             android:text="VISA / MASTERCARD"
             android:textSize="@dimen/text_mid" />
 
         <ImageView
-            android:background="@drawable/visa"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:layout_width="30dp" />
+            android:background="@drawable/visa" />
 
     </LinearLayout>
 
     <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
         android:padding="10dp"
         android:text="PROMO / VOUCHER CODE"
         android:textSize="@dimen/text_mid"
         android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <EditText
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_width="wrap_content"
             android:text="6ABSHFHS001" />
 
         <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
             android:text="APPLIED"
             android:textSize="@dimen/text_mid" />
 
@@ -102,25 +104,25 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="5">
 
         <TextView
             android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:layout_width="wrap_content"
             android:text="@string/cupon_started_textView_text"
             android:textSize="@dimen/text_large"
             android:textStyle="bold" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:layout_width="wrap_content"
             android:text="45.000 KWD"
             android:textSize="@dimen/text_large" />
 
@@ -128,23 +130,23 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5">
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:layout_width="wrap_content"
             android:text="DISCOUNT APPLIED"
             android:textSize="@dimen/text_large"
             android:textStyle="bold" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:layout_width="wrap_content"
             android:text="-5.000 KWD"
             android:textSize="@dimen/text_large" />
 
@@ -152,30 +154,30 @@
     </LinearLayout>
 
     <View
-        android:background="#bdbdbd"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="5dp"
-        android:layout_width="match_parent" />
+        android:background="#bdbdbd" />
 
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
         android:orientation="horizontal"
         android:weightSum="5">
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:layout_width="wrap_content"
             android:text="TOTAL"
             android:textSize="@dimen/text_large"
             android:textStyle="bold" />
 
         <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:layout_width="wrap_content"
             android:text="40.000 KWD"
             android:textSize="@dimen/text_large" />
 
@@ -183,35 +185,35 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="20dp">
 
         <TextView
             android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/discount"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
             android:text="@string/cupon_started_amount_text"
             android:textSize="@dimen/text_large" />
 
         <TextView
             android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/add_address"
             android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
             android:text="@string/cupon_started_discount_text"
             android:textSize="@dimen/text_mid" />
 
         <Button
-            android:background="#263238"
             android:id="@+id/add_address"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:background="#263238"
             android:text="@string/cupon_started_add_address_text"
             android:textColor="#fafafa"
             android:textSize="@dimen/text_large" />
