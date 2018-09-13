@@ -44,7 +44,7 @@
             android:textColor="@color/colorAccent"
             android:visibility="gone"
             fontPath="fonts/Lato-Bold.ttf"
-            tools:ignore="MissingPrefix" />
+            tools:ignore="HardcodedText,MissingPrefix" />
     </android.support.v7.widget.Toolbar>
 
     <ScrollView

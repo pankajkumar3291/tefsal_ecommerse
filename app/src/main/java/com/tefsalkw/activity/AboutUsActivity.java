@@ -56,7 +56,7 @@ public class AboutUsActivity extends BaseActivity {
         {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            toolbar.setTitle("Privacy Policy");
+            toolbar.setTitle(R.string.privacy_policy);
         }
         catch (Exception exc)
         {

@@ -123,10 +123,10 @@ public class AdditionalInfoActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        mGender = "M";
+                        mGender = getString(R.string.gender_male);
                         break;
                     case 1:
-                        mGender = "F";
+                        mGender = getString(R.string.gender_female);
                         break;
 
                 }

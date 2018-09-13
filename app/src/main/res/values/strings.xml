@@ -489,4 +489,9 @@
     <string name="zaara_daraa_text_price_text" />
     <string name="zaara_daraa_add_cart_btn_text">ADD TO CART</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="accessories">Accessories</string>
+    <string name="step2">STEP 2</string>
+    <string name="gender_male">M</string>
+    <string name="gender_female">F</string>
+    <string name="add_address">ADD ADDRESS</string>
 </resources>

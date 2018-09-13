@@ -139,7 +139,7 @@ public class AddressesActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        toolbar_title.setText("ADD ADDRESS");
+        toolbar_title.setText(R.string.add_address);
         // toolbar_title.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         TefsalApplication application = (TefsalApplication) getApplication();

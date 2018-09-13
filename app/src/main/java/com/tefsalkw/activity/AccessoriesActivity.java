@@ -1,6 +1,7 @@
 package com.tefsalkw.activity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -73,6 +74,7 @@ public class AccessoriesActivity extends BaseActivity {
     SessionManager session;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,7 @@ public class AccessoriesActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        toolbar_title.setText("Accessories");
+        toolbar_title.setText(R.string.accessories);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

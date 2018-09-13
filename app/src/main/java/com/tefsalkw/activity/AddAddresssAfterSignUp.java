@@ -155,7 +155,7 @@ public class AddAddresssAfterSignUp extends BaseActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        toolbar_title.setText("STEP 2");
+        toolbar_title.setText(R.string.step2);
         // toolbar_title.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
         TefsalApplication application = (TefsalApplication) getApplication();
