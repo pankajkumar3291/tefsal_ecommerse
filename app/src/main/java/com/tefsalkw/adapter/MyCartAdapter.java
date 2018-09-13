@@ -163,7 +163,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " KWD / METER");
                 // holder.sub_text_textile.setVisibility(GONE);
                 // holder.sub_text_textile.setText();
-                holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+                String sizeInMtr = storeModels.get(position2).getItem_quantity();
+                sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
+                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr) );
+
+                holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
                 if (storeModels.get(position2).getDiscount() > 0) {
                     holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " KWD</strike>"));
@@ -242,7 +246,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //holder.sub_text_textile.setVisibility(GONE);
 
 
-                holder.text_size.setText("SIZE: " + storeModels.get(position2).getItem_quantity() + " METERS");
+                String sizeInMtr = storeModels.get(position2).getItem_quantity();
+                sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
+                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr) );
+                holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
 
                 if (storeModels.get(position2).getProduct_name().equalsIgnoreCase("OWN TEXTILE")) {

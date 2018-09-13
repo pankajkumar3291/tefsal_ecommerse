@@ -173,7 +173,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
 
-            if (type.equalsIgnoreCase("order")) {
+            if (type.equalsIgnoreCase("order") || type.equalsIgnoreCase("order item")) {
                 intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
                 intent.putExtra("order_id", remoteMessage.getData().get("order_id"));
                 intent.putExtra(" order_item_id", remoteMessage.getData().get(" order_item_id"));

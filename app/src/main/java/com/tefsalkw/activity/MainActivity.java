@@ -306,11 +306,12 @@ public class MainActivity extends BaseActivity
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
                     if (session.getIsGuestId()) {
-                        params.put("unique_id", session.getCustomerId());
+                        params.put("unique_id", androidDeviceId);
                     } else {
                         params.put("user_id", session.getCustomerId());
+                        params.put("unique_id", androidDeviceId);
                     }
-                    params.put("device_id", androidDeviceId);
+                   // params.put("device_id", androidDeviceId);
                     params.put("token", token);
                     Log.e("NotificationToken == ", url + new JSONObject(params));
 
