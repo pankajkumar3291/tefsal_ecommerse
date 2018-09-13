@@ -51,7 +51,7 @@ public class ForgotPasswordActivity extends BaseActivity {
         btn_back=(ImageButton)toolbar.findViewById(R.id.btn_back);
 
         setSupportActionBar(toolbar);
-        mTitle.setText("Forgot password");
+        mTitle.setText(getString(R.string.action_forgot_password));
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

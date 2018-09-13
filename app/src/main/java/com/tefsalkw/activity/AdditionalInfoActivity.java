@@ -367,7 +367,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 1
     public void WebCallService(final String str_fname, final String str_lname, final String str_mob, final String str_home_num,
                                final String str_email, final String str_password, final String country_code) {
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, getString(R.string.registration_in_progress));
         try {
             final String url = Contents.baseURL + "customerRegister";
 
@@ -482,7 +482,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 2
     public void saveAddress() {
 
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, getString(R.string.registration_in_progress));
 
 
         //province_id
@@ -599,7 +599,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     //Step 3
 
     public void httpAdditionalInfoCall() {
-        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, "Registration in progress...");
+        SimpleProgressBar.showProgress(AdditionalInfoActivity.this, getString(R.string.registration_in_progress));
 
         try {
             final String url = Contents.baseURL + "customerAddtInfo";
