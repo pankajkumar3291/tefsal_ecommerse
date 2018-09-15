@@ -146,7 +146,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position2) {
 
-        System.out.println("ITEM TYPE==" + storeModels.get(position2).getItem_type());
+        // System.out.println("ITEM TYPE==" + storeModels.get(position2).getItem_type());
 
         try {
 
@@ -165,7 +165,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 // holder.sub_text_textile.setText();
                 String sizeInMtr = storeModels.get(position2).getItem_quantity();
                 sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
-                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr) );
+                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr));
 
                 holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
@@ -248,7 +248,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 String sizeInMtr = storeModels.get(position2).getItem_quantity();
                 sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
-                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr) );
+                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr));
                 holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
 
@@ -338,7 +338,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .error(R.drawable.no_image_placeholder_grid);
 
-            GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
+            String imageUrl = storeModels.get(position2).getImage();
+
+
+            if (imageUrl != null && !imageUrl.equals("")) {
+                GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
+            }
 
 
         } catch (Exception exc) {

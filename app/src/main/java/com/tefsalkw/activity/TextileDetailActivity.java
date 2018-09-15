@@ -455,10 +455,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 @Override
                 public void onClick(View v) {
 
-                    meter++;
 
+                    meter++;
                     //  Log.e("meter",meter+"");
                     if (meter > 0 && meter < stock_meter) {
+
+
 
                         amount = price * meter;
 
