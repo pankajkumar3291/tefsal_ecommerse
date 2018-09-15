@@ -408,8 +408,6 @@ public class PaymentSelectActivity extends BaseActivity {
         final String url = Contents.baseURL + "checkout";
 
 
-        // Log.i(TAG, "Setting screen name: " + "ZaaraDaraaActivity");
-        // mTracker.setScreenName("Image~" + "ZaaraDaraaActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         SimpleProgressBar.showProgress(this);
 
@@ -458,13 +456,7 @@ public class PaymentSelectActivity extends BaseActivity {
             public void onSuccess(String object) {
 
                 try {
-                    SimpleProgressBar.closeProgress();
-                    Log.e("JSONObject", String.valueOf(object));
 
-                    Log.e("stores response", object);
-
-
-                    System.out.println("ADD CART RESPONSE====" + object);
 
                     JSONObject jsonObject = null;
                     try {
@@ -472,13 +464,18 @@ public class PaymentSelectActivity extends BaseActivity {
                         jsonObject = new JSONObject(object);
 
                         if (jsonObject.getInt("status") == 1) {
+
+
                             Toast.makeText(PaymentSelectActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                             startActivity(new Intent(PaymentSelectActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
+
+
                         }
 
                     } catch (JSONException e) {
+                        SimpleProgressBar.closeProgress();
                         e.printStackTrace();
                     }
 
@@ -494,4 +491,11 @@ public class PaymentSelectActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SimpleProgressBar.closeProgress();
+    }
 }
