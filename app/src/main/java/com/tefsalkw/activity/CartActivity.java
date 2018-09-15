@@ -220,7 +220,15 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                 Log.e(CartActivity.class.getSimpleName(), response);
                                 Gson g = new Gson();
                                 cartResponse = g.fromJson(response, GetCartResponse.class);
+
+
                                 if (cartResponse != null && !cartResponse.getStatus().equals("0")) {
+
+                                    if (cartResponse.getCart_id() != null) {
+                                        session.setKeyCartId(cartResponse.getCart_id());
+                                    }
+
+
                                     if (cartResponse.getRecord().size() <= 1)
                                         header_txt.setText(cartResponse.getRecord().size() + " item in your cart");
                                     else
