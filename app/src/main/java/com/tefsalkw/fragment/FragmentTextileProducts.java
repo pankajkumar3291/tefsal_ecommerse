@@ -175,6 +175,9 @@ public class FragmentTextileProducts extends BaseFragment {
     @BindView(R.id.relSlide)
     RelativeLayout relSlide;
 
+    @BindView(R.id.tut3)
+    ImageView tut3;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -404,6 +407,18 @@ public class FragmentTextileProducts extends BaseFragment {
                 PreferencesUtil.putBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", false);
                 dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
                 relSlide.setVisibility(View.GONE);
+            }
+        });
+
+
+        tut3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PreferencesUtil.putBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", false);
+                dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
+                relSlide.setVisibility(View.GONE);
+
             }
         });
 
@@ -930,7 +945,6 @@ public class FragmentTextileProducts extends BaseFragment {
             }
         }
     }
-
 
 
 }

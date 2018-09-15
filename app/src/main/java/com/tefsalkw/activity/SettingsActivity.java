@@ -1,10 +1,13 @@
 package com.tefsalkw.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -100,7 +103,7 @@ public class SettingsActivity extends BaseActivity {
 
         if (session.getIsGuestId()) {
 
-          //  text_logout.setVisibility(GONE);
+            //  text_logout.setVisibility(GONE);
             text_change_password.setVisibility(GONE);
             text_edit_profile.setVisibility(GONE);
             view1.setVisibility(GONE);
@@ -113,12 +116,44 @@ public class SettingsActivity extends BaseActivity {
         text_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                session.user_logout();
 
 
-                //startActivity(new Intent(SettingsActivity.this, SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
-                finish();
+                AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(SettingsActivity.this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(SettingsActivity.this);
+                }
+                builder.setTitle("Logout")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+
+                                session.user_logout();
+                                startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                finish();
+
+                            }
+                        })
+                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                final AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+                        dialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorWhite));
+                    }
+                });
+                dialog.show();
+
+
             }
         });
 
@@ -179,14 +214,13 @@ public class SettingsActivity extends BaseActivity {
         });
 
 
-        Log.e("session.getKeyLang()",session.getKeyLang());
+        Log.e("session.getKeyLang()", session.getKeyLang());
 
         if (session.getKeyLang().equalsIgnoreCase("Arabic")) {
             text_language_spinner.setSelection(1);
         } else {
             text_language_spinner.setSelection(0);
         }
-
 
 
         text_language_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

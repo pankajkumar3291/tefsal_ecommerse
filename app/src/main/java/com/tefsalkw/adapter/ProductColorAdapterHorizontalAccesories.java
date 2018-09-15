@@ -102,7 +102,7 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
 
     @Override
     public int getItemCount() {
-        return accColorList.size();
+        return accColorList != null  ? accColorList.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

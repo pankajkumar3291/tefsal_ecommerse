@@ -50,8 +50,6 @@ public class StartActivity extends BaseActivity {
             public void onClick(View view) {
 
                 String androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
-
                 session.setCustomerId(androidDeviceId);
                 session.setIsGuestUser(true);
 
@@ -68,5 +66,13 @@ public class StartActivity extends BaseActivity {
                 startActivity(new Intent(StartActivity.this, TermsConditionActitivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

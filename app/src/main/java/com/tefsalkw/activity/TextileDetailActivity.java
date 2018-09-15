@@ -1281,7 +1281,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public void onBackPressed() {
 
-        TefalApp.getInstance().setFromPush("no");
+        //TefalApp.getInstance().setFromPush("no");
+
+
 
         super.onBackPressed();
     }

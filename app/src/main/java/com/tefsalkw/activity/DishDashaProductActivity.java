@@ -220,10 +220,20 @@ public class DishDashaProductActivity extends BaseActivity {
 
             } else {
 
-                Intent mainIntent = new Intent(DishDashaProductActivity.this, MainActivity.class);
-                mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(mainIntent);
-                //finish();
+
+               if(TefalApp.getInstance().getFromPush().equals("yes"))
+               {
+                   Intent mainIntent = new Intent(DishDashaProductActivity.this, MainActivity.class);
+                   mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                   startActivity(mainIntent);
+               }
+               else
+               {
+                   finish();
+               }
+
+
+
 
             }
         }

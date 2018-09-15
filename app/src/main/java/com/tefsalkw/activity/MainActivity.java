@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -37,6 +38,7 @@ import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
 import com.tefsalkw.utils.SimpleProgressBar;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -110,15 +112,12 @@ public class MainActivity extends BaseActivity
         sessionManagerToken = new SessionManagerToken(getApplicationContext());
         session = new SessionManager(this);
 
-        sendRegistrationToServer();
+        if (session != null) {
+            if (!session.getIsGuestId()) {
+                checkUserExists();
+            }
+        }
 
-        //fromMailArg=getIntent().getStringExtra("Mail");
-
-
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer_layout.setDrawerListener(toggle);
-//        toggle.syncState();
 
         footer_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,7 +310,7 @@ public class MainActivity extends BaseActivity
                         params.put("user_id", session.getCustomerId());
                         params.put("unique_id", androidDeviceId);
                     }
-                   // params.put("device_id", androidDeviceId);
+                    // params.put("device_id", androidDeviceId);
                     params.put("token", token);
                     Log.e("NotificationToken == ", url + new JSONObject(params));
 
@@ -333,6 +332,175 @@ public class MainActivity extends BaseActivity
 
 
     }
+
+    private void checkUserExists() {
+
+        try {
+
+
+            final String url = Contents.baseURL + "checkCustomerStatus";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            Log.e("checkUserStatus", response);
+
+                            if (response != null) {
+
+                                try {
+                                    JSONObject object = new JSONObject(response);
+                                    String status = object.getString("status");
+
+
+                                    if (status.contains("1")) {
+
+                                        sendRegistrationToServer();
+
+                                        String userStatus = object.getString("status");
+
+                                        if (userStatus.equals("inactive ") || userStatus.equals("deleted")) {
+                                            Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                            session.user_logout();
+                                            startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                            finish();
+
+                                        }
+
+
+                                    } else {
+
+                                        Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                        session.user_logout();
+                                        startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                        finish();
+
+                                    }
+
+                                } catch (JSONException e) {
+
+                                    e.printStackTrace();
+                                }
+                            }
+
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+                    params.put("user_id", session.getCustomerId());
+
+                    Log.e("NotificationToken == ", url + new JSONObject(params));
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+
+
+    }
+
+
+    private void httpGetCustomerProfileCall() {
+        //SimpleProgressBar.showProgress(MainActivity.this);
+        try {
+            final String url = Contents.baseURL + "getCustomerProfile";
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+
+                            if (response != null) {
+
+                                Log.e("getCustomerProfile", response);
+                                try {
+                                    JSONObject object = new JSONObject(response);
+                                    String status = object.getString("status");
+
+
+                                    if (status.contains("1")) {
+
+                                        sendRegistrationToServer();
+
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                        session.user_logout();
+                                        startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                        finish();
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("Error==" + error.toString());
+                            //SimpleProgressBar.closeProgress();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    System.out.println(" Access Token===" + session.getToken());
+                    params.put("access_token", session.getToken());
+                    params.put("customer_id", session.getCustomerId() != null ? session.getCustomerId() : "");
+                    params.put("appUser", "tefsal");
+                    params.put("appSecret", "tefsal@123");
+                    params.put("appVersion", "1.1");
+
+
+                    Log.e("User Profile == ", url + new JSONObject(params));
+
+                    return params;
+                }
+
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            stringRequest.setShouldCache(false);
+            requestQueue.add(stringRequest);
+
+        } catch (Exception surError) {
+            surError.printStackTrace();
+        }
+    }
+
 
     private void httpGetBadgeCall() {
         SimpleProgressBar.showProgress(MainActivity.this);
@@ -405,6 +573,7 @@ public class MainActivity extends BaseActivity
             surError.printStackTrace();
         }
     }
+
 
     private void initializeCountDrawer(BadgeRecordModel badgeRecordModel) {
 

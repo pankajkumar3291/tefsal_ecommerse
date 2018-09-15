@@ -19,8 +19,8 @@ android {
         applicationId "com.tefsalkw"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 38
-        versionName "1.1.6"
+        versionCode 39
+        versionName "1.1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
