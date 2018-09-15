@@ -232,7 +232,8 @@
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:onClick="navigateIntro"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:translationZ="1100dp">
 
         </LinearLayout>
 

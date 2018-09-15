@@ -182,8 +182,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
                                     String fullAddress = "";
 
-                                    if(customer_address != null)
-                                    {
+                                    if (customer_address != null) {
                                         String name = customer_address.getAddress_name();
                                         String house = customer_address.getHouse();
                                         String street = customer_address.getStreet();
@@ -198,18 +197,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
                                         area = area != null ? area : "-";
                                         city = city != null ? city : "-";
 
-                                         fullAddress = name.toUpperCase() + "\n"
+                                        fullAddress = name.toUpperCase() + "\n"
                                                 + "House / Building: " + house + " , "
                                                 + "Street: " + street + " , "
                                                 + "Block: " + block + " , "
                                                 + "Area: " + area + " , "
                                                 + "City: " + city + " ";
                                     }
-
-
-
-
-
 
 
                                     // String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getProvince() + " " + customer_address.getArea()+ " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number()+ " " + customer_address.getHouse();
@@ -279,7 +273,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+
+        Intent intent = getIntent();
+
+        if (intent != null && intent.getAction() != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
+
+            startActivity(new Intent(OrderDetailsActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
+        } else {
+            finish();
+        }
+
+
     }
 
 

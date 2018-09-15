@@ -340,6 +340,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
             GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
 
+
         } catch (Exception exc) {
             exc.printStackTrace();
         }

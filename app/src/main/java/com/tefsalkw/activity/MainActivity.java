@@ -210,11 +210,9 @@ public class MainActivity extends BaseActivity
             order_menu.setVisibility(View.GONE);
             mail_menu.setVisibility(View.GONE);
             total_badge_txt.setVisibility(View.GONE);
-
-
             menuItemStyle.setVisible(false);
             menuAddress.setVisible(false);
-            menuOrder.setVisible(false);
+          //  menuOrder.setVisible(true);
             menuTextile.setVisible(false);
             menuMail.setVisible(false);
 
@@ -359,13 +357,22 @@ public class MainActivity extends BaseActivity
 
                                         sendRegistrationToServer();
 
-                                        String userStatus = object.getString("status");
+                                        JSONObject statusData = object.getJSONObject("data");
 
-                                        if (userStatus.equals("inactive ") || userStatus.equals("deleted")) {
-                                            Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
-                                            session.user_logout();
-                                            startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                            finish();
+                                        if (statusData != null) {
+                                            String userStatus = statusData.getString("status");
+
+                                            if (userStatus != null) {
+
+                                                if (userStatus.equals("inactive") || userStatus.equals("deleted")) {
+
+                                                    Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                                    session.user_logout();
+                                                    startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                                                    finish();
+
+                                                }
+                                            }
 
                                         }
 
