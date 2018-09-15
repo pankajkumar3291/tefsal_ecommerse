@@ -58,7 +58,7 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
 
     DishdashaAdapter.OnDoneButtonListner onDoneButtonListner;
 
-
+    public static DishdashaStylesResponse mResponse;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                DishdashaStylesResponse mResponse = g.fromJson(response, DishdashaStylesResponse.class);
+                                mResponse  = g.fromJson(response, DishdashaStylesResponse.class);
 
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

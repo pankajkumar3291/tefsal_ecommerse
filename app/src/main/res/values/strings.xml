@@ -243,7 +243,7 @@
     <string name="activity_edit_profile_input_first_name_hint">FIRST NAME</string>
     <string name="activity_edit_profile_input_last_name_hint">LAST NAME</string>
     <string name="activity_edit_profile_input_user_name_hint">LAST NAME</string>
-    <string name="activity_edit_profile_input_email_hint">LAST NAME</string>
+    <string name="activity_edit_profile_input_email_hint">EMAIL</string>
     <string name="activity_edit_profile_input_mobile_no_hint">MOBLE NO</string>
     <string name="activity_edit_profile_input_home_no_hint">HOME NO</string>
     <string name="activity_edit_profile_countryTxt_text">Nationality</string>

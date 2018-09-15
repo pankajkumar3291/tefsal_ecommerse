@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.PagerTabAdapter;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.fragment.FragmentDishdasha;
 import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.utils.SessionManager;
 
@@ -149,7 +150,7 @@ public class TabbarActivity extends BaseActivity {
         dialog_ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateStyleName()) {
+                if (validateStyleName() && isUniqueName()) {
                     measurementActivityGo();
                     alertDialog.dismiss();
                 }
@@ -173,6 +174,36 @@ public class TabbarActivity extends BaseActivity {
 
         return true;
     }
+
+
+    private boolean isUniqueName() {
+        boolean isNameUnique = true;
+
+
+        if (FragmentDishdasha.mResponse != null && FragmentDishdasha.mResponse.getRecord() != null) {
+            if (FragmentDishdasha.mResponse.getRecord().size() > 0) {
+
+
+                String styleName = input_style_name.getText().toString().toLowerCase().trim();
+                for (DishdashaStylesRecord dishdashaStylesRecord : FragmentDishdasha.mResponse.getRecord()) {
+
+                    if (dishdashaStylesRecord.getName().toLowerCase().trim().equalsIgnoreCase(styleName)) {
+                        isNameUnique = false;
+                    }
+                }
+            }
+
+
+            if (!isNameUnique) {
+                input_layout_style_name.setError("Duplicate style name");
+                requestFocus(input_style_name);
+            }
+        }
+
+
+        return isNameUnique;
+    }
+
 
     private void requestFocus(View view) {
         if (view.requestFocus()) {
