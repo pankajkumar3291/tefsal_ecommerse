@@ -26,10 +26,12 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -74,6 +76,7 @@ import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
+import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
@@ -270,6 +273,18 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     public static String feelString = "", materialString = "";
 
 
+    @BindView(R.id.relSlide4)
+    RelativeLayout relSlide4;
+
+    @BindView(R.id.relSlide5)
+    RelativeLayout relSlide5;
+
+
+    @BindView(R.id.btnClose)
+    Button btnClose;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -461,7 +476,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     if (meter > 0 && meter < stock_meter) {
 
 
-
                         amount = price * meter;
 
                         text_price.setText(getString(R.string.textile_detail_text_price_text) + ": " + String.format("%.2f", amount) + " " + getString(R.string.kwd));
@@ -507,6 +521,80 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             } catch (Exception exc) {
 
             }
+
+
+            relSlide5.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+
+            relSlide4.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+
+
+            boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch5", true);
+            if (isFirstTimeLaunch) {
+
+                relSlide5.setVisibility(View.VISIBLE);
+                relSlide4.setVisibility(View.GONE);
+
+                btn_back.setVisibility(View.GONE);
+                btnClose.setVisibility(View.VISIBLE);
+
+
+            } else {
+
+                relSlide5.setVisibility(View.GONE);
+                relSlide4.setVisibility(View.GONE);
+
+                btn_back.setVisibility(View.VISIBLE);
+                btnClose.setVisibility(View.GONE);
+
+            }
+
+
+            btnClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch5", true);
+
+                    if (isFirstTimeLaunch) {
+
+                        PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch5", false);
+                        relSlide5.setVisibility(View.GONE);
+                        relSlide4.setVisibility(View.VISIBLE);
+
+                    }
+
+                    else
+                    {
+                        boolean isFirstTimeLaunch4 = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch4", true);
+
+                        if (isFirstTimeLaunch4) {
+                            PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch4", false);
+
+                            relSlide5.setVisibility(View.GONE);
+                            relSlide4.setVisibility(View.GONE);
+
+                            btn_back.setVisibility(View.VISIBLE);
+                            btnClose.setVisibility(View.GONE);
+                        }
+
+                    }
+
+
+
+
+                }
+            });
+
 
         } catch (Exception exc) {
 
@@ -560,7 +648,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText(getString(R.string.textile_detail_text_price_text) + " " + price * meter + " "+getString(R.string.kwd));
+                text_price.setText(getString(R.string.textile_detail_text_price_text) + " " + price * meter + " " + getString(R.string.kwd));
 
                 txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
 
@@ -1284,7 +1372,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     public void onBackPressed() {
 
         //TefalApp.getInstance().setFromPush("no");
-
 
 
         super.onBackPressed();

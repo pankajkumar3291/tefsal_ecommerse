@@ -126,8 +126,6 @@
                 </com.tefsalkw.adapter.CustomViewPager>
 
 
-
-
                 <RelativeLayout
                     android:id="@+id/colorAvailable"
                     android:layout_width="match_parent"
@@ -310,6 +308,40 @@
                 android:text="No product found" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relSlide4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/tut4"
+            android:translationZ="900dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/relSlide5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/tut5"
+            android:translationZ="999dp" />
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

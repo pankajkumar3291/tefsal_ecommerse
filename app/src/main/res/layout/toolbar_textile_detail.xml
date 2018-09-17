@@ -5,23 +5,24 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    app:contentInsetLeft="0dp"
     android:translationZ="99dp"
+    app:contentInsetStart="0dp"
     app:theme="@style/TransparentToolbar">
 
 
-    <LinearLayout
-        android:weightSum="10"
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_weight="1"
             android:id="@+id/relBack"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingStart="10dp">
 
             <ImageButton
                 android:id="@+id/btn_back"
@@ -33,16 +34,24 @@
                 android:background="@android:color/transparent"
                 android:padding="5dp"
                 android:src="@drawable/ic_left_arrow" />
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="CLOSE"
+                android:textColor="@color/colorWhite" />
+
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_gravity="center_vertical"
-            android:layout_weight="8"
             android:id="@+id/RR_title_container"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
             android:gravity="center">
 
             <me.grantland.widget.AutofitTextView
@@ -77,16 +86,15 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text=""
-                android:visibility="gone"
                 android:textColor="@color/colorAccent"
+                android:visibility="gone"
                 app:minTextSize="@dimen/text_small" />
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_weight="1"
             android:id="@+id/rlFilter"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true">
 
@@ -107,7 +115,6 @@
                 android:visibility="gone" />
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/ic_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -115,11 +122,12 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_filter" />
+                android:src="@drawable/ic_filter"
+                android:visibility="gone" />
         </RelativeLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </android.support.v7.widget.Toolbar>
