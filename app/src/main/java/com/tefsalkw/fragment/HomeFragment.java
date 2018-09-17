@@ -229,7 +229,7 @@ public class HomeFragment extends BaseFragment {
 
             ImageView  imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
-
+            title.setRotationY(180);
             imageView.setImageResource(img[position]);
             title.setText(title_array[position]);
 

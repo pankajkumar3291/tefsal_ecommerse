@@ -12,13 +12,14 @@
         android:scaleType="centerCrop" />
 
     <TextView
+
         android:gravity="center"
         android:id="@+id/titleText"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
-        android:text="@string/pager_item_titleText_text"
+        android:text=""
         android:textColor="@color/colorGray"
         android:textSize="@dimen/margin_large" />
 
