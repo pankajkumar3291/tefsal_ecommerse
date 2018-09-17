@@ -53,6 +53,17 @@ public class TextileStoresModel {
     }
 
     private String is_open;
+
+    public String getIs_busy() {
+        return is_busy;
+    }
+
+    public void setIs_busy(String is_busy) {
+        this.is_busy = is_busy;
+    }
+
+    private String is_busy;
+
     private String is_active;
 
 

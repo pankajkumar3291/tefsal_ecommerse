@@ -103,14 +103,6 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
         try {
 
-
-            if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y")) {
-                holder.main_layout.setVisibility(GONE);
-            } else {
-                holder.main_layout.setVisibility(View.VISIBLE);
-            }
-
-
             String dis_amount = "";
 
 
@@ -193,7 +185,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         }
 
 
-        if (!storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
+        if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y") || !storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y") || !storeModels.get(holder.getAdapterPosition()).getIs_busy().equalsIgnoreCase("N")) {
 
             holder.storeCloseLayout.setVisibility(View.VISIBLE);
             holder.main_layout.setClickable(false);

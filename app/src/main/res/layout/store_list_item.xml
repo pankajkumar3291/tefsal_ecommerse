@@ -181,6 +181,8 @@
         android:translationZ="999dp">
 
         <TextView
+            android:alpha="1"
+            android:translationZ="1100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

@@ -34,7 +34,7 @@
                 android:id="@+id/img_tailor"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:background="@mipmap/ic_launcher"
+                android:background="@drawable/logo_tefsal"
                 android:scaleType="centerCrop" />
 
         </LinearLayout>
