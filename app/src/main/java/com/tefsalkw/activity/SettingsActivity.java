@@ -124,9 +124,9 @@ public class SettingsActivity extends BaseActivity {
                 } else {
                     builder = new AlertDialog.Builder(SettingsActivity.this);
                 }
-                builder.setTitle("Logout")
-                        .setMessage("Are you sure?")
-                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.logout)
+                        .setMessage(R.string.are_you_sure)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
 
@@ -136,7 +136,7 @@ public class SettingsActivity extends BaseActivity {
 
                             }
                         })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // do nothing
                                 dialog.cancel();

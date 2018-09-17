@@ -527,4 +527,13 @@
     <string name="delivery_charge">Delivery Charge: </string>
     <string name="sub_total">Sub Total:</string>
     <string name="registration_in_progress">Registration in progress...</string>
+    <string name="thank_you1">We have sent an activation link to your email address</string>
+    <string name="thank_you2">Please activate your account to login.</string>
+    <string name="cancel_confirmation">Are you sure you want to cancel?</string>
+    <string name="cancel_title">Cancel Measurement</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="cancel_textile">Cancel Textile Selection</string>
+    <string name="logout">Logout</string>
+    <string name="are_you_sure">Are you sure?</string>
 </resources>

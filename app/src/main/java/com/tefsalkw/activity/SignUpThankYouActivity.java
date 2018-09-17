@@ -35,7 +35,7 @@ public class SignUpThankYouActivity extends AppCompatActivity {
 
         }
         TextView txtStatus = findViewById(R.id.txtStatus);
-        txtStatus.setText("We have sent an activation link to your email address " + email + ". Please activate your account to login.");
+        txtStatus.setText(getString(R.string.thank_you1) + email + getString(R.string.thank_you2));
 
 
     }

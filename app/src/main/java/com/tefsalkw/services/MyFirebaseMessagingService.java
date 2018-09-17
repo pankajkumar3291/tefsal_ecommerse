@@ -23,8 +23,8 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.activity.DaraAbayaStoresActivity;
-import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishDashaProductActivity;
+import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.MailingSystemActivity;
 import com.tefsalkw.activity.MainActivity;
 import com.tefsalkw.activity.MyOrderActivity;
@@ -225,6 +225,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent)
                     .setColor(255)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                     .setContentText(message)
                     .setWhen(System.currentTimeMillis());
 
@@ -245,6 +246,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentText(message)
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo_blue))
                     .setAutoCancel(true)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setPriority(Notification.PRIORITY_HIGH)
                     .setSound(defaultSoundUri)

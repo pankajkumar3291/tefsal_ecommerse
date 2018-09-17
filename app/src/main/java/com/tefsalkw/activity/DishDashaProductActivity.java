@@ -188,9 +188,9 @@ public class DishDashaProductActivity extends BaseActivity {
                 }
 
 
-                builder.setTitle("Cancel Textile Selection")
-                        .setMessage("Are you sure you want to cancel?")
-                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.cancel_textile)
+                        .setMessage(R.string.cancel_confirmation)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
 
@@ -199,7 +199,7 @@ public class DishDashaProductActivity extends BaseActivity {
 
                             }
                         })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // do nothing
                                 dialog.cancel();

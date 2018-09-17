@@ -249,8 +249,8 @@ public class AddAddresssAfterSignUp extends BaseActivity {
             outState.put("spin_city", spin_city.getSelectedItemPosition());
             outState.put("spin_area", spin_area.getSelectedItemPosition());
 
-            outState.put("spin_city_txt", "" + spin_city.getSelectedItem().toString());
-            outState.put("spin_area_txt", "" + spin_area.getSelectedItem().toString());
+            outState.put("spin_city_txt", spin_city.getSelectedItem() != null ? spin_city.getSelectedItem().toString() : "");
+            outState.put("spin_area_txt", spin_area.getSelectedItem() != null ? spin_area.getSelectedItem().toString() : "");
 
 
             outState.put("input_block", input_block.getText().toString().trim());
