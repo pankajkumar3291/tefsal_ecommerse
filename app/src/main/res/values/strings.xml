@@ -543,5 +543,6 @@
     <string name="is_correct">Is this correct?</string>
     <string name="saved_addresses">Saved Addresses</string>
     <string name="send_mail">SEND EMAIL</string>
+    <string name="cart_empty">Cart is empty!</string>
 
 </resources>

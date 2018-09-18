@@ -132,7 +132,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
                 if (currentItemsCount == 0) {
 
-                    Toast.makeText(CartActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartActivity.this, R.string.cart_empty, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Here you need to flush payment method info....
@@ -163,14 +163,14 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                     edit_btn.setText("DONE");*/
 
                     adapter.activateDeleteOption(true);
-                    edit_btn.setText("DONE");
+                    edit_btn.setText(R.string.toolbar_textile_detail_done_txt_text);
                     adapter.notifyDataSetChanged();
                     isDelete = false;
 
 
                 } else {
                     adapter.activateDeleteOption(false);
-                    edit_btn.setText("EDIT");
+                    edit_btn.setText(R.string.toolbar_cart_edit_btn_text);
                     adapter.notifyDataSetChanged();
                     isDelete = true;
 

@@ -35,7 +35,7 @@ public class SignUpThankYouActivity extends AppCompatActivity {
 
         }
         TextView txtStatus = findViewById(R.id.txtStatus);
-        txtStatus.setText(getString(R.string.thank_you1) + email + getString(R.string.thank_you2));
+        txtStatus.setText(getString(R.string.thank_you1) + " " + email + ". " + getString(R.string.thank_you2));
 
 
     }

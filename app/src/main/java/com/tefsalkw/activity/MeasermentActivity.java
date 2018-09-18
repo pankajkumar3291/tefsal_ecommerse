@@ -2879,7 +2879,7 @@ public class MeasermentActivity extends BaseActivity {
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_dialog, null);
         TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
 
-        txt_min_meter.setText(getString(R.string.you_are) + min_dishdasha + getString(R.string.style_confirmation) + getString(R.string.is_correct));
+        txt_min_meter.setText(getString(R.string.you_are) + " " + min_dishdasha + " " + getString(R.string.style_confirmation)+" " + getString(R.string.is_correct));
 
         Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
         Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);

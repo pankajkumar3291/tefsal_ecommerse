@@ -104,8 +104,8 @@ public class HomeFragment extends BaseFragment {
             leftArrow.setImageResource(R.drawable.right_arrow);
             rightArrow.setImageResource(R.drawable.left_arrow);
 
-
         }
+
         mainViewPager.setOffscreenPageLimit(4);
         mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -229,7 +229,13 @@ public class HomeFragment extends BaseFragment {
 
             ImageView  imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
-            title.setRotationY(180);
+            if (sessionManager.isRTL()) {
+
+                title.setRotationY(180);
+
+            }
+
+
             imageView.setImageResource(img[position]);
             title.setText(title_array[position]);
 
