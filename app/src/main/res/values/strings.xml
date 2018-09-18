@@ -490,7 +490,6 @@
     <string name="zaara_daraa_add_cart_btn_text">ADD TO CART</string>
 
 
-
     <string name="privacy_policy">Privacy Policy</string>
     <string name="accessories">Accessories</string>
     <string name="step2">STEP 2</string>
@@ -536,4 +535,11 @@
     <string name="cancel_textile">Cancel Textile Selection</string>
     <string name="logout">Logout</string>
     <string name="are_you_sure">Are you sure?</string>
+    <string name="style_name_required">Style name is required</string>
+    <string name="duplicate_style_name">Duplicate style name</string>
+    <string name="style">STYLE</string>
+    <string name="you_are">You are</string>
+    <string name="style_confirmation">meters as per our calculation.</string>
+    <string name="is_correct">Is this correct?</string>
+
 </resources>

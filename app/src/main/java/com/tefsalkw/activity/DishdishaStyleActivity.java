@@ -288,7 +288,7 @@ public class DishdishaStyleActivity extends BaseActivity {
 
     private boolean validateStyleName() {
         if (input_style_name.getText().toString().trim().equals("")) {
-            input_layout_style_name.setError("Style name should not be empty");
+            input_layout_style_name.setError(getString(R.string.style_name_required));
             requestFocus(input_style_name);
             return false;
         }
@@ -313,7 +313,7 @@ public class DishdishaStyleActivity extends BaseActivity {
 
 
         if (!isNameUnique) {
-            input_layout_style_name.setError("Duplicate style name");
+            input_layout_style_name.setError(getString(R.string.duplicate_style_name));
             requestFocus(input_style_name);
         }
 

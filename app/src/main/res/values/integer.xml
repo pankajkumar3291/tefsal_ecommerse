@@ -8,4 +8,6 @@
         <item >@drawable/ic_orders</item>
         <item >@drawable/ic_settings</item>
     </integer-array>
+
+    <integer name="rtl_flip_factor">1</integer>
 </resources>

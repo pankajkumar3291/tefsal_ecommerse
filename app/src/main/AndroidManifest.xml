@@ -261,7 +261,8 @@
             android:name=".activity.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SignUpThankYouActivity"></activity>
+        <activity android:name=".activity.SignUpThankYouActivity" />
+        <activity android:name=".activity.PaymentActivity"></activity>
     </application>
 
 </manifest>

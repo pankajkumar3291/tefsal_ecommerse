@@ -39,9 +39,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.request.RequestOptions;
-import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
@@ -295,6 +292,7 @@ public class MeasermentActivity extends BaseActivity {
 
     @BindView(R.id.relSlide)
     RelativeLayout relSlide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -322,7 +320,6 @@ public class MeasermentActivity extends BaseActivity {
         setPrefData(mDishdashaStylesRecord);
 
 
-
         setCustomDesignData();
 
 
@@ -341,7 +338,7 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-       // ic_shoulder.getLayoutParams().height = 190;
+        // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
@@ -353,15 +350,15 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-       // ic_arm.getLayoutParams().height = 190;
+        // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-       // ic_wrist.getLayoutParams().height = 190;
+        // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-       // ic_f_height.getLayoutParams().height = 190;
+        // ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
@@ -369,7 +366,7 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-       // ic_custom.getLayoutParams().height = 190;
+        // ic_custom.getLayoutParams().height = 190;
 
 
         seekBar.setMax(max - min);
@@ -527,7 +524,7 @@ public class MeasermentActivity extends BaseActivity {
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch2", false);
+                PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch2", false);
                 relSlide.setVisibility(View.GONE);
             }
         });
@@ -608,7 +605,7 @@ public class MeasermentActivity extends BaseActivity {
                     case 8:
                         ll_customDesign();
                         // textValue.requestFocus();
-                        next_txt.setText("FINISH");
+                        next_txt.setText(R.string.activity_measerment_btn_finish_text);
 
                         back_count--;
                         break;
@@ -733,7 +730,7 @@ public class MeasermentActivity extends BaseActivity {
                     case 8:
                         ll_customDesign();
                         //  textValue.requestFocus();
-                        next_txt.setText("FINISH");
+                        next_txt.setText(R.string.activity_measerment_btn_finish_text);
                         llFinish.setVisibility(VISIBLE);
                         count = count + 1;
                         break;
@@ -1001,7 +998,6 @@ public class MeasermentActivity extends BaseActivity {
                     }
 
 
-
                 } else {
 
                     mSessionManager.setKeyButtonsVisibility("no");
@@ -1133,9 +1129,6 @@ public class MeasermentActivity extends BaseActivity {
                 }
             }
         });
-
-
-
 
 
         noOfButtonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1303,8 +1296,7 @@ public class MeasermentActivity extends BaseActivity {
         }
 
 
-
-        Log.e("CollarButtonCount",mSessionManager.getKeyButtons());
+        Log.e("CollarButtonCount", mSessionManager.getKeyButtons());
         if (mSessionManager.getKeyButtons().equals("1")) {
             noOfButtonSpinner.setSelection(0);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
@@ -1315,7 +1307,6 @@ public class MeasermentActivity extends BaseActivity {
             noOfButtonSpinner.setSelection(1);
             buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
         }
-
 
 
         if (mSessionManager.getKeyButtonsVisibility().equals("yes")) {
@@ -1428,7 +1419,7 @@ public class MeasermentActivity extends BaseActivity {
 
 
         toolbar_title.setText("1/9");
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
 
         tv_neck.setVisibility(VISIBLE);
 
@@ -1530,7 +1521,7 @@ public class MeasermentActivity extends BaseActivity {
     private void ll_chestDesign() {
         decimalString = "00";
         toolbar_title.setText("3/9");
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         flag_chest = 1;
 
 
@@ -1636,7 +1627,7 @@ public class MeasermentActivity extends BaseActivity {
     private void ll_sldrDesign() {
 
 
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         toolbar_title.setText("2/9");
         flag_sldr = 1;
 
@@ -1738,7 +1729,7 @@ public class MeasermentActivity extends BaseActivity {
 
     private void ll_waistDesign() {
         // decimalString="00";
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         toolbar_title.setText("4/9");
         flag_waist = 1;
 
@@ -1830,16 +1821,16 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-       // ic_b_height.getLayoutParams().height = 190;
+        // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-       // ic_custom.getLayoutParams().height = 190;
+        // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_armDesign() {
         // decimalString="00";
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         flag_sldr = flag_chest = flag_neck = flag_waist = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
         toolbar_title.setText("5/9");
@@ -1903,45 +1894,45 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_neck.setTextSize(12);
         ic_neck.requestLayout();
-       // ic_neck.getLayoutParams().height = 190;
+        // ic_neck.getLayoutParams().height = 190;
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-       // ic_shoulder.getLayoutParams().height = 190;
+        // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
-       // ic_chest.getLayoutParams().height = 190;
+        // ic_chest.getLayoutParams().height = 190;
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-       // ic_waist.getLayoutParams().height = 190;
+        // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-       // ic_arm.getLayoutParams().height = 210;
+        // ic_arm.getLayoutParams().height = 210;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-       // ic_wrist.getLayoutParams().height = 190;
+        // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-      //  ic_f_height.getLayoutParams().height = 190;
+        //  ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-       // ic_b_height.getLayoutParams().height = 190;
+        // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-       // ic_custom.getLayoutParams().height = 190;
+        // ic_custom.getLayoutParams().height = 190;
 
     }
 
     private void ll_wristDesign() {
         decimalString = "00";
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_waist = flag_front_height = flag_back_height = flag_customized = 0;
         toolbar_title.setText("6/9");
         flag_wrist = 1;
@@ -2022,11 +2013,11 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-       // ic_arm.getLayoutParams().height = 190;
+        // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-       // ic_wrist.getLayoutParams().height = 210;
+        // ic_wrist.getLayoutParams().height = 210;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
@@ -2038,12 +2029,12 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-       // ic_custom.getLayoutParams().height = 190;
+        // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_frnt_heightDesign() {
         //decimalString="00";
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_waist = flag_back_height = flag_customized = 0;
         toolbar_title.setText("7/9");
         flag_front_height = 1;
@@ -2113,7 +2104,7 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_shoulder.setTextSize(12);
         ic_shoulder.requestLayout();
-       // ic_shoulder.getLayoutParams().height = 190;
+        // ic_shoulder.getLayoutParams().height = 190;
 
         tv_chest.setTextSize(12);
         ic_chest.requestLayout();
@@ -2125,7 +2116,7 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-       // ic_arm.getLayoutParams().height = 190;
+        // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
@@ -2133,20 +2124,20 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-       // ic_f_height.getLayoutParams().height = 210;
+        // ic_f_height.getLayoutParams().height = 210;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
-       // ic_b_height.getLayoutParams().height = 190;
+        // ic_b_height.getLayoutParams().height = 190;
 
         tv_custom.setTextSize(12);
         ic_custom.requestLayout();
-       // ic_custom.getLayoutParams().height = 190;
+        // ic_custom.getLayoutParams().height = 190;
     }
 
     private void ll_back_heightDesign() {
         // decimalString="00";
-        next_txt.setText("NEXT");
+        next_txt.setText(R.string.toolbar_next_txt_text);
         flag_sldr = flag_chest = flag_neck = flag_arm = flag_wrist = flag_front_height = flag_waist = flag_customized = 0;
         toolbar_title.setText("8/9");
         flag_back_height = 1;
@@ -2275,7 +2266,7 @@ public class MeasermentActivity extends BaseActivity {
 
 
         decimalString = "00";
-        next_txt.setText("FINISH");
+        next_txt.setText(R.string.activity_measerment_btn_finish_text);
         llFinish.setVisibility(VISIBLE);
         count = 8;
         viewTipTrackCount = 9;
@@ -2295,19 +2286,19 @@ public class MeasermentActivity extends BaseActivity {
 
         tv_waist.setTextSize(12);
         ic_waist.requestLayout();
-       // ic_waist.getLayoutParams().height = 190;
+        // ic_waist.getLayoutParams().height = 190;
 
         tv_arm.setTextSize(12);
         ic_arm.requestLayout();
-       // ic_arm.getLayoutParams().height = 190;
+        // ic_arm.getLayoutParams().height = 190;
 
         tv_wrist.setTextSize(12);
         ic_wrist.requestLayout();
-       // ic_wrist.getLayoutParams().height = 190;
+        // ic_wrist.getLayoutParams().height = 190;
 
         tv_f_height.setTextSize(12);
         ic_f_height.requestLayout();
-      //  ic_f_height.getLayoutParams().height = 190;
+        //  ic_f_height.getLayoutParams().height = 190;
 
         tv_b_height.setTextSize(12);
         ic_b_height.requestLayout();
@@ -2888,7 +2879,7 @@ public class MeasermentActivity extends BaseActivity {
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_dialog, null);
         TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
 
-        txt_min_meter.setText("You are " + min_dishdasha + " meters as per our calculation.\nis this correct?");
+        txt_min_meter.setText(getString(R.string.you_are) + min_dishdasha + getString(R.string.style_confirmation) + getString(R.string.is_correct));
 
         Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
         Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);

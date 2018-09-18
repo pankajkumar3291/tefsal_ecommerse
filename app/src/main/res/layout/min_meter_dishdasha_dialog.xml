@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:layout_width="0dp"
-                android:text="@string/min_meter_dishdasha_dialog_dialog_yes_btn_text"
+                android:text="@string/yes"
                 android:textSize="@dimen/text_mid" />
 
             <View
@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="50"
                 android:layout_width="0dp"
-                android:text="@string/min_meter_dishdasha_dialog_dialog_no_btn_text"
+                android:text="@string/no"
                 android:textSize="@dimen/text_mid" />
         </LinearLayout>
     </RelativeLayout>
