@@ -465,7 +465,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
                         if (jsonObject.getInt("status") == 1) {
 
-
+                            SimpleProgressBar.closeProgress();
                             Toast.makeText(PaymentSelectActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                             startActivity(new Intent(PaymentSelectActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
