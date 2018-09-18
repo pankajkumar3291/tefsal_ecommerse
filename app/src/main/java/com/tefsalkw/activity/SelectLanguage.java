@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Locale;
@@ -47,7 +48,7 @@ public class SelectLanguage extends BaseActivity {
 
                 sessionManager.setKeyLang("Arabic");
 
-                Resources resources = getResources();
+                Resources resources = TefsalApplication.getContext().getResources();
                 Configuration configuration = resources.getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                 configuration.setLocale(locale);
@@ -66,7 +67,7 @@ public class SelectLanguage extends BaseActivity {
                 Locale locale = new Locale("eg");
                 Locale.setDefault(locale);
                 sessionManager.setKeyLang("English");
-                Resources resources = getResources();
+                Resources resources = TefsalApplication.getContext().getResources();
                 Configuration configuration = resources.getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                 configuration.setLocale(locale);

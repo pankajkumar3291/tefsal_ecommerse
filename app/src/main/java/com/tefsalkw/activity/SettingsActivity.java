@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.SessionManager;
 
@@ -236,7 +237,7 @@ public class SettingsActivity extends BaseActivity {
                     Locale locale = new Locale(lang);
                     Locale.setDefault(locale);
 
-                    Resources resources = getResources();
+                    Resources resources = TefsalApplication.getContext().getResources();
                     Configuration configuration = resources.getConfiguration();
                     DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                     configuration.setLocale(locale);
