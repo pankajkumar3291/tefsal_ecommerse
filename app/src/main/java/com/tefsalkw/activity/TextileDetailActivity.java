@@ -1203,18 +1203,18 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     public void WebCallServiceAddCartNew() {
 
 
-        String styleId = TefalApp.getInstance().getStyleId();
-
-        if (styleId == null) {
-            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
-        if (styleId.equals("")) {
-            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String styleId = TefalApp.getInstance().getStyleId();
+//
+//        if (styleId == null) {
+//            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//
+//        if (styleId.equals("")) {
+//            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
 
         final String url = Contents.baseURL + "addCart";

@@ -16,6 +16,7 @@
 
 
         <ImageButton
+            android:scaleX="@integer/rtl_flip_factor"
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
