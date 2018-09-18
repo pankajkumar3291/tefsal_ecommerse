@@ -9,6 +9,7 @@
 
 
     <ImageButton
+        android:scaleX="@integer/rtl_flip_factor"
         android:autoMirrored="true"
         android:background="@android:color/transparent"
         android:id="@+id/btn_back"

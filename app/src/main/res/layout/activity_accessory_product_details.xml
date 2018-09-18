@@ -24,7 +24,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/ic_left_arrow" />
+            android:background="@drawable/ic_left_arrow"
+            android:scaleX="@integer/rtl_flip_factor" />
 
         <LinearLayout
             android:layout_width="match_parent"

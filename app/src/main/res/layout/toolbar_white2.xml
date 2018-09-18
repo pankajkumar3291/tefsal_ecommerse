@@ -20,16 +20,17 @@
             android:layout_alignParentStart="true"
             android:background="@android:color/transparent"
             android:padding="5dp"
+            android:scaleX="@integer/rtl_flip_factor"
             android:src="@drawable/ic_arrow_back_white_24dp" />
 
 
         <TextView
-            android:layout_centerInParent="true"
             android:id="@+id/toolbar_title"
             fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/toolbar_white2_toolbar_title_text"

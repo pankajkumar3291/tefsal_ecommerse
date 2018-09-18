@@ -541,5 +541,7 @@
     <string name="you_are">You are</string>
     <string name="style_confirmation">meters as per our calculation.</string>
     <string name="is_correct">Is this correct?</string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="send_mail">SEND EMAIL</string>
 
 </resources>

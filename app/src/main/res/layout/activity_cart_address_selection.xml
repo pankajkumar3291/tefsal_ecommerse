@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Saved Addresses"
+                    android:text="@string/saved_addresses"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_large"
                     android:textStyle="bold" />

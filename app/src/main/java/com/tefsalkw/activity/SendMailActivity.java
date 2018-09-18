@@ -78,7 +78,7 @@ public class SendMailActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar_title.setText("SEND EMAIL");
+        toolbar_title.setText(R.string.send_mail);
 
         session = new SessionManager(this);
 

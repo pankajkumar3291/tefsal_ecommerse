@@ -64,7 +64,7 @@ public class TabbarActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         newStyleBtn.setVisibility(View.VISIBLE);
-        toolbar_title.setText("MY STYLES");
+        toolbar_title.setText(R.string.nav_mystyle);
 
 
         session = new SessionManager(this);
