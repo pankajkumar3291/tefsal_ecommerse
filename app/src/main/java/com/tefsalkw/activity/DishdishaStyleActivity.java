@@ -136,8 +136,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                 Gson g = new Gson();
                                 DishdashaStylesResponse mResponse = g.fromJson(response, DishdashaStylesResponse.class);
 
-                                if(mResponse != null)
-                                {
+                                if (mResponse != null) {
                                     if (mResponse.getStatus().equals("1")) {
 
                                         LinearLayoutManager layoutManager = new LinearLayoutManager(DishdishaStyleActivity.this);
@@ -153,15 +152,15 @@ public class DishdishaStyleActivity extends BaseActivity {
                                     if (mResponse.getStatus().equals("0") || mResponse.getRecord().size() == 0) {
 
                                         AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
-                                        builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
+                                        builder.setMessage(R.string.no_style_text)
                                                 .setCancelable(false)
-                                                .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
+                                                .setPositiveButton(R.string.create_new, new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
 
                                                         showNamePrompt();
                                                     }
                                                 })
-                                                .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                                .setNegativeButton(R.string.continue_, new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         //  Action for 'NO' Button
                                                         TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
@@ -176,27 +175,28 @@ public class DishdishaStyleActivity extends BaseActivity {
                                         //Creating dialog box
                                         AlertDialog alert = builder.create();
                                         //Setting the title manually
-                                        alert.setTitle("No Style Available");
+                                        alert.setTitle(R.string.no_style_available);
                                         alert.show();
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(DishdishaStyleActivity.this);
-                                    builder.setMessage("You currently do not have any stored\nstyles for Dishdisha.")
+                                    builder.setMessage(R.string.no_style_text)
                                             .setCancelable(false)
-                                            .setPositiveButton("Create New", new DialogInterface.OnClickListener() {
+                                            .setPositiveButton(R.string.create_new, new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
 
                                                     showNamePrompt();
                                                 }
                                             })
-                                            .setNegativeButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                            .setNegativeButton(R.string.continue_, new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
                                                     TefalApp.getInstance().setToolbar_title(getString(R.string.dishdasha_stores));
                                                     TefalApp.getInstance().setMin_meters("3");
                                                     TefalApp.getInstance().setStyleName("TefsalDefault");
+
+                                                    TefalApp.getInstance().setStyleId("");
+
                                                     startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
                                                     dialog.cancel();
@@ -206,7 +206,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                     //Creating dialog box
                                     AlertDialog alert = builder.create();
                                     //Setting the title manually
-                                    alert.setTitle("No Style Available");
+                                    alert.setTitle(R.string.no_style_available);
                                     alert.show();
                                 }
 

@@ -544,5 +544,6 @@
     <string name="saved_addresses">Saved Addresses</string>
     <string name="send_mail">SEND EMAIL</string>
     <string name="cart_empty">Cart is empty!</string>
+    <string name="no_style_text">You currently do not have any stored styles for Dishdisha.</string>
 
 </resources>

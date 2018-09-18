@@ -284,7 +284,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     Button btnClose;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -571,10 +570,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                         relSlide5.setVisibility(View.GONE);
                         relSlide4.setVisibility(View.VISIBLE);
 
-                    }
-
-                    else
-                    {
+                    } else {
                         boolean isFirstTimeLaunch4 = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch4", true);
 
                         if (isFirstTimeLaunch4) {
@@ -588,8 +584,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                         }
 
                     }
-
-
 
 
                 }
@@ -1207,6 +1201,20 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
     public void WebCallServiceAddCartNew() {
+
+
+        String styleId = TefalApp.getInstance().getStyleId();
+
+        if (styleId == null) {
+            Toast.makeText(this, "Please create style.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (styleId.equals("")) {
+            Toast.makeText(this, "Please create style.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
 
         final String url = Contents.baseURL + "addCart";
