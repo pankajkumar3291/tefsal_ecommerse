@@ -28,7 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:text="--"
+            android:text="@string/privacy_policy"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_mid"
