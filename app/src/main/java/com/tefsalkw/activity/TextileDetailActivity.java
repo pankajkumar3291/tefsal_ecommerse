@@ -1206,13 +1206,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         String styleId = TefalApp.getInstance().getStyleId();
 
         if (styleId == null) {
-            Toast.makeText(this, "Please create style.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
             return;
         }
 
 
         if (styleId.equals("")) {
-            Toast.makeText(this, "Please create style.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.create_stlye_warning, Toast.LENGTH_SHORT).show();
             return;
         }
 
