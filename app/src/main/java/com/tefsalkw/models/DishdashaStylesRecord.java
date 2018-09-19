@@ -12,57 +12,57 @@ public class DishdashaStylesRecord implements Serializable {
 
     private String deleted_at;
 
-    private String mobile_pocket;
+    private String mobile_pocket = "";
 
     private String chest;
 
     private String wrist;
 
-    private String waist;
+    private String waist = "";
 
-    private String buttons;
+    private String buttons = "";
 
-    private String pen_pocket;
+    private String pen_pocket = "";
 
 
 
-    private String wide;
+    private String wide = "";
 
-    private String collar_buttons;
+    private String collar_buttons = "";
 
-    private String cufflink;
+    private String cufflink = "";
 
     private String id;
 
-    private String front_height;
+    private String front_height = "";
 
-    private String category;
+    private String category = "";
 
-    private String narrow;
+    private String narrow = "";
 
-    private String updated_at;
+    private String updated_at = "";
 
-    private String back_height;
+    private String back_height = "";
 
-    private String name;
+    private String name = "";
 
-    private String shoulder;
+    private String shoulder = "";
 
-    private String created_at;
+    private String created_at = "";
 
-    private String user_id;
+    private String user_id = "";
 
-    private String arm;
+    private String arm = "";
 
-    private String key_pocket;
+    private String key_pocket = "";
 
 
 
-    private String min_meters;
+    private String min_meters = "";
 
-    private String collar_button_visibility;
-    private String shirt_button_visibility;
-    private String collar_buttons_push;
+    private String collar_button_visibility = "";
+    private String shirt_button_visibility = "";
+    private String collar_buttons_push = "";
 
     public boolean isEditMode() {
         return isEditMode;

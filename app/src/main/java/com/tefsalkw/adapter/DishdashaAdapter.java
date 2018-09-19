@@ -393,7 +393,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
 
-                if (record.get(position).getCollar_button_visibility().equals("yes")) {
+                if (record.get(position).getCollar_button_visibility() != null && record.get(position).getCollar_button_visibility().equals("yes")) {
                     holder.txtBadge_collar_btn.setVisibility(View.VISIBLE);
 
                 } else {
@@ -401,7 +401,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 }
 
 
-                if (record.get(position).getShirt_button_visibility().equals("yes")) {
+                if (record.get(position).getShirt_button_visibility() != null && record.get(position).getShirt_button_visibility().equals("yes")) {
                     holder.txt_badge_coat.setVisibility(View.VISIBLE);
 
                 } else {
@@ -410,22 +410,22 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
 
-                if (record.get(position).getCufflink().equals("yes")) {
+                if (record.get(position).getCufflink() != null && record.get(position).getCufflink().equals("yes")) {
                     holder.ic_cuflink.setVisibility(View.VISIBLE);
 
                 }
 
-                if (record.get(position).getPen_pocket().equals("yes")) {
+                if (record.get(position).getPen_pocket() != null && record.get(position).getPen_pocket().equals("yes")) {
                     holder.pen_pocket.setImageResource(R.drawable.pen_w);
 
                 }
 
-                if (record.get(position).getMobile_pocket().equals("yes")) {
+                if (record.get(position).getMobile_pocket() != null && record.get(position).getMobile_pocket().equals("yes")) {
 
                     holder.mobile_pocket.setImageResource(R.drawable.phone_w);
                 }
 
-                if (record.get(position).getKey_pocket().equals("yes")) {
+                if (record.get(position).getKey_pocket() != null && record.get(position).getKey_pocket().equals("yes")) {
 
                     holder.key_pocket.setImageResource(R.drawable.key_w);
                 }
