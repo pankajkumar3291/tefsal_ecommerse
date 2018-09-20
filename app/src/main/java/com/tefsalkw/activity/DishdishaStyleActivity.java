@@ -168,6 +168,7 @@ public class DishdishaStyleActivity extends BaseActivity {
                                                         TefalApp.getInstance().setStyleName("TefsalDefault");
                                                         startActivity(new Intent(DishdishaStyleActivity.this, DishDashaStoresActivity.class).putExtra("flag", "dish"));
 
+                                                        TefalApp.getInstance().setStyleId("");
                                                         dialog.cancel();
                                                     }
                                                 });
