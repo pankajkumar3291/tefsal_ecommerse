@@ -24,7 +24,6 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.models.PromoCodesResponseModel;
@@ -127,6 +126,9 @@ public class PaymentSelectActivity extends BaseActivity {
     @BindView(R.id.txtSubTotal)
     TextView txtSubTotal;
 
+    String paymentMethod = "cod";
+
+    double grandTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +157,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
             Double deliveryAmount = 0.000;
 
-            double grandTotal = Double.parseDouble(previousAmount);
+            grandTotal = Double.parseDouble(previousAmount);
 
             if (deliveryCharge != null && !deliveryCharge.equalsIgnoreCase("free")) {
 
@@ -191,102 +193,60 @@ public class PaymentSelectActivity extends BaseActivity {
             }
         });
 
+
         knetPaymentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+
                 if (isChecked) {
-                    LL_visa_masterPaymentTCContainer.setVisibility(View.GONE);
-                    LL_knetPaymentTCContainer.setVisibility(View.VISIBLE);
-                    visa_masterPaymentCheck.setChecked(false);
-                    visa_masterPaymentTCCheck.setChecked(false);
+
+                    paymentMethod = "knet";
                     codPaymentCheck.setChecked(false);
-                    TefalApp.getInstance().setPayment_method("KNET");
-
-                } else {
-                    LL_knetPaymentTCContainer.setVisibility(View.GONE);
-                    TefalApp.getInstance().setPayment_method("");
-                    TefalApp.getInstance().setPayment_method_tc("");
                 }
+
 
             }
         });
 
-        visa_masterPaymentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    LL_visa_masterPaymentTCContainer.setVisibility(View.VISIBLE);
-                    LL_knetPaymentTCContainer.setVisibility(View.GONE);
-                    knetPaymentCheck.setChecked(false);
-                    knetPaymentTCCheck.setChecked(false);
-                    codPaymentCheck.setChecked(false);
 
-                    TefalApp.getInstance().setPayment_method("CARD");
-
-
-                } else {
-                    LL_visa_masterPaymentTCContainer.setVisibility(View.GONE);
-                    TefalApp.getInstance().setPayment_method("");
-                    TefalApp.getInstance().setPayment_method_tc("");
-
-
-                }
-
-            }
-        });
-
-        knetPaymentTCCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    TefalApp.getInstance().setPayment_method_tc("KNET_AGREE");
-                } else {
-                    TefalApp.getInstance().setPayment_method_tc("");
-                }
-            }
-        });
-
-        visa_masterPaymentTCCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    TefalApp.getInstance().setPayment_method_tc("VIMA_AGREE");
-                } else {
-                    TefalApp.getInstance().setPayment_method_tc("");
-                }
-            }
-        });
         codPaymentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
 
-                    LL_visa_masterPaymentTCContainer.setVisibility(View.GONE);
-                    LL_knetPaymentTCContainer.setVisibility(View.GONE);
-
+                    paymentMethod = "cod";
                     knetPaymentCheck.setChecked(false);
-                    knetPaymentTCCheck.setChecked(false);
-                    visa_masterPaymentCheck.setChecked(false);
-                    visa_masterPaymentTCCheck.setChecked(false);
-
-                    TefalApp.getInstance().setPayment_method_tc("COD_AGREE");
-                    TefalApp.getInstance().setPayment_method("COD");
-
-
-                } else {
-                    TefalApp.getInstance().setPayment_method_tc("");
-                    TefalApp.getInstance().setPayment_method("");
                 }
+
             }
         });
+
+
         proceed_payment_method.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("OUTPUT==== PAYMENT METHOD====" + TefalApp.getInstance().getPayment_method());
-                System.out.println("OUTPUT==== PAYMENT TC====" + TefalApp.getInstance().getPayment_method_tc());
 
-                WebCallServiceOrder();
+                if (paymentMethod.equals("cod")) {
+                    WebCallServiceOrder();
+                } else {
+                    Intent intent = new Intent(PaymentSelectActivity.this, PaymentActivity.class);
+                    intent.putExtra("PaymentMethod", "knet");
+                    intent.putExtra("Amount", String.valueOf(grandTotal));
+                    intent.putExtra("defaultAddressId", String.valueOf(defaultAddressId));
+                    intent.putExtra("guest", guest);
+                    if (session.getIsGuestId()) {
+
+                        intent.putExtra("guest", guest);
+
+                    }
+                    intent.putExtra("delivery_charge", cartResponse.getDelivery_charge());
+
+                    startActivity(intent);
+
+                }
+
 
             }
         });
@@ -469,7 +429,6 @@ public class PaymentSelectActivity extends BaseActivity {
                             Toast.makeText(PaymentSelectActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                             startActivity(new Intent(PaymentSelectActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-
 
 
                         }

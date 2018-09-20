@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 
-public class SignUpThankYouActivity extends AppCompatActivity {
+public class SignUpThankYouActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

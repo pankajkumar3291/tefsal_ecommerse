@@ -7,18 +7,18 @@ package com.tefsalkw.utils;
 
 public class Contents {
 
-    public static String baseURL = "https://tefsalkw.org/api/";
+    public static String baseURL = "http://tefsalkw.org/api/";
     public static String baseVideoURL = "https://s3-eu-west-1.amazonaws.com/tefsalvideos/";
+    public static String paymentBaseUrl = "http://ec2-52-36-100-82.us-west-2.compute.amazonaws.com/";
     //public static String baseVideoURL = "https://d1ulopo9in3mc8.cloudfront.net/";
 
     public static boolean isBlank(CharSequence string) {
         return (string == null || string.toString().trim().length() == 0);
     }
 
-    public static boolean isNotMatch(CharSequence string1,CharSequence string2) {
+    public static boolean isNotMatch(CharSequence string1, CharSequence string2) {
 
-        if(!string1.equals(string2))
-        {
+        if (!string1.equals(string2)) {
             return true;
         }
 

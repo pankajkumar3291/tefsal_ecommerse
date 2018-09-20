@@ -19,7 +19,10 @@ public class SimpleProgressBar {
             pDialog.setMessage(context.getString(R.string.loading));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
-            pDialog.show();
+            if (!pDialog.isShowing()) {
+                pDialog.show();
+            }
+
         }
 
     }
@@ -31,7 +34,9 @@ public class SimpleProgressBar {
             pDialog.setMessage(message);
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
-            pDialog.show();
+            if (!pDialog.isShowing()) {
+                pDialog.show();
+            }
         }
     }
 

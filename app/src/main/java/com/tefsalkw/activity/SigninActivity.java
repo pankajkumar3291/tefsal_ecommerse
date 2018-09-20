@@ -216,6 +216,8 @@ public class SigninActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+
+                            error.printStackTrace();
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -228,7 +230,7 @@ public class SigninActivity extends BaseActivity {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Tefsal signin == ", url + params);
+                    Log.e("Tefsal signin == ", url + new JSONObject(params));
 
                     return params;
                 }

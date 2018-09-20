@@ -12,7 +12,7 @@
     <application
         android:name=".app.TefsalApplication"
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -261,8 +261,14 @@
             android:name=".activity.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SignUpThankYouActivity" />
-        <activity android:name=".activity.PaymentActivity"></activity>
+        <activity
+            android:name=".activity.SignUpThankYouActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
