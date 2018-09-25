@@ -767,8 +767,12 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("EX==" + error);
-                            //SimpleProgressBar.closeProgress();
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }) {
                 @Override
@@ -851,7 +855,12 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error==" + error.toString());
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -942,7 +951,12 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("Error==" + error.toString());
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                             SimpleProgressBar.closeProgress();
                         }
                     }) {

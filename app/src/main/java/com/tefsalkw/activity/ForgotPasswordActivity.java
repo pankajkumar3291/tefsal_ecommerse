@@ -115,7 +115,12 @@ public class ForgotPasswordActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            SimpleProgressBar.closeProgress();
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }    SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override

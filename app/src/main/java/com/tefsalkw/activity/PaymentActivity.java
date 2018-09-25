@@ -197,10 +197,10 @@ public class PaymentActivity extends BaseActivity {
                     payment_id = uri.getQueryParameter("PaymentID");
 
                     if (result.equals("CAPTURED")) {
-                        Toast.makeText(PaymentActivity.this, "Transaction Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
                         WebCallServiceOrder();
                     } else {
-                        Toast.makeText(PaymentActivity.this, "Transaction Failed. Please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentActivity.this, "Payment didn't go through, please try again", Toast.LENGTH_LONG).show();
                     }
 
                     finish();
@@ -213,6 +213,24 @@ public class PaymentActivity extends BaseActivity {
 
             }
 
+            if (url.contains(paymentBaseUrl + "error")) {
+
+                try {
+
+                    Toast.makeText(PaymentActivity.this, "Payment didn't go through, please try again", Toast.LENGTH_LONG).show();
+
+                    finish();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+
+
 
         }
 
@@ -222,7 +240,7 @@ public class PaymentActivity extends BaseActivity {
             super.onReceivedError(view, request, error);
             SimpleProgressBar.closeProgress();
 
-            Toast.makeText(PaymentActivity.this, "Error occurred. Please try again!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PaymentActivity.this, "Error occurred. Please try again!", Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -308,14 +326,14 @@ public class PaymentActivity extends BaseActivity {
                     } catch (JSONException e) {
                         SimpleProgressBar.closeProgress();
                         e.printStackTrace();
-                        Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
                     }
 
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
-                    Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
 
                 }
 

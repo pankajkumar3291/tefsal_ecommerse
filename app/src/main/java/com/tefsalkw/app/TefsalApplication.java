@@ -1,7 +1,15 @@
 package com.tefsalkw.app;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -48,7 +56,40 @@ public class TefsalApplication extends MultiDexApplication {
         mTefalApp = new TefalApp();
 
 
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkReceiver(), intentFilter);
+
+
     }
+
+    public class NetworkReceiver extends BroadcastReceiver {
+        final String TAG = NetworkReceiver.class.getName();
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "Received Network Change event.");
+
+
+            if (!checkInternet()) {
+                Toast.makeText(context, "No Internet Connection...", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
+    boolean checkInternet() {
+        ConnectivityManager cm = (ConnectivityManager) mInstance.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (cm != null) {
+            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+            return networkInfo != null && networkInfo.isConnected();
+        }
+
+        return false;
+
+    }
+
 
     public TefalApp getInstance() {
         return mTefalApp;

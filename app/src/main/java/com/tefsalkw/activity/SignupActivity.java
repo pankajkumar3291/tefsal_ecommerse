@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,9 +29,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tefsalkw.models.CountryModel;
 import com.tefsalkw.R;
 import com.tefsalkw.dialogs.CountryDialog;
+import com.tefsalkw.models.CountryModel;
+import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.PreferencesUtil;
@@ -189,7 +191,35 @@ public class SignupActivity extends BaseActivity {
         setData();
 
 
-        init();
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                input_layout_fname.setError("");
+                input_layout_lname.setError("");
+                input_layout_email.setError("");
+                input_layout_password.setError("");
+                input_layout_c_password.setError("");
+                input_layout_home_num.setError("");
+                input_layout_mob.setError("");
+
+                if (validateFirstName(input_fname.getText().toString().trim())
+
+                        && validateMobileNumber(input_mob.getText().toString().trim())
+                        && validateMobileServer(is_exist_phone)
+                        && validateEmail(input_email.getText().toString().trim())
+                        && validateEmailServer(is_exist_email)
+                        && validatePassword(input_password.getText().toString().trim())
+                        && validateC_password(input_c_password.getText().toString().trim())) {
+
+                    startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
+
+                }
+
+
+            }
+        });
 
         signInTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,12 +246,29 @@ public class SignupActivity extends BaseActivity {
                 String mob_number = s.toString();
                 if (mob_number.length() == 8) {
                     phoneCheckedHttpCall(mob_number);
-                    // Toast.makeText(SignupActivity.this, "8 char", Toast.LENGTH_SHORT).show();
+
                 } else {
                     input_layout_mob.setError("");
                 }
             }
         });
+
+
+        input_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                if (input_mob.getText().toString().length() == 8) {
+                    phoneCheckedHttpCall(input_mob.getText().toString());
+
+                } else {
+
+                    input_layout_mob.setError("");
+                }
+
+            }
+        });
+
 
         input_email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -238,48 +285,8 @@ public class SignupActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 String string_email = s.toString();
                 if (validateEmail2(string_email)) {
-                    checkemailHttpCall(string_email);
+                    checkMailHttpCall(string_email);
                 }
-
-            }
-        });
-        input_fname.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-               /* if(s.toString().length()==1 && s.equals(""))
-                {
-                    input_fname.setText(s.toString().toUpperCase());
-                }*/
-
-              /*  System.out.println("TEXT===="+s);
-
-               if(!s.equals(""))
-               {
-                   if(s.toString().length()==1)
-                   {
-                       System.out.println("TEXT===="+s.toString().toUpperCase());
-                      // fname.append(s.toString().toUpperCase());
-                       input_fname.setText(""+s.toString().toUpperCase());
-                       //break;
-
-                   }
-                   else
-                   {
-                      // fname.append(s.toString());
-                   }
-               }*/
-
 
             }
         });
@@ -289,7 +296,7 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,SignupActivity.this,"1");
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString, SignupActivity.this, "1");
                 countryDialog.show();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -298,7 +305,7 @@ public class SignupActivity extends BaseActivity {
         llHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString,SignupActivity.this,"2");
+                CountryDialog countryDialog = new CountryDialog(phoneCountryCodeRecordString, SignupActivity.this, "2");
                 countryDialog.show();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -380,15 +387,13 @@ public class SignupActivity extends BaseActivity {
     }
 
 
-    public  void setCountryFlag1()
-    {
+    public void setCountryFlag1() {
         txtCountryCode1.setText(selectedMobileCountry.getPhonecode());
 
         imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
     }
 
-    public  void setCountryFlag2()
-    {
+    public void setCountryFlag2() {
 
         txtCountryCode2.setText(selectedHomeCountry.getPhonecode());
 
@@ -1328,7 +1333,12 @@ public class SignupActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("EX==" + error);
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                             SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -1359,9 +1369,9 @@ public class SignupActivity extends BaseActivity {
     }
 
 
-    private void checkemailHttpCall(final String string_email) {
+    private void checkMailHttpCall(final String string_email) {
 
-        // SimpleProgressBar.showProgress(SignupActivity.this);
+
         try {
             final String url = Contents.baseURL + "customerCheckEmail";
 
@@ -1370,7 +1380,6 @@ public class SignupActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) {
 
-                            //SimpleProgressBar.closeProgress();
 
                             System.out.println("RESPONSE==" + response);
 
@@ -1394,7 +1403,6 @@ public class SignupActivity extends BaseActivity {
 
                             } catch (Exception e) {
                                 System.out.println("EX==" + e);
-                                // SimpleProgressBar.closeProgress();
                             }
 
                         }
@@ -1402,8 +1410,12 @@ public class SignupActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("EX==" + error);
-                            // SimpleProgressBar.closeProgress();
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }) {
                 @Override
@@ -1434,7 +1446,6 @@ public class SignupActivity extends BaseActivity {
     }
 
     private void phoneCheckedHttpCall(final String string_phone) {
-// SimpleProgressBar.showProgress(SignupActivity.this);
         try {
             final String url = Contents.baseURL + "customerCheckMobile";
 
@@ -1443,31 +1454,34 @@ public class SignupActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) {
 
-                            //SimpleProgressBar.closeProgress();
 
-                            System.out.println("RESPONSE==" + response);
-
-                            Log.e("device response", response);
+                            Log.e("customerCheckMobile", response);
                             try {
 
                                 JSONObject object = new JSONObject(response);
-                                String status = object.getString("status");
+                                Integer status = object.getInt("status");
                                 error_phone_exist = object.getString("message");
 
-                                if (status.equals("0")) {
+                                if (status == 1) {
+
+                                    is_exist_phone = false;
+                                    input_layout_mob.setError("");
+
+
+                                } else {
+
                                     is_exist_phone = true;
                                     input_layout_mob.setError(error_phone_exist);
                                     requestFocus(input_mob);
-                                    System.out.println("MESSAGE======" + error_phone_exist);
-                                } else {
-                                    is_exist_phone = false;
-                                    input_layout_mob.setError("");
-                                    //System.out.println("MESSAGE======"+error_phone_exist);
                                 }
 
                             } catch (Exception e) {
-                                System.out.println("EX==" + e);
-                                // SimpleProgressBar.closeProgress();
+
+                                is_exist_phone = true;
+                                input_layout_mob.setError("Error: " + e.getMessage());
+
+                                Toast.makeText(SignupActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                             }
 
                         }
@@ -1475,8 +1489,13 @@ public class SignupActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            System.out.println("EX==" + error);
-                            // SimpleProgressBar.closeProgress();
+                            is_exist_phone = true;
+                            if (error != null && error.networkResponse != null) {
+                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }) {
                 @Override
@@ -1488,8 +1507,7 @@ public class SignupActivity extends BaseActivity {
                     params.put("mobile", string_phone);
 
 
-                    Log.e("Refsal device == ", url + params);
-
+                    Log.e("Check mobile == ", url + new JSONObject(params));
                     return params;
                 }
 
@@ -1505,92 +1523,6 @@ public class SignupActivity extends BaseActivity {
         } catch (Exception surError) {
             surError.printStackTrace();
         }
-    }
-
-    private void init() {
-
-        buttonSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-               /* if (Contents.isBlank(input_fname.getText().toString().trim())) {
-                    input_fname.setError(getString(R.string.FirstNameTooshort));
-                    return;
-                }
-                if (Contents.isBlank(input_lname.getText().toString().trim())) {
-                    input_lname.setError(getString(R.string.LastNameTooshort));
-                    return;
-                }
-                if (!Contents.isProperEmail(input_email.getText().toString().trim())) {
-                    input_email.setError(getString(R.string.invalidEmail));
-                    return;
-                }
-                if (Contents.isBlank(input_mob.getText().toString().trim())
-                        && input_mob.getText().toString().trim().length() < 10) {
-
-                    input_mob.setError(getString(R.string.phoneTooshort));
-                    return;
-                }
-                *//*if (Contents.isBlank(input_home_num.getText().toString().trim())
-                        && input_home_num.getText().toString().trim().length() < 10) {
-
-                    input_home_num.setError(getString(R.string.homeNoTooshort));
-                    return;
-                }*//*
-                if (Contents.isBlank(input_password.getText().toString().trim())) {
-
-                    input_password.setError(getString(R.string.passwordNotBlank));
-                    return;
-                }
-                if (input_password.getText().toString().trim().length() < 8) {
-
-                    input_password.setError(getString(R.string.passwordTooshort));
-                    return;
-                }
-                if (Contents.isNotMatch(input_password.getText().toString().trim(),
-                        input_c_password.getText().toString().trim())) {
-
-                    input_c_password.setError(getString(R.string.passwordNotMatch));
-                    return;
-                }*/
-
-                // Block of code to eliminate the existing error message while reclicking the submit button
-                input_layout_fname.setError("");
-                input_layout_lname.setError("");
-                input_layout_email.setError("");
-                input_layout_password.setError("");
-                input_layout_c_password.setError("");
-                input_layout_home_num.setError("");
-                input_layout_mob.setError("");
-
-
-                if (validateFirstName(input_fname.getText().toString().trim())
-                        /*&& validateLastName(input_lname.getText().toString().trim())*/
-                        && validateMobileNumber(input_mob.getText().toString().trim())
-                        && validateMobileServer(is_exist_phone)
-
-                       /* && validateHomeNumber(input_home_num.getText().toString().trim())*/
-                        && validateEmail(input_email.getText().toString().trim())
-                        && validateEmailServer(is_exist_email)
-                        && validatePassword(input_password.getText().toString().trim())
-                        && validateC_password(input_c_password.getText().toString().trim())) {
-
-                    startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
-
-
-                }
-
-//                    WebCallService(input_fname.getText().toString().trim(), input_lname.getText().toString().trim(),
-//                            input_mob.getText().toString().trim(), input_home_num.getText().toString().trim(),
-//                            input_email.getText().toString().trim(), input_password.getText().toString().trim(),
-//                            input_c_password.getText().toString().trim()
-//                    );
-
-
-            }
-        });
-
     }
 
 
