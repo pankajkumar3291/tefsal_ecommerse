@@ -26,6 +26,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -521,18 +522,34 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
-            relSlide5.setOnClickListener(new View.OnClickListener() {
+            relSlide5.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
+                public boolean onTouch(View v, MotionEvent event) {
 
+                    PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch5", false);
+                    relSlide5.setVisibility(View.GONE);
+                    relSlide4.setVisibility(View.VISIBLE);
+
+                    return true;
                 }
             });
-            relSlide4.setOnClickListener(new View.OnClickListener() {
+
+            relSlide4.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
-                    btnClose.performClick();
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    PreferencesUtil.putBool(getApplicationContext(), "isFirstTimeLaunch4", false);
+
+                    relSlide5.setVisibility(View.GONE);
+                    relSlide4.setVisibility(View.GONE);
+
+                    btn_back.setVisibility(View.VISIBLE);
+                    btnClose.setVisibility(View.GONE);
+
+                    return true;
                 }
             });
+
 
             boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch5", true);
             if (isFirstTimeLaunch) {

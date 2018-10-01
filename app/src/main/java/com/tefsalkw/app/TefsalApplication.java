@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,11 +47,30 @@ public class TefsalApplication extends MultiDexApplication {
 
         initOkHttpObject();
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Lato-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
+
+        SessionManager sessionManager = new SessionManager(this);
+
+        String keyLang = sessionManager.getKeyLang();
+
+        Log.e("keyLang",keyLang);
+
+        if(keyLang.equals("Arabic"))
+        {
+            CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                    .setDefaultFontPath("fonts/GESSTwoMedium-Medium.otf")
+                    .setFontAttrId(R.attr.fontPath)
+                    .build()
+            );
+        }
+        else
+        {
+            CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                    .setDefaultFontPath("fonts/Lato-Regular.ttf")
+                    .setFontAttrId(R.attr.fontPath)
+                    .build()
+            );
+        }
+
 
 
         mTefalApp = new TefalApp();
