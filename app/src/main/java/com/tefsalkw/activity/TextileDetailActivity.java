@@ -26,7 +26,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -522,20 +521,18 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
-            relSlide5.setOnTouchListener(new View.OnTouchListener() {
+            relSlide5.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return true;
+                public void onClick(View v) {
+
                 }
             });
-
-            relSlide4.setOnTouchListener(new View.OnTouchListener() {
+            relSlide4.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return true;
+                public void onClick(View v) {
+                    btnClose.performClick();
                 }
             });
-
 
             boolean isFirstTimeLaunch = PreferencesUtil.getBool(getApplicationContext(), "isFirstTimeLaunch5", true);
             if (isFirstTimeLaunch) {

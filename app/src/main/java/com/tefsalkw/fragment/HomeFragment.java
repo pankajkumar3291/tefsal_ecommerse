@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -148,27 +150,26 @@ public class HomeFragment extends BaseFragment {
         }
 
 
+
+
         relSlide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Log.e("relSlide","clicked");
 
-                MainActivity.mainActivity.btnClose.performClick();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        relSlide.setVisibility(View.GONE);
+                        MainActivity.mainActivity.btnClose.performClick();
+                    }
+                });
+
+
             }
         });
-
-
-//        relSlide.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//
-//
-//
-//                //Log.e("setOnTouchListener", v.getId() + "");
-//
-//                return true;
-//            }
-//        });
 
 
         return v;

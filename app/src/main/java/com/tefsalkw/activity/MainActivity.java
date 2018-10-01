@@ -260,7 +260,7 @@ public class MainActivity extends BaseActivity
                 btn_menu.setVisibility(View.VISIBLE);
                 btnClose.setVisibility(View.GONE);
 
-                HomeFragment.homeFragment.relSlide.setVisibility(View.GONE);
+               // HomeFragment.homeFragment.
 
 
             }
