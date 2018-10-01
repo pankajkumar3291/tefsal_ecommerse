@@ -411,7 +411,7 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                                     System.out.println("FROM SESSION ======EMAIL===" + session.getKeyEmail());
                                     System.out.println("FROM SESSION ======PASS===" + session.getKeyPass());
-                                    saveAddress();
+                                    httpAdditionalInfoCall();
 
                                 } else {
                                     Gson g = new Gson();

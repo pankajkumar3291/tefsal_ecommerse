@@ -415,9 +415,9 @@ public class FragmentTextileProducts extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-//                PreferencesUtil.putBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", false);
-//                dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
-//                relSlide.setVisibility(View.GONE);
+                PreferencesUtil.putBool(getActivity().getApplicationContext(), "isFirstTimeLaunch3", false);
+                dishDashaProductActivity.toolbar.setVisibility(View.VISIBLE);
+                relSlide.setVisibility(View.GONE);
 
             }
         });

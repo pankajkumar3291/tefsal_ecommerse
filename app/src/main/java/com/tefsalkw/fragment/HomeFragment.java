@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -23,6 +22,7 @@ import com.tefsalkw.activity.AccessoriesActivity;
 import com.tefsalkw.activity.DaraAbayaStoresActivity;
 import com.tefsalkw.activity.DishDashaStoresActivity;
 import com.tefsalkw.activity.DishdishaStyleActivity;
+import com.tefsalkw.activity.MainActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -148,15 +148,27 @@ public class HomeFragment extends BaseFragment {
         }
 
 
-        relSlide.setOnTouchListener(new View.OnTouchListener() {
+        relSlide.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onClick(View v) {
 
-                //Log.e("setOnTouchListener", v.getId() + "");
 
-                return true;
+                MainActivity.mainActivity.btnClose.performClick();
             }
         });
+
+
+//        relSlide.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//
+//
+//                //Log.e("setOnTouchListener", v.getId() + "");
+//
+//                return true;
+//            }
+//        });
 
 
         return v;
@@ -227,7 +239,7 @@ public class HomeFragment extends BaseFragment {
         public Object instantiateItem(ViewGroup container, final int position) {
             final View itemView = layoutInflater.inflate(R.layout.pager_item, container, false);
 
-            ImageView  imageView = (ImageView) itemView.findViewById(R.id.m_image);
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
             if (sessionManager.isRTL()) {
 
@@ -269,8 +281,6 @@ public class HomeFragment extends BaseFragment {
                     }
                 }
             });
-
-
 
 
             return itemView;

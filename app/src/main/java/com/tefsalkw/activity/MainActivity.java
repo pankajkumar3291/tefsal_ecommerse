@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity
     TextView toolbar_title;
 
     @BindView(R.id.btnClose)
-    TextView btnClose;
+   public TextView btnClose;
 
 
     @BindView(R.id.btn_menu)
@@ -97,6 +97,9 @@ public class MainActivity extends BaseActivity
     SessionManagerToken sessionManagerToken;
     String fromMailArg = "";
 
+    public  static MainActivity mainActivity;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +108,7 @@ public class MainActivity extends BaseActivity
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-
+        mainActivity = this;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(false);
 

@@ -213,7 +213,8 @@ public class SignupActivity extends BaseActivity {
                         && validatePassword(input_password.getText().toString().trim())
                         && validateC_password(input_c_password.getText().toString().trim())) {
 
-                    startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
+                   // startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
+                    startActivity(new Intent(SignupActivity.this, AdditionalInfoActivity.class));
 
                 }
 
