@@ -536,6 +536,14 @@ public class MeasermentActivity extends BaseActivity {
 
         }
 
+        relSlide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnClose.performClick();
+            }
+        });
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -105,6 +107,15 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
         player = ExoPlayerFactory.newSimpleInstance(this, trackSelector);
         player.addListener(this);
 
+        Button btnClose = simpleExoPlayerView.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onBackPressed();
+            }
+        });
+
         simpleExoPlayerView.setPlayer(player);
 
         player.setPlayWhenReady(shouldAutoPlay);
@@ -191,25 +202,28 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
 
-        if (playbackState == ExoPlayer.STATE_ENDED) {
-            currentVideoIs++;
+//        if (playbackState == ExoPlayer.STATE_ENDED) {
+//            currentVideoIs++;
+//
+//
+//            Log.d("onCompletion", "" + currentVideoIs);
+//
+//
+//            int maxVideosToPlay = isFirstTime ? 1 : 8;
+//            if (currentVideoIs <= maxVideosToPlay) {
+//
+//
+//                mediaSource = new ExtractorMediaSource(Uri.parse(literals[currentVideoIs]),
+//                        mediaDataSourceFactory, extractorsFactory, null, null);
+//
+//                player.prepare(mediaSource);
+//
+//            }
+//
+//        }
 
 
-            Log.d("onCompletion", "" + currentVideoIs);
-
-
-            int maxVideosToPlay = isFirstTime ? 1 : 8;
-            if (currentVideoIs <= maxVideosToPlay) {
-
-
-                mediaSource = new ExtractorMediaSource(Uri.parse(literals[currentVideoIs]),
-                        mediaDataSourceFactory, extractorsFactory, null, null);
-
-                player.prepare(mediaSource);
-
-            }
-
-        }
+       // finish();
     }
 
     @Override
