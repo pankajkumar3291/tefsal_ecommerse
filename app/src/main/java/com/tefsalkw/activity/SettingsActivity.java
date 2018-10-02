@@ -81,8 +81,8 @@ public class SettingsActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-        fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+        //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
+        //fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
         session = new SessionManager(this);
 
@@ -249,6 +249,7 @@ public class SettingsActivity extends BaseActivity {
                     startActivity(i);
 
                     Runtime.getRuntime().exit(0);
+
 
                 }
 

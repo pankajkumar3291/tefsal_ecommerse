@@ -44,11 +44,12 @@ public class SelectLanguage extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                Locale locale = new Locale("ar");
-                Locale.setDefault(locale);
+
 
                 sessionManager.setKeyLang("Arabic");
 
+                Locale locale = new Locale("en");
+                Locale.setDefault(locale);
 
                 Resources resources = getBaseContext().getResources();
                 Configuration configuration = getBaseContext().getResources().getConfiguration();
@@ -56,15 +57,13 @@ public class SelectLanguage extends BaseActivity {
                 configuration.setLocale(locale);
                 resources.updateConfiguration(configuration, displayMetrics);
 
-
-
-
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
 
                 Runtime.getRuntime().exit(0);
+
 
             }
         });
@@ -73,9 +72,11 @@ public class SelectLanguage extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+                sessionManager.setKeyLang("English");
+
                 Locale locale = new Locale("en");
                 Locale.setDefault(locale);
-                sessionManager.setKeyLang("English");
+
                 Resources resources = getBaseContext().getResources();
                 Configuration configuration = getBaseContext().getResources().getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
@@ -88,6 +89,7 @@ public class SelectLanguage extends BaseActivity {
                 startActivity(i);
 
                 Runtime.getRuntime().exit(0);
+
             }
         });
 
