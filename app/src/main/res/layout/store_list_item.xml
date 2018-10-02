@@ -114,6 +114,7 @@
                 android:translationZ="99dp" />
 
             <RatingBar
+
                 android:id="@+id/ratingbar"
                 style="?attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"

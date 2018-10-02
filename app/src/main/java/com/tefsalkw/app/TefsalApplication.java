@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.SessionManager;
 
@@ -35,11 +36,18 @@ public class TefsalApplication extends MultiDexApplication {
     int YOUR_CUSTOM_TIMEOUT = 30;
     public TefalApp mTefalApp = null;
 
+    private static FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         sAnalytics = GoogleAnalytics.getInstance(this);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
         mInstance = this;
         super.onCreate();
 
@@ -128,6 +136,13 @@ public class TefsalApplication extends MultiDexApplication {
 
         return sTracker;
     }
+
+    synchronized public static FirebaseAnalytics getmFirebaseAnalytics() {
+
+        return mFirebaseAnalytics;
+    }
+
+
 
     public static OkHttpClient getOkHttpClient() {
         return okHttpClient;

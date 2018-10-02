@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".app.TefsalApplication"
         android:allowBackup="true"
@@ -25,7 +26,7 @@
             android:value="2.1" />
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="a1bd58cac502c97c8c1f0fea8153f1354a1a2da7" />
+            android:value="804d2e16acd09ab979961160ce4d805222d09808" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/notification_channel_id" />

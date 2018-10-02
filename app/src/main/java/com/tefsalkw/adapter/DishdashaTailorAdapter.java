@@ -138,7 +138,8 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                 holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
             }
             holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-            holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            //holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
 
             if (storeModels.get(holder.getAdapterPosition()).getStore_discount() == null || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("")) {

@@ -27,8 +27,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.fragment.FragmentMyAddress;
 import com.tefsalkw.fragment.HomeFragment;
 import com.tefsalkw.models.BadgeRecordModel;
@@ -67,7 +69,7 @@ public class MainActivity extends BaseActivity
     TextView toolbar_title;
 
     @BindView(R.id.btnClose)
-   public TextView btnClose;
+    public TextView btnClose;
 
 
     @BindView(R.id.btn_menu)
@@ -97,7 +99,7 @@ public class MainActivity extends BaseActivity
     SessionManagerToken sessionManagerToken;
     String fromMailArg = "";
 
-    public  static MainActivity mainActivity;
+    public static MainActivity mainActivity;
 
 
     @Override
@@ -215,7 +217,7 @@ public class MainActivity extends BaseActivity
             total_badge_txt.setVisibility(View.GONE);
             menuItemStyle.setVisible(false);
             menuAddress.setVisible(false);
-          //  menuOrder.setVisible(true);
+            //  menuOrder.setVisible(true);
             menuTextile.setVisible(false);
             menuMail.setVisible(false);
 
@@ -260,15 +262,24 @@ public class MainActivity extends BaseActivity
                 btn_menu.setVisibility(View.VISIBLE);
                 btnClose.setVisibility(View.GONE);
 
-               // HomeFragment.homeFragment.
+                // HomeFragment.homeFragment.
 
 
             }
         });
 
 
+        logAnalytics();
     }
 
+
+    private void logAnalytics() {
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, session.getCustomerId());
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, session.getIsGuestId() ? "GUEST" : "REGISTERED");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_type");
+        TefsalApplication.getmFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    }
 
     private void sendRegistrationToServer() {
 
@@ -300,7 +311,8 @@ public class MainActivity extends BaseActivity
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
-                            }   SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override

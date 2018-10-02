@@ -52,6 +52,8 @@ public class SplashActivity extends BaseActivity {
         //password = session.getKeyPass();
         // email = session.getKeyEmail();
 
+
+
         if (Contents.isBlank(session.getCustomerId())) {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -93,6 +95,9 @@ public class SplashActivity extends BaseActivity {
                 }
             }, SPLASH_DISPLAY_LENGTH);
         }
+
+
+       // throw new RuntimeException("Test Crash");
     }
 
 

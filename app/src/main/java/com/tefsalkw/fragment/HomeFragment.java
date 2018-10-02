@@ -235,11 +235,14 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
+
             final View itemView = layoutInflater.inflate(R.layout.pager_item, container, false);
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
             RelativeLayout categoryCloseLayout = (RelativeLayout) itemView.findViewById(R.id.categoryCloseLayout);
+            TextView txtBusyTitle = itemView.findViewById(R.id.txtBusyTitle);
+
             categoryCloseLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -258,6 +261,7 @@ public class HomeFragment extends BaseFragment {
             if (sessionManager.isRTL()) {
 
                 title.setRotationY(180);
+                txtBusyTitle.setRotationY(180);
 
             }
 

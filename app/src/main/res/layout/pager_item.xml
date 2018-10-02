@@ -35,11 +35,12 @@
         android:translationZ="9999dp">
 
         <TextView
+            android:id="@+id/txtBusyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:alpha="1"
-            android:text="BUSY"
+            android:text="@string/busy"
             android:textColor="@color/colorWhite"
             android:textSize="36sp"
             android:translationZ="11100dp" />
