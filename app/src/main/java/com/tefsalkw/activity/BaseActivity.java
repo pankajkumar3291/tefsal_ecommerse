@@ -30,10 +30,6 @@ public class BaseActivity extends AppCompatActivity {
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
    */
 
-        TefsalApplication application = (TefsalApplication) getApplication();
-        Tracker mTracker = application.getDefaultTracker();
-        mTracker.setScreenName(this.getClass().getSimpleName());
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
         Log.e("::::Activity::::", this.getClass().getSimpleName());
@@ -60,6 +56,20 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
+
+
+
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        TefsalApplication application = (TefsalApplication) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.setScreenName(this.getClass().getSimpleName());
+        mTracker.enableAutoActivityTracking(false);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

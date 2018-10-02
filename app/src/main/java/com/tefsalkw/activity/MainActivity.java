@@ -27,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
@@ -657,6 +659,8 @@ public class MainActivity extends BaseActivity
             }
         }
     }
+
+
 
 
     @SuppressWarnings("StatementWithEmptyBody")

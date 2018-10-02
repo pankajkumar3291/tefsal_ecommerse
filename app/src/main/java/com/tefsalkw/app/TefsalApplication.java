@@ -4,10 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,6 +21,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.SessionManager;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -47,6 +52,7 @@ public class TefsalApplication extends MultiDexApplication {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        //sAnalytics.setDryRun(true);
 
         mInstance = this;
         super.onCreate();
@@ -165,6 +171,37 @@ public class TefsalApplication extends MultiDexApplication {
 
         okHttpClient = builder.build();
 
+
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        Log.e("newConfig","newConfig");
+        String lang = "en";
+
+        SessionManager sessionManager = new SessionManager(mInstance);
+
+        if (sessionManager.getKeyLang().equalsIgnoreCase("Arabic")) {
+            lang = "ar";
+            Log.e("onConfigurationChanged","ar");
+        }
+
+
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getBaseContext().getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        newConfig.setLocale(locale);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getApplicationContext().createConfigurationContext(newConfig);
+        } else {
+            resources.updateConfiguration(newConfig, displayMetrics);
+        }
 
     }
 }

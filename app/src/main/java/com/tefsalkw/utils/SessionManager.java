@@ -373,7 +373,7 @@ public class SessionManager {
     //--------------SET/GET LANG------------------------------------
 
     public String getKeyLang() {
-        return Tefsal_pref.getString(KEY_LANG, "English");
+        return Tefsal_pref.getString(KEY_LANG, "");
     }
 
 

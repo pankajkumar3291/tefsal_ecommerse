@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.tefsalkw.R;
@@ -38,9 +39,11 @@ public class SplashActivity extends BaseActivity {
 
 
         String keyLang = session.getKeyLang();
+        Log.e("keyLang",keyLang);
+
         String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
-        if (Contents.isBlank(session.getCustomerId()) && lang.equals("en")) {
+        if (Contents.isBlank(session.getCustomerId()) && keyLang.equals("")) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
