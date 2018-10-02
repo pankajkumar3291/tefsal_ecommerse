@@ -731,11 +731,11 @@ public class MainActivity extends BaseActivity
             // Handle the camera action
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         } else if (id == R.id.nav_sign_up) {
-            startActivity(new Intent(MainActivity.this, SignupActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+            startActivity(new Intent(MainActivity.this, SignupActivity.class));
+
         } else if (id == R.id.nav_sign_in) {
-            startActivity(new Intent(MainActivity.this, SigninActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+            startActivity(new Intent(MainActivity.this, SigninActivity.class));
+
         }
 
         if (fragment != null) {

@@ -12,14 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
-import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Locale;
@@ -233,14 +231,7 @@ public class SettingsActivity extends BaseActivity {
                     session.setKeyLang(parentView.getSelectedItem().toString());
 
                     String lang = position == 0 ? "en" : "ar";
-                    Locale locale = new Locale(lang);
-                    Locale.setDefault(locale);
-
-                    Resources resources = getBaseContext().getResources();
-                    Configuration configuration = getBaseContext().getResources().getConfiguration();
-                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-                    configuration.setLocale(locale);
-                    resources.updateConfiguration(configuration, displayMetrics);
+                    setLocale(lang);
 
 
                     Intent i = getBaseContext().getPackageManager()
@@ -271,5 +262,23 @@ public class SettingsActivity extends BaseActivity {
     public void onUserInteraction() {
         super.onUserInteraction();
         userIsInteracting = true;
+    }
+
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getBaseContext().getResources();
+        Configuration configuration = getBaseContext().getResources().getConfiguration();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        configuration.setLocale(locale);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getApplicationContext().createConfigurationContext(configuration);
+        } else {
+            resources.updateConfiguration(configuration, displayMetrics);
+        }
+
     }
 }

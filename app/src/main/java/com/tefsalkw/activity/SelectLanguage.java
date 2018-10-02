@@ -3,6 +3,7 @@ package com.tefsalkw.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -55,7 +56,12 @@ public class SelectLanguage extends BaseActivity {
                 Configuration configuration = getBaseContext().getResources().getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                 configuration.setLocale(locale);
-                resources.updateConfiguration(configuration, displayMetrics);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    getApplicationContext().createConfigurationContext(configuration);
+                } else {
+                    resources.updateConfiguration(configuration, displayMetrics);
+                }
 
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
@@ -81,7 +87,12 @@ public class SelectLanguage extends BaseActivity {
                 Configuration configuration = getBaseContext().getResources().getConfiguration();
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                 configuration.setLocale(locale);
-                resources.updateConfiguration(configuration, displayMetrics);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    getApplicationContext().createConfigurationContext(configuration);
+                } else {
+                    resources.updateConfiguration(configuration, displayMetrics);
+                }
 
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());

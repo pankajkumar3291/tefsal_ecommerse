@@ -1,9 +1,13 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,10 +35,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.util.Util;
 import com.tefsalkw.R;
+import com.tefsalkw.utils.SessionManager;
+
+import java.util.Locale;
 
 import static com.tefsalkw.utils.Contents.baseVideoURL;
 
-public class CustomVideoPlayerNewActivity extends AppCompatActivity implements Player.EventListener {
+public class CustomVideoPlayerNewActivity extends BaseActivity implements Player.EventListener {
 
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
@@ -65,6 +72,9 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
     MediaSource mediaSource = null;
 
+    private SessionManager mSessionManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +84,7 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
         bandwidthMeter = new DefaultBandwidthMeter();
         mediaDataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, "mediaPlayerSample"), (TransferListener<? super DataSource>) bandwidthMeter);
         window = new Timeline.Window();
-
+        mSessionManager = new SessionManager(getApplicationContext());
 
     }
 
@@ -83,9 +93,46 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     public void onBackPressed() {
 
 
+
         super.onBackPressed();
 
     }
+
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        Log.e("newConfig","newConfig");
+        String lang = "en";
+
+        if (mSessionManager.getKeyLang().equalsIgnoreCase("Arabic")) {
+            lang = "ar";
+            Log.e("onConfigurationChanged","ar");
+        }
+
+
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getBaseContext().getResources();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        newConfig.setLocale(locale);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            getApplicationContext().createConfigurationContext(newConfig);
+        } else {
+            resources.updateConfiguration(newConfig, displayMetrics);
+        }
+        super.onConfigurationChanged(newConfig);
+    }
+
+
+
+
+
+
+
 
     private void initializePlayer() {
 

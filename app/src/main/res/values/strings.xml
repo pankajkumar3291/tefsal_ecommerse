@@ -547,5 +547,6 @@
     <string name="no_style_text">You currently do not have any stored styles for Dishdisha.</string>
     <string name="create_stlye_warning">Please create style.</string>
     <string name="busy">BUSY</string>
+    <string name="edit_config">Edit Customization</string>
 
 </resources>

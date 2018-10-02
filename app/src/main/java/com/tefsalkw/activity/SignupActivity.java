@@ -326,6 +326,13 @@ public class SignupActivity extends BaseActivity {
 
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
+
+    @Override
     protected void onPause() {
         super.onPause();
 

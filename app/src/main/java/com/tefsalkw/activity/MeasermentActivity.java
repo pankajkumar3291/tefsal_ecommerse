@@ -3,13 +3,17 @@ package com.tefsalkw.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +54,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -291,6 +296,8 @@ public class MeasermentActivity extends BaseActivity {
 
     @BindView(R.id.relSlide)
     RelativeLayout relSlide;
+
+    public static boolean isRestarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1226,7 +1233,7 @@ public class MeasermentActivity extends BaseActivity {
             next_txt.performClick();
 
             hsvBodyICons.setVisibility(View.GONE);
-            toolbar_title.setText("Edit Customization");
+            toolbar_title.setText(R.string.edit_config);
             viewEditCustom.setVisibility(VISIBLE);
 
         }
@@ -1244,6 +1251,7 @@ public class MeasermentActivity extends BaseActivity {
             parentScroll.setVisibility(VISIBLE);
             return;
         }
+
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MeasermentActivity.this);
         builder.setTitle(R.string.cancel_title)
@@ -1276,6 +1284,13 @@ public class MeasermentActivity extends BaseActivity {
         dialog.show();
 
     }
+
+
+
+
+
+
+
 
     public void setCustomDesignData() {
 
@@ -2989,6 +3004,7 @@ public class MeasermentActivity extends BaseActivity {
     private void showIndividualVideo(int position) {
 
 
+        isRestarted = true;
         startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerNewActivity.class).putExtra("position", position));
 
 
