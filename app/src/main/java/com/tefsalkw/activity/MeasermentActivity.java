@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -1246,12 +1245,7 @@ public class MeasermentActivity extends BaseActivity {
             return;
         }
 
-        AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(this);
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(MeasermentActivity.this);
         builder.setTitle(R.string.cancel_title)
                 .setMessage(R.string.cancel_confirmation)
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -2904,7 +2898,7 @@ public class MeasermentActivity extends BaseActivity {
         final View dialogView = LayoutInflater.inflate(R.layout.min_meter_dishdasha_dialog, null);
         TextView txt_min_meter = (TextView) dialogView.findViewById(R.id.txt_min_meter);
 
-        txt_min_meter.setText(getString(R.string.you_are) + " " + min_dishdasha + " " + getString(R.string.style_confirmation)+" " + getString(R.string.is_correct));
+        txt_min_meter.setText(getString(R.string.you_are) + " " + min_dishdasha + " " + getString(R.string.style_confirmation) + " " + getString(R.string.is_correct));
 
         Button dialog_ok_btn = (Button) dialogView.findViewById(R.id.dialog_yes_btn);
         Button dialog_cancel_btn = (Button) dialogView.findViewById(R.id.dialog_no_btn);

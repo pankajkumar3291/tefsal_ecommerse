@@ -83,18 +83,8 @@ public class CustomVideoPlayerNewActivity extends AppCompatActivity implements P
     public void onBackPressed() {
 
 
-        if (currentVideoIs == 0) {
-            mediaSource = new ExtractorMediaSource(Uri.parse(literals[1]),
-                    mediaDataSourceFactory, extractorsFactory, null, null);
+        super.onBackPressed();
 
-            player.prepare(mediaSource);
-            currentVideoIs = 1;
-
-
-        } else {
-
-            super.onBackPressed();
-        }
     }
 
     private void initializePlayer() {

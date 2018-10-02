@@ -8,7 +8,10 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefsalApplication;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Locale;
@@ -26,6 +29,11 @@ public class BaseActivity extends AppCompatActivity {
        /* FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Bold.ttf");
         fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
    */
+
+        TefsalApplication application = (TefsalApplication) getApplication();
+        Tracker mTracker = application.getDefaultTracker();
+        mTracker.setScreenName(this.getClass().getSimpleName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
 
         Log.e("::::Activity::::", this.getClass().getSimpleName());

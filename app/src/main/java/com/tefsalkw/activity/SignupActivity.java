@@ -291,7 +291,16 @@ public class SignupActivity extends BaseActivity {
 
             }
         });
+        input_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
 
+                String string_email = input_email.getText().toString();
+                if (validateEmail2(string_email)) {
+                    checkMailHttpCall(string_email);
+                }
+            }
+        });
 
         llMobile.setOnClickListener(new View.OnClickListener() {
             @Override
