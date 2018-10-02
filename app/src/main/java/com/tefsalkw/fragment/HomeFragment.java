@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -150,13 +149,9 @@ public class HomeFragment extends BaseFragment {
         }
 
 
-
-
-        relSlide.setOnClickListener(new View.OnClickListener() {
+        relSlide.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-
-                Log.e("relSlide","clicked");
+            public boolean onTouch(View v, MotionEvent event) {
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -167,7 +162,9 @@ public class HomeFragment extends BaseFragment {
                     }
                 });
 
+                //Log.e("setOnTouchListener", v.getId() + "");
 
+                return true;
             }
         });
 
@@ -242,6 +239,22 @@ public class HomeFragment extends BaseFragment {
 
             ImageView imageView = (ImageView) itemView.findViewById(R.id.m_image);
             final TextView title = (TextView) itemView.findViewById(R.id.titleText);
+            RelativeLayout categoryCloseLayout = (RelativeLayout) itemView.findViewById(R.id.categoryCloseLayout);
+            categoryCloseLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    //Log.e("setOnTouchListener", v.getId() + "");
+
+                    return true;
+                }
+            });
+            if (position == 2) {
+                categoryCloseLayout.setVisibility(View.VISIBLE);
+            } else {
+                categoryCloseLayout.setVisibility(View.GONE);
+            }
+
             if (sessionManager.isRTL()) {
 
                 title.setRotationY(180);
