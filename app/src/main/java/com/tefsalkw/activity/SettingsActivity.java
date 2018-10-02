@@ -248,6 +248,8 @@ public class SettingsActivity extends BaseActivity {
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
 
+                    Runtime.getRuntime().exit(0);
+
                 }
 
 
