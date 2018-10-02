@@ -31,6 +31,8 @@ public class SelectLanguage extends BaseActivity {
         btn_english = (Button) findViewById(R.id.btn_english);
 
 
+
+
     }
 
     @Override
@@ -55,8 +57,15 @@ public class SelectLanguage extends BaseActivity {
                 resources.updateConfiguration(configuration, displayMetrics);
 
 
-                startActivity(new Intent(SelectLanguage.this, StartActivity.class));
-                finish();
+
+
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
+                Runtime.getRuntime().exit(0);
+
             }
         });
 
@@ -73,8 +82,12 @@ public class SelectLanguage extends BaseActivity {
                 configuration.setLocale(locale);
                 resources.updateConfiguration(configuration, displayMetrics);
 
-                startActivity(new Intent(SelectLanguage.this, StartActivity.class));
-                finish();
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+
+                Runtime.getRuntime().exit(0);
             }
         });
 

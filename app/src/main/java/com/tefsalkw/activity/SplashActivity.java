@@ -5,31 +5,15 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.crashlytics.android.Crashlytics;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.Contents;
-import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import android.provider.Settings.Secure;
+
 import io.fabric.sdk.android.Fabric;
 
 public class SplashActivity extends BaseActivity {
@@ -53,8 +37,10 @@ public class SplashActivity extends BaseActivity {
         // email = session.getKeyEmail();
 
 
+        String keyLang = session.getKeyLang();
+        String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
-        if (Contents.isBlank(session.getCustomerId())) {
+        if (Contents.isBlank(session.getCustomerId()) && lang.equals("en")) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -73,10 +59,10 @@ public class SplashActivity extends BaseActivity {
                 public void run() {
 
 
-                  //  WebCallServiceSetToken();
+                    //  WebCallServiceSetToken();
 
                     String keyLang = session.getKeyLang();
-                    String lang = keyLang.equalsIgnoreCase("English") ? "en" : "ar";
+                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
                     Locale locale = new Locale(lang);
                     Locale.setDefault(locale);
@@ -97,9 +83,8 @@ public class SplashActivity extends BaseActivity {
         }
 
 
-       // throw new RuntimeException("Test Crash");
+        // throw new RuntimeException("Test Crash");
     }
-
 
 
 }
