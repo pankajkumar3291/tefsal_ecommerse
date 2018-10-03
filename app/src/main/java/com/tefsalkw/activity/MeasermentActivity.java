@@ -300,15 +300,7 @@ public class MeasermentActivity extends BaseActivity {
 
     public static boolean isRestarted = false;
     String isCustom = "";
-    @Override
-    protected void onSaveInstanceState(Bundle state) {
-        super.onSaveInstanceState(state);
-        state.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
-        state.putString("isCustom",isCustom);
-        state.putString("flow",flow);
 
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

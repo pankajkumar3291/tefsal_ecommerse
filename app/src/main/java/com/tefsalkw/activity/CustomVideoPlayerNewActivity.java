@@ -1,5 +1,6 @@
 package com.tefsalkw.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -44,7 +45,7 @@ import java.util.Locale;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.tefsalkw.utils.Contents.baseVideoURL;
 
-public class CustomVideoPlayerNewActivity extends BaseActivity implements Player.EventListener {
+public class CustomVideoPlayerNewActivity extends Activity implements Player.EventListener {
 
     private SimpleExoPlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
@@ -106,13 +107,16 @@ public class CustomVideoPlayerNewActivity extends BaseActivity implements Player
         configuration.setLocale(locale);
         resources.updateConfiguration(configuration, displayMetrics);
 
-        startActivity(new Intent(getApplicationContext(), MeasermentActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
-        finish();
+        super.onBackPressed();
 
 
     }
 
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(null);
+    }
 
     private void initializePlayer() {
 
