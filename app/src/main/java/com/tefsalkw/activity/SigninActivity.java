@@ -79,8 +79,8 @@ public class SigninActivity extends BaseActivity {
         ButterKnife.bind(this);
 
 
-        FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-        fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+        //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
+       // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);

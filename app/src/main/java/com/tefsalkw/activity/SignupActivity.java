@@ -167,8 +167,8 @@ public class SignupActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-        fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+        //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
+       // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
 
         session = new SessionManager(this);
@@ -177,8 +177,8 @@ public class SignupActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         toolbar_title.setText(R.string.title_signup);
 
-        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Lato-Bold.ttf");
-        toolbar_title.setTypeface(type);
+        //Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Lato-Bold.ttf");
+       // toolbar_title.setTypeface(type);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
