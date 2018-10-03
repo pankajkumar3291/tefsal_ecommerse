@@ -49,7 +49,7 @@ public class SelectLanguage extends BaseActivity {
 
                 sessionManager.setKeyLang("Arabic");
 
-                Locale locale = new Locale("en");
+                Locale locale = new Locale("ar_");
                 Locale.setDefault(locale);
 
                 Resources resources = getBaseContext().getResources();

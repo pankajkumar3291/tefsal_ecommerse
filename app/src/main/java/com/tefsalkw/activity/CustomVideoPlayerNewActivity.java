@@ -37,8 +37,11 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.util.Util;
+import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.SessionManager;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -115,7 +118,12 @@ public class CustomVideoPlayerNewActivity extends Activity implements Player.Eve
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(null);
+
+        Log.e("existingConfig", new Gson().toJson(getBaseContext().getResources().getConfiguration()));
+
+        newConfig.setLocale(new Locale("ar_"));
+        Log.e("newConfig", new Gson().toJson(newConfig));
+        super.onConfigurationChanged(newConfig);
     }
 
     private void initializePlayer() {
@@ -164,7 +172,7 @@ public class CustomVideoPlayerNewActivity extends Activity implements Player.Eve
         mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl), mediaDataSourceFactory, extractorsFactory, null, null);
 
 
-        player.prepare(mediaSource);
+        //player.prepare(mediaSource);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 

@@ -43,6 +43,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
@@ -298,7 +299,6 @@ public class MeasermentActivity extends BaseActivity {
     @BindView(R.id.relSlide)
     RelativeLayout relSlide;
 
-    public static boolean isRestarted = false;
     String isCustom = "";
 
 
@@ -3006,7 +3006,7 @@ public class MeasermentActivity extends BaseActivity {
     private void showIndividualVideo(int position) {
 
 
-        isRestarted = true;
+        Log.e("beforeConfig", new Gson().toJson(getBaseContext().getResources().getConfiguration()));
         startActivity(new Intent(MeasermentActivity.this, CustomVideoPlayerNewActivity.class).putExtra("position", position));
 
 

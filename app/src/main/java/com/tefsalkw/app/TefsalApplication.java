@@ -52,7 +52,7 @@ public class TefsalApplication extends MultiDexApplication {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        sAnalytics.setDryRun(true);
+        sAnalytics.setDryRun(false);
 
         mInstance = this;
         super.onCreate();

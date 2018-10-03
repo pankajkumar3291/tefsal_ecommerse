@@ -41,7 +41,7 @@ public class SplashActivity extends BaseActivity {
         String keyLang = session.getKeyLang();
         Log.e("keyLang",keyLang);
 
-        String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+        //String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
         if (Contents.isBlank(session.getCustomerId()) && keyLang.equals("")) {
             new Handler().postDelayed(new Runnable() {
@@ -65,7 +65,7 @@ public class SplashActivity extends BaseActivity {
                     //  WebCallServiceSetToken();
 
                     String keyLang = session.getKeyLang();
-                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar_" : "en";
 
                     Locale locale = new Locale(lang);
                     Locale.setDefault(locale);
