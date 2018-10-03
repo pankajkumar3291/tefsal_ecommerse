@@ -40,7 +40,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OrderDetailsActivity extends AppCompatActivity {
+public class OrderDetailsActivity extends BaseActivity {
 
 
     @BindView(R.id.toolbar_title)

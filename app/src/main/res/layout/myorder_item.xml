@@ -70,6 +70,8 @@
         android:textSize="12sp" />
 
     <ImageView
+        android:scaleX="@integer/rtl_flip_factor"
+        android:autoMirrored="true"
         android:id="@+id/imgNextArrow"
         android:layout_width="40dp"
         android:layout_height="25dp"
