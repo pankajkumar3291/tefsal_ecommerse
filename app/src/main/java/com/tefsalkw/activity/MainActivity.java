@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.javiersantos.appupdater.AppUpdater;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -276,6 +277,15 @@ public class MainActivity extends BaseActivity
 
 
         logAnalytics();
+
+
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setButtonDoNotShowAgain(null)
+                .setButtonDismiss(null)
+                .setCancelable(false);
+
+        appUpdater.start();
+
     }
 
 
