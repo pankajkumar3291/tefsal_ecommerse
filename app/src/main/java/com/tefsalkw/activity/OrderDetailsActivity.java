@@ -163,7 +163,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
                                     //Set address details
 
-                                    txtTxnDate.setText(DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
+                                    txtTxnDate.setText(" "+DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
 
                                     String deliveryCharge = mResponse.getDelivery_charge();
 

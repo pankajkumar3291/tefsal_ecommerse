@@ -76,6 +76,8 @@
                     android:weightSum="5">
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/lblTxnDate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -85,6 +87,8 @@
                         android:textSize="@dimen/text_small" />
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/txtTxnDate"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -112,6 +116,8 @@
                     android:weightSum="5">
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/lblCustomerAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -121,6 +127,8 @@
                         android:textSize="@dimen/text_small" />
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/txtCustomerAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -149,6 +157,8 @@
                     android:weightSum="5">
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/lblPaymentType"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -158,6 +168,8 @@
                         android:textSize="@dimen/text_small" />
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/txtPaymentType"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -184,6 +196,8 @@
                     android:weightSum="5">
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/lblDeliveryCharge"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -193,6 +207,8 @@
                         android:textSize="@dimen/text_small" />
 
                     <TextView
+                        android:gravity="start"
+                        android:layout_gravity="start"
                         android:id="@+id/txtDeliveryCharge"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
