@@ -1,7 +1,9 @@
 package com.tefsalkw.activity;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -57,8 +59,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
 
-
-
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
@@ -71,5 +71,8 @@ public class BaseActivity extends AppCompatActivity {
         mTracker.setScreenName(this.getClass().getSimpleName());
         mTracker.enableAutoActivityTracking(false);
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+
+
     }
 }

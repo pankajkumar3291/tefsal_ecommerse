@@ -94,12 +94,9 @@ public class SelectLanguage extends BaseActivity {
                     resources.updateConfiguration(configuration, displayMetrics);
                 }
 
-                Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                startActivity(new Intent(SelectLanguage.this, StartActivity.class));
+                finish();
 
-                Runtime.getRuntime().exit(0);
 
             }
         });

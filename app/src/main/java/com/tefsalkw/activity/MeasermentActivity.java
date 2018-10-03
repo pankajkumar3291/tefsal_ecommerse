@@ -3,13 +3,18 @@ package com.tefsalkw.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +55,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -293,6 +299,16 @@ public class MeasermentActivity extends BaseActivity {
     RelativeLayout relSlide;
 
     public static boolean isRestarted = false;
+    String isCustom = "";
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putSerializable("STYLE_DATA", mDishdashaStylesRecord);
+        state.putString("isCustom",isCustom);
+        state.putString("flow",flow);
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -303,7 +319,7 @@ public class MeasermentActivity extends BaseActivity {
 
         mDishdashaStylesRecord = (DishdashaStylesRecord) getIntent().getExtras().getSerializable("STYLE_DATA");
 
-        String isCustom = getIntent().getStringExtra("isCustom");
+         isCustom = getIntent().getStringExtra("isCustom");
 
 
         flow = getIntent().getExtras().getString("flow");
@@ -1279,6 +1295,11 @@ public class MeasermentActivity extends BaseActivity {
         dialog.show();
 
     }
+
+
+
+
+
 
 
     public void setCustomDesignData() {

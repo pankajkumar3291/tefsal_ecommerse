@@ -1,11 +1,13 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -39,6 +41,7 @@ import com.tefsalkw.utils.SessionManager;
 
 import java.util.Locale;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static com.tefsalkw.utils.Contents.baseVideoURL;
 
 public class CustomVideoPlayerNewActivity extends BaseActivity implements Player.EventListener {
@@ -86,6 +89,7 @@ public class CustomVideoPlayerNewActivity extends BaseActivity implements Player
         window = new Timeline.Window();
         mSessionManager = new SessionManager(getApplicationContext());
 
+
     }
 
 
@@ -93,44 +97,20 @@ public class CustomVideoPlayerNewActivity extends BaseActivity implements Player
     public void onBackPressed() {
 
 
-
-        super.onBackPressed();
-
-    }
-
-
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-
-        Log.e("newConfig","newConfig");
-        String lang = "en";
-
-        if (mSessionManager.getKeyLang().equalsIgnoreCase("Arabic")) {
-            lang = "ar";
-            Log.e("onConfigurationChanged","ar");
-        }
-
-
-        Locale locale = new Locale(lang);
+        Locale locale = new Locale("ar");
         Locale.setDefault(locale);
 
         Resources resources = getBaseContext().getResources();
+        Configuration configuration = getBaseContext().getResources().getConfiguration();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-        newConfig.setLocale(locale);
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, displayMetrics);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            getApplicationContext().createConfigurationContext(newConfig);
-        } else {
-            resources.updateConfiguration(newConfig, displayMetrics);
-        }
-        super.onConfigurationChanged(newConfig);
+        startActivity(new Intent(getApplicationContext(), MeasermentActivity.class).setFlags(FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
+
+
     }
-
-
-
-
-
 
 
 
@@ -182,6 +162,7 @@ public class CustomVideoPlayerNewActivity extends BaseActivity implements Player
 
         player.prepare(mediaSource);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
     }
 
