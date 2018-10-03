@@ -43,16 +43,40 @@ public class SplashActivity extends BaseActivity {
 
         //String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
-        if (Contents.isBlank(session.getCustomerId()) && keyLang.equals("")) {
+        if (Contents.isBlank(session.getCustomerId())) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
                     // This block of code is used to internal login
 
-                    Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
-                    startActivity(mainIntent);
-                    finish();
+                    if(keyLang.equals(""))
+                    {
+                        Intent mainIntent = new Intent(SplashActivity.this, SelectLanguage.class);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+                    else
+                    {
+
+
+                        String keyLang = session.getKeyLang();
+                        String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+
+                        Locale locale = new Locale(lang);
+                        Locale.setDefault(locale);
+
+                        Resources resources = getResources();
+                        Configuration configuration = resources.getConfiguration();
+                        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+                        configuration.setLocale(locale);
+                        resources.updateConfiguration(configuration, displayMetrics);
+
+                        Intent mainIntent = new Intent(SplashActivity.this, StartActivity.class);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+
 
                 }
             }, SPLASH_DISPLAY_LENGTH);
@@ -65,7 +89,7 @@ public class SplashActivity extends BaseActivity {
                     //  WebCallServiceSetToken();
 
                     String keyLang = session.getKeyLang();
-                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar_" : "en";
+                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
                     Locale locale = new Locale(lang);
                     Locale.setDefault(locale);

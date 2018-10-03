@@ -1,6 +1,8 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +49,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -390,6 +394,19 @@ public class MainActivity extends BaseActivity
 
                                                     Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
                                                     session.user_logout();
+
+                                                    String keyLang = session.getKeyLang();
+                                                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+
+                                                    Locale locale = new Locale(lang);
+                                                    Locale.setDefault(locale);
+
+                                                    Resources resources = getResources();
+                                                    Configuration configuration = resources.getConfiguration();
+                                                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+                                                    configuration.setLocale(locale);
+                                                    resources.updateConfiguration(configuration, displayMetrics);
+
                                                     startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                                                     finish();
 

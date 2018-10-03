@@ -121,7 +121,7 @@ public class CustomVideoPlayerNewActivity extends Activity implements Player.Eve
 
         Log.e("existingConfig", new Gson().toJson(getBaseContext().getResources().getConfiguration()));
 
-        newConfig.setLocale(new Locale("ar_"));
+        newConfig.setLocale(new Locale("ar"));
         Log.e("newConfig", new Gson().toJson(newConfig));
         super.onConfigurationChanged(newConfig);
     }

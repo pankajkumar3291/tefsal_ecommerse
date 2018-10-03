@@ -49,7 +49,7 @@ public class SelectLanguage extends BaseActivity {
 
                 sessionManager.setKeyLang("Arabic");
 
-                Locale locale = new Locale("ar_");
+                Locale locale = new Locale("ar");
                 Locale.setDefault(locale);
 
                 Resources resources = getBaseContext().getResources();
@@ -57,11 +57,7 @@ public class SelectLanguage extends BaseActivity {
                 DisplayMetrics displayMetrics = resources.getDisplayMetrics();
                 configuration.setLocale(locale);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    getApplicationContext().createConfigurationContext(configuration);
-                } else {
-                    resources.updateConfiguration(configuration, displayMetrics);
-                }
+                resources.updateConfiguration(configuration, displayMetrics);
 
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
