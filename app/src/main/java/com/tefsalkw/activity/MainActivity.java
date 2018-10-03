@@ -395,17 +395,7 @@ public class MainActivity extends BaseActivity
                                                     Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
                                                     session.user_logout();
 
-                                                    String keyLang = session.getKeyLang();
-                                                    String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
-                                                    Locale locale = new Locale(lang);
-                                                    Locale.setDefault(locale);
-
-                                                    Resources resources = getResources();
-                                                    Configuration configuration = resources.getConfiguration();
-                                                    DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-                                                    configuration.setLocale(locale);
-                                                    resources.updateConfiguration(configuration, displayMetrics);
 
                                                     startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                                                     finish();

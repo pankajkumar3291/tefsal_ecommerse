@@ -101,30 +101,14 @@ public class CustomVideoPlayerNewActivity extends Activity implements Player.Eve
     public void onBackPressed() {
 
 
-        Locale locale = new Locale("ar");
-        Locale.setDefault(locale);
-
-        Resources resources = getBaseContext().getResources();
-        Configuration configuration = getBaseContext().getResources().getConfiguration();
-        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, displayMetrics);
-
         super.onBackPressed();
 
 
     }
 
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
 
-        Log.e("existingConfig", new Gson().toJson(getBaseContext().getResources().getConfiguration()));
 
-        newConfig.setLocale(new Locale("ar"));
-        Log.e("newConfig", new Gson().toJson(newConfig));
-        super.onConfigurationChanged(newConfig);
-    }
 
     private void initializePlayer() {
 

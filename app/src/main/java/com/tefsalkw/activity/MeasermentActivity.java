@@ -3020,4 +3020,25 @@ public class MeasermentActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SessionManager sessionManager = new SessionManager(this);
+
+        String keyLang = sessionManager.getKeyLang();
+        String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, displayMetrics);
+
+        Log.e("existingConfig onResume", new Gson().toJson(getBaseContext().getResources().getConfiguration()));
+    }
 }
