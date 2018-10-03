@@ -3,7 +3,6 @@ package com.tefsalkw.activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -72,6 +71,19 @@ public class BaseActivity extends AppCompatActivity {
         mTracker.enableAutoActivityTracking(false);
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+        SessionManager sessionManager = new SessionManager(this);
+
+        String keyLang = sessionManager.getKeyLang();
+        String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
+
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, displayMetrics);
 
 
     }

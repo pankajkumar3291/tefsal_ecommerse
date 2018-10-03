@@ -203,7 +203,7 @@ public class PaymentActivity extends BaseActivity {
                         Toast.makeText(PaymentActivity.this, "Payment didn't go through, please try again", Toast.LENGTH_LONG).show();
                     }
 
-                    finish();
+
 
 
                 } catch (Exception e) {
