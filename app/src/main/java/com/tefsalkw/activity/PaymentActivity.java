@@ -196,7 +196,7 @@ public class PaymentActivity extends BaseActivity {
 
                     payment_id = uri.getQueryParameter("PaymentID");
 
-                    if (result.equals("CAPTURED")) {
+                    if (result != null && result.equals("CAPTURED")) {
                         Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
                         WebCallServiceOrder();
                     } else {
