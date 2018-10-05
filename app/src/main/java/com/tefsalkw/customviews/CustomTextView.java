@@ -6,42 +6,37 @@ import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+import com.tefsalkw.R;
+
 public class CustomTextView extends AppCompatTextView {
+
+    Typeface myTypeface;
 
     public CustomTextView(Context context) {
         super(context);
+        init(null);
     }
 
     public CustomTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(attrs);
     }
 
-    @Override
-    public void setText(CharSequence text, BufferType type) {
-
-        super.setText(replaceArabicNumbers(text), type);
-
-
+    public CustomTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(attrs);
     }
 
-
-    private String replaceArabicNumbers(CharSequence original) {
-        if (original != null) {
-            return original.toString()
-                    .replaceAll("٩", "1")
-                    .replaceAll("٨", "2")
-                    .replaceAll("٧", "3")
-                    .replaceAll("٦", "4")
-                    .replaceAll("٥", "5")
-                    .replaceAll("٤", "6")
-                    .replaceAll("٣", "7")
-                    .replaceAll("٢", "8")
-                    .replaceAll("١", "9")
-                    .replaceAll("٠", "0");
-
+    private void init(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomFontText);
+            String fontName = a.getString(0);
+            if (!(fontName == null || isInEditMode())) {
+                this.myTypeface = Typeface.createFromAsset(getContext().getAssets(), fontName);
+            }
+            setTypeface(this.myTypeface);
+            a.recycle();
         }
-
-        return null;
     }
 }
 

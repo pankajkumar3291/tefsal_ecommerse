@@ -66,8 +66,8 @@ public class TefsalApplication extends MultiDexApplication {
 
         if (keyLang.equals("Arabic")) {
             CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                    //.setDefaultFontPath("fonts/GESSTwoMedium-Medium.otf")
-                    .setDefaultFontPath("fonts/arabic1.otf")
+                   .setDefaultFontPath("fonts/GESSTwoMedium-Medium.otf")
+                  //  .setDefaultFontPath("fonts/arabic1.otf")
                     .setFontAttrId(R.attr.fontPath)
                     .build()
             );
