@@ -279,12 +279,28 @@ public class MainActivity extends BaseActivity
         logAnalytics();
 
 
-        AppUpdater appUpdater = new AppUpdater(this)
-                .setButtonDoNotShowAgain(null)
-                .setButtonDismiss(null)
-                .setCancelable(false);
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            AppUpdater appUpdater = new AppUpdater(this)
+                    .setTitleOnUpdateAvailable("يوجد تحديث جديد")
+                    .setContentOnUpdateAvailable("التحديث نسخة متوفرة الآن للتنزيل. قم بتنزيل آخر تحديث لتحصل على آخر التحسينات للتطبيق")
+                    .setButtonUpdate("تحديث")
+                    .setButtonDoNotShowAgain(null)
+                    .setButtonDismiss(null)
+                    .setCancelable(false);
 
-        appUpdater.start();
+            appUpdater.start();
+        }
+        else
+        {
+            AppUpdater appUpdater = new AppUpdater(this)
+                    .setButtonDoNotShowAgain(null)
+                    .setButtonDismiss(null)
+                    .setCancelable(false);
+
+            appUpdater.start();
+        }
+
 
     }
 

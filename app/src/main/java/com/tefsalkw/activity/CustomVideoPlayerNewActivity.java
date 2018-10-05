@@ -156,9 +156,9 @@ public class CustomVideoPlayerNewActivity extends Activity implements Player.Eve
         mediaSource = new ExtractorMediaSource(Uri.parse(playerUrl), mediaDataSourceFactory, extractorsFactory, null, null);
 
 
-        //player.prepare(mediaSource);
+        player.prepare(mediaSource);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
     }
 
