@@ -38,8 +38,8 @@
                 fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/subtxt_title"
+                android:layout_alignParentTop="true"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -97,8 +97,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="right"
-            android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
             android:gravity="center_vertical"
             android:onClick="gotoCart"
             android:orientation="horizontal"
@@ -112,6 +112,8 @@
                 android:src="@drawable/ic_shopping_cart_black_24dp" />
 
             <TextView
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix"
                 android:id="@+id/total_badge_txt"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -176,8 +178,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewPagerIndicator"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp">
 
                 <TextView
                     android:id="@+id/txtColorLabele"
@@ -202,8 +204,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@+id/colorRecyclerView"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/colorGray" />
 
             </RelativeLayout>
@@ -260,8 +262,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/colorGray" />
             </LinearLayout>
 
@@ -301,6 +303,8 @@
                 android:weightSum="100">
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/meter_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -362,22 +366,24 @@
 
         <TextView
             android:id="@+id/text_price"
+            fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/zaara_daraa_text_price_text"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_normal"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="MissingPrefix" />
 
         <Button
             android:id="@+id/add_cart_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/colorAccent"
             android:text="@string/zaara_daraa_add_cart_btn_text"
             android:textColor="@color/colorWhite" />

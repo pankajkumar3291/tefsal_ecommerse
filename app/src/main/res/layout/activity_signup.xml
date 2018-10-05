@@ -247,6 +247,8 @@
                     android:layout_weight="3.5">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/input_mob"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -370,6 +372,8 @@
                     android:layout_weight="3.5">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/input_home_num"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -413,6 +417,8 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
+                    fontPath="fonts/Lato-Regular.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/input_email"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"

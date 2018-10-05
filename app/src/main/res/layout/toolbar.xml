@@ -103,6 +103,8 @@
                 android:src="@drawable/ic_shopping_cart_black_24dp" />
 
             <TextView
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix"
                 android:id="@+id/total_badge_txt"
                 android:layout_width="20dp"
                 android:layout_height="20dp"

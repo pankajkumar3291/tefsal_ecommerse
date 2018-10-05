@@ -111,7 +111,8 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
 
             holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-            holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+          //  holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
             System.out.println("DALIVERY DATE   MIN" + storeModels.get(position2).getMin_delivery_days());
             System.out.println("DALIVERY DATE   MAX" + storeModels.get(position2).getMax_delivery_days());

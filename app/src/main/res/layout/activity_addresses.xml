@@ -497,6 +497,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
+
                         android:id="@+id/input_flate"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
@@ -549,6 +550,8 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/input_phone"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
@@ -598,6 +601,8 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/input_paci_num"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"

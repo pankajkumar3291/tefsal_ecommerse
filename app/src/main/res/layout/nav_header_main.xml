@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/header_view"
     android:layout_height="@dimen/nav_header_height"
     android:layout_width="match_parent"
@@ -24,6 +25,8 @@
             android:src="@drawable/logo_white" />
 
         <TextView
+            fontPath="fonts/Lato-Bold.ttf"
+            tools:ignore="MissingPrefix"
             android:background="@drawable/badge_white"
             android:gravity="center"
             android:id="@+id/total_badge_txt"

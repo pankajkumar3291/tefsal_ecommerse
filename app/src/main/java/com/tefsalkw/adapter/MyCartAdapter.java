@@ -42,6 +42,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -165,7 +166,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 // holder.sub_text_textile.setText();
                 String sizeInMtr = storeModels.get(position2).getItem_quantity();
                 sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
-                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr));
+                String formattedSize = String.format(new Locale("en"),"%.2f", Float.parseFloat(sizeInMtr));
 
                 holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
@@ -248,7 +249,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
                 String sizeInMtr = storeModels.get(position2).getItem_quantity();
                 sizeInMtr = sizeInMtr != null ? sizeInMtr : "0";
-                String formattedSize = String.format("%.2f", Float.parseFloat(sizeInMtr));
+                String formattedSize = String.format(new Locale("en"),"%.2f", Float.parseFloat(sizeInMtr));
                 holder.text_size.setText("SIZE: " + formattedSize + " METERS");
 
 

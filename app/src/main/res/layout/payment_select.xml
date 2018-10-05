@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
@@ -406,7 +407,8 @@
                     android:textSize="@dimen/text_large" />
 
                 <TextView
-
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtDeliveryCharge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -440,6 +442,8 @@
                     android:textSize="@dimen/text_large" />
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtSubTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -469,6 +473,8 @@
         android:orientation="vertical">
 
         <TextView
+            fontPath="fonts/Lato-Bold.ttf"
+            tools:ignore="MissingPrefix"
             android:id="@+id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

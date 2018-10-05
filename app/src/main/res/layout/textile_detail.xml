@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -59,20 +60,24 @@
 
                     <TextView
                         android:id="@+id/txt_price"
+                        fontPath="fonts/Lato-Bold.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/textile_detail_txt_price_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_large"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
 
                     <TextView
                         android:id="@+id/txt_min_meter"
+                        fontPath="fonts/Lato-Bold.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_mid" />
+                        android:textSize="@dimen/text_mid"
+                        tools:ignore="MissingPrefix" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -131,8 +136,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <TextView
                         android:id="@+id/txtColorLabele"
@@ -156,8 +161,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/colorRecyclerView"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/colorGray" />
 
                 </RelativeLayout>
@@ -177,6 +182,8 @@
                 android:weightSum="100">
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/meter_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -248,23 +255,25 @@
 
             <TextView
                 android:id="@+id/text_price"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/textile_detail_text_price_text"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_normal"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
 
             <RelativeLayout
                 android:id="@+id/add_to_cart_btn"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@color/colorAccent"
                 android:clickable="true"
                 android:focusable="true"
@@ -302,8 +311,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="No product found" />
         </RelativeLayout>
@@ -327,10 +336,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/relSlide5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
 
         <ImageView

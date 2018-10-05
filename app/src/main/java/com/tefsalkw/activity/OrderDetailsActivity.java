@@ -2,7 +2,6 @@ package com.tefsalkw.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,6 +34,7 @@ import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -163,7 +163,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
                                     //Set address details
 
-                                    txtTxnDate.setText(" "+DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
+                                    txtTxnDate.setText(" " + DateTimeHelper.getFormattedDate(mResponse.getCreated_at()));
 
                                     String deliveryCharge = mResponse.getDelivery_charge();
 
@@ -171,7 +171,7 @@ public class OrderDetailsActivity extends BaseActivity {
                                     if (deliveryCharge != null && !deliveryCharge.equalsIgnoreCase("free")) {
 
 
-                                        deliveryCharge = String.format("%.3f", Double.parseDouble(deliveryCharge)) + " KWD";
+                                        deliveryCharge = String.format(new Locale("en"), "%.3f", Double.parseDouble(deliveryCharge)) + " KWD";
 
 
                                     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llTailorContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -67,6 +68,8 @@
 
 
             <TextView
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix"
                 android:id="@+id/txtTailorQty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +89,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtTailorPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,6 +103,8 @@
                     android:textSize="@dimen/text_normal" />
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtTailorPriceDicounted"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

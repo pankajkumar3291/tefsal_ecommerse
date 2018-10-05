@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -163,7 +164,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
                 deliveryAmount = Double.parseDouble(deliveryCharge);
 
-                deliveryCharge = String.format("%.3f", deliveryAmount) + " KWD";
+                deliveryCharge = String.format(new Locale("en"),"%.3f", deliveryAmount) + " KWD";
 
                 grandTotal = grandTotal + deliveryAmount;
 
@@ -175,7 +176,7 @@ public class PaymentSelectActivity extends BaseActivity {
             txtSubTotal.setText(previousAmount + " KWD");
 
 
-            amount.setText("TOTAL : " + String.format("%.3f", grandTotal) + " KWD");
+            amount.setText("TOTAL : " + String.format(new Locale("en"),"%.3f", grandTotal) + " KWD");
         }
 
 

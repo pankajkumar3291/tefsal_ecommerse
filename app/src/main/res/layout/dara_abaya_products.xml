@@ -45,91 +45,106 @@
                 autofit:minTextSize="10sp" />
 
 
-            <LinearLayout
-                android:id="@+id/LL_price_container"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="10dp"
-                android:layout_toStartOf="@+id/llDelivery"
-                android:orientation="vertical">
-
-                <me.grantland.widget.AutofitTextView
-                    android:id="@+id/txt_product_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="3"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:text="--"
-                    android:textAllCaps="true"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/text_mid"
-                    android:textStyle="bold"
-                    autofit:minTextSize="10sp" />
-
-                <me.grantland.widget.AutofitTextView
-                    android:id="@+id/txt_default_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="3"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="--"
-                    android:textAllCaps="true"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/text_normal"
-                    android:textStyle="bold"
-                    autofit:minTextSize="10sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llDelivery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp">
+                android:layoutDirection="ltr">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:id="@+id/LL_price_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toStartOf="@+id/llDelivery"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/text_max_delivery_days"
+                    <me.grantland.widget.AutofitTextView
+                        android:id="@+id/txt_product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/textile_product_card_text_max_delivery_days_text"
-                        android:textColor="@color/colorWhite"
+                        android:maxLines="3"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:text="--"
+                        android:textAllCaps="true"
+                        android:textColor="#fff"
                         android:textSize="@dimen/text_mid"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        autofit:minTextSize="10sp" />
 
-                    <TextView
+                    <me.grantland.widget.AutofitTextView
+                        android:id="@+id/txt_default_price"
+                        fontPath="fonts/Lato-Bold.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/text_max_delivery_days"
-                        android:text="Days"
-                        android:textColor="@color/colorWhite" />
+                        android:layout_below="@+id/txt_product_name"
+                        android:maxLines="3"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="--"
+                        android:textAllCaps="true"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_normal"
+                        android:textStyle="bold"
+                        autofit:ignore="MissingPrefix"
+                        autofit:minTextSize="10sp" />
 
-                    <ImageView
-                        android:id="@+id/icon_delivery"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_toRightOf="@+id/text_max_delivery_days"
-                        android:src="@drawable/icon_delivery" />
 
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:id="@+id/llDelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical">
 
-            </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/text_max_delivery_days"
+                            fontPath="fonts/Lato-Bold.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/textile_product_card_text_max_delivery_days_text"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_mid"
+                            android:textStyle="bold"
+                            autofit:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_max_delivery_days"
+                            android:text="Days"
+                            android:textColor="@color/colorWhite" />
+
+                        <ImageView
+                            android:id="@+id/icon_delivery"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/text_max_delivery_days"
+                            android:src="@drawable/icon_delivery" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </RelativeLayout>
 
 
         </RelativeLayout>

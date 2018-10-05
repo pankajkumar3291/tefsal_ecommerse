@@ -19,7 +19,6 @@
             android:gravity="center_vertical">
 
             <ImageButton
-                android:scaleX="@integer/rtl_flip_factor"
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -27,6 +26,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@android:color/transparent"
                 android:padding="5dp"
+                android:scaleX="@integer/rtl_flip_factor"
                 android:src="@drawable/ic_left_arrow" />
         </LinearLayout>
 
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -61,8 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/toolbar_title"
-                android:layout_centerHorizontal="true"
                 android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="--"
                 android:textColor="@color/colorAccent" />
@@ -81,8 +81,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/qr_code_image"
                 android:visibility="gone" />
 
@@ -106,6 +106,7 @@
 
                 <TextView
                     android:id="@+id/total_badge_txt"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="-20dp"
@@ -115,7 +116,8 @@
                     android:gravity="center"
                     android:text="@string/toolbar_dishdasha_product_activity_total_badge_txt_text"
                     android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_xsmall" />
+                    android:textSize="@dimen/text_xsmall"
+                    tools:ignore="MissingPrefix" />
 
 
             </RelativeLayout>

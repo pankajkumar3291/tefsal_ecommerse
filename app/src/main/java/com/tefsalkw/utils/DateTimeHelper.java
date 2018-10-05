@@ -5,13 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateTimeHelper {
 
     public  static String getFormattedDate(String inputDateStr)
     {
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en"));
+        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy", new Locale("en"));
 
         Date date = null;
         try {
@@ -25,8 +26,8 @@ public class DateTimeHelper {
 
     public  static String getDeliveryDate(String inputDateStr,int days)
     {
-        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en"));
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", new Locale("en"));
 
         Date date = null;
         Calendar c = Calendar.getInstance();

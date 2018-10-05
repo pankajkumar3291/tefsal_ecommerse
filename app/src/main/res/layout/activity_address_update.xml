@@ -528,6 +528,8 @@
                     android:layout_width="match_parent">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:background="@android:color/transparent"
                         android:hint="@string/hint_phone"
                         android:id="@+id/input_phone"
@@ -575,6 +577,8 @@
                     android:layout_width="match_parent">
 
                     <EditText
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:background="@android:color/transparent"
                         android:hint="@string/hint_paci_number"
                         android:id="@+id/input_paci_num"

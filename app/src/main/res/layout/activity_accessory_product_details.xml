@@ -3,6 +3,7 @@
     xmlns:autofit="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
@@ -12,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/colorPrimary">
 
         <ImageView
@@ -38,8 +39,8 @@
                 android:id="@+id/txt_title"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/subtxt_title"
+                android:layout_alignParentTop="true"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -110,6 +111,8 @@
 
             <TextView
                 android:id="@+id/total_badge_txt"
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="-20dp"
@@ -176,8 +179,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp">
 
                     <TextView
                         android:id="@+id/txtColorLabele"
@@ -201,8 +204,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/colorRecyclerView"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/colorGray" />
 
                 </RelativeLayout>
@@ -212,8 +215,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -250,8 +253,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/colorRecyclerView"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/colorGray" />
                 </LinearLayout>
 
@@ -293,6 +296,8 @@
         android:orientation="vertical">
 
         <TextView
+            fontPath="fonts/Lato-Bold.ttf"
+            tools:ignore="MissingPrefix"
             android:id="@+id/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -304,10 +309,10 @@
             android:id="@+id/add_cart_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/colorAccent"
             android:text="@string/activity_accessory_product_details_add_cart_btn_text"
             android:textColor="@color/colorWhite" />

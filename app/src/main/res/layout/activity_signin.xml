@@ -46,6 +46,8 @@
         android:layout_marginStart="20dp">
 
         <EditText
+            fontPath="fonts/Lato-Regular.ttf"
+            tools:ignore="MissingPrefix"
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="25dp"

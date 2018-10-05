@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
@@ -30,6 +31,8 @@
                 android:orientation="vertical">
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtOrderItemSerial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,6 +71,8 @@
 
 
                 <TextView
+                    fontPath="fonts/Lato-Bold.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtExpectedDelivery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,6 +132,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        fontPath="fonts/Lato-Bold.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtItemCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,6 +145,8 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        fontPath="fonts/Lato-Bold.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtTotalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

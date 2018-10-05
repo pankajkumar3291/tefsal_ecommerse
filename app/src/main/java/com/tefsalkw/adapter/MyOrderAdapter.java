@@ -2,6 +2,7 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         String dateTimeIs = myOrderModel.get(position).getCreated_at();
 
         if (dateTimeIs != null) {
+//            holder.txtOrderDate.setTypeface(Typeface.createFromAsset(activity.getAssets(),"fonts/Lato-Bold.ttf"));
             holder.txtOrderDate.setText(DateTimeHelper.getFormattedDate(myOrderModel.get(position).getCreated_at()));
         }
 

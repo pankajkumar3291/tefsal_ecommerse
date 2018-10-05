@@ -87,6 +87,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -477,7 +478,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                         amount = price * meter;
 
-                        text_price.setText(getString(R.string.textile_detail_text_price_text) + ": " + String.format("%.2f", amount) + " " + getString(R.string.kwd));
+                        text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
 
                         meter_value.setText("" + meter);
 
@@ -494,7 +495,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     if (meter > min_meter) {
                         meter--;
                         amount = price * meter;
-                        text_price.setText(getString(R.string.textile_detail_text_price_text) + ": " + String.format("%.2f", amount) + " " + getString(R.string.kwd));
+                        text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
                         meter_value.setText("" + meter);
                     }
 
@@ -656,7 +657,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText(getString(R.string.textile_detail_text_price_text) + " " + price * meter + " " + getString(R.string.kwd));
+                text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
 
                 txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
 
@@ -672,6 +673,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 add_to_cart_lbl.setText(R.string.sold_out);
                 text_price.setVisibility(View.GONE);
                 add_to_cart_btn.setEnabled(false);
+            } else {
+                LL_min_max_controller.setVisibility(View.VISIBLE);
+                add_to_cart_lbl.setText(R.string.textile_detail_add_to_cart_lbl_text);
+                text_price.setVisibility(View.VISIBLE);
+                add_to_cart_btn.setEnabled(true);
             }
 
 
