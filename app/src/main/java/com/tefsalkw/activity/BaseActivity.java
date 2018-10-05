@@ -59,6 +59,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
 
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+
     }
 
     @Override

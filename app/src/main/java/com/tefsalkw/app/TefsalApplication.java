@@ -4,14 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,9 +15,9 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tefsalkw.R;
+import com.tefsalkw.customviews.CustomTextView;
 import com.tefsalkw.utils.SessionManager;
 
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -66,25 +62,24 @@ public class TefsalApplication extends MultiDexApplication {
 
         String keyLang = sessionManager.getKeyLang();
 
-        Log.e("keyLang",keyLang);
+        Log.e("keyLang", keyLang);
 
-        if(keyLang.equals("Arabic"))
-        {
+        if (keyLang.equals("Arabic")) {
             CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                    .setDefaultFontPath("font2.eot")
+                    //.setDefaultFontPath("fonts/GESSTwoMedium-Medium.otf")
+                    .setDefaultFontPath("fonts/arabic1.otf")
                     .setFontAttrId(R.attr.fontPath)
                     .build()
             );
-        }
-        else
-        {
+        } else {
             CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                     .setDefaultFontPath("fonts/Lato-Regular.ttf")
                     .setFontAttrId(R.attr.fontPath)
                     .build()
             );
-        }
 
+
+        }
 
 
         mTefalApp = new TefalApp();
@@ -147,7 +142,6 @@ public class TefsalApplication extends MultiDexApplication {
 
         return mFirebaseAnalytics;
     }
-
 
 
     public static OkHttpClient getOkHttpClient() {

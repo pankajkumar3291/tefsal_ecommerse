@@ -12,12 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
+import com.tefsalkw.customviews.CustomTextView;
+import com.tefsalkw.utils.FontChangeCrawler;
+import com.tefsalkw.utils.NumberCrawler;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.Locale;
@@ -72,6 +77,7 @@ public class SettingsActivity extends BaseActivity {
 
     boolean userIsInteracting = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +85,7 @@ public class SettingsActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-        //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-        //fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+
 
         session = new SessionManager(this);
 

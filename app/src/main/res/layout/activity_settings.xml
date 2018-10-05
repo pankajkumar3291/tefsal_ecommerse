@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fitsSystemWindows="true"
+    android:id="@+id/llParent"
     android:orientation="vertical"
     tools:context="com.tefsalkw.activity.SettingsActivity">
 
@@ -164,6 +165,18 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorDivider" />
+
+        <com.tefsalkw.customviews.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/customText"
+            android:drawableLeft="@drawable/ic_logout"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="1234567890"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

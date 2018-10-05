@@ -3,4 +3,8 @@
     <declare-styleable name="FontText">
         <attr name="typefaceAsset" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomFontText">
+        <attr name="fontName" format="string" />
+    </declare-styleable>
 </resources>
