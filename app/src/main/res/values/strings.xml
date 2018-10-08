@@ -265,7 +265,7 @@
     <string name="activity_measerment_tv_custom_text">CUSTOMIZED</string>
     <string name="activity_measerment_textValue_hint">0</string>
     <string name="activity_measerment_textSubValue_text">0</string>
-    <string name="activity_measerment_Video_Btn_text">REPLAY VIDEO</string>
+    <string name="activity_measerment_Video_Btn_text">PLAY VIDEO</string>
     <string name="activity_measerment_viewtip_btn_text">VIEW TIP</string>
     <string name="activity_measerment_toolbar_title_text">TIPS</string>
     <string name="activity_measerment_btn_finish_text">FINISH</string>

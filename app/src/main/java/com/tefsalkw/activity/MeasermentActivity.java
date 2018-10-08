@@ -783,7 +783,7 @@ public class MeasermentActivity extends BaseActivity {
 
                 }
 
-                if (count < 9) {
+                if (count == 0) {
                     showIndividualVideo(count);
                 }
 

@@ -201,9 +201,8 @@ public class PaymentActivity extends BaseActivity {
                         WebCallServiceOrder();
                     } else {
                         Toast.makeText(PaymentActivity.this, "Payment didn't go through, please try again", Toast.LENGTH_LONG).show();
+                        finish();
                     }
-
-
 
 
                 } catch (Exception e) {
@@ -228,8 +227,6 @@ public class PaymentActivity extends BaseActivity {
 
 
             }
-
-
 
 
         }
@@ -305,7 +302,7 @@ public class PaymentActivity extends BaseActivity {
                 try {
 
 
-                    Log.e("Order Response",object);
+                    Log.e("Order Response", object);
 
                     JSONObject jsonObject = null;
                     try {
