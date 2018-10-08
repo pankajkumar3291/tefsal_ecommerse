@@ -35,7 +35,7 @@
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/txt_title"
-                fontPath="fonts/Lato-Bold.ttf"
+
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/subtxt_title"

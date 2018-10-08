@@ -197,10 +197,16 @@ public class PaymentActivity extends BaseActivity {
                     payment_id = uri.getQueryParameter("PaymentID");
 
                     if (result != null && result.equals("CAPTURED")) {
-                        Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
+
+                        //Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "1").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
                         WebCallServiceOrder();
+
                     } else {
-                        Toast.makeText(PaymentActivity.this, "Payment didn't go through, please try again", Toast.LENGTH_LONG).show();
+
+                        startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "0").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
                         finish();
                     }
 
@@ -313,9 +319,9 @@ public class PaymentActivity extends BaseActivity {
 
                             SimpleProgressBar.closeProgress();
 
-                            Toast.makeText(PaymentActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            // Toast.makeText(PaymentActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(PaymentActivity.this, MyOrderActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "1").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
 
                         }
@@ -323,14 +329,21 @@ public class PaymentActivity extends BaseActivity {
                     } catch (JSONException e) {
                         SimpleProgressBar.closeProgress();
                         e.printStackTrace();
-                        Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
+
+                        startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "0").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                        // Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
+
                     }
 
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
-                    Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
+
+                    startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "0").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                    //  Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
 
                 }
 

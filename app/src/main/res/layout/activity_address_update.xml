@@ -30,7 +30,7 @@
             android:text="@string/activity_address_update_toolbar_title_text"
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/text_mid"
-            fontPath="fonts/Lato-Bold.ttf"
+
             tools:ignore="MissingPrefix" />
 
         <Button
@@ -41,7 +41,6 @@
             android:layout_width="wrap_content"
             android:text="@string/activity_address_update_btn_Save_text"
             android:textColor="@color/colorAccent"
-            fontPath="fonts/Lato-Bold.ttf"
             tools:ignore="MissingPrefix" />
     </android.support.v7.widget.Toolbar>
 

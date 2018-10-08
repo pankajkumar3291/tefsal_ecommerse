@@ -29,7 +29,7 @@
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_mid"
-        fontPath="fonts/Lato-Bold.ttf"
+
         tools:ignore="MissingPrefix" />
 
     <ImageView

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.TransactionStatusActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_txn" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlTxnSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:id="@+id/txtTxnSuccessTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtTxnSuccessDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTxnSuccessTitle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlTxnFailed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTxnSuccess"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/txtTxnFailedTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/txtTxnFailedDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTxnFailedTitle" />
+    </RelativeLayout>
+
+</RelativeLayout>

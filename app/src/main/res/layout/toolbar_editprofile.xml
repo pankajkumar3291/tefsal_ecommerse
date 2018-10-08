@@ -24,7 +24,6 @@
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_mid"
-        fontPath="fonts/Lato-Bold.ttf"
         tools:ignore="MissingPrefix" />
 
     <ImageView

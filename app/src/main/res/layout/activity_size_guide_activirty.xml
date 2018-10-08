@@ -43,7 +43,6 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_mid"
                 android:textStyle="bold"
-                fontPath="fonts/Lato-Bold.ttf"
                 tools:ignore="MissingPrefix" />
 
             <TextView

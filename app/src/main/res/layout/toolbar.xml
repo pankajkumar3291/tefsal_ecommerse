@@ -13,7 +13,6 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:scaleX="@integer/rtl_flip_factor"
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -21,12 +20,12 @@
             android:layout_marginEnd="5dp"
             android:background="@android:color/transparent"
             android:padding="5dp"
+            android:scaleX="@integer/rtl_flip_factor"
             android:src="@drawable/ic_left_arrow" />
 
 
         <TextView
             android:id="@+id/toolbar_title"
-            fontPath="fonts/Lato-Bold.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -87,8 +86,8 @@
             android:id="@+id/view_cart_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="end"
             android:layout_marginEnd="5dp"
             android:gravity="center_vertical"
@@ -103,9 +102,8 @@
                 android:src="@drawable/ic_shopping_cart_black_24dp" />
 
             <TextView
-                fontPath="fonts/Lato-Bold.ttf"
-                tools:ignore="MissingPrefix"
                 android:id="@+id/total_badge_txt"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="-20dp"
@@ -115,7 +113,8 @@
                 android:gravity="center"
                 android:text="@string/toolbar_total_badge_txt_text"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_xsmall" />
+                android:textSize="@dimen/text_xsmall"
+                tools:ignore="MissingPrefix" />
 
 
         </RelativeLayout>
@@ -126,8 +125,8 @@
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_gravity="end"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/qr_code_image"
             android:visibility="gone" />
     </RelativeLayout>

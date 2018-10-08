@@ -358,8 +358,8 @@
                 android:id="@+id/viewEditCustom"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/colorGray"
                 android:visibility="gone" />
 
@@ -387,13 +387,15 @@
 
                         <EditText
                             android:id="@+id/textValue"
+                            fontPath="fonts/Lato-Regular.ttf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:hint="@string/activity_measerment_textValue_hint"
                             android:inputType="number"
                             android:maxLength="3"
                             android:textColorHint="@color/colorNavy"
-                            android:textSize="80sp" />
+                            android:textSize="80sp"
+                            tools:ignore="MissingPrefix" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -427,8 +429,8 @@
                     android:id="@+id/l2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -514,7 +516,6 @@
 
             <TextView
                 android:id="@+id/toolbar_title"
-                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -565,7 +566,9 @@
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:onClick="navigateIntro"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal">
+
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
