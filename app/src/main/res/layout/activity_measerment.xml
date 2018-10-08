@@ -372,6 +372,7 @@
 
 
                 <LinearLayout
+                    android:layoutDirection="ltr"
                     android:id="@+id/l1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -398,6 +399,7 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="bottom"
@@ -406,15 +408,18 @@
 
                         <TextView
                             android:id="@+id/textSubValue"
+                            fontPath="fonts/Lato-Regular.ttf"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="bottom"
                             android:text="@string/activity_measerment_textSubValue_text"
-                            android:textSize="30dp" />
+                            android:textSize="30dp"
+                            tools:ignore="MissingPrefix" />
 
                     </LinearLayout>
 
                     <TextView
+                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -422,7 +427,8 @@
                         android:layout_marginTop="-15dp"
                         android:text="cm"
                         android:textSize="40sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
                 </LinearLayout>
 
                 <LinearLayout

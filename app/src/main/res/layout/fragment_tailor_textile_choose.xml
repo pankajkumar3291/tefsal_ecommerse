@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RL_container"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
-        android:gravity="center_horizontal"
         android:id="@+id/textheader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
         android:padding="10dp"
         android:text="@string/fragment_tailor_textile_choose_textheader_text"
         android:textColor="@color/colorGray"
         android:textSize="@dimen/text_mid" />
 
     <View
-        android:background="@color/colorDiamond"
         android:id="@+id/view"
-        android:layout_below="@+id/textheader"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_width="match_parent" />
+        android:layout_below="@+id/textheader"
+        android:background="@color/colorDiamond" />
 
     <ListView
-        android:divider="@null"
-        android:dividerHeight="0dp"
         android:id="@+id/list"
-        android:layout_below="@+id/view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent" />
+        android:layout_below="@+id/view"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
     <TextView
-        android:gravity="center"
         android:id="@+id/orText"
-        android:layout_below="@+id/list"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
         android:text="@string/fragment_tailor_textile_choose_orText_text"
         android:textSize="@dimen/text_large" />
 
@@ -44,114 +44,111 @@
     <!-- </LinearLayout>-->
     <LinearLayout
         android:id="@+id/LL_ownTextile_container"
-        android:layout_below="@+id/orText"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orText"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
 
             <LinearLayout
-                android:gravity="center"
-                android:id="@+id/LL_imageContainer"
+                android:id="@+id/LL_imageContainer1"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_width="60dp">
+                android:layout_alignParentStart="true"
+                android:gravity="center">
 
                 <ImageView
-                    android:background="@drawable/ic_home_black_fill_24dp"
                     android:id="@+id/imageView2"
-                    android:layout_alignParentLeft="true"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_home_black_fill_24dp" />
             </LinearLayout>
 
-
             <TextView
-                android:drawableRight="@drawable/info"
                 android:id="@+id/textView2"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/LL_imageContainer"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/LL_imageContainer1"
                 android:text="@string/fragment_tailor_textile_choose_textView2_text"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_small" />
 
             <CheckBox
                 android:id="@+id/ownTextileCheckBox"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content" />
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
 
         <View
-            android:background="@color/colorDiamond"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_width="match_parent" />
+            android:background="@color/colorDiamond" />
     </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/RR_newTextile"
-        android:layout_below="@+id/LL_ownTextile_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_width="match_parent">
+        android:layout_below="@+id/LL_ownTextile_container"
+        android:layout_marginTop="40dp">
 
         <RelativeLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:gravity="center"
                 android:id="@+id/LL_imageContainer2"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_width="60dp">
+                android:layout_alignParentStart="true"
+                android:gravity="center">
 
                 <ImageView
-                    android:background="@drawable/ic_add_black_24dp"
                     android:id="@+id/imageView3"
-                    android:layout_alignParentLeft="true"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" />
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_add_black_24dp" />
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/LL_imageContainer2"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/LL_imageContainer2"
                 android:text="@string/fragment_tailor_textile_choose_textView3_text"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_mid" />
 
             <View
-                android:background="@color/colorDiamond"
-                android:layout_below="@+id/LL_imageContainer2"
+                android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_width="match_parent" />
+                android:layout_below="@+id/LL_imageContainer2"
+                android:background="@color/colorDiamond" />
         </RelativeLayout>
     </LinearLayout>
 
 
     <Button
-        android:background="@color/colorAccent"
         android:id="@+id/tailor_add_btn"
-        android:layout_alignParentBottom="true"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorAccent"
         android:text="@string/fragment_tailor_textile_choose_tailor_add_btn_text"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_normal" />

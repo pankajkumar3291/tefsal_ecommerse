@@ -23,12 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.BadgeRecordModel;
-import com.tefsalkw.models.GetCartRecord;
-import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTailorProducts;
+import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.GetCartRecord;
+import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -143,7 +143,7 @@ public class TailorProductActivity extends BaseActivity {
         super.onResume();
 
 
-        Log.e(TailorProductActivity.class.getSimpleName(),"onResume");
+        Log.e(TailorProductActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
 

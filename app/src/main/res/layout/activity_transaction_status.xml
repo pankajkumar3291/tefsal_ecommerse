@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
     tools:context=".activity.TransactionStatusActivity">
 
     <include
@@ -11,46 +13,74 @@
 
 
     <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:id="@+id/rlTxnSuccess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
+        android:padding="@dimen/activity_horizontal_margin"
         android:visibility="visible">
 
         <ImageView
+            android:id="@+id/imgSuccess"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/success"
+            android:translationZ="999dp" />
 
         <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtTxnSuccessTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgSuccess"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textSize="26sp" />
 
         <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtTxnSuccessDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTxnSuccessTitle" />
+            android:layout_below="@+id/txtTxnSuccessTitle"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
     <RelativeLayout
+        android:gravity="center_horizontal"
         android:id="@+id/rlTxnFailed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlTxnSuccess"
+        android:padding="@dimen/activity_horizontal_margin"
         android:visibility="gone">
 
+        <ImageView
+
+            android:id="@+id/imgFail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/fail" />
 
         <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtTxnFailedTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgFail"
+            android:layout_centerHorizontal="true" />
 
         <TextView
+            android:gravity="center_horizontal"
             android:id="@+id/txtTxnFailedDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTxnFailedTitle" />
+            android:layout_below="@+id/txtTxnFailedTitle"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </RelativeLayout>

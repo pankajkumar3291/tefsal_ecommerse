@@ -3,6 +3,7 @@ package com.tefsalkw.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,6 +34,9 @@ public class TransactionStatusActivity extends BaseActivity {
     @BindView(R.id.txtTxnFailedDesc)
     TextView txtTxnFailedDesc;
 
+
+    @BindView(R.id.btn_back)
+    ImageView btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,23 @@ public class TransactionStatusActivity extends BaseActivity {
 
         }
 
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(TransactionStatusActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/round_blue_shape_cd"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
@@ -22,7 +23,7 @@
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Number of Meters"
+                android:text="@string/number_of_meters"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_mid" />
         </RelativeLayout>
@@ -58,7 +59,7 @@
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="How many meters do you have?"
+                        android:text="@string/how_many_meters_do_you_have"
                         android:textColor="@color/colorNavy" />
 
                     <RelativeLayout
@@ -67,6 +68,8 @@
                         android:layout_width="match_parent">
 
                         <EditText
+                            fontPath="fonts/Lato-Regular.ttf"
+                            tools:ignore="MissingPrefix"
                             android:id="@+id/inputmeter"
                             android:inputType="numberDecimal"
                             android:layout_height="wrap_content"

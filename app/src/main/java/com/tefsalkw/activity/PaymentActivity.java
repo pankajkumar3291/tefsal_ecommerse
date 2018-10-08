@@ -199,7 +199,6 @@ public class PaymentActivity extends BaseActivity {
                     if (result != null && result.equals("CAPTURED")) {
 
                         //Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "1").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
                         WebCallServiceOrder();
 
@@ -322,6 +321,7 @@ public class PaymentActivity extends BaseActivity {
                             // Toast.makeText(PaymentActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                             startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "1").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+
 
 
                         }
