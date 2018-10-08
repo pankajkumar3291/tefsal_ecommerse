@@ -45,7 +45,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -104,6 +103,7 @@ public class FragmentTailorProducts extends BaseFragment {
     CustomTailorCalculationProduct customTailorCalculationProduct;
 
     int textile_meter = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -232,9 +232,9 @@ public class FragmentTailorProducts extends BaseFragment {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 
-                  //  System.out.println("CART ID======" + sessionManager.getKeyCartId());
+                    //  System.out.println("CART ID======" + sessionManager.getKeyCartId());
 //                  params.put("access_token", session.getToken());
-                    params.put("store_id",  TefalApp.getInstance().getStoreId());
+                    params.put("store_id", TefalApp.getInstance().getStoreId());
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
@@ -408,8 +408,6 @@ public class FragmentTailorProducts extends BaseFragment {
                 Log.e("sublistCartItemsHashMap", new Gson().toJson(dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap) + "");
 
 
-
-
                 for (Map.Entry<Integer, List<SublistCartItems>> entry : dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.entrySet()) {
 
                     List<SublistCartItems> sublistCartItems = (List<SublistCartItems>) entry.getValue();
@@ -443,7 +441,6 @@ public class FragmentTailorProducts extends BaseFragment {
                         }
                     }
                 }
-
 
 
             }
@@ -712,7 +709,7 @@ public class FragmentTailorProducts extends BaseFragment {
         if (tailoringRecord != null) {
 
             Log.e("position", tailoringRecord.getPosition() + "");
-            return (int)tailoringRecord.getRemaining_dishdasha() == 0;
+            return (int) tailoringRecord.getRemaining_dishdasha() == 0;
 
 
         }
@@ -748,9 +745,6 @@ public class FragmentTailorProducts extends BaseFragment {
         return false;
 
     }
-
-
-
 
 
 }

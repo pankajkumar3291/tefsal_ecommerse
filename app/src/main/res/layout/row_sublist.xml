@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="5dp">
 
     <ImageView
@@ -16,7 +17,7 @@
         android:id="@+id/cartItem"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toRightOf="@+id/imgDelete"
+        android:layout_toEndOf="@+id/imgDelete"
         android:layout_width="wrap_content"
         android:text="--"
         android:textColor="@color/colorBlack"
@@ -24,12 +25,14 @@
         android:textStyle="bold" />
 
     <TextView
+        fontPath="fonts/Lato-Regular.ttf"
+        tools:ignore="MissingPrefix"
         android:gravity="start"
         android:id="@+id/txtSize"
         android:layout_below="@+id/cartItem"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toRightOf="@+id/imgDelete"
+        android:layout_toEndOf="@+id/imgDelete"
         android:layout_width="wrap_content"
         android:text="--"
         android:textSize="12sp"

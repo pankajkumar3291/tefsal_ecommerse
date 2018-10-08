@@ -1,53 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/LL_textContainer"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
 
         <LinearLayout
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:paddingLeft="5dp">
 
             <TextView
-                android:gravity="left"
                 android:id="@+id/tailor_product_details"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                fontPath="fonts/Lato-Regular.ttf"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="start"
                 android:text="@string/tailor_product_remaining_item_tailor_product_details_text"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_small"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:paddingLeft="5dp">
 
             <TextView
-                android:gravity="left"
                 android:id="@+id/tailor_product_remaining_details"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
+                fontPath="fonts/Lato-Regular.ttf"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="start"
                 android:text="@string/tailor_product_remaining_item_tailor_product_remaining_details_text"
                 android:textColor="@color/colorDivider"
                 android:textSize="@dimen/text_small"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
         </LinearLayout>
     </LinearLayout>
 

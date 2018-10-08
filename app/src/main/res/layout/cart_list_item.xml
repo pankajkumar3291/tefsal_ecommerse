@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layoutDirection="ltr"
-    android:paddingBottom="5dp"
+    android:orientation="vertical"
     android:paddingLeft="20dp"
+    android:paddingTop="5dp"
     android:paddingRight="20dp"
-    android:paddingTop="5dp">
+    android:paddingBottom="5dp">
 
     <LinearLayout
         android:id="@+id/ll_header"
@@ -85,17 +85,18 @@
 
             <TextView
                 android:id="@+id/text_textile"
+                fontPath="fonts/Lato-Regular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_small"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
 
             <TextView
-                fontPath="fonts/Lato-Bold.ttf"
-                tools:ignore="MissingPrefix"
                 android:id="@+id/sub_text_textile"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -103,12 +104,12 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="--"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                tools:ignore="MissingPrefix" />
 
             <TextView
-                fontPath="fonts/Lato-Bold.ttf"
-                tools:ignore="MissingPrefix"
                 android:id="@+id/text_size"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -118,7 +119,8 @@
                 android:singleLine="true"
                 android:text="--"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                tools:ignore="MissingPrefix" />
 
 
             <LinearLayout
@@ -127,9 +129,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    fontPath="fonts/Lato-Bold.ttf"
-                    tools:ignore="MissingPrefix"
                     android:id="@+id/text_price"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -138,12 +139,12 @@
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="MissingPrefix" />
 
                 <TextView
-                    fontPath="fonts/Lato-Bold.ttf"
-                    tools:ignore="MissingPrefix"
                     android:id="@+id/text_price_discounted"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -152,7 +153,8 @@
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="MissingPrefix" />
             </LinearLayout>
 
 
