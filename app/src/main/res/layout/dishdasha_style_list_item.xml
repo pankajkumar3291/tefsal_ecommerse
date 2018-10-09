@@ -69,7 +69,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Neck"
+                        android:text="@string/activity_measerment_tv_neck_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -114,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Arm"
+                        android:text="@string/activity_measerment_tv_arm_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="40"
                         android:gravity="center"
-                        android:text="Shoulder"
+                        android:text="@string/activity_measerment_tv_shoulder_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -204,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Wrist"
+                        android:text="@string/activity_measerment_tv_wrist_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -249,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Chest"
+                        android:text="@string/activity_measerment_tv_chest_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -295,7 +295,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Front Height"
+                        android:text="@string/dishdasha_style_list_item_txt_front_height_value_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 
@@ -340,7 +340,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="Waist"
+                        android:text="@string/activity_measerment_tv_waist_text"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_small" />
 

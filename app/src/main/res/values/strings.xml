@@ -550,5 +550,6 @@
     <string name="edit_config">Edit Customization</string>
     <string name="how_many_meters_do_you_have">How many meters do you have?</string>
     <string name="number_of_meters">Number of Meters</string>
+    <string name="cm">cm</string>
 
 </resources>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
@@ -59,12 +61,13 @@
                             android:textSize="@dimen/text_normal" />
 
                         <Switch
-
                             android:id="@+id/collor_push_visibilty_switch"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:layout_marginBottom="5dp"
                             android:background="@drawable/switch_selector"
+                            android:textOff="@string/no"
+                            android:textOn="@string/yes"
                             android:thumb="@null" />
 
                     </LinearLayout>
@@ -88,10 +91,11 @@
 
                         <Switch
                             android:id="@+id/button_hidden_switch"
-
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:background="@drawable/switch_selector"
+                            android:textOff="@string/no"
+                            android:textOn="@string/yes"
                             android:thumb="@null" />
 
                     </LinearLayout>
@@ -114,10 +118,12 @@
 
                         <Spinner
                             android:id="@+id/noOfButtonSpinner"
+                            fontPath="fonts/Lato-Regular.ttf"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:entries="@array/no_of_buttons_items"
-                            android:gravity="end" />
+                            android:gravity="end"
+                            tools:ignore="MissingPrefix" />
 
                     </LinearLayout>
 
@@ -129,8 +135,8 @@
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/colorGray" />
 
 
@@ -184,6 +190,8 @@
                             android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:background="@drawable/switch_selector"
+                            android:textOff="@string/no"
+                            android:textOn="@string/yes"
                             android:thumb="@null" />
 
 
@@ -208,9 +216,11 @@
 
                         <Spinner
                             android:id="@+id/collar_btn_spinner"
+                            fontPath="fonts/Lato-Regular.ttf"
                             android:layout_width="80dp"
                             android:layout_height="30dp"
-                            android:entries="@array/no_of_collor_btn_items" />
+                            android:entries="@array/no_of_collor_btn_items"
+                            tools:ignore="MissingPrefix" />
 
 
                     </LinearLayout>
@@ -222,8 +232,8 @@
                 android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/colorGray" />
 
             <RelativeLayout
@@ -270,6 +280,8 @@
                         android:layout_width="80dp"
                         android:layout_height="30dp"
                         android:background="@drawable/switch_selector"
+                        android:textOff="@string/no"
+                        android:textOn="@string/yes"
                         android:thumb="@null" />
 
 
@@ -280,8 +292,8 @@
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/colorGray" />
 
             <LinearLayout

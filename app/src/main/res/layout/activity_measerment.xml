@@ -372,12 +372,12 @@
 
 
                 <LinearLayout
-                    android:layoutDirection="ltr"
                     android:id="@+id/l1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
+                    android:layoutDirection="ltr"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -425,7 +425,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="37dp"
                         android:layout_marginTop="-15dp"
-                        android:text="cm"
+                        android:text="@string/cm"
                         android:textSize="40sp"
                         android:textStyle="bold"
                         tools:ignore="MissingPrefix" />
@@ -562,11 +562,11 @@
     </LinearLayout>
 
     <RelativeLayout
-
         android:id="@+id/relSlide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:translationZ="999dp">
+        android:translationZ="999dp"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/btnClose"
