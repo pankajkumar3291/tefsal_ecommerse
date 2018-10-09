@@ -220,6 +220,8 @@
                         android:src="@drawable/kuwait" />
 
                     <TextView
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtCountryCode1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -344,6 +346,8 @@
                         android:src="@drawable/kuwait" />
 
                     <TextView
+                        fontPath="fonts/Lato-Regular.ttf"
+                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtCountryCode2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -469,6 +473,8 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
+                    fontPath="fonts/Lato-Regular.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -519,6 +525,8 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
+                    fontPath="fonts/Lato-Regular.ttf"
+                    tools:ignore="MissingPrefix"
                     android:id="@+id/input_c_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -571,6 +579,18 @@
                 android:text="@string/continue_"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_normal" />
+
+            <TextView
+                android:id="@+id/privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/colorTheme"
+                android:textSize="@dimen/text_normal"
+                android:visibility="visible" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"

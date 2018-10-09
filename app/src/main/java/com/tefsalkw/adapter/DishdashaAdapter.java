@@ -254,7 +254,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
 
 
-                if (record.get(position).getCollar_button_visibility() != null && record.get(position).getCollar_button_visibility().equals("yes")) {
+                if (record.get(position).getCollar_button_visibility() != null && !record.get(position).getCollar_button_visibility().equals("yes")) {
                     holder.txtBadge_collar_btn1.setVisibility(View.VISIBLE);
 
                 } else {
@@ -263,7 +263,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
 
-                if (record.get(position).getShirt_button_visibility() != null && record.get(position).getShirt_button_visibility().equals("yes")) {
+                if (record.get(position).getShirt_button_visibility() != null && !record.get(position).getShirt_button_visibility().equals("yes")) {
                     holder.txt_badge_coat1.setVisibility(View.VISIBLE);
 
                 } else {
@@ -393,7 +393,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
 
 
-                if (record.get(position).getCollar_button_visibility() != null && record.get(position).getCollar_button_visibility().equals("yes")) {
+                if (record.get(position).getCollar_button_visibility() != null && !record.get(position).getCollar_button_visibility().equals("yes")) {
                     holder.txtBadge_collar_btn.setVisibility(View.VISIBLE);
 
                 } else {
@@ -401,7 +401,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 }
 
 
-                if (record.get(position).getShirt_button_visibility() != null && record.get(position).getShirt_button_visibility().equals("yes")) {
+                if (record.get(position).getShirt_button_visibility() != null && !record.get(position).getShirt_button_visibility().equals("yes")) {
                     holder.txt_badge_coat.setVisibility(View.VISIBLE);
 
                 } else {

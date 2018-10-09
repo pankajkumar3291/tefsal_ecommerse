@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
@@ -462,7 +464,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             tabLayout.setOnTabSelectedListener(this);
 
             tabLayout.setupWithViewPager(viewPager);
-
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                changeTabsFont(tabLayout);
+            }
             initSlider();
 
 
@@ -611,7 +616,22 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
     }
-
+    private void changeTabsFont(TabLayout tabLayout) {
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    AssetManager mgr = getAssets();
+                    Typeface tf = Typeface.createFromAsset(mgr, "fonts/GESSTwoBold-Bold.otf");//Font file in /assets
+                    ((TextView) tabViewChild).setTypeface(tf);
+                }
+            }
+        }
+    }
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 

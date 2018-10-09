@@ -1,12 +1,15 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -105,12 +108,16 @@ public class DishDashaStoresActivity extends BaseActivity {
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
         /*tabLayout.addTab(tabLayout.newTab().setText(R.string.btn_view_all));*/
         tabLayout.addTab(tabLayout.newTab().setText(R.string.btn_textiles));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.btn_tailors));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            changeTabsFont(tabLayout);
+        }
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(3);
         final PagerStoresAdapter adapter = new PagerStoresAdapter
@@ -138,6 +145,25 @@ public class DishDashaStoresActivity extends BaseActivity {
             viewPager.setCurrentItem(1);
         }
 //        setUpFragment();
+    }
+
+
+
+    private void changeTabsFont(TabLayout tabLayout) {
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    AssetManager mgr = getAssets();
+                    Typeface tf = Typeface.createFromAsset(mgr, "fonts/GESSTwoBold-Bold.otf");//Font file in /assets
+                    ((TextView) tabViewChild).setTypeface(tf);
+                }
+            }
+        }
     }
 
 

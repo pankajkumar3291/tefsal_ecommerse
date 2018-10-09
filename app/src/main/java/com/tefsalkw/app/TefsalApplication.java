@@ -67,6 +67,7 @@ public class TefsalApplication extends MultiDexApplication {
         if (keyLang.equals("Arabic")) {
             CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                    .setDefaultFontPath("fonts/GESSTwoMedium-Medium.otf")
+                    .addCustomViewWithSetTypeface(android.support.design.widget.TabLayout.class)
                   //  .setDefaultFontPath("fonts/arabic1.otf")
                     .setFontAttrId(R.attr.fontPath)
                     .build()
@@ -74,6 +75,7 @@ public class TefsalApplication extends MultiDexApplication {
         } else {
             CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                     .setDefaultFontPath("fonts/Lato-Regular.ttf")
+                    .addCustomViewWithSetTypeface(android.support.design.widget.TabLayout.class)
                     .setFontAttrId(R.attr.fontPath)
                     .build()
             );

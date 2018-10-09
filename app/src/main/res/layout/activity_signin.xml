@@ -17,11 +17,11 @@
         app:theme="@style/TransparentToolbar">
 
         <ImageButton
-            android:scaleX="@integer/rtl_flip_factor"
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:scaleX="@integer/rtl_flip_factor"
             android:src="@drawable/ic_left_arrow" />
 
 
@@ -42,13 +42,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
         <EditText
-            fontPath="fonts/Lato-Regular.ttf"
-            tools:ignore="MissingPrefix"
             android:id="@+id/input_email"
+            fontPath="fonts/Lato-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"
@@ -57,7 +56,8 @@
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_small"
+            tools:ignore="MissingPrefix" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -66,9 +66,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/input_layout_email"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/colorAccent" />
 
     <android.support.design.widget.TextInputLayout
@@ -76,14 +76,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sep1"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp">
 
         <EditText
-            fontPath="fonts/Lato-Regular.ttf"
-            tools:ignore="MissingPrefix"
             android:id="@+id/input_password"
+
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"
@@ -92,7 +91,9 @@
             android:inputType="textPassword"
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
-            android:textSize="@dimen/text_small" />
+            android:textSize="@dimen/text_small"
+            fontPath="fonts/Lato-Regular.ttf"
+            tools:ignore="MissingPrefix" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -101,9 +102,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/input_layout_password"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/colorAccent" />
 
     <Button
@@ -117,36 +118,28 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_normal" />
 
-
     <TextView
-        android:id="@+id/forgot_password_text"
+        android:id="@+id/privacy_policy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonLogin"
+        android:layout_centerHorizontal="true"
+        android:text="@string/privacy_policy"
+        android:textColor="@color/colorTheme"
+        android:textSize="@dimen/text_normal"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/privacy_policy"
+        android:id="@+id/forgot_password_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/action_forgot_pwd"
         android:textColor="@color/colorTheme"
         android:textSize="@dimen/text_normal" />
 
-
-    <TextView
-        android:id="@+id/signup_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-        android:text="@string/action_new_user"
-        android:textColor="@color/colorTheme"
-        android:textSize="@dimen/text_normal"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password_text"
-        app:layout_constraintVertical_bias="0.128" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.tefsalkw.activity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -160,12 +161,24 @@ public class SignupActivity extends BaseActivity {
     @BindView(R.id.txtCountryCode2)
     TextView txtCountryCode2;
 
+    @BindView(R.id.privacy_policy)
+    TextView privacy_policy;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         ButterKnife.bind(this);
+
+
+        privacy_policy.setPaintFlags(privacy_policy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this, AboutUsActivity.class));
+            }
+        });
 
         //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
        // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));

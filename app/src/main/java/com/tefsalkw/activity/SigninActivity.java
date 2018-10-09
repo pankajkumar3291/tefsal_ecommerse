@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,7 +26,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.tefsalkw.R;
 import com.tefsalkw.utils.Config;
 import com.tefsalkw.utils.Contents;
-import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.NotificationUtils;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
@@ -53,8 +52,7 @@ public class SigninActivity extends BaseActivity {
     TextView forgot_password_text;
 
 
-    @BindView(R.id.signup_text)
-    TextView signup_text;
+
 
 
     @BindView(R.id.input_email)
@@ -71,6 +69,10 @@ public class SigninActivity extends BaseActivity {
     @BindView(R.id.btn_back)
     ImageButton btn_back;
 
+    @BindView(R.id.privacy_policy)
+    TextView privacy_policy;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +81,15 @@ public class SigninActivity extends BaseActivity {
         ButterKnife.bind(this);
 
 
+        privacy_policy.setPaintFlags(privacy_policy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SigninActivity.this, AboutUsActivity.class));
+            }
+        });
         //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-       // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+        // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);
@@ -111,13 +120,7 @@ public class SigninActivity extends BaseActivity {
             }
         });
 
-        signup_text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SigninActivity.this, SignupActivity.class));
-                finish();
-            }
-        });
+
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
