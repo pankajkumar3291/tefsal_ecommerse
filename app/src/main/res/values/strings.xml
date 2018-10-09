@@ -302,7 +302,7 @@
     <string name="cupon_started_amount_text">TOTAL:45.000 KWD</string>
     <string name="cupon_started_discount_text">(Discounts and promotions included)</string>
     <string name="cupon_started_add_address_text">PROCEED TO PAYMENT</string>
-    <string name="customized_section_buttonHiddenText_text">VISIBLE</string>
+    <string name="customized_section_buttonHiddenText_text">HIDDEN</string>
     <string name="customized_section_pushType_text">PUSH</string>
     <string name="customized_section_noOfButtonText_text">NO OF BUTTONS</string>
     <string name="customized_section_collor_button_hidden_text_text">VISIBLE</string>

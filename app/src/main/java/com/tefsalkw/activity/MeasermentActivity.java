@@ -993,7 +993,7 @@ public class MeasermentActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked) {
+                if (!isChecked) {
                     //button_hidden_switch.setChecked(true);
 
 
@@ -1043,7 +1043,7 @@ public class MeasermentActivity extends BaseActivity {
         collar_btn_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if (!isChecked) {
 
 
                     mSessionManager.setKeyCollarButtonVisibility("yes");
@@ -1159,17 +1159,17 @@ public class MeasermentActivity extends BaseActivity {
                 switch (noOfButtonSpinner.getItemAtPosition(position).toString()) {
                     case "1":
                         if (button_hidden_switch.isChecked()) {
-                            buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
-                        } else {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
+                        } else {
+                            buttonsImage.setImageResource(R.drawable.icon_collar_btn_show1);
                         }
                         break;
 
                     case "2":
                         if (button_hidden_switch.isChecked()) {
-                            buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
-                        } else {
                             buttonsImage.setImageResource(R.drawable.icon_collar_btn_hidden);
+                        } else {
+                            buttonsImage.setImageResource(R.drawable.icon_collar_btn_show2);
                         }
                         break;
 
@@ -1191,25 +1191,25 @@ public class MeasermentActivity extends BaseActivity {
                     case "3":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
                         if (collar_btn_switch.isChecked()) {
-                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show3);
-                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden3);
+                        } else {
+                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show3);
                         }
                         break;
                     case "4":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
                         if (collar_btn_switch.isChecked()) {
-                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show4);
-                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden4);
+                        } else {
+                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show4);
                         }
                         break;
                     case "5":
                         mSessionManager.setKeyCollarButton(collar_btn_spinner.getItemAtPosition(position).toString());
                         if (collar_btn_switch.isChecked()) {
-                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show5);
-                        } else {
                             collor_button_image.setImageResource(R.drawable.icon_chest_btn_hidden5);
+                        } else {
+                            collor_button_image.setImageResource(R.drawable.icon_chest_btn_show5);
                         }
                         break;
 

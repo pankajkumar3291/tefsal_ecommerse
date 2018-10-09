@@ -175,7 +175,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
-                            android:text="@string/customized_section_collor_button_hidden_text_text"
+                            android:text="@string/customized_section_buttonHiddenText_text"
                             android:textColor="@color/colorNavy"
                             android:textSize="@dimen/text_normal" />
 
