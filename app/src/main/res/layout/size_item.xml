@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:gravity="center">
 
     <TextView
-        android:background="@drawable/my_button_bg"
-        android:gravity="center"
         android:id="@+id/sizeText"
+        fontPath="fonts/Lato-Regular.ttf"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingEnd="20dp"
+        android:background="@drawable/my_button_bg"
+        android:gravity="center"
         android:paddingStart="20dp"
         android:paddingTop="5dp"
-        android:text="@string/size_item_sizeText_text"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="--"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/text_mid" />
+        android:textSize="@dimen/text_mid"
+        tools:ignore="MissingPrefix" />
 
 </LinearLayout>

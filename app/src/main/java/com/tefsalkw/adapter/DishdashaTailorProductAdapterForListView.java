@@ -11,26 +11,14 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentTailorProducts;
 import com.tefsalkw.models.GetAssignedItemsRecord;
 import com.tefsalkw.models.SublistCartItems;
-import com.tefsalkw.utils.Contents;
-import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Rituparna Khadka on 1/12/2018.
@@ -85,6 +73,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         Button add_btn = (Button) convertView.findViewById(R.id.add_btn);
         TextView product_price = (TextView) convertView.findViewById(R.id.product_price);
         TextView product_name = (TextView) convertView.findViewById(R.id.product_name);
+        TextView product_desc = (TextView) convertView.findViewById(R.id.product_desc);
         View view = (View) convertView.findViewById(R.id.view);
 
         RecyclerView recyclerSubList = (RecyclerView) convertView.findViewById(R.id.recyclerSubList);
@@ -96,14 +85,14 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         recyclerSubList.setLayoutManager(layoutManager);
         recyclerSubList.setItemAnimator(new DefaultItemAnimator());
 
-        sublistAdapter = new SublistAdapter(activity, sublistCartItemsHashMap.get(position), dishdashaTailorProductAdapterForListView,isOwnTextile);
+        sublistAdapter = new SublistAdapter(activity, sublistCartItemsHashMap.get(position), dishdashaTailorProductAdapterForListView, isOwnTextile);
 
         recyclerSubList.setAdapter(sublistAdapter);
 
 
         product_price.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_price() + " KWD");
         product_name.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
-
+        product_desc.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,12 +114,11 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
     public void addSublistCartItem(SublistCartItems sublistCartItems, boolean isOwn) {
 
-        Log.e("selectedPosition",selectedPosition+"");
+        Log.e("selectedPosition", selectedPosition + "");
 
         isOwnTextile = isOwn;
 
         if (sublistCartItemsHashMap.containsKey(selectedPosition)) {
-
 
 
             List<SublistCartItems> sublistitems = sublistCartItemsHashMap.get(selectedPosition);
@@ -152,7 +140,7 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         }
 
 
-       // Log.e("sublistCartItemsHashMap",new Gson().toJson(sublistCartItemsHashMap)+"");
+        // Log.e("sublistCartItemsHashMap",new Gson().toJson(sublistCartItemsHashMap)+"");
 
 
     }

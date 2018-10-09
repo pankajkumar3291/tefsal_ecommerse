@@ -58,6 +58,8 @@
 
 
             <TextView
+                fontPath="fonts/Lato-Regular.ttf"
+                tools:ignore="MissingPrefix"
                 android:id="@+id/txtTailorDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

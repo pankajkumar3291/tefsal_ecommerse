@@ -82,6 +82,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_neck_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -126,6 +127,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_arm_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -170,6 +172,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_shoulder_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -214,6 +217,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_wrist_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -258,6 +262,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_chest_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -303,6 +308,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_front_height_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -347,6 +353,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_waist_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -392,6 +399,7 @@
                         android:gravity="end"
                         android:text="@string/dishdasha_style_list_item_txt_back_height_value_text"
                         android:textColor="@color/colorWhite"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -681,6 +689,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -731,6 +740,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -781,6 +791,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -831,6 +842,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -881,6 +893,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -932,6 +945,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
@@ -982,6 +996,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
 
@@ -1033,6 +1048,7 @@
                         android:textColor="@color/colorWhite"
                         android:textColorHint="@color/colorWhite"
                         android:textCursorDrawable="@null"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
