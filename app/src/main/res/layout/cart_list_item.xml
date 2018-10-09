@@ -47,6 +47,7 @@
             android:id="@+id/LL_imageContainer"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:orientation="horizontal">
 
             <ImageView
@@ -67,11 +68,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llCartDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@+id/LL_imageContainer"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:translationZ="999dp">
 
             <TextView
 

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -136,6 +137,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.LL_imageContainer)
         LinearLayout LL_imageContainer;
 
+        @BindView(R.id.llCartDetails)
+        LinearLayout llCartDetails;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -314,15 +317,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             }
 
 
-            if (this.activate) {
-                holder.cart_item_delete.setVisibility(View.VISIBLE);
-                //holder.cart_item_delete1.setVisibility(View.VISIBLE);
-            } else {
-                holder.cart_item_delete.setVisibility(GONE);
-                // holder.cart_item_delete1.setVisibility(View.GONE);
-
-            }
-
             holder.LL_imageContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -332,6 +326,23 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     // notifyDataSetChanged();
                 }
             });
+
+            if (this.activate) {
+                holder.cart_item_delete.setVisibility(View.VISIBLE);
+                holder.LL_imageContainer.setClickable(true);
+                //holder.cart_item_delete1.setVisibility(View.VISIBLE);
+            } else {
+                holder.cart_item_delete.setVisibility(GONE);
+                holder.LL_imageContainer.setClickable(false);
+                // holder.cart_item_delete1.setVisibility(View.GONE);
+
+            }
+
+
+
+
+
+
 
 
             RequestOptions options = new RequestOptions()

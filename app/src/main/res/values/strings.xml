@@ -262,6 +262,17 @@
     <string name="activity_measerment_tv_wrist_text">WRIST</string>
     <string name="activity_measerment_tv_f_height_text">FRONT HEIGHT</string>
     <string name="activity_measerment_tv_b_height_text">BACK HEIGHT</string>
+
+    <string name="activity_measerment_tv_neck_text_s">Neck</string>
+    <string name="activity_measerment_tv_shoulder_text_s">Shoulder</string>
+    <string name="activity_measerment_tv_chest_text_s">Chest</string>
+    <string name="activity_measerment_tv_waist_text_s">Waist</string>
+    <string name="activity_measerment_tv_arm_text_s">Arm</string>
+    <string name="activity_measerment_tv_wrist_text_s">Wrist</string>
+    <string name="activity_measerment_tv_f_height_text_s">Front Height</string>
+    <string name="activity_measerment_tv_b_height_text_s">Back Height</string>
+
+
     <string name="activity_measerment_tv_custom_text">CUSTOMIZED</string>
     <string name="activity_measerment_textValue_hint">0</string>
     <string name="activity_measerment_textSubValue_text">0</string>
@@ -551,5 +562,6 @@
     <string name="how_many_meters_do_you_have">How many meters do you have?</string>
     <string name="number_of_meters">Number of Meters</string>
     <string name="cm">cm</string>
+    <string name="edit">EDIT</string>
 
 </resources>

@@ -335,7 +335,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
     public void onCartItemDeleted(int currentCount) {
 
         currentItemsCount = currentCount;
-        edit_btn.setText("EDIT");
+        edit_btn.setText(R.string.edit);
         if (currentItemsCount == 0) {
             edit_btn.setVisibility(View.GONE);
 
