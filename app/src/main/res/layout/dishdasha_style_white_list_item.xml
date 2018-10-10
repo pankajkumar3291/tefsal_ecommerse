@@ -182,7 +182,7 @@
                         android:src="@drawable/sholder"
                         android:tint="@color/colorAccent" />
 
-                    <TextView
+                    <me.grantland.widget.AutofitTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="40"
@@ -326,7 +326,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:gravity="center"
-                        android:text="@string/dishdasha_style_list_item_txt_front_height_value_text"
+                        android:text="@string/activity_measerment_tv_f_height_text_s"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_small" />
 
@@ -337,7 +337,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:gravity="end"
-                        android:text="@string/activity_measerment_tv_f_height_text_s"
+                        android:text="@string/dishdasha_style_white_list_item_txt_back_height_value_text"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
@@ -577,7 +577,7 @@
                     android:layout_weight="25"
                     android:gravity="start"
                     android:paddingStart="@dimen/activity_small_horizontal_margin"
-                    android:text="Meter / Dishdasha"
+                    android:text="@string/meter_dishdasha"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_small" />
 

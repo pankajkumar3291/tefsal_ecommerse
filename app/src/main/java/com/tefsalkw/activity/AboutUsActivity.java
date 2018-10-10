@@ -53,14 +53,11 @@ public class AboutUsActivity extends BaseActivity {
         ButterKnife.bind(this);
         //().hide();
         // getSupportActionBar(null)
-        try
-        {
+        try {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             toolbar.setTitle(R.string.privacy_policy);
-        }
-        catch (Exception exc)
-        {
+        } catch (Exception exc) {
 
         }
 

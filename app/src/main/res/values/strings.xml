@@ -563,5 +563,9 @@
     <string name="number_of_meters">Number of Meters</string>
     <string name="cm">cm</string>
     <string name="edit">EDIT</string>
+    <string name="meter_dishdasha">Meter / Dishdasha</string>
+    <string name="number_of_meter">Number of Meter</string>
+    <string name="how_many_meter_are_you">How many meter are you?</string>
+    <string name="m_big">M</string>
 
 </resources>
