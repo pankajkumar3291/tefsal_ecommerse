@@ -249,6 +249,7 @@
                     android:layout_weight="3.5">
 
                     <EditText
+                        android:textDirection="ltr"
                         android:id="@+id/input_mob"
                         fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
@@ -376,6 +377,7 @@
                     android:layout_weight="3.5">
 
                     <EditText
+                        android:textDirection="ltr"
                         android:id="@+id/input_home_num"
                         fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
@@ -421,8 +423,10 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
+                    android:textDirection="ltr"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ @."
                     android:id="@+id/input_email"
-                    fontPath="fonts/Lato-Regular.ttf"
+
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
@@ -473,7 +477,8 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    fontPath="fonts/Lato-Regular.ttf"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&amp;'()*+,-./:;=?@[\]^_`{|}~"
+                   android:textDirection="ltr"
                     tools:ignore="MissingPrefix"
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
@@ -525,7 +530,8 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    fontPath="fonts/Lato-Regular.ttf"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&amp;'()*+,-./:;=?@[\]^_`{|}~"
+                    android:textDirection="ltr"
                     tools:ignore="MissingPrefix"
                     android:id="@+id/input_c_password"
                     android:layout_width="match_parent"
