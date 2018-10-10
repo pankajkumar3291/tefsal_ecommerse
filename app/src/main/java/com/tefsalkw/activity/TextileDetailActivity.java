@@ -323,7 +323,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
             meter = min_meter;
             meter_value.setText("" + meter);
-            txt_min_meter.setText("Minimum - " + min_meter + "m required");
+            txt_min_meter.setText(String.format(getString(R.string.min_meter_required), min_meter));
             StoreID = getIntent().getStringExtra("storeID");
             position = getIntent().getIntExtra("pos", 0);
 
@@ -464,8 +464,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             tabLayout.setOnTabSelectedListener(this);
 
             tabLayout.setupWithViewPager(viewPager);
-            if(session.getKeyLang().equals("Arabic"))
-            {
+            if (session.getKeyLang().equals("Arabic")) {
                 changeTabsFont(tabLayout);
             }
             initSlider();
@@ -616,6 +615,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
     }
+
     private void changeTabsFont(TabLayout tabLayout) {
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
         int tabsCount = vg.getChildCount();

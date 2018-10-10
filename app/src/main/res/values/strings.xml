@@ -567,5 +567,8 @@
     <string name="number_of_meter">Number of Meter</string>
     <string name="how_many_meter_are_you">How many meter are you?</string>
     <string name="m_big">M</string>
+    <string name="server_error">Server error. Please try again in some time.</string>
+    <string name="no_internet">No Internet Connection...</string>
+    <string name="min_meter_required">Minimum - %1$d m required</string>
 
 </resources>
