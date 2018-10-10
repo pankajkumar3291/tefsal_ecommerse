@@ -103,7 +103,7 @@ public class TefsalApplication extends MultiDexApplication {
 
 
             if (!checkInternet()) {
-                Toast.makeText(context, "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show();
             }
 
         }

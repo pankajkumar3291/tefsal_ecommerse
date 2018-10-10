@@ -339,10 +339,10 @@ public class MainActivity extends BaseActivity
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
                             SimpleProgressBar.closeProgress();
                         }
@@ -418,13 +418,13 @@ public class MainActivity extends BaseActivity
 
                                                 if (userStatus.equals("inactive") || userStatus.equals("deleted")) {
 
-                                                    Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(MainActivity.this, R.string.please_sign_in_to_continue, Toast.LENGTH_SHORT).show();
                                                     session.user_logout();
 
 
 
                                                     startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                                    finish();
+
 
                                                 }
                                             }
@@ -434,7 +434,7 @@ public class MainActivity extends BaseActivity
 
                                     } else {
 
-                                        Toast.makeText(MainActivity.this, "Please sign in again to continue...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, R.string.please_sign_in_to_continue, Toast.LENGTH_SHORT).show();
                                         session.user_logout();
                                         startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                                         finish();
@@ -454,10 +454,10 @@ public class MainActivity extends BaseActivity
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -535,10 +535,10 @@ public class MainActivity extends BaseActivity
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
                         }
                     }) {
@@ -610,10 +610,10 @@ public class MainActivity extends BaseActivity
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
                             SimpleProgressBar.closeProgress();
                         }

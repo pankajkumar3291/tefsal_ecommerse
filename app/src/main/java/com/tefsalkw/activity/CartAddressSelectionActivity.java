@@ -290,10 +290,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }      SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -518,10 +518,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
                         }
                     }) {
@@ -643,10 +643,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }       SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -746,10 +746,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }       SimpleProgressBar.closeProgress();
                         }
                     }) {
@@ -846,10 +846,10 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), "Server error. Please try again in some time.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(getApplicationContext(), "No Internet Connection...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }      SimpleProgressBar.closeProgress();
                         }
                     }) {

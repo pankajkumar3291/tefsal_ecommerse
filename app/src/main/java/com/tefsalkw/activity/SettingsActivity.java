@@ -135,7 +135,7 @@ public class SettingsActivity extends BaseActivity {
 
                                 session.user_logout();
                                 startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-                                finish();
+
 
                             }
                         })

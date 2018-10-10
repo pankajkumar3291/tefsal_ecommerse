@@ -570,5 +570,6 @@
     <string name="server_error">Server error. Please try again in some time.</string>
     <string name="no_internet">No Internet Connection...</string>
     <string name="min_meter_required">Minimum - %1$d m required</string>
+    <string name="please_sign_in_to_continue">Please sign in again to continue...</string>
 
 </resources>
