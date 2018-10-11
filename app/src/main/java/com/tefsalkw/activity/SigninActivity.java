@@ -81,12 +81,6 @@ public class SigninActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-
-
-
-
-
-
         privacy_policy.setPaintFlags(privacy_policy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         privacy_policy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,14 +94,6 @@ public class SigninActivity extends BaseActivity {
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);
 
-        if(session.getKeyLang().equals("Arabic"))
-        {
-            input_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/GESSTwoMedium-Medium.otf"));
-        }
-        else
-        {
-            input_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Lato-Regular.ttf"));
-        }
 
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {

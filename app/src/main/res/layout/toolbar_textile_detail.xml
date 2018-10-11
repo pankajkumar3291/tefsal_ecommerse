@@ -25,6 +25,7 @@
             android:paddingStart="10dp">
 
             <ImageButton
+                android:translationZ="999dp"
                 android:scaleX="@integer/rtl_flip_factor"
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="CLOSE"
+                android:text=""
                 android:textColor="@color/colorWhite" />
 
         </RelativeLayout>
@@ -57,7 +58,6 @@
 
             <me.grantland.widget.AutofitTextView
                 android:id="@+id/toolbar_title"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

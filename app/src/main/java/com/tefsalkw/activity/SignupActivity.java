@@ -187,16 +187,7 @@ public class SignupActivity extends BaseActivity {
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);
 
-        if(session.getKeyLang().equals("Arabic"))
-        {
-            input_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/GESSTwoMedium-Medium.otf"));
-            input_c_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/GESSTwoMedium-Medium.otf"));
-        }
-        else
-        {
-            input_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Lato-Regular.ttf"));
-            input_c_password.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Lato-Regular.ttf"));
-        }
+
 
 
         setSupportActionBar(toolbar);

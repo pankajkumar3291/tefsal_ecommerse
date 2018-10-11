@@ -58,7 +58,7 @@
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
             android:textSize="@dimen/text_small"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ @."
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@. "
             tools:ignore="MissingPrefix" />
 
     </android.support.design.widget.TextInputLayout>
@@ -83,9 +83,10 @@
         android:layout_marginEnd="20dp">
 
         <EditText
+            fontPath="fonts/Lato-Regular.ttf"
             android:textDirection="ltr"
             android:id="@+id/input_password"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&amp;'()*+,-./:;=?@[\]^_`{|}~"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"

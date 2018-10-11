@@ -328,6 +328,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             position = getIntent().getIntExtra("pos", 0);
 
 
+            Log.e("product",textileProductModel.getDishdasha_product_name());
             toolbar_title.setText(textileProductModel.getDishdasha_product_name());
 
 

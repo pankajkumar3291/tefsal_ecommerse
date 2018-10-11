@@ -541,7 +541,7 @@
                     android:layout_weight="25"
                     android:gravity="start"
                     android:paddingLeft="@dimen/activity_small_horizontal_margin"
-                    android:text="Meter / Dishdasha"
+                    android:text="@string/meter_dishdasha"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_small"
                     tools:ignore="HardcodedText" />
@@ -1190,7 +1190,7 @@
                     android:layout_weight="25"
                     android:gravity="start"
                     android:paddingLeft="@dimen/activity_small_horizontal_margin"
-                    android:text="Meter / Dishdasha"
+                    android:text="@string/meter_dishdasha"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text_small" />
 
@@ -1226,7 +1226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
                 android:background="@android:color/transparent"
-                android:text="DONE"
+                android:text="@string/alert_dialog_buttonOK_text"
                 android:textSize="@dimen/text_mid" />
 
             <View
@@ -1240,7 +1240,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
                 android:background="@android:color/transparent"
-                android:text="CANCEL"
+                android:text="@string/cancel"
                 android:textSize="@dimen/text_mid" />
         </LinearLayout>
     </RelativeLayout>

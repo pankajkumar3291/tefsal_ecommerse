@@ -220,15 +220,15 @@
                         android:src="@drawable/kuwait" />
 
                     <TextView
-                        fontPath="fonts/Lato-Regular.ttf"
-                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtCountryCode1"
+                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="@string/activity_signup_txtCountryCode1_text"
                         android:textColor="@color/colorBGfilterLL"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_small"
+                        tools:ignore="MissingPrefix" />
                 </LinearLayout>
 
 
@@ -249,7 +249,6 @@
                     android:layout_weight="3.5">
 
                     <EditText
-                        android:textDirection="ltr"
                         android:id="@+id/input_mob"
                         fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
@@ -259,6 +258,7 @@
                         android:singleLine="true"
                         android:textColor="@color/colorTheme"
                         android:textColorHint="@color/colorTheme"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_xsmall"
                         tools:ignore="MissingPrefix" />
                 </android.support.design.widget.TextInputLayout>
@@ -347,15 +347,15 @@
                         android:src="@drawable/kuwait" />
 
                     <TextView
-                        fontPath="fonts/Lato-Regular.ttf"
-                        tools:ignore="MissingPrefix"
                         android:id="@+id/txtCountryCode2"
+                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="@string/activity_signup_txtCountryCode2_text"
                         android:textColor="@color/colorBGfilterLL"
-                        android:textSize="@dimen/text_small" />
+                        android:textSize="@dimen/text_small"
+                        tools:ignore="MissingPrefix" />
 
 
                 </LinearLayout>
@@ -377,7 +377,6 @@
                     android:layout_weight="3.5">
 
                     <EditText
-                        android:textDirection="ltr"
                         android:id="@+id/input_home_num"
                         fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
@@ -387,6 +386,7 @@
                         android:singleLine="true"
                         android:textColor="@color/colorTheme"
                         android:textColorHint="@color/colorTheme"
+                        android:textDirection="ltr"
                         android:textSize="@dimen/text_xsmall"
                         tools:ignore="MissingPrefix" />
                 </android.support.design.widget.TextInputLayout>
@@ -423,19 +423,18 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    android:textDirection="ltr"
-                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ @."
                     android:id="@+id/input_email"
-
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@. "
                     android:gravity="bottom"
                     android:hint="@string/hint_email_SP"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColor="@color/colorTheme"
                     android:textColorHint="@color/colorTheme"
+                    android:textDirection="ltr"
                     android:textSize="@dimen/text_xsmall"
                     tools:ignore="MissingPrefix" />
 
@@ -477,20 +476,21 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&amp;'()*+,-./:;=?@[\]^_`{|}~"
-                   android:textDirection="ltr"
-                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Lato-Regular.ttf"
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
                     android:gravity="bottom"
                     android:hint="@string/hint_password_SP"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColor="@color/colorTheme"
                     android:textColorHint="@color/colorTheme"
-                    android:textSize="@dimen/text_xsmall" />
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/text_xsmall"
+                    tools:ignore="MissingPrefix" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -530,20 +530,21 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !#$%&amp;'()*+,-./:;=?@[\]^_`{|}~"
-                    android:textDirection="ltr"
-                    tools:ignore="MissingPrefix"
+                    fontPath="fonts/Lato-Regular.ttf"
                     android:id="@+id/input_c_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
                     android:gravity="bottom"
                     android:hint="@string/hint_c_password"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textColor="@color/colorTheme"
                     android:textColorHint="@color/colorTheme"
-                    android:textSize="@dimen/text_xsmall" />
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/text_xsmall"
+                    tools:ignore="MissingPrefix" />
 
             </android.support.design.widget.TextInputLayout>
 

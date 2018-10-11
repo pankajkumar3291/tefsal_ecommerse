@@ -249,7 +249,7 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
 
                 holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
                 holder.txt_badge_coat1.setText(record.get(position).getButtons());
-                holder.txt_narrow_value1.setText(record.get(position).getMin_meters() + "m");
+                holder.txt_narrow_value1.setText(record.get(position).getMin_meters() + activity.getString(R.string.m_small));
                 holder.txt_badge_coat1.setText(record.get(position).getCollar_buttons());
                 holder.txtBadge_collar_btn1.setText(record.get(position).getButtons());
 
@@ -376,17 +376,17 @@ public class DishdashaAdapter extends RecyclerView.Adapter<DishdashaAdapter.View
                 holder.relViewStyle.setVisibility(View.VISIBLE);
 
                 holder.text_style_name.setText(record.get(position).getName());
-                holder.txt_neck_value.setText(record.get(position).getNeck() + "cm");
-                holder.txt_chest_value.setText(record.get(position).getChest() + "cm");
-                holder.txt_shoulder_value.setText(record.get(position).getShoulder() + "cm");
-                holder.txt_waist_value.setText(record.get(position).getWaist() + "cm");
-                holder.txt_arm_value.setText(record.get(position).getArm() + "cm");
-                holder.txt_wrist_value.setText(record.get(position).getWrist() + "cm");
-                holder.txt_front_height_value.setText(record.get(position).getFront_height() + "cm");
-                holder.txt_back_height_value.setText(record.get(position).getBack_height() + "cm");
+                holder.txt_neck_value.setText(record.get(position).getNeck() + activity.getString(R.string.cm));
+                holder.txt_chest_value.setText(record.get(position).getChest() + activity.getString(R.string.cm));
+                holder.txt_shoulder_value.setText(record.get(position).getShoulder() + activity.getString(R.string.cm));
+                holder.txt_waist_value.setText(record.get(position).getWaist() + activity.getString(R.string.cm));
+                holder.txt_arm_value.setText(record.get(position).getArm() + activity.getString(R.string.cm));
+                holder.txt_wrist_value.setText(record.get(position).getWrist() + activity.getString(R.string.cm));
+                holder.txt_front_height_value.setText(record.get(position).getFront_height() + activity.getString(R.string.cm));
+                holder.txt_back_height_value.setText(record.get(position).getBack_height() + activity.getString(R.string.cm));
                 holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
                 holder.txt_badge_coat.setText(record.get(position).getButtons());
-                holder.txt_narrow_value.setText(record.get(position).getMin_meters() + "m");
+                holder.txt_narrow_value.setText(record.get(position).getMin_meters() + activity.getString(R.string.m_small));
                 holder.txt_badge_coat.setText(record.get(position).getCollar_buttons());
                 holder.txtBadge_collar_btn.setText(record.get(position).getButtons());
 
