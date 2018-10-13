@@ -121,7 +121,9 @@
                     android:background="@color/tabColorBg"
                     android:minHeight="?attr/actionBarSize"
                     app:tabSelectedTextColor="@color/colorAccent"
-                    app:tabTextColor="#616161" />
+                    app:tabTextColor="#616161" >
+
+                </android.support.design.widget.TabLayout>
 
                 <com.tefsalkw.adapter.CustomViewPager
                     android:id="@+id/pager"
@@ -330,8 +332,7 @@
             android:layout_height="match_parent"
             android:clickable="false"
             android:scaleType="centerCrop"
-            android:src="@drawable/tut4"
-            android:translationZ="900dp" />
+            android:src="@drawable/tut4" />
 
     </RelativeLayout>
 
@@ -347,8 +348,7 @@
             android:layout_height="match_parent"
             android:clickable="false"
             android:scaleType="centerCrop"
-            android:src="@drawable/tut5"
-            android:translationZ="999dp" />
+            android:src="@drawable/tut5" />
 
     </RelativeLayout>
 
