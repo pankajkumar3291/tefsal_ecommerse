@@ -400,7 +400,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
             //Api specific
             params.put("cart_id", session.getKeyCartId());
-            params.put("payment_method", "COD");
+            params.put("payment_method", paymentMethod);
             params.put("promo_id", promoId);
             params.put("delivery_charge", cartResponse.getDelivery_charge());
 
