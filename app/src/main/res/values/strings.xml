@@ -572,5 +572,6 @@
     <string name="no_internet">No Internet Connection...</string>
     <string name="min_meter_required">Minimum - %.0f m required</string>
     <string name="please_sign_in_to_continue">Please sign in again to continue...</string>
+    <string name="tefsal_copyright_protected_2018">Tefsal Copyright Protected 2018</string>
 
 </resources>

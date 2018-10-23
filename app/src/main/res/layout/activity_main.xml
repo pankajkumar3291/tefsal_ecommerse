@@ -90,7 +90,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:text="Tefsal Copyright Protected 2018"
+                    android:text="@string/tefsal_copyright_protected_2018"
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>
