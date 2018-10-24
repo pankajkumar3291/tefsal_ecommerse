@@ -134,6 +134,11 @@ public class SettingsActivity extends BaseActivity {
                                 // continue with delete
 
                                 session.user_logout();
+
+                                session.setKeyLang(text_language_spinner.getSelectedItem().toString());
+
+
+
                                 startActivity(new Intent(SettingsActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
 

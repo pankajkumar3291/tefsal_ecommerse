@@ -1,7 +1,6 @@
 package com.tefsalkw.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -22,7 +20,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.tefsalkw.R;
-import com.tefsalkw.activity.TabbarActivity;
 import com.tefsalkw.adapter.DishdashaAdapter;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
@@ -31,16 +28,11 @@ import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 
 public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.OnDoneButtonListner {
@@ -59,6 +51,7 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
     DishdashaAdapter.OnDoneButtonListner onDoneButtonListner;
 
     public static DishdashaStylesResponse mResponse;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,7 +89,7 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
 
                                 Log.e("stores response", response);
                                 Gson g = new Gson();
-                                mResponse  = g.fromJson(response, DishdashaStylesResponse.class);
+                                mResponse = g.fromJson(response, DishdashaStylesResponse.class);
 
                                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -261,9 +254,6 @@ public class FragmentDishdasha extends BaseFragment implements DishdashaAdapter.
             surError.printStackTrace();
         }
     }
-
-
-
 
 
 }
