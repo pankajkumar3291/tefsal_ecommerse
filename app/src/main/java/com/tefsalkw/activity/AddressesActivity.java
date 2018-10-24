@@ -2,6 +2,7 @@ package com.tefsalkw.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -69,6 +70,10 @@ public class AddressesActivity extends BaseActivity {
 
     @BindView(R.id.input_address_name)
     EditText input_address_name;
+
+
+    @BindView(R.id.input_blockLayout)
+    TextInputLayout input_blockLayout;
 
     @BindView(R.id.input_block)
     EditText input_block;
@@ -157,18 +162,23 @@ public class AddressesActivity extends BaseActivity {
                 //System.out.println("SPINNER DATA===="+spin_area.getSelectedItem()+"==="+spin_area.getSelectedItemPosition());
 
                 if (Contents.isBlank(input_address_name.getText().toString().trim())) {
+                    input_address_name.requestFocus();
                     input_address_name.setError(getString(R.string.invalidAddress_name));
                     return;
                 } else if (Contents.isBlank(input_block.getText().toString().trim())) {
+                    input_block.requestFocus();
                     input_block.setError(getString(R.string.invalidBlock));
                     return;
                 } else if (Contents.isBlank(input_house.getText().toString().trim())) {
+                    input_house.requestFocus();
                     input_house.setError(getString(R.string.invalidHouse));
                     return;
                 } else if (spin_country.getSelectedItemPosition() == 0) {
+
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
                 } else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                    input_street.requestFocus();
                     input_street.setError(getString(R.string.invalidStreet));
                     return;
                 }

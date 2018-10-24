@@ -356,21 +356,26 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                 if (session.getIsGuestId()) {
 
                     if (Contents.isBlank(input_address_name.getText().toString().trim())) {
+                        input_address_name.requestFocus();
                         input_address_name.setError(getString(R.string.invalidAddress_name));
                         return;
                     } else if (Contents.isBlank(input_block.getText().toString().trim())) {
+                        input_block.requestFocus();
                         input_block.setError(getString(R.string.invalidBlock));
                         return;
                     } else if (Contents.isBlank(input_house.getText().toString().trim())) {
+                        input_house.requestFocus();
                         input_house.setError(getString(R.string.invalidHouse));
                         return;
                     } else if (spin_country.getSelectedItemPosition() == 0) {
                         Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                         return;
                     } else if (Contents.isBlank(input_email.getText().toString().trim())) {
+                        input_email.requestFocus();
                         input_email.setError("Email Required");
                         return;
                     } else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                        input_street.requestFocus();
                         input_street.setError(getString(R.string.invalidStreet));
                         return;
                     }

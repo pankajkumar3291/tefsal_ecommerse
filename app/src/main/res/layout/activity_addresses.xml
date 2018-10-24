@@ -10,6 +10,7 @@
 
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
+        android:translationZ="999dp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:theme="@style/TransparentToolbar">
@@ -59,6 +60,7 @@
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
