@@ -123,12 +123,12 @@ public class MyOrderActivity extends BaseActivity {
                                         recyclerView.setAdapter(myOrderAdapter);
 
                                     } else {
-                                        Toast.makeText(MyOrderActivity.this, "No record found", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(MyOrderActivity.this, R.string.no_record_found, Toast.LENGTH_LONG).show();
                                     }
 
 
                                 } else {
-                                    Toast.makeText(MyOrderActivity.this, mResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MyOrderActivity.this, R.string.no_record_found, Toast.LENGTH_LONG).show();
                                 }
                             }
                         }

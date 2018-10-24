@@ -244,7 +244,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toolbar_title.setText("EDIT PROFILE");
+                toolbar_title.setText(R.string.edit_profile);
                 inputFocus();
                 getCountries();
                 //httpUpdateCustomerProfile();

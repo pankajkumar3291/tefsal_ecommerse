@@ -573,5 +573,9 @@
     <string name="min_meter_required">Minimum - %.0f m required</string>
     <string name="please_sign_in_to_continue">Please sign in again to continue...</string>
     <string name="tefsal_copyright_protected_2018">Tefsal Copyright Protected 2018</string>
+    <string name="no_new_address">No address found, please add a new address!</string>
+    <string name="no_record_found">No record found</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="gender">GENDER</string>
 
 </resources>

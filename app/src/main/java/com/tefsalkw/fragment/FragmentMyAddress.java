@@ -103,7 +103,7 @@ public class FragmentMyAddress extends BaseFragment {
                                     {
                                         empty_view.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
-                                        empty_view.setText(mResponse.getMessage());
+                                        empty_view.setText(R.string.no_new_address);
 
                                     }
 
@@ -112,7 +112,7 @@ public class FragmentMyAddress extends BaseFragment {
 
                                     recycler.setVisibility(View.GONE);
                                     empty_view.setVisibility(View.VISIBLE);
-                                    empty_view.setText(mResponse.getMessage());
+                                    empty_view.setText(R.string.no_new_address);
                                    // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }

@@ -221,7 +221,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
 
                                 } else {
-                                    Toast.makeText(OrderDetailsActivity.this, "No record found", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(OrderDetailsActivity.this, R.string.no_record_found, Toast.LENGTH_LONG).show();
                                 }
 
 

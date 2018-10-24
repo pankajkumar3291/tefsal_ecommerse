@@ -268,7 +268,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                     if (mResponse.getRecord().size() == 0) {
                                         llEmpty.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
-                                        empty_view.setText("No address found, please add a new address!");
+                                        empty_view.setText(R.string.no_new_address);
 
                                     } else {
                                         llEmpty.setVisibility(View.GONE);
@@ -279,7 +279,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                                     recycler.setVisibility(View.GONE);
                                     llEmpty.setVisibility(View.VISIBLE);
-                                    empty_view.setText("No address found, please add a new address!");
+                                    empty_view.setText(R.string.no_new_address);
                                     // Toast.makeText(getActivity(),mResponse.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             }
