@@ -1564,7 +1564,7 @@ public class SignupActivity extends BaseActivity {
     private boolean validateFirstName(String fname) {
 
         if (fname.equals("")) {
-            input_layout_fname.setError("Error: First name should not be empty");
+            input_layout_fname.setError(getString(R.string.validate_first_name));
             requestFocus(input_fname);
             return false;
         }
@@ -1587,7 +1587,7 @@ public class SignupActivity extends BaseActivity {
             return false;
         } else {
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                input_layout_email.setError("Error: Not valid email");
+                input_layout_email.setError(getString(R.string.validate_email));
                 requestFocus(input_email);
                 return false;
             }
@@ -1636,7 +1636,7 @@ public class SignupActivity extends BaseActivity {
             return false;
         }
         if (pass.length() <= 7) {
-            input_layout_password.setError("Error: password must have more then 8 characters");
+            input_layout_password.setError(getString(R.string.validate_password));
             requestFocus(input_password);
             return false;
         }
@@ -1650,7 +1650,7 @@ public class SignupActivity extends BaseActivity {
             requestFocus(input_c_password);
             return false;
         } else if (!c_pass.equals(input_password.getText().toString().trim())) {
-            input_layout_password.setError("Error: password mismatch");
+            input_layout_password.setError(getString(R.string.validate_password_mismatch));
             requestFocus(input_password);
             return false;
         } else {
@@ -1669,7 +1669,7 @@ public class SignupActivity extends BaseActivity {
             return false;
 
         } else if (mobileNumber.length() != 8) {
-            input_layout_mob.setError("Error: Mobile number should be 8 digits");
+            input_layout_mob.setError(getString(R.string.validate_mobile_number));
             requestFocus(input_mob);
             return false;
         } else {

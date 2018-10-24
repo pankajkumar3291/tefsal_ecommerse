@@ -585,5 +585,10 @@
     <string name="cart_price">Price : %.2f KWD</string>
     <string name="select_cart_item">Select Cart Item</string>
     <string name="total_kwd">TOTAL : %.3f KWD</string>
+    <string name="validate_mobile_number">Error: Mobile number should be 8 digits</string>
+    <string name="validate_email">Error: Not valid email</string>
+    <string name="validate_password">Error: password must have more than 8 characters</string>
+    <string name="validate_password_mismatch">Error: password mismatch</string>
+    <string name="validate_first_name">Error: First name should not be empty</string>
 
 </resources>
