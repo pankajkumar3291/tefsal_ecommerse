@@ -541,7 +541,6 @@
 
                     <EditText
                         android:id="@+id/input_phone"
-                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
@@ -590,7 +589,6 @@
 
                     <EditText
                         android:id="@+id/input_paci_num"
-                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"

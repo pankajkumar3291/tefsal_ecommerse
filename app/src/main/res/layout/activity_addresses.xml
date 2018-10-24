@@ -559,15 +559,13 @@
 
                     <EditText
                         android:id="@+id/input_phone"
-                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
                         android:hint="@string/hint_phone"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:textSize="@dimen/text_xsmall"
-                        tools:ignore="MissingPrefix" />
+                        android:textSize="@dimen/text_xsmall" />
                 </android.support.design.widget.TextInputLayout>
 
                 <View
@@ -610,7 +608,6 @@
 
                     <EditText
                         android:id="@+id/input_paci_num"
-                        fontPath="fonts/Lato-Regular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
