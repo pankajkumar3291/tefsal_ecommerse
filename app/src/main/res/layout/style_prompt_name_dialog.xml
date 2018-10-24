@@ -58,8 +58,7 @@
                     android:layout_width="match_parent">
 
                     <EditText
-                        fontPath="fonts/Lato-Regular.ttf"
-                        tools:ignore="MissingPrefix"
+
                         android:hint="@string/style_prompt_name_dialog_input_style_name_hint"
                         android:id="@+id/input_style_name"
                         android:layout_height="wrap_content"
