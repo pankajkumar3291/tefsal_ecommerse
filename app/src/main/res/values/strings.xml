@@ -299,7 +299,7 @@
     <string name="alert_dialog_alertTitle_text">--</string>
     <string name="alert_dialog_textViewError_text" />
     <string name="alert_dialog_buttonOK_text">OK</string>
-    <string name="cart_header_txt_text">0 item in your cart</string>
+    <string name="cart_header_txt_text">%d item in your cart</string>
     <string name="cart_amount_text">TOTAL:0.000 KWD</string>
     <string name="cart_discount_text">(Discounts included)</string>
     <string name="cart_btn_purchase_text">PROCEED TO PURCHASE</string>
@@ -583,5 +583,7 @@
     <string name="tailors">Tailors</string>
     <string name="dishdasha_remaining">Dishdasha remaining</string>
     <string name="cart_price">Price : %.2f KWD</string>
+    <string name="select_cart_item">Select Cart Item</string>
+    <string name="total_kwd">TOTAL : %.3f KWD</string>
 
 </resources>

@@ -115,12 +115,8 @@ public class ProductListOtherActivity extends BaseActivity {
 
         initViews();
 
+        WebCallServiceStores();
 
-        if (!flag.equals("Accessories"))
-            WebCallServiceStores();
-        else {
-            WebCallAccessoriesProducts();
-        }
 
 
     }
@@ -244,7 +240,8 @@ public class ProductListOtherActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }    SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -369,7 +366,8 @@ public class ProductListOtherActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }       SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -405,85 +403,7 @@ public class ProductListOtherActivity extends BaseActivity {
         }
     }
 
-    public void WebCallAccessoriesProducts() {
-        SimpleProgressBar.showProgress(ProductListOtherActivity.this);
-        try {
 
-            final String url = Contents.baseURL + "getAccessoriesProducts";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            SimpleProgressBar.closeProgress();
-
-                            if (response != null) {
-
-                                Log.e("stores response", response);
-                                Gson g = new Gson();
-                                AccessoriesProductsResponse mResponse = g.fromJson(response, AccessoriesProductsResponse.class);
-
-                                if (mResponse.getStatus().equals("1")) {
-
-
-                                } else {
-                                    Toast.makeText(getApplicationContext(), mResponse.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if (error != null && error.networkResponse != null) {
-                                Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }   SimpleProgressBar.closeProgress();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-//                    params.put("access_token", session.getToken());
-
-                    System.out.println("ACCESSORY======= STORE==" + store_id);
-                    //System.out.println("ACCESSORY======= STORE=="+store_id);
-                    System.out.println("ACCESSORY======= SUBCAT==" + getIntent().getStringExtra("sub_cat"));
-
-
-                    params.put("store_id", store_id);
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
-                    if (flag.equals("Accessories")) {
-                        params.put("sub_cat_id", getIntent().getStringExtra("sub_cat"));
-                        System.out.println("ACCESSORY SUBCAT==" + getIntent().getStringExtra("sub_cat"));
-                    }
-                    //System.out.println("Store ID=="+store_id+ "SubCategory ID=="+getIntent().getStringExtra("sub_cat"));
-
-                    Log.e("Tefsal store == ", url + params);
-
-                    return params;
-                }
-
-            };
-
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            stringRequest.setShouldCache(false);
-            requestQueue.add(stringRequest);
-
-        } catch (Exception surError) {
-            surError.printStackTrace();
-        }
-    }
 
 
 }

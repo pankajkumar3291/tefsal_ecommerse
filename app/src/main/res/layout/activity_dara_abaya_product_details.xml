@@ -385,7 +385,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:background="@color/colorAccent"
-            android:text="@string/zaara_daraa_add_cart_btn_text"
+            android:text="@string/add_to_cart"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>

@@ -164,7 +164,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
                 deliveryAmount = Double.parseDouble(deliveryCharge);
 
-                deliveryCharge = String.format(new Locale("en"),"%.3f", deliveryAmount) + " KWD";
+                deliveryCharge = String.format(new Locale("en"), "%.3f", deliveryAmount) + " " + getString(R.string.kwd);
 
                 grandTotal = grandTotal + deliveryAmount;
 
@@ -173,10 +173,12 @@ public class PaymentSelectActivity extends BaseActivity {
 
             txtDeliveryCharge.setText(deliveryCharge);
 
-            txtSubTotal.setText(previousAmount + " KWD");
+            txtSubTotal.setText(previousAmount + " " + getString(R.string.kwd));
 
 
-            amount.setText("TOTAL : " + String.format(new Locale("en"),"%.3f", grandTotal) + " KWD");
+            // amount.setText("TOTAL : " + String.format(new Locale("en"),"%.3f", grandTotal) + " KWD");
+            amount.setText(String.format(new Locale("en"), getString(R.string.total_kwd), grandTotal));
+
         }
 
 
@@ -336,7 +338,8 @@ public class PaymentSelectActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }    SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -424,7 +427,7 @@ public class PaymentSelectActivity extends BaseActivity {
                 try {
 
 
-                    Log.e("Cart Response",object);
+                    Log.e("Cart Response", object);
 
                     JSONObject jsonObject = null;
                     try {

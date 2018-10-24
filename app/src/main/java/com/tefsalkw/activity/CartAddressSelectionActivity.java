@@ -48,6 +48,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -498,13 +499,14 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                                 Gson g = new Gson();
                                 cartResponse = g.fromJson(response, GetCartResponse.class);
                                 if (!cartResponse.getStatus().equals("0")) {
-                                    if (cartResponse.getRecord().size() <= 1)
-                                        header_txt.setText(cartResponse.getRecord().size() + " " + getString(R.string.item_in_your_cart));
-                                    else
-                                        header_txt.setText(cartResponse.getRecord().size() + " " + getString(R.string.items_in_your_cart));
 
 
-                                    amount.setText("TOTAL : " + cartResponse.getTotal_amount_cart() + " KWD");
+
+                                    header_txt.setText(String.format(new Locale("en"),getString(R.string.cart_header_txt_text),cartResponse.getRecord().size()));
+
+                                    amount.setText(String.format(new Locale("en"),getString(R.string.total_kwd),Float.parseFloat(cartResponse.getTotal_amount_cart())));
+
+
                                     currentItemsCount = cartResponse.getRecord().size();
                                     totalPrice = cartResponse.getTotal_amount_cart();
                                 } else {

@@ -195,7 +195,7 @@ public class TabbarActivity extends BaseActivity {
 
 
             if (!isNameUnique) {
-                input_layout_style_name.setError("Duplicate style name");
+                input_layout_style_name.setError(getString(R.string.duplicate_style_name) );
                 requestFocus(input_style_name);
             }
         }

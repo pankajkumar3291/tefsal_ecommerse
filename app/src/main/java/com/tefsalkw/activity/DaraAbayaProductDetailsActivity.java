@@ -1,5 +1,6 @@
 package com.tefsalkw.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +67,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -337,8 +339,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         });
 
 
-
-
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -349,7 +349,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                         meter++;
 
                         amount = meter * price;
-                        text_price.setText("PRICE : " + amount + " KWD");
+                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
                         meter_value.setText("" + meter);
 
 
@@ -723,6 +723,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
     }
 
 
+    @SuppressLint("LongLogTag")
     public void WebCallServiceAddCartNew() {
 
 

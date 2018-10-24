@@ -24,7 +24,8 @@
                 android:id="@+id/header_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                fontPath="fonts/Lato-Bold.ttf"
+                tools:ignore="MissingPrefix"
                 android:background="@color/tabColorBg"
                 android:gravity="center"
                 android:padding="10dp"
