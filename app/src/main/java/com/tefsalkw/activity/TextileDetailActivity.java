@@ -482,8 +482,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                         amount = price * meter;
 
-                        text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
-
+                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
                         meter_value.setText("" + meter);
 
 
@@ -499,7 +498,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     if (meter > min_meter) {
                         meter--;
                         amount = price * meter;
-                        text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
+                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
+
                         meter_value.setText("" + meter);
                     }
 
@@ -677,8 +677,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText("PRICE : " + String.format(new Locale("en"), "%.2f", amount) + " KWD");
-
+                text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
                 txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
 
             } catch (Exception ex) {

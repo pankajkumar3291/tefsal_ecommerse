@@ -296,7 +296,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_toRightOf="@+id/imgCart"
                     android:gravity="center_vertical"
-                    android:text="@string/textile_detail_add_to_cart_lbl_text"
+                    android:text="@string/add_to_cart"
                     android:textColor="@color/colorWhite" />
 
             </RelativeLayout>

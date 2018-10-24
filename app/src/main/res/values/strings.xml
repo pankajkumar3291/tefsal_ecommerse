@@ -577,5 +577,11 @@
     <string name="no_record_found">No record found</string>
     <string name="edit_profile">EDIT PROFILE</string>
     <string name="gender">GENDER</string>
+    <string name="days">Days</string>
+    <string name="price">PRICE</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="tailors">Tailors</string>
+    <string name="dishdasha_remaining">Dishdasha remaining</string>
+    <string name="cart_price">Price : %.2f KWD</string>
 
 </resources>

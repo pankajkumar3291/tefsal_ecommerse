@@ -107,13 +107,12 @@ public class FragmentTailorProducts extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_tailor_product, container, false);
         ButterKnife.bind(this, v);
 
         sessionManager = new SessionManager(getContext());
 
-        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT===" + TefalApp.getInstance().getStoreId());
 
         Bundle bundle = getArguments();
         tailoringRecordArrayListOfChecked = (ArrayList<TailoringRecord>) bundle.getSerializable("tailoringRecordArrayListOfChecked");
@@ -121,7 +120,6 @@ public class FragmentTailorProducts extends BaseFragment {
 
         dishInfoText.setText(TefalApp.getInstance().getStyleName() + " / " + Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())) + " meter = 1 Dishdasha");
 
-        System.out.println("SYSTEM STORE ID FRAGMENTTAILORPRODUCT===" + tailoringRecordArrayListOfChecked);
 
         if (tailoringRecordArrayListOfChecked != null) {
 

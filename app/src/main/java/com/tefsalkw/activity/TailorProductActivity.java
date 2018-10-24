@@ -96,7 +96,7 @@ public class TailorProductActivity extends BaseActivity {
 
         toolbar_title.setText(TefalApp.getInstance().getStoreName());
         //subText.setText(TefalApp.getInstance().getWhereFrom());
-        subText.setText("Tailors");
+        subText.setText(R.string.tailors);
 
         view_cart_btn.setVisibility(View.VISIBLE);
         view_cart_btn.setOnClickListener(new View.OnClickListener() {

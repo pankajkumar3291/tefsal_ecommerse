@@ -92,7 +92,7 @@ public class ChangePasswordActivity extends BaseActivity
        // getSupportActionBar(null)
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar_title.setText("Change Password");
+        toolbar_title.setText(R.string.title_change_password);
 
         mSessionManager = new SessionManager(getApplicationContext());
 

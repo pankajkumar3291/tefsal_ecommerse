@@ -56,7 +56,7 @@ public class CustomTailorCalculationProduct extends BaseAdapter {
         //tailor_product_details.setText(getCartRecordListOfCheckedTrue.get(position).getProduct_name()+"-"+getCartRecordListOfCheckedTrue.get(position).getItem_quantity()+"m");
         tailor_product_details.setText(tailoringRecordArrayListOfCheckedTrue.get(position).getDishdashaProductName() + "-" + tailoringRecordArrayListOfCheckedTrue.get(position).getItemQuantity() + "m");
 
-        tailor_product_remaining_details.setText((int)tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha() + "/" + (int)tailoringRecordArrayListOfCheckedTrue.get(position).getTotal_dishdasha() + " Dishdasha remaining");
+        tailor_product_remaining_details.setText((int)tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha() + "/" + (int)tailoringRecordArrayListOfCheckedTrue.get(position).getTotal_dishdasha() + " " + activity.getString(R.string.dishdasha_remaining));
 
         int getRemaining_dishdasha = (int)tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha();
         if (getRemaining_dishdasha == 0) {

@@ -105,7 +105,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 //Tailor section
                 holder.llSectionTwo.setVisibility(View.VISIBLE);
-                holder.lblSecond.setText("Tailors:");
+                holder.lblSecond.setText(R.string.tailors);
 
                 sublistTailorServiceAdapter = new SublistTailorServiceAdapter(activity, orderRecordCustom.getTailor_services());
                 holder.rcvSecond.setAdapter(sublistTailorServiceAdapter);

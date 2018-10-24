@@ -365,7 +365,7 @@ public class DishDashaProductActivity extends BaseActivity {
             if (fromWhere.equals("tailor")) {
 
 
-                subText.setText("Tailors");
+                subText.setText(R.string.tailors);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("store_id", store_id);
