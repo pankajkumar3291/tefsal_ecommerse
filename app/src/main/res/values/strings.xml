@@ -299,7 +299,8 @@
     <string name="alert_dialog_alertTitle_text">--</string>
     <string name="alert_dialog_textViewError_text" />
     <string name="alert_dialog_buttonOK_text">OK</string>
-    <string name="cart_header_txt_text">%d item in your cart</string>
+    <string name="cart_header_txt_text">1 item in your cart</string>
+    <string name="cart_header_txt_texts">%d items in your cart</string>
     <string name="cart_amount_text">TOTAL:0.000 KWD</string>
     <string name="cart_discount_text">(Discounts included)</string>
     <string name="cart_btn_purchase_text">PROCEED TO PURCHASE</string>
@@ -429,7 +430,7 @@
     <string name="row_country_txtCountryName_text">India</string>
     <string name="row_country_txtCountryCode_text">+91</string>
     <string name="row_sublist_cartItem_text">Winterfall texttitle</string>
-    <string name="row_sublist_txtSize_text">SIZE : 3 METERS</string>
+    <string name="row_sublist_txtSize_text">SIZE : %.2f METERS</string>
     <string name="row_tailors_items_txtTailorItem_text">Winterfall texttitle - 6m</string>
     <string name="row_tailors_items_txtPrice_text">15.000 KWD</string>
     <string name="row_tailors_items_btnAdd_text">Add</string>
@@ -590,5 +591,14 @@
     <string name="validate_password">Error: password must have more than 8 characters</string>
     <string name="validate_password_mismatch">Error: password mismatch</string>
     <string name="validate_first_name">Error: First name should not be empty</string>
-
+    <string name="kwd_per_qty">KWD / QTY</string>
+    <string name="qty">QTY:</string>
+    <string name="qtys">QTY</string>
+    <string name="size">SIZE: </string>
+    <string name="meters">METERS </string>
+    <string name="cart_order_textile">Order - %d Textile</string>
+    <string name="cart_order_db">Order - %d Dara / Abaya</string>
+    <string name="cart_order_acc">Order - %d Accessories</string>
+    <string name="cart_order_dt">Order - %d Dishdasha Tailoring</string>
+    <string name="totalstring">Total:</string>
 </resources>

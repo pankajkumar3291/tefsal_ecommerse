@@ -49,12 +49,12 @@ public class SublistTailorAdapter  extends RecyclerView.Adapter<SublistTailorAda
     public void onBindViewHolder(SublistTailorAdapter.ViewHolder holder, int position) {
 
         holder.txtTailorTitle.setText(tailorList.get(position).getServiceName());
-        holder.txtTailorDesc.setText(tailorList.get(position).getPrice() + " / QTY");
+        holder.txtTailorDesc.setText(tailorList.get(position).getPrice() + " / "+activity.getString(R.string.qty));
 
-        holder.txtTailorQty.setText("QTY: " + tailorList.get(position).getQty() + " Dishdasha");
+        holder.txtTailorQty.setText(activity.getString(R.string.qty) + tailorList.get(position).getQty() + " Dishdasha");
 
 
-        holder.txtTailorPrice.setText(tailorList.get(position).getTotalAmount() + " KWD");
+        holder.txtTailorPrice.setText(tailorList.get(position).getTotalAmount() + activity.getString(R.string.kwd));
         holder.txtTailorPrice.setTextColor(activity.getResources().getColor(R.color.colorRed));
         holder.txtTailorPriceDicounted.setVisibility(GONE);
 

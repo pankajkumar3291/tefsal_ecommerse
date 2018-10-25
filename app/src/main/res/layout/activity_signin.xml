@@ -48,7 +48,6 @@
         <EditText
             android:textDirection="ltr"
             android:id="@+id/input_email"
-
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"

@@ -229,7 +229,20 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                         session.setKeyCartId(cartResponse.getCart_id());
                                     }
 
-                                    header_txt.setText(String.format(new Locale("en"),getString(R.string.cart_header_txt_text),cartResponse.getRecord().size()));
+
+                                    if(cartResponse.getRecord().size() == 1)
+                                    {
+
+                                        header_txt.setText(getString(R.string.cart_header_txt_text));
+
+
+
+                                    }
+                                    else
+                                    {
+                                        header_txt.setText(String.format(new Locale("en"),getString(R.string.cart_header_txt_texts),cartResponse.getRecord().size()));
+
+                                    }
 
                                     amount.setText(String.format(new Locale("en"),getString(R.string.total_kwd),Float.parseFloat(cartResponse.getTotal_amount_cart())));
 

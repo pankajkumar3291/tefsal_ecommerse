@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layoutDirection="ltr"
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingTop="5dp"
@@ -72,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_toRightOf="@+id/LL_imageContainer"
+            android:layout_toEndOf="@+id/LL_imageContainer"
             android:orientation="vertical"
             android:translationZ="999dp">
 
@@ -170,7 +169,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
-        android:background="#bdbdbd" />
+        android:background="#bdbdbd"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/llTailorContainer"
