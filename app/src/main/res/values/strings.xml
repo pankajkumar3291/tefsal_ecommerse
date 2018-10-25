@@ -602,4 +602,7 @@
     <string name="cart_order_dt">Order - %d Dishdasha Tailoring</string>
     <string name="totalstring">Total:</string>
     <string name="not_available">NOT AVAILABLE</string>
+    <string name="pending">PENDING</string>
+    <string name="order_number">ORDER</string>
+    <string name="order_total">Order Total:</string>
 </resources>

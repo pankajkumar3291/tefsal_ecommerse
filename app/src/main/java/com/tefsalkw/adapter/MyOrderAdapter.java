@@ -2,7 +2,6 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,10 +27,36 @@ import butterknife.ButterKnife;
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHolder> {
     private Activity activity;
     private List<OrderRecord> myOrderModel;
+    private boolean isArabic;
 
-    public MyOrderAdapter(Activity activity, List<OrderRecord> myOrderModel) {
+    public MyOrderAdapter(Activity activity, List<OrderRecord> myOrderModel, boolean isArabic) {
         this.activity = activity;
         this.myOrderModel = myOrderModel;
+        this.isArabic = isArabic;
+    }
+
+    public String getArabicString(String status) {
+
+        if (status.contains("Pending")) {
+            status = " جاري التجهيز";
+        }
+        if (status.contains("Out")) {
+            status = "جاري التوصيل";
+        }
+
+        if (status.contains("Delivered")) {
+            status = "تم التوصيل";
+        }
+
+        if (status.contains("Canceled")) {
+            status = "الطلب ملغى";
+        }
+
+        if (status.contains("Returned")) {
+            status = "مسترجع";
+        }
+
+        return status;
     }
 
     @Override
@@ -51,9 +76,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             holder.txtOrderDate.setText(DateTimeHelper.getFormattedDate(myOrderModel.get(position).getCreated_at()));
         }
 
-        holder.txtOrderId.setText("ORDER #" + myOrderModel.get(position).getOrder_id());
-        holder.txtOrderAmount.setText("Order Total: " + myOrderModel.get(position).getAmount() + " KWD");
-        holder.btnStatus.setText((myOrderModel.get(position).getOrder_status() + "").toUpperCase());
+        holder.txtOrderId.setText("#" + myOrderModel.get(position).getOrder_id());
+        holder.txtOrderAmount.setText(myOrderModel.get(position).getAmount());
+
+
+        if (isArabic) {
+            holder.btnStatus.setText(getArabicString(myOrderModel.get(position).getOrder_status() + ""));
+        } else {
+            holder.btnStatus.setText((myOrderModel.get(position).getOrder_status() + "").toUpperCase());
+        }
+
 
         if (myOrderModel.get(position).getOrder_status() != null && myOrderModel.get(position).getOrder_status().toLowerCase().equalsIgnoreCase("pending")) {
             holder.btnStatus.setBackground(activity.getResources().getDrawable(R.drawable.my_button_bg));
@@ -71,13 +103,14 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             public void onClick(View v) {
 
                 activity.startActivity(new Intent(activity, OrderDetailsActivity.class)
-                .putExtra("OrderRecord", myOrderModel.get(holder.getAdapterPosition())));
+                        .putExtra("OrderRecord", myOrderModel.get(holder.getAdapterPosition())));
 
             }
         });
 
 
     }
+
 
     @Override
     public int getItemCount() {

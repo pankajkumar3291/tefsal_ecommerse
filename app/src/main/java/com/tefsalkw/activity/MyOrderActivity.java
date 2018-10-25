@@ -119,7 +119,7 @@ public class MyOrderActivity extends BaseActivity {
                                                 layoutManager.getOrientation());
                                         recyclerView.addItemDecoration(dividerItemDecoration);
 
-                                        myOrderAdapter = new MyOrderAdapter(MyOrderActivity.this, mResponse.getRecord());
+                                        myOrderAdapter = new MyOrderAdapter(MyOrderActivity.this, mResponse.getRecord(), sessionManager.getKeyLang().equals("Arabic"));
                                         recyclerView.setAdapter(myOrderAdapter);
 
                                     } else {
@@ -149,12 +149,9 @@ public class MyOrderActivity extends BaseActivity {
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
 
-                    if(sessionManager.getIsGuestId())
-                    {
+                    if (sessionManager.getIsGuestId()) {
                         params.put("unique_id", sessionManager.getCustomerId());
-                    }
-                    else
-                    {
+                    } else {
                         params.put("user_id", sessionManager.getCustomerId());
                     }
 
