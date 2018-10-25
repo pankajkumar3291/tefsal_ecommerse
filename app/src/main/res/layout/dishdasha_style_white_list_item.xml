@@ -65,7 +65,7 @@
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:paddingEnd="@dimen/activity_small_horizontal_margin"
             android:paddingBottom="@dimen/activity_small_horizontal_margin"
-            android:visibility="visible">
+            android:visibility="gone">
 
 
             <LinearLayout

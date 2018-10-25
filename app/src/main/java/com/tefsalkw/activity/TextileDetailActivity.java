@@ -677,7 +677,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
-                text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
+
+
+
+
+                text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), price * meter));
+
                 txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
 
             } catch (Exception ex) {
