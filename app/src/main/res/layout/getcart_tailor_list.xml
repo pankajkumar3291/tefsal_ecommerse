@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_toRightOf="@+id/lltailorImg"
+            android:layout_toEndOf="@+id/lltailorImg"
             android:orientation="vertical">
 
             <TextView
@@ -58,21 +58,20 @@
 
 
             <TextView
-                fontPath="fonts/Lato-Regular.ttf"
-                tools:ignore="MissingPrefix"
                 android:id="@+id/txtTailorDesc"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="--"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_small"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="MissingPrefix" />
 
 
             <TextView
-                fontPath="fonts/Lato-Bold.ttf"
-                tools:ignore="MissingPrefix"
                 android:id="@+id/txtTailorQty"
+                fontPath="fonts/Lato-Bold.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -82,7 +81,8 @@
                 android:singleLine="true"
                 android:text="--"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                tools:ignore="MissingPrefix" />
 
 
             <LinearLayout
@@ -91,9 +91,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    fontPath="fonts/Lato-Bold.ttf"
-                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtTailorPrice"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -102,12 +101,12 @@
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="MissingPrefix" />
 
                 <TextView
-                    fontPath="fonts/Lato-Bold.ttf"
-                    tools:ignore="MissingPrefix"
                     android:id="@+id/txtTailorPriceDicounted"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -116,7 +115,8 @@
                     android:singleLine="true"
                     android:text="--"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="MissingPrefix" />
             </LinearLayout>
 
 
@@ -125,12 +125,13 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:id="@+id/llSep"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/mainLL"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="#bdbdbd" />
 
 </RelativeLayout>

@@ -139,6 +139,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.llCartDetails)
         LinearLayout llCartDetails;
 
+        @BindView(R.id.sepTailor)
+        View sepTailor;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -289,7 +292,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 if (storeModels.get(position2).getTailor_services() != null) {
 
                     holder.llTailorContainer.setVisibility(View.VISIBLE);
-                    holder.llTailorContainerSep.setVisibility(View.VISIBLE);
+                    holder.llTailorContainerSep.setVisibility(View.GONE);
 
 
                     List<Tailor_services> tailor_services = storeModels.get(position2).getTailor_services();
@@ -314,6 +317,9 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 }
 
 
+                //holder.sepTailor.setVisibility(View.GONE);
+            } else {
+               // holder.sepTailor.setVisibility(View.GONE);
             }
 
 
