@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,6 +165,9 @@ public class SignupActivity extends BaseActivity {
 
     @BindView(R.id.privacy_policy)
     TextView privacy_policy;
+    @BindView(R.id.llRoot)
+    LinearLayout llRoot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +197,10 @@ public class SignupActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         toolbar_title.setText(R.string.title_signup);
+
+        input_password.setTransformationMethod(new PasswordTransformationMethod());
+        input_c_password.setTransformationMethod(new PasswordTransformationMethod());
+
 
         //Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Lato-Bold.ttf");
        // toolbar_title.setTypeface(type);
@@ -336,6 +345,9 @@ public class SignupActivity extends BaseActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+
+        llRoot.requestFocus();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 
     }

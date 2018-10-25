@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -93,6 +94,8 @@ public class SigninActivity extends BaseActivity {
 
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);
+
+        input_password.setTransformationMethod(new PasswordTransformationMethod());
 
 
 

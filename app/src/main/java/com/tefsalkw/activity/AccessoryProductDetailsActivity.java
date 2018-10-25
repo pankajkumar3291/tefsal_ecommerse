@@ -64,6 +64,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -418,7 +419,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 int qty = selectedSize.getQuantity() != null ? selectedSize.getQuantity() : 0;
 
                 if (qty == 0) {
-                    add_cart_btn.setText("SOLD OUT");
+                    add_cart_btn.setText(getString(R.string.sold_out));
                     add_cart_btn.setEnabled(false);
 
                 } else {
@@ -431,12 +432,13 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 if (selectedSize.getPrice() != null) {
 
                     price = Float.parseFloat(selectedSize.getPrice().toString());
-                    text_price.setText("PRICE : " + price + " KWD");
+                    //text_price.setText("PRICE : " + price + " KWD");
+                    text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), price));
 
                 } else {
 
                     price = 0;
-                    text_price.setText("NOT AVAILABLE");
+                    text_price.setText(R.string.not_available);
                 }
             }
 

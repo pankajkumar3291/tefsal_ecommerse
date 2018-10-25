@@ -69,6 +69,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llRoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -427,7 +428,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@. "
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._ "
                     android:gravity="bottom"
                     android:hint="@string/hint_email_SP"
                     android:inputType="textEmailAddress"
@@ -476,7 +477,7 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    fontPath="fonts/Lato-Regular.ttf"
+
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
@@ -530,7 +531,6 @@
                 android:layout_marginTop="@dimen/margin_small">
 
                 <EditText
-                    fontPath="fonts/Lato-Regular.ttf"
                     android:id="@+id/input_c_password"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
