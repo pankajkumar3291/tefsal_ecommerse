@@ -58,26 +58,61 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
-                        android:id="@+id/txt_price"
-                        fontPath="fonts/Lato-Bold.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/textile_detail_txt_price_text"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_large"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/txt_min_meter"
-                        fontPath="fonts/Lato-Bold.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_mid"
-                        tools:ignore="MissingPrefix" />
+                        <TextView
+                            android:id="@+id/txt_price"
+                            fontPath="fonts/Lato-Bold.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/textile_detail_txt_price_text"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_large"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/txt_price"
+                            android:text="@string/kwd_per_meter"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_large"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txt_min_meter"
+                            fontPath="fonts/Lato-Bold.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_mid"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/txt_min_meter"
+                            android:text="@string/meter_dishdasha"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_mid"
+                            tools:ignore="MissingPrefix" />
+
+
+                    </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
 
@@ -121,7 +156,7 @@
                     android:background="@color/tabColorBg"
                     android:minHeight="?attr/actionBarSize"
                     app:tabSelectedTextColor="@color/colorAccent"
-                    app:tabTextColor="#616161" >
+                    app:tabTextColor="#616161">
 
                 </android.support.design.widget.TabLayout>
 
@@ -184,16 +219,16 @@
                 android:weightSum="100">
 
                 <TextView
-                    fontPath="fonts/Lato-Bold.ttf"
-                    tools:ignore="MissingPrefix"
                     android:id="@+id/meter_value"
+                    fontPath="fonts/Lato-Bold.ttf"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
                     android:gravity="center"
                     android:text="@string/textile_detail_meter_value_text"
                     android:textColor="#000000"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="MissingPrefix" />
 
                 <TextView
                     android:id="@+id/textView2"

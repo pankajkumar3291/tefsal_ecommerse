@@ -323,7 +323,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
             meter = min_meter;
             meter_value.setText("" + meter);
-            txt_min_meter.setText(String.format(getString(R.string.min_meter_required), min_meter));
+            txt_min_meter.setText(TefalApp.getInstance().getStyleName() + " = " + min_meter);
+
+            if (session.getKeyLang().equals("Arabic")) {
+
+                txt_min_meter.setText( min_meter+ " = " + TefalApp.getInstance().getStyleName());
+
+            }
             StoreID = getIntent().getStringExtra("storeID");
             position = getIntent().getIntExtra("pos", 0);
 
@@ -678,12 +684,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
 
-
-
-
                 text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), price * meter));
 
-                txt_price.setText(price + " " + getString(R.string.kwd_per_meter));
+                txt_price.setText(price + "");
 
             } catch (Exception ex) {
 
