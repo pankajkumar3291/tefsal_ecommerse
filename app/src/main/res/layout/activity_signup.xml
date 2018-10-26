@@ -69,6 +69,8 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:focusableInTouchMode="true"
+            android:focusable="true"
             android:id="@+id/llRoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,6 +83,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+
                     android:id="@+id/input_fname"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"

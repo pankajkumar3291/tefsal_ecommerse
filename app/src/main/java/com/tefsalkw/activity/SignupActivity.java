@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -346,8 +347,11 @@ public class SignupActivity extends BaseActivity {
             }
         });
 
-        llRoot.requestFocus();
+
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        llRoot.requestFocus();
+
 
 
     }
