@@ -118,7 +118,7 @@ public class FragmentTailorProducts extends BaseFragment {
         tailoringRecordArrayListOfChecked = (ArrayList<TailoringRecord>) bundle.getSerializable("tailoringRecordArrayListOfChecked");
         ownTextileString = bundle.getString("ownTextileString");
 
-        dishInfoText.setText(TefalApp.getInstance().getStyleName() + " / " + Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())) + " meter = 1 Dishdasha");
+        dishInfoText.setText(TefalApp.getInstance().getStyleName() + " = " + Math.round(Float.parseFloat(TefalApp.getInstance().getMin_meters())));
 
 
         if (tailoringRecordArrayListOfChecked != null) {

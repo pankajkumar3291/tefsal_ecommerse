@@ -23,16 +23,30 @@
             android:textSize="@dimen/text_mid" />
 
 
-        <TextView
-            android:id="@+id/dishInfoText"
-            fontPath="fonts/Lato-Regular.ttf"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="@string/fragment_tailor_product_dishInfoText_text"
-            android:textColor="@color/colorNavy"
-            tools:ignore="MissingPrefix" />
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/dishInfoText"
+                fontPath="fonts/Lato-Regular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/fragment_tailor_product_dishInfoText_text"
+                android:textColor="@color/colorNavy"
+                tools:ignore="MissingPrefix" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/dishInfoText"
+                android:padding="10dp"
+                android:text="@string/meter_dishdasha"
+                android:textColor="@color/colorNavy"
+                tools:ignore="MissingPrefix" />
+        </RelativeLayout>
 
 
         <ListView
@@ -46,14 +60,14 @@
         </ListView>
 
         <TextView
-            fontPath="fonts/Lato-Regular.ttf"
-            tools:ignore="MissingPrefix"
             android:id="@+id/ownTextileText"
+            fontPath="fonts/Lato-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/text_mid" />
+            android:textSize="@dimen/text_mid"
+            tools:ignore="MissingPrefix" />
 
     </LinearLayout>
 

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_toStartOf="@+id/add_btn"
             android:layout_toEndOf="@+id/imgTailor"
             android:orientation="vertical">
@@ -37,24 +37,41 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:text="--"
-                android:textSize="@dimen/text_large" />
+                android:textSize="@dimen/text_mid" />
 
             <TextView
                 android:id="@+id/product_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:text="--" />
+                android:text="" />
 
 
-            <TextView
-                android:id="@+id/product_price"
-                fontPath="fonts/Lato-Regular.ttf"
+            <RelativeLayout
+                android:layoutDirection="ltr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="--"
-                android:textSize="@dimen/text_large"
-                tools:ignore="MissingPrefix" />
+                android:layout_gravity="start"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/product_price"
+                    fontPath="fonts/Lato-Regular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textSize="@dimen/text_mid"
+                    tools:ignore="MissingPrefix" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/product_price"
+                    android:text="@string/kwd"
+                    android:textSize="@dimen/text_mid"
+                    tools:ignore="MissingPrefix" />
+            </RelativeLayout>
 
 
         </LinearLayout>

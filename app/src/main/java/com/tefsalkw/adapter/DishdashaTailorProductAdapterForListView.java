@@ -90,9 +90,9 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
         recyclerSubList.setAdapter(sublistAdapter);
 
 
-        product_price.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_price() + " KWD");
+        product_price.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_price());
         product_name.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
-        product_desc.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
+       // product_desc.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
