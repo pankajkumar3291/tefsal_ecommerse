@@ -117,7 +117,7 @@ public class OrderDetailsActivity extends BaseActivity {
         try {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-            toolbar_title.setText("ORDER #" + orderId);
+            toolbar_title.setText(getString(R.string.order_number) + "#" + orderId);
 
 
         } catch (Exception exc) {
@@ -171,7 +171,7 @@ public class OrderDetailsActivity extends BaseActivity {
                                     if (deliveryCharge != null && !deliveryCharge.equalsIgnoreCase("free")) {
 
 
-                                        deliveryCharge = String.format(new Locale("en"), "%.3f", Double.parseDouble(deliveryCharge)) + " KWD";
+                                        deliveryCharge = String.format(new Locale("en"), "%.3f", Double.parseDouble(deliveryCharge));
 
 
                                     }
@@ -200,7 +200,7 @@ public class OrderDetailsActivity extends BaseActivity {
                                         fullAddress = name.toUpperCase() + "\n"
                                                 + "House / Building: " + house + " , "
                                                 + "Street: " + street + " , "
-                                                + "Block: " + block + " , "
+                                                + "Block: " + block + "\n"
                                                 + "Area: " + area + " , "
                                                 + "City: " + city + " ";
                                     }
@@ -208,7 +208,12 @@ public class OrderDetailsActivity extends BaseActivity {
 
                                     // String fullAddress = customer_address.getHouse() + " " + customer_address.getAddress_name() + " " + customer_address.getProvince() + " " + customer_address.getArea()+ " " + customer_address.getBlock() + " " + customer_address.getStreet() + " " + customer_address.getFloor() + " " + customer_address.getFlat_number()+ " " + customer_address.getHouse();
                                     txtCustomerAddress.setText(fullAddress);
-                                    txtPaymentType.setText(mResponse.getPayment_method());
+
+                                    if (sessionManager.getKeyLang().equals("Arabic")) {
+                                        txtPaymentType.setText(getPaymentTypeArabic(mResponse.getPayment_method()));
+                                    } else {
+                                        txtPaymentType.setText(mResponse.getPayment_method());
+                                    }
 
 
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(OrderDetailsActivity.this);
@@ -216,7 +221,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
                                     recyclerView.setLayoutManager(layoutManager);
                                     recyclerView.setItemAnimator(new DefaultItemAnimator());
-                                    orderDetailsAdapter = new OrderDetailsAdapter(OrderDetailsActivity.this, mResponse.getOrder_items());
+                                    orderDetailsAdapter = new OrderDetailsAdapter(OrderDetailsActivity.this, mResponse.getOrder_items(), sessionManager.getKeyLang().equals("Arabic"));
                                     recyclerView.setAdapter(orderDetailsAdapter);
 
 
@@ -274,6 +279,24 @@ public class OrderDetailsActivity extends BaseActivity {
         }
     }
 
+
+    private String getPaymentTypeArabic(String pType) {
+        if (pType.contains("COD")) {
+            pType = "الدفع عن الإستلام";
+        }
+
+        if (pType.contains("KNET")) {
+            pType = " كي نت";
+        }
+
+
+        if (pType.contains("VISA")) {
+            pType = "فيزا / ماستركارد";
+        }
+
+
+        return pType;
+    }
 
     @Override
     public void onBackPressed() {

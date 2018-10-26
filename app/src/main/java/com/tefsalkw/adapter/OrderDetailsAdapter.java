@@ -5,7 +5,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +35,14 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     SublistTailorServiceAdapter sublistTailorServiceAdapter;
 
     SessionManager sessionManager;
-    public OrderDetailsAdapter(Activity activity, List<Order_items> orderItems) {
+
+    boolean isArabic;
+
+    public OrderDetailsAdapter(Activity activity, List<Order_items> orderItems, boolean isArabic) {
         sessionManager = new SessionManager(activity);
         this.activity = activity;
         this.orderItems = orderItems;
+        this.isArabic = isArabic;
 
         //Log.e("sessionManager",sessionManager.getIsGuestId()+"");
     }
@@ -61,10 +64,16 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             String orderStatus = orderRecordCustom.getStatus() != null ? orderRecordCustom.getStatus() : "Pending";
 
             holder.txtStoreName.setText(orderRecordCustom.getStore_name());
-            holder.txtOrderItemSerial.setText("ORDER ITEM #" + (position + 1));
+            holder.txtOrderItemSerial.setText("#" + (position + 1));
 
-            holder.txtOrderAction.setText(Html.fromHtml("<i>" + orderStatus + "</i>"));
-            holder.txtExpectedDelivery.setText("Expected Delivery: " + orderRecordCustom.getExpected_delivery_date());
+
+            if (isArabic) {
+                holder.txtOrderAction.setText(Html.fromHtml("<i>" + getArabicString(orderStatus) + "</i>"));
+            } else {
+                holder.txtOrderAction.setText(Html.fromHtml("<i>" + orderStatus + "</i>"));
+            }
+
+            holder.txtExpectedDelivery.setText(orderRecordCustom.getExpected_delivery_date());
 
 
             RequestOptions options = new RequestOptions()
@@ -77,7 +86,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTA")) {
 
-                holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " KWD");
+                holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " " + activity.getString(R.string.kwd));
                 holder.txtOrderItemType.setText("TAILOR & TEXTILE");
 
                 if (sessionManager.getIsGuestId()) {
@@ -86,11 +95,11 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 } else {
                     holder.txtStyleUsed.setVisibility(View.VISIBLE);
-                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
+                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + activity.getString(R.string.style_used) + " " + orderRecordCustom.getStyle_name() + "</i>"));
 
                 }
 
-                  holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
+                holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
 
                 //Textile section
                 holder.llSectionOne.setVisibility(View.VISIBLE);
@@ -116,7 +125,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTE")) {
 
-                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
                 holder.txtOrderItemType.setText("TEXTILE");
                 if (sessionManager.getIsGuestId()) {
@@ -125,7 +134,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 } else {
                     holder.txtStyleUsed.setVisibility(View.VISIBLE);
-                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + "Style Used: " + orderRecordCustom.getStyle_name() + "</i>"));
+                    holder.txtStyleUsed.setText(Html.fromHtml("<i>" + activity.getString(R.string.style_used) + " " + orderRecordCustom.getStyle_name() + "</i>"));
 
                 }
                 holder.llSectionOne.setVisibility(View.VISIBLE);
@@ -135,7 +144,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.lblFirst.setText("Textiles:");
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
-                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
+                sublistAdapter = new SublistOrderAdapter(activity, orderItemsList);
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
             }
@@ -143,7 +152,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("DB")) {
 
-                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
                 holder.lblFirst.setText("Item Description");
                 holder.lblSecond.setText("");
@@ -156,25 +165,25 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
-                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
+                sublistAdapter = new SublistOrderAdapter(activity, orderItemsList);
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
             }
 
 
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("A")) {
-                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " KWD");
+                holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
                 holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
                 holder.lblFirst.setText("Item Description:");
                 holder.lblSecond.setText("");
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.txtStyleUsed.setVisibility(View.GONE);
-                holder.txtOrderItemType.setText("ACCESSORIES");
+                holder.txtOrderItemType.setText(activity.getString(R.string.accessories).toUpperCase());
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
 
-                sublistAdapter = new SublistOrderAdapter(activity,  orderItemsList);
+                sublistAdapter = new SublistOrderAdapter(activity, orderItemsList);
 
                 holder.rcvFirst.setAdapter(sublistAdapter);
 
@@ -186,6 +195,30 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
         }
 
 
+    }
+
+    public String getArabicString(String status) {
+
+        if (status.toLowerCase().contains("pending")) {
+            status = " جاري التجهيز";
+        }
+        if (status.toLowerCase().contains("out")) {
+            status = "جاري التوصيل";
+        }
+
+        if (status.toLowerCase().contains("delivered")) {
+            status = "تم التوصيل";
+        }
+
+        if (status.toLowerCase().contains("canceled")) {
+            status = "الطلب ملغى";
+        }
+
+        if (status.toLowerCase().contains("returned")) {
+            status = "مسترجع";
+        }
+
+        return status;
     }
 
     @Override

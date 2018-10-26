@@ -605,4 +605,12 @@
     <string name="pending">PENDING</string>
     <string name="order_number">ORDER</string>
     <string name="order_total">Order Total:</string>
+    <string name="transaction_date">Transaction Date</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="payment_type">Payment Type</string>
+    <string name="delivery_charge_">Delivery Charge</string>
+    <string name="knet">KNET</string>
+    <string name="visa_mastercard">VISA / MASTERCARD</string>
+    <string name="expected_delivery">Expected Delivery:</string>
+    <string name="style_used">Style Used:</string>
 </resources>
