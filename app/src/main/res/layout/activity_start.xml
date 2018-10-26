@@ -52,20 +52,20 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_gravity="center"
         android:id="@+id/terms_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
             android:text="@string/action_terms"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid" />
@@ -74,9 +74,8 @@
             android:id="@+id/tncText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toEndOf="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
             android:text="@string/action_terms_of_use"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text_mid"
