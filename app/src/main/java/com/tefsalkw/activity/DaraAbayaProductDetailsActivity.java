@@ -349,7 +349,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                         meter++;
 
                         amount = meter * price;
-                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
+                        text_price.setText(String.format(new Locale("en"), "%.3f", amount));
                         meter_value.setText("" + meter);
 
 
@@ -369,7 +369,8 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                 if (meter > 1) {
                     meter--;
                     amount = meter * price;
-                    text_price.setText("PRICE : " + amount + " KWD");
+
+                    text_price.setText(String.format(new Locale("en"), "%.3f", amount));
                     meter_value.setText("" + meter);
                 }
             }
@@ -446,7 +447,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
 
 
-        text_price.setText("PRICE : " + daraAbayaDetailRecord.getColors().get(0).getSizes().get(0).getPrice() + " KWD");
+        text_price.setText(String.format(new Locale("en"), "%.3f", daraAbayaDetailRecord.getColors().get(0).getSizes().get(0).getPrice()));
 
 
     }
@@ -614,7 +615,8 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
             if (zaraDaraSizesModel.getPrice() != null) {
                 price = Float.parseFloat(zaraDaraSizesModel.getPrice());
-                text_price.setText("PRICE : " + price + " KWD");
+
+                text_price.setText(String.format(new Locale("en"), "%.3f", price));
                 meter = 1;
                 meter_value.setText("" + meter);
             }

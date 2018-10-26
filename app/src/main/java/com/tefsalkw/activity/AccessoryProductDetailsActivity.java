@@ -433,7 +433,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
                     price = Float.parseFloat(selectedSize.getPrice().toString());
                     //text_price.setText("PRICE : " + price + " KWD");
-                    text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), price));
+                    text_price.setText(String.format(new Locale("en"), "%.3f", price));
 
                 } else {
 

@@ -327,7 +327,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
             if (session.getKeyLang().equals("Arabic")) {
 
-                txt_min_meter.setText( min_meter+ " = " + TefalApp.getInstance().getStyleName());
+                txt_min_meter.setText(min_meter + " = " + TefalApp.getInstance().getStyleName());
 
             }
             StoreID = getIntent().getStringExtra("storeID");
@@ -470,8 +470,23 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             tabLayout.setOnTabSelectedListener(this);
 
             tabLayout.setupWithViewPager(viewPager);
+
+
             if (session.getKeyLang().equals("Arabic")) {
-                changeTabsFont(tabLayout);
+
+//                Log.e("CustomView","CustomView");
+////
+////                String fontPath2 = "fonts/GESSTwoMedium-Medium.otf";
+////                Typeface tf2 = Typeface.createFromAsset(getAssets(), fontPath2);
+////
+////                for (int i = 0; i < tabLayout.getTabCount(); i++) {
+////                    //R.layout is the previous defined xml
+////                    TextView tv = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_layout, null);
+////                    tv.setTypeface(tf2);
+////                    tabLayout.getTabAt(i).setCustomView(tv);
+////
+////                }
+
             }
             initSlider();
 
@@ -488,7 +503,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                         amount = price * meter;
 
-                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
+                        text_price.setText(String.format(new Locale("en"), "%.3f", amount));
                         meter_value.setText("" + meter);
 
 
@@ -504,7 +519,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     if (meter > min_meter) {
                         meter--;
                         amount = price * meter;
-                        text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), amount));
+                        text_price.setText(String.format(new Locale("en"), "%.3f", amount));
 
                         meter_value.setText("" + meter);
                     }
@@ -684,7 +699,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
 
 
-                text_price.setText(String.format(new Locale("en"), getString(R.string.cart_price), price * meter));
+                text_price.setText(String.format(new Locale("en"), "%.3f", price * meter));
 
                 txt_price.setText(price + "");
 
