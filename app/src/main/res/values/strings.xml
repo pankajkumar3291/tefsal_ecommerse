@@ -535,6 +535,7 @@
     <string name="previous_total">PREVIOUS TOTAL</string>
     <string name="discount_applied">DISCOUNT APPLIED</string>
     <string name="total">TOTAL</string>
+    <string name="total_">TOTAL:</string>
     <string name="delivery_charge">Delivery Charge: </string>
     <string name="sub_total">Sub Total:</string>
     <string name="registration_in_progress">Registration in progress...</string>

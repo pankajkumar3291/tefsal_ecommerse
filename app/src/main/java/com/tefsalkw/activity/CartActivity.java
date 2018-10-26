@@ -230,21 +230,17 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                     }
 
 
-                                    if(cartResponse.getRecord().size() == 1)
-                                    {
+                                    if (cartResponse.getRecord().size() == 1) {
 
                                         header_txt.setText(getString(R.string.cart_header_txt_text));
 
 
-
-                                    }
-                                    else
-                                    {
-                                        header_txt.setText(String.format(new Locale("en"),getString(R.string.cart_header_txt_texts),cartResponse.getRecord().size()));
+                                    } else {
+                                        header_txt.setText(String.format(new Locale("en"), getString(R.string.cart_header_txt_texts), cartResponse.getRecord().size()));
 
                                     }
 
-                                    amount.setText(String.format(new Locale("en"),getString(R.string.total_kwd),Float.parseFloat(cartResponse.getTotal_amount_cart())));
+                                    amount.setText(String.format(new Locale("en"), "%.3f", Float.parseFloat(cartResponse.getTotal_amount_cart())));
 
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(CartActivity.this);
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -284,7 +280,8 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }    SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override

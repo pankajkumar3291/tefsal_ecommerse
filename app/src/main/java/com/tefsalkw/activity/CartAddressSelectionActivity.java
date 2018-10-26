@@ -509,7 +509,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                                     header_txt.setText(String.format(new Locale("en"),getString(R.string.cart_header_txt_text),cartResponse.getRecord().size()));
 
-                                    amount.setText(String.format(new Locale("en"),getString(R.string.total_kwd),Float.parseFloat(cartResponse.getTotal_amount_cart())));
+                                    amount.setText(String.format(new Locale("en"),"%.3f",Float.parseFloat(cartResponse.getTotal_amount_cart())));
 
 
                                     currentItemsCount = cartResponse.getRecord().size();

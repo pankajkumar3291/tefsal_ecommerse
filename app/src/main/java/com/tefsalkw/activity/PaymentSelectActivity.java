@@ -177,7 +177,7 @@ public class PaymentSelectActivity extends BaseActivity {
 
 
             // amount.setText("TOTAL : " + String.format(new Locale("en"),"%.3f", grandTotal) + " KWD");
-            amount.setText(String.format(new Locale("en"), getString(R.string.total_kwd), grandTotal));
+            amount.setText(String.format(new Locale("en"), "%.3f", grandTotal));
 
         }
 
