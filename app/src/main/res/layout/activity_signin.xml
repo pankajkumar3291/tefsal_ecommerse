@@ -57,7 +57,7 @@
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
             android:textSize="@dimen/text_small"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._ "
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._' "
             tools:ignore="MissingPrefix" />
 
     </android.support.design.widget.TextInputLayout>

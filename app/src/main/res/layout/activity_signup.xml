@@ -431,7 +431,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._ "
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._' "
                     android:gravity="bottom"
                     android:hint="@string/hint_email_SP"
                     android:inputType="textEmailAddress"
