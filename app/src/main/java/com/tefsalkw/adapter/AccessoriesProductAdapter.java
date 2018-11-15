@@ -18,6 +18,7 @@ import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.models.AccessoriesRecord;
+import com.tefsalkw.utils.SessionManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,15 +32,17 @@ import static android.view.View.GONE;
 
 public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesProductAdapter.ViewHolder> {
     private Activity activity;
-    public  List<AccessoriesRecord> productRecords = new ArrayList<>();
+    public List<AccessoriesRecord> productRecords = new ArrayList<>();
     private Context context;
     String storeId;
+    SessionManager session;
 
 
     public AccessoriesProductAdapter(Activity activity, List<AccessoriesRecord> productRecords, String storeId) {
         this.activity = activity;
         this.productRecords = productRecords;
         this.storeId = storeId;
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -93,8 +96,15 @@ public class AccessoriesProductAdapter extends RecyclerView.Adapter<AccessoriesP
 
             String discount_amount;
             String brand_name = productRecords.get(position).getBrandName();
-            String product_name = productRecords.get(position).getProductName();
-            String store = productRecords.get(position).getStoreName();
+            String product_name = "", store = "";
+            if (session.getKeyLang().equals("Arabic")) {
+                product_name = productRecords.get(position).getProductNameArabic();
+                store = productRecords.get(position).getStoreNameArabic();
+            } else {
+                product_name = productRecords.get(position).getProductName();
+                store = productRecords.get(position).getStoreName();
+            }
+
             String max_delivery_days = productRecords.get(position).getMax_delivery_days();
 
             String product_price = productRecords.get(position).getDefault_price();

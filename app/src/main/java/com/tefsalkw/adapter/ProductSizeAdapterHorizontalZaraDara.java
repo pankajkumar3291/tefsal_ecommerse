@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
-import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.R;
+import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
+import com.tefsalkw.models.ZaraDaraSizeModel;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class ProductSizeAdapterHorizontalZaraDara extends RecyclerView.Adapter<P
 
     public List<ZaraDaraSizeModel> productSizesList;
     private Activity activity;
-
+    SessionManager session;
 
     public ProductSizeAdapterHorizontalZaraDara(List<ZaraDaraSizeModel> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
-
+        session = new SessionManager(activity);
 
     }
 
@@ -50,7 +51,12 @@ public class ProductSizeAdapterHorizontalZaraDara extends RecyclerView.Adapter<P
 
         final ZaraDaraSizeModel sizes = productSizesList.get(position);
 
-        holder.sizeText.setText(sizes.getSize());
+
+        if (session.getKeyLang().equals("Arabic")) {
+            holder.sizeText.setText(sizes.getSize_arabic());
+        } else {
+            holder.sizeText.setText(sizes.getSize());
+        }
 
 
         if (position == TefalApp.getInstance().getPosition()) {

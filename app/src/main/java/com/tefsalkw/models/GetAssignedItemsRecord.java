@@ -11,6 +11,16 @@ public class GetAssignedItemsRecord
 
     private String dishdasha_tailor_product_name;
 
+    public String getDishdasha_tailor_product_name_arabic() {
+        return dishdasha_tailor_product_name_arabic;
+    }
+
+    public void setDishdasha_tailor_product_name_arabic(String dishdasha_tailor_product_name_arabic) {
+        this.dishdasha_tailor_product_name_arabic = dishdasha_tailor_product_name_arabic;
+    }
+
+    private String dishdasha_tailor_product_name_arabic;
+
     private String dishdasha_tailor_product_price;
 
     private ArrayList<GetAssaignedItemsData> data;

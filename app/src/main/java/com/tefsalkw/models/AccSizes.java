@@ -8,6 +8,19 @@ public class AccSizes {
     @SerializedName("size")
     @Expose
     private String size;
+
+    public String getSize_arabic() {
+        return size_arabic;
+    }
+
+    public void setSize_arabic(String size_arabic) {
+        this.size_arabic = size_arabic;
+    }
+
+    @SerializedName("size_arabic")
+    @Expose
+    private String size_arabic;
+
     @SerializedName("quantity")
     @Expose
     private Integer quantity;

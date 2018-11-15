@@ -352,7 +352,7 @@ public class DishDashaProductActivity extends BaseActivity {
                 bundle.putString("store_id", store_id);
                 bundle.putString("flag", "dish");
 
-                subText.setText("Textiles");
+                subText.setText(R.string.textiles);
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

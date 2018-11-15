@@ -20,6 +20,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.TextileProductModel;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
     public static List<TextileProductModel> textileModels = new ArrayList<>();
     private Context context;
 
-
+    SessionManager session;
     String storeId, flag;
 
     public DishdashaTextileProductAdapter(Activity activity, List<TextileProductModel> textileModels, String storeId, String flag) {
@@ -41,6 +42,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         this.textileModels = textileModels;
         this.storeId = storeId;
         this.flag = flag;
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -91,7 +93,16 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
 
         String imgUrl = textileModels.get(position).getDefault_image();
         GlideApp.with(activity).load(imgUrl).apply(options).into(holder.iv_pattern);
-        holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
+
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name_arabic());
+        }
+        else
+        {
+            holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
+        }
+
         holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice() + " KWD");
 
         if (textileModels.get(holder.getAdapterPosition()).getProduct_discount() == null || textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals("")) {

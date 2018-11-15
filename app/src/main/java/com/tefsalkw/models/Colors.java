@@ -10,9 +10,28 @@ import java.util.List;
 public class Colors implements Serializable {
     private String sub_color;
 
+    public String getSub_color_arabic() {
+        return sub_color_arabic;
+    }
+
+    public void setSub_color_arabic(String sub_color_arabic) {
+        this.sub_color_arabic = sub_color_arabic;
+    }
+
+    private String sub_color_arabic;
     private String price;
 
     private String color;
+
+    public String getColor_arabic() {
+        return color_arabic;
+    }
+
+    public void setColor_arabic(String color_arabic) {
+        this.color_arabic = color_arabic;
+    }
+
+    private String color_arabic;
 
     private String[] images;
 
@@ -62,6 +81,16 @@ public class Colors implements Serializable {
 
     private String feel;
 
+    public String getFeel_arabic() {
+        return feel_arabic;
+    }
+
+    public void setFeel_arabic(String feel_arabic) {
+        this.feel_arabic = feel_arabic;
+    }
+
+    private String feel_arabic;
+
     public String getPattern_name() {
         return pattern_name;
     }
@@ -71,11 +100,31 @@ public class Colors implements Serializable {
     }
 
     private String pattern_name;
+
+    public String getPattern_name_arabic() {
+        return pattern_name_arabic;
+    }
+
+    public void setPattern_name_arabic(String pattern_name_arabic) {
+        this.pattern_name_arabic = pattern_name_arabic;
+    }
+
+    private String pattern_name_arabic;
     private String pattern_id;
 
     private String default_image;
 
     private String material;
+
+    public String getMaterial_arabic() {
+        return material_arabic;
+    }
+
+    public void setMaterial_arabic(String material_arabic) {
+        this.material_arabic = material_arabic;
+    }
+
+    private String material_arabic;
 
     private String is_sold_out;
 

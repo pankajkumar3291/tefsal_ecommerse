@@ -531,10 +531,20 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     private void setData() {
 
         if (accessoriesRecord != null) {
-            txt_title.setText(accessoriesRecord.getProductName());
-            subtxt_title.setText(accessoriesRecord.getStoreName());
 
-            text_desc.setText(accessoriesRecord.getProductDesc());
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                txt_title.setText(accessoriesRecord.getProductNameArabic());
+                subtxt_title.setText(accessoriesRecord.getStoreNameArabic());
+                text_desc.setText(accessoriesRecord.getProductDescArabic());
+            }
+            else
+            {
+                txt_title.setText(accessoriesRecord.getProductName());
+                subtxt_title.setText(accessoriesRecord.getStoreName());
+                text_desc.setText(accessoriesRecord.getProductDesc());
+            }
+
         }
 
 

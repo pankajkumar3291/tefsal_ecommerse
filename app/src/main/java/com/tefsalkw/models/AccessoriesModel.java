@@ -9,6 +9,16 @@ public class AccessoriesModel {
 
     private String sub_cat_name;
 
+    public String getSub_cat_name_arabic() {
+        return sub_cat_name_arabic;
+    }
+
+    public void setSub_cat_name_arabic(String sub_cat_name_arabic) {
+        this.sub_cat_name_arabic = sub_cat_name_arabic;
+    }
+
+    private String sub_cat_name_arabic;
+
     private String image;
 
     public String getSub_cat_id ()

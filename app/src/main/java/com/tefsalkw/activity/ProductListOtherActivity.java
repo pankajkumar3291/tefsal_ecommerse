@@ -103,7 +103,9 @@ public class ProductListOtherActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         //toolbar_title.setText(getIntent().getStringExtra("title"));
+
         toolbar_title.setText(getIntent().getStringExtra("store_name"));
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

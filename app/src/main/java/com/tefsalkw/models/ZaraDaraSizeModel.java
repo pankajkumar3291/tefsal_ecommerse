@@ -9,6 +9,17 @@ import java.io.Serializable;
 public class ZaraDaraSizeModel implements Serializable{
 
     private String size;
+
+    public String getSize_arabic() {
+        return size_arabic;
+    }
+
+    public void setSize_arabic(String size_arabic) {
+        this.size_arabic = size_arabic;
+    }
+
+    private String size_arabic;
+
     private String color;
 
     public String getColor() {

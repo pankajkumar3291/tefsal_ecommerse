@@ -172,7 +172,18 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
                         TefalApp.getInstance().setFlage("1");
                         TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
-                        TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+
+
+
+                        if(session.getKeyLang().equals("Arabic"))
+                        {
+                            TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
+                        }
+                        else
+                        {
+                            TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+                        }
+
                         TefalApp.getInstance().setWhereFrom("textile");
 
 

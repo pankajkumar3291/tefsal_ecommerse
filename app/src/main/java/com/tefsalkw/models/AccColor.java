@@ -10,12 +10,40 @@ public class AccColor {
     @SerializedName("attribute_id")
     @Expose
     private Integer attributeId;
+
     @SerializedName("color")
     @Expose
     private String color;
     @SerializedName("sub_color")
     @Expose
     private String subColor;
+
+
+    @SerializedName("color_arabic")
+    @Expose
+    private String color_arabic;
+
+    public String getColor_arabic() {
+        return color_arabic;
+    }
+
+    public void setColor_arabic(String color_arabic) {
+        this.color_arabic = color_arabic;
+    }
+
+    public String getSubColorArabic() {
+        return subColorArabic;
+    }
+
+    public void setSubColorArabic(String subColorArabic) {
+        this.subColorArabic = subColorArabic;
+    }
+
+    @SerializedName("sub_color_arabic")
+    @Expose
+    private String subColorArabic;
+
+
     @SerializedName("info")
     @Expose
     private String info;

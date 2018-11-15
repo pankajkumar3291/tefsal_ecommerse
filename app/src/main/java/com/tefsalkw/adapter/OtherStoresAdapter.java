@@ -111,16 +111,15 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
             GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getStore_image()).apply(options).into(holder.img);
 
+            final String store_name;
+            if (session.getKeyLang().equals("Arabic")) {
+                store_name = storeModels.get(holder.getAdapterPosition()).getStore_name_arabic();
+            } else {
+                store_name = storeModels.get(holder.getAdapterPosition()).getStore_name();
+            }
 
-            if(session.getKeyLang().equals("Arabic"))
-            {
-                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
-            }
-            else
-            {
-                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
-            }
-          //  holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
+            holder.title.setText(store_name);
+            //  holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
             holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
             System.out.println("DALIVERY DATE   MIN" + storeModels.get(position2).getMin_delivery_days());
@@ -146,19 +145,21 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
                 @Override
                 public void onClick(View view) {
 
+
                     if (!flag.equals("Accessories")) {
+
                         activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                                 .putExtra("flag", flag)
                                 .putExtra("sub_cat", DaraAbayaStoresActivity.sub_cat_id)
-                                .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
+                                .putExtra("store_name", store_name));
 
                     } else {
                         activity.startActivity(new Intent(activity, AccessoriesStoreListingActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                                 .putExtra("flag", flag)
                                 .putExtra("sub_cat", DaraAbayaStoresActivity.sub_cat_id)
-                                .putExtra("store_name", storeModels.get(holder.getAdapterPosition()).getStore_name()));
+                                .putExtra("store_name", store_name));
 
                     }
 

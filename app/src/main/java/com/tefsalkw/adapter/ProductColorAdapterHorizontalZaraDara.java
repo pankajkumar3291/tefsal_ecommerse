@@ -12,6 +12,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.Colors;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.List;
 
@@ -26,12 +27,11 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
 
     private List<Colors> productSizesList;
     private Activity activity;
-
-
+    SessionManager session;
     public ProductColorAdapterHorizontalZaraDara(List<Colors> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
-
+        session = new SessionManager(activity);
 
     }
 
@@ -47,18 +47,41 @@ public class ProductColorAdapterHorizontalZaraDara extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(final ProductColorAdapterHorizontalZaraDara.ViewHolder holder, final int position) {
 
-        String subColorIs = productSizesList.get(position).getSub_color();
-        if (subColorIs != null) {
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            String subColorIs = productSizesList.get(position).getSub_color_arabic();
+            if (subColorIs != null) {
 
-            holder.sizeText.setText(productSizesList.get(position).getSub_color());
+                holder.sizeText.setText(productSizesList.get(position).getSub_color_arabic());
 
-        } else {
-
-            String colorIs = productSizesList.get(position).getColor();
-            if (colorIs != null) {
-                holder.sizeText.setText(colorIs);
             } else {
-                holder.sizeText.setText("Default");
+
+                String colorIs = productSizesList.get(position).getColor_arabic();
+                if (colorIs != null) {
+                    holder.sizeText.setText(colorIs);
+                } else {
+                    holder.sizeText.setText("Default");
+                }
+
+            }
+
+        }
+        else
+        {
+            String subColorIs = productSizesList.get(position).getSub_color();
+            if (subColorIs != null) {
+
+                holder.sizeText.setText(productSizesList.get(position).getSub_color());
+
+            } else {
+
+                String colorIs = productSizesList.get(position).getColor();
+                if (colorIs != null) {
+                    holder.sizeText.setText(colorIs);
+                } else {
+                    holder.sizeText.setText("Default");
+                }
+
             }
 
         }

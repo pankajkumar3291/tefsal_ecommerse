@@ -20,7 +20,10 @@ public class DaraAbayaDetailRecord {
 
     private String product_name;
 
+    private String product_name_arabic;
+
     private String product_desc;
+    private String product_desc_arabic;
 
     private String tefsal_product_id;
 
@@ -30,7 +33,33 @@ public class DaraAbayaDetailRecord {
 
     private String store_name;
 
+    public String getProduct_name_arabic() {
+        return product_name_arabic;
+    }
+
+    public void setProduct_name_arabic(String product_name_arabic) {
+        this.product_name_arabic = product_name_arabic;
+    }
+
+    public String getProduct_desc_arabic() {
+        return product_desc_arabic;
+    }
+
+    public void setProduct_desc_arabic(String product_desc_arabic) {
+        this.product_desc_arabic = product_desc_arabic;
+    }
+
     private String brand_name;
+
+    public String getBrand_name_arabic() {
+        return brand_name_arabic;
+    }
+
+    public void setBrand_name_arabic(String brand_name_arabic) {
+        this.brand_name_arabic = brand_name_arabic;
+    }
+
+    private String brand_name_arabic;
 
     private List<Colors> colors;
     public List<Colors> getColors ()

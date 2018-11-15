@@ -145,7 +145,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
     public static List<ProductMeasurement> productMeasurementList;
 
     private static Tracker mTracker;
-    private static final String TAG = "DaraAbayaProductDetailsActivity";
+    private static final String TAG = "DaraAbayaProductDetails";
 
     ProductSizeAdapterHorizontalZaraDara productSizeAdapterHorizontalZaraDara;
     ProductColorAdapterHorizontalZaraDara productColorAdapterHorizontalZaraDara;
@@ -272,6 +272,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         //Bind Text Views
 
         if (productRecord != null) {
+
             text_descp.setText(productRecord.getProduct_desc());
             txt_title.setText(productRecord.getProduct_name());
             subtxt_title.setText(productRecord.getBrand_name());
@@ -400,7 +401,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         //Size Guide Html
         sizeGuideResponseHtml = daraAbayaDetailRecord.getMeasurements();
 
-        text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
 
         productColorAdapterHorizontalZaraDara = new ProductColorAdapterHorizontalZaraDara(daraAbayaDetailRecord.getColors(), DaraAbayaProductDetailsActivity.this);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(DaraAbayaProductDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -447,7 +447,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         sizeRecyclerView.setAdapter(productSizeAdapterHorizontalZaraDara);
 
 
-        text_price.setText(String.format(new Locale("en"), "%.3f", daraAbayaDetailRecord.getColors().get(0).getSizes().get(0).getPrice()));
+        text_price.setText(String.format(new Locale("en"), "%.3f", Float.parseFloat(daraAbayaDetailRecord.getColors().get(0).getSizes().get(0).getPrice())));
 
 
     }
@@ -477,9 +477,16 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                                     if (daraAbayaDetailRecord != null) {
                                         initViewsPostCall();
 
-                                        text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
-                                        txt_title.setText(daraAbayaDetailRecord.getProduct_name());
-                                        subtxt_title.setText(daraAbayaDetailRecord.getBrand_name());
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            text_descp.setText(daraAbayaDetailRecord.getProduct_desc_arabic());
+                                            txt_title.setText(daraAbayaDetailRecord.getProduct_name_arabic());
+                                            subtxt_title.setText(daraAbayaDetailRecord.getBrand_name_arabic());
+                                        } else {
+                                            text_descp.setText(daraAbayaDetailRecord.getProduct_desc());
+                                            txt_title.setText(daraAbayaDetailRecord.getProduct_name());
+                                            subtxt_title.setText(daraAbayaDetailRecord.getBrand_name());
+                                        }
+
 
                                     }
 

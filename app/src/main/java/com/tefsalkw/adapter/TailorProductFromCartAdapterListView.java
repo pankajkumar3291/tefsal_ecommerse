@@ -11,12 +11,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.fragment.TailorTextileChooseFragment;
 import com.tefsalkw.models.TailoringRecord;
-import com.tefsalkw.utils.CircleTransform;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 
@@ -28,12 +27,12 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
     private ArrayList<TailoringRecord> record;
     Activity activity;
     LayoutInflater inflater;
-
+    SessionManager session;
 
     public TailorProductFromCartAdapterListView(Activity activity, ArrayList<TailoringRecord> record) {
         this.activity = activity;
         this.record = record;
-
+        session = new SessionManager(activity);
         inflater = LayoutInflater.from(this.activity);
     }
 
@@ -63,17 +62,18 @@ public class TailorProductFromCartAdapterListView extends BaseAdapter {
         final CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.check_box);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-        txt_product_name.setText(record.get(position).getDishdashaProductName());
 
-
+        if (session.getKeyLang().equals("Arabic")) {
+            txt_product_name.setText(record.get(position).getDishdashaProductNameArabic());
+        } else {
+            txt_product_name.setText(record.get(position).getDishdashaProductName());
+        }
         RequestOptions options = new RequestOptions()
                 .priority(Priority.HIGH)
                 .placeholder(R.drawable.no_image_placeholder_grid)
                 .error(R.drawable.no_image_placeholder_grid);
 
         GlideApp.with(activity).load(record.get(position).getImg()).apply(options).into(imageView);
-
-
 
 
         if (record.get(position).getChecked()) {

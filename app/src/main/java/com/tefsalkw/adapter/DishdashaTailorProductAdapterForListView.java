@@ -15,6 +15,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.fragment.FragmentTailorProducts;
 import com.tefsalkw.models.GetAssignedItemsRecord;
 import com.tefsalkw.models.SublistCartItems;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,12 +40,14 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
     DishdashaTailorProductAdapterForListView dishdashaTailorProductAdapterForListView;
 
     int selectedPosition = -1;
+    SessionManager session;
 
     public DishdashaTailorProductAdapterForListView(FragmentTailorProducts activity, ArrayList<GetAssignedItemsRecord> assignedItemsRecordArrayList) {
         this.activity = activity;
         this.assignedItemsRecordArrayList = assignedItemsRecordArrayList;
         inflater = LayoutInflater.from(this.activity.getActivity());
         dishdashaTailorProductAdapterForListView = this;
+        session = new SessionManager(activity.getContext());
     }
 
     @Override
@@ -91,8 +94,15 @@ public class DishdashaTailorProductAdapterForListView extends BaseAdapter {
 
 
         product_price.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_price());
-        product_name.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
-       // product_desc.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
+
+
+        if (session.getKeyLang().equals("Arabic")) {
+            product_name.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name_arabic());
+        } else {
+            product_name.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
+        }
+
+        // product_desc.setText(assignedItemsRecordArrayList.get(position).getDishdasha_tailor_product_name());
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

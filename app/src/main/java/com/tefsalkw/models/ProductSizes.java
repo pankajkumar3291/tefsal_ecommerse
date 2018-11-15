@@ -14,6 +14,15 @@ public class ProductSizes implements Serializable
     private String quantity;
 
     private String size;
+    private String size_arabic;
+
+    public String getSize_arabic() {
+        return size_arabic;
+    }
+
+    public void setSize_arabic(String size_arabic) {
+        this.size_arabic = size_arabic;
+    }
 
     private List<Colors> colors;
 

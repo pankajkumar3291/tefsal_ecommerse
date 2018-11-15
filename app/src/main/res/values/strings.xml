@@ -615,4 +615,6 @@
     <string name="visa_mastercard">VISA / MASTERCARD</string>
     <string name="expected_delivery">Expected Delivery:</string>
     <string name="style_used">Style Used:</string>
+    <string name="textiles">Textiles</string>
+    <string name="add_one_or_more_tailor_product">Please add one or more tailor products.</string>
 </resources>

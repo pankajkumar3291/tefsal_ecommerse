@@ -103,9 +103,25 @@ public class TailoringRecord implements Serializable
     @SerializedName("item_id")
     @Expose
     private String itemId;
+
     @SerializedName("dishdasha_product_name")
     @Expose
     private String dishdashaProductName;
+
+
+
+    public String getDishdashaProductNameArabic() {
+        return dishdashaProductNameArabic;
+    }
+
+    public void setDishdashaProductNameArabic(String dishdashaProductNameArabic) {
+        this.dishdashaProductNameArabic = dishdashaProductNameArabic;
+    }
+
+    @SerializedName("dishdasha_product_name_arabic")
+    @Expose
+    private String dishdashaProductNameArabic;
+
     @SerializedName("item_quantity")
     @Expose
     private String itemQuantity;

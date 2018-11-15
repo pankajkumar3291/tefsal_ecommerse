@@ -41,9 +41,28 @@ public class GetCartRecord implements Serializable {
 
     private String store_name;
 
+    public String getStore_name_arabic() {
+        return store_name_arabic;
+    }
+
+    public void setStore_name_arabic(String store_name_arabic) {
+        this.store_name_arabic = store_name_arabic;
+    }
+
+    private String store_name_arabic;
     private String item_type;
 
     private String product_name;
+
+    public String getProduct_name_arabic() {
+        return product_name_arabic;
+    }
+
+    public void setProduct_name_arabic(String product_name_arabic) {
+        this.product_name_arabic = product_name_arabic;
+    }
+
+    private String product_name_arabic;
 
     private String image;
 

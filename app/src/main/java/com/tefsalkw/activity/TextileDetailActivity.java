@@ -312,7 +312,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 TefalApp.getInstance().setColorPosition(0);
                 colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
-                TefalApp.getInstance().setStoreName(textileProductModel.getStore_name());
+
+                if (session.getKeyLang().equals("Arabic")) {
+                    TefalApp.getInstance().setStoreName(textileProductModel.getStore_name_arabic());
+                } else {
+                    TefalApp.getInstance().setStoreName(textileProductModel.getStore_name());
+                }
+
             }
 
 
@@ -333,8 +339,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             StoreID = getIntent().getStringExtra("storeID");
             position = getIntent().getIntExtra("pos", 0);
 
-
-            toolbar_title.setText(textileProductModel.getDishdasha_product_name());
+            if (session.getKeyLang().equals("Arabic")) {
+                toolbar_title.setText(textileProductModel.getDishdasha_product_name_arabic());
+            } else {
+                toolbar_title.setText(textileProductModel.getDishdasha_product_name());
+            }
 
 
             View root = tabLayout.getChildAt(0);
@@ -723,17 +732,27 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
-            feelString = selectedColor.getFeel();
-            feelString = feelString != null ? feelString : "";
-            materialString = selectedColor.getMaterial();
-            materialString = materialString != null ? materialString : "";
-            // Log.e("feelString", feelString);
-            //Log.e("materialString", materialString);
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                feelString = selectedColor.getFeel_arabic();
+                feelString = feelString != null ? feelString : "";
+                materialString = selectedColor.getMaterial_arabic();
+                materialString = materialString != null ? materialString : "";
+                subText.setText(selectedColor.getPattern_name_arabic() != null ? selectedColor.getPattern_name_arabic() : "");
+            }
+            else
+            {
+                feelString = selectedColor.getFeel();
+                feelString = feelString != null ? feelString : "";
+                materialString = selectedColor.getMaterial();
+                materialString = materialString != null ? materialString : "";
+                subText.setText(selectedColor.getPattern_name() != null ? selectedColor.getPattern_name() : "");
+            }
 
-            // Log.e("patternName","patternName"+selectedColor.getPattern_name());
 
             subText.setVisibility(View.VISIBLE);
-            subText.setText(selectedColor.getPattern_name() != null ? selectedColor.getPattern_name() : "");
+
+
 
 
             //Creating our pager adapter

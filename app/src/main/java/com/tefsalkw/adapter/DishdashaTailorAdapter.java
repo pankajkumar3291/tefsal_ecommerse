@@ -137,12 +137,9 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
             } else {
                 holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
             }
-            if(session.getKeyLang().equals("Arabic"))
-            {
+            if (session.getKeyLang().equals("Arabic")) {
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
-            }
-            else
-            {
+            } else {
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
             }
 
@@ -211,7 +208,11 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
                         TefalApp.getInstance().setFlage("1");
                         TefalApp.getInstance().setStoreId(storeModels.get(holder.getAdapterPosition()).getStore_id());
-                        TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+                        if (session.getKeyLang().equals("Arabic")) {
+                            TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
+                        } else {
+                            TefalApp.getInstance().setStoreName(storeModels.get(holder.getAdapterPosition()).getStore_name());
+                        }
                         TefalApp.getInstance().setWhereFrom("tailor");
                         TefalApp.getInstance().setTailor_id(storeModels.get(holder.getAdapterPosition()).getStore_id());
 

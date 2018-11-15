@@ -18,6 +18,7 @@ import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.DaraAbayaProductDetailsActivity;
 import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.utils.SessionManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,12 +35,14 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     private Context context;
     String storeId;
     String flag;
+    SessionManager session;
 
     public DishdashaTextileOtherProductAdapter(Activity activity, List<ProductRecord> productRecords, String storeId, String flag) {
         this.activity = activity;
         this.productRecords = productRecords;
         this.storeId = storeId;
         this.flag = flag;
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -71,7 +74,6 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
         TextView text_max_delivery_days;
 
 
-
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -80,17 +82,29 @@ public class DishdashaTextileOtherProductAdapter extends RecyclerView.Adapter<Di
     }
 
     @Override
-    public void onBindViewHolder( ViewHolder holder,  int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
 
 
-        String brand_name = productRecords.get(position).getBrand_name();
-        String product_name = productRecords.get(position).getProduct_name();
+        if (session.getKeyLang().equals("Arabic")) {
+            String brand_name = productRecords.get(position).getBrand_name_arabic();
+            holder.txt_brand_name.setText(brand_name);
+
+            String product_name = productRecords.get(position).getProduct_name_arabic();
+            holder.txt_product_name.setText(product_name);
+        } else {
+            String brand_name = productRecords.get(position).getBrand_name();
+            holder.txt_brand_name.setText(brand_name);
+
+            String product_name = productRecords.get(position).getProduct_name();
+            holder.txt_product_name.setText(product_name);
+        }
+
+
         String max_delivery_days = productRecords.get(position).getMax_delivery_days();
         String default_img = productRecords.get(position).getDefault_product_image();
         String default_price = productRecords.get(position).getDefault_price();
 
-        holder.txt_brand_name.setText(brand_name);
-        holder.txt_product_name.setText(product_name);
+
         holder.text_max_delivery_days.setText(max_delivery_days);
         holder.txt_default_price.setText(default_price);
 

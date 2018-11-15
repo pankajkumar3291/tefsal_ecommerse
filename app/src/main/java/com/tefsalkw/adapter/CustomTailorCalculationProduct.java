@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 import com.tefsalkw.models.TailoringRecord;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 
@@ -22,11 +23,12 @@ public class CustomTailorCalculationProduct extends BaseAdapter {
     ArrayList<TailoringRecord> tailoringRecordArrayListOfCheckedTrue;
     private Activity activity;
     private LayoutInflater inflater;
-
+    SessionManager session;
     public CustomTailorCalculationProduct(Activity activity, ArrayList<TailoringRecord> tailoringRecordArrayListOfCheckedTrue) {
         this.activity = activity;
         this.tailoringRecordArrayListOfCheckedTrue = tailoringRecordArrayListOfCheckedTrue;
         inflater = LayoutInflater.from(this.activity);
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -54,7 +56,18 @@ public class CustomTailorCalculationProduct extends BaseAdapter {
         TextView tailor_product_details = (TextView) convertView.findViewById(R.id.tailor_product_details);
         TextView tailor_product_remaining_details = (TextView) convertView.findViewById(R.id.tailor_product_remaining_details);
         //tailor_product_details.setText(getCartRecordListOfCheckedTrue.get(position).getProduct_name()+"-"+getCartRecordListOfCheckedTrue.get(position).getItem_quantity()+"m");
-        tailor_product_details.setText(tailoringRecordArrayListOfCheckedTrue.get(position).getDishdashaProductName() + "-" + tailoringRecordArrayListOfCheckedTrue.get(position).getItemQuantity() + activity.getString(R.string.m_small));
+
+
+
+
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            tailor_product_details.setText(tailoringRecordArrayListOfCheckedTrue.get(position).getDishdashaProductNameArabic() + "-" + tailoringRecordArrayListOfCheckedTrue.get(position).getItemQuantity() + activity.getString(R.string.m_small));
+        }
+        else
+        {
+            tailor_product_details.setText(tailoringRecordArrayListOfCheckedTrue.get(position).getDishdashaProductName() + "-" + tailoringRecordArrayListOfCheckedTrue.get(position).getItemQuantity() + activity.getString(R.string.m_small));
+        }
 
         tailor_product_remaining_details.setText((int) tailoringRecordArrayListOfCheckedTrue.get(position).getRemaining_dishdasha() + "/" + (int) tailoringRecordArrayListOfCheckedTrue.get(position).getTotal_dishdasha() + " " + activity.getString(R.string.dishdasha_remaining));
 

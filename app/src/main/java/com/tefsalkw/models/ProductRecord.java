@@ -31,6 +31,7 @@ public class ProductRecord implements Serializable
     private List<Colors> colors;
 
     private String product_name;
+    private String product_name_arabic;
 
     private String product_desc;
 
@@ -62,7 +63,33 @@ public class ProductRecord implements Serializable
 
     private String store_name;
 
+    public String getProduct_name_arabic() {
+        return product_name_arabic;
+    }
+
+    public void setProduct_name_arabic(String product_name_arabic) {
+        this.product_name_arabic = product_name_arabic;
+    }
+
+    public String getStore_name_arabic() {
+        return store_name_arabic;
+    }
+
+    public void setStore_name_arabic(String store_name_arabic) {
+        this.store_name_arabic = store_name_arabic;
+    }
+
+    public String getBrand_name_arabic() {
+        return brand_name_arabic;
+    }
+
+    public void setBrand_name_arabic(String brand_name_arabic) {
+        this.brand_name_arabic = brand_name_arabic;
+    }
+
+    private String store_name_arabic;
     private String brand_name;
+    private String brand_name_arabic;
 
     private String min_delivery_days;
     private String max_delivery_days;

@@ -86,6 +86,16 @@ public class TextileProductModel implements Serializable {
 
     private String store_id;
     private String store_name;
+
+    public String getStore_name_arabic() {
+        return store_name_arabic;
+    }
+
+    public void setStore_name_arabic(String store_name_arabic) {
+        this.store_name_arabic = store_name_arabic;
+    }
+
+    private String store_name_arabic;
     private String default_image;
 
     public String getPrice_pr_miter() {
@@ -238,7 +248,15 @@ public class TextileProductModel implements Serializable {
 
     private String dishdasha_product_name;
 
+    public String getDishdasha_product_name_arabic() {
+        return dishdasha_product_name_arabic;
+    }
 
+    public void setDishdasha_product_name_arabic(String dishdasha_product_name_arabic) {
+        this.dishdasha_product_name_arabic = dishdasha_product_name_arabic;
+    }
+
+    private String dishdasha_product_name_arabic;
     public String getFeel() {
         return feel;
     }

@@ -12,6 +12,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.AccSizes;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
 
     private List<AccSizes> productSizesList;
     private Activity activity;
-
+    SessionManager session;
 
     public ProductSizeAdapterHorizontalAccessories(List<AccSizes> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
-
+        session = new SessionManager(activity);
 
     }
 
@@ -52,11 +53,14 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
 
 
         if (model != null && model.getSize() != null) {
-            holder.sizeText.setText(model.getSize());
+            if (session.getKeyLang().equals("Arabic")) {
+                holder.sizeText.setText(model.getSize_arabic());
+            } else {
+                holder.sizeText.setText(model.getSize());
+            }
         } else {
             holder.sizeText.setText("Default");
         }
-
 
 
         if (position == TefalApp.getInstance().getCurrentSizePositionIs()) {
@@ -67,7 +71,6 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
 
             AccessoryProductDetailsActivity accessoryProductDetailsActivity = (AccessoryProductDetailsActivity) activity;
             accessoryProductDetailsActivity.showSelectedSizeData();
-
 
 
         } else {

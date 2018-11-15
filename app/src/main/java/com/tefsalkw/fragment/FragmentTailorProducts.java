@@ -151,7 +151,7 @@ public class FragmentTailorProducts extends BaseFragment {
         } else {
 
             isOwnTextile = true;
-            ownTextileText.setText(ownTextileString + " - " + TefalApp.getInstance().getNumberDishdashaUserHave() + "m");
+            ownTextileText.setText(ownTextileString + " - " + TefalApp.getInstance().getNumberDishdashaUserHave() + " " + getString(R.string.m_small));
         }
 
 
@@ -162,7 +162,7 @@ public class FragmentTailorProducts extends BaseFragment {
                 if (dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap != null && dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.size() > 0) {
                     WebCallServiceAddCartNew();
                 } else {
-                    Toast.makeText(getActivity(), "Please add one or more tailor products.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), R.string.add_one_or_more_tailor_product, Toast.LENGTH_LONG).show();
                 }
 
 

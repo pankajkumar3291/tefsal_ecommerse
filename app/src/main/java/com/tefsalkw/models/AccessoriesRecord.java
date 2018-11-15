@@ -25,9 +25,29 @@ public class AccessoriesRecord implements Serializable {
     @SerializedName("product_name")
     @Expose
     private String productName;
+
+    @SerializedName("product_name_arabic")
+    @Expose
+    private String productNameArabic;
+
+
     @SerializedName("product_desc")
     @Expose
     private String productDesc;
+
+    public String getProductDescArabic() {
+        return productDescArabic;
+    }
+
+    public void setProductDescArabic(String productDescArabic) {
+        this.productDescArabic = productDescArabic;
+    }
+
+    @SerializedName("product_desc_arabic")
+    @Expose
+    private String productDescArabic;
+
+
     @SerializedName("brand_name")
     @Expose
     private String brandName;
@@ -38,6 +58,25 @@ public class AccessoriesRecord implements Serializable {
     @Expose
     private String storeName;
 
+    public String getProductNameArabic() {
+        return productNameArabic;
+    }
+
+    public void setProductNameArabic(String productNameArabic) {
+        this.productNameArabic = productNameArabic;
+    }
+
+    public String getStoreNameArabic() {
+        return storeNameArabic;
+    }
+
+    public void setStoreNameArabic(String storeNameArabic) {
+        this.storeNameArabic = storeNameArabic;
+    }
+
+    @SerializedName("store_name_arabic")
+    @Expose
+    private String storeNameArabic;
 
     @SerializedName("tefsal_product_id")
     @Expose

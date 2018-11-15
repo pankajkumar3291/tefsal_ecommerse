@@ -164,8 +164,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_textile), position2 + 1));
-                holder.txtShopName.setText(storeModels.get(position2).getStore_name());
-                holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+
+                if(session.getKeyLang().equals("Arabic"))
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name_arabic());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name_arabic());
+                }
+                else
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                }
+
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " " + activity.getString(R.string.kwd_per_meter));
                 // holder.sub_text_textile.setVisibility(GONE);
                 // holder.sub_text_textile.setText();
@@ -197,8 +207,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 System.out.println("Image ===" + storeModels.get(position2).getImage());
 
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_db), position2 + 1));
-                holder.txtShopName.setText(storeModels.get(position2).getStore_name());
-                holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                if(session.getKeyLang().equals("Arabic"))
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name_arabic());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name_arabic());
+                }
+                else
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                }
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " " + activity.getString(R.string.kwd_per_qty));
                 // holder.sub_text_textile.setVisibility(GONE);
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
@@ -224,8 +242,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 System.out.println("Image ===" + storeModels.get(position2).getStore_image());
 
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_acc), position2 + 1));
-                holder.txtShopName.setText(storeModels.get(position2).getStore_name());
-                holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                if(session.getKeyLang().equals("Arabic"))
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name_arabic());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name_arabic());
+                }
+                else
+                {
+                    holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                    holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                }
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + activity.getString(R.string.qty));
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 //  holder.sub_text_textile.setVisibility(GONE);
@@ -265,7 +291,16 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 } else {
                     holder.text_price.setVisibility(View.VISIBLE);
                     holder.txtShopName.setVisibility(View.VISIBLE);
-                    holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                    if(session.getKeyLang().equals("Arabic"))
+                    {
+                        holder.txtShopName.setText(storeModels.get(position2).getStore_name_arabic());
+                       // holder.text_textile.setText(storeModels.get(position2).getProduct_name_arabic());
+                    }
+                    else
+                    {
+                        holder.txtShopName.setText(storeModels.get(position2).getStore_name());
+                        //holder.text_textile.setText(storeModels.get(position2).getProduct_name());
+                    }
                 }
 
                 if (storeModels.get(position2).getDiscount() > 0) {

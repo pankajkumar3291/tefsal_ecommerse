@@ -12,6 +12,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.AccessoryProductDetailsActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.AccColor;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
 
     private List<AccColor> accColorList;
     private Activity activity;
-
+    SessionManager session;
 
     public ProductColorAdapterHorizontalAccesories(List<AccColor> accColorList, Activity activity) {
         this.activity = activity;
         this.accColorList = accColorList;
-
+        session = new SessionManager(activity);
 
     }
 
@@ -48,22 +49,44 @@ public class ProductColorAdapterHorizontalAccesories extends RecyclerView.Adapte
     public void onBindViewHolder(final ProductColorAdapterHorizontalAccesories.ViewHolder holder, final int position) {
 
 
-        String subColorIs = accColorList.get(position).getSubColor();
+        if (session.getKeyLang().equals("Arabic")) {
+            String subColorIs = accColorList.get(position).getSubColor();
 
-        if (subColorIs != null) {
+            if (subColorIs != null) {
 
-            holder.sizeText.setText(accColorList.get(position).getSubColor());
+                holder.sizeText.setText(accColorList.get(position).getSubColorArabic());
 
-        } else {
-
-            String colorIs = accColorList.get(position).getColor();
-            if (colorIs != null) {
-                holder.sizeText.setText(colorIs);
             } else {
-                holder.sizeText.setText("Default");
-            }
 
+                String colorIs = accColorList.get(position).getColor_arabic();
+                if (colorIs != null) {
+                    holder.sizeText.setText(colorIs);
+                } else {
+                    holder.sizeText.setText("Default");
+                }
+
+            }
+        } else {
+            String subColorIs = accColorList.get(position).getSubColor();
+
+            if (subColorIs != null) {
+
+                holder.sizeText.setText(accColorList.get(position).getSubColor());
+
+            } else {
+
+                String colorIs = accColorList.get(position).getColor();
+                if (colorIs != null) {
+                    holder.sizeText.setText(colorIs);
+                } else {
+                    holder.sizeText.setText("Default");
+                }
+
+            }
         }
+
+
+
 
 
         if (position == TefalApp.getInstance().getAccColorPosition()) {
