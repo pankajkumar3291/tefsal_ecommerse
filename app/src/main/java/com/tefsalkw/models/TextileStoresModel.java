@@ -28,9 +28,16 @@ public class TextileStoresModel {
     private String bio;
 
     private String store_name;
-
+    private String store_name_arabic;
     private String store_email;
 
+    public String getStore_name_arabic() {
+        return store_name_arabic;
+    }
+
+    public void setStore_name_arabic(String store_name_arabic) {
+        this.store_name_arabic = store_name_arabic;
+    }
 
     private String min_delivery_days;
     private String max_delivery_days;

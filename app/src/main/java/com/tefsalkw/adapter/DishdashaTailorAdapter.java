@@ -137,7 +137,15 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
             } else {
                 holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
             }
-            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
+            }
+            else
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            }
+
             //holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
             holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());

@@ -20,6 +20,7 @@ import com.tefsalkw.activity.AccessoriesStoreListingActivity;
 import com.tefsalkw.activity.DaraAbayaStoresActivity;
 import com.tefsalkw.activity.ProductListOtherActivity;
 import com.tefsalkw.models.D_StoreRecord;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +40,13 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
     private List<D_StoreRecord> storeModels = new ArrayList<>();
 
     String flag;
-
+    SessionManager session;
 
     public OtherStoresAdapter(Activity activity, List<D_StoreRecord> storeModels, String flag) {
         this.activity = activity;
         this.storeModels = storeModels;
         this.flag = flag;
+        session = new SessionManager(activity);
     }
 
     @Override
@@ -110,7 +112,14 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
             GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getStore_image()).apply(options).into(holder.img);
 
 
-            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
+            }
+            else
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            }
           //  holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
             holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());

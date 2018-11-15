@@ -30,12 +30,26 @@ public class TailorStoresModel {
 
     private String store_name;
 
+    public String getStore_name_arabic() {
+        return store_name_arabic;
+    }
+
+    public void setStore_name_arabic(String store_name_arabic) {
+        this.store_name_arabic = store_name_arabic;
+    }
+
+    private String store_name_arabic;
+
+
     private String store_email;
 
     private String min_delivery_days;
     private String max_delivery_days;
 
     private String store_discount;
+
+
+
 
     public String getIs_open() {
         return is_open;

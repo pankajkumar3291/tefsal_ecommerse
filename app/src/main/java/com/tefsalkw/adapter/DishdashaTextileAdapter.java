@@ -114,7 +114,15 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
             GlideApp.with(activity).load(storeModels.get(holder.getAdapterPosition()).getStore_image()).apply(options).into(holder.img);
 
 
-            holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            if(session.getKeyLang().equals("Arabic"))
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
+            }
+            else
+            {
+                holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
+            }
+
             //holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
             holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
