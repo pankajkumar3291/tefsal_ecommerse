@@ -225,7 +225,11 @@ public class AddressesActivity extends BaseActivity {
                                     JSONArray jsonArray = object.getJSONArray("record");
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
-                                        country_name.add(c.getString("name"));
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            country_name.add(c.getString("name_arabic"));
+                                        } else {
+                                            country_name.add(c.getString("name"));
+                                        }
                                         iso_name.add(c.getString("iso"));
                                     }
 
@@ -338,7 +342,11 @@ public class AddressesActivity extends BaseActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         province_id.add(c.getString("province_id"));
-                                        province_name.add(c.getString("province_name"));
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            province_name.add(c.getString("province_name_arabic"));
+                                        } else {
+                                            province_name.add(c.getString("province_name"));
+                                        }
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
@@ -440,7 +448,11 @@ public class AddressesActivity extends BaseActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         area_id.add(c.getString("area_id"));
-                                        area_name.add(c.getString("area_name"));
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            area_name.add(c.getString("area_name_arabic"));
+                                        } else {
+                                            area_name.add(c.getString("area_name"));
+                                        }
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list

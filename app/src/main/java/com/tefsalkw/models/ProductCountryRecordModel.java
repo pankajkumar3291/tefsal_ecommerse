@@ -11,6 +11,16 @@ public class ProductCountryRecordModel
 
     private String name;
 
+    private String name_arabic;
+
+    public String getName_arabic() {
+        return name_arabic;
+    }
+
+    public void setName_arabic(String name_arabic) {
+        this.name_arabic = name_arabic;
+    }
+
     private String image;
 
     public String getId ()

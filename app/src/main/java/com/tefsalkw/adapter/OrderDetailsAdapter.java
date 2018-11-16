@@ -61,9 +61,15 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             Order_items orderRecordCustom = orderItems.get(position);
 
-            String orderStatus = orderRecordCustom.getStatus() != null ? orderRecordCustom.getStatus() : "Pending";
+            String orderStatus = orderRecordCustom.getStatus() != null ? orderRecordCustom.getStatus() : getArabicString("pending");
 
-            holder.txtStoreName.setText(orderRecordCustom.getStore_name());
+
+            if (sessionManager.getKeyLang().equals("Arabic")) {
+                holder.txtStoreName.setText(orderRecordCustom.getStore_name_arabic());
+            } else {
+                holder.txtStoreName.setText(orderRecordCustom.getStore_name());
+            }
+
             holder.txtOrderItemSerial.setText("#" + (position + 1));
 
 
@@ -87,7 +93,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTA")) {
 
                 holder.txtTotalAmount.setText(orderRecordCustom.getGrand_total() + " " + activity.getString(R.string.kwd));
-                holder.txtOrderItemType.setText("TAILOR & TEXTILE");
+                holder.txtOrderItemType.setText(R.string.tailor_textile);
 
                 if (sessionManager.getIsGuestId()) {
 
@@ -99,11 +105,11 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
                 }
 
-                holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x Dishdasha");
+                holder.txtItemCount.setText(orderRecordCustom.getTailor_total_qty() + "x " + activity.getString(R.string.btn_dishdasha));
 
                 //Textile section
                 holder.llSectionOne.setVisibility(View.VISIBLE);
-                holder.lblFirst.setText("Textiles:");
+                holder.lblFirst.setText(activity.getString(R.string.textile));
 
 
                 List<Order_items> orderItemsList = new ArrayList<>();
@@ -126,8 +132,8 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             if (orderRecordCustom.getItem_type().equalsIgnoreCase("DTE")) {
 
                 holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
-                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x Dishdasha");
-                holder.txtOrderItemType.setText("TEXTILE");
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + "x " + activity.getString(R.string.btn_dishdasha));
+                holder.txtOrderItemType.setText(activity.getString(R.string.btn_textiles));
                 if (sessionManager.getIsGuestId()) {
 
                     holder.txtStyleUsed.setVisibility(View.GONE);
@@ -141,7 +147,7 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.lblSecond.setText("");
 
-                holder.lblFirst.setText("Textiles:");
+                holder.lblFirst.setText(activity.getString(R.string.btn_textiles));
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
                 sublistAdapter = new SublistOrderAdapter(activity, orderItemsList);
@@ -153,15 +159,15 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("DB")) {
 
                 holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
-                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
-                holder.lblFirst.setText("Item Description");
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " " + activity.getString(R.string.items));
+                holder.lblFirst.setText(activity.getString(R.string.product_description));
                 holder.lblSecond.setText("");
 
 
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);
                 holder.txtStyleUsed.setVisibility(View.GONE);
-                holder.txtOrderItemType.setText("DARA / ABAYA");
+                holder.txtOrderItemType.setText(activity.getString(R.string.btn_daraa) + " / " + activity.getString(R.string.btn_abaya));
 
                 List<Order_items> orderItemsList = new ArrayList<>();
                 orderItemsList.add(orderRecordCustom);
@@ -173,8 +179,8 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
             if (orderItems.get(position).getItem_type().equalsIgnoreCase("A")) {
                 holder.txtTotalAmount.setText(orderRecordCustom.getTotal_amount() + " " + activity.getString(R.string.kwd));
-                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " Items");
-                holder.lblFirst.setText("Item Description:");
+                holder.txtItemCount.setText(orderRecordCustom.getItem_quantity() + " " + activity.getString(R.string.items));
+                holder.lblFirst.setText(R.string.item_description);
                 holder.lblSecond.setText("");
                 holder.llSectionOne.setVisibility(View.VISIBLE);
                 holder.llSectionTwo.setVisibility(View.GONE);

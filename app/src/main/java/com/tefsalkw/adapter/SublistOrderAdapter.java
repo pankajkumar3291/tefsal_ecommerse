@@ -2,7 +2,6 @@ package com.tefsalkw.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import com.tefsalkw.R;
 import com.tefsalkw.models.Order_items;
-import com.tefsalkw.models.Tailor_services;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +21,12 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
 
     private Context activity;
     private List<Order_items> orderItemsList = new ArrayList<>();
+    SessionManager session;
 
-    public SublistOrderAdapter(Context activity,  List<Order_items> orderItemsList) {
+    public SublistOrderAdapter(Context activity, List<Order_items> orderItemsList) {
         this.activity = activity;
         this.orderItemsList = orderItemsList;
+        session = new SessionManager(activity);
     }
 
 
@@ -40,44 +41,49 @@ public class SublistOrderAdapter extends RecyclerView.Adapter<SublistOrderAdapte
     public void onBindViewHolder(SublistOrderAdapter.ViewHolder holder, int position) {
 
 
+        Order_items orderItems = orderItemsList.get(position);
 
-            Order_items orderItems = orderItemsList.get(position);
+        String prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
 
-            if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
+        if (session.getKeyLang().equals("Arabic")) {
+            prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
+        } else {
+            prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
+        }
 
-                holder.txtDesc.setText(orderItems.getProduct_name());
-                holder.txtQty.setText(orderItems.getItem_quantity() + "m");
-            }
+        if (orderItems.getItem_type().equalsIgnoreCase("DTA")) {
 
-
-            if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
-
-                holder.txtDesc.setText(orderItems.getProduct_name());
-                holder.txtQty.setText(orderItems.getItem_quantity() + "m");
-            }
-
-            if (orderItems.getItem_type().equalsIgnoreCase("A")) {
-
-                String prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
-                String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
-                String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
-
-                holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
-                holder.txtQty.setText(orderItems.getItem_quantity());
-            }
-
-            if (orderItems.getItem_type().equalsIgnoreCase("DB")) {
-                String prodName = orderItems.getProduct_name() != null ? orderItems.getProduct_name() : "";
-                String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
-                String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
-
-                holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
-                holder.txtQty.setText(orderItems.getItem_quantity());
-            }
-
-            holder.txtPrice.setText(orderItems.getItem_price() + " KWD");
+            holder.txtDesc.setText(prodName);
+            holder.txtQty.setText(orderItems.getItem_quantity() + "" + activity.getString(R.string.m_small));
+        }
 
 
+        if (orderItems.getItem_type().equalsIgnoreCase("DTE")) {
+
+            holder.txtDesc.setText(prodName);
+            holder.txtQty.setText(orderItems.getItem_quantity() + "" + activity.getString(R.string.m_small));
+        }
+
+        if (orderItems.getItem_type().equalsIgnoreCase("A")) {
+
+
+            String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
+            String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
+
+            holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
+            holder.txtQty.setText(orderItems.getItem_quantity());
+        }
+
+        if (orderItems.getItem_type().equalsIgnoreCase("DB")) {
+
+            String sizeName = orderItems.getSize() != null ? orderItems.getSize() : "";
+            String colorName = orderItems.getColor() != null ? orderItems.getColor() : "";
+
+            holder.txtDesc.setText(prodName + " - " + sizeName + " - " + colorName);
+            holder.txtQty.setText(orderItems.getItem_quantity());
+        }
+
+        holder.txtPrice.setText(orderItems.getItem_price() + " " + activity.getString(R.string.kwd));
 
 
     }

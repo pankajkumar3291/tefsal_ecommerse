@@ -20,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:rotationY="@integer/rtl_flip_factor"
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:background="@android:color/transparent"
                 android:text="@string/activity_address_update_btn_Save_text"
                 android:textColor="@color/colorAccent"

@@ -16,6 +16,7 @@ import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ColorRecordFromDishdashaFilteration;
 import com.tefsalkw.models.ColorsRecordModel;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 
@@ -30,11 +31,12 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
 
     private ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList;
     private FragmentTextileProducts activity;
-
+    private SessionManager session;
 
     public FilterColorListAdapter(ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList, FragmentTextileProducts activity) {
         this.activity = activity;
         this.colorsRecordModelArrayList = colorsRecordModelArrayList;
+        session = new SessionManager(activity.getContext());
     }
 
 
@@ -49,7 +51,14 @@ public class FilterColorListAdapter extends RecyclerView.Adapter<FilterColorList
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
-        holder.colorText.setText(colorsRecordModelArrayList.get(position).getName());
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            holder.colorText.setText(colorsRecordModelArrayList.get(position).getName_arabic());
+        }
+        else {
+            holder.colorText.setText(colorsRecordModelArrayList.get(position).getName());
+        }
+
         holder.color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,6 +12,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.fragment.FragmentTextileProducts;
 import com.tefsalkw.models.ProductCountryRecordModel;
+import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
 
@@ -27,11 +28,12 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
 
     private ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList;
     private FragmentTextileProducts activity;
+    private SessionManager session;
 
     public FilterCountryListAdapter(ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList, FragmentTextileProducts activity) {
         this.productCountryRecordModelArrayList = productCountryRecordModelArrayList;
         this.activity = activity;
-
+        session = new SessionManager(activity.getContext());
     }
 
     @Override
@@ -43,7 +45,17 @@ public class FilterCountryListAdapter extends RecyclerView.Adapter<FilterCountry
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // holder.country_image
-        holder.countryName.setText(productCountryRecordModelArrayList.get(position).getName());
+
+
+        if(session.getKeyLang().equals("Arabic"))
+        {
+            holder.countryName.setText(productCountryRecordModelArrayList.get(position).getName_arabic());
+        }
+        else
+        {
+            holder.countryName.setText(productCountryRecordModelArrayList.get(position).getName());
+        }
+
         holder.country_image.setBackgroundResource(0);
 
 

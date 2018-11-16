@@ -617,4 +617,9 @@
     <string name="style_used">Style Used:</string>
     <string name="textiles">Textiles</string>
     <string name="add_one_or_more_tailor_product">Please add one or more tailor products.</string>
+    <string name="textile">Textile:</string>
+    <string name="item_description">Item Description:</string>
+    <string name="items">Items</string>
+    <string name="tailor_textile"><![CDATA[TAILOR & TEXTILE]]></string>
+    <string name="edit_address">EDIT ADDRESS</string>
 </resources>

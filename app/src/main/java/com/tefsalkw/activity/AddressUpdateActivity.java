@@ -135,7 +135,6 @@ public class AddressUpdateActivity extends BaseActivity {
     private static final String TAG = "AddressUpdateActivity";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,10 +149,9 @@ public class AddressUpdateActivity extends BaseActivity {
         mTracker = application.getDefaultTracker();
 
 
-        toolbar_title.setText("EDIT ADDRESS");
+        toolbar_title.setText(R.string.edit_address);
 
         addressRecord = (AddressRecord) getIntent().getExtras().getSerializable("addressRecord");
-
 
 
         System.out.println("OUT PUT getCountry_iso==" + addressRecord.getCountry_iso());
@@ -265,7 +263,12 @@ public class AddressUpdateActivity extends BaseActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         try {
                                             JSONObject c = jsonArray.getJSONObject(i);
-                                            country_name.add(c.getString("name"));
+                                            if (session.getKeyLang().equals("Arabic")) {
+                                                country_name.add(c.getString("name_arabic"));
+                                            } else {
+                                                country_name.add(c.getString("name"));
+                                            }
+
                                             iso_name.add(c.getString("iso"));
                                         } catch (Exception exc) {
 
@@ -275,8 +278,6 @@ public class AddressUpdateActivity extends BaseActivity {
 
                                     //Creating the ArrayAdapter instance having the country list
                                     ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, country_name);
-
-
 
 
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -290,8 +291,7 @@ public class AddressUpdateActivity extends BaseActivity {
                                         }
                                     }
 
-                                    Log.e("countryPosition",""+countryPosition);
-
+                                    Log.e("countryPosition", "" + countryPosition);
 
 
                                     spin_country.setSelection(countryPosition);
@@ -329,7 +329,8 @@ public class AddressUpdateActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }   SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -433,7 +434,14 @@ public class AddressUpdateActivity extends BaseActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         province_id.add(c.getString("province_id"));
-                                        province_name.add(c.getString("province_name"));
+
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            province_name.add(c.getString("province_name_arabic"));
+                                        } else {
+                                            province_name.add(c.getString("province_name"));
+                                        }
+
+
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
@@ -478,7 +486,8 @@ public class AddressUpdateActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }    SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -658,7 +667,14 @@ public class AddressUpdateActivity extends BaseActivity {
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject c = jsonArray.getJSONObject(i);
                                         area_id.add(c.getString("area_id"));
-                                        area_name.add(c.getString("area_name"));
+
+
+                                        if (session.getKeyLang().equals("Arabic")) {
+                                            area_name.add(c.getString("area_name_arabic"));
+                                        } else {
+                                            area_name.add(c.getString("area_name"));
+                                        }
+
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
@@ -700,7 +716,8 @@ public class AddressUpdateActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }   SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
