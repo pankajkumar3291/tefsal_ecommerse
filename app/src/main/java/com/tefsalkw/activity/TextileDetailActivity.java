@@ -323,19 +323,34 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             String minMtr = TefalApp.getInstance().getMin_meters();
-            minMtr = minMtr != null ? minMtr : "3";
+            if (session.getIsGuestId()) {
+                minMtr = minMtr != null ? minMtr : "3";
+                TefalApp.getInstance().setMin_meters("3");
+            } else {
+                minMtr = "3";
+            }
+
 
             min_meter = Float.parseFloat(minMtr);
 
             meter = min_meter;
             meter_value.setText("" + meter);
-            txt_min_meter.setText(TefalApp.getInstance().getStyleName() + " = " + min_meter);
+
+
+            String styleName = TefalApp.getInstance().getStyleName();
 
             if (session.getKeyLang().equals("Arabic")) {
 
-                txt_min_meter.setText(min_meter + " = " + TefalApp.getInstance().getStyleName());
+                styleName = styleName != null ? styleName : "Default";
+                txt_min_meter.setText(min_meter + " = " + styleName);
 
+            } else {
+                styleName = styleName != null ? styleName : "Default";
+
+                txt_min_meter.setText(styleName + " = " + min_meter);
             }
+
+
             StoreID = getIntent().getStringExtra("storeID");
             position = getIntent().getIntExtra("pos", 0);
 
@@ -732,16 +747,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
-            if(session.getKeyLang().equals("Arabic"))
-            {
+            if (session.getKeyLang().equals("Arabic")) {
                 feelString = selectedColor.getFeel_arabic();
                 feelString = feelString != null ? feelString : "";
                 materialString = selectedColor.getMaterial_arabic();
                 materialString = materialString != null ? materialString : "";
                 subText.setText(selectedColor.getPattern_name_arabic() != null ? selectedColor.getPattern_name_arabic() : "");
-            }
-            else
-            {
+            } else {
                 feelString = selectedColor.getFeel();
                 feelString = feelString != null ? feelString : "";
                 materialString = selectedColor.getMaterial();
@@ -751,8 +763,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             subText.setVisibility(View.VISIBLE);
-
-
 
 
             //Creating our pager adapter

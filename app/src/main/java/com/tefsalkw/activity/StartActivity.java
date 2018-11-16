@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.tefsalkw.R;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.SessionManager;
 
 public class StartActivity extends BaseActivity {
@@ -52,6 +53,8 @@ public class StartActivity extends BaseActivity {
                 String androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
                 session.setCustomerId(androidDeviceId);
                 session.setIsGuestUser(true);
+
+                TefalApp.getInstance().setMin_meters("3");
 
                 Intent mainIntent = new Intent(StartActivity.this, MainActivity.class);
                 startActivity(mainIntent);
