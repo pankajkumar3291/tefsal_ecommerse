@@ -23,6 +23,10 @@ public class SessionManager {
     public static final String KEY_CUS_ID = "id";
     public static final String KEY_TOKEN = "token";
 
+    public static final String KEY_STYLE_SIZE = "style_name";
+
+    public static final String KEY_STYLE_NAME = "style_size";
+
     public static final String KEY_STYLE = "style";
 
     public static final String KEY_USER_NAME = "key_user_name";
@@ -214,6 +218,35 @@ public class SessionManager {
         return Tefsal_pref.getString(KEY_TOKEN, "");
 
     }
+
+
+
+    public void setStyleName(String token) {
+
+        editor.putString(KEY_STYLE_NAME, token);
+        editor.commit();
+    }
+
+    public String getStyleName() {
+
+        // Storing type in pref
+        return Tefsal_pref.getString(KEY_STYLE_NAME, "Default");
+
+    }
+
+    public void setStyleSize(String token) {
+
+        editor.putString(KEY_STYLE_SIZE, token);
+        editor.commit();
+    }
+
+    public String getStyleSize() {
+
+        // Storing type in pref
+        return Tefsal_pref.getString(KEY_STYLE_SIZE, "3");
+
+    }
+
 
 
     public void user_logout() {

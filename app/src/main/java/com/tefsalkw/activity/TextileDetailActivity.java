@@ -323,11 +323,18 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
             String minMtr = TefalApp.getInstance().getMin_meters();
+            String styleName = TefalApp.getInstance().getStyleName();
+
             if (session.getIsGuestId()) {
-                minMtr = minMtr != null ? minMtr : "3";
-                TefalApp.getInstance().setMin_meters("3");
-            } else {
+
                 minMtr = "3";
+                styleName = "Default";
+
+            } else {
+
+                minMtr = minMtr != null ? minMtr : "3";
+                styleName = styleName != null ? styleName : "Default";
+
             }
 
 
@@ -337,15 +344,12 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             meter_value.setText("" + meter);
 
 
-            String styleName = TefalApp.getInstance().getStyleName();
-
             if (session.getKeyLang().equals("Arabic")) {
 
-                styleName = styleName != null ? styleName : "Default";
                 txt_min_meter.setText(min_meter + " = " + styleName);
 
             } else {
-                styleName = styleName != null ? styleName : "Default";
+
 
                 txt_min_meter.setText(styleName + " = " + min_meter);
             }
