@@ -382,7 +382,7 @@
 
                     <EditText
                         android:id="@+id/input_home_num"
-                        fontPath="fonts/Lato-Regular.ttf"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -392,6 +392,7 @@
                         android:textColorHint="@color/colorTheme"
                         android:textDirection="ltr"
                         android:textSize="@dimen/text_xsmall"
+                        fontPath="fonts/Lato-Regular.ttf"
                         tools:ignore="MissingPrefix" />
                 </android.support.design.widget.TextInputLayout>
 

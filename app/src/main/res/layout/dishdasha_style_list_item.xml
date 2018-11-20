@@ -22,6 +22,8 @@
             android:background="@drawable/two_point_top_shape">
 
             <TextView
+                fontPath="fonts/Lato-Regular.ttf"
+                tools:ignore="MissingPrefix"
                 android:id="@+id/text_style_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
