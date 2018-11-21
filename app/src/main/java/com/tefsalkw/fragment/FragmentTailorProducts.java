@@ -289,7 +289,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
         SimpleProgressBar.showProgress(getActivity());
         BaseHttpClient baseHttpClient = new BaseHttpClient();
-        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
+        baseHttpClient.doPost("google.com", params, new BaseHttpClient.TaskCompleteListener<String>() {
             @Override
             public void onFailure() {
                 SimpleProgressBar.closeProgress();
