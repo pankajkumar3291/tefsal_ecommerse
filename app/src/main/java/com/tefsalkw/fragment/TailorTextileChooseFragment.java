@@ -132,7 +132,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
                 builder.gravity(Gravity.BOTTOM);
                 builder.animated(true);
                 builder.transparentOverlay(true);
-                String textToShow = "The customer is responsible of providing the textile according to his requirements, Tefsal will be in contact to pickup the textile";
+                String textToShow = getString(R.string.customer_warning);
                 builder.anchorView(textView2);
                 builder.text(textToShow);
                 builder.build().show();
