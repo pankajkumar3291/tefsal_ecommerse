@@ -10,6 +10,16 @@ import java.util.List;
 public class GetCartResponse implements Serializable {
     private String message;
 
+    public String getMessage_ar() {
+        return message_ar;
+    }
+
+    public void setMessage_ar(String message_ar) {
+        this.message_ar = message_ar;
+    }
+
+    private String message_ar;
+
     private List<GetCartRecord> record;
 
     private String status;

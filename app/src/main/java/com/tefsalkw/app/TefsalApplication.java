@@ -1,5 +1,6 @@
 package com.tefsalkw.app;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustConfig;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -56,6 +59,12 @@ public class TefsalApplication extends MultiDexApplication {
 
         MultiDex.install(this);
 
+        String appToken = "cxu58qxhxxxc";
+        String environment = AdjustConfig.ENVIRONMENT_SANDBOX;
+        AdjustConfig config = new AdjustConfig(this, appToken, environment);
+        Adjust.onCreate(config);
+
+
         initOkHttpObject();
 
 
@@ -92,6 +101,8 @@ public class TefsalApplication extends MultiDexApplication {
 
 
     }
+
+
 
     public class NetworkReceiver extends BroadcastReceiver {
         final String TAG = NetworkReceiver.class.getName();

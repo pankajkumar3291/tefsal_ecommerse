@@ -271,7 +271,7 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String mob_number = s.toString();
-                if (mob_number.length() == 8) {
+                if (mob_number.length() >= 8) {
                     phoneCheckedHttpCall(mob_number);
 
                 } else {
@@ -285,7 +285,7 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
 
-                if (input_mob.getText().toString().length() == 8) {
+                if (input_mob.getText().toString().length() >= 8) {
                     phoneCheckedHttpCall(input_mob.getText().toString());
 
                 } else {
@@ -1684,10 +1684,6 @@ public class SignupActivity extends BaseActivity {
             requestFocus(input_mob);
             return false;
 
-        } else if (mobileNumber.length() != 8) {
-            input_layout_mob.setError(getString(R.string.validate_mobile_number));
-            requestFocus(input_mob);
-            return false;
         } else {
             return true;
         }

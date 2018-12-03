@@ -434,6 +434,9 @@ public class AdditionalInfoActivity extends BaseActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+
+                            Log.e("error",new Gson().toJson(error));
+
                             if (error != null && error.networkResponse != null) {
                                 Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
@@ -469,16 +472,14 @@ public class AdditionalInfoActivity extends BaseActivity {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Refsal signup == ", url + params);
+                    Log.e("Tefsal signup == ", url + new JSONObject(params));
 
                     return params;
                 }
 
             };
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
             RequestQueue requestQueue = Volley.newRequestQueue(AdditionalInfoActivity.this);
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);

@@ -286,6 +286,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @BindView(R.id.btnClose)
     Button btnClose;
 
+    @BindView(R.id.rlPrice)
+    RelativeLayout rlPrice;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -741,12 +745,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 LL_min_max_controller.setVisibility(View.GONE);
                 add_to_cart_lbl.setText(R.string.sold_out);
-                text_price.setVisibility(View.GONE);
+                rlPrice.setVisibility(View.GONE);
                 add_to_cart_btn.setEnabled(false);
+
+
             } else {
                 LL_min_max_controller.setVisibility(View.VISIBLE);
                 add_to_cart_lbl.setText(R.string.textile_detail_add_to_cart_lbl_text);
-                text_price.setVisibility(View.VISIBLE);
+                rlPrice.setVisibility(View.VISIBLE);
                 add_to_cart_btn.setEnabled(true);
             }
 

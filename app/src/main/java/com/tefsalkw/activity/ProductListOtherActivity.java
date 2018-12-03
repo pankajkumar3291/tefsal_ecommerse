@@ -320,6 +320,10 @@ public class ProductListOtherActivity extends BaseActivity {
 
 
                                         }
+                                        else
+                                        {
+                                            Toast.makeText(ProductListOtherActivity.this, R.string.no_product_available, Toast.LENGTH_SHORT).show();
+                                        }
 
 
                                         if (mResponse.getRecord().getCategories() != null) {

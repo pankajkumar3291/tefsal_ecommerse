@@ -223,7 +223,7 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                 cartResponse = g.fromJson(response, GetCartResponse.class);
 
 
-                                if (cartResponse != null && !cartResponse.getStatus().equals("0")) {
+                                if (cartResponse != null && cartResponse.getStatus().equals("1")) {
 
                                     if (cartResponse.getCart_id() != null) {
                                         session.setKeyCartId(cartResponse.getCart_id());
@@ -265,7 +265,12 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                                 } else {
 
                                     edit_btn.setVisibility(View.GONE);
-                                    Toast.makeText(getApplicationContext(), "Cart is Empty!", Toast.LENGTH_LONG).show();
+                                    if (session.getKeyLang().equals("Arabic")) {
+                                        Toast.makeText(getApplicationContext(), cartResponse.getMessage_ar(), Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), cartResponse.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+
 
                                 }
                             }

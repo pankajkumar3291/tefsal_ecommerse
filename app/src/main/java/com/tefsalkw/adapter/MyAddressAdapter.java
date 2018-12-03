@@ -167,14 +167,30 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                                     JSONObject object = new JSONObject(response);
                                     String status = object.getString("status");
                                     String message = object.getString("message");
+                                    String message_ar = object.getString("message_ar");
                                     if (status.equals("1")) {
                                         //new FragmentMyAddress();
                                         record.remove(position2);
                                         notifyDataSetChanged();
                                         //activity.finish();
-                                        Toast.makeText(activity, "Address Deleted Successfully", Toast.LENGTH_SHORT).show();
+                                        if(sessionManager.getKeyLang().equals("Arabic"))
+                                        {
+                                            Toast.makeText(activity, message_ar, Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+                                        }
+
                                     } else {
-                                        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+                                        if(sessionManager.getKeyLang().equals("Arabic"))
+                                        {
+                                            Toast.makeText(activity, message_ar, Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 } catch (Exception ex) {
 

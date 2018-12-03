@@ -111,7 +111,14 @@
             </intent-filter>
         </service>
         <!-- ./Firebase Notifications -->
-
+        <receiver
+            android:name="com.adjust.sdk.AdjustReferrerReceiver"
+            android:permission="android.permission.INSTALL_PACKAGES"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".activity.DishDashaStoresActivity"
             android:screenOrientation="portrait"
