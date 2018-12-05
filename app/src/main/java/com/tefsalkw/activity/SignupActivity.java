@@ -2,18 +2,14 @@ package com.tefsalkw.activity;
 
 import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,9 +32,7 @@ import com.google.gson.reflect.TypeToken;
 import com.tefsalkw.R;
 import com.tefsalkw.dialogs.CountryDialog;
 import com.tefsalkw.models.CountryModel;
-import com.tefsalkw.network.BaseHttpClient;
 import com.tefsalkw.utils.Contents;
-import com.tefsalkw.utils.FontChangeCrawler;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SessionManagerToken;
@@ -187,13 +181,11 @@ public class SignupActivity extends BaseActivity {
         });
 
         //FontChangeCrawler fontChanger = new FontChangeCrawler(getAssets(), "fonts/Lato-Regular.ttf");
-       // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
+        // fontChanger.replaceFonts((ViewGroup) this.findViewById(android.R.id.content));
 
 
         session = new SessionManager(this);
         session2 = new SessionManagerToken(this);
-
-
 
 
         setSupportActionBar(toolbar);
@@ -204,7 +196,7 @@ public class SignupActivity extends BaseActivity {
 
 
         //Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Lato-Bold.ttf");
-       // toolbar_title.setTypeface(type);
+        // toolbar_title.setTypeface(type);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,7 +231,7 @@ public class SignupActivity extends BaseActivity {
                         && validatePassword(input_password.getText().toString().trim())
                         && validateC_password(input_c_password.getText().toString().trim())) {
 
-                   // startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
+                    // startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
                     startActivity(new Intent(SignupActivity.this, AdditionalInfoActivity.class));
 
                 }
@@ -256,6 +248,30 @@ public class SignupActivity extends BaseActivity {
             }
         });
 
+        input_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+
+                if (input_mob.getText().toString().length() >= 8) {
+
+                    phoneCheckedHttpCall(input_mob.getText().toString());
+
+                }
+
+            }
+        });
+        input_email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                String string_email = input_email.getText().toString();
+                if (validateEmail2(string_email)) {
+                    checkMailHttpCall(string_email);
+                }
+
+            }
+        });
 
         input_mob.addTextChangedListener(new TextWatcher() {
             @Override
@@ -266,36 +282,19 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                if (input_mob.getText().toString().length() >= 7) {
+
+                    phoneCheckedHttpCall(input_mob.getText().toString());
+
+                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                String mob_number = s.toString();
-                if (mob_number.length() >= 8) {
-                    phoneCheckedHttpCall(mob_number);
-
-                } else {
-                    input_layout_mob.setError("");
-                }
-            }
-        });
-
-
-        input_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-                if (input_mob.getText().toString().length() >= 8) {
-                    phoneCheckedHttpCall(input_mob.getText().toString());
-
-                } else {
-
-                    input_layout_mob.setError("");
-                }
 
             }
         });
-
 
         input_email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -306,25 +305,17 @@ public class SignupActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String string_email = s.toString();
-                if (validateEmail2(string_email)) {
-                    checkMailHttpCall(string_email);
-                }
-
-            }
-        });
-        input_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
                 String string_email = input_email.getText().toString();
                 if (validateEmail2(string_email)) {
                     checkMailHttpCall(string_email);
                 }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -348,11 +339,9 @@ public class SignupActivity extends BaseActivity {
         });
 
 
-
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         llRoot.requestFocus();
-
-
 
     }
 
@@ -1451,6 +1440,8 @@ public class SignupActivity extends BaseActivity {
                                 }
 
                             } catch (Exception e) {
+                                is_exist_email = true;
+                                requestFocus(input_email);
                                 System.out.println("EX==" + e);
                             }
 
@@ -1482,8 +1473,8 @@ public class SignupActivity extends BaseActivity {
 
             };
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                    0,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
             stringRequest.setShouldCache(false);
@@ -1528,8 +1519,8 @@ public class SignupActivity extends BaseActivity {
 
                                 is_exist_phone = true;
                                 input_layout_mob.setError("Error: " + e.getMessage());
-
-                                Toast.makeText(SignupActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                requestFocus(input_mob);
+                                //Toast.makeText(SignupActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -1562,8 +1553,8 @@ public class SignupActivity extends BaseActivity {
 
             };
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+                    0,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
             stringRequest.setShouldCache(false);
@@ -1573,8 +1564,6 @@ public class SignupActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
-
-
 
 
     private boolean validateFirstName(String fname) {

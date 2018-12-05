@@ -92,7 +92,7 @@ import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class EditProfileActivity extends BaseActivity implements DatePickerDialog.OnDateSetListener {
+public class EditProfileActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -219,7 +219,6 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
 
     private int mYear, mMonth, mDay;
 
-    File f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -306,25 +305,24 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             public void onClick(View v) {
                 try {
 
-                    if (records.get("dob").equals(null)) {
-                        dob = "";
-                        Calendar c = Calendar.getInstance();
-                        mYear = c.get(Calendar.YEAR);
-                        mMonth = c.get(Calendar.MONTH);
-                        mDay = c.get(Calendar.DAY_OF_MONTH);
-                        System.out.println("DOB===FROM NULL" + records.get("dob"));
-                    } else {
-                        dob = records.get("dob").toString();
-                        String[] tokens = dob.split("-");
-                        mYear = Integer.parseInt(tokens[0]);
-                        mMonth = Integer.parseInt(tokens[1]) - 1;
-                        mDay = Integer.parseInt(tokens[2]);
-                        System.out.println("DOB===" + records.get("dob"));
+                    if(!input_dob.isClickable())
+                    {
+                        return;
                     }
+
+                    input_dob.setClickable(false);
+
+                    dob = records.get("dob").toString();
+                    String[] tokens = dob.split("-");
+                    mYear = Integer.parseInt(tokens[0]);
+                    mMonth = Integer.parseInt(tokens[1]) - 1;
+                    mDay = Integer.parseInt(tokens[2]);
+                    System.out.println("DOB===" + records.get("dob"));
 
                 } catch (Exception ex) {
                     System.out.println("EXCEPTION====" + ex);
                 }
+
 
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(EditProfileActivity.this,
@@ -333,11 +331,24 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
+
+                                input_dob.setClickable(true);
                                 input_dob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
 
                             }
                         }, mYear, mMonth, mDay);
+
+                datePickerDialog.setCanceledOnTouchOutside(false);
+                datePickerDialog.setCancelable(true);
+                datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        input_dob.setClickable(true);
+                    }
+                });
                 datePickerDialog.show();
+
+
 
             }
         });
@@ -664,7 +675,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
     private void initView() {
 
 
-        toolbar_title.setText("PROFILE");
+        toolbar_title.setText(R.string.profile);
     }
 
     public void getCountries() {
@@ -1083,12 +1094,8 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             return false;
         }
 
-        // else
-        // {
-        // input_layout_first_name.setError("");
         return true;
 
-        //}
     }
 
     private boolean validateLastName() {
@@ -1098,30 +1105,18 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             return false;
         }
 
-        //else
-        //{
-        // input_layout_last_name.setError("");
         return true;
 
-        // }
     }
 
     private boolean validateMobileNo() {
-        if (input_mobile_no.getText().toString().trim().equals("") || input_mobile_no.getText().toString().trim().length() != 8) {
+        if (input_mobile_no.getText().toString().trim().equals("") || input_mobile_no.getText().toString().trim().length() <= 7) {
             System.out.println("WRONG MOBILE");
             input_layout_mobile_no.setError("Error Mobile No");
             requestFocus(input_mobile_no);
             return false;
         }
-       /* if()
-        {
-            input_layout_mobile_no.setError("Error Mobile must be 10 character long");
-            requestFocus(input_mobile_no);
-            return false;
-        }*/
 
-
-        //input_layout_mobile_no.setError("");
         return true;
 
 
@@ -1133,11 +1128,9 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             requestFocus(input_mobile_no);
             return false;
         }
-        //else
-        //{
+
         return true;
 
-        //}
     }
 
     private boolean validateDOB() {
@@ -1147,11 +1140,9 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             return false;
 
         }
-        //else
-        //{
+
         return true;
 
-        //}
     }
 
     private boolean validateGender() {
@@ -1171,15 +1162,12 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
         return index;
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-    }
 
 
     public class UpdateProfileData extends AsyncTask<String, String, String> {
         File uploadFile;
-        Uri uri;
+
         ProgressDialog pDialog;
 
         public UpdateProfileData(String uploadFile) {
@@ -1189,11 +1177,10 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
                 this.uploadFile = new File(uploadFile);
 
                 System.out.println("Image Path from Size===" + ImagePath);
-                //  System.out.println("FILE SIZE=="+uploadFile.getBytes());
+
             }
 
 
-            //this.uri=uri;
         }
 
         @Override
@@ -1213,13 +1200,11 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             String result = null;
             String charset = "UTF-8";
             String requestURL = Contents.baseURL + "updateCustomerProfile";
-            //System.out.println("UPLOAD FILE PATH==="+ uploadFile.getPath());
-            // System.out.println("UPLOAD FILE STRING==="+ uploadFile.getName());
+
             try {
                 MultipartUtility multipart = new MultipartUtility(requestURL, charset);
 
-                //  multipart.addHeaderField("User-Agent", "CodeJava");
-                // multipart.addHeaderField("Test-Header", "Header-Value");
+
                 if (uploadFile != null) {
                     try {
                         android.util.Log.e("Send Data", "Setting Image for profile");
@@ -1263,8 +1248,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerDialo
             SessionManager sessionManager = new SessionManager(EditProfileActivity.this);
             sessionManager.setKeyUserName(firstname + " " + lastName);
             pDialog.dismiss();
-            startActivity(new Intent(EditProfileActivity.this, EditProfileActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-            finish();
+
 
         }
 

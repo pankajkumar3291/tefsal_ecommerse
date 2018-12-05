@@ -131,15 +131,15 @@ public class ForgotPasswordActivity extends BaseActivity {
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
-                    Log.e("Refsal forgotpwd == ", url + params);
+                    Log.e("Refsal forgotpwd == ", url + new JSONObject(params));
 
                     return params;
                 }
 
             };
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000*60*2,
+                    0,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(ForgotPasswordActivity.this);
             stringRequest.setShouldCache(false);

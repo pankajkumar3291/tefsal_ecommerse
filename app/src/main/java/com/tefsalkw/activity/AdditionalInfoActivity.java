@@ -480,6 +480,10 @@ public class AdditionalInfoActivity extends BaseActivity {
             };
 
 
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000*60*3,
+                    0,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
             RequestQueue requestQueue = Volley.newRequestQueue(AdditionalInfoActivity.this);
             stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);

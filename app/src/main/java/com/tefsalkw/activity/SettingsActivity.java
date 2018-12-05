@@ -116,6 +116,14 @@ public class SettingsActivity extends BaseActivity {
         }
 
 
+        if(session.getIsGuestId())
+        {
+            text_logout.setVisibility(GONE);
+        }
+        else
+        {
+            text_logout.setVisibility(View.VISIBLE);
+        }
         text_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

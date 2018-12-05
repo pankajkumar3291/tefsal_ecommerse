@@ -624,4 +624,5 @@
     <string name="edit_address">EDIT ADDRESS</string>
     <string name="customer_warning">The customer is responsible of providing the textile according to his requirements, Tefsal will be in contact to pickup the textile</string>
     <string name="no_product_available">Sorry, no product available at the moment.</string>
+    <string name="profile">PROFILE</string>
 </resources>
