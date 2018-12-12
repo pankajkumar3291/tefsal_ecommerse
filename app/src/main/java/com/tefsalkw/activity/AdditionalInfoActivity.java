@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -642,6 +644,12 @@ public class AdditionalInfoActivity extends BaseActivity {
                                 Log.e("AdditionalInfo", ">>>" + response);
                                 if (status.equals("1")) {
 
+
+                                    AdjustEvent event = new AdjustEvent("ghx3j0");
+                                    event.addPartnerParameter("Gender", mGender);
+                                    event.addPartnerParameter("DOB", mDob);
+                                    event.addPartnerParameter("Nationality", iso_name.get(position));
+                                    Adjust.trackEvent(event);
 
                                     PreferencesUtil.putString(AdditionalInfoActivity.this, "SignupBundle", "");
                                     PreferencesUtil.putString(AdditionalInfoActivity.this, "SignupBundle2", "");

@@ -23,6 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -128,6 +130,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.colorRecyclerView)
     RecyclerView colorRecyclerView;
 
+    AccessoryProductDetailResponse accessoryProductDetailResponse;
 
     AccessoryDetailRecord accessoryDetailRecord;
 
@@ -278,12 +281,19 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                                 try {
 
                                     Gson g = new Gson();
-                                    accessoryDetailRecord = g.fromJson(response, AccessoryDetailRecord.class);
-                                    if (accessoryDetailRecord != null) {
-                                        txt_title.setText(accessoryDetailRecord.getProductName());
-                                        subtxt_title.setText(accessoryDetailRecord.getStoreName());
+                                    accessoryProductDetailResponse = g.fromJson(response, AccessoryProductDetailResponse.class);
+                                    if (accessoryProductDetailResponse != null) {
+                                        accessoryDetailRecord =  accessoryProductDetailResponse.getRecord();
 
-                                        text_desc.setText(accessoryDetailRecord.getProductDesc());
+                                        if(accessoryDetailRecord != null)
+                                        {
+                                            txt_title.setText(accessoryDetailRecord.getProductName());
+                                            subtxt_title.setText(accessoryDetailRecord.getStoreName());
+
+                                            text_desc.setText(accessoryDetailRecord.getProductDesc());
+                                        }
+
+
                                     }
                                     Log.e("accessoryDetailRecord", response);
                                     initViewsPostCall(accessoryDetailRecord);
@@ -623,6 +633,11 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         String itemType = jsonObject.getString("item_type");
                         DialogKart dg = new DialogKart(AccessoryProductDetailsActivity.this, false, itemType, "");
                         dg.show();
+
+                        AdjustEvent event = new AdjustEvent("6c1j96");
+                        event.addPartnerParameter("Accessory Name", accessoryDetailRecord.getProductName());
+                        Adjust.trackEvent(event);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();

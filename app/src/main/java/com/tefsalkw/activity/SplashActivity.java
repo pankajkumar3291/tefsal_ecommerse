@@ -44,6 +44,7 @@ public class SplashActivity extends BaseActivity {
         //String lang = keyLang.equalsIgnoreCase("Arabic") ? "ar" : "en";
 
         if (Contents.isBlank(session.getCustomerId())) {
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

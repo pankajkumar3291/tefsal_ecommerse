@@ -9,6 +9,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
@@ -34,6 +36,10 @@ public class BaseActivity extends AppCompatActivity {
 
 
         Log.e("::::Activity::::", this.getClass().getSimpleName());
+
+        AdjustEvent event = new AdjustEvent("9ieqgx");
+        event.addPartnerParameter("Screen Name", this.getClass().getSimpleName());
+        Adjust.trackEvent(event);
 
 //        Configuration conf =  getResources().getConfiguration();
 //        conf.locale = new Locale("ar");

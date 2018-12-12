@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -140,9 +142,17 @@ public class CartActivity extends BaseActivity implements MyCartAdapter.OnCartIt
                 TefalApp.getInstance().setPayment_method_tc("");
                 TefalApp.getInstance().setPayment_method("");
 
+                AdjustEvent event = new AdjustEvent("cf5uaw");
+                event.addPartnerParameter("Order Number",cartResponse.getCart_id() );
+                event.addPartnerParameter("Total Amount", amount.getText().toString());
+                Adjust.trackEvent(event);
+
+
                 startActivity(new Intent(CartActivity.this, CartAddressSelectionActivity.class)
                         .putExtra("price", amount.getText().toString())
                         .putExtra("header", header_txt.getText().toString()));
+
+
 
             }
         });

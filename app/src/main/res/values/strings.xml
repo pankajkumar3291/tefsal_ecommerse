@@ -89,7 +89,7 @@
 
 
     <!--Tabbar-->
-    <string name="btn_dishdasha">DISHDISHA</string>
+    <string name="btn_dishdasha">DISHDASHA</string>
     <string name="btn_daraa">DARAA</string>
     <string name="btn_abaya">ABAYA</string>
 
@@ -523,7 +523,7 @@
     <string name="daraa_stores">DARAA STORES</string>
     <string name="abaya_stores">ABAYA STORES</string>
     <string name="sign_up_to_continue">Sign up to continue...</string>
-    <string name="no_style_warning_text">You currently do not have any stored styles for Dishdisha.</string>
+    <string name="no_style_warning_text">You currently do not have any stored styles for Dishdasha.</string>
     <string name="create_new">Create New</string>
     <string name="no_style_available">No Style Available</string>
     <string name="style_name_validation">Style name should not be empty</string>
@@ -557,7 +557,7 @@
     <string name="saved_addresses">Saved Addresses</string>
     <string name="send_mail">SEND EMAIL</string>
     <string name="cart_empty">Cart is empty!</string>
-    <string name="no_style_text">You currently do not have any stored styles for Dishdisha.</string>
+    <string name="no_style_text">You currently do not have any stored styles for Dishdasha.</string>
     <string name="create_stlye_warning">Please create style.</string>
     <string name="busy">BUSY</string>
     <string name="edit_config">Edit Customization</string>

@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.AdjustEvent;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.tefsalkw.R;
@@ -84,7 +85,9 @@ public class PaymentActivity extends BaseActivity {
             String amount = intent.getStringExtra("Amount");
 
             long first11 = (long) (Math.random() * 100000000000L);
-            String paymentUrl = paymentBaseUrl + "/knet/buy.php?user_id=" + userId + "&cart_id=" + cartId + "&amount=" + amount+"&track_id="+first11;
+            String paymentUrl = paymentBaseUrl + "/knet/buy.php?user_id=" + userId + "&cart_id=" + cartId + "&amount=" + amount + "&track_id=" + first11;
+
+            Log.e("paymentUrl", paymentUrl);
 
             SimpleProgressBar.showProgress(PaymentActivity.this);
             webView.loadUrl(paymentUrl);
@@ -198,6 +201,17 @@ public class PaymentActivity extends BaseActivity {
                     payment_id = uri.getQueryParameter("PaymentID");
 
                     if (result != null && result.equals("CAPTURED")) {
+
+
+                        Intent intent = getIntent();
+
+                        String amount = intent.getStringExtra("Amount");
+                        String cartId = intent.getStringExtra("CartId");
+
+                        AdjustEvent event = new AdjustEvent("7omit6");
+                        event.addPartnerParameter("Order Number", cartId);
+                        event.addPartnerParameter("Total Amount", String.valueOf(amount));
+                        event.addPartnerParameter("Payment Method", "KNET");
 
                         //Toast.makeText(PaymentActivity.this, "Payment Successful", Toast.LENGTH_LONG).show();
 
@@ -324,10 +338,7 @@ public class PaymentActivity extends BaseActivity {
                             startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "1").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
 
-
-                        }
-                        else
-                        {
+                        } else {
                             startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "0").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
 
                         }

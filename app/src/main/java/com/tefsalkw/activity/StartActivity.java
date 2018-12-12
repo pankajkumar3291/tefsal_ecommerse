@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.SessionManager;
@@ -49,6 +51,9 @@ public class StartActivity extends BaseActivity {
         guestUserText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                AdjustEvent event = new AdjustEvent("jwm7fj");
+                Adjust.trackEvent(event);
 
                 String androidDeviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
                 session.setCustomerId(androidDeviceId);

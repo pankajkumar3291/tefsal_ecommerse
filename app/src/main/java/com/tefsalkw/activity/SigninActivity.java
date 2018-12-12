@@ -17,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -196,6 +198,10 @@ public class SigninActivity extends BaseActivity {
 
                                 Log.e("Login ", " >>> " + response);
                                 if (status.equals("1")) {
+
+                                    AdjustEvent event = new AdjustEvent("phzqb2");
+                                    Adjust.trackEvent(event);
+
                                     JSONObject jsonObject = object.getJSONObject("record");
 
                                     Log.e("user_id == ", jsonObject.getString("user_id"));

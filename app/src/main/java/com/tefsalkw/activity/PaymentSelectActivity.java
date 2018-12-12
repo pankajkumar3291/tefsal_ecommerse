@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -237,6 +238,7 @@ public class PaymentSelectActivity extends BaseActivity {
                     Intent intent = new Intent(PaymentSelectActivity.this, PaymentActivity.class);
                     intent.putExtra("PaymentMethod", "knet");
                     intent.putExtra("Amount", String.valueOf(grandTotal));
+                    intent.putExtra("CartId", cartResponse.getCart_id());
                     intent.putExtra("defaultAddressId", String.valueOf(defaultAddressId));
                     intent.putExtra("guest", guest);
                     if (session.getIsGuestId()) {
@@ -244,6 +246,9 @@ public class PaymentSelectActivity extends BaseActivity {
                         intent.putExtra("guest", guest);
 
                     }
+
+
+
                     intent.putExtra("delivery_charge", cartResponse.getDelivery_charge());
 
                     startActivity(intent);
@@ -436,6 +441,11 @@ public class PaymentSelectActivity extends BaseActivity {
 
                         if (jsonObject.getInt("status") == 1) {
 
+
+                            AdjustEvent event = new AdjustEvent("7omit6");
+                            event.addPartnerParameter("Order Number",cartResponse.getCart_id() );
+                            event.addPartnerParameter("Total Amount", String.valueOf(grandTotal));
+                            event.addPartnerParameter("Payment Method", "COD");
 
                             Toast.makeText(PaymentSelectActivity.this, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 

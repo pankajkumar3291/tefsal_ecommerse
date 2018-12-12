@@ -42,6 +42,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -1394,6 +1396,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                         String categoryId = "1";
                         DialogKart dg = new DialogKart(TextileDetailActivity.this, false, itemType, categoryId);
                         dg.show();
+
+                        AdjustEvent event = new AdjustEvent("rxth0d");
+                        event.addPartnerParameter("Product Name", textileProductModel.getProduct_name());
+                        Adjust.trackEvent(event);
 
 
                     } catch (JSONException e) {

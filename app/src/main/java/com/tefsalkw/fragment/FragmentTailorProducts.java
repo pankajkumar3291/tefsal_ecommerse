@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -289,7 +291,7 @@ public class FragmentTailorProducts extends BaseFragment {
 
         SimpleProgressBar.showProgress(getActivity());
         BaseHttpClient baseHttpClient = new BaseHttpClient();
-        baseHttpClient.doPost("google.com", params, new BaseHttpClient.TaskCompleteListener<String>() {
+        baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
             @Override
             public void onFailure() {
                 SimpleProgressBar.closeProgress();
@@ -319,6 +321,37 @@ public class FragmentTailorProducts extends BaseFragment {
                             String categoryId = "1";
                             DialogKart dg = new DialogKart(getActivity(), false, itemType, categoryId);
                             dg.show();
+
+                            AdjustEvent event = new AdjustEvent("pwvudi");
+
+                            if(isOwnTextile)
+                            {
+                                event.addPartnerParameter("Service Name", "Own Textile");
+                            }
+                            else
+                            {
+                                for (Map.Entry<Integer, List<SublistCartItems>> entry : dishdashaTailorProductAdapterForListView.sublistCartItemsHashMap.entrySet()) {
+
+                                    List<SublistCartItems> sublistCartItems = (List<SublistCartItems>) entry.getValue();
+
+                                    Log.e("sublistCartItems", new Gson().toJson(sublistCartItems) + "");
+
+
+                                    if (sublistCartItems != null) {
+
+                                        for (SublistCartItems sublistCartItems1 : sublistCartItems) {
+
+                                            event.addPartnerParameter("Service Name", sublistCartItems1.getItemName());
+
+                                        }
+                                    }
+                                }
+                            }
+
+
+
+
+                            Adjust.trackEvent(event);
 
                         } else {
                             Toast.makeText(getActivity(), addCartResponse.getMessage(), Toast.LENGTH_SHORT).show();

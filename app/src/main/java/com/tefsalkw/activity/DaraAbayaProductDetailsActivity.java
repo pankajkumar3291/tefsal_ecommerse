@@ -24,6 +24,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adjust.sdk.Adjust;
+import com.adjust.sdk.AdjustEvent;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -805,6 +807,11 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                         String itemType = jsonObject.getString("item_type");
                         DialogKart dg = new DialogKart(DaraAbayaProductDetailsActivity.this, false, itemType, "");
                         dg.show();
+
+                        AdjustEvent event = new AdjustEvent("rxth0d");
+                        event.addPartnerParameter("Dara Abaya Product Name", productRecord.getProduct_name());
+                        Adjust.trackEvent(event);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
