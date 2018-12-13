@@ -346,7 +346,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
 
                 if (currentItemsCount == 0) {
 
-                    Toast.makeText(CartAddressSelectionActivity.this, "Cart is empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartAddressSelectionActivity.this, getString(R.string.cart_empty), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -372,7 +372,7 @@ public class CartAddressSelectionActivity extends BaseActivity implements MyCart
                         return;
                     } else if (Contents.isBlank(input_email.getText().toString().trim())) {
                         input_email.requestFocus();
-                        input_email.setError("Email Required");
+                        input_email.setError(getString(R.string.validate_email));
                         return;
                     } else if (Contents.isBlank(input_street.getText().toString().trim())) {
                         input_street.requestFocus();

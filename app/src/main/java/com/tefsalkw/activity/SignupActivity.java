@@ -1587,7 +1587,7 @@ public class SignupActivity extends BaseActivity {
 
     private boolean validateEmail(String email) {
         if (email.equals("")) {
-            input_layout_email.setError("Error: Email should not be empty");
+            input_layout_email.setError(getString(R.string.validate_email));
             requestFocus(input_email);
             return false;
         } else {
