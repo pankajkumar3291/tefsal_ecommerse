@@ -9,7 +9,7 @@ android {
         release {
             keyAlias 'tefsal'
             keyPassword 'tefsal'
-            storeFile file('E:/2018/MFaris/tefsal_android/tefsal.jks')
+            storeFile file('keystore/tefsal.jks')
             storePassword 'tefsal'
         }
     }
