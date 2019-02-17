@@ -35,12 +35,12 @@
 
     <string name="hint_email">EMAIL ADDRESS</string>
     <string name="hint_password">PASSWORD</string>
-    <string name="hint_email_SP">*EMAIL</string>
-    <string name="hint_password_SP">*PASSWORD</string>
-    <string name="hint_c_password"> *CONFIRM PASSWORD</string>
-    <string name="hint_fname"> *FIRST NAME</string>
-    <string name="hint_lname"> *LAST NAME</string>
-    <string name="hint_mob"> *MOBILE</string>
+    <string name="hint_email_SP"> EMAIL</string>
+    <string name="hint_password_SP"> PASSWORD</string>
+    <string name="hint_c_password">  CONFIRM PASSWORD</string>
+    <string name="hint_fname">  FIRST NAME</string>
+    <string name="hint_lname">  LAST NAME</string>
+    <string name="hint_mob">  MOBILE</string>
     <string name="hint_home_num">HOME NUMBER</string>
     <string name="hint_address_name">ADDRESS NAME</string>
     <string name="hint_country">COUNTRY</string>
@@ -625,4 +625,7 @@
     <string name="customer_warning">The customer is responsible of providing the textile according to his requirements, Tefsal will be in contact to pickup the textile</string>
     <string name="no_product_available">Sorry, no product available at the moment.</string>
     <string name="profile">PROFILE</string>
+    <string name="back">Back</string>
+    <string name="required_field">required field</string>
+    <string name="password_not_matches">passwords must be the same</string>
 </resources>

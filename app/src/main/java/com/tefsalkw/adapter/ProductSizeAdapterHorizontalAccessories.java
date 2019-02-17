@@ -54,7 +54,7 @@ public class ProductSizeAdapterHorizontalAccessories extends RecyclerView.Adapte
 
         if (model != null && model.getSize() != null) {
             if (session.getKeyLang().equals("Arabic")) {
-                holder.sizeText.setText(model.getSize_arabic());
+                holder.sizeText.setText(model.getSize());
             } else {
                 holder.sizeText.setText(model.getSize());
             }

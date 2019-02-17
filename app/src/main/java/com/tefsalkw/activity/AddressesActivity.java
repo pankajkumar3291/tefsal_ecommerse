@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -160,7 +161,7 @@ public class AddressesActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //System.out.println("SPINNER DATA===="+spin_area.getSelectedItem()+"==="+spin_area.getSelectedItemPosition());
-
+                validateRequiredFields(input_address_name, input_block, input_house, input_street);
                 if (Contents.isBlank(input_address_name.getText().toString().trim())) {
                     input_address_name.requestFocus();
                     input_address_name.setError(getString(R.string.invalidAddress_name));
@@ -198,6 +199,47 @@ public class AddressesActivity extends BaseActivity {
 
     }
 
+    private void validateRequiredFields(EditText input_address_name, EditText input_block, EditText input_house, EditText input_street) {
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(input_address_name.getText().toString())) {
+            input_address_name.setError(getString(R.string.required_field));
+
+            focusView = input_address_name;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_block.getText().toString())) {
+            input_block.setError(getString(R.string.required_field));
+
+            focusView = input_block;
+            cancel = true;
+        }
+
+
+        if (TextUtils.isEmpty(input_house.getText().toString())) {
+            input_house.setError(getString(R.string.required_field));
+
+            focusView = input_house;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_street.getText().toString())) {
+            input_street.setError(getString(R.string.required_field));
+
+            focusView = input_street;
+            cancel = true;
+        }
+        if (cancel) {
+            if (focusView != null)
+                focusView.requestFocus();
+        } else {
+            saveAddress();
+        }
+    }
 
     // This one updated code----
     public void getCountries() {
@@ -280,7 +322,8 @@ public class AddressesActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }       SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -387,7 +430,8 @@ public class AddressesActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }   SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -491,7 +535,8 @@ public class AddressesActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }     SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override

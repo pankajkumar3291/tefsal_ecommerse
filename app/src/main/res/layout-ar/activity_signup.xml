@@ -20,16 +20,30 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
 
-            <ImageButton
-                android:id="@+id/btn_back"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:scaleX="@integer/rtl_flip_factor"
-                android:src="@drawable/ic_left_arrow" />
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleX="@integer/rtl_flip_factor"
+                    android:src="@drawable/ic_left_arrow" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/back"
+                    android:textColor="@color/colorAccent" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -69,11 +83,11 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:focusableInTouchMode="true"
-            android:focusable="true"
             android:id="@+id/llRoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical"
             android:padding="@dimen/activity_vertical_margin">
 
@@ -84,11 +98,12 @@
                 android:padding="5dp">
 
                 <EditText
-
                     android:id="@+id/input_fname"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_star2"
+                    android:drawablePadding="3dp"
                     android:editable="false"
                     android:gravity="bottom"
                     android:hint="@string/hint_fname"
@@ -163,6 +178,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_star2"
+                    android:drawablePadding="3dp"
                     android:gravity="bottom"
                     android:hint="@string/hint_lname"
                     android:inputType="textCapSentences|textPersonName"
@@ -201,6 +218,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:drawableStart="@drawable/ic_star2"
+                android:drawablePadding="3dp"
                 android:text="@string/hint_mob"
                 android:textSize="@dimen/text_xsmall" />
 
@@ -209,6 +228,42 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="5">
+
+
+                <Spinner
+                    android:id="@+id/mobile_country_code_sp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:textSize="@dimen/text_xsmall"
+                    android:visibility="gone" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_mob"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/input_mob"
+                        fontPath="fonts/Lato-Regular.ttf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@android:color/transparent"
+                        android:inputType="phone"
+                        android:layoutDirection="locale"
+                        android:singleLine="true"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/colorTheme"
+                        android:textColorHint="@color/colorTheme"
+                        android:textDirection="ltr"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="MissingPrefix" />
+                </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
                     android:id="@+id/llMobile"
@@ -236,39 +291,6 @@
                         android:textSize="@dimen/text_small"
                         tools:ignore="MissingPrefix" />
                 </LinearLayout>
-
-
-                <Spinner
-                    android:id="@+id/mobile_country_code_sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:textSize="@dimen/text_xsmall"
-                    android:visibility="gone" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_mob"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:padding="5dp">
-
-                    <EditText
-                        android:id="@+id/input_mob"
-                        fontPath="fonts/Lato-Regular.ttf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:inputType="phone"
-                        android:singleLine="true"
-                        android:textColor="@color/colorTheme"
-                        android:textColorHint="@color/colorTheme"
-                        android:textDirection="ltr"
-                        android:textSize="@dimen/text_xsmall"
-                        tools:ignore="MissingPrefix" />
-                </android.support.design.widget.TextInputLayout>
                 <!-- <EditText
                      android:id="@+id/input_mob"
                      android:layout_width="0dp"
@@ -338,6 +360,42 @@
                 android:orientation="horizontal"
                 android:weightSum="5">
 
+
+                <Spinner
+                    android:id="@+id/home_country_code_sp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:textSize="@dimen/text_xsmall"
+                    android:visibility="gone" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_home_num"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.5"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/input_home_num"
+                        fontPath="fonts/Lato-Regular.ttf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@android:color/transparent"
+                        android:inputType="phone"
+                        android:layoutDirection="locale"
+                        android:singleLine="true"
+                        android:textAlignment="viewEnd"
+                        android:textColor="@color/colorTheme"
+                        android:textColorHint="@color/colorTheme"
+                        android:textDirection="ltr"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="MissingPrefix" />
+                </android.support.design.widget.TextInputLayout>
+
                 <LinearLayout
                     android:id="@+id/llHome"
                     android:layout_width="0dp"
@@ -366,39 +424,6 @@
 
 
                 </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/home_country_code_sp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:textSize="@dimen/text_xsmall"
-                    android:visibility="gone" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_home_num"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:padding="5dp">
-
-                    <EditText
-                        android:id="@+id/input_home_num"
-                        fontPath="fonts/Lato-Regular.ttf"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:inputType="phone"
-                        android:singleLine="true"
-                        android:textColor="@color/colorTheme"
-                        android:textColorHint="@color/colorTheme"
-                        android:textDirection="ltr"
-                        android:textSize="@dimen/text_xsmall"
-                        tools:ignore="MissingPrefix" />
-                </android.support.design.widget.TextInputLayout>
-
 
             </LinearLayout>
 
@@ -437,13 +462,14 @@
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-' "
-                    android:gravity="bottom"
+                    android:drawableStart="@drawable/ic_star2"
+                    android:drawablePadding="3dp"
                     android:hint="@string/hint_email_SP"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColor="@color/colorTheme"
                     android:textColorHint="@color/colorTheme"
-                    android:textDirection="ltr"
+
                     android:textSize="@dimen/text_xsmall"
                     tools:ignore="MissingPrefix" />
 
@@ -492,6 +518,8 @@
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
+                    android:drawableStart="@drawable/ic_star2"
+                    android:drawablePadding="3dp"
                     android:gravity="bottom"
                     android:hint="@string/hint_password_SP"
                     android:singleLine="true"
@@ -546,6 +574,8 @@
                     android:layout_height="25dp"
                     android:background="@android:color/transparent"
                     android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
+                    android:drawableStart="@drawable/ic_star2"
+                    android:drawablePadding="3dp"
                     android:gravity="bottom"
                     android:hint="@string/hint_c_password"
                     android:singleLine="true"

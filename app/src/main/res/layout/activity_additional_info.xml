@@ -20,17 +20,31 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
 
-            <ImageButton
-                android:scaleX="@integer/rtl_flip_factor"
-                android:layoutDirection="locale"
-                android:id="@+id/btn_back"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:padding="5dp"
-                android:src="@drawable/ic_left_arrow" />
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleX="@integer/rtl_flip_factor"
+                    android:src="@drawable/ic_left_arrow" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/back" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -71,8 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="120dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
         <TextView
@@ -105,7 +119,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:entries="@array/gender"
-            android:textSize="@dimen/text_xsmall"></Spinner>
+            android:textSize="@dimen/text_xsmall" />
         <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,8 +147,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="12dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="12dp"
             android:background="@color/colorPrimaryDark" />
 
         <TextView
@@ -148,7 +162,19 @@
             android:id="@+id/nationalitySpinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"></Spinner>
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/countryPicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ccp_countryPreference="KW,EG"
+            app:ccp_defaultNameCode="KW"
+            app:ccp_showFullName="true"
+            app:ccp_showNameCode="false"
+            app:ccp_showPhoneCode="false"
+            app:ccp_textSize="@dimen/text_normal" />
 
         <Button
             android:id="@+id/submintBtn"
