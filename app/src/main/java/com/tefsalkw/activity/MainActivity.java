@@ -58,6 +58,13 @@ import butterknife.ButterKnife;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -116,6 +123,8 @@ public class MainActivity extends BaseActivity
 
         ButterKnife.bind(this);
 
+        AppCenter.start(getApplication(), "fd0a6a4a-9b2c-4f45-9552-9c6196dde76f",
+                Analytics.class, Crashes.class);
         setSupportActionBar(toolbar);
         mainActivity = this;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
