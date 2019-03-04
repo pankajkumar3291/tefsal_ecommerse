@@ -628,4 +628,5 @@
     <string name="back">Back</string>
     <string name="required_field">required field</string>
     <string name="password_not_matches">passwords must be the same</string>
+    <string name="i_have_my_own_textile">I have my own textile</string>
 </resources>

@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/view"
         android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="0dp"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/orText"
@@ -75,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/LL_imageContainer1"
-                android:text="@string/fragment_tailor_textile_choose_textView2_text"
+                android:text="@string/i_have_my_own_textile"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_small" />
 

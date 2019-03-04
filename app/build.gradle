@@ -104,8 +104,13 @@ dependencies {
     implementation 'com.adjust.sdk:adjust-android:4.16.0'
     implementation 'com.android.installreferrer:installreferrer:1.0'
 
-    //country code picker
+    def appCenterSdkVersion = '1.11.0'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+
     implementation 'com.hbb20:ccp:2.2.2'
+    implementation 'com.github.linger1216:labelview:v1.1.2'
 }
 apply plugin: 'com.google.gms.google-services'
 

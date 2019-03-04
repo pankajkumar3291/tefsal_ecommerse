@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LL_pager_holder"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.github.chrisbanes.photoview.PhotoView
@@ -11,4 +12,17 @@
         android:layout_width="match_parent"
         android:scaleType="fitXY" />
 
-</LinearLayout>
+    <com.lid.lib.LabelImageView
+        android:id="@+id/discountImageLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:label_backgroundColor="#171d3b"
+        app:label_height="50dp"
+        android:visibility="gone"
+        app:label_orientation="RIGHT_TOP"
+        app:label_text="50% OFF"
+        app:label_textColor="#fff"
+        app:label_textSize="14sp" />
+
+</FrameLayout>

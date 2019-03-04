@@ -3,27 +3,30 @@ package com.tefsalkw.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
+import com.lid.lib.LabelImageView;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.TextileProductModel;
+import com.tefsalkw.utils.LabelLinearView;
 import com.tefsalkw.utils.SessionManager;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +57,13 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
     class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.iv_pattern)
-        ImageView iv_pattern;
+        LabelImageView iv_pattern;
+
+        @BindView(R.id.promotionImageLabel)
+        LabelImageView promotionImageLabel;
+
+        @BindView(R.id.discountImageLabel)
+        LabelImageView discountImageLabel;
 
         @BindView(R.id.name_text)
         TextView name_text;
@@ -63,7 +72,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         TextView prize_text;
 
         @BindView(R.id.main_layout)
-        LinearLayout main_layout;
+        LabelLinearView main_layout;
 
         @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
@@ -94,16 +103,18 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         String imgUrl = textileModels.get(position).getDefault_image();
         GlideApp.with(activity).load(imgUrl).apply(options).into(holder.iv_pattern);
 
-        if(session.getKeyLang().equals("Arabic"))
-        {
+        if (session.getKeyLang().equals("Arabic")) {
             holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name_arabic());
-        }
-        else
-        {
+        } else {
             holder.name_text.setText(textileModels.get(holder.getAdapterPosition()).getDishdasha_product_name());
         }
+        //String price = String.format(Locale.ENGLISH, "x%d", Double.parseDouble(textileModels.get(holder.getAdapterPosition()).getPrice())) + "KWD";
+        String price = nFormate(Double.parseDouble(textileModels.get(holder.getAdapterPosition()).getPrice()));
+        String textPrice = price + " KWD";
+        Typeface custom_font = Typeface.createFromAsset(activity.getAssets(), "fonts/Lato-Bold.ttf");
+        holder.prize_text.setTypeface(custom_font);
+        holder.prize_text.setText(textPrice);
 
-        holder.prize_text.setText(textileModels.get(holder.getAdapterPosition()).getPrice() + " KWD");
 
         if (textileModels.get(holder.getAdapterPosition()).getProduct_discount() == null || textileModels.get(holder.getAdapterPosition()).getProduct_discount().equals("")) {
 
@@ -118,6 +129,7 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
 
         holder.text_max_delivery_days.setText(textileModels.get(holder.getAdapterPosition()).getMax_delivery_days());
         // System.out.println("ITEM ID==="+textileModels.get(holder.getAdapterPosition()).getDishdasha_attribute_id());
+
         holder.main_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +157,12 @@ public class DishdashaTextileProductAdapter extends RecyclerView.Adapter<Dishdas
         }
     }
 
+    public static String nFormate(double d) {
+        NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
+        nf.setMaximumFractionDigits(10);
+        String st = nf.format(d);
+        return st;
+    }
 
     @Override
     public int getItemCount() {
