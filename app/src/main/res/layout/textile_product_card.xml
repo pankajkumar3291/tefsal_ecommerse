@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.tefsalkw.utils.LabelLinearView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:autofit="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
@@ -18,11 +19,46 @@
             android:layout_width="match_parent"
             android:layout_height="250dp">
 
-            <ImageView
+
+            <LinearLayout
+                android:id="@+id/LL_di"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-130dp"
+                android:background="@color/colorNavy"
+                android:gravity="center"
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:rotation="35"
+                android:transformPivotY="145dp"
+                android:visibility="gone">
+
+                <TextView
+
+                    android:id="@+id/txt_discount_amount_rotated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="130dp"
+                    android:gravity="center"
+                    android:text="50% OFF"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <com.lid.lib.LabelImageView
                 android:id="@+id/iv_pattern"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
+
 
             <View
                 android:layout_width="match_parent"
@@ -115,9 +151,11 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:visibility="gone">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -153,9 +191,68 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/LL_promo"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-130dp"
+                android:background="@color/colorGold"
+                android:gravity="center"
 
+                android:layoutDirection="ltr"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:rotation="-35"
+                android:transformPivotY="-145dp"
+                android:visibility="gone">
+
+                <TextView
+
+                    android:id="@+id/txt_promo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="100dp"
+                    android:gravity="center"
+                    android:text="promo"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <com.lid.lib.LabelImageView
+                android:id="@+id/discountImageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:label_backgroundColor="#171d3b"
+                app:label_height="50dp"
+                app:label_orientation="RIGHT_TOP"
+                app:label_text="50% OFF"
+                app:label_textColor="#fff"
+                app:label_textSize="14sp" />
+
+            <com.lid.lib.LabelImageView
+                android:id="@+id/promotionImageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:label_backgroundColor="#c6a90b"
+                app:label_height="50dp"
+                app:label_orientation="RIGHT_BOTTOM"
+                app:label_text="PROMO"
+                app:label_textColor="#fff"
+                app:label_textSize="14sp" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</com.tefsalkw.utils.LabelLinearView>

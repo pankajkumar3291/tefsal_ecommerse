@@ -30,15 +30,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.tefsalkw.R;
 import com.tefsalkw.activity.DishDashaStoresActivity;
+import com.tefsalkw.activity.TailorProductActivity;
+import com.tefsalkw.adapter.TailorProductFromCartAdapterListView;
+import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.GetCartRecord;
 import com.tefsalkw.models.GetCartResponse;
 import com.tefsalkw.models.TailoringRecord;
 import com.tefsalkw.models.TailoringResponse;
-import com.tefsalkw.R;
-import com.tefsalkw.activity.TailorProductActivity;
-import com.tefsalkw.adapter.TailorProductFromCartAdapterListView;
-import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -144,7 +144,7 @@ public class TailorTextileChooseFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                String myOwnTextileString = "I have my own textile";
+                String myOwnTextileString = getResources().getString(R.string.i_have_my_own_textile);
                 if (tailoringRecordArrayList.size() > 0) {
 
                     boolean isOwn = true;
@@ -321,9 +321,6 @@ public class TailorTextileChooseFragment extends BaseFragment {
             }
         });
     }
-
-
-
 
 
     private List<GetCartRecord> getCartItemTailorProduct(List<GetCartRecord> getCartRecordList) {

@@ -21,6 +21,7 @@
             android:padding="5dp"
             android:src="@drawable/ic_left_arrow" />
 
+
         <LinearLayout
             android:gravity="center"
             android:layout_centerHorizontal="true"

@@ -2,8 +2,8 @@
 <resources>
 
     <string-array name="visibility_items">
-        <item>Hidden</item>
-        <item>Visible</item>
+        <item>مخفية</item>
+        <item>ظاهرة</item>
     </string-array>
 
     <string-array name="no_of_buttons_items">
@@ -22,8 +22,8 @@
     </string-array>
 
     <string-array name="cufflinks">
-        <item>Cufflinks</item>
-        <item>No Cufflinks</item>
+        <item>أزرار أكمام</item>
+        <item>أزرار أكمام بدون</item>
     </string-array>
 
     <string-array name="push_type">
@@ -34,12 +34,12 @@
 
     <string-array name="language">
         <item>English</item>
-        <item>Arabic</item>
+        <item>عربي</item>
     </string-array>
 
     <string-array name="gender">
-        <item>Male</item>
-        <item>Female</item>
+        <item>ذكر</item>
+        <item>أنثي</item>
     </string-array>
 
 

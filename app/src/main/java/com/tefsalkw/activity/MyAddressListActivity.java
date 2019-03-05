@@ -20,9 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.tefsalkw.models.AddressResponseModel;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.AddressListAdapter;
+import com.tefsalkw.models.AddressResponseModel;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -66,10 +66,10 @@ public class MyAddressListActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         toolbar_title.setText("MY ADDRESS");
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mSessionManger=new SessionManager(this);
+        mSessionManger = new SessionManager(this);
 
-        System.out.println("CUSTOMER=="+mSessionManger.getCustomerId());
-        System.out.println("CUSTOMER=="+mSessionManger.getToken());
+        System.out.println("CUSTOMER==" + mSessionManger.getCustomerId());
+        System.out.println("CUSTOMER==" + mSessionManger.getToken());
 
         btn_ADD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +89,13 @@ public class MyAddressListActivity extends BaseActivity {
 
     }
 
-    private void httpGetMyAddressCall()
-    {
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        httpGetMyAddressCall();
+//    }
+
+    public void httpGetMyAddressCall() {
         SimpleProgressBar.showProgress(MyAddressListActivity.this);
         try {
             final String url = Contents.baseURL + "getCustomerSavedAddresses";
@@ -102,13 +107,11 @@ public class MyAddressListActivity extends BaseActivity {
 
                             SimpleProgressBar.closeProgress();
 
-                            if(response!=null)
-                            {
+                            if (response != null) {
                                 Gson g = new Gson();
-                                AddressResponseModel addressResponseModel=g.fromJson(response,AddressResponseModel.class);
+                                AddressResponseModel addressResponseModel = g.fromJson(response, AddressResponseModel.class);
 
-                                if(!addressResponseModel.getStatus().equals("0"))
-                                {
+                                if (!addressResponseModel.getStatus().equals("0")) {
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -116,28 +119,23 @@ public class MyAddressListActivity extends BaseActivity {
                                     recyclerView.setItemAnimator(new DefaultItemAnimator());
 
                                     //Adapter requere---
-                                    AddressListAdapter addressListAdapter=new AddressListAdapter(MyAddressListActivity.this,addressResponseModel.getRecord());
+                                    AddressListAdapter addressListAdapter = new AddressListAdapter(MyAddressListActivity.this, addressResponseModel.getRecord());
                                     RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                     recyclerView.setLayoutManager(mLayoutManager);
                                     recyclerView.setAdapter(addressListAdapter);
 
-                                    if(addressResponseModel.getRecord().size() == 0)
-                                    {
+                                    if (addressResponseModel.getRecord().size() == 0) {
                                         empty_view.setVisibility(View.VISIBLE);
                                         recyclerView.setVisibility(View.GONE);
                                         empty_view.setText(addressResponseModel.getMessage());
 
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     recyclerView.setVisibility(View.GONE);
                                     empty_view.setVisibility(View.VISIBLE);
                                     empty_view.setText(addressResponseModel.getMessage());
                                     // Toast.makeText(getApplicationContext(),addressResponseModel.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
-
-
 
 
                             }
@@ -160,7 +158,7 @@ public class MyAddressListActivity extends BaseActivity {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("customer_id", mSessionManger.getCustomerId());
                     params.put("access_token", mSessionManger.getToken());
-                    params.put("appUser","tefsal");
+                    params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
 
@@ -179,7 +177,7 @@ public class MyAddressListActivity extends BaseActivity {
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {
-            System.out.println("Error=="+surError.toString());
+            System.out.println("Error==" + surError.toString());
             surError.printStackTrace();
 
         }

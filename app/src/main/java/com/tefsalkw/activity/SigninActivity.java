@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
@@ -56,9 +56,6 @@ public class SigninActivity extends BaseActivity {
     TextView forgot_password_text;
 
 
-
-
-
     @BindView(R.id.input_email)
     EditText input_email;
 
@@ -100,7 +97,6 @@ public class SigninActivity extends BaseActivity {
         input_password.setTransformationMethod(new PasswordTransformationMethod());
 
 
-
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -128,15 +124,13 @@ public class SigninActivity extends BaseActivity {
         });
 
 
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                WebCallService(
-                        input_email.getText().toString(),
-                        input_password.getText().toString()
+                signInValidation(input_email,
+                        input_password
                 );
+
             }
         });
 
@@ -177,6 +171,38 @@ public class SigninActivity extends BaseActivity {
     protected void onPause() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
+    }
+
+    private void signInValidation(EditText email_edt, EditText password_edt) {
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email_edt.getText().toString())) {
+            email_edt.setError(getString(R.string.required_field));
+
+            focusView = email_edt;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(password_edt.getText().toString())) {
+            password_edt.setError(getString(R.string.required_field));
+
+            focusView = password_edt;
+            cancel = true;
+        }
+
+
+        if (cancel) {
+            if (focusView != null)
+                focusView.requestFocus();
+        } else {
+            WebCallService(
+                    input_email.getText().toString(),
+                    input_password.getText().toString()
+            );
+        }
     }
 
     public void WebCallService(final String str_email, final String str_password) {

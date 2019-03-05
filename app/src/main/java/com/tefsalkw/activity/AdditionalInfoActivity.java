@@ -29,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.hbb20.CountryCodePicker;
 import com.tefsalkw.R;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.CountryModel;
@@ -78,6 +79,8 @@ public class AdditionalInfoActivity extends BaseActivity {
     @BindView(R.id.dobInputLayout)
     TextInputLayout dobInputLayout;
 
+    @BindView(R.id.countryPicker)
+    CountryCodePicker ccp;
 
     List<String> country_name;
     List<String> iso_name;
@@ -92,6 +95,7 @@ public class AdditionalInfoActivity extends BaseActivity {
     private String customer_id;
     private String customer_name;
     String input_email = "";
+    String nationality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,7 +202,13 @@ public class AdditionalInfoActivity extends BaseActivity {
             }
         });
 
-        getCountries();
+        //getCountries();
+        setNationalities();
+    }
+
+    private void setNationalities() {
+        nationality = ccp.getSelectedCountryName();
+
     }
 
     public void getCountries() {
@@ -277,7 +287,8 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }       SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -437,14 +448,15 @@ public class AdditionalInfoActivity extends BaseActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            Log.e("error",new Gson().toJson(error));
+                            Log.e("error", new Gson().toJson(error));
 
                             if (error != null && error.networkResponse != null) {
                                 Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
 
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
-                            }    SimpleProgressBar.closeProgress();
+                            }
+                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -482,12 +494,12 @@ public class AdditionalInfoActivity extends BaseActivity {
             };
 
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000*60*3,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000 * 60 * 3,
                     0,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
             RequestQueue requestQueue = Volley.newRequestQueue(AdditionalInfoActivity.this);
-             stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             stringRequest.setShouldCache(false);

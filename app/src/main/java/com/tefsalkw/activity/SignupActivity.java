@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -221,20 +222,7 @@ public class SignupActivity extends BaseActivity {
                 input_layout_c_password.setError("");
                 input_layout_home_num.setError("");
                 input_layout_mob.setError("");
-
-                if (validateFirstName(input_fname.getText().toString().trim())
-
-                        && validateMobileNumber(input_mob.getText().toString().trim())
-                        && validateMobileServer(is_exist_phone)
-                        && validateEmail(input_email.getText().toString().trim())
-                        && validateEmailServer(is_exist_email)
-                        && validatePassword(input_password.getText().toString().trim())
-                        && validateC_password(input_c_password.getText().toString().trim())) {
-
-                    // startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
-                    startActivity(new Intent(SignupActivity.this, AdditionalInfoActivity.class));
-
-                }
+                validateFirstStepInputs(input_fname, input_mob, input_email, input_password, input_c_password, input_lname);
 
 
             }
@@ -345,6 +333,95 @@ public class SignupActivity extends BaseActivity {
 
     }
 
+    private void validateFirstStepInputs(EditText input_fname, EditText input_mob, EditText input_email, EditText input_password, EditText input_c_password, EditText input_lname) {
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid email address.
+
+        if (TextUtils.isEmpty(input_fname.getText().toString())) {
+            input_fname.setError(getString(R.string.required_field));
+
+            focusView = input_fname;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_lname.getText().toString())) {
+            input_lname.setError(getString(R.string.required_field));
+
+            focusView = input_lname;
+            cancel = true;
+        }
+
+
+        if (TextUtils.isEmpty(input_mob.getText().toString())) {
+            input_mob.setError(getString(R.string.required_field));
+
+            focusView = input_mob;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_email.getText().toString())) {
+            input_email.setError(getString(R.string.required_field));
+
+            focusView = input_email;
+            cancel = true;
+        }
+        if (!isValidEmail(input_email.getText().toString())) {
+            input_email.setError(getString(R.string.invalidEmail));
+
+            focusView = input_email;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_password.getText().toString())) {
+            input_password.setError(getString(R.string.required_field));
+            focusView = input_password;
+            cancel = true;
+        }
+
+        if (TextUtils.isEmpty(input_c_password.getText().toString())) {
+            input_c_password.setError(getString(R.string.required_field));
+            focusView = input_c_password;
+            cancel = true;
+        }
+
+        if (!input_c_password.getText().toString().equals(input_password.getText().toString())) {
+            input_c_password.setError(getString(R.string.password_not_matches));
+            focusView = input_c_password;
+            cancel = true;
+        }
+
+
+        if (cancel) {
+            if (focusView != null)
+                focusView.requestFocus();
+        } else {
+            if (validateFirstName(input_fname.getText().toString().trim())
+
+                    && validateMobileNumber(input_mob.getText().toString().trim())
+                    && validateMobileServer(is_exist_phone)
+                    && validateEmail(input_email.getText().toString().trim())
+                    && validateEmailServer(is_exist_email)
+                    && validatePassword(input_password.getText().toString().trim())
+                    && validateC_password(input_c_password.getText().toString().trim())) {
+
+                // startActivity(new Intent(SignupActivity.this, AddAddresssAfterSignUp.class));
+                startActivity(new Intent(SignupActivity.this, AdditionalInfoActivity.class));
+
+            }
+
+        }
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
 
     @Override
     public void onBackPressed() {

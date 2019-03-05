@@ -16,10 +16,17 @@
         android:layout_height="?attr/actionBarSize"
         app:theme="@style/TransparentToolbar">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="@string/back" />
+
         <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:background="@android:color/transparent"
             android:scaleX="@integer/rtl_flip_factor"
             android:src="@drawable/ic_left_arrow" />
@@ -40,25 +47,25 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_email"
         android:layout_width="match_parent"
-        android:padding="10dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="20dp"
+        android:padding="10dp">
 
         <EditText
-            android:textDirection="ltr"
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-' "
             android:gravity="bottom"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
+            android:textDirection="ltr"
             android:textSize="@dimen/text_small"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-' "
             tools:ignore="MissingPrefix" />
 
     </android.support.design.widget.TextInputLayout>
@@ -76,25 +83,25 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_password"
         android:layout_width="match_parent"
-        android:padding="6dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sep1"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="20dp"
+        android:padding="6dp">
 
         <EditText
-            fontPath="fonts/GESSTwoMedium-Medium.otf"
-            android:textDirection="ltr"
             android:id="@+id/input_password"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
+            fontPath="fonts/GESSTwoMedium-Medium.otf"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:background="@android:color/transparent"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'()*+,-./:;=?@[\]^_`{|}~ "
             android:gravity="bottom"
             android:hint="@string/hint_password"
             android:singleLine="true"
             android:textColorHint="@color/colorTheme"
+            android:textDirection="ltr"
             android:textSize="@dimen/text_small"
             tools:ignore="MissingPrefix" />
 
@@ -134,12 +141,12 @@
 
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/privacy_policy"
         android:id="@+id/forgot_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/privacy_policy"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="@string/action_forgot_pwd"
         android:textColor="@color/colorTheme"
         android:textSize="@dimen/text_normal" />

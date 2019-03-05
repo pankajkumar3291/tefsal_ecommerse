@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,8 @@ import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
+import com.lid.lib.LabelImageView;
+import com.lid.lib.LabelView;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.adapter.BrandFilterAdapter;
@@ -1443,7 +1446,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout) object;
+            return view == (FrameLayout) object;
         }
 
         @Override
@@ -1451,6 +1454,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             View itemView = layoutInflater.inflate(R.layout.zaara_daraa_first, container, false);
 
             final PhotoView imageView = (PhotoView) itemView.findViewById(R.id.zaara);
+            final LabelImageView discountImageLabel = (LabelImageView) itemView.findViewById(R.id.discountImageLabel);
 
             System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
             //   Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);

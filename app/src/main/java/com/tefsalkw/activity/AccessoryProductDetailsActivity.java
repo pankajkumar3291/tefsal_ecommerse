@@ -75,8 +75,6 @@ import butterknife.ButterKnife;
 public class AccessoryProductDetailsActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
 
-    private AccessoriesRecord accessoriesRecord;
-
     @BindView(R.id.text_descp)
     TextView text_desc;
 
@@ -134,6 +132,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     AccessoryDetailRecord accessoryDetailRecord;
 
+    private AccessoriesRecord accessoriesRecord;
+
 
     DefaultSliderView.OnSliderClickListener onSliderClickListener;
 
@@ -189,12 +189,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             productId = accessoriesRecord.getTefsal_product_id();
 
         }
-
-        getAccessoriesProductDetails();
-
-
-        initSlider();
         setData();
+        getAccessoriesProductDetails();
+        initSlider();
 
 
         add_cart_btn.setOnClickListener(new View.OnClickListener() {
@@ -283,13 +280,11 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                                     Gson g = new Gson();
                                     accessoryProductDetailResponse = g.fromJson(response, AccessoryProductDetailResponse.class);
                                     if (accessoryProductDetailResponse != null) {
-                                        accessoryDetailRecord =  accessoryProductDetailResponse.getRecord();
+                                        accessoryDetailRecord = accessoryProductDetailResponse.getRecord();
 
-                                        if(accessoryDetailRecord != null)
-                                        {
-                                            txt_title.setText(accessoryDetailRecord.getProductName());
-                                            subtxt_title.setText(accessoryDetailRecord.getStoreName());
-
+                                        if (accessoryDetailRecord != null) {
+                                            //txt_title.setText(accessoryDetailRecord.getProductName());
+                                            // subtxt_title.setText(accessoryDetailRecord.getStoreName());
                                             text_desc.setText(accessoryDetailRecord.getProductDesc());
                                         }
 
@@ -542,14 +537,11 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         if (accessoriesRecord != null) {
 
-            if(session.getKeyLang().equals("Arabic"))
-            {
+            if (session.getKeyLang().equals("Arabic")) {
                 txt_title.setText(accessoriesRecord.getProductNameArabic());
                 subtxt_title.setText(accessoriesRecord.getStoreNameArabic());
                 text_desc.setText(accessoriesRecord.getProductDescArabic());
-            }
-            else
-            {
+            } else {
                 txt_title.setText(accessoriesRecord.getProductName());
                 subtxt_title.setText(accessoriesRecord.getStoreName());
                 text_desc.setText(accessoriesRecord.getProductDesc());

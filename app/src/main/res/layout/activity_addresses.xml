@@ -10,9 +10,9 @@
 
     <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbar"
-        android:translationZ="999dp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:translationZ="999dp"
         app:theme="@style/TransparentToolbar">
 
 
@@ -21,16 +21,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/btn_back"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@null"
-                android:padding="5dp"
-                android:scaleX="@integer/rtl_flip_factor"
-                android:src="@drawable/ic_left_arrow" />
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleX="@integer/rtl_flip_factor"
+                    android:src="@drawable/ic_left_arrow" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/back" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -88,6 +102,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
+
+                        android:drawableStart="@drawable/ic_star2"
+                        android:drawablePadding="@dimen/margin_xxsmall"
                         android:hint="@string/hint_address_name"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
@@ -132,8 +149,7 @@
                     android:id="@+id/countryTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawableStart="@drawable/ic_star2"
                     android:drawablePadding="@dimen/margin_xxsmall"
                     android:text="@string/hint_country"
                     android:textColor="@color/colorDGray"
@@ -165,8 +181,7 @@
                     android:id="@+id/cityTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawableStart="@drawable/ic_star2"
                     android:drawablePadding="@dimen/margin_xxsmall"
                     android:text="@string/hint_city"
                     android:textColor="@color/colorDGray"
@@ -199,8 +214,7 @@
                     android:id="@+id/areaTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_xsmall"
-                    android:drawableLeft="@drawable/ic_star2"
+                    android:drawableStart="@drawable/ic_star2"
                     android:drawablePadding="@dimen/margin_xxsmall"
                     android:text="@string/hint_area"
                     android:textColor="@color/colorDGray"
@@ -258,6 +272,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_star2"
+                        android:drawablePadding="@dimen/margin_xxsmall"
                         android:hint="@string/hint_block"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
@@ -309,7 +325,10 @@
                         android:id="@+id/input_street"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
+
                         android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_star2"
+                        android:drawablePadding="@dimen/margin_xxsmall"
                         android:hint="@string/hint_street"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
@@ -459,7 +478,9 @@
                         android:id="@+id/input_house"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/MyAddress_EditText_height"
-                        android:background="@android:color/transparent"
+                          android:background="@android:color/transparent"
+                        android:drawableStart="@drawable/ic_star2"
+                        android:drawablePadding="@dimen/margin_xxsmall"
                         android:hint="@string/hint_house"
                         android:imeOptions="actionNext"
                         android:singleLine="true"
