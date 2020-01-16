@@ -54,10 +54,15 @@ import com.tefsalkw.dialogs.DialogKart;
 import com.tefsalkw.models.BadgeRecordModel;
 import com.tefsalkw.models.Colors;
 import com.tefsalkw.models.DaraAbayaDetailRecord;
+import com.tefsalkw.models.Payload;
 import com.tefsalkw.models.ProductMeasurement;
 import com.tefsalkw.models.ProductRecord;
+import com.tefsalkw.models.PromoRestponseModel;
+import com.tefsalkw.models.SendItemPromo;
+import com.tefsalkw.models.SendPromoModel;
 import com.tefsalkw.models.ZaraDaraSizeModel;
 import com.tefsalkw.network.BaseHttpClient;
+import com.tefsalkw.rest_client.RestClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -74,7 +79,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import retrofit2.Call;
+import retrofit2.Callback;
 //import android.widget.RelativeLayout.LayoutParams;
 
 public class DaraAbayaProductDetailsActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
@@ -82,7 +88,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
     private int dotsCount;
 
     private ImageView[] dots;
-
 
     @BindView(R.id.back_btn)
     ImageView back_btn;
@@ -105,7 +110,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.text_descp)
     TextView text_descp;
 
-
     @BindView(R.id.sizeGuide)
     TextView sizeGuide;
 
@@ -115,7 +119,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
     @BindView(R.id.less_btn)
     ImageView less_btn;
-
 
     @BindView(R.id.view_cart_btn)
     RelativeLayout view_cart_btn;
@@ -128,7 +131,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
     @BindView(R.id.meter_value)
     TextView meter_value;
-
 
     String sizeFlage = "";
     String sizeGuideResponseHtml;
@@ -279,25 +281,19 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
             txt_title.setText(productRecord.getProduct_name());
             subtxt_title.setText(productRecord.getBrand_name());
         }
-
-
     }
 
     private void initEvents() {
         sizeGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 try {
 
                     if (sizeGuideResponseHtml != null && !sizeGuideResponseHtml.equalsIgnoreCase("")) {
                         Intent intent = new Intent(DaraAbayaProductDetailsActivity.this, SizeGuideActivirty.class);
                         Bundle bundle = new Bundle();
                         bundle.putString("sizeGuideResponseHtml", sizeGuideResponseHtml);
-
                         intent.putExtras(bundle);
-
                         startActivity(intent);
                     } else {
                         Toast.makeText(DaraAbayaProductDetailsActivity.this, "Sorry! Size guide not available!", Toast.LENGTH_SHORT).show();
@@ -320,15 +316,90 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                     return;
                 }
 
-
 //                if (!isSizeSelected) {
 //
 //                    Toast.makeText(DaraAbayaProductDetailsActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
 
-                WebCallServiceAddCartNew();
+                if (getIntent().hasExtra("view"))
+                {
+                    if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo"))
+                    {
+                        if (getIntent().getStringExtra("viewType").equalsIgnoreCase("Seperate")&&getIntent().hasExtra("payloads"))
+                        {
+                            List<Payload>  list= (List<Payload>) getIntent().getSerializableExtra("payloads");
+                            //todo For custom color and size
+                            SendItemPromo sendItemPromo=new SendItemPromo();
+                            List<SendItemPromo> PromoProductlist=new ArrayList<>();
+                            SendPromoModel sendPromoModel=new SendPromoModel();
+                            sendPromoModel.setUserId(session.getCustomerId());
+                            sendPromoModel.setCartId(session.getKeyCartId());
+                            sendPromoModel.setAppSecret("tefsal@123");
+                            sendPromoModel.setAppUser("tefsal");
+                            sendPromoModel.setAppVersion("1.1");
 
+                            sendItemPromo.setCategoryId(list.get(0).getCategory());
+                            sendItemPromo.setSubcategoryId(list.get(0).getSubCategory());
+                            sendItemPromo.setPromoType(list.get(0).getBundleType());
+                            sendItemPromo.setItemQuantity("1");
+                            sendItemPromo.setPromoGift(list.get(0).getPromoGift());
+                            sendItemPromo.setPromoDiscount(list.get(0).getDiscount()==null?"0":list.get(0).getDiscount());
+                            sendItemPromo.setPromoId(String.valueOf(list.get(0).getPromoId()));
+
+
+                            sendItemPromo.setProductId(productRecord.getTefsal_product_id());
+                            sendItemPromo.setItemId(String.valueOf(productRecord.getItem_id()));
+                            sendItemPromo.setItemType(productRecord.getItem_type());
+                            sendItemPromo.setTotalAmount(productRecord.getDefault_price());
+                            PromoProductlist.add(sendItemPromo);
+                            sendPromoModel.setItems(PromoProductlist);
+
+
+                            try {
+                                RestClient.APIInterface apiInterface=RestClient.getClient();
+                                apiInterface.AddPromo(sendPromoModel).enqueue(new Callback<PromoRestponseModel>() {
+                                    @Override
+                                    public void onResponse(Call<PromoRestponseModel> call, retrofit2.Response<PromoRestponseModel> response) {
+
+                                        if (response.body().getStatus()==1)
+                                        {
+                                            Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<PromoRestponseModel> call, Throwable t) {
+                                        Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    }
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(),"Exception:"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+
+//                            Toast.makeText(getApplicationContext(),""+sendPromoModel,Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            productRecord.setPosition(getIntent().getIntExtra("position",-1));
+                            Intent intent = new Intent();
+                            intent.putExtra("DaraObject", productRecord);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+
+                    }
+                }
+                else {
+                    WebCallServiceAddCartNew();
+                }
 
             }
         });
@@ -361,10 +432,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                 } else {
                     Toast.makeText(DaraAbayaProductDetailsActivity.this, "Please select size!", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
-
         });
         less_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -372,7 +440,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                 if (meter > 1) {
                     meter--;
                     amount = meter * price;
-
                     text_price.setText(String.format(new Locale("en"), "%.3f", amount));
                     meter_value.setText("" + meter);
                 }
@@ -393,8 +460,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         mainViewPager.setCustomAnimation(new DescriptionAnimation());
         mainViewPager.setDuration(5000);
         mainViewPager.addOnPageChangeListener(this);
-
-
     }
 
     private void initViewsPostCall() {
@@ -434,8 +499,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
             }
         }
-
-
         zaraDaraSizesModel = daraAbayaDetailRecord.getColors().get(0).getSizes().get(0);
 
         bindSelectedSizeData();
@@ -525,7 +588,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
                     return params;
                 }
-
             };
 
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
@@ -582,8 +644,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         productSizeAdapterHorizontalZaraDara.productSizesList = colors.getSizes();
         productSizeAdapterHorizontalZaraDara.notifyDataSetChanged();
         isSizeSelected = false;
-
-
     }
 
 
@@ -617,9 +677,21 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
                 return;
             } else {
-                add_cart_btn.setEnabled(true);
-                add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
-                quntity_LL.setVisibility(View.VISIBLE);
+                if (getIntent().hasExtra("view"))
+                {
+                    if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo")) {
+                        add_cart_btn.setEnabled(true);
+                        add_cart_btn.setText("Add To Promo");
+                        quntity_LL.setVisibility(View.VISIBLE);
+                    }
+                }
+                else
+                {
+                    add_cart_btn.setEnabled(true);
+                    add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
+                    quntity_LL.setVisibility(View.VISIBLE);
+                }
+
             }
 
             if (zaraDaraSizesModel.getPrice() != null) {
@@ -639,8 +711,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
     @Override
     protected void onResume() {
         super.onResume();
-
-
         Log.e(DaraAbayaProductDetailsActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
@@ -658,10 +728,7 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                         @Override
                         public void onResponse(String response) {
 
-
                             System.out.println("response==" + response.toString());
-
-
                             // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
@@ -713,7 +780,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                 }
 
             };
-
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -733,7 +799,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         super.onStop();
     }
 
-
     @SuppressLint("LongLogTag")
     public void WebCallServiceAddCartNew() {
 
@@ -748,11 +813,9 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
         JSONObject params = new JSONObject();
 
-
         System.out.println("QUANTITY====" + meter_value.getText());
         System.out.println("currentPosition====" + currentColorPosition);
         //System.out.println("ATTRIBUTE ID====" +   daraAbayaDetailRecord.getColors().get(currentColorPosition).getAttribute_id());
-
         try {
             if (session.getIsGuestId()) {
                 params.put("unique_id", session.getCustomerId());
@@ -760,7 +823,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
                 params.put("user_id", session.getCustomerId());
                 params.put("access_token", session.getToken());
             }
-
             try {
                 params.put("items", getItems());
             } catch (JSONException e) {
@@ -773,7 +835,6 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         Log.e("Tefsal tailor == ", url + params);
 
 
@@ -819,16 +880,12 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
 
                     httpGetBadgesCall();
 
-
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
                 }
-
             }
         });
-
-
     }
 
 
@@ -843,9 +900,10 @@ public class DaraAbayaProductDetailsActivity extends BaseActivity implements Bas
             obj.put("category_id", "3");
         }
         if (productRecord.getFlag().equals("Abaya")) {
-
             obj.put("category_id", "2");
         }
+            obj.put("subcategory_id", "0");
+
         obj.put("product_id", productRecord.getTefsal_product_id());
 
         obj.put("item_id", zaraDaraSizesModel != null ? zaraDaraSizesModel.getAttribute_meta_id() : "");

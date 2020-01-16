@@ -180,6 +180,8 @@ public class EditProfileActivity extends BaseActivity {
     @BindView(R.id.spin_country)
     Spinner spin_country;
 
+    ArrayAdapter aa;
+
     List<String> country_name;
     List<String> iso_name;
     String country_iso_code;
@@ -199,10 +201,8 @@ public class EditProfileActivity extends BaseActivity {
 
     private Uri fileUri;
     private static final String IMAGE_DIRECTORY_NAME = "profile";
-
     private Button camera;
     private Button gallery;
-
     private String imageFile;
     private String ImagePath = "";
     private String firstname;
@@ -210,15 +210,13 @@ public class EditProfileActivity extends BaseActivity {
     private String mobileNo;
     private String homeNo;
     private String dob;
-
     private int rotation;
-
 
     JSONObject records;
     Bitmap b;
 
     private int mYear, mMonth, mDay;
-
+//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -709,7 +707,7 @@ public class EditProfileActivity extends BaseActivity {
                                     }
 
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(EditProfileActivity.this, android.R.layout.simple_spinner_item, country_name);
+                                  aa  = new ArrayAdapter(EditProfileActivity.this, android.R.layout.simple_spinner_item, country_name);
 
                                    /* {
                                         @Override
@@ -753,7 +751,6 @@ public class EditProfileActivity extends BaseActivity {
                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                             country_iso_code = iso_name.get(position);
                                             //Toast.makeText(getApplicationContext(),country_iso_code,Toast.LENGTH_SHORT).show();
-
                                             //else
                                             // ww;
                                         }
@@ -1018,6 +1015,9 @@ public class EditProfileActivity extends BaseActivity {
 
             if (!records.get("nationality").equals(null) ? true : false)
                 input_nationality.setText(records.get("nationality").toString());
+//            int spinnerPosition = .getPosition(compareValue);
+            int spinnerPosition = aa.getPosition(records.get("nationality").toString());
+            spin_country.setSelection(spinnerPosition);
 
             if (!records.get("dob").equals(null) ? true : false)
                 input_dob.setText(records.get("dob").toString());

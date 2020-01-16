@@ -99,9 +99,9 @@ public class FragmentTextileProducts extends BaseFragment {
 
     String store_id, flag;
 
-    private List<TextileProductModel> textileProductModelList = new ArrayList<TextileProductModel>();
-    public ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList = new ArrayList<ColorRecordFromDishdashaFilteration>();
-    public ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList = new ArrayList<ProductCountryRecordModel>();
+    private List<TextileProductModel> textileProductModelList = new ArrayList<>();
+    public ArrayList<ColorRecordFromDishdashaFilteration> colorsRecordModelArrayList = new ArrayList<>();
+    public ArrayList<ProductCountryRecordModel> productCountryRecordModelArrayList = new ArrayList<>();
 
     String[] seasonRecordModelArrayList;
 
@@ -135,10 +135,7 @@ public class FragmentTextileProducts extends BaseFragment {
     public ColorRecordFromDishdashaFilteration selectedColorModel;
     public ColorsRecordModel selectedSubColorModel;
     public ProductCountryRecordModel selectedCountryModel;
-
-
     //View
-
 
     @BindView(R.id.llimgSelectedSeason)
     LinearLayout llimgSelectedSeason;
@@ -158,7 +155,6 @@ public class FragmentTextileProducts extends BaseFragment {
 
     @BindView(R.id.imgSelectedCountry)
     CircleImageView imgSelectedCountry;
-
 
     @BindView(R.id.imgRemoveSeason)
     TextView imgRemoveSeason;
@@ -183,8 +179,6 @@ public class FragmentTextileProducts extends BaseFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_textile, container, false);
         ButterKnife.bind(this, v);
-
-
         //Filter Click
         text_season.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,22 +222,16 @@ public class FragmentTextileProducts extends BaseFragment {
                     }
 
                     seasonList.add(seasonModel);
-
-
                 }
-
-
                 SeasonFilterAdapter seasonFilterAdapter = new SeasonFilterAdapter(seasonList, FragmentTextileProducts.this, seasonList.size());
 
                 RecyclerView recyclerViewSeason = (RecyclerView) popupSeasonView.findViewById(R.id.recyclerViewSeason);
-
 
                 RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
 
                 //LayoutManager(getActivity(), 3);
                 recyclerViewSeason.setLayoutManager(mLayoutManager);
                 recyclerViewSeason.setAdapter(seasonFilterAdapter);
-
 
                 seasonWindow = new PopupWindow(popupSeasonView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 seasonWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -254,10 +242,7 @@ public class FragmentTextileProducts extends BaseFragment {
                         //TODO do sth here on dismiss
                     }
                 });
-
-
                 seasonWindow.showAsDropDown(v);
-
             }
         });
 
@@ -298,13 +283,11 @@ public class FragmentTextileProducts extends BaseFragment {
                         }
                     });
 
-
                     colorWindow.showAsDropDown(v);
 
                 } catch (Exception exc) {
 
                 }
-
             }
         });
 
@@ -315,7 +298,6 @@ public class FragmentTextileProducts extends BaseFragment {
                 if (productCountryRecordModelArrayList == null) {
                     return;
                 }
-
 
                 LayoutInflater LayoutInflater = getActivity().getLayoutInflater();
                 popupCountryView = LayoutInflater.inflate(R.layout.choose_country_panel, null);
@@ -342,8 +324,6 @@ public class FragmentTextileProducts extends BaseFragment {
                         //TODO do sth here on dismiss
                     }
                 });
-
-
                 countryWindow.showAsDropDown(v);
             }
         });
@@ -362,23 +342,19 @@ public class FragmentTextileProducts extends BaseFragment {
                 text_season.setText(getString(R.string.fragment_textile_text_season_text));
 
                 WebCallServiceStores();
-
             }
         });
 
         imgRemoveColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 color = "";
                 sub_color = "";
                 llimgSelectedColor.setVisibility(View.GONE);
                 imgRemoveColor.setVisibility(View.GONE);
-
                 text_color.setText(getString(R.string.fragment_textile_text_color_text));
 
                 WebCallServiceStores();
-
             }
         });
 
@@ -490,10 +466,7 @@ public class FragmentTextileProducts extends BaseFragment {
             if (season.toLowerCase().equalsIgnoreCase("all")) {
                 season = "";
             }
-
-
             WebCallServiceStores();
-
         }
 
 
@@ -521,10 +494,7 @@ public class FragmentTextileProducts extends BaseFragment {
             gradientDrawable.setColor(Color.parseColor(selectedColor.getHexa_value()));
             imgSelectedColor.setBackground(layerDrawable);
             text_color.setTextSize(12);
-
-
             WebCallServiceStores();
-
         }
     }
 
@@ -585,15 +555,10 @@ public class FragmentTextileProducts extends BaseFragment {
             if (selectedCountry.getName().toLowerCase().equalsIgnoreCase("all")) {
                 country = "";
             }
-
             WebCallServiceStores();
-
-
         }
 
     }
-
-
     public void WebCallServiceStores() {
         SimpleProgressBar.showProgress(getActivity());
         try {
@@ -606,10 +571,7 @@ public class FragmentTextileProducts extends BaseFragment {
 
 
                             if (response != null) {
-
-
                                 try {
-
                                     Log.e("stores response", response);
                                     Gson g = new Gson();
                                     TextileProductResponse mResponse = g.fromJson(response, TextileProductResponse.class);
@@ -624,11 +586,7 @@ public class FragmentTextileProducts extends BaseFragment {
                                         recycler.setAdapter(dishdashaAdapter);
 
                                     } else {
-
-
                                         if (dishdashaAdapter != null) {
-
-
                                             textNoProduct.setVisibility(View.VISIBLE);
                                             recycler.setVisibility(View.GONE);
                                         }
@@ -725,7 +683,7 @@ public class FragmentTextileProducts extends BaseFragment {
 
                                     }
                                 } catch (Exception ex) {
-
+                                    ex.printStackTrace();
                                 }
 
 

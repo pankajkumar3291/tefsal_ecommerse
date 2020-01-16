@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -33,13 +35,11 @@ import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.DishdashaStylesRecord;
 import com.tefsalkw.models.TailorStoresModel;
 import com.tefsalkw.utils.SessionManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 import static android.view.View.GONE;
 
 /**
@@ -74,8 +74,23 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         @BindView(R.id.ratingbar)
         RatingBar ratingbar;
 
+        @BindView(R.id.icon_delivery)
+        ImageView delivery_image;
+
         @BindView(R.id.title)
         TextView title;
+        @BindView(R.id.textView4)
+        TextView textpromo;
+
+        @BindView(R.id.imageView4)
+        ImageView leftpromo;
+
+        @BindView(R.id.discountlayout)
+        ConstraintLayout discountlayout;
+
+
+        @BindView(R.id.textView6)
+        TextView text_off;
 
         @BindView(R.id.main_layout)
         RelativeLayout main_layout;
@@ -83,16 +98,14 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
-
-        @BindView(R.id.txt_discount_amount)
-        TextView txt_discount_amount;
+        @BindView(R.id.discount)
+        TextView discount;
 
         @BindView(R.id.LL_di)
-        LinearLayout LL_di;
+        ImageView LL_di;
 
         @BindView(R.id.storeCloseLayout)
         RelativeLayout storeCloseLayout;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -112,20 +125,14 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
                 holder.main_layout.setVisibility(View.VISIBLE);
             }
 
-
             if (storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
-
                 holder.storeCloseLayout.setVisibility(View.VISIBLE);
-
-
             } else {
                 holder.storeCloseLayout.setVisibility(View.GONE);
             }
-
-
             String discount_amount;
 
-            if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()) {
+            if (!storeModels.get(holder.getAdapterPosition()).getStore_image().isEmpty()){
 
                 RequestOptions options = new RequestOptions()
                         .priority(Priority.HIGH)
@@ -137,7 +144,13 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
             } else {
                 holder.img.setImageResource(R.drawable.no_image_placeholder_non_grid);
             }
-            if (session.getKeyLang().equals("Arabic")) {
+            if (session.getKeyLang().equals("Arabic")){
+                holder.leftpromo.setRotation(90);
+                holder.textpromo.setRotation(45);
+                holder.discountlayout.setRotation(-45);
+                holder.LL_di.setRotation(0);
+                holder.textpromo.setText("الترويجي");
+                holder.delivery_image.setImageResource(R.drawable.icon_delivery_right);
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
             } else {
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
@@ -149,11 +162,21 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
             if (storeModels.get(holder.getAdapterPosition()).getStore_discount() == null || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("")) {
                 holder.LL_di.setVisibility(View.GONE);
-                /// holder.txt_discount_off.setVisibility(View.GONE);
+//                 holder.txt_discount_off.setVisibility(View.GONE);
             } else {
-                holder.LL_di.setVisibility(View.VISIBLE);
                 discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
-                holder.txt_discount_amount.setText(discount_amount + " OFF");
+                holder.LL_di.setVisibility(View.VISIBLE);
+                if (session.getKeyLang().equalsIgnoreCase("Arabic"))
+                {
+                    holder.discount.setText(discount_amount);
+                    holder.text_off.setText("إيقاف");
+                }
+                else
+                {
+                    discount_amount=discount_amount.replace("%","");
+                    holder.discount.setText(discount_amount);
+                }
+
             }
 
 
@@ -220,7 +243,7 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
 
 
                     } else
-                        activity.startActivity(new Intent(activity, ProductListOtherActivity.class)
+                        activity.startActivity(new Intent(activity,ProductListOtherActivity.class)
                                 .putExtra("store_id", storeModels.get(holder.getAdapterPosition()).getStore_id())
                                 .putExtra("Flag", flag));
                 }
@@ -228,7 +251,6 @@ public class DishdashaTailorAdapter extends RecyclerView.Adapter<DishdashaTailor
         } catch (Exception exc) {
 
         }
-
 
         if (!storeModels.get(holder.getAdapterPosition()).getIs_open().equalsIgnoreCase("Y")) {
 

@@ -12,6 +12,7 @@ import com.tefsalkw.R;
 import com.tefsalkw.activity.TextileDetailActivity;
 import com.tefsalkw.app.TefalApp;
 import com.tefsalkw.models.Colors;
+import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.List;
@@ -25,9 +26,11 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
     private Activity activity;
     SessionManager session;
 
+
     public ProductColorHorizontalDishdasha(List<Colors> productSizesList, Activity activity) {
         this.activity = activity;
         this.productSizesList = productSizesList;
+
         session = new SessionManager(activity);
 
     }
@@ -46,9 +49,12 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
 
 
 
+
+
         if(session.getKeyLang().equals("Arabic"))
         {
             String subColorIs = productSizesList.get(position).getSub_color_arabic();
+
 
             if (subColorIs != null) {
                 holder.sizeText.setText(subColorIs);
@@ -87,7 +93,6 @@ public class ProductColorHorizontalDishdasha extends RecyclerView.Adapter<Produc
 
             holder.sizeText.setTextColor(ContextCompat.getColor(activity, R.color.colorWhite));
             holder.sizeText.setBackgroundResource(R.drawable.my_button_bg_round);
-
             TextileDetailActivity textileDetailActivity = (TextileDetailActivity) activity;
             textileDetailActivity.showSizeOnColorSelection(productSizesList.get(position));
 

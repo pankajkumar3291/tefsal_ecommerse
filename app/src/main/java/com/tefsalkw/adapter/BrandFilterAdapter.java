@@ -48,6 +48,7 @@ public class BrandFilterAdapter extends RecyclerView.Adapter<BrandFilterAdapter.
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
 
+
         try
         {
             String brandName = filterBrandModelArrayList.get(position).getBrand_name();

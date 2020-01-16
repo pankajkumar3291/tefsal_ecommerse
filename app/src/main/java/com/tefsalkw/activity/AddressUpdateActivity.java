@@ -110,14 +110,15 @@ public class AddressUpdateActivity extends BaseActivity {
     List<String> country_name;
     List<String> iso_name;
 
-    List<String> province_id;
+    List<String> province_id= new ArrayList<String>();;
     List<String> province_name;
 
 
     List<String> area_id;
-    List<String> area_name;
+    List<String> area_name = new ArrayList<String>(); ;
 
     SessionManager session;
+    private boolean noAnyArea;
 
 
     private String country_iso_code;
@@ -188,13 +189,13 @@ public class AddressUpdateActivity extends BaseActivity {
                 } else if (spin_country.getSelectedItemPosition() == 0) {
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidCountry), Toast.LENGTH_LONG).show();
                     return;
-                } else if (spin_area.getSelectedItemPosition() == -1) {
+                } else if (spin_area.getSelectedItemPosition() == -1||spin_area.getSelectedItem().toString().equalsIgnoreCase("None!")) {
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidArea), Toast.LENGTH_LONG).show();
                     return;
-                } else if (spin_area.getSelectedItemPosition() == -1) {
+                } else if (spin_city.getSelectedItemPosition() == -1||spin_city.getSelectedItem().toString().equalsIgnoreCase("None!")) {
                     Toast.makeText(getApplicationContext(), getString(R.string.invalidCity), Toast.LENGTH_LONG).show();
                     return;
-                } else if (Contents.isBlank(input_street.getText().toString().trim())) {
+                } else if (Contents.isBlank(input_street.getText().toString().trim())){
                     input_street.requestFocus();
                     input_street.setError(getString(R.string.invalidStreet));
                     return;
@@ -372,6 +373,11 @@ public class AddressUpdateActivity extends BaseActivity {
     }
 
     private void getProvincePosition() {
+
+//        if (province_id.equals(null))
+//        {
+//            return;
+//        }
         for (int i = 0; i < province_id.size(); i++) {
             if (province_id.get(i).equals(addressRecord.getProvince_id())) {
                 provincePosition = i;
@@ -416,17 +422,19 @@ public class AddressUpdateActivity extends BaseActivity {
                         @Override
                         public void onResponse(String response) {
 
+                            province_name = new ArrayList<String>();
+
                             SimpleProgressBar.closeProgress();
-                            Log.e("device response", response);
+                            Log.e("device response",response);
                             try {
                                 JSONObject object = new JSONObject(response);
                                 String status = object.getString("status");
                                 String message = object.getString("message");
                                 if (status.equals("1")) {
 
-                                    province_id = new ArrayList<String>();
-                                    province_name = new ArrayList<String>();
-                                    area_name = new ArrayList<String>();
+
+
+
                                     // area_name.add("Select Province");
 
 
@@ -440,23 +448,20 @@ public class AddressUpdateActivity extends BaseActivity {
                                         } else {
                                             province_name.add(c.getString("province_name"));
                                         }
-
-
                                     }
-
+                                    noAnyArea=false;
                                     //Creating the ArrayAdapter instance having the country list
-                                    ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, province_name);
+                                    ArrayAdapter aa= new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, province_name);
                                     aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                     getProvincePosition();
-
                                     spin_city.setAdapter(aa);
+
                                     spin_city.setSelection(provincePosition);
                                     spin_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                                             getAreas(province_id.get(position));
-
                                             System.out.println("GET  ID PROVINCE===" + province_id.get(position));
                                         }
 
@@ -469,6 +474,14 @@ public class AddressUpdateActivity extends BaseActivity {
 
                                 } else {
 
+                                    province_name.clear();
+                                    province_name.add("None!");
+                                    noAnyArea=true;
+                                    ArrayAdapter aa= new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, province_name);
+                                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    getProvincePosition();
+                                    spin_city.setAdapter(aa);
+//                                            aa.notifyDataSetChanged();
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     //clearSpinnerData(aa);
                                 }
@@ -638,6 +651,20 @@ public class AddressUpdateActivity extends BaseActivity {
     }
 
     public void getAreas(final String province_id) {
+
+        if (noAnyArea)
+        {
+            area_name.clear();
+            area_name.add("None!");
+            ArrayAdapter aa = new ArrayAdapter(AddressUpdateActivity.this, android.R.layout.simple_spinner_item, area_name);
+            getAreaPosition();
+            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spin_area.setAdapter(aa);
+            return;
+        }
+
+
+
 
         Log.i(TAG, "Setting screen name: " + "AddressUpdateActivity");
         mTracker.setScreenName("Image~" + "AddressUpdateActivity");

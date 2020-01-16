@@ -124,7 +124,6 @@ public class SignupActivity extends BaseActivity {
     private String accessToken;
     private String customer_id;
     private String customer_name;
-
     private int position;
 
     private StringBuilder fname = new StringBuilder();
@@ -151,7 +150,6 @@ public class SignupActivity extends BaseActivity {
 
     @BindView(R.id.imgv_contry_flag2)
     ImageView imgv_contry_flag2;
-
 
     @BindView(R.id.txtCountryCode1)
     TextView txtCountryCode1;
@@ -206,14 +204,12 @@ public class SignupActivity extends BaseActivity {
         });
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         setData();
 
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 input_layout_fname.setError("");
                 input_layout_lname.setError("");
@@ -223,8 +219,6 @@ public class SignupActivity extends BaseActivity {
                 input_layout_home_num.setError("");
                 input_layout_mob.setError("");
                 validateFirstStepInputs(input_fname, input_mob, input_email, input_password, input_c_password, input_lname);
-
-
             }
         });
 
@@ -463,40 +457,42 @@ public class SignupActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        try {
+        //TODO previous registeration info are saved on  register page
 
-            Gson gson = new Gson();
+//        try {
 
-            JSONObject jsonObject = gson.fromJson(PreferencesUtil.getString(this, "SignupBundle", ""), new TypeToken<JSONObject>() {
-            }.getType());
-
-
-            if (jsonObject != null) {
-
-                input_fname.setText(jsonObject.getString("input_fname"));
-                input_lname.setText(jsonObject.getString("input_lname"));
-                input_mob.setText(jsonObject.getString("input_mob"));
-                input_home_num.setText(jsonObject.getString("input_home_num"));
-                input_email.setText(jsonObject.getString("input_email"));
-                input_password.setText(jsonObject.getString("input_password"));
-                input_c_password.setText(jsonObject.getString("input_password"));
-
-                selectedMobileCountry = gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
-                }.getType());
-                selectedHomeCountry = gson.fromJson(jsonObject.get("selectedHomeCountry").toString(), new TypeToken<CountryModel>() {
-                }.getType());
-
-                txtCountryCode1.setText(selectedMobileCountry.getPhonecode());
-                txtCountryCode2.setText(selectedHomeCountry.getPhonecode());
-
-                imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
-                imgv_contry_flag2.setImageResource(selectedMobileCountry.getFlag());
-            }
+//            Gson gson = new Gson();
+//
+//            JSONObject jsonObject = gson.fromJson(PreferencesUtil.getString(this, "SignupBundle", ""), new TypeToken<JSONObject>() {
+//            }.getType());
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//            if (jsonObject != null) {
+
+//                input_fname.setText(jsonObject.getString("input_fname"));
+//                input_lname.setText(jsonObject.getString("input_lname"));
+//                input_mob.setText(jsonObject.getString("input_mob"));
+//                input_home_num.setText(jsonObject.getString("input_home_num"));
+//                input_email.setText(jsonObject.getString("input_email"));
+//                input_password.setText(jsonObject.getString("input_password"));
+//                input_c_password.setText(jsonObject.getString("input_password"));
+//
+//                selectedMobileCountry = gson.fromJson(jsonObject.get("selectedMobileCountry").toString(), new TypeToken<CountryModel>() {
+//                }.getType());
+//                selectedHomeCountry = gson.fromJson(jsonObject.get("selectedHomeCountry").toString(), new TypeToken<CountryModel>() {
+//                }.getType());
+//
+//                txtCountryCode1.setText(selectedMobileCountry.getPhonecode());
+//                txtCountryCode2.setText(selectedHomeCountry.getPhonecode());
+//
+//                imgv_contry_flag1.setImageResource(selectedMobileCountry.getFlag());
+//                imgv_contry_flag2.setImageResource(selectedMobileCountry.getFlag());
+//            }
+
+
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
     }

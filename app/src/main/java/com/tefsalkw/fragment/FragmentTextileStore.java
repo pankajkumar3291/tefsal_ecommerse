@@ -56,6 +56,8 @@ public class FragmentTextileStore extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_daraa, container, false);
         ButterKnife.bind(this, v);
@@ -79,21 +81,15 @@ public class FragmentTextileStore extends BaseFragment {
         SimpleProgressBar.showProgress(getActivity());
         try {
             final String url = Contents.baseURL + "getStores";
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                    new Response.Listener<String>(){
                         @Override
                         public void onResponse(String response) {
-
-
                             if (response != null) {
-
                                 try {
-                                    Log.e(FragmentTextileStore.class.getSimpleName(), response);
+                                    Log.e(FragmentTextileStore.class.getSimpleName(),response);
                                     Gson g = new Gson();
                                     TextileStoresResponseModel mResponse = g.fromJson(response, TextileStoresResponseModel.class);
-
-
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -105,8 +101,6 @@ public class FragmentTextileStore extends BaseFragment {
                                 } catch (Exception exc) {
                                     SimpleProgressBar.closeProgress();
                                 }
-
-
                             }
 
 

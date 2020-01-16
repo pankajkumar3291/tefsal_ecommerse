@@ -73,7 +73,6 @@ public class SigninActivity extends BaseActivity {
     @BindView(R.id.privacy_policy)
     TextView privacy_policy;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -208,7 +207,8 @@ public class SigninActivity extends BaseActivity {
     public void WebCallService(final String str_email, final String str_password) {
         SimpleProgressBar.showProgress(SigninActivity.this);
         try {
-            final String url = Contents.baseURL + "customerLogin";
+            final String url = Contents.baseURL +"customerLogin";
+
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {

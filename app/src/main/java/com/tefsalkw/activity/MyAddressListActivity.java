@@ -161,7 +161,6 @@ public class MyAddressListActivity extends BaseActivity {
                     params.put("appUser", "tefsal");
                     params.put("appSecret", "tefsal@123");
                     params.put("appVersion", "1.1");
-
                     Log.e("Tefsal tailor == ", url + params);
 
                     return params;

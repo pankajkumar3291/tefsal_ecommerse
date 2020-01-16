@@ -119,7 +119,6 @@ public class OrderDetailsActivity extends BaseActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             toolbar_title.setText(getString(R.string.order_number) + "#" + orderId);
 
-
         } catch (Exception exc) {
 
         }

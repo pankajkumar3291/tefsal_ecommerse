@@ -86,17 +86,18 @@ public class AdditionalInfoActivity extends BaseActivity {
     List<String> iso_name;
     private String iso_string;
     private String mGender = "M";
-    private String mDob = "";
+    private String mDob ="";
     private int position;
 
-    SessionManager session;
+    private boolean isfirstRegister;
 
+    SessionManager session;
     private String accessToken;
     private String customer_id;
     private String customer_name;
-    String input_email = "";
-    String nationality;
-
+    private String input_email = "";
+    private String nationality;
+    private boolean isskiped;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +117,14 @@ public class AdditionalInfoActivity extends BaseActivity {
         submintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                doFullSignUp();
-
-
+                if (isfirstRegister)
+                {
+                    httpAdditionalInfoCall();
+                }
+                else
+                {
+                    doFullSignUp();
+                }
             }
         });
 
@@ -155,8 +160,6 @@ public class AdditionalInfoActivity extends BaseActivity {
                 int mDay = 0;
 
                 try {
-
-
                     Calendar c = Calendar.getInstance();
                     mYear = c.get(Calendar.YEAR);
                     mMonth = c.get(Calendar.MONTH);
@@ -177,8 +180,6 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                                 input_dob.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                 mDob = input_dob.getText().toString();
-
-
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -188,10 +189,20 @@ public class AdditionalInfoActivity extends BaseActivity {
         skipTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isskiped=true;
                 //startActivity(new Intent(AdditionalInfoActivity.this, SignupThankYouActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
                 //finish();
+                if (isfirstRegister)
+                {
+                    startActivity(new Intent(AdditionalInfoActivity.this, SignUpThankYouActivity.class).putExtra("email", input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    // startActivity(new Intent(AdditionalInfoActivity.this, AdditionalInfoActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                    finish();
+                }
+                else
+                {
+                    doFullSignUp();
+                }
 
-                doFullSignUp();
             }
         });
 
@@ -212,8 +223,6 @@ public class AdditionalInfoActivity extends BaseActivity {
     }
 
     public void getCountries() {
-
-
         SimpleProgressBar.showProgress(AdditionalInfoActivity.this);
         try {
             final String url = Contents.baseURL + "getAllCountries";
@@ -380,8 +389,6 @@ public class AdditionalInfoActivity extends BaseActivity {
 
 
     }
-
-
     //Step 1
     public void WebCallService(final String str_fname, final String str_lname, final String str_mob, final String str_home_num,
                                final String str_email, final String str_password, final String country_code) {
@@ -403,6 +410,8 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                                 Log.e("Signup TAG", ">>>" + response);
                                 if (status.equals("1")) {
+
+                                    isfirstRegister=true;
                                     JSONObject jsonObject = object.getJSONObject("record");
                                     // Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     System.out.println("CUSTOMER ID===" + jsonObject.getString("customer_id"));
@@ -424,8 +433,13 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                                     System.out.println("FROM SESSION ======EMAIL===" + session.getKeyEmail());
                                     System.out.println("FROM SESSION ======PASS===" + session.getKeyPass());
-                                    httpAdditionalInfoCall();
-
+                                    if (isskiped) {
+                                        startActivity(new Intent(AdditionalInfoActivity.this, SignUpThankYouActivity.class).putExtra("email", input_email).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        // startActivity(new Intent(AdditionalInfoActivity.this, AdditionalInfoActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                                        finish();
+                                    } else {
+                                        httpAdditionalInfoCall();
+                                    }
                                 } else {
                                     Gson g = new Gson();
                                     SignUpErrorMessageRecordModel signUpErrorMessageRecordModel = g.fromJson(message, SignUpErrorMessageRecordModel.class);
@@ -519,7 +533,7 @@ public class AdditionalInfoActivity extends BaseActivity {
 
         //province_id
         try {
-            final String url = Contents.baseURL + "customerSaveAddress";
+            final String url = Contents.baseURL +"customerSaveAddress";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -639,7 +653,7 @@ public class AdditionalInfoActivity extends BaseActivity {
         SimpleProgressBar.showProgress(AdditionalInfoActivity.this, getString(R.string.registration_in_progress));
 
         try {
-            final String url = Contents.baseURL + "customerAddtInfo";
+            final String url = Contents.baseURL +"customerAddtInfo";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -660,7 +674,7 @@ public class AdditionalInfoActivity extends BaseActivity {
                                     AdjustEvent event = new AdjustEvent("ghx3j0");
                                     event.addPartnerParameter("Gender", mGender);
                                     event.addPartnerParameter("DOB", mDob);
-                                    event.addPartnerParameter("Nationality", iso_name.get(position));
+                                    event.addPartnerParameter("Nationality",ccp.getSelectedCountryName().toString());
                                     Adjust.trackEvent(event);
 
                                     PreferencesUtil.putString(AdditionalInfoActivity.this, "SignupBundle", "");
@@ -692,7 +706,6 @@ public class AdditionalInfoActivity extends BaseActivity {
 
                             if (error != null && error.networkResponse != null) {
                                 Toast.makeText(getApplicationContext(), R.string.server_error, Toast.LENGTH_SHORT).show();
-
                             } else {
                                 Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_SHORT).show();
                             }
@@ -701,19 +714,20 @@ public class AdditionalInfoActivity extends BaseActivity {
                     }) {
                 @Override
                 protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put("customer_id", customer_id);
-                    params.put("gender", mGender);
-                    params.put("dob", mDob);
-                    params.put("nationality", iso_name.get(position));
+                    Map<String, String> params = new HashMap<>();
+                    params.put("customer_id",customer_id);
+                    params.put("gender",mGender);
+                    params.put("dob",mDob);
+                    params.put("nationality",ccp.getSelectedCountryNameCode());
+                    params.put("appUser","tefsal");
+                    params.put("appSecret","tefsal@123");
+                    params.put("appVersion","1.1");
 
-                    System.out.println("OUT PUT DATE OF BIRTH==" + mDob);
-                    System.out.println("OUT PUT NATIONALITY==" + iso_name.get(position));
-                    System.out.println("OUT PUT GENDER==" + mGender);
+//                    System.out.println("OUT PUT DATE OF BIRTH==" + mDob);
+//                    System.out.println("OUT PUT NATIONALITY==" + iso_name.get(position));
+//                    System.out.println("OUT PUT GENDER==" + mGender);
 
-                    params.put("appUser", "tefsal");
-                    params.put("appSecret", "tefsal@123");
-                    params.put("appVersion", "1.1");
+
 
                     Log.e("Refsal signup == ", url + params);
 
@@ -722,11 +736,11 @@ public class AdditionalInfoActivity extends BaseActivity {
 
             };
 
-            stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//            stringRequest.setRetryPolicy(new DefaultRetryPolicy(60000,
+//                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             RequestQueue requestQueue = Volley.newRequestQueue(AdditionalInfoActivity.this);
-            stringRequest.setShouldCache(false);
+            //stringRequest.setShouldCache(false);
             requestQueue.add(stringRequest);
 
         } catch (Exception surError) {

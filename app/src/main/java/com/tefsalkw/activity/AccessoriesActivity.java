@@ -43,8 +43,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by jagbirsinghkang on 13/07/17.
+/*
+  Created by jagbirsinghkang on 13/07/17.
  */
 
 public class AccessoriesActivity extends BaseActivity {
@@ -73,7 +73,6 @@ public class AccessoriesActivity extends BaseActivity {
     AccessoriesAdapter accessoriesAdapter;
     SessionManager session;
 
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +90,7 @@ public class AccessoriesActivity extends BaseActivity {
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         session = new SessionManager(getApplicationContext());
-
         view_cart_btn.setVisibility(View.VISIBLE);
         view_cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,53 +102,36 @@ public class AccessoriesActivity extends BaseActivity {
                 }
             }
         });
-
         WebCallServiceStores();
-
-
     }
-
-
     @Override
     protected void onResume() {
         super.onResume();
-
-
         Log.e(AccessoriesActivity.class.getSimpleName(), "onResume");
-
         httpGetBadgesCall();
-
     }
 
-
-    private void httpGetBadgesCall() {
+    private void httpGetBadgesCall(){
         // SimpleProgressBar.showProgress(SendMailActivity.this);
         try {
             final String url = Contents.baseURL + "getBadges";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
+                    new Response.Listener<String>(){
                         @Override
                         public void onResponse(String response) {
-
-
                             System.out.println("response==" + response.toString());
-
-
                             // SimpleProgressBar.closeProgress();
-
-                            if (response != null) {
+                            if (response != null){
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     String status = jsonObject.getString("status");
-                                    if (status.equals("1")) {
+                                    if (status.equals("1")){
 
                                         String record = jsonObject.getString("record");
                                         Gson g = new Gson();
                                         BadgeRecordModel badgeRecordModel = g.fromJson(record, BadgeRecordModel.class);
                                         total_badge_txt.setText(badgeRecordModel.getCart_badge());
-
-
                                     }
                                 } catch (Exception ex) {
 
@@ -174,9 +154,9 @@ public class AccessoriesActivity extends BaseActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    if (session.getIsGuestId()) {
+                    if (session.getIsGuestId()){
                         params.put("unique_id", session.getCustomerId());
-                    } else {
+                    }else{
                         params.put("user_id", session.getCustomerId());
                     }
                     params.put("appUser", "tefsal");
@@ -187,7 +167,6 @@ public class AccessoriesActivity extends BaseActivity {
 
                     return params;
                 }
-
             };
 
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
@@ -201,7 +180,6 @@ public class AccessoriesActivity extends BaseActivity {
             surError.printStackTrace();
         }
     }
-
 
     public void WebCallServiceStores() {
         try {
@@ -256,10 +234,8 @@ public class AccessoriesActivity extends BaseActivity {
                     params.put("appVersion", "1.1");
 
                     Log.e("Tefsal accessories == ", url + params);
-
                     return params;
                 }
-
             };
 
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
@@ -309,9 +285,7 @@ public class AccessoriesActivity extends BaseActivity {
         }
     }
 
-    /**
-     * Converting dp to pixel
-     */
+
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));

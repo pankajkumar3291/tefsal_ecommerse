@@ -2,7 +2,10 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.tefsalkw.GlideApp;
@@ -23,6 +25,7 @@ import com.tefsalkw.models.TextileStoresModel;
 import com.tefsalkw.utils.SessionManager;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,6 +43,7 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
     private List<TextileStoresModel> storeModels = new ArrayList<>();
     String flag;
     SessionManager session;
+
 
 
     public DishdashaTextileAdapter(Activity activity, List<TextileStoresModel> storeModels, String flag) {
@@ -66,25 +70,38 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
         @BindView(R.id.title)
         TextView title;
 
+      @BindView(R.id.icon_delivery)
+        ImageView deliveryimgage;
+
         @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
         @BindView(R.id.main_layout)
         RelativeLayout main_layout;
 
-        @BindView(R.id.txt_discount_amount)
-        TextView txt_discount_amount;
+        @BindView(R.id.discount)
+        TextView discount;
+
+
+        @BindView(R.id.textView6)
+        TextView tvoff;
+
+        @BindView(R.id.discountlayout)
+        ConstraintLayout discountlayout;
 
         @BindView(R.id.txt_discount_amount1)
         TextView txt_discount_amount1;
 
+        @BindView(R.id.LL_di)//TODO LL_di convert into Lenear to Image
+                ImageView LL_di;
+        @BindView(R.id.textView4)
+        TextView textpromo;
 
-        @BindView(R.id.LL_di)
-        LinearLayout LL_di;
+        @BindView(R.id.imageView4)
+        ImageView leftpromo;
 
         @BindView(R.id.LL_diRTL)
         LinearLayout LL_diRTL;
-
 
         @BindView(R.id.storeCloseLayout)
         RelativeLayout storeCloseLayout;
@@ -116,10 +133,17 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
 
             if(session.getKeyLang().equals("Arabic"))
             {
+                holder.leftpromo.setRotation(90);
+                holder.textpromo.setRotation(45);
+                holder.discountlayout.setRotation(-45);
+                holder.LL_di.setRotation(0);
+                holder.deliveryimgage.setImageResource(R.drawable.icon_delivery_right);
+                holder.textpromo.setText("الترويجي");
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name_arabic());
             }
             else
             {
+                holder.textpromo.setText("Promo");
                 holder.title.setText(storeModels.get(holder.getAdapterPosition()).getStore_name());
             }
 
@@ -140,16 +164,40 @@ public class DishdashaTextileAdapter extends RecyclerView.Adapter<DishdashaTexti
             } else {
                 dis_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
 
+
                 if (session.isRTL()) {
                     holder.LL_diRTL.setVisibility(View.GONE);
-                    holder.LL_di.setVisibility(View.GONE);
+                    holder.LL_di.setVisibility(View.VISIBLE);
                 } else {
                     holder.LL_diRTL.setVisibility(View.GONE);
                     holder.LL_di.setVisibility(View.VISIBLE);
                 }
 
-                holder.txt_discount_amount.setText(dis_amount + " OFF");
-                holder.txt_discount_amount1.setText(dis_amount + " OFF");
+                if (dis_amount.equalsIgnoreCase("")||dis_amount==null)
+                {
+//                    dis_amount=dis_amount.replace("%","");
+                    holder.LL_di.setVisibility(View.GONE);
+                    holder.discountlayout.setVisibility(View.GONE);
+                }
+                else
+                {
+
+                    holder.LL_di.setVisibility(View.VISIBLE);
+                    holder.discountlayout.setVisibility(View.VISIBLE);
+                        if (session.getKeyLang().equalsIgnoreCase("Arabic"))
+                        {
+                            holder.discount.setText(dis_amount);
+                            holder.txt_discount_amount1.setText(dis_amount);
+                            holder.tvoff.setText("إيقاف");
+                        }
+                        else
+                        {
+                            dis_amount=dis_amount.replace("%","");
+                            holder.discount.setText(dis_amount);
+                            holder.txt_discount_amount1.setText(dis_amount);
+                        }
+                    }
+
 
             }
 

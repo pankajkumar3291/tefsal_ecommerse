@@ -309,7 +309,6 @@ public class ProductListOtherActivity extends BaseActivity {
 
                                     if (jsonObject.getInt("status") == 1) {
 
-
                                         Gson g = new Gson();
                                         DaraAbayaProductListResponse mResponse = g.fromJson(response, DaraAbayaProductListResponse.class);
 

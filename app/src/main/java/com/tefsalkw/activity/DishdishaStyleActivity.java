@@ -106,7 +106,6 @@ public class DishdishaStyleActivity extends BaseActivity {
             finish();
         }
 
-
         add_new_style.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +113,6 @@ public class DishdishaStyleActivity extends BaseActivity {
                 showNamePrompt();
             }
         });
-
-
     }
 
     public void WebCallServiceStores() {

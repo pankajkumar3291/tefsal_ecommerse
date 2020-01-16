@@ -74,7 +74,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_sign_up"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/register_icon"
             android:title="@string/nav_signup" />
     </group>
 
@@ -84,8 +84,8 @@
 
         <item
             android:id="@+id/nav_sign_in"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/nav_signin" />
+            android:icon="@drawable/login_iconnew"
+            android:title="@string/nav_signin"/>
 
     </group>
 

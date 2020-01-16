@@ -246,9 +246,7 @@
                         android:id="@+id/sizeRecyclerView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-
                     </android.support.v7.widget.RecyclerView>
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -256,6 +254,28 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@color/colorGray" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quentity:"
+
+                        android:textSize="@dimen/_12ssp"/>
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:layout_marginLeft="@dimen/_5ssp"
+                        android:textSize="@dimen/_12ssp"/>
+
                 </LinearLayout>
 
                 <LinearLayout

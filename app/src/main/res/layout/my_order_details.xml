@@ -42,6 +42,7 @@
                         android:text="@string/order_number"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
+
                         tools:ignore="MissingPrefix" />
 
                     <TextView
@@ -53,6 +54,7 @@
                         android:layout_toEndOf="@+id/lblOrderItemSerial"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
+                        android:text="charnveer"
                         tools:ignore="MissingPrefix" />
 
                 </RelativeLayout>
@@ -63,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text=""
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>
@@ -84,6 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:gravity="end"
+                    android:text=""
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold" />
 
@@ -98,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-
+                        android:singleLine="true"
                         android:text="@string/expected_delivery"
                         android:textColor="@color/colorWhite"
                         tools:ignore="MissingPrefix" />
@@ -110,7 +114,11 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/lblExpectedDelivery"
                         android:layout_alignParentEnd="true"
-
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:text=""
                         android:textColor="@color/colorWhite"
                         tools:ignore="MissingPrefix" />
 

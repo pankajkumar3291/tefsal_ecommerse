@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,32 +32,21 @@ import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class SubCategoryFragment extends BaseFragment {
 
-
     @BindView(R.id.recycler)
     RecyclerView recycler;
 
     String store_id, flag;
     DishdashaTextileOtherProductAdapter dishdashaAdapter;
-
-
     SessionManager session;
-
     ArrayList<ProductRecord> records;
-
-    public SubCategoryFragment() {
-
+    public SubCategoryFragment(){
     }
-
-
     public static Fragment newInstance(ArrayList<ProductRecord> records1, String store_id) {
 
         SubCategoryFragment subCategoryFragment = new SubCategoryFragment();
@@ -69,19 +57,15 @@ public class SubCategoryFragment extends BaseFragment {
         return subCategoryFragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState){
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_sub_category, container, false);
         ButterKnife.bind(this, rootView);
         session = new SessionManager(getActivity());
 
-
         flag = getActivity().getIntent().getStringExtra("flag");
-
-
         records = (ArrayList<ProductRecord>) getArguments().getSerializable("ProductRecord");
         Log.e("recordssize ", records.size() + "");
         store_id = getArguments().getString("store_id");
@@ -148,8 +132,6 @@ public class SubCategoryFragment extends BaseFragment {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
-
     //endregion
 
 }

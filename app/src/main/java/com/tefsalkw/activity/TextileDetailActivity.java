@@ -79,9 +79,14 @@ import com.tefsalkw.models.ColorsRecordModel;
 import com.tefsalkw.models.FilterBrandModel;
 import com.tefsalkw.models.FilterCountryModel;
 import com.tefsalkw.models.FilterPatternModel;
+import com.tefsalkw.models.Payload;
+import com.tefsalkw.models.PromoRestponseModel;
+import com.tefsalkw.models.SendItemPromo;
+import com.tefsalkw.models.SendPromoModel;
 import com.tefsalkw.models.TextileProductModel;
 import com.tefsalkw.models.dishdashaFiletrationResponse;
 import com.tefsalkw.network.BaseHttpClient;
+import com.tefsalkw.rest_client.RestClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.PreferencesUtil;
 import com.tefsalkw.utils.SessionManager;
@@ -99,7 +104,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import retrofit2.Call;
+import retrofit2.Callback;
 /**
  * Created by AC 101 on 12-10-2017.
  */
@@ -172,17 +178,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     @BindView(R.id.meter_value)
     TextView meter_value;
 
-
     @BindView(R.id.RL_no_product_found_container)
     RelativeLayout RL_no_product_found_container;
 
     @BindView(R.id.RL_product_exist_container)
     RelativeLayout RL_product_exist_container;
 
-
     @BindView(R.id.LL_min_max_controller)
     LinearLayout LL_min_max_controller;
-
 
     TextView see_all_country_text;
     TextView see_all_brand_text;
@@ -198,7 +201,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     //private int check_meter;
     private float min_meter = 3;
-
     float amount;
 
     public static float meter = 3;
@@ -208,7 +210,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     RecyclerView recyclerViewCountry;
     RecyclerView recyclerViewBrand;
     RecyclerView recyclerViewPattern;
-
 
     public static String StoreID;
     public static int position;
@@ -225,20 +226,16 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     BrandFilterAdapter brandFilterAdapter;
     PatternFilterAdapter patternFilterAdapter;
 
-
     ArrayList<FilterCountryModel> filterCountryModelArrayList = new ArrayList<FilterCountryModel>();
     ArrayList<FilterPatternModel> filterPatternModelArrayList = new ArrayList<FilterPatternModel>();
-    ArrayList<FilterBrandModel> filterBrandModelArrayList = new ArrayList<FilterBrandModel>();
+    ArrayList<FilterBrandModel> filterBrandModelArrayList = new ArrayList<>();
     ArrayList<ColorsRecordModel> colorsRecordModelArrayList = new ArrayList<ColorsRecordModel>();
 
     ArrayList<TextileProductModel> textileProductModelArrayList = new ArrayList<TextileProductModel>();
 
-
     boolean country_flage = true;
     boolean brand_flage = true;
     boolean pattern_flage = true;
-
-
     SessionManager session;
 
 
@@ -248,23 +245,20 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
     private String subColorString;
     private String countryString;
     private String seasonString;
-
     private String brandString = "";
     private String patternString = "";
-
     private String[] product_image;
     //  private String[] str;
     private int dotsCount;
-
     private ImageView[] dots;
 
 
 // This model object hold the data of the product from product list;
 
     TextileProductModel textileProductModel = new TextileProductModel();
-    //colorWindowō
+    //colorWindowō c
     /*
-     * This dialog is used to show the image which can zoom in zoom out from view pager
+     * This d ialog is used to show the image which can zoom in zoom out from view pager
      * */
     Dialog dialog;
     //SessionManager sessionManager;
@@ -280,19 +274,25 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     public static String feelString = "", materialString = "";
 
-
     @BindView(R.id.relSlide4)
     RelativeLayout relSlide4;
 
     @BindView(R.id.relSlide5)
     RelativeLayout relSlide5;
 
-
     @BindView(R.id.btnClose)
     Button btnClose;
 
+
+    @BindView(R.id.textView10)
+    TextView textpromo;
+
+  @BindView(R.id.textView9)
+    TextView textdiscount;
+
     @BindView(R.id.rlPrice)
     RelativeLayout rlPrice;
+    String discount=null;
 
 
 
@@ -301,19 +301,19 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.textile_detail);
 
-
+        //todo   fromPromo
         try {
             ButterKnife.bind(this);
-
             session = new SessionManager(TextileDetailActivity.this);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             ic_filter.setVisibility(View.GONE);
+            if (getIntent().hasExtra("modeltype"))
+            {
+            }
 
             textileProductModel = (TextileProductModel) getIntent().getSerializableExtra("textileProductModel");
-
-            Log.e("textileProductModel", new Gson().toJson(textileProductModel));
-
+            Log.e("textileProductModel",new Gson().toJson(textileProductModel));
             if (textileProductModel != null) {
                 productColorHorizontalDishdasha = new ProductColorHorizontalDishdasha(textileProductModel.getColors(), this);
                 LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -321,49 +321,64 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 TefalApp.getInstance().setColorPosition(0);
                 colorRecyclerView.setAdapter(productColorHorizontalDishdasha);
 
-
-                if (session.getKeyLang().equals("Arabic")) {
+                if (textileProductModel.getProduct_discount()==null||textileProductModel.getProduct_discount().equalsIgnoreCase(""))
+                {
+                    textdiscount.setVisibility(View.GONE);
+                }
+                else
+                {
+                    if (session.getKeyLang().equalsIgnoreCase("Arabic"))
+                    {
+                        textdiscount.setText("إيقاف"+textileProductModel.getProduct_discount());
+                    }
+                    else
+                    {
+                        textdiscount.setText(textileProductModel.getProduct_discount()+"OFF");
+                    }
+                    textdiscount.setVisibility(View.VISIBLE);
+                }
+                if (textileProductModel.getPromo().size()==0)
+                {
+                    textpromo.setVisibility(View.GONE);
+                }
+                else
+                {
+                    textpromo.setVisibility(View.VISIBLE);
+                }
+                if (session.getKeyLang().equals("Arabic")){
+                    textdiscount.setRotation(45);
+                    textpromo.setRotation(-45);
+                    textpromo.setText("الترويجي");
                     TefalApp.getInstance().setStoreName(textileProductModel.getStore_name_arabic());
                 } else {
+
+                    textpromo.setText("PROMO");
                     TefalApp.getInstance().setStoreName(textileProductModel.getStore_name());
                 }
-
             }
 
 
             String minMtr = TefalApp.getInstance().getMin_meters();
             String styleName = TefalApp.getInstance().getStyleName();
 
-            if (session.getIsGuestId()) {
-
+            if (session.getIsGuestId()){
                 minMtr = "3";
                 styleName = "Default";
-
             } else {
-
                 minMtr = minMtr != null ? minMtr : "3";
                 styleName = styleName != null ? styleName : "Default";
-
             }
-
-
             min_meter = Float.parseFloat(minMtr);
 
             meter = min_meter;
             meter_value.setText("" + meter);
-
-
             if (session.getKeyLang().equals("Arabic")) {
 
                 txt_min_meter.setText(min_meter + " = " + styleName);
 
             } else {
-
-
-                txt_min_meter.setText(styleName + " = " + min_meter);
+                txt_min_meter.setText(styleName+" = " + min_meter);
             }
-
-
             StoreID = getIntent().getStringExtra("storeID");
             position = getIntent().getIntExtra("pos", 0);
 
@@ -408,12 +423,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 TefalApp.getInstance().setSeason(seasonString);
                 TefalApp.getInstance().setSubColor(subColorString);
 
-
                 TefalApp.getInstance().setCountry(countryString);
                 TefalApp.getInstance().setBrand(brandString);
                 TefalApp.getInstance().setPattern(patternString);
             }
-
 
             ic_filter.setVisibility(View.GONE);
             btn_back.setOnClickListener(new View.OnClickListener() {
@@ -422,8 +435,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     onBackPressed();
                 }
             });
-
-
             httpGetFilterData();
 
             add_to_cart_btn.setOnClickListener(new View.OnClickListener() {
@@ -442,8 +453,93 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                                 public void onClick(DialogInterface dialog, int which) {
                                     // continue with delete
                                     dialog.cancel();
-                                    WebCallServiceAddCartNew();
+                                    if (getIntent().hasExtra("view"))
+                                    {
+                                        if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo"))
+                                        {
 
+                                            if (getIntent().getStringExtra("viewType").equalsIgnoreCase("Seperate")&&getIntent().hasExtra("payloads"))
+                                            {
+
+                                                List<Payload>  list= (List<Payload>) getIntent().getSerializableExtra("payloads");
+
+                                                Toast.makeText(getApplicationContext(),""+list,Toast.LENGTH_SHORT).show();
+                                                textileProductModel.setColor(selectedColor.getColor());
+                                                SendItemPromo sendItemPromo=new SendItemPromo();
+                                                List<SendItemPromo> PromoProductlist=new ArrayList<>();
+                                                SendPromoModel sendPromoModel=new SendPromoModel();
+                                                sendPromoModel.setUserId(session.getCustomerId());
+                                                sendPromoModel.setCartId(session.getKeyCartId());
+                                                sendPromoModel.setAppSecret("tefsal@123");
+                                                sendPromoModel.setAppUser("tefsal");
+                                                sendPromoModel.setAppVersion("1.1");
+
+
+
+                                                sendItemPromo.setCategoryId(list.get(0).getCategory());
+                                                sendItemPromo.setSubcategoryId(list.get(0).getSubCategory());
+                                                sendItemPromo.setPromoType(list.get(0).getBundleType());
+                                                sendItemPromo.setPromoGift(list.get(0).getPromoGift());
+                                                sendItemPromo.setPromoDiscount(list.get(0).getDiscount()==null?"0":list.get(0).getDiscount());
+                                                sendItemPromo.setPromoId(String.valueOf(list.get(0).getPromoId()));
+                                                sendItemPromo.setItemQuantity("1");
+
+
+                                                sendItemPromo.setProductId(textileProductModel.getTefsal_product_id());
+                                                sendItemPromo.setItemId(String.valueOf(textileProductModel.getItem_id()));
+                                                sendItemPromo.setItemType(textileProductModel.getItem_type());
+                                                sendItemPromo.setTotalAmount(textileProductModel.getPrice());
+                                                PromoProductlist.add(sendItemPromo);
+                                                sendPromoModel.setItems(PromoProductlist);
+
+                                                try {
+                                                    RestClient.APIInterface apiInterface=RestClient.getClient();
+                                                    apiInterface.AddPromo(sendPromoModel).enqueue(new Callback<PromoRestponseModel>() {
+                                                        @Override
+                                                        public void onResponse(Call<PromoRestponseModel> call, retrofit2.Response<PromoRestponseModel> response) {
+
+                                                            if (response.body().getStatus()==1)
+                                                            {
+                                                                Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                                                finish();
+                                                            }
+                                                            else
+                                                            {
+                                                                Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                                                finish();
+                                                            }
+                                                        }
+                                                        @Override
+                                                        public void onFailure(Call<PromoRestponseModel> call, Throwable t) {
+                                                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                                                            finish();
+                                                        }
+                                                    });
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                    Toast.makeText(getApplicationContext(),"Exception:"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                                                }
+
+
+
+                                                Toast.makeText(getApplicationContext(),""+sendPromoModel,Toast.LENGTH_SHORT).show();
+                                            }
+                                            else
+                                            {
+                                                textileProductModel.setColor(selectedColor.getColor());
+                                                textileProductModel.setPosition(getIntent().getIntExtra("position",-1));
+                                                Intent intent = new Intent();
+                                                intent.putExtra("DishdashaObject", textileProductModel);
+                                                setResult(RESULT_OK, intent);
+                                                finish();
+                                            }
+
+                                        }
+
+                                    }else
+                                    {
+                                        WebCallServiceAddCartNew();
+                                    }
 
                                 }
                             })
@@ -474,15 +570,11 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             done_txt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                     System.out.println("I m hitted");
                     // done_txt.setVisibility(View.GONE);
                     //ic_filter.setVisibility(View.VISIBLE);
-
                     httpGetFilterDataAfterFilter();
                     filterWindow.dismiss();
-
                     ic_filter.setClickable(true);
                 }
             });
@@ -523,7 +615,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 ////                    tabLayout.getTabAt(i).setCustomView(tv);
 ////
 ////                }
-
             }
             initSlider();
 
@@ -531,11 +622,9 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             add_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
-                    meter++;
                     //  Log.e("meter",meter+"");
-                    if (meter > 0 && meter < stock_meter) {
+                    if (meter > 0 && meter < stock_meter){
+                        meter++;
 
 
                         amount = price * meter;
@@ -564,7 +653,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 }
             });
-
 
             try {
 
@@ -659,10 +747,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                             btn_back.setVisibility(View.VISIBLE);
                             btnClose.setVisibility(View.GONE);
                         }
-
                     }
-
-
                 }
             });
 
@@ -673,6 +758,10 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
 
     }
+
+
+
+    //todo no use
 
     private void changeTabsFont(TabLayout tabLayout) {
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
@@ -690,6 +779,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
         }
     }
+
+    //todo View Pager Adapter
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -717,15 +808,14 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         public CharSequence getPageTitle(int position) {
             return position == 0 ? getString(R.string.feel) : getString(R.string.material);
         }
-
-
     }
+
+    //todo   show size According to color selection
 
 
     public void showSizeOnColorSelection(Colors colors) {
 
         this.selectedColor = colors;
-
 
         if (selectedColor != null) {
 
@@ -734,7 +824,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 price = Float.parseFloat(colors.getPrice() != null ? colors.getPrice() : "0");
 
                 stock_meter = Float.parseFloat(colors.getStock_in_meters());
-
 
                 text_price.setText(String.format(new Locale("en"), "%.3f", price * meter));
 
@@ -753,12 +842,24 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 rlPrice.setVisibility(View.GONE);
                 add_to_cart_btn.setEnabled(false);
 
-
             } else {
-                LL_min_max_controller.setVisibility(View.VISIBLE);
-                add_to_cart_lbl.setText(R.string.textile_detail_add_to_cart_lbl_text);
-                rlPrice.setVisibility(View.VISIBLE);
-                add_to_cart_btn.setEnabled(true);
+                if (getIntent().hasExtra("view"))
+                {
+                    if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo"))
+                    {
+
+                        LL_min_max_controller.setVisibility(View.VISIBLE);
+                        add_to_cart_lbl.setText("Add To Promo");
+                        rlPrice.setVisibility(View.VISIBLE);
+                        add_to_cart_btn.setEnabled(true);
+                    }
+                }
+                else {
+                    LL_min_max_controller.setVisibility(View.VISIBLE);
+                    add_to_cart_lbl.setText(R.string.textile_detail_add_to_cart_lbl_text);
+                    rlPrice.setVisibility(View.VISIBLE);
+                    add_to_cart_btn.setEnabled(true);
+                }
             }
 
 
@@ -775,8 +876,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                 materialString = materialString != null ? materialString : "";
                 subText.setText(selectedColor.getPattern_name() != null ? selectedColor.getPattern_name() : "");
             }
-
-
             subText.setVisibility(View.VISIBLE);
 
 
@@ -800,6 +899,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
 
 
+
+
             product_image_viewPager.removeAllSliders();
             if (selectedColor.getProduct_image() != null) {
                 product_image = selectedColor.getProduct_image();
@@ -816,12 +917,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                 }
             }
-
-
         }
-
-
     }
+
+
+
+
+    //todo    view pager Image slider
 
 
     private void initSlider() {
@@ -837,21 +939,26 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
 
-
     }
+
+
 
     public JSONArray getItems() {
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
-
         try {
-
             obj.put("category_id", "1");
             obj.put("product_id", DishdashaTextileProductAdapter.textileModels.get(TextileDetailActivity.position).getTefsal_product_id());
             obj.put("item_id", selectedColor.getAttribute_id());
-
+            if (selectedColor.getSubcategory_id()!=null)
+            {
+                obj.put("subcategory_id",selectedColor.getSubcategory_id());
+            }
+            else
+            {
+                obj.put("subcategory_id", "0");
+            }
             JSONObject item_details = new JSONObject();
-
             item_details.put("item_quantity", meter_value.getText());
             obj.put("item_details", item_details);
             arry.put(obj);
@@ -914,6 +1021,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             recyclerViewCountry.setLayoutManager(mLayoutManager);
             recyclerViewCountry.setItemAnimator(new DefaultItemAnimator());
             recyclerViewCountry.setAdapter(countryFilterAdapter);
+
+
         } else {
 
         }
@@ -985,6 +1094,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
         });
 
+
+
         see_all_country_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1033,7 +1144,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
     }
 
-    private void httpGetFilterData() {
+    private void httpGetFilterData(){
         SimpleProgressBar.showProgress(TextileDetailActivity.this);
         try {
             final String url = Contents.baseURL + "dishdashaFiletration";
@@ -1042,8 +1153,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
-
                             SimpleProgressBar.closeProgress();
 
                             System.out.println("FILTER RESPONSE===" + response);
@@ -1066,7 +1175,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                                         // colorsRecordModelArrayList=_mdishdashaFiletrationResponse.getColors();
                                         textileProductModelArrayList = _mdishdashaFiletrationResponse.getProducts();
-
 
                                         //initPopupFilter();
                                     } else {
@@ -1141,13 +1249,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
-
                             SimpleProgressBar.closeProgress();
-
                             System.out.println("FILTER RESPONSE===" + response);
-
-
                             if (response != null) {
                                 try {
                                     JSONObject object = new JSONObject(response);
@@ -1249,21 +1352,16 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         Log.e(DishDashaProductActivity.class.getSimpleName(), "onSliderClick");
         showImageSingleDialog(slider.getUrl());
-
-
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
-
     @Override
     public void onPageSelected(int position) {
 
-
     }
-
     @Override
     public void onPageScrollStateChanged(int state) {
 
@@ -1350,9 +1448,8 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
             }
             params.put("style_id", TefalApp.getInstance().getStyleId());
             params.put("cart_id", session.getKeyCartId());
-
             try {
-                params.put("items", getItems());
+                params.put("items",getItems());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -1365,7 +1462,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
         }
 
         Log.e("Tefsal tailor == ", url + params);
-
 
         BaseHttpClient baseHttpClient = new BaseHttpClient();
         baseHttpClient.doPost(url, params, new BaseHttpClient.TaskCompleteListener<String>() {
@@ -1382,7 +1478,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     Log.e("JSONObject", String.valueOf(object));
 
                     Log.e("stores response", object);
-
 
                     System.out.println("ADD CART RESPONSE====" + object);
 
@@ -1407,13 +1502,13 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(TextileDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(TextileDetailActivity.this,"charan1"+ e.getMessage(), Toast.LENGTH_SHORT).show();
                         SimpleProgressBar.closeProgress();
                     }
 
 
                 } catch (Exception e1) {
-                    Toast.makeText(TextileDetailActivity.this, e1.getMessage(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(TextileDetailActivity.this, "charan2"+e1.getMessage(), Toast.LENGTH_SHORT).show();
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
                 }
@@ -1471,7 +1566,6 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
                     System.out.println("You have clicked===" + position);
                     dialog.dismiss();
                     // Toast.makeText(context, "U have clicked=="+position, Toast.LENGTH_SHORT).show();
-
                 }
             });
 
@@ -1492,8 +1586,7 @@ public class TextileDetailActivity extends BaseActivity implements TabLayout.OnT
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((LinearLayout) object);
-        }
+            container.removeView((LinearLayout) object);}
     }
 
 

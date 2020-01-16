@@ -7,23 +7,55 @@ import java.util.List;
  * Created by Rituparna Khadka on 11/14/2017.
  */
 
-public class ProductRecord implements Serializable
+public class ProductRecord extends BaseModel implements Serializable
 {
     private List<ProductSizes> sizes;
-
-
+    private Integer item_id;
+    public Integer getItem_id() {
+        return item_id;
+    }
+    public void setItem_id(Integer item_id) {
+        this.item_id = item_id;
+    }
+    private String item_type;
+    public String getItem_type() {
+        return item_type;
+    }
+    public void setItem_type(String item_type) {
+        this.item_type = item_type;
+    }
     private String measurements;
-
+    private int position;
+    public int getPosition() {
+        return position;
+    }
+    public void setPosition(int position) {
+        this.position = position;
+    }
+    public void setPromo(List<Promo> promo) {
+        this.promo = promo;
+    }
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
     private String brand_image;
 
     private String sub_color;
 
     private String color;
+    public List<Promo> getPromo() {
+        return promo;
+    }
+    public String getDiscount(){
+        return discount.isEmpty() ? "0.0" : discount;
+    }
+    private List<Promo> promo;
+
+    private String discount ;
 
     public List<Colors> getColors() {
         return colors;
     }
-
     public void setColors(List<Colors> colors) {
         this.colors = colors;
     }
@@ -31,6 +63,7 @@ public class ProductRecord implements Serializable
     private List<Colors> colors;
 
     private String product_name;
+
     private String product_name_arabic;
 
     private String product_desc;
@@ -52,7 +85,6 @@ public class ProductRecord implements Serializable
     public String getFlag() {
         return flag;
     }
-
     public void setFlag(String flag) {
         this.flag = flag;
     }
@@ -70,7 +102,6 @@ public class ProductRecord implements Serializable
     public void setProduct_name_arabic(String product_name_arabic) {
         this.product_name_arabic = product_name_arabic;
     }
-
     public String getStore_name_arabic() {
         return store_name_arabic;
     }
@@ -99,7 +130,9 @@ public class ProductRecord implements Serializable
     private  String thumb_url;
 
     public String getDefault_price() {
-        return default_price;
+
+        return default_price.isEmpty() ? "0.0" : default_price;
+
     }
 
     public void setDefault_price(String default_price) {
@@ -261,11 +294,27 @@ public class ProductRecord implements Serializable
         this.max_delivery_days = max_delivery_days;
     }
     public String getProduct_discount() {
-        return product_discount;
+
+        if (product_discount==null){
+            return "0.0";
+        }
+        else
+        {
+            return product_discount.isEmpty() ? "0.0" : product_discount;
+        }
+
+
     }
 
     public void setProduct_discount(String product_discount) {
         this.product_discount = product_discount;
+    }
+
+    @Override
+    public float getDisCountedAmount() {
+        float totalAmount = Float.parseFloat(getDefault_price());
+        float discountRate = Float.parseFloat(getProduct_discount());
+        return totalAmount - (((discountRate * totalAmount) / 100));
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.tefsalkw.activity;
 
 import android.os.Bundle;
-
 import com.tefsalkw.models.AddressRecordModel;
 import com.tefsalkw.R;
 

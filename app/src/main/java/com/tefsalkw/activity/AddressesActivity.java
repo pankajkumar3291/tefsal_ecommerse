@@ -65,6 +65,7 @@ public class AddressesActivity extends BaseActivity {
 
     @BindView(R.id.spin_city)
     Spinner spin_city;
+    private boolean noAnyArea;
 
     @BindView(R.id.spin_area)
     Spinner spin_area;
@@ -122,7 +123,7 @@ public class AddressesActivity extends BaseActivity {
 
 
     List<String> area_id;
-    List<String> area_name;
+    List<String> area_name = new ArrayList<String>(); ;;
 
     SessionManager session;
 
@@ -181,6 +182,13 @@ public class AddressesActivity extends BaseActivity {
                 } else if (Contents.isBlank(input_street.getText().toString().trim())) {
                     input_street.requestFocus();
                     input_street.setError(getString(R.string.invalidStreet));
+                    return;
+                }
+                else if (spin_area.getSelectedItemPosition() == -1||spin_area.getSelectedItem().toString().equalsIgnoreCase("None!")) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidArea), Toast.LENGTH_LONG).show();
+                    return;
+                } else if (spin_city.getSelectedItemPosition() == -1||spin_city.getSelectedItem().toString().equalsIgnoreCase("None!")) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalidCity), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -368,6 +376,7 @@ public class AddressesActivity extends BaseActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            province_name = new ArrayList<String>();
 
                             SimpleProgressBar.closeProgress();
                             Log.e("device response", response);
@@ -378,7 +387,7 @@ public class AddressesActivity extends BaseActivity {
                                 if (status.equals("1")) {
 
                                     province_id = new ArrayList<String>();
-                                    province_name = new ArrayList<String>();
+
                                     area_name = new ArrayList<String>();
                                     //area_name.add("Select Province");
                                     JSONArray jsonArray = object.getJSONArray("record");
@@ -392,6 +401,7 @@ public class AddressesActivity extends BaseActivity {
                                         }
                                     }
 
+                                    noAnyArea=false;
                                     //Creating the ArrayAdapter instance having the country list
                                     ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, province_name);
 
@@ -412,6 +422,15 @@ public class AddressesActivity extends BaseActivity {
                                     });
 
                                 } else {
+
+                                    province_name.clear();
+                                    province_name.add("None!");
+                                    noAnyArea=true;
+                                    //Creating the ArrayAdapter instance having the country list
+                                    ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, province_name);
+
+                                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                    spin_city.setAdapter(aa);
 
                                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                                     //clearSpinnerData(aa);
@@ -463,6 +482,19 @@ public class AddressesActivity extends BaseActivity {
 
     public void getAreas(final String province_id) {
 
+        if (noAnyArea)
+        {
+            area_name.clear();
+            area_name.add("None!");
+            ArrayAdapter aa = new ArrayAdapter(AddressesActivity.this, android.R.layout.simple_spinner_item, area_name);
+//            getAreaPosition();
+            aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spin_area.setAdapter(aa);
+            return;
+        }
+
+
+
         Log.i(TAG, "Setting screen name: " + "AddressesActivity");
         mTracker.setScreenName("Image~" + "AddressesActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
@@ -486,7 +518,6 @@ public class AddressesActivity extends BaseActivity {
                                 if (status.equals("1")) {
 
                                     area_id = new ArrayList<String>();
-                                    area_name = new ArrayList<String>();
                                     //area_name.add("Select Area");
                                     JSONArray jsonArray = object.getJSONArray("record");
                                     for (int i = 0; i < jsonArray.length(); i++) {

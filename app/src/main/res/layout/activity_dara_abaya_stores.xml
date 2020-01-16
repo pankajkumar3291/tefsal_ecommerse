@@ -8,9 +8,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     tools:context="com.tefsalkw.activity.DaraAbayaStoresActivity">
-
     <include layout="@layout/toolbar" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_alignParentStart="true"
@@ -19,5 +17,4 @@
         android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-
 </LinearLayout>

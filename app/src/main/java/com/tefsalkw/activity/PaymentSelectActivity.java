@@ -116,8 +116,8 @@ public class PaymentSelectActivity extends BaseActivity {
     @BindView(R.id.llPromoSection)
     LinearLayout llPromoSection;
 
-    public String defaultAddressId = "";
-    public String promoId = "";
+    public String defaultAddressId ="";
+    public String promoId ="";
     public HashMap<String, Object> guest = null;
 
     GetCartResponse cartResponse = null;
@@ -143,7 +143,6 @@ public class PaymentSelectActivity extends BaseActivity {
         //Init Additional
         TefsalApplication application = (TefsalApplication) getApplication();
         mTracker = application.getDefaultTracker();
-
 
         defaultAddressId = getIntent().getStringExtra("defaultAddressId");
         guest = (HashMap<String, Object>) getIntent().getSerializableExtra("guest");
@@ -207,6 +206,8 @@ public class PaymentSelectActivity extends BaseActivity {
 
                     paymentMethod = "knet";
                     codPaymentCheck.setChecked(false);
+                    visa_masterPaymentCheck.setChecked(false);
+
                 }
 
 
@@ -222,8 +223,19 @@ public class PaymentSelectActivity extends BaseActivity {
 
                     paymentMethod = "cod";
                     knetPaymentCheck.setChecked(false);
+                    visa_masterPaymentCheck.setChecked(false);
                 }
 
+            }
+        });
+
+        visa_masterPaymentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                paymentMethod = "vc";
+                knetPaymentCheck.setChecked(false);
+                codPaymentCheck.setChecked(false);
             }
         });
 
@@ -234,7 +246,25 @@ public class PaymentSelectActivity extends BaseActivity {
 
                 if (paymentMethod.equals("cod")) {
                     WebCallServiceOrder();
-                } else {
+                }
+                else if (paymentMethod.equals("vc"))
+                {
+                    Intent intent = new Intent(PaymentSelectActivity.this, VisaCardPaymentActivity.class);
+                    intent.putExtra("PaymentMethod", "knet");
+                    intent.putExtra("Amount", String.valueOf(grandTotal));
+                    intent.putExtra("CartId", cartResponse.getCart_id());
+                    intent.putExtra("defaultAddressId", String.valueOf(defaultAddressId));
+                    intent.putExtra("guest", guest);
+                    if (session.getIsGuestId()) {
+
+                        intent.putExtra("guest", guest);
+
+                    }
+                    intent.putExtra("delivery_charge", cartResponse.getDelivery_charge());
+
+                    startActivity(intent);
+                }
+                else {
                     Intent intent = new Intent(PaymentSelectActivity.this, PaymentActivity.class);
                     intent.putExtra("PaymentMethod", "knet");
                     intent.putExtra("Amount", String.valueOf(grandTotal));

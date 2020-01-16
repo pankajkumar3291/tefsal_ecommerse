@@ -36,6 +36,7 @@
     <color name="colorTranspernt">#00FFFFFF</color>
     <color name="colorPickerBg">#ececdd</color>
     <color name="colorNavyBlue">#091823</color>
+    <color name="disablePromobuttonColor">#D5D1D1</color>
 
     <color name="colorRed">#FFF90404</color>
     <color name="tabColorBg">#DADACF</color>

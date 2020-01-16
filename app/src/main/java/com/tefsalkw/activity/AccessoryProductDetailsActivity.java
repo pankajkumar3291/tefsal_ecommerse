@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,6 +46,8 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
+import com.tefsalkw.adapter.GetPromoAdapter;
+import com.tefsalkw.adapter.MyCartAdapter;
 import com.tefsalkw.adapter.ProductColorAdapterHorizontalAccesories;
 import com.tefsalkw.adapter.ProductSizeAdapterHorizontalAccessories;
 import com.tefsalkw.app.TefalApp;
@@ -54,8 +57,15 @@ import com.tefsalkw.models.AccColor;
 import com.tefsalkw.models.AccSizes;
 import com.tefsalkw.models.AccessoriesRecord;
 import com.tefsalkw.models.AccessoryDetailRecord;
+import com.tefsalkw.models.AddPromoModelClass;
 import com.tefsalkw.models.BadgeRecordModel;
+import com.tefsalkw.models.GetCartResponse;
+import com.tefsalkw.models.Payload;
+import com.tefsalkw.models.PromoRestponseModel;
+import com.tefsalkw.models.SendItemPromo;
+import com.tefsalkw.models.SendPromoModel;
 import com.tefsalkw.network.BaseHttpClient;
+import com.tefsalkw.rest_client.RestClient;
 import com.tefsalkw.utils.Contents;
 import com.tefsalkw.utils.SessionManager;
 import com.tefsalkw.utils.SimpleProgressBar;
@@ -64,6 +74,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -71,7 +83,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+import retrofit2.Call;
+import retrofit2.Callback;
 public class AccessoryProductDetailsActivity extends BaseActivity implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
 
@@ -80,6 +93,9 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
     @BindView(R.id.text_price)
     TextView text_price;
+
+    @BindView(R.id.quantity)
+    TextView txtquantity;
 
     @BindView(R.id.add_cart_btn)
     Button add_cart_btn;
@@ -117,13 +133,10 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     @BindView(R.id.total_badge_txt)
     TextView total_badge_txt;
 
-
     Dialog dialog;
-
 
     @BindView(R.id.sizeRecyclerView)
     RecyclerView sizeRecyclerView;
-
 
     @BindView(R.id.colorRecyclerView)
     RecyclerView colorRecyclerView;
@@ -164,6 +177,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accessory_product_details);
         ButterKnife.bind(this);
+
+
         session = new SessionManager(this);
         onSliderClickListener = this;
         TefsalApplication application = (TefsalApplication) getApplication();
@@ -173,21 +188,17 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         Intent intent = getIntent();
 
         if (intent.getAction() != null && intent.getAction().equalsIgnoreCase("FromPushNotification")) {
-
             storeId = intent.getStringExtra("store_id");
             productId = intent.getStringExtra("product_id");
-
         } else {
             accessoriesRecord = (AccessoriesRecord) getIntent().getSerializableExtra("accessoriesRecord");
         }
 
 
         if (accessoriesRecord != null) {
-
             default_image = accessoriesRecord.getDefault_image();
             storeId = accessoriesRecord.getStore_id();
             productId = accessoriesRecord.getTefsal_product_id();
-
         }
         setData();
         getAccessoriesProductDetails();
@@ -199,21 +210,98 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             public void onClick(View v) {
 
                 if (selectedColor == null) {
-
                     Toast.makeText(AccessoryProductDetailsActivity.this, "Please select color and size!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
                 if (price == 0) {
-
                     Toast.makeText(AccessoryProductDetailsActivity.this, "Sorry, Not available!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                if (getIntent().hasExtra("view"))
+                {
+                    if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo"))
+                    {
 
-                WebCallServiceAddCartNew();
+                        if (getIntent().getStringExtra("viewType").equalsIgnoreCase("Seperate") &&getIntent().hasExtra("payloads"))
+                        {
+                            List<Payload>  list= (List<Payload>) getIntent().getSerializableExtra("payloads");
 
+                            //todo For custom color and size
+                            accessoriesRecord.setColor(selectedColor.getColor());
+                            accessoriesRecord.setSize(selectedSize.getSize());
+
+                            SendItemPromo sendItemPromo=new SendItemPromo();
+                            List<SendItemPromo> PromoProductlist=new ArrayList<>();
+                            SendPromoModel sendPromoModel=new SendPromoModel();
+                            sendPromoModel.setUserId(session.getCustomerId());
+                            sendPromoModel.setCartId(session.getKeyCartId());
+                            sendPromoModel.setAppSecret("tefsal@123");
+                            sendPromoModel.setAppUser("tefsal");
+                            sendPromoModel.setAppVersion("1.1");
+
+
+                            sendItemPromo.setCategoryId(list.get(0).getCategory());
+                            sendItemPromo.setSubcategoryId(list.get(0).getSubCategory());
+                            sendItemPromo.setPromoType(list.get(0).getBundleType());
+                            sendItemPromo.setItemQuantity("1");
+                            sendItemPromo.setPromoGift(list.get(0).getPromoGift());
+                            sendItemPromo.setPromoDiscount(list.get(0).getDiscount()==null?"0":list.get(0).getDiscount());
+                            sendItemPromo.setPromoId(String.valueOf(list.get(0).getPromoId()));
+
+
+                            sendItemPromo.setProductId(accessoriesRecord.getTefsal_product_id());
+                            sendItemPromo.setItemId(String.valueOf(accessoriesRecord.getItem_id()));
+                            sendItemPromo.setItemType(accessoriesRecord.getItem_type());
+                            sendItemPromo.setTotalAmount(accessoriesRecord.getDefault_price());
+                            PromoProductlist.add(sendItemPromo);
+                            sendPromoModel.setItems(PromoProductlist);
+//                            Toast.makeText(getApplicationContext(),"For One Item",Toast.LENGTH_SHORT).show();
+                            try {
+                                RestClient.APIInterface apiInterface=RestClient.getClient();
+                                apiInterface.AddPromo(sendPromoModel).enqueue(new Callback<PromoRestponseModel>() {
+                                    @Override
+                                    public void onResponse(Call<PromoRestponseModel> call, retrofit2.Response<PromoRestponseModel> response) {
+
+                                        if (response.body().getStatus()==1)
+                                        {
+                                            Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<PromoRestponseModel> call, Throwable t) {
+
+                                        Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(),"Exception:"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else
+                        {
+                            accessoriesRecord.setColor(selectedColor.getColor());
+                            accessoriesRecord.setSize(selectedSize.getSize());
+                            accessoriesRecord.setPosition(getIntent().getIntExtra("position",-1));
+                            Intent intent = new Intent();
+                            intent.putExtra("AccessoryObject", accessoriesRecord);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+//
+                    }
+                }
+                else
+                {
+                    WebCallServiceAddCartNew();
+                }
             }
         });
 
@@ -239,25 +327,19 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
     }
 
     private void initSlider() {
-
-
         product_image_viewPager.setPresetTransformer(SliderLayout.Transformer.ZoomOutSlide);
         product_image_viewPager.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         product_image_viewPager.setCustomAnimation(new DescriptionAnimation());
         product_image_viewPager.setDuration(5000);
         product_image_viewPager.addOnPageChangeListener(this);
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         Log.e(DishDashaProductActivity.class.getSimpleName(), "onResume");
 
         httpGetBadgesCall();
-
     }
 
 
@@ -287,8 +369,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                                             // subtxt_title.setText(accessoryDetailRecord.getStoreName());
                                             text_desc.setText(accessoryDetailRecord.getProductDesc());
                                         }
-
-
                                     }
                                     Log.e("accessoryDetailRecord", response);
                                     initViewsPostCall(accessoryDetailRecord);
@@ -340,8 +420,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             surError.printStackTrace();
         }
     }
-
-
     private void initViewsPostCall(AccessoryDetailRecord accessoryDetailRecord) {
 
 
@@ -408,8 +486,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
 
         }
-
-
     }
 
 
@@ -429,16 +505,29 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
                 } else {
                     add_cart_btn.setEnabled(true);
-                    add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
 
+                    if (getIntent().hasExtra("view"))
+                    {
+                        if (getIntent().getStringExtra("view").equalsIgnoreCase("fromPromo"))
+                        {
+                            add_cart_btn.setText("Add To Promo");
+                        }
+                    }
+                    else
+                    {
+                        add_cart_btn.setText(getResources().getString(R.string.zaara_daraa_add_cart_btn_text));
+                    }
                 }
 
 
-                if (selectedSize.getPrice() != null) {
+                if (selectedSize.getPrice() != null){
 
                     price = Float.parseFloat(selectedSize.getPrice().toString());
                     //text_price.setText("PRICE : " + price + " KWD");
                     text_price.setText(String.format(new Locale("en"), "%.3f", price));
+                    txtquantity.setText(selectedSize.getQuantity().toString());
+
+
 
                 } else {
 
@@ -446,8 +535,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     text_price.setText(R.string.not_available);
                 }
             }
-
-
         }
 
 
@@ -517,7 +604,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
                     return params;
                 }
-
             };
 
             stringRequest.setRetryPolicy(new DefaultRetryPolicy(30000,
@@ -546,10 +632,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                 subtxt_title.setText(accessoriesRecord.getStoreName());
                 text_desc.setText(accessoriesRecord.getProductDesc());
             }
-
         }
-
-
     }
 
 
@@ -642,23 +725,17 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
                 }
-
             }
         });
-
-
     }
 
-
     public JSONArray getItems() throws JSONException {
-
-
         JSONArray arry = new JSONArray();
         JSONObject obj = new JSONObject();
         obj.put("category_id", "4");
         obj.put("product_id", accessoryDetailRecord.getTefsalProductId());
         obj.put("item_id", selectedSize != null ? selectedSize.getAttribute_meta_id() : "");
-
+        obj.put("subcategory_id", "0");
 
         if (selectedColor != null) {
 
@@ -744,8 +821,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
         Context context;
         String[] img;
         LayoutInflater layoutInflater;
-
-
         public AccessoryProductPagerAdapter(Context context, String[] img) {
             this.context = context;
             this.img = img;
@@ -789,11 +864,8 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                         Log.d("Error=", ex.fillInStackTrace().toString());
 
                     }
-
                 }
             });
-
-
             container.addView(itemView);
 
             return itemView;
@@ -826,7 +898,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view == (LinearLayout) object;
+            return view == object;
         }
 
         @Override
@@ -841,7 +913,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
             photoAttacher.update();*/
 
 
-            System.out.println("IMAGE   OF PRODUCT ====" + img[position]);
+            System.out.println("IMAGE  OF PRODUCT ====" + img[position]);
             // Picasso.with(context).load(img[position]).error(R.drawable.placeholder_no_image).placeholder(R.drawable.placeholder_image_loading).into(imageView);
 
             RequestOptions options = new RequestOptions()
@@ -851,7 +923,6 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
 
             GlideApp.with(context).asBitmap().load(img[position]).apply(options).into(imageView);
 
-
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -860,10 +931,7 @@ public class AccessoryProductDetailsActivity extends BaseActivity implements Bas
                     System.out.println("ON CLICK ====");
                 }
             });
-
-
             container.addView(itemView);
-
             return itemView;
         }
 

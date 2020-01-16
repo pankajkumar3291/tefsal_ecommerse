@@ -3,6 +3,7 @@ package com.tefsalkw.adapter;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
+import com.squareup.picasso.Picasso;
 import com.tefsalkw.GlideApp;
 import com.tefsalkw.R;
 import com.tefsalkw.activity.CartActivity;
@@ -40,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -102,6 +105,12 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.text_size)
         TextView text_size;
 
+        @BindView(R.id.tvdiscount)
+        TextView tvdiscount;
+
+        @BindView(R.id.tvdiscountprice)
+        TextView tvdiscountprice;
+
         @BindView(R.id.text_price)
         TextView text_price;
 
@@ -136,6 +145,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         @BindView(R.id.LL_imageContainer)
         LinearLayout LL_imageContainer;
 
+
+        @BindView(R.id.discount_layout)
+        ConstraintLayout discountlayout;
+
         @BindView(R.id.llCartDetails)
         LinearLayout llCartDetails;
 
@@ -157,13 +170,25 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         try {
 
 
-            if (storeModels.get(position2).getItem_type().equals("DTE")) {
-
+            if (storeModels.get(position2).getItem_type().equals("DTE"))
+            {
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
                 holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getPattern_image());
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_textile), position2 + 1));
+
+                if (storeModels.get(position2).getDiscount()!=null)
+                {
+                    holder.discountlayout.setVisibility(View.VISIBLE);
+                    holder.tvdiscount.setText("Discount:"+storeModels.get(position2).getDiscount()+"%");
+                    float price=Float.valueOf(storeModels.get(position2).getTotal_amount())/100*storeModels.get(position2).getDiscount().getDiscountPercentage();
+                    holder.tvdiscountprice.setText("-"+String.valueOf(price)+"KWD");
+                }
+                else
+                {
+                    holder.discountlayout.setVisibility(View.GONE);
+                }
 
                 if(session.getKeyLang().equals("Arabic"))
                 {
@@ -184,27 +209,38 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 String formattedSize = String.format(new Locale("en"), "%.2f", Float.parseFloat(sizeInMtr));
 
                 holder.text_size.setText(activity.getString(R.string.size) + " " + formattedSize + " " + activity.getString(R.string.meters));
-
-                if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</strike>"));
+                if (storeModels.get(position2).getDiscount()!= null) {
+                    holder.text_price.setText(Html.fromHtml("" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + ""));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</i>"));
-                    holder.text_price_discounted.setVisibility(View.VISIBLE);
+//                    holder.text_price_discounted.setVisibility(View.VISIBLE);Todo edit by charan
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
                 } else {
-                    holder.text_price.setText(activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd));
+                    holder.text_price.setText(activity.getString(R.string.totalstring) + "" + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd));
                     holder.text_price_discounted.setVisibility(GONE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                 }
-
-
             }
 
             if (storeModels.get(position2).getItem_type().equals("DB")) {
-
                 holder.llTailorContainer.setVisibility(GONE);
                 holder.llTailorContainerSep.setVisibility(GONE);
                 holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getImage());
+
+
+                if (storeModels.get(position2).getDiscount()!=null)
+                {
+                    holder.discountlayout.setVisibility(View.VISIBLE);
+                    holder.tvdiscount.setText("Discount:"+storeModels.get(position2).getDiscount().getDiscountPercentage()+"%");
+                    float price=Float.valueOf(storeModels.get(position2).getTotal_amount())/100*storeModels.get(position2).getDiscount().getDiscountPercentage();
+                    holder.tvdiscountprice.setText("-"+String.valueOf(price)+"KWD");
+                }
+                else
+                {
+                    holder.discountlayout.setVisibility(View.GONE);
+                }
+
+
 
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_db), position2 + 1));
                 if(session.getKeyLang().equals("Arabic"))
@@ -221,9 +257,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 // holder.sub_text_textile.setVisibility(GONE);
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 holder.text_size.setText(activity.getString(R.string.qty) + " " + storeModels.get(position2).getItem_quantity());
-
-                if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</strike>"));
+                if (storeModels.get(position2).getDiscount()!=null) {
+                    holder.text_price.setText(Html.fromHtml("" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + ""));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</i>"));
                     holder.text_price_discounted.setVisibility(View.VISIBLE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
@@ -232,7 +267,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     holder.text_price_discounted.setVisibility(GONE);
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                 }
-
             }
             if (storeModels.get(position2).getItem_type().equals("A")) {
 
@@ -240,6 +274,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.llTailorContainerSep.setVisibility(GONE);
                 holder.txtShopName.setVisibility(View.VISIBLE);
                 System.out.println("Image ===" + storeModels.get(position2).getStore_image());
+
+                if (storeModels.get(position2).getDiscount()!=null)
+                {
+                    holder.discountlayout.setVisibility(View.VISIBLE);
+                    holder.tvdiscount.setText("Discount:"+storeModels.get(position2).getDiscount().getDiscountPercentage()+"%");
+                    float price=Float.valueOf(storeModels.get(position2).getTotal_amount())/100*storeModels.get(position2).getDiscount().getDiscountPercentage();
+                    holder.tvdiscountprice.setText("-"+String.valueOf(price)+"KWD");
+                }
+                else
+                {
+                    holder.discountlayout.setVisibility(View.GONE);
+                }
 
                 holder.text_Tailor_name.setText(String.format(activity.getString(R.string.cart_order_acc), position2 + 1));
                 if(session.getKeyLang().equals("Arabic"))
@@ -256,10 +302,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 //  holder.sub_text_textile.setVisibility(GONE);
                 holder.text_size.setText(activity.getString(R.string.qty) + " " + storeModels.get(position2).getItem_quantity());
-                if (storeModels.get(position2).getDiscount() > 0) {
-                    holder.text_price.setText(Html.fromHtml("<strike>" + activity.getString(R.string.totalstring) + " " + activity.getString(R.string.totalstring) + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</strike>"));
-                    holder.text_price_discounted.setText(Html.fromHtml("<i>" + activity.getString(R.string.totalstring) + " " + activity.getString(R.string.totalstring) + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</i>"));
-                    holder.text_price_discounted.setVisibility(View.VISIBLE);
+                if (storeModels.get(position2).getDiscount() !=null) {
+                    holder.text_price.setText(Html.fromHtml(activity.getString(R.string.totalstring) + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd)));
+//                    holder.text_price_discounted.setText(Html.fromHtml("<i>" + activity.getString(R.string.totalstring) + " " + activity.getString(R.string.totalstring) + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</i>"));
+//                    holder.text_price_discounted.setVisibility(View.VISIBLE);//Todo edit by charan
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
                 } else {
                     holder.text_price.setText(activity.getString(R.string.totalstring) + " " + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd));
@@ -277,6 +323,21 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                 holder.sub_text_textile.setText(storeModels.get(position2).getPrice() + " " + activity.getString(R.string.kwd_per_meter));
                 //  holder.sub_text_textile.setText(storeModels.get(position2).getDishdasha_material());
                 //holder.sub_text_textile.setVisibility(GONE);
+
+
+
+
+                if (storeModels.get(position2).getDiscount()!=null)
+                {
+                    holder.discountlayout.setVisibility(View.VISIBLE);
+                    holder.tvdiscount.setText("Discount:"+storeModels.get(position2).getDiscount().getDiscountPercentage()+"%");
+                    float price=Float.valueOf(storeModels.get(position2).getTotal_amount())/100*storeModels.get(position2).getDiscount().getDiscountPercentage();
+                    holder.tvdiscountprice.setText("-"+String.valueOf(price)+"KWD");
+                }
+                else
+                {
+                    holder.discountlayout.setVisibility(View.GONE);
+                }
 
 
                 String sizeInMtr = storeModels.get(position2).getItem_quantity();
@@ -303,17 +364,13 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                     }
                 }
 
-                if (storeModels.get(position2).getDiscount() > 0) {
-
-                    holder.text_price.setText(Html.fromHtml("<strike>" + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "</strike>"));
-
+                if (storeModels.get(position2).getDiscount()!=null) {
+                    holder.text_price.setText(Html.fromHtml("" + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + ""));
                     holder.text_price_discounted.setText(Html.fromHtml("<i>" + storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd) + "<i>"));
-                    holder.text_price_discounted.setVisibility(View.VISIBLE);
-
+//                    holder.text_price_discounted.setVisibility(View.VISIBLE);Todo edit by charan
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorBlack));
 
                 } else {
-
                     holder.text_price.setText(storeModels.get(position2).getTotal_amount() + " " + activity.getString(R.string.kwd));
                     holder.text_price.setTextColor(activity.getResources().getColor(R.color.colorRed));
                     holder.text_price_discounted.setVisibility(GONE);
@@ -388,8 +445,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             String imageUrl = storeModels.get(position2).getImage();
 
 
-            if (imageUrl != null && !imageUrl.equals("")) {
-                GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
+            if (imageUrl != null && !imageUrl.equals("")){
+//                GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getImage()).apply(options).into(holder.product_img);
+                Picasso.with(activity).load(storeModels.get(position2).getImage()).error(R.drawable.logo_blue).into(holder.product_img);
+
             }
 
 

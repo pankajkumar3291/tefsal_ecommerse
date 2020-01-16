@@ -117,7 +117,6 @@ public class DaraAbayaStoresActivity extends BaseActivity {
             }
         }
 
-
         WebCallServiceStores();
     }
 
@@ -146,8 +145,6 @@ public class DaraAbayaStoresActivity extends BaseActivity {
 
 
                             System.out.println("response==" + response.toString());
-
-
                             // SimpleProgressBar.closeProgress();
 
                             if (response != null) {
@@ -220,7 +217,7 @@ public class DaraAbayaStoresActivity extends BaseActivity {
     public void WebCallServiceStores() {
         SimpleProgressBar.showProgress(DaraAbayaStoresActivity.this);
         try {
-            final String url = Contents.baseURL + "getStores";
+            final String url = Contents.baseURL +"getStores";
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     new Response.Listener<String>() {
@@ -231,7 +228,7 @@ public class DaraAbayaStoresActivity extends BaseActivity {
 
                             if (response != null) {
 
-                                System.out.println("Response=====" + response);
+                                System.out.println("Response====="+ response);
                                 Log.e("stores response", response);
 
 
@@ -239,6 +236,8 @@ public class DaraAbayaStoresActivity extends BaseActivity {
                                     JSONObject object = new JSONObject(response);
                                     String status = object.getString("status");
                                     String msg = object.getString("message");
+                                    System.out.println("Response=====" + status);
+
 
                                     if (status.equals("1")) {
                                         Gson g = new Gson();

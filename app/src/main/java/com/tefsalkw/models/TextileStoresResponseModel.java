@@ -14,6 +14,13 @@ public class TextileStoresResponseModel {
     private List<TextileStoresModel> record;
 
     private String status;
+    public String getStore_discount() {
+        return store_discount;
+    }
+    public void setStore_discount(String store_discount) {
+        this.store_discount = store_discount;
+    }
+    private String store_discount;
 
     public String getMessage ()
     {

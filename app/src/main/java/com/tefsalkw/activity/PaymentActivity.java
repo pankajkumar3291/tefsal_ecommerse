@@ -52,18 +52,15 @@ public class PaymentActivity extends BaseActivity {
     @BindView(R.id.cancel_btn)
     ImageView cancel_btn;
 
-
     SessionManager sessionManager;
 
     private static Tracker mTracker;
-
     String payment_id = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
         ButterKnife.bind(this);
         //Init Additional
         TefsalApplication application = (TefsalApplication) getApplication();
@@ -73,15 +70,12 @@ public class PaymentActivity extends BaseActivity {
         toolbar_title.setText("Checkout");
         cancel_btn.setVisibility(View.GONE);
         setUpWebView();
-
-
         try {
 
             String userId = sessionManager.getCustomerId();
             String cartId = sessionManager.getKeyCartId();
 
             Intent intent = getIntent();
-
             String amount = intent.getStringExtra("Amount");
 
             long first11 = (long) (Math.random() * 100000000000L);
@@ -92,17 +86,13 @@ public class PaymentActivity extends BaseActivity {
             SimpleProgressBar.showProgress(PaymentActivity.this);
             webView.loadUrl(paymentUrl);
 
-
         } catch (Exception exc) {
 
         }
-
-
     }
 
     @Override
     public void onBackPressed() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(PaymentActivity.this);
         builder.setMessage(R.string.cancel_confirmation)
                 .setCancelable(false)
@@ -118,7 +108,6 @@ public class PaymentActivity extends BaseActivity {
                         dialog.cancel();
                     }
                 });
-
         //Creating dialog box
         AlertDialog alert = builder.create();
         //Setting the title manually
@@ -155,18 +144,14 @@ public class PaymentActivity extends BaseActivity {
         }
 
     }
-
-    private class MyWebChromeClient extends WebChromeClient {
+    private class MyWebChromeClient extends WebChromeClient{
         Context context;
 
         @Override
         public boolean onConsoleMessage(ConsoleMessage cm) {
-
             Log.d("CONTENT", String.format("%s @ %d: %s", cm.message(), cm.lineNumber(), cm.sourceId()));
-
             return true;
         }
-
 
         public MyWebChromeClient(Context context) {
             super();
@@ -352,18 +337,13 @@ public class PaymentActivity extends BaseActivity {
                         // Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
 
                     }
-
-
                 } catch (Exception e1) {
                     e1.printStackTrace();
                     SimpleProgressBar.closeProgress();
 
                     startActivity(new Intent(PaymentActivity.this, TransactionStatusActivity.class).putExtra("TxnStatus", "0").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-
                     //  Toast.makeText(PaymentActivity.this, "Error in processing transaction!", Toast.LENGTH_LONG).show();
-
                 }
-
             }
         });
 

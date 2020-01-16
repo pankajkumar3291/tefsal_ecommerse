@@ -2,6 +2,7 @@ package com.tefsalkw.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,6 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
     private Activity activity;
     private List<D_StoreRecord> storeModels = new ArrayList<>();
-
     String flag;
     SessionManager session;
 
@@ -60,6 +60,15 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
         @BindView(R.id.img)
         ImageView img;
 
+        @BindView(R.id.textView4)
+        TextView textpromo;
+
+        @BindView(R.id.textView6)
+        TextView tvOff;
+
+        @BindView(R.id.imageView4)
+        ImageView leftpromo;
+
         @BindView(R.id.ratingbar)
         RatingBar ratingbar;
 
@@ -69,30 +78,29 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
         @BindView(R.id.text_max_delivery_days)
         TextView text_max_delivery_days;
 
-
         @BindView(R.id.main_layout)
         RelativeLayout main_layout;
 
-        @BindView(R.id.txt_discount_amount)
+        @BindView(R.id.discount)
         TextView txt_discount_amount;
 
         @BindView(R.id.LL_di)
-        LinearLayout LL_di;
-
+        ImageView LL_di;
 
         @BindView(R.id.storeCloseLayout)
         RelativeLayout storeCloseLayout;
 
+        @BindView(R.id.discountlayout)
+        ConstraintLayout discountlayout;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
         }
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position2) {
-
+    public void onBindViewHolder(final ViewHolder holder, final int position2){
 
         try {
             if (!storeModels.get(holder.getAdapterPosition()).getIs_active().equalsIgnoreCase("Y")) {
@@ -103,16 +111,18 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
 
             String discount_amount;
 
-
             RequestOptions options = new RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.drawable.no_image_placeholder_grid)
                     .error(R.drawable.no_image_placeholder_grid);
-
             GlideApp.with(activity).asBitmap().load(storeModels.get(position2).getStore_image()).apply(options).into(holder.img);
 
             final String store_name;
             if (session.getKeyLang().equals("Arabic")) {
+                holder.leftpromo.setRotation(90);
+                holder.textpromo.setRotation(45);
+                holder.discountlayout.setRotation(-45);
+                holder.LL_di.setRotation(0);
                 store_name = storeModels.get(holder.getAdapterPosition()).getStore_name_arabic();
             } else {
                 store_name = storeModels.get(holder.getAdapterPosition()).getStore_name();
@@ -122,29 +132,39 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
             //  holder.ratingbar.setRating(Float.parseFloat(storeModels.get(holder.getAdapterPosition()).getStore_rating()));
             holder.ratingbar.setRating(Float.parseFloat("4"));
             holder.text_max_delivery_days.setText(storeModels.get(holder.getAdapterPosition()).getMax_delivery_days());
-            System.out.println("DALIVERY DATE   MIN" + storeModels.get(position2).getMin_delivery_days());
-            System.out.println("DALIVERY DATE   MAX" + storeModels.get(position2).getMax_delivery_days());
+            System.out.println("DALIVERY DATE  MIN" + storeModels.get(position2).getMin_delivery_days());
+            System.out.println("DALIVERY DATE  MAX" + storeModels.get(position2).getMax_delivery_days());
 
             if (storeModels.get(holder.getAdapterPosition()).getStore_discount().equals("") || storeModels.get(holder.getAdapterPosition()).getStore_discount().equals(null)) {
                 holder.txt_discount_amount.setVisibility(View.GONE);
                 // holder.txt_discount_off.setVisibility(View.GONE);
-
+                holder.tvOff.setVisibility(GONE);
                 holder.LL_di.setVisibility(View.GONE);
             } else {
-                discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
-                holder.txt_discount_amount.setText(discount_amount);
+
+                if (session.getKeyLang().equalsIgnoreCase("Arabic"))
+                {
+                    discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
+                    holder.txt_discount_amount.setText(discount_amount);
+                    holder.tvOff.setText("إيقاف");
+                }
+                else
+                {
+                    discount_amount = storeModels.get(holder.getAdapterPosition()).getStore_discount();
+                    discount_amount=discount_amount.replace("%","");
+                    holder.txt_discount_amount.setText(discount_amount);
+                    holder.tvOff.setText("%OFF");
+                }
+
            /* holder.txt_discount_amount.setVisibility(View.VISIBLE);
             holder.txt_discount_off.setVisibility(View.VISIBLE);*/
 
                 holder.LL_di.setVisibility(View.VISIBLE);
-
-
             }
 
             holder.main_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
 
                     if (!flag.equals("Accessories")) {
 
@@ -160,10 +180,7 @@ public class OtherStoresAdapter extends RecyclerView.Adapter<OtherStoresAdapter.
                                 .putExtra("flag", flag)
                                 .putExtra("sub_cat", DaraAbayaStoresActivity.sub_cat_id)
                                 .putExtra("store_name", store_name));
-
                     }
-
-
                 }
             });
 

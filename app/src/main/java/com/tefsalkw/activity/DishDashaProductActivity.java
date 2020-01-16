@@ -99,9 +99,7 @@ public class DishDashaProductActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dish_dasha_product);
-
         ButterKnife.bind(this);
-
 
         store_id = TefalApp.getInstance().getStoreId();
         flag = TefalApp.getInstance().getFlage();
@@ -127,7 +125,6 @@ public class DishDashaProductActivity extends BaseActivity {
                 store_id = intent.getStringExtra("store_id");
                 flag = intent.getStringExtra("flag");
                 fromWhere = intent.getStringExtra("fromWhere");
-
             }
         }
 
@@ -272,11 +269,7 @@ public class DishDashaProductActivity extends BaseActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
-
                             System.out.println("response==" + response.toString());
-
-
                             SimpleProgressBar.closeProgress();
 
                             if (response != null) {

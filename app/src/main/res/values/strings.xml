@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:font-size="http://schemas.android.com/apk/res-auto">
     <string name="app_name">Tefsal</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -299,7 +299,7 @@
     <string name="alert_dialog_alertTitle_text">--</string>
     <string name="alert_dialog_textViewError_text" />
     <string name="alert_dialog_buttonOK_text">OK</string>
-    <string name="cart_header_txt_text">1 item in your cart</string>
+    <string name="cart_header_txt_text">item in your cart</string>
     <string name="cart_header_txt_texts">%d items in your cart</string>
     <string name="cart_amount_text">TOTAL:0.000 KWD</string>
     <string name="cart_discount_text">(Discounts included)</string>

@@ -21,6 +21,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,icon,theme,label,supportsRtl">
+        <activity android:name=".activity.PromotionalItemsActivity"
+            android:screenOrientation="portrait"
+            android:resizeableActivity="true"
+            android:theme="@style/AppTheme.NoActionBar"
+         />
+        <activity
+            android:name=".activity.VisaCardPaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
@@ -33,6 +44,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/logo_blue" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".activity.SplashActivity"
@@ -98,8 +112,7 @@
                <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
             -->
-        </activity>
-        <!-- Firebase Notifications -->
+        </activity> <!-- Firebase Notifications -->
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -109,16 +122,16 @@
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
-        </service>
-        <!-- ./Firebase Notifications -->
+        </service> <!-- ./Firebase Notifications -->
         <receiver
             android:name="com.adjust.sdk.AdjustReferrerReceiver"
-            android:permission="android.permission.INSTALL_PACKAGES"
-            android:exported="true" >
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
+
         <activity
             android:name=".activity.DishDashaStoresActivity"
             android:screenOrientation="portrait"
@@ -202,6 +215,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.AdditionalInfoActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
 
             <!--
@@ -213,17 +227,14 @@
         </activity>
         <activity
             android:name=".activity.SizeGuideActivirty"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Library MaterailCamera Library Activity -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- Library MaterailCamera Library Activity -->
         <activity
             android:name="com.afollestad.materialcamera.CaptureActivity"
             android:parentActivityName=".activity.EditProfileActivity"
             android:theme="@style/MaterialCamera.CaptureActivity" />
         <activity
             android:name="com.afollestad.materialcamera.CaptureActivity2"
-            android:theme="@style/MaterialCamera.CaptureActivity" />
-        <!-- End -->
+            android:theme="@style/MaterialCamera.CaptureActivity" /> <!-- End -->
         <activity
             android:name=".camera.CustomCameraActivity"
             android:parentActivityName=".activity.EditProfileActivity"
@@ -278,7 +289,7 @@
         <activity
             android:name=".activity.TransactionStatusActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

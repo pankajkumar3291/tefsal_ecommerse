@@ -3,12 +3,58 @@ package com.tefsalkw.models;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by Hp on 01-11-2017.
- */
+
 
 public class GetCartResponse implements Serializable {
+    private Integer status;
+    private Integer totalQty;
     private String message;
+    private String message_ar;
+    private List<GetCartRecord> record;
+    private List<Integer> promo;
+    private int cart_count;
+    private  String cart_id;
+    private  String total_amount_cart;
+    private  String delivery_charge;
+    private List<Integer> selected_promo = null;
+    public List<Integer> getSelectedPromo() {
+        return selected_promo;
+    }
+    public void setSelectedPromo(List<Integer> selectedPromo) {
+        this.selected_promo = selectedPromo;
+    }
+    private IndividualDiscount individual_discount;
+
+
+    public IndividualDiscount getIndividual_discount() {
+        return individual_discount;
+    }
+    public void setIndividual_discount(IndividualDiscount individual_discount) {
+        this.individual_discount = individual_discount;
+    }
+    public List<Integer> getPromo() {
+        return promo;
+    }
+    public void setPromo(List<Integer> promo) {
+        this.promo = promo;
+    }
+
+
+    public Integer getTotalQty(){
+        return totalQty;
+    }
+    public void setTotalQty(Integer totalQty) {
+        this.totalQty = totalQty;
+    }
+
+
+    public int getCart_count() {
+        return cart_count;
+    }
+    public void setCart_count(int cart_count) {
+        this.cart_count = cart_count;
+    }
+
 
     public String getMessage_ar() {
         return message_ar;
@@ -18,11 +64,7 @@ public class GetCartResponse implements Serializable {
         this.message_ar = message_ar;
     }
 
-    private String message_ar;
 
-    private List<GetCartRecord> record;
-
-    private String status;
 
     public String getMessage ()
     {
@@ -44,12 +86,12 @@ public class GetCartResponse implements Serializable {
         this.record = record;
     }
 
-    public String getStatus ()
+    public Integer getStatus ()
     {
         return status;
     }
 
-    public void setStatus (String status)
+    public void setStatus (Integer status)
     {
         this.status = status;
     }
@@ -62,7 +104,7 @@ public class GetCartResponse implements Serializable {
         this.total_amount_cart = total_amount_cart;
     }
 
-    private  String total_amount_cart;
+
 
     public String getDelivery_charge() {
         return delivery_charge;
@@ -72,7 +114,7 @@ public class GetCartResponse implements Serializable {
         this.delivery_charge = delivery_charge;
     }
 
-    private  String delivery_charge;
+
 
     public String getCart_id() {
         return cart_id;
@@ -82,7 +124,7 @@ public class GetCartResponse implements Serializable {
         this.cart_id = cart_id;
     }
 
-    private  String cart_id;
+
 
     @Override
     public String toString()

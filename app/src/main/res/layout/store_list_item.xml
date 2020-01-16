@@ -1,198 +1,298 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    android:id="@+id/main_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height2"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/main_layout"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height2"
-        android:layout_marginBottom="5dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/nav_header_height2"
-            android:scaleType="centerCrop" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/gradient_transparent" />
-        <LinearLayout
-            android:id="@+id/LL_di"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="-130dp"
-            android:background="@color/colorGold"
-            android:gravity="center"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:rotation="35"
-            android:transformPivotY="145dp"
-            android:visibility="gone">
-
-            <TextView
-
-                android:id="@+id/txt_discount_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="130dp"
-                android:gravity="center"
-                android:text="@string/store_list_item_txt_discount_amount_text"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
-
-
-        <LinearLayout
-            android:id="@+id/LL_diRTL"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorGold"
-            android:clipChildren="false"
-            android:gravity="start"
-            android:layoutDirection="ltr"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:pivotX="40%"
-            android:rotation="-35"
-            android:visibility="gone">
-
-            <TextView
-
-                android:id="@+id/txt_discount_amount1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/store_list_item_txt_discount_amount_text"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/transparent"
-                android:gravity="start|center_vertical"
-                android:maxLines="1"
-                android:text="@string/store_list_item_title_text"
-                android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_mid"
-                android:textStyle="bold"
-                android:translationZ="99dp" />
-
-            <RatingBar
-
-                android:id="@+id/ratingbar"
-                style="?attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-10dp"
-                android:numStars="5"
-                android:rating="3"
-                android:stepSize="1"
-                android:theme="@style/RatingBar"
-                android:visibility="visible" />
-        </LinearLayout>
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/relativeLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="20dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/text_max_delivery_days"
-                fontPath="fonts/Lato-Bold.ttf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/store_list_item_text_max_delivery_days_text"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/text_mid"
-                android:textStyle="bold"
-                tools:ignore="MissingPrefix" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_header_height2"
+                android:layout_marginBottom="5dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_max_delivery_days"
-                android:text="@string/days"
-                android:textColor="@color/colorWhite"
-                android:translationZ="99dp" />
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/nav_header_height2"
+                    android:scaleType="centerCrop" />
 
-            <ImageView
-                android:id="@+id/icon_delivery"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/text_max_delivery_days"
-                android:src="@drawable/icon_delivery" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/gradient_transparent" />
+
+
+                <LinearLayout
+                    android:id="@+id/LL_diRTL"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorGold"
+                    android:clipChildren="false"
+                    android:gravity="start"
+                    android:layoutDirection="ltr"
+                    android:orientation="vertical"
+                    android:padding="5dp"
+                    android:pivotX="40%"
+                    android:rotation="-35"
+                    android:visibility="gone">
+
+                    <TextView
+
+                        android:id="@+id/txt_discount_amount1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/store_list_item_txt_discount_amount_text"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="start|center_vertical"
+                        android:maxLines="1"
+                        android:text="@string/store_list_item_title_text"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/text_mid"
+                        android:textStyle="bold"
+                        android:translationZ="99dp" />
+
+                    <RatingBar
+
+                        android:id="@+id/ratingbar"
+                        style="?attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-10dp"
+                        android:numStars="5"
+                        android:rating="3"
+                        android:stepSize="1"
+                        android:theme="@style/RatingBar"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="2dp">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_31ssp">
+
+
+                        <TextView
+                            android:id="@+id/text_max_delivery_days"
+                            fontPath="fonts/Lato-Bold.ttf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/store_list_item_text_max_delivery_days_text"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_18ssp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_max_delivery_days"
+                            android:text="@string/days"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/_5sdp"
+                            android:translationZ="99dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_max_delivery_days"
+                            app:layout_constraintEnd_toEndOf="@+id/text_max_delivery_days"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="@+id/text_max_delivery_days"
+                            app:layout_constraintTop_toBottomOf="@+id/text_max_delivery_days"
+                            app:layout_constraintVertical_bias="0.538" />
+
+                        <ImageView
+                            android:id="@+id/icon_delivery"
+                            android:layout_width="@dimen/_35sdp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:scaleType="fitEnd"
+                            android:src="@drawable/icon_delivery2"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                            app:layout_constraintStart_toEndOf="@+id/text_max_delivery_days"
+                            app:layout_constraintTop_toTopOf="@+id/text_max_delivery_days"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/colorTranspernt" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/storeCloseLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/nav_header_height2"
+                android:layout_marginBottom="5dp"
+                android:alpha="0.7"
+                android:background="@color/colorAccent"
+                android:clickable="false"
+                android:orientation="vertical"
+                android:translationZ="999dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:alpha="1"
+                    android:text="BUSY"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="36sp"
+                    android:translationZ="1100dp" />
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorTranspernt" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/storeCloseLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_height2"
-        android:layout_marginBottom="5dp"
-        android:alpha="0.7"
-        android:background="@color/colorAccent"
-        android:clickable="false"
-        android:orientation="vertical"
-        android:translationZ="999dp"
-        android:visibility="gone">
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/new_promo"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
 
         <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:alpha="1"
-            android:text="BUSY"
-            android:textColor="@color/colorWhite"
-            android:textSize="36sp"
-            android:translationZ="1100dp" />
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/lato"
+            android:gravity="left"
+            android:rotation="-45"
+            android:visibility="gone"
+            android:text="Promo"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintVertical_bias="0.29000002" />
 
-    </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/LL_di"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:rotation="90"
+            android:visibility="gone"
+            android:scaleType="fitXY"
+            android:src="@drawable/brown_ribbon"
+            app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout">
+
+        </ImageView>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/discountlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:rotation="45"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/LL_di"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/LL_di"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%OFF"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/discount"
+                app:layout_constraintStart_toEndOf="@+id/discount"
+                app:layout_constraintTop_toTopOf="@+id/discount"
+                app:layout_constraintVertical_bias="0.97" />
+
+            <TextView
+
+                android:id="@+id/discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
 </RelativeLayout>

@@ -58,7 +58,7 @@ public class FragmentMyAddress extends BaseFragment {
 
 
 
-       // WebCallServiceAddresses();
+//        WebCallServiceAddresses();
 
 
         return v;
@@ -93,7 +93,8 @@ public class FragmentMyAddress extends BaseFragment {
                                 if (mResponse.getStatus().equals("1")) {
                                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
+                                    empty_view.setVisibility(View.GONE);
+                                        recycler.setVisibility(View.VISIBLE);
                                     recycler.setLayoutManager(layoutManager);
                                     recycler.setItemAnimator(new DefaultItemAnimator());
                                     adapter = new MyAddressAdapter(getActivity(), mResponse.getRecord());
@@ -101,6 +102,8 @@ public class FragmentMyAddress extends BaseFragment {
 
                                     if(mResponse.getRecord().size() == 0)
                                     {
+
+
                                         empty_view.setVisibility(View.VISIBLE);
                                         recycler.setVisibility(View.GONE);
                                         empty_view.setText(R.string.no_new_address);

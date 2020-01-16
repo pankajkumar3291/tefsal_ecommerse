@@ -83,6 +83,7 @@ public class MeasermentActivity extends BaseActivity {
     EditText textValue;
     @BindView(R.id.textSubValue)
     TextView textSubValue;
+    SessionManager session;
 
 
     @BindView(R.id.ll_neck)
@@ -308,6 +309,7 @@ public class MeasermentActivity extends BaseActivity {
         setContentView(R.layout.activity_measerment);
 
         ButterKnife.bind(this);
+        session = new SessionManager(this);
 
         mDishdashaStylesRecord = (DishdashaStylesRecord) getIntent().getExtras().getSerializable("STYLE_DATA");
 
@@ -1230,24 +1232,20 @@ public class MeasermentActivity extends BaseActivity {
             showIndividualVideo(0);
             viewEditCustom.setVisibility(View.GONE);
         } else {
-
             count = 8;
             back_count = 8;
             next_txt.performClick();
 
             hsvBodyICons.setVisibility(View.GONE);
             toolbar_title.setText(R.string.edit_config);
+            toolbar_title.setTextSize(15);
             viewEditCustom.setVisibility(VISIBLE);
-
         }
-
-
     }
 
 
     @Override
     public void onBackPressed() {
-
 
         if (tipsLayout.getVisibility() == VISIBLE) {
             btn_back_tips.performClick();
@@ -1466,13 +1464,17 @@ public class MeasermentActivity extends BaseActivity {
         viewToogle();
         flag_waist = flag_chest = flag_sldr = flag_arm = flag_wrist = flag_front_height = flag_back_height = flag_customized = 0;
 
+        String intValue;
+        String decimalValue;
         String size = (mSessionManager.getKeyNeckSize());
         String[] parts = size.split("\\.");
         int lenghtCM = 0;
         int lenghtMM = 0;
         if (parts.length > 1) {
-            String intValue = parts[0];
-            String decimalValue = parts[1];
+
+            if (parts[0].equalsIgnoreCase("")) { intValue= "0";decimalValue = parts[1]; }
+            else { intValue= parts[0];decimalValue= parts[1];}
+
 
             lenghtCM = Integer.parseInt(intValue);
 
@@ -2872,28 +2874,52 @@ public class MeasermentActivity extends BaseActivity {
         parentScroll.setVisibility(View.GONE);
         switch (viewTipTrackCount) {
             case 1:
-                tip_image.setImageResource(R.drawable.memo1);
+                if (session.getKeyLang().equals("Arabic"))
+                tip_image.setImageResource(R.drawable.memo_urdu1);
+                else
+                    tip_image.setImageResource(R.drawable.memo1);
                 break;
             case 2:
-                tip_image.setImageResource(R.drawable.memo2);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu2);
+                else
+                    tip_image.setImageResource(R.drawable.memo2);
                 break;
             case 3:
-                tip_image.setImageResource(R.drawable.memo3);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu3);
+                else
+                    tip_image.setImageResource(R.drawable.memo3);
                 break;
             case 4:
-                tip_image.setImageResource(R.drawable.memo4);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu4);
+                else
+                    tip_image.setImageResource(R.drawable.memo4);
                 break;
             case 5:
-                tip_image.setImageResource(R.drawable.memo5);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu5);
+                else
+                    tip_image.setImageResource(R.drawable.memo5);
                 break;
             case 6:
-                tip_image.setImageResource(R.drawable.memo6);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu6);
+                else
+                    tip_image.setImageResource(R.drawable.memo6);
                 break;
             case 7:
-                tip_image.setImageResource(R.drawable.memo7);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu7);
+                else
+                    tip_image.setImageResource(R.drawable.memo7);
                 break;
             case 8:
-                tip_image.setImageResource(R.drawable.memo8);
+                if (session.getKeyLang().equals("Arabic"))
+                    tip_image.setImageResource(R.drawable.memo_urdu8);
+                else
+                    tip_image.setImageResource(R.drawable.memo8);
                 break;
             default:
 

@@ -40,17 +40,28 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
         this.accessoriesModels = accessoriesModels;
         session = new SessionManager(activity);
     }
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType){
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.accessories_card, viewGroup, false);
         return new ViewHolder(v);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.iv_accessories)
         ImageView iv_accessories;
+
+        @BindView(R.id.imageView8)
+        ImageView imgpromo;
+
+        @BindView(R.id.textView14)
+        TextView tvpromo;
+
+        @BindView(R.id.textView11)
+        TextView tvdiscount;
+
+        @BindView(R.id.imageView6)
+        ImageView imgdiscount;
 
         @BindView(R.id.main_layout)
         LinearLayout main_layout;
@@ -62,7 +73,6 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
         }
     }
 
@@ -84,7 +94,12 @@ public class AccessoriesAdapter extends RecyclerView.Adapter<AccessoriesAdapter.
 
         String acc_sub_cat_name = "";
 
-        if (session.getKeyLang().equals("Arabic")) {
+        if (session.getKeyLang().equals("Arabic")){
+
+            holder.imgpromo.setRotation(90);
+            holder.tvpromo.setRotation(45);
+            holder.imgdiscount.setRotation(0);
+            holder.tvdiscount.setRotation(-45);
             acc_sub_cat_name = accessoriesModels.get(position2).getSub_cat_name_arabic();
         } else {
             acc_sub_cat_name = accessoriesModels.get(position2).getSub_cat_name();

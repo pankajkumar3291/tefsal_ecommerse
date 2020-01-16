@@ -16,9 +16,7 @@ import com.tefsalkw.utils.SessionManager;
 public class StartActivity extends BaseActivity {
 
     Button btn_signin, btn_signup;
-
     TextView guestUserText;
-
     TextView tncText;
     SessionManager session;
 

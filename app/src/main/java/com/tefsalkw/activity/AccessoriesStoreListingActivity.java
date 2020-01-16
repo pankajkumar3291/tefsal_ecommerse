@@ -97,7 +97,6 @@ public class AccessoriesStoreListingActivity extends BaseActivity {
         sub_cat = getIntent().getStringExtra("sub_cat");
         flag = getIntent().getStringExtra("flag");
 
-
         setSupportActionBar(toolbar);
         //toolbar_title.setText(getIntent().getStringExtra("title"));
         toolbar_title.setText(TefalApp.getInstance().getToolbar_title());

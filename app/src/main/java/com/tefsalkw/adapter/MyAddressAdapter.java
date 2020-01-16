@@ -160,6 +160,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                         public void onResponse(String response) {
                             SimpleProgressBar.closeProgress();
 
+
                             System.out.println("ADDRESS DELETE RESPONSE===" + response);
 
                             if (response != null) {
@@ -167,11 +168,18 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                                     JSONObject object = new JSONObject(response);
                                     String status = object.getString("status");
                                     String message = object.getString("message");
-                                    String message_ar = object.getString("message_ar");
+                                    String message_ar="" ;
+                                    if(object.has("message_ar"))
+                                    {
+                                        message_ar=object.getString("message_ar");
+                                    }
+
                                     if (status.equals("1")) {
                                         //new FragmentMyAddress();
                                         record.remove(position2);
                                         notifyDataSetChanged();
+
+                                        Toast.makeText(activity,"size"+record.size(),Toast.LENGTH_SHORT).show();
                                         //activity.finish();
                                         if(sessionManager.getKeyLang().equals("Arabic"))
                                         {
@@ -203,7 +211,7 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             System.out.println("Error==" + error.toString());
-                            SimpleProgressBar.closeProgress();
+//                            SimpleProgressBar.closeProgress();
                         }
                     }) {
                 @Override
@@ -235,6 +243,9 @@ public class MyAddressAdapter extends RecyclerView.Adapter<MyAddressAdapter.View
             surError.printStackTrace();
         }
     }
+
+
+
 
     public void showNamePrompt(final int pos) {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);

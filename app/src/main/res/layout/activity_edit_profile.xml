@@ -250,6 +250,7 @@
                         android:textSize="@dimen/text_small" />
 
                     <Spinner
+
                         android:gravity="left"
                         android:id="@+id/spin_country"
                         android:layout_height="wrap_content"
@@ -317,6 +318,7 @@
                         android:layout_height="@dimen/MyAddress_EditText_height"
                         android:layout_width="match_parent"
                         android:singleLine="true"
+                        android:text=""
                         android:textColorHint="@color/colorTheme"
                         android:textSize="@dimen/text_xsmall" />
 
